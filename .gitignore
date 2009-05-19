@@ -1,0 +1,9 @@
+*.pyc
+*.db
+.DS_Store
+*.err
+*.bz2
+tools/en.templates
+rdict-django/settings_local.py
+pywiktionary/*.log*
+rdict-iphone/build

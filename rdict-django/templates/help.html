@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+{% block helpMenu %}id="current"{% endblock %}
+
+{% block content %}
+	<h1>Help</h1>
+	<div id="intro">
+	</div>
+	
+	<h2>Dictionary</h2>
+	...
+	<h2>Review</h2>
+	...
+	<h2>Bookmarklet</h2>
+	<div>
+	북마크릿을 사용하면 다른 사전사이트에서도 rdict의 학습시스템을 이용할 수 있습니다.<br>
+    이 링크(<a title="기억해" href="javascript:void((function(){if(document.getElementsByTagName('body')[0]!=undefined&&document.links.length%3E0){s=document.createElement('script');s.setAttribute('src','http://{{ request.META.HTTP_HOST }}/bookmarklet/js');document.body.appendChild(s);}})())">기억해</a>)를 브라우저의 연결탭(IE)혹은 Bookmarks toobar(Firefox, Safari)에 긁어다 놓으세요.	
+	</div>
+{% endblock %}

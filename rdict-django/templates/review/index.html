@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+{% block reviewMenu %}id="current"{% endblock %}
+
+{% block content %}
+<h1>Review</h1>
+<div id="intro">
+
+</div>
+
+<div id="study">
+    {% if request.scheduled_card_count %}
+    There are {{request.scheduled_card_count}} items to study. <a href="/review/new">[Study Now]</a>.
+    {% else %}
+    There are no items to study now. 
+    {% endif %}
+</div>
+
+<div id="summary">
+    You have a <a href="{% url rdict.review.views.card_list %}">{{card_count}}</a> cards, and you stuied {{session_count}} times. <br>
+    <!--Overall your memory retention is XX%. --> 
+</div>
+
+<div id="schedule">
+    This is your review schedule within 2 weeks<br>
+    <dl>
+    {% for date, item_count in schedules %}
+        <dt>{{ date }}</dt>
+        <dd>{{ item_count }}</dd>
+    {% endfor %}
+    </dl>
+</div>
+
+{% endblock %}

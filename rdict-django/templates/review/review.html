@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Review{% endblock %}
+{% block reviewMenu %}id="current"{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" language="javascript">
+    answer_mode = false;
+    card_id = {{card.id}}
+    rep_id = 0;
+    CARD = "card";
+    REP = "rep";
+    
+    $(document).ready(function() {
+        $("#answer_button").focus()
+        $("#answer_button").click(function(){
+            show_answer();
+        });
+        $(".grade").click(function(){
+            answer($(this).val()); 
+        });
+        $(window).keydown(function(event){
+            if(answer_mode && 48 <= event.keyCode && 53 >= event.keyCode) {
+                answer(event.keyCode-48);
+            }
+            if(!answer_mode && event.keyCode == 32) {
+                show_answer();
+            }
+        });
+    });
+    
+    function show_answer() {
+        answer_mode = true;            
+        $("#answer_buttion_div").hide();            
+        $("#answer_div").show();
+    }
+    function show_question() {
+        answer_mode = false;
+        $("#answer_buttion_div").show();            
+        $("#answer_div").hide();
+        $("#answer_button").focus()
+    }
+    
+    function answer(grade) {
+        $.getJSON("answer", 
+            {card_id: card_id, rep_id : rep_id, grade: grade},
+            function(data) {
+                if( data.reminding_cards > 0 ) {
+                    return next(CARD);
+                } else if ( data.reminding_reps > 0 ) {
+                    if (!is_rep_started()) {  
+                        if(!confirm("You've finished review, but there are some uncertain items.\nDo you want to study more?")) {
+                            return finish();
+                        } 
+                    } 
+                    return next(REP);
+                }
+                return finish();
+            }
+        );
+    }
+    
+    function finish() {
+        alert("You've finished review.");
+        document.location.href="/";
+    }
+    
+    function is_rep_started() {
+        return rep_id != 0;
+    }
+
+    function next(item_type) {
+        $.getJSON("next_" + item_type, {},
+            function(data) {
+                $("#question").html(data.question);
+                $("#answer").html(data.answer);
+                card_id = data.card_id;
+                rep_id = data.rep_id;
+                show_question()
+            }
+        );
+    }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1></h1>
+    <div id="question_div">
+    <span id="question">{{ card.question }}</span>
+    
+    </div>
+    <hr>
+    <div id="answer_buttion_div">
+        <input type="button" value="Answer" id="answer_button"><br>
+    </div>
+
+    <div id="answer_div" style="display:none">
+        <span id="answer">{{ card.answer }}</span>
+        <br>
+        <input type="button" value="5" class="grade">
+        <input type="button" value="4" class="grade">
+        <input type="button" value="3" class="grade">
+        <input type="button" value="2" class="grade">
+        <input type="button" value="1" class="grade">
+        <input type="button" value="0" class="grade">
+    </div>
+{% endblock %}

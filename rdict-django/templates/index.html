@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block homeMenu %}id="current"{% endblock %}
+
+{% block head %}
+<script type="text/javascript">
+$(document).ready( function() {
+    $("#queryInput").focus()
+    $("ol>li").prepend( '<input class="remember" type="button" value="Remember"/>' );
+    
+    $("a.rdict").attr( 'href', 
+    	function () { 
+          return '{% url rdict.dict.views.search %}?q=' + encodeURIComponent( $(this).attr('href') ); 
+    	}
+    ); 
+    $(".remember").click( function() {
+        remember_word(this);
+    });
+} );
+
+function remember_word(obj) {
+    word = '{{ q }}'
+    definition_li = $(obj).parent().clone();
+    definition_li.children('ul').empty();
+    definition_li.children('ol').empty();
+    definition_li.children('dl').empty();
+    definition = definition_li.text();
+	alert( definition_li.text() )
+    
+    $.getJSON("{% url rdict.review.views.word_save %}", 
+        {q: word, a:definition},
+        function(data) {
+            if( data.result ) {
+                alert( "Word '" + word +  "' is scheduled to review tomorrow." );
+            }
+        }
+    );
+    
+}
+
+function processKeystroke(e) {
+	//alert(e)
+}
+
+</script>
+{% endblock %}
+
+{% block content %}
+	<h1></h1>
+	<div id="intro">
+	    <form name="dictForm" action="/dict/search">
+	        <input type="text" id="queryInput" name="q" value="{{ q }}" onKeypress="javascript:processKeystroke();">
+	        <input type="submit">
+	    </form>
+	</div>
+	
+	{% if userSubmittedSearch %}
+	
+		{% if word %}
+			{% load dict %}
+			<br> {{ word.definition|safe }}
+			<br><br> Perhaps you'd also like to try searching for '{{q}}' on one of the following sites:	
+		{% else %} 	
+			<br> Sorry, the word you searched for wasn't in our database.
+			<br><br> Perhaps you'd like to try searching for '{{q}}' on one of the following sites:
+		{% endif %}
+		
+		<ul>
+			<li> <a target="_blank" href="http://kr.dictionary.search.yahoo.com/search/dictionaryp?prop=&subtype=eng&p={{q}}">Yahoo</a>
+			<li> <a target="_blank" href="http://dic.naver.com/search.nhn?target=dic&query={{q}}&x=0&y=0&ie=utf8&query_utf=.">Naver</a>
+			<li> <a target="_blank" href="http://www.merriam-webster.com/dictionary/{{q}}">Merriam-Webster</a>
+			<li> <a target="_blank" href="http://en.wikipedia.org/w/index.php?search={{q}}">Wikipedia</a>
+		</ul>
+	{% endif %}
+	
+{% endblock %}

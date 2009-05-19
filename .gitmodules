@@ -1,0 +1,3 @@
+[submodule "rdict/firepython"]
+	path = rdict/firepython
+	url = git://github.com/darwin/firepython.git

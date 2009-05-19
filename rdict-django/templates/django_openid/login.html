@@ -1,0 +1,46 @@
+{% extends base_template %}
+
+{% block title %}Sign in to rdict{% endblock %}
+
+{% block head %}
+<style type="text/css">
+input.openid {
+  background: url({{ logo }}) no-repeat; 
+  background-position: 0 50%;
+  padding-left: 16px;
+  width: 20em;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Sign in</h1>
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+<h2>With your OpenID</h2>
+
+<form action="{{ action }}" method="post">
+{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}   
+<p>
+    <input class="openid" type="text" name="openid_url">
+    <input type="submit" value="Sign in">
+</p>
+</form>
+
+<h2>With your Google Account</h2>
+
+<form action="{{ action }}" method="post">
+<input type="hidden" name="openid_url" value="www.google.com/accounts/o8/id">
+<input type="submit" value="Sign in"/>
+</form> 
+    
+<hr>
+<div id="signin_help">
+rdict은 <a href="http://openid.co.kr/">OpenID</a>를 사용하고 있습니다. <br>
+OpenID가 없는 분은 <a href="http://www.myid.net">myID</a>와 같은 OpenID 제공 사이트에 가입 후 사용바랍니다. <br>
+</div>
+
+{% endblock %}

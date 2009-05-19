@@ -1,0 +1,31 @@
+
+INSTALL
+=======
+
+# Required libraries
+
+* python-openid 2.2.1 - http://www.openidenabled.com/python-openid/ 
+  
+* elementtree
+
+* firepython 
+$ git submodule init
+$ git submodule sync
+
+* python-nose
+
+
+
+LINKS
+=====
+
+SM2 Algorithm
+-------------
+
+ * http://gist.github.com/79076
+
+Wikitionary
+-----------
+
+ * http://hewgill.com/viewvc/wiktiondict/trunk/ 
+ * jwktl

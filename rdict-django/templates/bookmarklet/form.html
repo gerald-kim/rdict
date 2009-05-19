@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/media/js/jquery-1.3.2.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        {% if not request.login_user %}
+        if( confirm( "You need a login to rdict. Do you want to login now?" ) ) {
+            if ( !window.open( '/openid?next=/bookmarklet/close' ) ) {
+                alert( "Please unblock popup." );  
+                return;
+            }
+        }
+        {% else %}
+        save();
+        {% endif %}
+    });
+    
+    function save() {
+        q = $("#q").val();
+        a = $("#a").val();
+        
+        if( null == q || q == "" ) {
+            alert( "Sorry. Can't find the word to remember." );
+            return;
+        }
+        if( null == a || a == "" ) {
+            alert( "Please select the definition region to remember." );
+            return;
+        }
+        if ( confirm( "Do you want to remember this word?\n\n"+ q +"\ : " + a ) ) {
+            $('#save_form').submit();
+        }
+    }    
+    </script>
+</head>
+<body>
+    <form id="save_form" action="/bookmarklet/save" method="get">
+    <dl>
+        <dt>Word</dt>
+        <dd><input id="q" type="text" name="q" value="{{q}}"/></dd>
+        <dt>Definition </dt>
+        <dd><textarea id="a" name="a" style="width:100%;height:200">{{a}}</textarea></dd>
+    </dl>
+    <input type="submit"/>
+    </form>
+</body>

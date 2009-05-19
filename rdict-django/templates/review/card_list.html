@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Review/History{% endblock %}
+{% block reviewMenu %}id="current"{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" language="javascript" src="{{MEDIA_URL}}/js/jquery.editinplace.js"></script>
+    <script type="text/javascript" language="javascript">
+    function setup_sort() {
+        $('.sort_link[sort="{{sort}}"]').css("font-weight","bold");
+        $('.sort_link').click( function(){
+            $(':hidden[name="sort"]').val($(this).attr('sort'))
+            $('#list_form').submit();
+            return false;
+        });	   
+    }    
+
+    function setup_page() {
+        $('.page_link').click( function(){
+            $(':hidden[name="page"]').val( $(this).attr('page') )
+            $('#list_form').submit();
+            return false;
+        });    
+    }    
+
+    function setup_edit() {
+        $('.answer').editInPlace({
+            url: "save",
+            element_id: "card_id",
+            field_type: "textarea",
+            show_buttons: true,
+            textarea_rows: "5",
+            textarea_cols: "30",
+            save_button: '<button class="inplace_save">Save</button>',
+            cancel_button: '<a href="#" class="inplace_cancel">Cancel</a>',
+            value_required : true,
+        });
+    }
+
+    function setup_delete() {
+        $('.card_delete').click( function(){
+            card_id = this.id.substring(12);
+            if(confirm('Do you want to delete this card?')) {
+                $.getJSON("delete", { card_id: card_id }, function(json){
+                    if( json.result ) {
+                        $('#card_' + card_id).fadeOut()      
+                    }
+                });
+            }
+            return false;
+        });    
+    }
+    $(document).ready(function() {
+        setup_sort();
+        setup_page();
+        setup_edit();
+        setup_delete();
+    });
+	</script>
+{% endblock %}
+
+{% block content %}
+<h1>Review</h1>
+
+<form id="list_form" action="">
+    <input type="hidden" name="sort" value="{{sort}}"/>
+    <input type="hidden" name="page" value="{{card_page.number}}"/>
+</form>
+
+sort by recent [<a class="sort_link" sort="s" href="#">study</a>
+    / <a class="sort_link" sort="c" href="#">search</a>]
+<table border="0">
+  <thead>
+    <tr>
+      <th width="100">Word</th>
+      <th>Definition</th>
+      <th width="80">Searched</th>
+      <th width="80">Studied</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+{% for card in card_page.object_list %}
+    <tr id="card_{{ card.id }}">
+      <td>{{ card.question }}</td>
+      <td id="card_answer_{{ card.id }}" class="answer">{{ card.answer }}</td>
+      <td>{{ card.created|date:"Y-m-d" }}</td>
+      <td>{{ card.studied|date:"Y-m-d" }}</td>
+      <td><a href="#" id="card_delete_{{ card.id }}" class="card_delete">X</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if card_page.has_previous %}
+            <a class="page_link" href="#" page="{{ card_page.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ card_page.number }} of {{ card_page.paginator.num_pages }}.
+        </span>
+
+        {% if card_page.has_next %}
+            <a class="page_link" href="#" page="{{ card_page.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% if has_duplication %}
+<p>There are some <a href="">duplicated items</a>.</p>
+{% endif %}
+
+{% endblock %}
