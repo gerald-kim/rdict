@@ -26,7 +26,7 @@
 	
 	self.reps_since_lapse = 0;
 	self.easiness = (float) 2.5;
-	self.interval = 1;
+	self.interval = -1;
 	
 	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) self.interval * 60*60*24];
 	self.created = [NSDate init];
@@ -37,21 +37,32 @@
 	return self;
 }
 
-- (void) calc_interval {
+- (void) calcInterval {
 	if (self.reps_since_lapse == 0)
 		self.interval = 1;
 	else if (self.reps_since_lapse == 1)
 		self.interval = 6;
 	else
-		self.interval = self.interval * self.easiness;
+		self.interval = (int) ceil(self.interval * self.easiness);
 	
 	// the difference between today and today + the interval	
 	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) 60*60*24];
 }
 
+- (void) calcEasinessByGrade: (int) grade {
+	if (grade > 2){
+		float newEasiness = self.easiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+	
+		if(newEasiness <= 1.3)
+			self.easiness = 1.3;
+		else
+			self.easiness = newEasiness;
+	}
+}
+
 - (void) forget {
 	//Should be trackable
 	self.reps_since_lapse = 0;
-	[self calc_interval];
+	[self calcInterval];
 }
 @end
