@@ -17,25 +17,37 @@
 		1F0974000FBF6C6F00665994 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F0973FF0FBF6C6F00665994 /* HomeView.xib */; };
 		1F09741D0FBF6D6E00665994 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F09741C0FBF6D6E00665994 /* DictionaryView.xib */; };
 		1F0974200FBF6DA300665994 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F09741F0FBF6DA300665994 /* ReviewView.xib */; };
-		1F50387B0FC0BACC00DBA0B4 /* CardTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */; };
-		1F5038A00FC0BBF100DBA0B4 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50389F0FC0BBF100DBA0B4 /* Card.m */; };
-		1F95C7DE0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F95C7DC0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.m */; };
-		1F95C7DF0FBF86B5002D3E41 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F95C7DD0FBF86B5002D3E41 /* GTMIPhoneUnitTestMain.m */; };
-		1F95C7E20FBF86F1002D3E41 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F95C7E10FBF86F1002D3E41 /* GTMSenTestCase.m */; };
-		1F95C8030FBF8854002D3E41 /* TestSomething.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F95C8020FBF8854002D3E41 /* TestSomething.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		EF36EBD50FC3058A00A575A8 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCB0FC3058A00A575A8 /* md5.c */; };
-		EF36EBD60FC3058A00A575A8 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCD0FC3058A00A575A8 /* myconf.c */; };
-		EF36EBD70FC3058A00A575A8 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCF0FC3058A00A575A8 /* tcbdb.c */; };
-		EF36EBD80FC3058A00A575A8 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD10FC3058A00A575A8 /* tchdb.c */; };
-		EF36EBD90FC3058A00A575A8 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD30FC3058A00A575A8 /* tcutil.c */; };
-		EF36EBDA0FC3058A00A575A8 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCB0FC3058A00A575A8 /* md5.c */; };
-		EF36EBDB0FC3058A00A575A8 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCD0FC3058A00A575A8 /* myconf.c */; };
-		EF36EBDC0FC3058A00A575A8 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCF0FC3058A00A575A8 /* tcbdb.c */; };
-		EF36EBDD0FC3058A00A575A8 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD10FC3058A00A575A8 /* tchdb.c */; };
-		EF36EBDE0FC3058A00A575A8 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD30FC3058A00A575A8 /* tcutil.c */; };
+		EF6333270FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6333230FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.m */; };
+		EF6333280FC5B0E900F72044 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6333240FC5B0E900F72044 /* GTMIPhoneUnitTestMain.m */; };
+		EF6333290FC5B0E900F72044 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6333260FC5B0E900F72044 /* GTMSenTestCase.m */; };
+		EF63333C0FC5B1E300F72044 /* TestSomething.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0975470FBF7F8300665994 /* TestSomething.m */; };
+		EF63337A0FC5B29D00F72044 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCB0FC3058A00A575A8 /* md5.c */; };
+		EF63337B0FC5B29D00F72044 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCD0FC3058A00A575A8 /* myconf.c */; };
+		EF63337C0FC5B29D00F72044 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBCF0FC3058A00A575A8 /* tcbdb.c */; };
+		EF63337D0FC5B29D00F72044 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD10FC3058A00A575A8 /* tchdb.c */; };
+		EF63337E0FC5B29D00F72044 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EF36EBD30FC3058A00A575A8 /* tcutil.c */; };
+		EF6333A60FC5B33E00F72044 /* libTokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6333770FC5B28200F72044 /* libTokyocabinet.a */; };
+		EF6333A70FC5B33F00F72044 /* libTokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF6333770FC5B28200F72044 /* libTokyocabinet.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF6333A10FC5B32400F72044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF6333760FC5B28200F72044 /* Tokyocabinet */;
+			remoteInfo = Tokyocabinet;
+		};
+		EF6333A30FC5B32C00F72044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF6333760FC5B28200F72044 /* Tokyocabinet */;
+			remoteInfo = Tokyocabinet;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,15 +69,6 @@
 		1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTestCase.m; sourceTree = "<group>"; };
 		1F50389E0FC0BBF100DBA0B4 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		1F50389F0FC0BBF100DBA0B4 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
-		1F95C77F0FBF838D002D3E41 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
-		1F95C7880FBF8427002D3E41 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = ../../../../Library/Frameworks/SenTestingKit.framework; sourceTree = SOURCE_ROOT; };
-		1F95C7D50FBF8651002D3E41 /* Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F95C7DB0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = SOURCE_ROOT; };
-		1F95C7DC0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = SOURCE_ROOT; };
-		1F95C7DD0FBF86B5002D3E41 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = "../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestMain.m"; sourceTree = SOURCE_ROOT; };
-		1F95C7E00FBF86F1002D3E41 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = SOURCE_ROOT; };
-		1F95C7E10FBF86F1002D3E41 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = SOURCE_ROOT; };
-		1F95C7E30FBF8719002D3E41 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "../../../tools/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = SOURCE_ROOT; };
 		1F95C8020FBF8854002D3E41 /* TestSomething.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSomething.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 		EF36EBD20FC3058A00A575A8 /* tchdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tchdb.h; path = tokyocabinet/tchdb.h; sourceTree = "<group>"; };
 		EF36EBD30FC3058A00A575A8 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tcutil.c; path = tokyocabinet/tcutil.c; sourceTree = "<group>"; };
 		EF36EBD40FC3058A00A575A8 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tcutil.h; path = tokyocabinet/tcutil.h; sourceTree = "<group>"; };
+		EF6333150FC5B04400F72044 /* Unit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF6333170FC5B04400F72044 /* Unit Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Test-Info.plist"; sourceTree = "<group>"; };
+		EF63331F0FC5B0D100F72044 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
+		EF6333220FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = DEVELOPER_DIR; };
+		EF6333230FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = DEVELOPER_DIR; };
+		EF6333240FC5B0E900F72044 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestMain.m"; sourceTree = DEVELOPER_DIR; };
+		EF6333250FC5B0E900F72044 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = DEVELOPER_DIR; };
+		EF6333260FC5B0E900F72044 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
+		EF6333770FC5B28200F72044 /* libTokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +104,19 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				EF6333A70FC5B33F00F72044 /* libTokyocabinet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F95C7D30FBF8651002D3E41 /* Frameworks */ = {
+		EF6333130FC5B04400F72044 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF6333A60FC5B33E00F72044 /* libTokyocabinet.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF6333750FC5B28200F72044 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* RDict.app */,
-				1F95C7D50FBF8651002D3E41 /* Unit Tests.app */,
+				EF6333150FC5B04400F72044 /* Unit Test.app */,
+				EF6333770FC5B28200F72044 /* libTokyocabinet.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +155,7 @@
 		1F0975230FBF7BC000665994 /* Tests Cases */ = {
 			isa = PBXGroup;
 			children = (
+				EF63331B0FC5B09700F72044 /* GTM */,
 				1F0975470FBF7F8300665994 /* TestSomething.m */,
 				1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */,
 			);
@@ -151,13 +174,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1F95C7E30FBF8719002D3E41 /* GTMDefines.h */,
-				1F95C7E00FBF86F1002D3E41 /* GTMSenTestCase.h */,
-				1F95C7E10FBF86F1002D3E41 /* GTMSenTestCase.m */,
-				1F95C7DB0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.h */,
-				1F95C7DC0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.m */,
-				1F95C7DD0FBF86B5002D3E41 /* GTMIPhoneUnitTestMain.m */,
-				1F95C7880FBF8427002D3E41 /* SenTestingKit.framework */,
 				1F0975230FBF7BC000665994 /* Tests Cases */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -165,8 +181,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				1F09752D0FBF7D0B00665994 /* Test-Info.plist */,
-				1F95C77F0FBF838D002D3E41 /* Unit Tests-Info.plist */,
 				1F95C8020FBF8854002D3E41 /* TestSomething.m */,
+				EF6333170FC5B04400F72044 /* Unit Test-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -174,16 +190,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				EF36EBCB0FC3058A00A575A8 /* md5.c */,
-				EF36EBCC0FC3058A00A575A8 /* md5.h */,
-				EF36EBCD0FC3058A00A575A8 /* myconf.c */,
-				EF36EBCE0FC3058A00A575A8 /* myconf.h */,
-				EF36EBCF0FC3058A00A575A8 /* tcbdb.c */,
-				EF36EBD00FC3058A00A575A8 /* tcbdb.h */,
-				EF36EBD10FC3058A00A575A8 /* tchdb.c */,
-				EF36EBD20FC3058A00A575A8 /* tchdb.h */,
-				EF36EBD30FC3058A00A575A8 /* tcutil.c */,
-				EF36EBD40FC3058A00A575A8 /* tcutil.h */,
+				EF63330D0FC5B01600F72044 /* tokyocabinet */,
 				32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -212,7 +219,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EF63330D0FC5B01600F72044 /* tokyocabinet */ = {
+			isa = PBXGroup;
+			children = (
+				EF36EBCB0FC3058A00A575A8 /* md5.c */,
+				EF36EBCC0FC3058A00A575A8 /* md5.h */,
+				EF36EBCD0FC3058A00A575A8 /* myconf.c */,
+				EF36EBCE0FC3058A00A575A8 /* myconf.h */,
+				EF36EBCF0FC3058A00A575A8 /* tcbdb.c */,
+				EF36EBD00FC3058A00A575A8 /* tcbdb.h */,
+				EF36EBD10FC3058A00A575A8 /* tchdb.c */,
+				EF36EBD20FC3058A00A575A8 /* tchdb.h */,
+				EF36EBD30FC3058A00A575A8 /* tcutil.c */,
+				EF36EBD40FC3058A00A575A8 /* tcutil.h */,
+			);
+			name = tokyocabinet;
+			sourceTree = "<group>";
+		};
+		EF63331B0FC5B09700F72044 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				EF6333220FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.h */,
+				EF6333230FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.m */,
+				EF6333240FC5B0E900F72044 /* GTMIPhoneUnitTestMain.m */,
+				EF6333250FC5B0E900F72044 /* GTMSenTestCase.h */,
+				EF6333260FC5B0E900F72044 /* GTMSenTestCase.m */,
+				EF63331F0FC5B0D100F72044 /* GTMDefines.h */,
+			);
+			name = GTM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF6333730FC5B28200F72044 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* RDict */ = {
@@ -226,29 +273,48 @@
 			buildRules = (
 			);
 			dependencies = (
+				EF6333A20FC5B32400F72044 /* PBXTargetDependency */,
 			);
 			name = RDict;
 			productName = RDict;
 			productReference = 1D6058910D05DD3D006BFB54 /* RDict.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F95C7D40FBF8651002D3E41 /* Unit Tests */ = {
+		EF6333140FC5B04400F72044 /* Unit Test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F95C7DA0FBF8654002D3E41 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildConfigurationList = EF63331A0FC5B04500F72044 /* Build configuration list for PBXNativeTarget "Unit Test" */;
 			buildPhases = (
-				1F95C7D10FBF8651002D3E41 /* Resources */,
-				1F95C7D20FBF8651002D3E41 /* Sources */,
-				1F95C7D30FBF8651002D3E41 /* Frameworks */,
-				1F95C7EF0FBF875B002D3E41 /* ShellScript */,
+				EF6333110FC5B04400F72044 /* Resources */,
+				EF6333120FC5B04400F72044 /* Sources */,
+				EF6333130FC5B04400F72044 /* Frameworks */,
+				EF63332F0FC5B10F00F72044 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF6333A40FC5B32C00F72044 /* PBXTargetDependency */,
+			);
+			name = "Unit Test";
+			productName = "Unit Test";
+			productReference = EF6333150FC5B04400F72044 /* Unit Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF6333760FC5B28200F72044 /* Tokyocabinet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF6333990FC5B2A700F72044 /* Build configuration list for PBXNativeTarget "Tokyocabinet" */;
+			buildPhases = (
+				EF6333730FC5B28200F72044 /* Headers */,
+				EF6333740FC5B28200F72044 /* Sources */,
+				EF6333750FC5B28200F72044 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Unit Tests";
-			productName = "Unit Tests";
-			productReference = 1F95C7D50FBF8651002D3E41 /* Unit Tests.app */;
-			productType = "com.apple.product-type.application";
+			name = Tokyocabinet;
+			productName = Tokyocabinet;
+			productReference = EF6333770FC5B28200F72044 /* libTokyocabinet.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -263,7 +329,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* RDict */,
-				1F95C7D40FBF8651002D3E41 /* Unit Tests */,
+				EF6333140FC5B04400F72044 /* Unit Test */,
+				EF6333760FC5B28200F72044 /* Tokyocabinet */,
 			);
 		};
 /* End PBXProject section */
@@ -280,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F95C7D10FBF8651002D3E41 /* Resources */ = {
+		EF6333110FC5B04400F72044 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,7 +357,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F95C7EF0FBF875B002D3E41 /* ShellScript */ = {
+		EF63332F0FC5B10F00F72044 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,7 +368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/Users/sbodnar/programming/tools/google-toolbox-for-mac-1-5-1/UnitTesting/RunIPhoneUnitTest.sh";
+			shellScript = "/Developer/Extras/google-toolbox-for-mac-1-5-1/UnitTesting/RunIPhoneUnitTest.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -315,33 +382,46 @@
 				1F0973CD0FBF69B800665994 /* HomeViewController.m in Sources */,
 				1F0973D10FBF6AA600665994 /* DictionaryViewController.m in Sources */,
 				1F0973D50FBF6ADD00665994 /* ReviewViewController.m in Sources */,
-				EF36EBD50FC3058A00A575A8 /* md5.c in Sources */,
-				EF36EBD60FC3058A00A575A8 /* myconf.c in Sources */,
-				EF36EBD70FC3058A00A575A8 /* tcbdb.c in Sources */,
-				EF36EBD80FC3058A00A575A8 /* tchdb.c in Sources */,
-				EF36EBD90FC3058A00A575A8 /* tcutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F95C7D20FBF8651002D3E41 /* Sources */ = {
+		EF6333120FC5B04400F72044 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F95C7DE0FBF86B5002D3E41 /* GTMIPhoneUnitTestDelegate.m in Sources */,
-				1F95C7DF0FBF86B5002D3E41 /* GTMIPhoneUnitTestMain.m in Sources */,
-				1F95C7E20FBF86F1002D3E41 /* GTMSenTestCase.m in Sources */,
-				1F95C8030FBF8854002D3E41 /* TestSomething.m in Sources */,
-				1F50387B0FC0BACC00DBA0B4 /* CardTestCase.m in Sources */,
-				1F5038A00FC0BBF100DBA0B4 /* Card.m in Sources */,
-				EF36EBDA0FC3058A00A575A8 /* md5.c in Sources */,
-				EF36EBDB0FC3058A00A575A8 /* myconf.c in Sources */,
-				EF36EBDC0FC3058A00A575A8 /* tcbdb.c in Sources */,
-				EF36EBDD0FC3058A00A575A8 /* tchdb.c in Sources */,
-				EF36EBDE0FC3058A00A575A8 /* tcutil.c in Sources */,
+				EF6333270FC5B0E900F72044 /* GTMIPhoneUnitTestDelegate.m in Sources */,
+				EF6333280FC5B0E900F72044 /* GTMIPhoneUnitTestMain.m in Sources */,
+				EF6333290FC5B0E900F72044 /* GTMSenTestCase.m in Sources */,
+				EF63333C0FC5B1E300F72044 /* TestSomething.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF6333740FC5B28200F72044 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF63337A0FC5B29D00F72044 /* md5.c in Sources */,
+				EF63337B0FC5B29D00F72044 /* myconf.c in Sources */,
+				EF63337C0FC5B29D00F72044 /* tcbdb.c in Sources */,
+				EF63337D0FC5B29D00F72044 /* tchdb.c in Sources */,
+				EF63337E0FC5B29D00F72044 /* tcutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF6333A20FC5B32400F72044 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF6333760FC5B28200F72044 /* Tokyocabinet */;
+			targetProxy = EF6333A10FC5B32400F72044 /* PBXContainerItemProxy */;
+		};
+		EF6333A40FC5B32C00F72044 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF6333760FC5B28200F72044 /* Tokyocabinet */;
+			targetProxy = EF6333A30FC5B32C00F72044 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -379,62 +459,6 @@
 			};
 			name = Release;
 		};
-		1F95C7D70FBF8652002D3E41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				HEADER_SEARCH_PATHS = /user/local/tokyocabinet/include;
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /user/local/tokyocabinet/lib;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-					"-ltokyocabinet",
-					"-lz",
-					"-lbz2",
-					"-lpthread",
-					"-lm",
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "Unit Tests";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = Debug;
-		};
-		1F95C7D80FBF8652002D3E41 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "Unit Tests";
-				SDKROOT = iphoneos2.2.1;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -445,15 +469,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = usr/local/tokyocabinet/include;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ltokyocabinet",
-					"-lz",
-					"-lbz2",
-					"-lrt",
-					"-lpthread",
-					"-lm",
-					"-lc\n-ltokyocabinet",
-				);
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos2.2.1;
 			};
@@ -472,6 +488,88 @@
 			};
 			name = Release;
 		};
+		EF6333180FC5B04500F72044 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Unit Test-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Test";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = Debug;
+		};
+		EF6333190FC5B04500F72044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Unit Test-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit Test";
+				SDKROOT = iphoneos2.2.1;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		EF6333780FC5B28300F72044 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = Tokyocabinet;
+			};
+			name = Debug;
+		};
+		EF6333790FC5B28300F72044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = Tokyocabinet;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -484,20 +582,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F95C7DA0FBF8654002D3E41 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F95C7D70FBF8652002D3E41 /* Debug */,
-				1F95C7D80FBF8652002D3E41 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "RDict" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF63331A0FC5B04500F72044 /* Build configuration list for PBXNativeTarget "Unit Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF6333180FC5B04500F72044 /* Debug */,
+				EF6333190FC5B04500F72044 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF6333990FC5B2A700F72044 /* Build configuration list for PBXNativeTarget "Tokyocabinet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF6333780FC5B28300F72044 /* Debug */,
+				EF6333790FC5B28300F72044 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
