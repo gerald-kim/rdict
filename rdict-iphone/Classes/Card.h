@@ -36,6 +36,7 @@
 @property (nonatomic, retain) NSDate *effective_ended;
 
 - (id) initWithQuestion:(NSString *)question Answer:(NSString *) answer;
+- (id) initWithCard:(Card *) card;
 - (void) calcInterval;
 - (void) calcEasinessByGrade: (int) grade;
 - (void) forget;

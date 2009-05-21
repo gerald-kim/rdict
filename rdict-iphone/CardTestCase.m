@@ -30,6 +30,18 @@
 	[c release];
 }
 
+-(void) testInitWithCard{
+	Card *c = [[Card alloc] initWithQuestion:@"How big is it?" Answer:@"Very big."];
+	
+	Card *c1 = [[Card alloc] initWithCard:c];
+	
+	STAssertTrue( c != c1, nil);
+	STAssertEqualObjects(c.question, c1.question, @"Something went wrong: %s");
+	STAssertEqualObjects(c.answer, c1.answer, nil);
+	
+	[c release];
+}
+
 -(void) testRounding {
 
 	float twoPointTwo = 2.2;

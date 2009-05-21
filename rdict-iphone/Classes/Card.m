@@ -21,20 +21,40 @@
 @synthesize effective_ended;
 
 - (id) initWithQuestion:(NSString *) q Answer:(NSString *) a{
-	self.question = q;
-	self.answer = a;
+	self.question = [[NSString alloc] initWithString: q];
+	self.answer = [[NSString alloc] initWithString: a];
 	
 	self.reps_since_lapse = 0;
 	self.easiness = (float) 2.5;
 	self.interval = -1;
 	
-	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) self.interval * 60*60*24];
-	self.created = [NSDate init];
-	self.modified = [NSDate init];
-	self.studied = [NSDate init];
-	self.effective_ended = [NSDate init];
+	self.scheduled = [[NSDate alloc] init];
+	self.created = [[NSDate alloc] init];
+	self.modified = [[NSDate alloc] init];
+	self.studied = [[NSDate alloc] init];
+	self.effective_ended = [[NSDate alloc] init];
 	
 	return self;
+}
+
+- (id) initWithCard:(Card *) card {
+	Card *newCard = [[Card alloc] init];
+	
+	newCard.question = [[NSString alloc] initWithString:card.question];
+	newCard.answer = [[NSString alloc] initWithString:card.answer];
+	
+	newCard.reps_since_lapse = card.reps_since_lapse;
+	newCard.easiness = card.easiness;
+	newCard.interval = card.interval;
+	
+	newCard.scheduled = [[NSDate alloc] init];
+	newCard.created = [[NSDate alloc] init];
+	newCard.modified = [[NSDate alloc] init];
+	newCard.studied = [[NSDate alloc] init];
+	newCard.effective_ended = [[NSDate alloc] init];
+	
+	[newCard retain];
+	return newCard;
 }
 
 - (void) calcInterval {
