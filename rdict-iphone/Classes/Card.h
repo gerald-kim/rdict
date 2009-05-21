@@ -6,7 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-@interface Card : NSObject {
+#import "SQLitePersistentObject.h"
+
+@interface Card : SQLitePersistentObject {
 	NSString *question;
 	NSString *answer;
 	
@@ -19,7 +21,6 @@
 	NSDate *modified;
 	NSDate *studied;
 	NSDate *effective_ended;
-	
 }
 
 @property (nonatomic, retain) NSString *question;
