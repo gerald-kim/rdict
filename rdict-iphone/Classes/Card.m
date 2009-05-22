@@ -34,6 +34,8 @@
 	self.studied = [[NSDate alloc] init];
 	self.effective_ended = [[NSDate alloc] init];
 	
+	[super init];
+	
 	return self;
 }
 
