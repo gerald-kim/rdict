@@ -11,6 +11,11 @@
 
 @implementation ReviewViewController
 
+- (IBAction)reviewButtonPressed:(id)sender{
+	self.title = @"Button Pressed";
+	[super viewDidLoad];
+} 
+
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,7 +36,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	self.title = @"Review";
-    [super viewDidLoad];
+	[super viewDidLoad];
 }
 
 /*

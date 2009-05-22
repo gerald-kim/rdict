@@ -10,7 +10,11 @@
 
 
 @interface ReviewViewController : UIViewController {
-
+	IBOutlet UIView *homeView;
 }
+
+@property (retain, nonatomic) UIView *homeView;
+
+- (IBAction)reviewButtonPressed:(id)sender;
 
 @end
