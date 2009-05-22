@@ -6,6 +6,8 @@
 tools/en.templates
 rdict-django/settings_local.py
 pywiktionary/*.log*
-rdict-iphone/build
-*.mode1v3
+
+# xcode noise
+rdict-iphone/build/*
 *.pbxuser
+*.mode1v3
