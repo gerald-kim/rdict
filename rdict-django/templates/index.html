@@ -11,7 +11,7 @@ $(document).ready( function() {
     
     $("a.rdict").attr( 'href', 
     	function () { 
-          return '{% url rdict.dict.views.search %}?q=' + encodeURIComponent( $(this).attr('href') ); 
+          return '{% url rdict-django.dict.views.search %}?q=' + encodeURIComponent( $(this).attr('href') ); 
     	}
     ); 
     $(".remember").click( function() {
@@ -28,7 +28,7 @@ function remember_word(obj) {
     definition = definition_li.text();
 	alert( definition_li.text() )
     
-    $.getJSON("{% url rdict.review.views.word_save %}", 
+    $.getJSON("{% url rdict-django.review.views.word_save %}", 
         {q: word, a:definition},
         function(data) {
             if( data.result ) {

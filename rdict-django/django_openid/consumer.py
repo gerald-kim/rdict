@@ -234,6 +234,7 @@ Fzk0lpcjIQA7""".strip()
                 request, user_session
             ).begin(user_url)
         except DiscoveryFailure, e:
+            print e
             return self.show_error(request, self.openid_invalid_message, e)
         
         self.add_extension_args(request, auth_request)
