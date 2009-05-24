@@ -6,6 +6,10 @@ import os
 import codecs
 import tc
 import xml.sax
+import sys
+
+reload( sys )
+sys.setdefaultencoding( "utf-8" )
 
 from word import * 
 
@@ -88,9 +92,12 @@ class WiktionaryDbMaker:
         self.xml_file = xml_file
         self.db_dir = 'wiktionary_' + self.XML_RE.match( self.xml_file ).group( 1 ) + '.db'
         
+    def _get_db_filepath( self, name ):
+        return os.path.join( self.db_dir, name + '.tcb' )
+        
     def _open_tcb( self, name ):
         db = tc.BDB()
-        db.open( os.path.join( self.db_dir, name + '.tcb' ), tc.BDBOWRITER | tc.BDBOCREAT )
+        db.open( self._get_db_filepath( name ), tc.BDBOWRITER | tc.BDBOCREAT )
         return db
         
     def open( self ):
@@ -101,12 +108,33 @@ class WiktionaryDbMaker:
         self.db_tmp = self._open_tcb( 'tmp' )
         self.db_heading = self._open_tcb( 'heading' )
         self.db_word = self._open_tcb( 'word' )
+        #self.db_index = self._open_tcb( 'index' )
         
     def close( self ):
         self.db_redir.close();
         self.db_tmp.close();
         self.db_heading.close();
         self.db_word.close();
+        #self.db_index.close();
+        
+    def reopen_index( self ):
+        try:
+            os.remove( self._get_db_filepath( 'index' ) )
+        except OSError:
+            pass
+        self.db_index = self._open_tcb( 'index' )
+    
+    def create_index( self ):
+        c = self.db_word.curnew()
+        c.first()
+        while 1:
+            try:
+                c.key()
+            except KeyError:
+                break
+            self.db_index.putdup( c.key().lower(), c.key() )
+            c.next()
+        self.db_index.close()
         
     def process_redir_and_filter_english( self ):
         if self.db_tmp.has_key( self.COMPLETE_KEY ):
@@ -171,14 +199,11 @@ class WiktionaryDbMaker:
                 WORD_LOGGER.error( key )
     
     
-import sys
 if __name__ == '__main__':
     if len( sys.argv ) < 2:
         print( "Usage: %s xmlfile" % ( sys.argv[0] ) ) 
         sys.exit( 1 )
 
-    reload( sys )
-    sys.setdefaultencoding( "utf-8" )
           
     maker = WiktionaryDbMaker( sys.argv[1] )
     maker.open()
