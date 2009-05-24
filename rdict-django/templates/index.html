@@ -26,7 +26,6 @@ function remember_word(obj) {
     definition_li.children('ol').empty();
     definition_li.children('dl').empty();
     definition = definition_li.text();
-	alert( definition_li.text() )
     
     $.getJSON("{% url rdict-django.review.views.word_save %}", 
         {q: word, a:definition},
