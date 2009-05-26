@@ -7,14 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RDictAppDelegate.h"
 
+@class ReviewHomeViewController;
+@class CardFrontController;
 
 @interface ReviewViewController : UIViewController {
-	IBOutlet UIView *homeView;
+	ReviewHomeViewController *reviewHomeViewController;
+	CardFrontController *cardFrontController;
+	
+	IBOutlet UILabel *mesg;
+	IBOutlet UIButton *startReviewButton;
 }
 
-@property (retain, nonatomic) UIView *homeView;
+@property (retain, nonatomic) ReviewHomeViewController *reviewHomeViewController;
+@property (retain, nonatomic) CardFrontController *cardFrontController;
+@property (retain, nonatomic) UILabel *mesg;
+@property (retain, nonatomic) UIButton *startReviewButton;
 
-- (IBAction)reviewButtonPressed:(id)sender;
+- (IBAction)startReviewButtonPressed:(id)sender;
 
 @end

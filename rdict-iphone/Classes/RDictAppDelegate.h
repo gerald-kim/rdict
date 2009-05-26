@@ -9,17 +9,26 @@
 #import <UIKit/UIKit.h>
 
 @class HomeViewController;
+@class ReviewViewController;
 
 @interface RDictAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
 	IBOutlet UINavigationController *navController;
+	IBOutlet UINavigationController *reviewNavController;
 	
 	IBOutlet HomeViewController *homeViewController;
+	
+	ReviewViewController *reviewViewController;
+	
+	NSMutableArray *cards;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) HomeViewController *homeViewController;
+@property (nonatomic, retain) ReviewViewController *reviewViewController;
 @property (nonatomic, retain) UINavigationController *navController;
+@property (nonatomic, retain) UINavigationController *reviewNavController;
+@property (nonatomic, retain) NSMutableArray *cards;
 
 @end
 

@@ -8,20 +8,45 @@
 
 #import "RDictAppDelegate.h"
 #import "HomeViewController.h"
+#import "Card.h"
 
 @implementation RDictAppDelegate
 @synthesize window;
 @synthesize homeViewController;
+@synthesize reviewViewController;
 @synthesize navController;
+@synthesize reviewNavController;
+@synthesize cards;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	
+	Card *a = [[Card alloc] initWithQuestion:@"Is it a fish?" Answer:@"Yes, it is."];
+	[a save];
+	
+	Card *b = [[Card alloc] initWithQuestion:@"What colour is it?" Answer:@"It's green."];
+	[b save];
+	
+	Card *c = [[Card alloc] initWithQuestion:@"How big is it?" Answer:@"Very big."];
+	[c save];
+	
+	Card *d = [[Card alloc] initWithQuestion:@"Where's the beef?" Answer:@"In your pocket."];
+	[d save];
+	
+	self.cards = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
+		
+	[a release];	
+	[b release];
+	[c release];
+	[d release];
+	
 	self.navController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     [window addSubview:navController.view];
-	[window makeKeyAndVisible];	
+	[window makeKeyAndVisible];
 }
 
 
 - (void)dealloc {
+	[self.cards release];
     [self.homeViewController release];
     [self.navController release];
 	[window release];

@@ -17,12 +17,16 @@
 @interface HomeViewController : UIViewController {
 	DictionaryViewController *dicViewController;
 	ReviewViewController *reviewViewController;
+	
+	IBOutlet UIButton *goToReviewButton;
+	
 	NSArray *controllers;
 }
 
 @property (retain, nonatomic) DictionaryViewController *dicViewController;
 @property (retain, nonatomic) ReviewViewController *reviewViewController;
 @property (nonatomic, retain) NSArray *controllers;
+@property (retain, nonatomic) UIButton *goToReviewButton;
 
 - (IBAction)dicButtonPressed:(id)sender;
 - (IBAction)reviewButtonPressed:(id)sender;
