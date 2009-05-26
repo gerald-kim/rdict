@@ -16,10 +16,7 @@
 
 - (void)textFieldDoneEditing:(id)sender {
 	[self.usersWord resignFirstResponder];
-	
-	self.title = @"did search";
-	
-	
+
 	TCBDB *bdb;
 	
 	int ecode;
@@ -29,7 +26,7 @@
 	bdb = tcbdbnew();
 	
 	/* open the database */
-	if(!tcbdbopen(bdb, "/Users/sbodnar/programming/projects/rdict/rdict-iphone/word.db", BDBOREADER)){
+	if(!tcbdbopen(bdb, "/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db", BDBOREADER)){
 		ecode = tcbdbecode(bdb);
 		fprintf(stderr, "open error: %s\n", tcbdberrmsg(ecode));
 	}
