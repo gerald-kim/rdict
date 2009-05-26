@@ -1,0 +1,85 @@
+//
+//  CardBackController.m
+//  RDict
+//
+//  Created by Stephen Bodnar on 25/05/09.
+//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//
+
+#import "CardBackController.h"
+#import "RDictAppDelegate.h"
+#import "Card.h"
+
+@implementation CardBackController
+@synthesize questionLabel;
+@synthesize answerLabel;
+
+- (void) viewWillAppear:(BOOL) animated {
+	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	
+	Card *card = [delegate.cards lastObject];
+	
+	self.questionLabel.text = card.question;
+	self.answerLabel.text = card.answer;
+	
+	[card deleteObject];
+}
+
+- (IBAction)viewOKButtonPressed:(id)sender{	
+	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	
+
+	[delegate.cards removeLastObject];
+	
+	if([delegate.cards count] > 0) {
+		// load next card
+		[delegate.navController popViewControllerAnimated:YES];
+	}
+	else{
+		[delegate.navController popToViewController:delegate.reviewViewController animated:YES];
+	}
+} 
+
+/*
+// The designated initializer. Override to perform setup that is required before the view is loaded.
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        // Custom initialization
+    }
+    return self;
+}
+*/
+
+/*
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView {
+}
+*/
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+*/
+
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+    // Release anything that's not essential, such as cached data
+}
+
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+
+@end
