@@ -90,24 +90,27 @@ class WiktionaryDbMaker:
     COMPLETE_KEY = '###COMPLETED###';
     def __init__( self, xml_file ):
         self.xml_file = xml_file
-        self.db_dir = 'wiktionary_' + self.XML_RE.match( self.xml_file ).group( 1 ) + '.db'
+        self.db_dir = 'enwiktionary-' + self.XML_RE.match( self.xml_file ).group( 1 ) + '.db'
+        self.work_dir = 'work'
         
-    def _get_db_filepath( self, name ):
-        return os.path.join( self.db_dir, name + '.tcb' )
+    def _get_db_filepath( self, dir, name ):
+        return os.path.join( os.path.dirname( __file__ ), dir, name + '.db' )
         
-    def _open_tcb( self, name ):
+    def _open_db( self, path ):
         db = tc.BDB()
-        db.open( self._get_db_filepath( name ), tc.BDBOWRITER | tc.BDBOCREAT )
+        db.open( path, tc.BDBOWRITER | tc.BDBOCREAT )
         return db
         
     def open( self ):
         if not os.path.exists( self.db_dir ):
             os.makedirs( self.db_dir )
+        if not os.path.exists( self.work_dir ):
+            os.makedirs( self.work_dir )
 
-        self.db_redir = self._open_tcb( 'redir' )
-        self.db_tmp = self._open_tcb( 'tmp' )
-        self.db_heading = self._open_tcb( 'heading' )
-        self.db_word = self._open_tcb( 'word' )
+        self.db_tmp = self._open_db( self._get_db_filepath( self.work_dir, 'tmp' ) )
+        self.db_heading = self._open_db( self._get_db_filepath( self.work_dir, 'heading' ) )
+        self.db_redir = self._open_db( self._get_db_filepath( self.db_dir, 'redirect' ) )
+        self.db_word = self._open_db( self._get_db_filepath( self.db_dir, 'word' ) )
         #self.db_index = self._open_tcb( 'index' )
         
     def close( self ):
@@ -119,10 +122,10 @@ class WiktionaryDbMaker:
         
     def reopen_index( self ):
         try:
-            os.remove( self._get_db_filepath( 'index' ) )
+            os.remove( self._get_db_filepath( self.db_dir, 'index' ) )
         except OSError:
             pass
-        self.db_index = self._open_tcb( 'index' )
+        self.db_index = self._open_db( self._get_db_filepath( self.db_dir, 'index' ) )
     
     def create_index( self ):
         c = self.db_word.curnew()

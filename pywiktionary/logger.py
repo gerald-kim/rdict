@@ -1,4 +1,4 @@
-import logging
+import logging, os
 
 loggers = {}
 
@@ -18,8 +18,12 @@ def get_logger( name='' ):
         ch.setFormatter( formatter )
         #logger.addHandler( ch )
         
+        work_dir = os.path.join( os.path.dirname( __file__), 'work' )
+        if not os.path.exists( work_dir ):
+            os.makedirs( work_dir )
+
         if name:
-            fh = logging.FileHandler( 'makedb.log.' + name )
+            fh = logging.FileHandler( os.path.join( work_dir, name + '.log' ) )
             fh.setLevel( logging.INFO )
             fh.setFormatter( simpleFormatter )
             logger.addHandler( fh )
