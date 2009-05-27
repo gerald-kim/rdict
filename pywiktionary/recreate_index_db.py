@@ -5,7 +5,7 @@ import sys
 reload( sys )
 sys.setdefaultencoding( "utf-8" )
 
-from makedb import WiktionaryDbMaker
+from make_word_db import WiktionaryDbMaker
 
 if __name__ == '__main__':
     if len( sys.argv ) < 2:

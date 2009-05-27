@@ -4,9 +4,10 @@
 *.db
 *.err
 *.bz2
+*.log
+*.work
 
 rdict-django/settings_local.py
-pywiktionary/work
 
 # xcode noise
 rdict-iphone/build/*
