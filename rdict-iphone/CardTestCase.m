@@ -54,7 +54,6 @@
 }
 
 -(void) testCalcInterval {
-	
 	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
 	
 	STAssertEquals(0, c.repsSinceLapse, nil);

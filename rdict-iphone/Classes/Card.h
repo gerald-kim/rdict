@@ -16,7 +16,7 @@
 	float easiness;
 	int interval;
 	
-	NSDate *dueDate;
+	NSDate *scheduled;
 	NSDate *created;
 	NSDate *modified;
 	NSDate *studied;
@@ -30,7 +30,7 @@
 @property float easiness;
 @property int interval;
 
-@property (nonatomic, retain) NSDate *dueDate;
+@property (nonatomic, retain) NSDate *scheduled;
 @property (nonatomic, retain) NSDate *created;
 @property (nonatomic, retain) NSDate *modified;
 @property (nonatomic, retain) NSDate *studied;

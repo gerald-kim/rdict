@@ -14,7 +14,7 @@
 @synthesize repsSinceLapse;
 @synthesize easiness;
 @synthesize interval;
-@synthesize dueDate;
+@synthesize scheduled;
 @synthesize created;
 @synthesize modified;
 @synthesize studied;
@@ -28,7 +28,7 @@
 	self.easiness = (float) 2.5;
 	self.interval = -1;
 	
-	self.dueDate = [[NSDate alloc] init];
+	self.scheduled = [[NSDate alloc] init];
 	self.created = [[NSDate alloc] init];
 	self.modified = [[NSDate alloc] init];
 	self.studied = [[NSDate alloc] init];
@@ -49,7 +49,7 @@
 	newCard.easiness = card.easiness;
 	newCard.interval = card.interval;
 		
-	newCard.dueDate = [[NSDate alloc] init];
+	newCard.scheduled = [[NSDate alloc] init];
 	newCard.created = [[NSDate alloc] init];
 	newCard.modified = [[NSDate alloc] init];
 	newCard.studied = [[NSDate alloc] init];
@@ -71,7 +71,7 @@
 - (void) schedule {
 	// the difference between today and today + the interval
 	[self calcInterval];
-	self.dueDate = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) self.interval*60*60*24];
+	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) self.interval*60*60*24];
 }
 
 - (void) adjustEasinessByGrade: (int) grade {
