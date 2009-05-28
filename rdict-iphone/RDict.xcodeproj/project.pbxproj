@@ -43,6 +43,12 @@
 		1F7D58640FC5DC60006C1B00 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D58630FC5DC60006C1B00 /* CardManager.m */; };
 		1F7D58650FC5DC60006C1B00 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D58630FC5DC60006C1B00 /* CardManager.m */; };
 		1F7D5AA40FC60117006C1B00 /* ORMTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AA30FC60117006C1B00 /* ORMTestCase.m */; };
+		1F9D6D040FCE5E7A000A6908 /* DictionaryEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D030FCE5E7A000A6908 /* DictionaryEntryTest.m */; };
+		1F9D6D0B0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */; };
+		1F9D6D0C0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */; };
+		1F9D6D260FCE6219000A6908 /* DictionaryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D250FCE6219000A6908 /* DictionaryTest.m */; };
+		1F9D6D380FCE62E9000A6908 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D370FCE62E9000A6908 /* Dictionary.m */; };
+		1F9D6D390FCE62E9000A6908 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D370FCE62E9000A6908 /* Dictionary.m */; };
 		1FC228840FC662680033578D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7D5B470FC60687006C1B00 /* libsqlite3.0.dylib */; };
 		1FC228940FC6643C0033578D /* NSData-SQLitePersistence.h in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5ACB0FC603A9006C1B00 /* NSData-SQLitePersistence.h */; };
 		1FC228950FC6643C0033578D /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5ACC0FC603A9006C1B00 /* NSData-SQLitePersistence.m */; };
@@ -176,6 +182,12 @@
 		1F7D5AE90FC603A9006C1B00 /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-SQLitePersistence.h"; path = "sqlitepersistentobjects/src/UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		1F7D5AEA0FC603A9006C1B00 /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-SQLitePersistence.m"; path = "sqlitepersistentobjects/src/UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
 		1F7D5B470FC60687006C1B00 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1F9D6D030FCE5E7A000A6908 /* DictionaryEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntryTest.m; sourceTree = "<group>"; };
+		1F9D6D090FCE5FF7000A6908 /* DictionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryEntry.h; sourceTree = "<group>"; };
+		1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntry.m; sourceTree = "<group>"; };
+		1F9D6D250FCE6219000A6908 /* DictionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryTest.m; sourceTree = "<group>"; };
+		1F9D6D360FCE62E9000A6908 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		1F9D6D370FCE62E9000A6908 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
 		1FC228CB0FC6669D0033578D /* CardFront.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardFront.xib; sourceTree = "<group>"; };
 		1FC228CE0FC666FF0033578D /* CardBack.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardBack.xib; sourceTree = "<group>"; };
 		1FC228D70FC66A3A0033578D /* ReviewHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewHomeView.xib; sourceTree = "<group>"; };
@@ -260,6 +272,8 @@
 				1F22E8BE0FCBAAA70015AA86 /* CardFrontController.m */,
 				1FFFDA260FCBAE8600C3CDE6 /* CardBackController.h */,
 				1FFFDA270FCBAE8600C3CDE6 /* CardBackController.m */,
+				1F9D6D360FCE62E9000A6908 /* Dictionary.h */,
+				1F9D6D370FCE62E9000A6908 /* Dictionary.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -283,6 +297,8 @@
 				1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */,
 				1F7D58530FC5DB06006C1B00 /* CardManagerTest.m */,
 				1F7D5AA30FC60117006C1B00 /* ORMTestCase.m */,
+				1F9D6D030FCE5E7A000A6908 /* DictionaryEntryTest.m */,
+				1F9D6D250FCE6219000A6908 /* DictionaryTest.m */,
 			);
 			name = "Tests Cases";
 			sourceTree = "<group>";
@@ -294,6 +310,8 @@
 				1F50389F0FC0BBF100DBA0B4 /* Card.m */,
 				1F6C79B80FC60D8A00DCA20F /* Person.h */,
 				1F6C79B90FC60D8A00DCA20F /* Person.m */,
+				1F9D6D090FCE5FF7000A6908 /* DictionaryEntry.h */,
+				1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -592,6 +610,8 @@
 				1FC228E50FC66B120033578D /* ReviewHomeViewController.m in Sources */,
 				1F22E8BF0FCBAAA70015AA86 /* CardFrontController.m in Sources */,
 				1FFFDA280FCBAE8600C3CDE6 /* CardBackController.m in Sources */,
+				1F9D6D0C0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
+				1F9D6D380FCE62E9000A6908 /* Dictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +645,10 @@
 				1F7D58640FC5DC60006C1B00 /* CardManager.m in Sources */,
 				1F7D5AA40FC60117006C1B00 /* ORMTestCase.m in Sources */,
 				1F6C79BA0FC60D8A00DCA20F /* Person.m in Sources */,
+				1F9D6D040FCE5E7A000A6908 /* DictionaryEntryTest.m in Sources */,
+				1F9D6D0B0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
+				1F9D6D260FCE6219000A6908 /* DictionaryTest.m in Sources */,
+				1F9D6D390FCE62E9000A6908 /* Dictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
