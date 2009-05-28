@@ -95,7 +95,7 @@
 	
 	STAssertTrue( 1.3 < expectedEasiness, nil);
 	
-	[c calcEasinessByGrade: grade];
+	[c adjustEasinessByGrade: grade];
 	
 	STAssertEquals(expectedEasiness, c.easiness, nil);
 	
@@ -108,7 +108,7 @@
 	STAssertTrue( 1.3 > expectedEasiness, nil);
 	
 	c.easiness = 0.1;
-	[c calcEasinessByGrade: grade];
+	[c adjustEasinessByGrade: grade];
 	
 	STAssertEquals((float) 1.3, c.easiness, nil);
 	
@@ -117,27 +117,55 @@
 
 -(void) testCalcEasinessByGradeLessThanThreeIgnoresEFAndResetsInterval {
 	
-	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
-	
-	int grade = 3;
-	float prevEasiness = 2.5;
-	float expectedEasiness = prevEasiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
-	
-	STAssertTrue( 1.3 < expectedEasiness, nil);
-	
-	[c calcEasinessByGrade: grade];
-	
-	STAssertEquals(expectedEasiness, c.easiness, nil);
-	
 	// If grade is less than 3, don't change EF and reset reps and interval
 	
-	grade = 2;
-	prevEasiness = c.easiness;
+	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
 	
-	[c calcEasinessByGrade: grade];
+	int grade = 2;
+	float prevEasiness = c.easiness;
+	
+	[c adjustEasinessByGrade: grade];
 	
 	STAssertEquals(prevEasiness, c.easiness, nil);
+	STAssertEquals(1, c.interval, nil);
 	
+	[c release];
+}
+
+-(void) testNSDates {
+	
+	NSDate *today = [[NSDate alloc] init];
+	NSDate *anotherToday = [[NSDate alloc] init];
+	
+	STAssertTrue( 1 > [anotherToday timeIntervalSinceDate: today], nil);
+	STAssertTrue( 0 <= [anotherToday timeIntervalSinceDate: today], nil);
+	
+	NSDate *tomorrow = [[NSDate alloc] initWithTimeInterval: 60*60*24 sinceDate: today];
+	
+	NSTimeInterval expectedIntervalInSeconds = 60*60*24;
+	NSTimeInterval interval = [tomorrow timeIntervalSinceDate: today];
+	
+	STAssertEquals(expectedIntervalInSeconds, interval, nil);
+	
+	[today release];
+	[anotherToday release];
+	[tomorrow release];
+}
+
+-(void) testSchedule {
+	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
+	
+	STAssertEquals(0, c.repsSinceLapse, nil);
+	
+	NSDate *expectedDueDate = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24];
+	
+	[c schedule];
+	
+	int differenceInSeconds = [c.dueDate timeIntervalSinceDate: expectedDueDate];
+	
+	STAssertTrue(1 > differenceInSeconds, nil);
+	
+	[expectedDueDate release];
 	[c release];
 }
 

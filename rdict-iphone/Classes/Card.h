@@ -16,7 +16,7 @@
 	float easiness;
 	int interval;
 	
-	NSDate *scheduled;
+	NSDate *dueDate;
 	NSDate *created;
 	NSDate *modified;
 	NSDate *studied;
@@ -30,7 +30,7 @@
 @property float easiness;
 @property int interval;
 
-@property (nonatomic, retain) NSDate *scheduled;
+@property (nonatomic, retain) NSDate *dueDate;
 @property (nonatomic, retain) NSDate *created;
 @property (nonatomic, retain) NSDate *modified;
 @property (nonatomic, retain) NSDate *studied;
@@ -39,6 +39,7 @@
 - (id) initWithQuestion:(NSString *)question Answer:(NSString *) answer;
 - (id) initWithCard:(Card *) card;
 - (void) calcInterval;
-- (void) calcEasinessByGrade: (int) grade;
+- (void) schedule;
+- (void) adjustEasinessByGrade: (int) grade;
 - (void) forget;
 @end
