@@ -4,6 +4,8 @@
 {% block homeMenu %}id="current"{% endblock %}
 
 {% block head %}
+<link rel="stylesheet" type="text/css" media="screen" href="/media/css/jquery.suggest.css" />
+<script type="text/javascript" src="/media/js/jquery.suggest.js"></script>
 <script type="text/javascript">
 $(document).ready( function() {
     $("#queryInput").focus()
@@ -17,8 +19,14 @@ $(document).ready( function() {
     $(".remember").click( function() {
         remember_word(this);
     });
+	$("#queryInput").suggest("{% url rdict-django.dict.views.suggest %}?q=" + $("#queryInput").val() ,{                                                                                                                         
+		onSelect: function() {
+			$('form[name="dictForm"]').submit()
+		}
+	});                                                                                                          
 } );
 
+   
 function remember_word(obj) {
     word = '{{ q }}'
     definition_li = $(obj).parent().clone();
@@ -35,11 +43,6 @@ function remember_word(obj) {
             }
         }
     );
-    
-}
-
-function processKeystroke(e) {
-	//alert(e)
 }
 
 </script>
@@ -49,7 +52,7 @@ function processKeystroke(e) {
 	<h1></h1>
 	<div id="intro">
 	    <form name="dictForm" action="/dict/search">
-	        <input type="text" id="queryInput" name="q" value="{{ q }}" onKeypress="javascript:processKeystroke();">
+	        <input type="text" id="queryInput" name="q" value="{{ q }}"">
 	        <input type="submit">
 	    </form>
 	</div>

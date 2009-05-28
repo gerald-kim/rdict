@@ -1,0 +1,1 @@
+../pywiktionary/pywiktionary.py
