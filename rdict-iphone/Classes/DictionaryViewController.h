@@ -17,7 +17,6 @@
 @property (retain, nonatomic) UITextField *usersWord;
 @property (retain, nonatomic) UIWebView *searchResultsPane;
 
-- (IBAction)searchButtonPressed:(id)sender;
 - (IBAction)textFieldDoneEditing:(id)sender;
 
 @end

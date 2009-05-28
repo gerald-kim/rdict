@@ -10,6 +10,7 @@
 
 @class HomeViewController;
 @class ReviewViewController;
+@class Dictionary;
 
 @interface RDictAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
@@ -21,6 +22,8 @@
 	ReviewViewController *reviewViewController;
 	
 	NSMutableArray *cards;
+	
+	Dictionary *dic;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -29,6 +32,7 @@
 @property (nonatomic, retain) UINavigationController *navController;
 @property (nonatomic, retain) UINavigationController *reviewNavController;
 @property (nonatomic, retain) NSMutableArray *cards;
+@property (nonatomic, retain) Dictionary *dic;
 
 @end
 

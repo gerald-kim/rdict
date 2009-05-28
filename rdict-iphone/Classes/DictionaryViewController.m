@@ -6,9 +6,13 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "DictionaryViewController.h"
 #include "tcutil.h"
 #include "tcbdb.h"
+
+#import "DictionaryViewController.h"
+#import "RDictAppDelegate.h"
+#import "DictionaryEntry.h"
+#import "Dictionary.h"
 
 @implementation DictionaryViewController
 @synthesize searchResultsPane;
@@ -17,100 +21,15 @@
 - (void)textFieldDoneEditing:(id)sender {
 	[self.usersWord resignFirstResponder];
 
-	TCBDB *bdb;
+	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	
-	int ecode;
-	char *value;
+	DictionaryEntry *dicEntry = [delegate.dic searchByWord:usersWord.text];
 	
-	/* create the object */
-	bdb = tcbdbnew();
-	
-	/* open the database */
-	if(!tcbdbopen(bdb, "/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db", BDBOREADER)){
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "open error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* retrieve records */
-	
-	
-	self.title = usersWord.text;
-	
-	//const char *text = "licorice";
-	const char *text = usersWord.text.UTF8String;
-	
-	value = tcbdbget2(bdb, text);
-	
-	if(value){
-		printf("%s\n", value);
-	} else {
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "get error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* close the database */
-	if(!tcbdbclose(bdb)){
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "close error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* delete the object */
-	tcbdbdel(bdb);
-	
-	
-	NSString *nsString = [[NSString alloc] initWithUTF8String:value];
-	
-	[self.searchResultsPane loadHTMLString:nsString baseURL:nil];
-	free(value);
-	[nsString release];
+	self.title = dicEntry.word;
+	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:nil];
+	[dicEntry release];
 	
 }
-
-- (void)searchButtonPressed:(id) sender {
-	
-	self.title = @"did search";
-	
-	
-	TCBDB *bdb;
-	
-	int ecode;
-	char *value;
-	
-	/* create the object */
-	bdb = tcbdbnew();
-	
-	/* open the database */
-	if(!tcbdbopen(bdb, "/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db", BDBOREADER)){
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "open error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* retrieve records */
-	value = tcbdbget2(bdb, "foo");
-	if(value){
-		printf("%s\n", value);
-	} else {
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "get error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* close the database */
-	if(!tcbdbclose(bdb)){
-		ecode = tcbdbecode(bdb);
-		fprintf(stderr, "close error: %s\n", tcbdberrmsg(ecode));
-	}
-	
-	/* delete the object */
-	tcbdbdel(bdb);
-	
-	
-	NSString *nsString = [[NSString alloc] initWithUTF8String:value];
-	
-	[self.searchResultsPane loadHTMLString:nsString baseURL:nil];
-	free(value);
-	[nsString release];
-}
-
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

@@ -9,6 +9,7 @@
 #import "RDictAppDelegate.h"
 #import "HomeViewController.h"
 #import "Card.h"
+#import "Dictionary.h"
 
 @implementation RDictAppDelegate
 @synthesize window;
@@ -17,8 +18,10 @@
 @synthesize navController;
 @synthesize reviewNavController;
 @synthesize cards;
+@synthesize dic;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+	self.dic = [[Dictionary alloc] initWithDicPath:@"/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db"];
 	
 	Card *a = [[Card alloc] initWithQuestion:@"Is it a fish?" Answer:@"Yes, it is."];
 	[a save];
@@ -46,6 +49,7 @@
 
 
 - (void)dealloc {
+	[self.dic release];
 	[self.cards release];
     [self.homeViewController release];
     [self.navController release];
