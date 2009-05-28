@@ -18,6 +18,7 @@
 
 @property TCBDB *bdb;
 
+- (id) initWithDicPath: (NSString *) path;
 - (DictionaryEntry *) searchByWord: (NSString *) word;
 
 @end

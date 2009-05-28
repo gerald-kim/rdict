@@ -12,12 +12,12 @@
 @implementation Dictionary
 @synthesize bdb;
 
-- (id) init{
+- (id) initWithDicPath: (NSString *) path {
 	
 	int ecode;
 	self.bdb = tcbdbnew();
 	
-	if(!tcbdbopen(bdb, "/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db", BDBOREADER)){
+	if(!tcbdbopen(bdb, path.UTF8String, BDBOREADER)){
 		ecode = tcbdbecode(bdb);
 		fprintf(stderr, "open error: %s\n", tcbdberrmsg(ecode));
 	}
