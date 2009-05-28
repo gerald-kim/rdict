@@ -24,6 +24,11 @@
 	STAssertEquals(0, c.repsSinceLapse, nil);
 	STAssertEquals(-1, c.interval, nil);
 	
+	NSDate *expectedScheduled = [NSDate date];
+	
+	STAssertTrue( 1 > [expectedScheduled timeIntervalSinceDate: c.scheduled], nil);
+	STAssertTrue( 0 <= [expectedScheduled timeIntervalSinceDate: c.scheduled], nil);
+	
 	//self.assertEquals( date.today() + timedelta( days=1 ), c.scheduled )
 	//STAssertEquals(today + 1, c.scheduled, nil);
 	
@@ -154,18 +159,68 @@
 -(void) testSchedule {
 	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
 	
-	STAssertEquals(0, c.repsSinceLapse, nil);
-	
-	NSDate *expectedDueDate = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24];
+	NSDate *prevScheduled = c.scheduled;
 	
 	[c schedule];
 	
-	int differenceInSeconds = [c.dueDate timeIntervalSinceDate: expectedDueDate];
+	NSTimeInterval expectedSeconds = 60 * 60 * 24; // 1 day
 	
-	STAssertTrue(1 > differenceInSeconds, nil);
-	
-	[expectedDueDate release];
+	STAssertEquals( expectedSeconds, [c.scheduled timeIntervalSinceDate: prevScheduled], nil);
 	[c release];
+}
+
+- (void) testLoadScheduledCards {	
+	Card *cardForToday = [[Card alloc] initWithQuestion:@"today" Answer: @"the answer"];
+	Card *cardFor19700101 = [[Card alloc] initWithQuestion:@"1970 baby yeah!" Answer: @"the answer"];
+	cardFor19700101.scheduled = [NSDate dateWithTimeIntervalSince1970:0];
+	Card *cardFor19700102 = [[Card alloc] initWithQuestion:@"1970 second day" Answer: @"the answer"];
+	cardFor19700102.scheduled = [NSDate dateWithTimeIntervalSince1970:60*60*24];
+	
+	[cardForToday save];
+	[cardFor19700101 save];
+	[cardFor19700102 save];
+	
+	NSMutableArray *cards = [Card loadCardsByScheduledDate: cardFor19700101.scheduled];
+	
+	STAssertEquals((NSUInteger)1, [cards count], nil);
+	
+	Card *card = [cards lastObject];
+	
+	STAssertEquals(@"1970 baby yeah!", card.question, nil);
+	
+	cards = [Card loadCardsByScheduledDate: cardFor19700102.scheduled];
+	
+	STAssertEquals((NSUInteger)1, [cards count], nil);
+	
+	card = [cards lastObject];
+	
+	STAssertEquals(@"1970 second day", card.question, nil);
+	
+	[cardForToday deleteObject];
+	[cardFor19700101 deleteObject];
+	[cardFor19700102 deleteObject];
+	
+	[cardForToday release];
+	[cardFor19700101 release];
+	[cardFor19700102 release];
+}
+
+- (void) testLoadScheduledCardsButNoneScheduled {	
+	Card *cardForToday = [[Card alloc] initWithQuestion:@"today" Answer: @"the answer"];
+
+	NSDate *dateAt1970 = [NSDate dateWithTimeIntervalSince1970:0];
+	
+	[cardForToday save];
+	
+	NSMutableArray *cardsScheduled = [Card loadCardsByScheduledDate: dateAt1970];
+	
+	STAssertEquals((NSUInteger)0, [cardsScheduled count], nil);
+		
+	[cardForToday deleteObject];
+	
+	[cardForToday release];
+	//[dateAt1970 release];
+	[cardsScheduled release];
 }
 
 @end

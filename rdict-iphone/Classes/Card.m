@@ -71,7 +71,21 @@
 - (void) schedule {
 	// the difference between today and today + the interval
 	[self calcInterval];
-	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) self.interval*60*60*24];
+	self.scheduled = [self.scheduled addTimeInterval: self.interval*60*60*24];
+}
+
++ (NSMutableArray *) loadScheduledCards {
+	NSDate *date = [NSDate date];
+	NSMutableArray *cards = [Card loadCardsByScheduledDate: date];
+	return cards;
+}
+
++ (NSMutableArray *) loadCardsByScheduledDate: (NSDate *) scheduledDate {
+	NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card findByScheduled: scheduledDate]];
+	//NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
+
+	[cards retain];
+	return cards;
 }
 
 - (void) adjustEasinessByGrade: (int) grade {
@@ -94,4 +108,6 @@
 	self.repsSinceLapse = 0;
 	[self schedule];
 }
+
+
 @end

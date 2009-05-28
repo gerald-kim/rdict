@@ -36,6 +36,8 @@
 @property (nonatomic, retain) NSDate *studied;
 @property (nonatomic, retain) NSDate *effectiveEnded;
 
++ (NSMutableArray *) loadScheduledCards;
++ (NSMutableArray *) loadCardsByScheduledDate: (NSDate *) scheduledDate;
 - (id) initWithQuestion:(NSString *)question Answer:(NSString *) answer;
 - (id) initWithCard:(Card *) card;
 - (void) calcInterval;

@@ -42,7 +42,9 @@
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	Card *card = [delegate.cards lastObject];
 	
-	[card adjustEasinessByGrade: [self getGradeByButton: sender]];
+	int grade = [self getGradeByButton: sender];
+	
+	[card adjustEasinessByGrade: grade];
 	[card schedule];
 	
 	[delegate.cards removeLastObject];
