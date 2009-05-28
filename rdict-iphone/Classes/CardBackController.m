@@ -12,7 +12,7 @@
 
 @implementation CardBackController
 @synthesize questionLabel;
-@synthesize answerLabel;
+@synthesize answerView;
 
 - (void) viewWillAppear:(BOOL) animated {
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -20,7 +20,7 @@
 	Card *card = [delegate.cards lastObject];
 	
 	self.questionLabel.text = card.question;
-	self.answerLabel.text = card.answer;
+	[self.answerView loadHTMLString:card.answer baseURL:nil];
 	
 	[card deleteObject];
 }
@@ -28,7 +28,6 @@
 - (IBAction)viewOKButtonPressed:(id)sender{	
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	
-
 	[delegate.cards removeLastObject];
 	
 	if([delegate.cards count] > 0) {

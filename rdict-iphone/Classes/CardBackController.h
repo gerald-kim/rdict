@@ -11,11 +11,11 @@
 
 @interface CardBackController : UIViewController {
 	IBOutlet UILabel *questionLabel;
-	IBOutlet UILabel *answerLabel;
+	IBOutlet UIWebView *answerView;
 }
 
 @property(nonatomic, retain) UILabel *questionLabel;
-@property(nonatomic, retain) UILabel *answerLabel;
+@property(nonatomic, retain) UIWebView *answerView;
 
 - (IBAction)viewOKButtonPressed:(id) sender;
 @end

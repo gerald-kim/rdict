@@ -15,6 +15,16 @@
 @synthesize cardBackController;
 @synthesize questionLabel;
 
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+-(void) viewWillAppear:(BOOL) animated{
+	
+	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	
+	Card *card = [delegate.cards lastObject];
+	
+    self.questionLabel.text = card.question;
+}
+
 - (IBAction)viewAnswerButtonPressed:(id)sender{
 	self.title = @"Viewed Answer";
 	
@@ -43,17 +53,6 @@
 - (void)loadView {
 }
 */
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
--(void) viewWillAppear:(BOOL) animated{
-
-	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	
-	Card *card = [delegate.cards lastObject];
-	
-    self.questionLabel.text = card.question;
-}
 
 
 /*

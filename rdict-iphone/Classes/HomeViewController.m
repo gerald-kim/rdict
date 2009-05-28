@@ -15,20 +15,21 @@
 @synthesize controllers;
 @synthesize goToReviewButton;
 
-- (void) viewWillAppear: (BOOL) animated {
-	
-	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	delegate.cards = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
-	
-	[self.goToReviewButton setTitle:[NSString stringWithFormat:@"Review (%d)", [delegate.cards count]] forState: UIControlStateNormal];	
-}
-
 - (void)viewDidLoad {
 	self.title = @"Home";
-	
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	self.controllers = array;
 	[array release];	
+}
+
+- (void) viewWillAppear: (BOOL) animated {
+	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	
+	NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
+	delegate.cards = temp;
+	[temp release];
+	
+	[self.goToReviewButton setTitle:[NSString stringWithFormat:@"Review (%d)", [delegate.cards count]] forState: UIControlStateNormal];
 }
 
 - (IBAction)dicButtonPressed:(id)sender {
