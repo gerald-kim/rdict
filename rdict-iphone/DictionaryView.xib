@@ -246,7 +246,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>DictionaryViewController</string>
 					<string>UIResponder</string>
-					<string>{{423, 210}, {320, 480}}</string>
+					<string>{{354, 210}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -283,17 +283,8 @@
 					<string key="className">DictionaryViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>searchButtonPressed:</string>
-							<string>textFieldDoneEditing:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">textFieldDoneEditing:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -317,7 +308,28 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../../tools/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h</string>
+						<string key="minorKey">../../../../../../Developer/Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">sqlitepersistentobjects/src/NSObject-ClassName.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">sqlitepersistentobjects/src/NSObject-MissingKV.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">sqlitepersistentobjects/src/NSObject-SQLitePersistence.h</string>
 					</object>
 				</object>
 			</object>

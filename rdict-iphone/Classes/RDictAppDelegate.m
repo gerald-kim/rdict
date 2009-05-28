@@ -20,7 +20,7 @@
 @synthesize dic;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-	self.dic = [[Dictionary alloc] initWithDicPath:@"/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db"];
+	self.dic = [[Dictionary alloc] initWithDicPath:@"/Users/sbodnar/programming/projects/old/iphone-rdict/RDict/en-brief.db"];
 	
 	self.navController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     [window addSubview:navController.view];

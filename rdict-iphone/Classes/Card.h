@@ -12,7 +12,7 @@
 	NSString *question;
 	NSString *answer;
 	
-	int reps_since_lapse;
+	int repsSinceLapse;
 	float easiness;
 	int interval;
 	
@@ -20,13 +20,13 @@
 	NSDate *created;
 	NSDate *modified;
 	NSDate *studied;
-	NSDate *effective_ended;
+	NSDate *effectiveEnded;
 }
 
 @property (nonatomic, retain) NSString *question;
 @property (nonatomic, retain) NSString *answer;
 
-@property int reps_since_lapse;
+@property int repsSinceLapse;
 @property float easiness;
 @property int interval;
 
@@ -34,7 +34,7 @@
 @property (nonatomic, retain) NSDate *created;
 @property (nonatomic, retain) NSDate *modified;
 @property (nonatomic, retain) NSDate *studied;
-@property (nonatomic, retain) NSDate *effective_ended;
+@property (nonatomic, retain) NSDate *effectiveEnded;
 
 - (id) initWithQuestion:(NSString *)question Answer:(NSString *) answer;
 - (id) initWithCard:(Card *) card;

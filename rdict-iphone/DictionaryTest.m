@@ -17,7 +17,7 @@
 
 - (void) testSearch {
 	
-	Dictionary *dic = [[Dictionary alloc] initWithDicPath:@"/Users/sbodnar/programming/projects/iphone-rdict/RDict/en-brief.db"];
+	Dictionary *dic = [[Dictionary alloc] initWithDicPath:@"/Users/sbodnar/programming/projects/old/iphone-rdict/RDict/en-brief.db"];
 	
 	DictionaryEntry *dicEntry = [dic searchByWord: @"fish"];
 	

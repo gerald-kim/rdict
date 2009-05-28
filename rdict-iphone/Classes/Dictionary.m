@@ -13,7 +13,6 @@
 @synthesize bdb;
 
 - (id) initWithDicPath: (NSString *) path {
-	
 	int ecode;
 	self.bdb = tcbdbnew();
 	
@@ -22,7 +21,6 @@
 		fprintf(stderr, "open error: %s\n", tcbdberrmsg(ecode));
 	}
 	
-
 	return self;
 }
 
@@ -33,18 +31,15 @@
 	
 	value = tcbdbget2(self.bdb, text);
 	
-	if(value){
-		printf("%s\n", value);
-	} else {
+	if(! value){
 		ecode = tcbdbecode(bdb);
 		fprintf(stderr, "get error: %s\n", tcbdberrmsg(ecode));
 	}
 	
 	NSString *nsString = [[NSString alloc] initWithUTF8String:value];
-	[nsString retain];
-	
 	DictionaryEntry *dicEntry = [[DictionaryEntry alloc] initWithWord: word andEntry: nsString];
 	[dicEntry retain];
+	[nsString release];
 	return dicEntry;
 }
 

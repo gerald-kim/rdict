@@ -29,12 +29,11 @@
 	self.title = dicEntry.word;
 	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:nil];
 	
-	Card *a = [[Card alloc] initWithQuestion:dicEntry.word Answer:dicEntry.entry];
-	[a save];
-	[a release];	
+	Card *card = [[Card alloc] initWithQuestion:dicEntry.word Answer:dicEntry.entry];
+	[card save];
+	[card release];	
 	
 	[dicEntry release];
-	
 }
 
 

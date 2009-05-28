@@ -11,20 +11,20 @@
 @implementation Card
 @synthesize question;
 @synthesize answer;
-@synthesize reps_since_lapse;
+@synthesize repsSinceLapse;
 @synthesize easiness;
 @synthesize interval;
 @synthesize scheduled;
 @synthesize created;
 @synthesize modified;
 @synthesize studied;
-@synthesize effective_ended;
+@synthesize effectiveEnded;
 
 - (id) initWithQuestion:(NSString *) q Answer:(NSString *) a{
 	self.question = [[NSString alloc] initWithString: q];
 	self.answer = [[NSString alloc] initWithString: a];
 	
-	self.reps_since_lapse = 0;
+	self.repsSinceLapse = 0;
 	self.easiness = (float) 2.5;
 	self.interval = -1;
 	
@@ -32,7 +32,7 @@
 	self.created = [[NSDate alloc] init];
 	self.modified = [[NSDate alloc] init];
 	self.studied = [[NSDate alloc] init];
-	self.effective_ended = [[NSDate alloc] init];
+	self.effectiveEnded = [[NSDate alloc] init];
 	
 	[super init];
 	
@@ -45,7 +45,7 @@
 	newCard.question = [[NSString alloc] initWithString:card.question];
 	newCard.answer = [[NSString alloc] initWithString:card.answer];
 	
-	newCard.reps_since_lapse = card.reps_since_lapse;
+	newCard.repsSinceLapse = card.repsSinceLapse;
 	newCard.easiness = card.easiness;
 	newCard.interval = card.interval;
 	
@@ -53,16 +53,16 @@
 	newCard.created = [[NSDate alloc] init];
 	newCard.modified = [[NSDate alloc] init];
 	newCard.studied = [[NSDate alloc] init];
-	newCard.effective_ended = [[NSDate alloc] init];
+	newCard.effectiveEnded = [[NSDate alloc] init];
 	
 	[newCard retain];
 	return newCard;
 }
 
 - (void) calcInterval {
-	if (self.reps_since_lapse == 0)
+	if (self.repsSinceLapse == 0)
 		self.interval = 1;
-	else if (self.reps_since_lapse == 1)
+	else if (self.repsSinceLapse == 1)
 		self.interval = 6;
 	else
 		self.interval = (int) ceil(self.interval * self.easiness);
@@ -84,7 +84,7 @@
 
 - (void) forget {
 	//Should be trackable
-	self.reps_since_lapse = 0;
+	self.repsSinceLapse = 0;
 	[self calcInterval];
 }
 @end

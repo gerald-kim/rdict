@@ -21,7 +21,7 @@
 	STAssertEqualObjects(@"How big is it?", c.question, @"Something went wrong: %s");
 	STAssertEqualObjects(@"Very big.", c.answer, nil);
 	STAssertEquals((float) 2.5, c.easiness, nil);
-	STAssertEquals(0, c.reps_since_lapse, nil);
+	STAssertEquals(0, c.repsSinceLapse, nil);
 	STAssertEquals(-1, c.interval, nil);
 	
 	//self.assertEquals( date.today() + timedelta( days=1 ), c.scheduled )
@@ -57,19 +57,19 @@
 	
 	Card *c = [[Card alloc] initWithQuestion:@"How big?" Answer:@"Big."];
 	
-	STAssertEquals(0, c.reps_since_lapse, nil);
+	STAssertEquals(0, c.repsSinceLapse, nil);
 	STAssertEquals(-1, c.interval, nil);
 	
 	[c calcInterval];
 	
 	STAssertEquals(1, c.interval, nil);
 	
-	c.reps_since_lapse += 1;
+	c.repsSinceLapse += 1;
 	[c calcInterval];
 	
 	STAssertEquals(6, c.interval, nil);
 	
-	c.reps_since_lapse += 1;
+	c.repsSinceLapse += 1;
 	c.easiness = 2.2;
 	
 	int prevInterval = c.interval;
