@@ -18,6 +18,8 @@
 		1F09741D0FBF6D6E00665994 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F09741C0FBF6D6E00665994 /* DictionaryView.xib */; };
 		1F0974200FBF6DA300665994 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F09741F0FBF6DA300665994 /* ReviewView.xib */; };
 		1F22E8BF0FCBAAA70015AA86 /* CardFrontController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F22E8BE0FCBAAA70015AA86 /* CardFrontController.m */; };
+		1F4DAB5A0FCE84DA002B4A90 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 1F4DAB590FCE84DA002B4A90 /* README */; };
+		1F4DAB5B0FCE84DA002B4A90 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 1F4DAB590FCE84DA002B4A90 /* README */; };
 		1F6C799A0FC6078C00DCA20F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7D5B470FC60687006C1B00 /* libsqlite3.0.dylib */; };
 		1F6C79BA0FC60D8A00DCA20F /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C79B90FC60D8A00DCA20F /* Person.m */; };
 		1F6C7A0D0FC6144100DCA20F /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5ACC0FC603A9006C1B00 /* NSData-SQLitePersistence.m */; };
@@ -139,6 +141,7 @@
 		1F0975470FBF7F8300665994 /* TestSomething.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSomething.m; sourceTree = "<group>"; };
 		1F22E8BD0FCBAAA70015AA86 /* CardFrontController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFrontController.h; sourceTree = "<group>"; };
 		1F22E8BE0FCBAAA70015AA86 /* CardFrontController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardFrontController.m; sourceTree = "<group>"; };
+		1F4DAB590FCE84DA002B4A90 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTestCase.m; sourceTree = "<group>"; };
 		1F50389E0FC0BBF100DBA0B4 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		1F50389F0FC0BBF100DBA0B4 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
@@ -365,6 +368,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				1F09752D0FBF7D0B00665994 /* Test-Info.plist */,
+				1F4DAB590FCE84DA002B4A90 /* README */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -534,6 +538,7 @@
 				1F0974200FBF6DA300665994 /* ReviewView.xib in Resources */,
 				1FC228CF0FC666FF0033578D /* CardBack.xib in Resources */,
 				1FC228D80FC66A3A0033578D /* ReviewHomeView.xib in Resources */,
+				1F4DAB5B0FCE84DA002B4A90 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FC228CC0FC6669D0033578D /* CardFront.xib in Resources */,
+				1F4DAB5A0FCE84DA002B4A90 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
