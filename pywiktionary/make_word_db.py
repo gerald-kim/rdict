@@ -70,6 +70,7 @@ class WordHandler( WikiHandler ):
         
         m = re.match( r"#redirect\s*\[\[(.*?)\]\]", text, re.IGNORECASE )
         if m:
+#            print "Put to redir"
             self.db_redir.put( page, m.group( 1 ) )
             return
 
@@ -91,7 +92,7 @@ class WiktionaryDbMaker:
     def __init__( self, xml_file ):
         self.xml_file = xml_file
         self.db_dir = 'enwiktionary-' + self.XML_RE.match( self.xml_file ).group( 1 ) + '.db'
-        self.work_dir = 'work'
+        self.work_dir = self.db_dir + '.work'
         
     def _get_db_filepath( self, dir, name ):
         return os.path.join( os.path.dirname( __file__ ), dir, name + '.db' )

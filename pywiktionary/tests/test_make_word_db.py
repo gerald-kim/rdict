@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-from makedb import *
+from make_word_db import *
 import logging
 import os
 import unittest
@@ -8,7 +8,7 @@ import unittest
 
 def test_init_parse_db_dir_name():
     maker = WiktionaryDbMaker( 'enwiktionary-test-pages-articles.xml.bz2' )
-    assert 'wiktionary_test.db' == maker.db_dir
+    assert 'enwiktionary-test.db' == maker.db_dir
 
 
 class WiktionaryDbMakerTestBase( unittest.TestCase ):    
@@ -18,16 +18,17 @@ class WiktionaryDbMakerTestBase( unittest.TestCase ):
 
     def tearDown( self ):
         self.maker.close()
-        os.system( 'rm -rf  wiktionary_test.db' )
+        os.system( 'rm -rf  enwiktionary-test.db' )
+        os.system( 'rm -rf  enwiktionary-test.db.work' )
     
 class WiktionaryDbMakerTest( WiktionaryDbMakerTestBase ):
     def test_check_database_file_opened( self ):
-        self.assertEquals( 4, len( os.listdir( self.maker.db_dir ) ) )
+        self.assertEquals( 2, len( os.listdir( self.maker.db_dir ) ) )
         
     def test_reopen_should_do_nothing( self ):
         try:
             self.maker.open()
-            self.assertEquals( 4, len( os.listdir( self.maker.db_dir ) ) )
+            self.assertEquals( 2, len( os.listdir( self.maker.db_dir ) ) )
         except OSError:
             self.fail( 'should ignore "File exists" error' )
         
