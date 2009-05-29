@@ -13,6 +13,10 @@
 @implementation CardBackController
 @synthesize questionLabel;
 @synthesize answerView;
+@synthesize easyButton;
+@synthesize mediumButton;
+@synthesize hardButton;
+@synthesize iForgotButton;
 
 - (void) viewWillAppear:(BOOL) animated {
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -21,12 +25,29 @@
 	
 	self.questionLabel.text = card.question;
 	[self.answerView loadHTMLString:card.answer baseURL:nil];
-	
-	[card deleteObject];
 }
 
-- (IBAction)viewOKButtonPressed:(id)sender{	
+- (int) getGradeByButton: (UIButton *) button {
+	if ([self.easyButton isEqualTo:button])
+		return 4;
+	else if ([self.mediumButton isEqualTo:button])
+		return 3;
+	else if ([self.hardButton isEqualTo:button])
+		return 2;
+	else
+		return 1;
+}
+
+- (IBAction)gradeButtonPressed:(id)sender{	
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	Card *card = [delegate.cards lastObject];
+	
+	int grade = [self getGradeByButton: sender];
+	[card adjustEasinessByGrade: grade];
+	
+	card.repsSinceLapse = card.repsSinceLapse + 1;
+	[card schedule];
+	[card save];
 	
 	[delegate.cards removeLastObject];
 	

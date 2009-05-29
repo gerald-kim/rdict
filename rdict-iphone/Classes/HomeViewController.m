@@ -24,8 +24,8 @@
 
 - (void) viewWillAppear: (BOOL) animated {
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	
-	NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
+		
+	NSMutableArray *temp = [Card loadScheduledCards];
 	delegate.cards = temp;
 	[temp release];
 	

@@ -30,6 +30,7 @@
 	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:nil];
 	
 	Card *card = [[Card alloc] initWithQuestion:dicEntry.word Answer:dicEntry.entry];
+	[card schedule];
 	[card save];
 	[card release];	
 	
