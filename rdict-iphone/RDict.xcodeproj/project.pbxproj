@@ -40,10 +40,10 @@
 		1F6C7A1C0FC6144100DCA20F /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AEA0FC603A9006C1B00 /* UIImage-SQLitePersistence.m */; };
 		1F7C96370FCFA55600DD5892 /* dictionary_js.html in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96360FCFA55600DD5892 /* dictionary_js.html */; };
 		1F7C96380FCFA55600DD5892 /* dictionary_js.html in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96360FCFA55600DD5892 /* dictionary_js.html */; };
-		1F7C96590FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
-		1F7C965A0FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
 		1F7C96760FCFA8E400DD5892 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
 		1F7C96770FCFA8F200DD5892 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
+		1F7C96950FCFADC900DD5892 /* DictionarySearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96940FCFADC900DD5892 /* DictionarySearchView.m */; };
+		1F7C96960FCFADC900DD5892 /* DictionarySearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96940FCFADC900DD5892 /* DictionarySearchView.m */; };
 		1F7D583A0FC5C54F006C1B00 /* CardTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */; };
 		1F7D583F0FC5D9B2006C1B00 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50389F0FC0BBF100DBA0B4 /* Card.m */; };
 		1F7D58410FC5D9C5006C1B00 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50389F0FC0BBF100DBA0B4 /* Card.m */; };
@@ -155,6 +155,8 @@
 		1F6C79B90FC60D8A00DCA20F /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		1F7C96360FCFA55600DD5892 /* dictionary_js.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dictionary_js.html; sourceTree = "<group>"; };
 		1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.3.2.min.js"; sourceTree = "<group>"; };
+		1F7C96930FCFADC900DD5892 /* DictionarySearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionarySearchView.h; sourceTree = "<group>"; };
+		1F7C96940FCFADC900DD5892 /* DictionarySearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionarySearchView.m; sourceTree = "<group>"; };
 		1F7D57EB0FC5C0FD006C1B00 /* Unit Test-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Test-Info.plist"; sourceTree = "<group>"; };
 		1F7D58530FC5DB06006C1B00 /* CardManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardManagerTest.m; sourceTree = "<group>"; };
 		1F7D58620FC5DC60006C1B00 /* CardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManager.h; sourceTree = "<group>"; };
@@ -285,6 +287,8 @@
 				1FFFDA270FCBAE8600C3CDE6 /* CardBackController.m */,
 				1F9D6D360FCE62E9000A6908 /* Dictionary.h */,
 				1F9D6D370FCE62E9000A6908 /* Dictionary.m */,
+				1F7C96930FCFADC900DD5892 /* DictionarySearchView.h */,
+				1F7C96940FCFADC900DD5892 /* DictionarySearchView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -632,7 +636,7 @@
 				1FFFDA280FCBAE8600C3CDE6 /* CardBackController.m in Sources */,
 				1F9D6D0C0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
 				1F9D6D380FCE62E9000A6908 /* Dictionary.m in Sources */,
-				1F7C965A0FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */,
+				1F7C96950FCFADC900DD5892 /* DictionarySearchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,7 +674,7 @@
 				1F9D6D0B0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
 				1F9D6D260FCE6219000A6908 /* DictionaryTest.m in Sources */,
 				1F9D6D390FCE62E9000A6908 /* Dictionary.m in Sources */,
-				1F7C96590FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */,
+				1F7C96960FCFADC900DD5892 /* DictionarySearchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

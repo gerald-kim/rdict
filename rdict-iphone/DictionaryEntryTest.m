@@ -29,7 +29,7 @@
 	
 	[dicEntry htmlifyEntry];
 	
-	STAssertEqualObjects(@"The entry appears here in HTML.", dicEntry.entry, nil);
+	STAssertEqualsTrue(-1 != [dicEntry.entry indexOf], nil);
 	
 	[dicEntry release];
 }

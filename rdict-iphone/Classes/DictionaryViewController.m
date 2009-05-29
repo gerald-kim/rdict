@@ -19,12 +19,17 @@
 @synthesize searchResultsPane;
 @synthesize usersWord;
 
+- (void)viewDidLoad {
+    self.title = @"Dictionary";
+	[super viewDidLoad];
+}
+
 - (void)textFieldDoneEditing:(id)sender {
 	[self.usersWord resignFirstResponder];
 
 	RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	
-	DictionaryEntry *dicEntry = [delegate.dic searchByWord:usersWord.text];
+	DictionaryEntry *dicEntry = [delegate.dic searchByWord: usersWord.text];
 	
 	self.title = dicEntry.word;
 	
@@ -32,21 +37,44 @@
 	
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];	
-	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:baseURL];
-	
-	Card *card = [[Card alloc] initWithQuestion:dicEntry.word Answer:dicEntry.entry];
-	[card schedule];
-	[card save];
-	[card release];	
+	[self.searchResultsPane loadHTMLString: dicEntry.entry baseURL:baseURL];
 	
 	[dicEntry release];
 }
 
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    self.title = @"Dictionary";
-	[super viewDidLoad];
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+	NSURL *url = [request URL];
+	
+	if ([@"/save" isEqualToString: [url relativePath]]) {		
+		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
+		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		
+		Card *card = [[Card alloc] initWithQuestion: self.usersWord.text Answer: selectedDefinition];
+		[card schedule];
+		[card save];
+		[card release];
+	}
+	else if ([@"/lookup" isEqualToString:[url relativePath]]){
+		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
+		NSString *clickedWord = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		
+		
+		RDictAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		
+		DictionaryEntry *dicEntry = [delegate.dic searchByWord: clickedWord];
+		
+		self.title = dicEntry.word;
+		
+		[dicEntry htmlifyEntry];
+		
+		NSString *path = [[NSBundle mainBundle] bundlePath];
+		NSURL *baseURL = [NSURL fileURLWithPath:path];	
+		[self.searchResultsPane loadHTMLString: dicEntry.entry baseURL:baseURL];
+		
+		[dicEntry release];
+	}
+	
+	return YES;
 }
 
 

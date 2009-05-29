@@ -7,7 +7,7 @@ $(document).ready( function() {
     
     $("a.rdict").attr( 'href', 
     	function () { 
-          return '/dict/search?q=' + encodeURIComponent( $(this).attr('href') ); 
+          return '/lookup?q=' + encodeURIComponent( $(this).attr('href') ); 
     	}
     ); 
     $(".remember").click( function() {
@@ -16,22 +16,13 @@ $(document).ready( function() {
 } );
 
 function remember_word(obj) {
-    word = 'fish'
     definition_li = $(obj).parent().clone();
     definition_li.children('ul').empty();
     definition_li.children('ol').empty();
     definition_li.children('dl').empty();
     definition = definition_li.text();
-    
-    $.getJSON("/review/word_save", 
-        {q: word, a:definition},
-        function(data) {
-            if( data.result ) {
-                alert( "Word '" + word +  "' is scheduled to review tomorrow." );
-            }
-        }
-    );
-    
+
+	window.location = '/save?def=' + decodeURIComponent(definition);
 }
 
 </script>

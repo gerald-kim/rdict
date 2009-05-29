@@ -24,6 +24,7 @@
 	Card *card = [delegate.cards lastObject];
 	
 	self.questionLabel.text = card.question;
+	
 	[self.answerView loadHTMLString:card.answer baseURL:nil];
 }
 

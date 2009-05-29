@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class DictionarySearchView;
 
 @interface DictionaryViewController : UIViewController {
 	IBOutlet UITextField *usersWord;
@@ -18,5 +19,7 @@
 @property (retain, nonatomic) UIWebView *searchResultsPane;
 
 - (IBAction)textFieldDoneEditing:(id)sender;
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType;
 
 @end

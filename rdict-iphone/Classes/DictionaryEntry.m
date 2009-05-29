@@ -14,7 +14,6 @@
 @synthesize entry;
 
 - (id) initWithWord: (NSString *) word_arg andEntry:(NSString *) entry_arg {
-	
 	self.word = [[NSString alloc] initWithString: word_arg];
 	self.entry = [[NSMutableString alloc] initWithString: entry_arg];
 	return self;

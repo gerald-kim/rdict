@@ -94,7 +94,6 @@
 
 + (NSMutableArray *) loadCardsByScheduledDate: (NSString *) dateString {
 	NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card findByScheduled: dateString]];
-	//NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
 
 	[cards retain];
 	return cards;
