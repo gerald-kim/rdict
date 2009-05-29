@@ -28,7 +28,10 @@
 	self.easiness = (float) 2.5;
 	self.interval = -1;
 	
-	self.scheduled = [[NSDate alloc] init];
+	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+	[outputFormatter setDateFormat:@"yyyyMMdd"];
+	self.scheduled = [outputFormatter stringFromDate: [NSDate date]];
+	
 	self.created = [[NSDate alloc] init];
 	self.modified = [[NSDate alloc] init];
 	self.studied = [[NSDate alloc] init];
@@ -71,17 +74,26 @@
 - (void) schedule {
 	// the difference between today and today + the interval
 	[self calcInterval];
-	self.scheduled = [self.scheduled addTimeInterval: self.interval*60*60*24];
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyyMMdd"];
+	NSDate *date = [dateFormatter dateFromString:self.scheduled];
+	NSDate *newDate = [date addTimeInterval: self.interval*60*60*24];
+	
+	self.scheduled = [dateFormatter stringFromDate: newDate];
 }
 
 + (NSMutableArray *) loadScheduledCards {
-	NSDate *date = [NSDate date];
-	NSMutableArray *cards = [Card loadCardsByScheduledDate: date];
+	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+	[outputFormatter setDateFormat:@"yyyyMMdd"];
+	NSString *dateString = [outputFormatter stringFromDate: [NSDate date]];
+	
+	NSMutableArray *cards = [Card loadCardsByScheduledDate: dateString];
 	return cards;
 }
 
-+ (NSMutableArray *) loadCardsByScheduledDate: (NSDate *) scheduledDate {
-	NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card findByScheduled: scheduledDate]];
++ (NSMutableArray *) loadCardsByScheduledDate: (NSString *) dateString {
+	NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card findByScheduled: dateString]];
 	//NSMutableArray *cards = [[NSMutableArray alloc] initWithArray:[Card allObjects]];
 
 	[cards retain];

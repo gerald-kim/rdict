@@ -43,9 +43,11 @@
 	Card *card = [delegate.cards lastObject];
 	
 	int grade = [self getGradeByButton: sender];
-	
 	[card adjustEasinessByGrade: grade];
+	
+	card.repsSinceLapse = card.repsSinceLapse + 1;
 	[card schedule];
+	[card save];
 	
 	[delegate.cards removeLastObject];
 	
