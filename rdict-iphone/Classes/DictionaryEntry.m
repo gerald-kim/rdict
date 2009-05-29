@@ -16,10 +16,14 @@
 - (id) initWithWord: (NSString *) word_arg andEntry:(NSString *) entry_arg {
 	
 	self.word = [[NSString alloc] initWithString: word_arg];
-	self.entry = [[NSString alloc] initWithString: entry_arg];
-	
-	
+	self.entry = [[NSMutableString alloc] initWithString: entry_arg];
 	return self;
+}
+
+-(void) htmlifyEntry {
+	NSData *htmlData = [[NSData alloc] initWithContentsOfURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"dictionary_js" ofType:@"html"]]];
+	NSString *htmlString = [[NSString alloc] initWithData: htmlData encoding: NSUTF8StringEncoding];
+	[self.entry insertString:htmlString atIndex: 0];
 }
 
 - (void)dealloc {

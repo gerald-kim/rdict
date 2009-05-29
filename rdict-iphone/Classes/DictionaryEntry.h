@@ -11,12 +11,13 @@
 
 @interface DictionaryEntry : NSObject {
 	NSString *word;
-	NSString *entry;
+	NSMutableString *entry;
 }
 
 @property (nonatomic, retain) NSString *word;
-@property (nonatomic, retain) NSString *entry;
+@property (nonatomic, retain) NSMutableString *entry;
 
 - (id) initWithWord:(NSString *) word_arg andEntry:(NSString *) entry_arg;
+- (void) htmlifyEntry;
 
 @end

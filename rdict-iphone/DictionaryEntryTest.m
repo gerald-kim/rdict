@@ -16,13 +16,19 @@
 @implementation DictionaryEntryTest
 
 - (void) testInit {
-	
-	//Dictionary *dic = [[Dictionary alloc] init];
-	
-
 	DictionaryEntry *dicEntry = [[DictionaryEntry alloc] initWithWord: @"fish" andEntry: @"The entry appears here in HTML."];
 	
 	STAssertEqualObjects(@"fish", dicEntry.word, nil);
+	STAssertEqualObjects(@"The entry appears here in HTML.", dicEntry.entry, nil);
+	
+	[dicEntry release];
+}
+
+- (void) testHTMLifyEntry {
+	DictionaryEntry *dicEntry = [[DictionaryEntry alloc] initWithWord: @"fish" andEntry: @"The entry appears here in HTML."];
+	
+	[dicEntry htmlifyEntry];
+	
 	STAssertEqualObjects(@"The entry appears here in HTML.", dicEntry.entry, nil);
 	
 	[dicEntry release];

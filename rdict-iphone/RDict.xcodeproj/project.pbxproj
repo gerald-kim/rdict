@@ -38,6 +38,12 @@
 		1F6C7A1A0FC6144100DCA20F /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AE60FC603A9006C1B00 /* SQLitePersistentObject.m */; };
 		1F6C7A1B0FC6144100DCA20F /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AE80FC603A9006C1B00 /* UIColor-SQLitePersistentObject.m */; };
 		1F6C7A1C0FC6144100DCA20F /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AEA0FC603A9006C1B00 /* UIImage-SQLitePersistence.m */; };
+		1F7C96370FCFA55600DD5892 /* dictionary_js.html in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96360FCFA55600DD5892 /* dictionary_js.html */; };
+		1F7C96380FCFA55600DD5892 /* dictionary_js.html in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96360FCFA55600DD5892 /* dictionary_js.html */; };
+		1F7C96590FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
+		1F7C965A0FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
+		1F7C96760FCFA8E400DD5892 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
+		1F7C96770FCFA8F200DD5892 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */; };
 		1F7D583A0FC5C54F006C1B00 /* CardTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50387A0FC0BACC00DBA0B4 /* CardTestCase.m */; };
 		1F7D583F0FC5D9B2006C1B00 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50389F0FC0BBF100DBA0B4 /* Card.m */; };
 		1F7D58410FC5D9C5006C1B00 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50389F0FC0BBF100DBA0B4 /* Card.m */; };
@@ -147,6 +153,8 @@
 		1F50389F0FC0BBF100DBA0B4 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		1F6C79B80FC60D8A00DCA20F /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		1F6C79B90FC60D8A00DCA20F /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		1F7C96360FCFA55600DD5892 /* dictionary_js.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dictionary_js.html; sourceTree = "<group>"; };
+		1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.3.2.min.js"; sourceTree = "<group>"; };
 		1F7D57EB0FC5C0FD006C1B00 /* Unit Test-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Test-Info.plist"; sourceTree = "<group>"; };
 		1F7D58530FC5DB06006C1B00 /* CardManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardManagerTest.m; sourceTree = "<group>"; };
 		1F7D58620FC5DC60006C1B00 /* CardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManager.h; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1F7C96580FCFA7C500DD5892 /* jquery-1.3.2.min.js */,
 				1FC228D70FC66A3A0033578D /* ReviewHomeView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -395,6 +404,7 @@
 				1F09741F0FBF6DA300665994 /* ReviewView.xib */,
 				1FC228CB0FC6669D0033578D /* CardFront.xib */,
 				1FC228CE0FC666FF0033578D /* CardBack.xib */,
+				1F7C96360FCFA55600DD5892 /* dictionary_js.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -531,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7C96760FCFA8E400DD5892 /* jquery-1.3.2.min.js in Resources */,
 				1FFFDA0F0FCBAC9F00C3CDE6 /* CardFront.xib in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				1F0974000FBF6C6F00665994 /* HomeView.xib in Resources */,
@@ -539,6 +550,7 @@
 				1FC228CF0FC666FF0033578D /* CardBack.xib in Resources */,
 				1FC228D80FC66A3A0033578D /* ReviewHomeView.xib in Resources */,
 				1F4DAB5B0FCE84DA002B4A90 /* README in Resources */,
+				1F7C96380FCFA55600DD5892 /* dictionary_js.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,8 +558,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7C96770FCFA8F200DD5892 /* jquery-1.3.2.min.js in Resources */,
 				1FC228CC0FC6669D0033578D /* CardFront.xib in Resources */,
 				1F4DAB5A0FCE84DA002B4A90 /* README in Resources */,
+				1F7C96370FCFA55600DD5892 /* dictionary_js.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +632,7 @@
 				1FFFDA280FCBAE8600C3CDE6 /* CardBackController.m in Sources */,
 				1F9D6D0C0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
 				1F9D6D380FCE62E9000A6908 /* Dictionary.m in Sources */,
+				1F7C965A0FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +670,7 @@
 				1F9D6D0B0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */,
 				1F9D6D260FCE6219000A6908 /* DictionaryTest.m in Sources */,
 				1F9D6D390FCE62E9000A6908 /* Dictionary.m in Sources */,
+				1F7C96590FCFA7C500DD5892 /* jquery-1.3.2.min.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

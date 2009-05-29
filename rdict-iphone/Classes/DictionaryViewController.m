@@ -27,7 +27,12 @@
 	DictionaryEntry *dicEntry = [delegate.dic searchByWord:usersWord.text];
 	
 	self.title = dicEntry.word;
-	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:nil];
+	
+	[dicEntry htmlifyEntry];
+	
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSURL *baseURL = [NSURL fileURLWithPath:path];	
+	[self.searchResultsPane loadHTMLString:dicEntry.entry baseURL:baseURL];
 	
 	Card *card = [[Card alloc] initWithQuestion:dicEntry.word Answer:dicEntry.entry];
 	[card schedule];
