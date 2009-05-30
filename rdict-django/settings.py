@@ -101,9 +101,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_evolution',
     'django_openid',
+    'test_utils',
     'user',
     'dict',
     'review',
+    'bookmarklet',
  )
 
 

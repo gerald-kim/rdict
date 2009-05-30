@@ -5,12 +5,12 @@ INSTALL
 # Required libraries
 
 * python-openid 2.2.1 - http://www.openidenabled.com/python-openid/ 
-  
+* django-test-utils - http://ericholscher.com/projects/django-test-utils/index.html  
 * elementtree
 
 * firepython 
-$ git submodule init
-$ git submodule sync
+ $ git submodule init
+ $ git submodule sync
 
 * python-nose
 

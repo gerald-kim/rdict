@@ -3,7 +3,7 @@
 
 import unittest
 
-__all__ = ['test_models']
+__all__ = ['test_models', 'dict_testmaker']
 
 def suite():
     """Return TestSuite for all unit-test of pytils"""
