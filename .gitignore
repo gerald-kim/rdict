@@ -11,5 +11,6 @@ rdict-django/settings_local.py
 
 # xcode noise
 rdict-iphone/build/*
+rdict-iphone-tabs/build/*
 *.pbxuser
 *.mode1v3
