@@ -2,7 +2,7 @@
 //  main.m
 //  RDict
 //
-//  Created by Jaewoo Kim on 6/5/09.
+//  Created by Jaewoo Kim on 6/6/09.
 //  Copyright NHN 2009. All rights reserved.
 //
 

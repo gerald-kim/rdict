@@ -1,33 +1,15 @@
 //
-//  SearchViewController.m
+//  ReviewViewController.m
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/6/09.
 //  Copyright 2009 NHN. All rights reserved.
 //
 
-#import "SearchViewController.h"
-#import "DictionaryViewController.h"
+#import "ReviewViewController.h"
 
-@implementation SearchViewController
 
-@synthesize dictionaryViewController;
-
-- (IBAction) dictButtonPressed:(id)sender {
-	NSLog(@"dictButtonPressed");
-	
-	if( dictionaryViewController == nil ) {
-		dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
-	}
-	
-	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 
-}
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-	self.navigationController.navigationBarHidden = YES;
-}
-*/
+@implementation ReviewViewController
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -36,6 +18,19 @@
         // Custom initialization
     }
     return self;
+}
+*/
+
+/*
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView {
+}
+*/
+
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    [super viewDidLoad];
 }
 */
 
@@ -54,7 +49,6 @@
 
 
 - (void)dealloc {
-//	[dictionaryViewController release];
     [super dealloc];
 }
 
