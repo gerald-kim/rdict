@@ -12,17 +12,40 @@
 
 @implementation DictionaryViewController
 @synthesize switchViewController;
-@synthesize navigationItem;
+@synthesize titleButton;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	navigationItem.title = @"Ttt";
+	super.navigationItem.title = @"Test";
+//	[super.navigationItem.leftBarButtonItem.customView setHidden:TRUE];
+//	[super.navigationItem.rightBarButtonItem.customView setHidden:TRUE];
+	/*
+	UIBarButtonItem *fooButton = [[UIBarButtonItem alloc]
+								  initWithTitle:@"Foo" 
+								  style:UIBarButtonItemStyleBordered
+								  target:self 
+								  action:@selector(prevButtonPressed:)];
+	self.navigationItem.leftBarButtonItem = fooButton;
+	[fooButton release];
+
+	*/
+	[titleButton setTitle:@"Test" forState:UIControlStateNormal];
+	[titleButton setTitle:@"Test" forState:UIControlStateHighlighted];
+	
     [super viewDidLoad];
 }
 
 
-- (IBAction) testButtonPressed:(id) sender {
-	NSLog(@"testButtonPressed in DictionaryView");
+- (IBAction) prevButtonPressed:(id) sender {
+	NSLog(@"prevButtonPressed in DictionaryView");
+}
+
+- (IBAction) nextButtonPressed:(id) sender {
+	NSLog(@"nextButtonPressed in DictionaryView");
+}
+
+- (IBAction) titleButtonPressed:(id) sender {
+	NSLog(@"titleButtonPressed in DictionaryView");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -11,15 +11,17 @@
 @class SwitchViewController;
 
 @interface DictionaryViewController : UIViewController {
-	IBOutlet UINavigationItem *navigationItem;
-
 	SwitchViewController *switchViewController;	
+	IBOutlet UIButton *titleButton;
 }
 
 @property (nonatomic, retain) SwitchViewController *switchViewController;
-@property (nonatomic, retain) UINavigationItem *navigationItem;
+@property (nonatomic, retain) IBOutlet UIButton *titleButton;
 
-- (IBAction) testButtonPressed:(id) sender;
+
+- (IBAction) prevButtonPressed:(id) sender;
+- (IBAction) nextButtonPressed:(id) sender;
+- (IBAction) titleButtonPressed:(id) sender;
 
 
 @end

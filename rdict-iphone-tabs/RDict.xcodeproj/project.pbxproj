@@ -14,9 +14,9 @@
 		282CCBFE0DB6C98000C4EA27 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282CCBFD0DB6C98000C4EA27 /* ReviewView.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
+		EF3077AF0FD980680019CB06 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF3077AE0FD980680019CB06 /* DictionaryView.xib */; };
 		EF56BFEE0FD8239A0076A6B9 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF56BFED0FD8239A0076A6B9 /* DictionaryViewController.m */; };
 		EF7518210FD81FB3006D7362 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7518200FD81FB3006D7362 /* SearchView.xib */; };
-		EF7518280FD82016006D7362 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7518270FD82016006D7362 /* DictionaryView.xib */; };
 		EF75182D0FD82043006D7362 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF75182C0FD82043006D7362 /* SearchViewController.m */; };
 		EF9B6BFA0FD8305600FF45E3 /* SwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9B6BF90FD8305600FF45E3 /* SwitchViewController.m */; };
 /* End PBXBuildFile section */
@@ -33,10 +33,10 @@
 		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF3077AE0FD980680019CB06 /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryView.xib; sourceTree = "<group>"; };
 		EF56BFEC0FD8239A0076A6B9 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryViewController.h; sourceTree = "<group>"; };
 		EF56BFED0FD8239A0076A6B9 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryViewController.m; sourceTree = "<group>"; };
 		EF7518200FD81FB3006D7362 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
-		EF7518270FD82016006D7362 /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryView.xib; sourceTree = "<group>"; };
 		EF75182B0FD82043006D7362 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		EF75182C0FD82043006D7362 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EF9B6BF80FD8305600FF45E3 /* SwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchViewController.h; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF7518270FD82016006D7362 /* DictionaryView.xib */,
+				EF3077AE0FD980680019CB06 /* DictionaryView.xib */,
 				EF7518200FD81FB3006D7362 /* SearchView.xib */,
 				282CCBFD0DB6C98000C4EA27 /* ReviewView.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
@@ -168,7 +168,7 @@
 				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
 				282CCBFE0DB6C98000C4EA27 /* ReviewView.xib in Resources */,
 				EF7518210FD81FB3006D7362 /* SearchView.xib in Resources */,
-				EF7518280FD82016006D7362 /* DictionaryView.xib in Resources */,
+				EF3077AF0FD980680019CB06 /* DictionaryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

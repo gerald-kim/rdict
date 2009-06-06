@@ -17,7 +17,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog(@"viewWillAppear");
-	[self.view addSubview:searchViewController.view];
+	if( nil != dictionaryViewController.view.superview ) {
+		[dictionaryViewController.view removeFromSuperview];
+	}
+	[self.view insertSubview:searchViewController.view atIndex:0];
 }
 
 - (void)viewDidLoad {
@@ -35,7 +38,7 @@
 {
 	NSLog(@"showDictionary");
 	[searchViewController.view removeFromSuperview];
-	[self.view addSubview:dictionaryViewController.view];
+	[self.view insertSubview:dictionaryViewController.view	atIndex:0];
 }
 
 
