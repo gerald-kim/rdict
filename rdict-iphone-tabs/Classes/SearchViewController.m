@@ -12,6 +12,8 @@
 @implementation SearchViewController
 
 @synthesize dictionaryViewController;
+@synthesize searchBar;
+@synthesize listData;
 
 - (IBAction) dictButtonPressed:(id)sender {
 	NSLog(@"dictButtonPressed");
@@ -23,29 +25,32 @@
 	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
-	self.navigationController.navigationBarHidden = YES;
+//	self.navigationController.navigationBarHidden = YES;
+//	[searchBar becomeFirstResponder];
+//	[searchBar resignFirstResponder];
 }
-*/
 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
+- (void)viewDidAppear:(BOOL)animated {
+//	[searchBar becomeFirstResponder];
+//	[searchBar resignFirstResponder];	
 }
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+        
+- (void)viewDidLoad {
+	NSLog(@"viewDidLoad called");
+	//Initialize the array.
+	//listData = [[NSArray alloc] initWithObjects:@"Test", "@Test1"];
+	//listData = [[NSMutableArray alloc] init];
+	NSArray *array = [[NSArray alloc] initWithObjects:@"Test", @"Test2", nil];
+	self.listData = array;
+	NSLog(@"viewDidLoad called2", [array count]);
+	[array release];
+	
+	[super viewDidLoad];
+	
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -54,8 +59,34 @@
 
 
 - (void)dealloc {
-//	[dictionaryViewController release];
+	[listData release];
+	[dictionaryViewController release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Table View Data Source Methos
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSLog(@"numberOfRows called");
+	//return [self.listData count];
+	return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *CellIdentifier = @"Cell";
+	NSLog(@"cellForRowAtIndexPath called " );
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+	}
+	
+	// Set up the cell...
+	NSString *cellValue = @"Test";//[self.listData objectAtIndex:indexPath.row];
+	cell.text = cellValue;
+	
+	return cell;
 }
 
 

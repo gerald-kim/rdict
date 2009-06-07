@@ -10,12 +10,15 @@
 
 @class DictionaryViewController;
 
-@interface SearchViewController : UIViewController {
-
+@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	DictionaryViewController *dictionaryViewController;
+	IBOutlet UISearchBar *searchBar;
+	NSArray *listData;
 }
 
 @property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
+@property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, retain) NSArray *listData; 
 
 - (IBAction) dictButtonPressed:(id)sender;
 
