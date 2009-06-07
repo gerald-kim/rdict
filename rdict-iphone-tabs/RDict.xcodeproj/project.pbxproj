@@ -11,15 +11,60 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
-		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
-		EF81DC4E0FDA6024000FFE39 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF81DC4D0FDA6024000FFE39 /* SearchViewController.m */; };
-		EF81DC510FDA602C000FFE39 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF81DC500FDA602C000FFE39 /* ReviewViewController.m */; };
-		EF81DC5A0FDA6242000FFE39 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF81DC590FDA6242000FFE39 /* SearchView.xib */; };
-		EF81DD790FDA6E6D000FFE39 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF81DD780FDA6E6D000FFE39 /* ReviewView.xib */; };
-		EF81DD7F0FDA6F0C000FFE39 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF81DD7E0FDA6F0C000FFE39 /* DictionaryView.xib */; };
-		EF81DD900FDA6FF1000FFE39 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF81DD8F0FDA6FF1000FFE39 /* DictionaryViewController.m */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		EF2113C30FDBA26500641A96 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2113C00FDBA26500641A96 /* DictionaryView.xib */; };
+		EF2113C40FDBA26500641A96 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2113C10FDBA26500641A96 /* ReviewView.xib */; };
+		EF2113C50FDBA26500641A96 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2113C20FDBA26500641A96 /* SearchView.xib */; };
+		EF21140A0FDBA31B00641A96 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114050FDBA31B00641A96 /* DictionaryViewController.m */; };
+		EF21140B0FDBA31B00641A96 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114070FDBA31B00641A96 /* ReviewViewController.m */; };
+		EF21140C0FDBA31B00641A96 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114090FDBA31B00641A96 /* SearchViewController.m */; };
+		EF2114110FDBA34D00641A96 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E00FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.m */; };
+		EF2114120FDBA34D00641A96 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E10FDBA29B00641A96 /* GTMIPhoneUnitTestMain.m */; };
+		EF2114130FDBA34D00641A96 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */; };
+		EF21143C0FDBA41C00641A96 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
+		EF21143D0FDBA42700641A96 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
+		EF3551430FDBF745000B0D0E /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
+		EF3551440FDBF745000B0D0E /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
+		EF3551450FDBF745000B0D0E /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
+		EF3551460FDBF745000B0D0E /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
+		EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
+		EF35514A0FDBF838000B0D0E /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
+		EF3551660FDBF888000B0D0E /* TokyoCabinetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551640FDBF888000B0D0E /* TokyoCabinetTest.m */; };
+		EF3551670FDBF888000B0D0E /* WiktionaryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551650FDBF888000B0D0E /* WiktionaryTest.m */; };
+		EF589B720FDBE16000DE43B3 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B6F0FDBE16000DE43B3 /* Dictionary.m */; };
+		EF589B730FDBE16000DE43B3 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */; };
+		EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B6F0FDBE16000DE43B3 /* Dictionary.m */; };
+		EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */; };
+		EF8467800FDBA8F40071F748 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF8467760FDBA8F40071F748 /* myconf.c */; };
+		EF8467810FDBA8F40071F748 /* myconf.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8467770FDBA8F40071F748 /* myconf.h */; };
+		EF8467820FDBA8F40071F748 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF8467780FDBA8F40071F748 /* tcbdb.c */; };
+		EF8467830FDBA8F40071F748 /* tchdb.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8467790FDBA8F40071F748 /* tchdb.h */; };
+		EF8467840FDBA8F40071F748 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EF84677A0FDBA8F40071F748 /* md5.c */; };
+		EF8467850FDBA8F40071F748 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = EF84677B0FDBA8F40071F748 /* md5.h */; };
+		EF8467860FDBA8F40071F748 /* tcbdb.h in Headers */ = {isa = PBXBuildFile; fileRef = EF84677C0FDBA8F40071F748 /* tcbdb.h */; };
+		EF8467870FDBA8F40071F748 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF84677D0FDBA8F40071F748 /* tchdb.c */; };
+		EF8467880FDBA8F40071F748 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EF84677E0FDBA8F40071F748 /* tcutil.c */; };
+		EF8467890FDBA8F40071F748 /* tcutil.h in Headers */ = {isa = PBXBuildFile; fileRef = EF84677F0FDBA8F40071F748 /* tcutil.h */; };
+		EF8467940FDBA9440071F748 /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = EF8467930FDBA9440071F748 /* test.db */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF2114380FDBA41500641A96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF21142F0FDBA3E000641A96;
+			remoteInfo = tokyocabinet;
+		};
+		EF21143A0FDBA41700641A96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF21142F0FDBA3E000641A96;
+			remoteInfo = tokyocabinet;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -27,20 +72,49 @@
 		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDictAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* RDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		288765070DF74369002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28A0AB4B0D9B1048005BE974 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
-		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF81DC4C0FDA6024000FFE39 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		EF81DC4D0FDA6024000FFE39 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		EF81DC4F0FDA602C000FFE39 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
-		EF81DC500FDA602C000FFE39 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
-		EF81DC590FDA6242000FFE39 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
-		EF81DD780FDA6E6D000FFE39 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
-		EF81DD7E0FDA6F0C000FFE39 /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryView.xib; sourceTree = "<group>"; };
-		EF81DD8E0FDA6FF1000FFE39 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryViewController.h; sourceTree = "<group>"; };
-		EF81DD8F0FDA6FF1000FFE39 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryViewController.m; sourceTree = "<group>"; };
+		EF2113C00FDBA26500641A96 /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryView.xib; sourceTree = "<group>"; };
+		EF2113C10FDBA26500641A96 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
+		EF2113C20FDBA26500641A96 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
+		EF2113DF0FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = DEVELOPER_DIR; };
+		EF2113E00FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = DEVELOPER_DIR; };
+		EF2113E10FDBA29B00641A96 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestMain.m"; sourceTree = DEVELOPER_DIR; };
+		EF2113E20FDBA29B00641A96 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = DEVELOPER_DIR; };
+		EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
+		EF2113E40FDBA29B00641A96 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
+		EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2114040FDBA31B00641A96 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryViewController.h; sourceTree = "<group>"; };
+		EF2114050FDBA31B00641A96 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryViewController.m; sourceTree = "<group>"; };
+		EF2114060FDBA31B00641A96 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		EF2114070FDBA31B00641A96 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		EF2114080FDBA31B00641A96 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		EF2114090FDBA31B00641A96 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		EF2114300FDBA3E000641A96 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF3551410FDBF745000B0D0E /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
+		EF3551420FDBF745000B0D0E /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
+		EF3551470FDBF838000B0D0E /* Wiktionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wiktionary.h; path = Classes/Wiktionary.h; sourceTree = "<group>"; };
+		EF3551480FDBF838000B0D0E /* Wiktionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Wiktionary.m; path = Classes/Wiktionary.m; sourceTree = "<group>"; };
+		EF3551640FDBF888000B0D0E /* TokyoCabinetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TokyoCabinetTest.m; path = Tests/TokyoCabinetTest.m; sourceTree = "<group>"; };
+		EF3551650FDBF888000B0D0E /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
+		EF589B6E0FDBE16000DE43B3 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = Classes/Dictionary.h; sourceTree = "<group>"; };
+		EF589B6F0FDBE16000DE43B3 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dictionary.m; path = Classes/Dictionary.m; sourceTree = "<group>"; };
+		EF589B700FDBE16000DE43B3 /* DictionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryEntry.h; path = Classes/DictionaryEntry.h; sourceTree = "<group>"; };
+		EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryEntry.m; path = Classes/DictionaryEntry.m; sourceTree = "<group>"; };
+		EF8467760FDBA8F40071F748 /* myconf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = myconf.c; sourceTree = "<group>"; };
+		EF8467770FDBA8F40071F748 /* myconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myconf.h; sourceTree = "<group>"; };
+		EF8467780FDBA8F40071F748 /* tcbdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcbdb.c; sourceTree = "<group>"; };
+		EF8467790FDBA8F40071F748 /* tchdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchdb.h; sourceTree = "<group>"; };
+		EF84677A0FDBA8F40071F748 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
+		EF84677B0FDBA8F40071F748 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		EF84677C0FDBA8F40071F748 /* tcbdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcbdb.h; sourceTree = "<group>"; };
+		EF84677D0FDBA8F40071F748 /* tchdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tchdb.c; sourceTree = "<group>"; };
+		EF84677E0FDBA8F40071F748 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcutil.c; sourceTree = "<group>"; };
+		EF84677F0FDBA8F40071F748 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
+		EF8467930FDBA9440071F748 /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +124,23 @@
 			files = (
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				EF21143D0FDBA42700641A96 /* libtokyocabinet.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF2113EC0FDBA2B100641A96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF21143C0FDBA41C00641A96 /* libtokyocabinet.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF21142E0FDBA3E000641A96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,14 +150,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EF81DC4F0FDA602C000FFE39 /* ReviewViewController.h */,
-				EF81DC500FDA602C000FFE39 /* ReviewViewController.m */,
+				EF2114040FDBA31B00641A96 /* DictionaryViewController.h */,
+				EF2114050FDBA31B00641A96 /* DictionaryViewController.m */,
+				EF2114060FDBA31B00641A96 /* ReviewViewController.h */,
+				EF2114070FDBA31B00641A96 /* ReviewViewController.m */,
+				EF2114080FDBA31B00641A96 /* SearchViewController.h */,
+				EF2114090FDBA31B00641A96 /* SearchViewController.m */,
 				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
-				EF81DC4C0FDA6024000FFE39 /* SearchViewController.h */,
-				EF81DC4D0FDA6024000FFE39 /* SearchViewController.m */,
-				EF81DD8E0FDA6FF1000FFE39 /* DictionaryViewController.h */,
-				EF81DD8F0FDA6FF1000FFE39 /* DictionaryViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -76,26 +166,32 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* RDict.app */,
+				EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */,
+				EF2114300FDBA3E000641A96 /* libtokyocabinet.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* RDict */ = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				EF589B540FDBE10600DE43B3 /* Models */,
+				EF21140D0FDBA31F00641A96 /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
-			name = RDict;
+			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				28A0AB4B0D9B1048005BE974 /* RDict_Prefix.pch */,
+				EF2113DE0FDBA29B00641A96 /* GTM */,
+				EF2113C60FDBA27200641A96 /* tokyocabinet */,
+				32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -104,10 +200,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF81DD780FDA6E6D000FFE39 /* ReviewView.xib */,
-				EF81DD7E0FDA6F0C000FFE39 /* DictionaryView.xib */,
-				EF81DC590FDA6242000FFE39 /* SearchView.xib */,
-				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				EF3551400FDBF745000B0D0E /* enwiktionary-small.db */,
+				EF8467930FDBA9440071F748 /* test.db */,
+				EF2113C00FDBA26500641A96 /* DictionaryView.xib */,
+				EF2113C10FDBA26500641A96 /* ReviewView.xib */,
+				EF2113C20FDBA26500641A96 /* SearchView.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -118,12 +216,89 @@
 			children = (
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765070DF74369002DB57D /* CoreGraphics.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EF2113C60FDBA27200641A96 /* tokyocabinet */ = {
+			isa = PBXGroup;
+			children = (
+				EF8467760FDBA8F40071F748 /* myconf.c */,
+				EF8467770FDBA8F40071F748 /* myconf.h */,
+				EF8467780FDBA8F40071F748 /* tcbdb.c */,
+				EF8467790FDBA8F40071F748 /* tchdb.h */,
+				EF84677A0FDBA8F40071F748 /* md5.c */,
+				EF84677B0FDBA8F40071F748 /* md5.h */,
+				EF84677C0FDBA8F40071F748 /* tcbdb.h */,
+				EF84677D0FDBA8F40071F748 /* tchdb.c */,
+				EF84677E0FDBA8F40071F748 /* tcutil.c */,
+				EF84677F0FDBA8F40071F748 /* tcutil.h */,
+			);
+			path = tokyocabinet;
+			sourceTree = "<group>";
+		};
+		EF2113DE0FDBA29B00641A96 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				EF2113DF0FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.h */,
+				EF2113E00FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.m */,
+				EF2113E10FDBA29B00641A96 /* GTMIPhoneUnitTestMain.m */,
+				EF2113E20FDBA29B00641A96 /* GTMSenTestCase.h */,
+				EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */,
+				EF2113E40FDBA29B00641A96 /* GTMDefines.h */,
+			);
+			name = GTM;
+			sourceTree = "<group>";
+		};
+		EF21140D0FDBA31F00641A96 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EF3551640FDBF888000B0D0E /* TokyoCabinetTest.m */,
+				EF3551650FDBF888000B0D0E /* WiktionaryTest.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		EF3551400FDBF745000B0D0E /* enwiktionary-small.db */ = {
+			isa = PBXGroup;
+			children = (
+				EF3551410FDBF745000B0D0E /* index.db */,
+				EF3551420FDBF745000B0D0E /* word.db */,
+			);
+			includeInIndex = 1;
+			path = "enwiktionary-small.db";
+			sourceTree = "<group>";
+		};
+		EF589B540FDBE10600DE43B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF589B6E0FDBE16000DE43B3 /* Dictionary.h */,
+				EF589B6F0FDBE16000DE43B3 /* Dictionary.m */,
+				EF589B700FDBE16000DE43B3 /* DictionaryEntry.h */,
+				EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */,
+				EF3551470FDBF838000B0D0E /* Wiktionary.h */,
+				EF3551480FDBF838000B0D0E /* Wiktionary.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EF21142C0FDBA3E000641A96 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8467810FDBA8F40071F748 /* myconf.h in Headers */,
+				EF8467830FDBA8F40071F748 /* tchdb.h in Headers */,
+				EF8467850FDBA8F40071F748 /* md5.h in Headers */,
+				EF8467860FDBA8F40071F748 /* tcbdb.h in Headers */,
+				EF8467890FDBA8F40071F748 /* tcutil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* RDict */ = {
@@ -137,11 +312,48 @@
 			buildRules = (
 			);
 			dependencies = (
+				EF21143B0FDBA41700641A96 /* PBXTargetDependency */,
 			);
 			name = RDict;
 			productName = RDict;
 			productReference = 1D6058910D05DD3D006BFB54 /* RDict.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EF2113ED0FDBA2B100641A96 /* RDict Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF2113F30FDBA2B200641A96 /* Build configuration list for PBXNativeTarget "RDict Unit Tests" */;
+			buildPhases = (
+				EF2113EA0FDBA2B100641A96 /* Resources */,
+				EF2113EB0FDBA2B100641A96 /* Sources */,
+				EF2113EC0FDBA2B100641A96 /* Frameworks */,
+				EF2113F50FDBA2E100641A96 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF2114390FDBA41500641A96 /* PBXTargetDependency */,
+			);
+			name = "RDict Unit Tests";
+			productName = "RDict Unit Tests";
+			productReference = EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF21142F0FDBA3E000641A96 /* tokyocabinet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF21146E0FDBA42E00641A96 /* Build configuration list for PBXNativeTarget "tokyocabinet" */;
+			buildPhases = (
+				EF21142C0FDBA3E000641A96 /* Headers */,
+				EF21142D0FDBA3E000641A96 /* Sources */,
+				EF21142E0FDBA3E000641A96 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tokyocabinet;
+			productName = tokyocabinet;
+			productReference = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -151,11 +363,13 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "RDict" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
-			mainGroup = 29B97314FDCFA39411CA2CEA /* RDict */;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				EF21142F0FDBA3E000641A96 /* tokyocabinet */,
 				1D6058900D05DD3D006BFB54 /* RDict */,
+				EF2113ED0FDBA2B100641A96 /* RDict Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -165,14 +379,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
-				EF81DC5A0FDA6242000FFE39 /* SearchView.xib in Resources */,
-				EF81DD790FDA6E6D000FFE39 /* ReviewView.xib in Resources */,
-				EF81DD7F0FDA6F0C000FFE39 /* DictionaryView.xib in Resources */,
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				EF2113C30FDBA26500641A96 /* DictionaryView.xib in Resources */,
+				EF2113C40FDBA26500641A96 /* ReviewView.xib in Resources */,
+				EF2113C50FDBA26500641A96 /* SearchView.xib in Resources */,
+				EF3551450FDBF745000B0D0E /* index.db in Resources */,
+				EF3551460FDBF745000B0D0E /* word.db in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF2113EA0FDBA2B100641A96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8467940FDBA9440071F748 /* test.db in Resources */,
+				EF3551430FDBF745000B0D0E /* index.db in Resources */,
+				EF3551440FDBF745000B0D0E /* word.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF2113F50FDBA2E100641A96 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Developer/Extras/google-toolbox-for-mac-1-5-1/UnitTesting/RunIPhoneUnitTest.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -181,13 +423,56 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* RDictAppDelegate.m in Sources */,
-				EF81DC4E0FDA6024000FFE39 /* SearchViewController.m in Sources */,
-				EF81DC510FDA602C000FFE39 /* ReviewViewController.m in Sources */,
-				EF81DD900FDA6FF1000FFE39 /* DictionaryViewController.m in Sources */,
+				EF21140A0FDBA31B00641A96 /* DictionaryViewController.m in Sources */,
+				EF21140B0FDBA31B00641A96 /* ReviewViewController.m in Sources */,
+				EF21140C0FDBA31B00641A96 /* SearchViewController.m in Sources */,
+				EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */,
+				EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */,
+				EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF2113EB0FDBA2B100641A96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF2114110FDBA34D00641A96 /* GTMIPhoneUnitTestDelegate.m in Sources */,
+				EF2114120FDBA34D00641A96 /* GTMIPhoneUnitTestMain.m in Sources */,
+				EF2114130FDBA34D00641A96 /* GTMSenTestCase.m in Sources */,
+				EF589B720FDBE16000DE43B3 /* Dictionary.m in Sources */,
+				EF589B730FDBE16000DE43B3 /* DictionaryEntry.m in Sources */,
+				EF35514A0FDBF838000B0D0E /* Wiktionary.m in Sources */,
+				EF3551660FDBF888000B0D0E /* TokyoCabinetTest.m in Sources */,
+				EF3551670FDBF888000B0D0E /* WiktionaryTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF21142D0FDBA3E000641A96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8467800FDBA8F40071F748 /* myconf.c in Sources */,
+				EF8467820FDBA8F40071F748 /* tcbdb.c in Sources */,
+				EF8467840FDBA8F40071F748 /* md5.c in Sources */,
+				EF8467870FDBA8F40071F748 /* tchdb.c in Sources */,
+				EF8467880FDBA8F40071F748 /* tcutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF2114390FDBA41500641A96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
+			targetProxy = EF2114380FDBA41500641A96 /* PBXContainerItemProxy */;
+		};
+		EF21143B0FDBA41700641A96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
+			targetProxy = EF21143A0FDBA41700641A96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -220,9 +505,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -235,12 +520,97 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos2.2.1;
+			};
+			name = Release;
+		};
+		EF2113F10FDBA2B200641A96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "RDict Unit Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "RDict Unit Tests";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = Debug;
+		};
+		EF2113F20FDBA2B200641A96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "RDict Unit Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "RDict Unit Tests";
+				SDKROOT = iphoneos2.2.1;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		EF2114310FDBA3E000641A96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = tokyocabinet;
+			};
+			name = Debug;
+		};
+		EF2114320FDBA3E000641A96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = tokyocabinet;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -261,6 +631,24 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF2113F30FDBA2B200641A96 /* Build configuration list for PBXNativeTarget "RDict Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF2113F10FDBA2B200641A96 /* Debug */,
+				EF2113F20FDBA2B200641A96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF21146E0FDBA42E00641A96 /* Build configuration list for PBXNativeTarget "tokyocabinet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF2114310FDBA3E000641A96 /* Debug */,
+				EF2114320FDBA3E000641A96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
