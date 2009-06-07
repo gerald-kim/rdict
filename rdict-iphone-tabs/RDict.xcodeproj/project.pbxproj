@@ -19,21 +19,10 @@
 		EF21140A0FDBA31B00641A96 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114050FDBA31B00641A96 /* DictionaryViewController.m */; };
 		EF21140B0FDBA31B00641A96 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114070FDBA31B00641A96 /* ReviewViewController.m */; };
 		EF21140C0FDBA31B00641A96 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2114090FDBA31B00641A96 /* SearchViewController.m */; };
-		EF2114110FDBA34D00641A96 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E00FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.m */; };
-		EF2114120FDBA34D00641A96 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E10FDBA29B00641A96 /* GTMIPhoneUnitTestMain.m */; };
-		EF2114130FDBA34D00641A96 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */; };
-		EF21143C0FDBA41C00641A96 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
 		EF21143D0FDBA42700641A96 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
-		EF3551430FDBF745000B0D0E /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
-		EF3551440FDBF745000B0D0E /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
 		EF3551450FDBF745000B0D0E /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
 		EF3551460FDBF745000B0D0E /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
 		EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
-		EF35514A0FDBF838000B0D0E /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
-		EF3551660FDBF888000B0D0E /* TokyoCabinetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551640FDBF888000B0D0E /* TokyoCabinetTest.m */; };
-		EF3551670FDBF888000B0D0E /* WiktionaryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551650FDBF888000B0D0E /* WiktionaryTest.m */; };
-		EF589B720FDBE16000DE43B3 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B6F0FDBE16000DE43B3 /* Dictionary.m */; };
-		EF589B730FDBE16000DE43B3 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */; };
 		EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B6F0FDBE16000DE43B3 /* Dictionary.m */; };
 		EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */; };
 		EF8467800FDBA8F40071F748 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF8467760FDBA8F40071F748 /* myconf.c */; };
@@ -46,22 +35,30 @@
 		EF8467870FDBA8F40071F748 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF84677D0FDBA8F40071F748 /* tchdb.c */; };
 		EF8467880FDBA8F40071F748 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EF84677E0FDBA8F40071F748 /* tcutil.c */; };
 		EF8467890FDBA8F40071F748 /* tcutil.h in Headers */ = {isa = PBXBuildFile; fileRef = EF84677F0FDBA8F40071F748 /* tcutil.h */; };
-		EF8467940FDBA9440071F748 /* test.db in Resources */ = {isa = PBXBuildFile; fileRef = EF8467930FDBA9440071F748 /* test.db */; };
+		EFBBC2280FDC84B900631DE3 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
+		EFBBC2290FDC84B900631DE3 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
+		EFC135AA0FDC83B100027FEE /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
+		EFC135AB0FDC83B100027FEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		EFC135B40FDC83EB00027FEE /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
+		EFC135B50FDC83EB00027FEE /* WiktionaryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551650FDBF888000B0D0E /* WiktionaryTest.m */; };
+		EFC135B60FDC83EB00027FEE /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E00FDBA29B00641A96 /* GTMIPhoneUnitTestDelegate.m */; };
+		EFC135B70FDC83EB00027FEE /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E10FDBA29B00641A96 /* GTMIPhoneUnitTestMain.m */; };
+		EFC135B80FDC83EB00027FEE /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EF2114380FDBA41500641A96 /* PBXContainerItemProxy */ = {
+		EF21143A0FDBA41700641A96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EF21142F0FDBA3E000641A96;
 			remoteInfo = tokyocabinet;
 		};
-		EF21143A0FDBA41700641A96 /* PBXContainerItemProxy */ = {
+		EFBBC21A0FDC846A00631DE3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EF21142F0FDBA3E000641A96;
+			remoteGlobalIDString = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
 			remoteInfo = tokyocabinet;
 		};
 /* End PBXContainerItemProxy section */
@@ -86,7 +83,6 @@
 		EF2113E20FDBA29B00641A96 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = DEVELOPER_DIR; };
 		EF2113E30FDBA29B00641A96 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
 		EF2113E40FDBA29B00641A96 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
-		EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Unit Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2114040FDBA31B00641A96 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryViewController.h; sourceTree = "<group>"; };
 		EF2114050FDBA31B00641A96 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryViewController.m; sourceTree = "<group>"; };
 		EF2114060FDBA31B00641A96 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
@@ -114,7 +110,8 @@
 		EF84677D0FDBA8F40071F748 /* tchdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tchdb.c; sourceTree = "<group>"; };
 		EF84677E0FDBA8F40071F748 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcutil.c; sourceTree = "<group>"; };
 		EF84677F0FDBA8F40071F748 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
-		EF8467930FDBA9440071F748 /* test.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.db; sourceTree = "<group>"; };
+		EFC135A40FDC839600027FEE /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC135A60FDC839700027FEE /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,18 +126,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EF2113EC0FDBA2B100641A96 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF21143C0FDBA41C00641A96 /* libtokyocabinet.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EF21142E0FDBA3E000641A96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFC135A20FDC839600027FEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC135AA0FDC83B100027FEE /* libtokyocabinet.a in Frameworks */,
+				EFC135AB0FDC83B100027FEE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* RDict.app */,
-				EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */,
 				EF2114300FDBA3E000641A96 /* libtokyocabinet.a */,
+				EFC135A40FDC839600027FEE /* UnitTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +180,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				EFC135A60FDC839700027FEE /* UnitTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -201,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				EF3551400FDBF745000B0D0E /* enwiktionary-small.db */,
-				EF8467930FDBA9440071F748 /* test.db */,
 				EF2113C00FDBA26500641A96 /* DictionaryView.xib */,
 				EF2113C10FDBA26500641A96 /* ReviewView.xib */,
 				EF2113C20FDBA26500641A96 /* SearchView.xib */,
@@ -319,25 +317,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* RDict.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EF2113ED0FDBA2B100641A96 /* RDict Unit Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EF2113F30FDBA2B200641A96 /* Build configuration list for PBXNativeTarget "RDict Unit Tests" */;
-			buildPhases = (
-				EF2113EA0FDBA2B100641A96 /* Resources */,
-				EF2113EB0FDBA2B100641A96 /* Sources */,
-				EF2113EC0FDBA2B100641A96 /* Frameworks */,
-				EF2113F50FDBA2E100641A96 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EF2114390FDBA41500641A96 /* PBXTargetDependency */,
-			);
-			name = "RDict Unit Tests";
-			productName = "RDict Unit Tests";
-			productReference = EF2113EE0FDBA2B100641A96 /* RDict Unit Tests.app */;
-			productType = "com.apple.product-type.application";
-		};
 		EF21142F0FDBA3E000641A96 /* tokyocabinet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF21146E0FDBA42E00641A96 /* Build configuration list for PBXNativeTarget "tokyocabinet" */;
@@ -355,6 +334,25 @@
 			productReference = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		EFC135A30FDC839600027FEE /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFC135A90FDC839700027FEE /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				EFC135A00FDC839600027FEE /* Resources */,
+				EFC135A10FDC839600027FEE /* Sources */,
+				EFC135A20FDC839600027FEE /* Frameworks */,
+				EFC135BD0FDC840B00027FEE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFBBC21B0FDC846A00631DE3 /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = EFC135A40FDC839600027FEE /* UnitTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -369,7 +367,7 @@
 			targets = (
 				EF21142F0FDBA3E000641A96 /* tokyocabinet */,
 				1D6058900D05DD3D006BFB54 /* RDict */,
-				EF2113ED0FDBA2B100641A96 /* RDict Unit Tests */,
+				EFC135A30FDC839600027FEE /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -388,20 +386,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EF2113EA0FDBA2B100641A96 /* Resources */ = {
+		EFC135A00FDC839600027FEE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8467940FDBA9440071F748 /* test.db in Resources */,
-				EF3551430FDBF745000B0D0E /* index.db in Resources */,
-				EF3551440FDBF745000B0D0E /* word.db in Resources */,
+				EFBBC2280FDC84B900631DE3 /* index.db in Resources */,
+				EFBBC2290FDC84B900631DE3 /* word.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EF2113F50FDBA2E100641A96 /* ShellScript */ = {
+		EFC135BD0FDC840B00027FEE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,21 +429,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EF2113EB0FDBA2B100641A96 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF2114110FDBA34D00641A96 /* GTMIPhoneUnitTestDelegate.m in Sources */,
-				EF2114120FDBA34D00641A96 /* GTMIPhoneUnitTestMain.m in Sources */,
-				EF2114130FDBA34D00641A96 /* GTMSenTestCase.m in Sources */,
-				EF589B720FDBE16000DE43B3 /* Dictionary.m in Sources */,
-				EF589B730FDBE16000DE43B3 /* DictionaryEntry.m in Sources */,
-				EF35514A0FDBF838000B0D0E /* Wiktionary.m in Sources */,
-				EF3551660FDBF888000B0D0E /* TokyoCabinetTest.m in Sources */,
-				EF3551670FDBF888000B0D0E /* WiktionaryTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EF21142D0FDBA3E000641A96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,18 +441,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFC135A10FDC839600027FEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFC135B40FDC83EB00027FEE /* Wiktionary.m in Sources */,
+				EFC135B50FDC83EB00027FEE /* WiktionaryTest.m in Sources */,
+				EFC135B60FDC83EB00027FEE /* GTMIPhoneUnitTestDelegate.m in Sources */,
+				EFC135B70FDC83EB00027FEE /* GTMIPhoneUnitTestMain.m in Sources */,
+				EFC135B80FDC83EB00027FEE /* GTMSenTestCase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EF2114390FDBA41500641A96 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
-			targetProxy = EF2114380FDBA41500641A96 /* PBXContainerItemProxy */;
-		};
 		EF21143B0FDBA41700641A96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
 			targetProxy = EF21143A0FDBA41700641A96 /* PBXContainerItemProxy */;
+		};
+		EFBBC21B0FDC846A00631DE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
+			targetProxy = EFBBC21A0FDC846A00631DE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -531,64 +525,6 @@
 			};
 			name = Release;
 		};
-		EF2113F10FDBA2B200641A96 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "RDict Unit Tests-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "RDict Unit Tests";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = Debug;
-		};
-		EF2113F20FDBA2B200641A96 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "RDict Unit Tests-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
-				);
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "RDict Unit Tests";
-				SDKROOT = iphoneos2.2.1;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		EF2114310FDBA3E000641A96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -614,6 +550,55 @@
 			};
 			name = Release;
 		};
+		EFC135A70FDC839700027FEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = Debug;
+		};
+		EFC135A80FDC839700027FEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				SDKROOT = iphoneos2.2.1;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -635,20 +620,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF2113F30FDBA2B200641A96 /* Build configuration list for PBXNativeTarget "RDict Unit Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EF2113F10FDBA2B200641A96 /* Debug */,
-				EF2113F20FDBA2B200641A96 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EF21146E0FDBA42E00641A96 /* Build configuration list for PBXNativeTarget "tokyocabinet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF2114310FDBA3E000641A96 /* Debug */,
 				EF2114320FDBA3E000641A96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFC135A90FDC839700027FEE /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFC135A70FDC839700027FEE /* Debug */,
+				EFC135A80FDC839700027FEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
