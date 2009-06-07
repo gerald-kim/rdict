@@ -121,24 +121,6 @@ class WiktionaryDbMaker:
         self.db_word.close();
         #self.db_index.close();
         
-    def reopen_index( self ):
-        try:
-            os.remove( self._get_db_filepath( self.db_dir, 'index' ) )
-        except OSError:
-            pass
-        self.db_index = self._open_db( self._get_db_filepath( self.db_dir, 'index' ) )
-    
-    def create_index( self ):
-        c = self.db_word.curnew()
-        c.first()
-        while 1:
-            try:
-                c.key()
-            except KeyError:
-                break
-            self.db_index.putdup( c.key().lower(), c.key() )
-            c.next()
-        self.db_index.close()
         
     def process_redir_and_filter_english( self ):
         if self.db_tmp.has_key( self.COMPLETE_KEY ):
