@@ -17,4 +17,6 @@
 @property (nonatomic, retain) NSString *key;
 @property (nonatomic, retain) NSString *lemma;
 
+- (id) initWithUTF8KeyString:(char *) keyArg andUTF8LemmaString:(char*) lemmaArg;
+
 @end

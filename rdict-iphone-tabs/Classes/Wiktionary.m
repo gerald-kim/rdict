@@ -30,6 +30,9 @@
 		[self logtcbdberror:wordDb];		
 	}
 	
+	forwardCursor = tcbdbcurnew( indexDb );
+	tcbdbcurfirst( forwardCursor );
+	
 	return self;
 }
 
@@ -37,7 +40,8 @@
 	char *value = tcbdbget2( self.wordDb, lemma.UTF8String );
 	
 	if( !value ){
-		[self logtcbdberror:wordDb];
+//		[self logtcbdberror:wordDb];
+		return NULL;
 	}
 	
 	WiktionaryEntry *entry = [[WiktionaryEntry alloc] initWithLemma:lemma andDefinitionHtml:[NSString stringWithUTF8String:value]];
@@ -45,15 +49,42 @@
 	return entry;
 }
 
+- (NSMutableArray*) listForward:(NSString*) lemma  {
+	return [self listForward:lemma withLimit:10];
+}
+
+- (NSMutableArray*) listForward:(NSString*) lemma withLimit:(NSUInteger) limit {
+	NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:limit];
+	
+	if ( lemma ) {
+		tcbdbcurjump2( forwardCursor, [lemma UTF8String]);
+	}
+	
+	do {
+		char* key = tcbdbcurkey2( forwardCursor );
+		if ( key ) {		
+			char* val = tcbdbcurval2( forwardCursor );
+			
+			WiktionaryIndex *index = [[WiktionaryIndex alloc] initWithUTF8KeyString:key andUTF8LemmaString:val];
+			[array addObject:index];
+			[index release];
+			free(key);
+			free(val);
+		} else {
+			break;
+		}
+	} while ( tcbdbcurnext( forwardCursor ) &&  --limit > 0 );	
+
+	return array;
+}
+
 - (void) dealloc {
-	if( !tcbdbclose( indexDb ) ) {
-		[self logtcbdberror:indexDb];
-	}
+	tcbdbclose( indexDb );
 	tcbdbdel( indexDb );
-	if( !tcbdbclose( wordDb ) ) {
-		[self logtcbdberror:wordDb];
-	}
+	tcbdbclose( wordDb );
 	tcbdbdel( wordDb );
+	
+	tcbdbcurdel( forwardCursor );
 	
 	//	[self closeDb: wordDb];
 	[super dealloc];

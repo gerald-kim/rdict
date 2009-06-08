@@ -15,6 +15,7 @@
 
 	TCBDB *indexDb;
 	TCBDB *wordDb;	
+	BDBCUR *forwardCursor;
 }
 
 @property TCBDB *indexDb;
@@ -22,5 +23,7 @@
 
 - (id) init;
 - (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma;
+- (NSMutableArray*) listForward:(NSString*) lemma;
+- (NSMutableArray*) listForward:(NSString*) lemma withLimit:(NSUInteger) limit;
 
 @end

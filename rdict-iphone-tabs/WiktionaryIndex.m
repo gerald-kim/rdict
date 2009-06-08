@@ -12,4 +12,17 @@
 @synthesize key;
 @synthesize lemma;
 
+- (id) initWithUTF8KeyString:(char *) keyArg andUTF8LemmaString:(char*) lemmaArg {
+	key = [NSString stringWithUTF8String:keyArg];
+	lemma = [NSString stringWithUTF8String:lemmaArg];
+	
+	return self;
+}
+
+- (void) dealloc {
+	[self.lemma release];
+	[self.key release];
+	[super dealloc];
+}
+
 @end

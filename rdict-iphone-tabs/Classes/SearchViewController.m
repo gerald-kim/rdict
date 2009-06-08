@@ -77,8 +77,10 @@
 	NSLog( @"Input text : %@", searchText ); 
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-	
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
+
+	[searchBarArg resignFirstResponder];
+//	[tableView becomeFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
