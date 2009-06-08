@@ -37,6 +37,10 @@
 		EF8467890FDBA8F40071F748 /* tcutil.h in Headers */ = {isa = PBXBuildFile; fileRef = EF84677F0FDBA8F40071F748 /* tcutil.h */; };
 		EFBBC2280FDC84B900631DE3 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
 		EFBBC2290FDC84B900631DE3 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
+		EFBBC2330FDC856900631DE3 /* WiktionaryIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBBC2320FDC856900631DE3 /* WiktionaryIndex.m */; };
+		EFBBC2340FDC856900631DE3 /* WiktionaryIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBBC2320FDC856900631DE3 /* WiktionaryIndex.m */; };
+		EFBBC23B0FDC876B00631DE3 /* WiktionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBBC23A0FDC876B00631DE3 /* WiktionaryEntry.m */; };
+		EFBBC23C0FDC876B00631DE3 /* WiktionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBBC23A0FDC876B00631DE3 /* WiktionaryEntry.m */; };
 		EFC135AA0FDC83B100027FEE /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2114300FDBA3E000641A96 /* libtokyocabinet.a */; };
 		EFC135AB0FDC83B100027FEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		EFC135B40FDC83EB00027FEE /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
@@ -110,6 +114,10 @@
 		EF84677D0FDBA8F40071F748 /* tchdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tchdb.c; sourceTree = "<group>"; };
 		EF84677E0FDBA8F40071F748 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcutil.c; sourceTree = "<group>"; };
 		EF84677F0FDBA8F40071F748 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
+		EFBBC2310FDC856900631DE3 /* WiktionaryIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiktionaryIndex.h; sourceTree = "<group>"; };
+		EFBBC2320FDC856900631DE3 /* WiktionaryIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiktionaryIndex.m; sourceTree = "<group>"; };
+		EFBBC2390FDC876B00631DE3 /* WiktionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiktionaryEntry.h; sourceTree = "<group>"; };
+		EFBBC23A0FDC876B00631DE3 /* WiktionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiktionaryEntry.m; sourceTree = "<group>"; };
 		EFC135A40FDC839600027FEE /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC135A60FDC839700027FEE /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,6 +285,10 @@
 				EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */,
 				EF3551470FDBF838000B0D0E /* Wiktionary.h */,
 				EF3551480FDBF838000B0D0E /* Wiktionary.m */,
+				EFBBC2390FDC876B00631DE3 /* WiktionaryEntry.h */,
+				EFBBC23A0FDC876B00631DE3 /* WiktionaryEntry.m */,
+				EFBBC2310FDC856900631DE3 /* WiktionaryIndex.h */,
+				EFBBC2320FDC856900631DE3 /* WiktionaryIndex.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -426,6 +438,8 @@
 				EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */,
 				EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */,
 				EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */,
+				EFBBC2340FDC856900631DE3 /* WiktionaryIndex.m in Sources */,
+				EFBBC23B0FDC876B00631DE3 /* WiktionaryEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +464,8 @@
 				EFC135B60FDC83EB00027FEE /* GTMIPhoneUnitTestDelegate.m in Sources */,
 				EFC135B70FDC83EB00027FEE /* GTMIPhoneUnitTestMain.m in Sources */,
 				EFC135B80FDC83EB00027FEE /* GTMSenTestCase.m in Sources */,
+				EFBBC2330FDC856900631DE3 /* WiktionaryIndex.m in Sources */,
+				EFBBC23C0FDC876B00631DE3 /* WiktionaryEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

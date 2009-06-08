@@ -10,7 +10,7 @@
 
 @class DictionaryViewController;
 
-@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
 	DictionaryViewController *dictionaryViewController;
 	IBOutlet UISearchBar *searchBar;
 	NSArray *listData;

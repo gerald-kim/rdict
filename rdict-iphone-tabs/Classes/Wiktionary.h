@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "tcbdb.h"
+#import "WiktionaryIndex.h"
+#import "WiktionaryEntry.h"
 
 @interface Wiktionary : NSObject {
 
@@ -19,5 +21,6 @@
 @property TCBDB *wordDb;
 
 - (id) init;
+- (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma;
 
 @end

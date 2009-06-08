@@ -71,6 +71,23 @@
 }
 
 #pragma mark -
+#pragma mark Search Bar Methods
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	NSLog( @"Input text : %@", searchText ); 
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+	
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	
+}
+
+
+
+#pragma mark -
 #pragma mark Table View Data Source Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,5 +106,10 @@
 	
 	return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog( @"Index : %d", indexPath.row );
+}
+
 
 @end

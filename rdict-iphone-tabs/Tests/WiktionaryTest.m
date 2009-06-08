@@ -28,4 +28,15 @@
 	[wiktionary release];
 }
 
+- (void) testGetWiktionaryEntry {
+	Wiktionary* wiktionary = [[Wiktionary alloc] init];
+	
+	WiktionaryEntry *entry = [wiktionary getWiktionaryEntry:@"you"];
+	STAssertNotNULL( entry, nil );
+	STAssertEqualStrings( @"you", entry.lemma, nil );
+	STAssertTrue( [entry.definitionHtml length] > 100, nil ); 
+	
+	[wiktionary release];
+}
+
 @end

@@ -33,6 +33,17 @@
 	return self;
 }
 
+- (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma {
+	char *value = tcbdbget2( self.wordDb, lemma.UTF8String );
+	
+	if( !value ){
+		[self logtcbdberror:wordDb];
+	}
+	
+	WiktionaryEntry *entry = [[WiktionaryEntry alloc] initWithLemma:lemma andDefinitionHtml:[NSString stringWithUTF8String:value]];
+	
+	return entry;
+}
 
 - (void) dealloc {
 	if( !tcbdbclose( indexDb ) ) {
