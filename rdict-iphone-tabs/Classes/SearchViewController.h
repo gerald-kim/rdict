@@ -23,6 +23,4 @@
 @property (nonatomic, retain) NSMutableArray *listData; 
 @property (nonatomic, retain) Wiktionary *wiktionary; 
 
-- (IBAction) dictButtonPressed:(id)sender;
-
 @end

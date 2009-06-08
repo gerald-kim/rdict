@@ -13,8 +13,8 @@
 @synthesize lemma;
 
 - (id) initWithUTF8KeyString:(char *) keyArg andUTF8LemmaString:(char*) lemmaArg {
-	key = [NSString stringWithUTF8String:keyArg];
-	lemma = [NSString stringWithUTF8String:lemmaArg];
+	key = [[NSString alloc] initWithUTF8String:keyArg];
+	lemma = [[NSString alloc] initWithUTF8String:lemmaArg];
 	
 	return self;
 }

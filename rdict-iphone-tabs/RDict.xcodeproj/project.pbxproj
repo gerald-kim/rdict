@@ -60,7 +60,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EF21142F0FDBA3E000641A96 /* tokyocabinet */;
+			remoteGlobalIDString = EF21142F0FDBA3E000641A96;
 			remoteInfo = tokyocabinet;
 		};
 /* End PBXContainerItemProxy section */
