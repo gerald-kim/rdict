@@ -9,36 +9,19 @@
 #import "RDictAppDelegate.h"
 
 #import "SearchViewController.h"
+#import "Wiktionary.h"
 
 @implementation RDictAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
 @synthesize navigationController;
-//@synthesize searchViewController;
-//@synthesize reviewViewController;
+@synthesize wiktionary;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-	/*
-	navigationController = [[UINavigationController alloc] init];
-//	navigationController.navigationBarHidden = TRUE;
-	
-	searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchView" bundle:nil];
-	searchViewController.tabBarItem.title = @"Search";
-	searchViewController.navigationItem.title = @"Search";
-	navigationController.viewControllers = [NSArray arrayWithObjects:searchViewController, nil];
+	wiktionary = [[Wiktionary alloc] init];
 
-	reviewViewController = [[SearchViewController alloc] initWithNibName:@"ReviewView" bundle:nil];
-	reviewViewController.tabBarItem.title = @"Review";
-	reviewViewController.navigationItem.title = @"Review";
-	
-//	navigationController = [[[UINavigationController alloc]
-//							 initWithRootViewController:searchViewController] autorelease];
-
-	tabBarController = [[UITabBarController alloc]init];
-	tabBarController.viewControllers = [NSArray arrayWithObjects:searchViewController, reviewViewController, nil];
-	*/
     [window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
 }
@@ -58,6 +41,7 @@
 
 
 - (void)dealloc {
+	[wiktionary release];
     [tabBarController release];
     [window release];
     [super dealloc];

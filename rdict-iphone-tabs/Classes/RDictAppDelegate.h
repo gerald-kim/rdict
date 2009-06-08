@@ -13,6 +13,7 @@
 
 @class SearchViewController;
 @class ReviewViewController;
+@class Wiktionary;
 
 @interface RDictAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
@@ -20,11 +21,15 @@
 	UINavigationController *navigationController;
 //    SearchViewController *searchViewController;
 //    ReviewViewController *reviewViewController;	
+	
+	Wiktionary *wiktionary;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) Wiktionary *wiktionary;
+
 //@property (nonatomic, retain) IBOutlet SearchViewController *searchViewController;
 //@property (nonatomic, retain) IBOutlet ReviewViewController *reviewViewController;
 

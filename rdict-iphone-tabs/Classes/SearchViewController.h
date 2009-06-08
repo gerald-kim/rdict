@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @class DictionaryViewController;
+@class Wiktionary;
 
 @interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
 	DictionaryViewController *dictionaryViewController;
 	IBOutlet UISearchBar *searchBar;
-	NSArray *listData;
+	NSMutableArray *listData;
+	Wiktionary* wiktionary;
 }
 
 @property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, retain) NSArray *listData; 
+@property (nonatomic, retain) NSMutableArray *listData; 
+@property (nonatomic, retain) Wiktionary *wiktionary; 
 
 - (IBAction) dictButtonPressed:(id)sender;
 
