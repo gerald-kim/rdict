@@ -64,7 +64,7 @@
 
 - (void) calcInterval {
 	if (self.repsSinceLapse == 0)
-		self.interval = 1;
+		self.interval = 0;
 	else if (self.repsSinceLapse == 1)
 		self.interval = 6;
 	else

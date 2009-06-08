@@ -44,15 +44,20 @@
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *url = [request URL];
-	
+	NSLog( @"request called %@", [url relativePath] );	
 	if ([@"/save" isEqualToString: [url relativePath]]) {		
+		
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
 		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
 		Card *card = [[Card alloc] initWithQuestion: self.usersWord.text Answer: selectedDefinition];
+		
 		[card schedule];
 		[card save];
 		[card release];
+		
+		NSLog( @"Save called %@", [url relativePath] );	
+		return FALSE;
 	}
 	else if ([@"/lookup" isEqualToString:[url relativePath]]){
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
@@ -72,6 +77,7 @@
 		[self.searchResultsPane loadHTMLString: dicEntry.entry baseURL:baseURL];
 		
 		[dicEntry release];
+		return FALSE;
 	}
 	
 	return YES;
