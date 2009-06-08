@@ -23,8 +23,6 @@
 		EF3551450FDBF745000B0D0E /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551410FDBF745000B0D0E /* index.db */; };
 		EF3551460FDBF745000B0D0E /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF3551420FDBF745000B0D0E /* word.db */; };
 		EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3551480FDBF838000B0D0E /* Wiktionary.m */; };
-		EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B6F0FDBE16000DE43B3 /* Dictionary.m */; };
-		EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */; };
 		EF8467800FDBA8F40071F748 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EF8467760FDBA8F40071F748 /* myconf.c */; };
 		EF8467810FDBA8F40071F748 /* myconf.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8467770FDBA8F40071F748 /* myconf.h */; };
 		EF8467820FDBA8F40071F748 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EF8467780FDBA8F40071F748 /* tcbdb.c */; };
@@ -100,10 +98,6 @@
 		EF3551480FDBF838000B0D0E /* Wiktionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Wiktionary.m; path = Classes/Wiktionary.m; sourceTree = "<group>"; };
 		EF3551640FDBF888000B0D0E /* TokyoCabinetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TokyoCabinetTest.m; path = Tests/TokyoCabinetTest.m; sourceTree = "<group>"; };
 		EF3551650FDBF888000B0D0E /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
-		EF589B6E0FDBE16000DE43B3 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = Classes/Dictionary.h; sourceTree = "<group>"; };
-		EF589B6F0FDBE16000DE43B3 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Dictionary.m; path = Classes/Dictionary.m; sourceTree = "<group>"; };
-		EF589B700FDBE16000DE43B3 /* DictionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryEntry.h; path = Classes/DictionaryEntry.h; sourceTree = "<group>"; };
-		EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryEntry.m; path = Classes/DictionaryEntry.m; sourceTree = "<group>"; };
 		EF8467760FDBA8F40071F748 /* myconf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = myconf.c; sourceTree = "<group>"; };
 		EF8467770FDBA8F40071F748 /* myconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myconf.h; sourceTree = "<group>"; };
 		EF8467780FDBA8F40071F748 /* tcbdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcbdb.c; sourceTree = "<group>"; };
@@ -279,10 +273,6 @@
 		EF589B540FDBE10600DE43B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EF589B6E0FDBE16000DE43B3 /* Dictionary.h */,
-				EF589B6F0FDBE16000DE43B3 /* Dictionary.m */,
-				EF589B700FDBE16000DE43B3 /* DictionaryEntry.h */,
-				EF589B710FDBE16000DE43B3 /* DictionaryEntry.m */,
 				EF3551470FDBF838000B0D0E /* Wiktionary.h */,
 				EF3551480FDBF838000B0D0E /* Wiktionary.m */,
 				EFBBC2390FDC876B00631DE3 /* WiktionaryEntry.h */,
@@ -435,8 +425,6 @@
 				EF21140A0FDBA31B00641A96 /* DictionaryViewController.m in Sources */,
 				EF21140B0FDBA31B00641A96 /* ReviewViewController.m in Sources */,
 				EF21140C0FDBA31B00641A96 /* SearchViewController.m in Sources */,
-				EF589B740FDBE16000DE43B3 /* Dictionary.m in Sources */,
-				EF589B750FDBE16000DE43B3 /* DictionaryEntry.m in Sources */,
 				EF3551490FDBF838000B0D0E /* Wiktionary.m in Sources */,
 				EFBBC2340FDC856900631DE3 /* WiktionaryIndex.m in Sources */,
 				EFBBC23B0FDC876B00631DE3 /* WiktionaryEntry.m in Sources */,
