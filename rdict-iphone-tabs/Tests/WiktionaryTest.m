@@ -6,35 +6,17 @@
 //  Copyright 2009 NHN. All rights reserved.
 //
 
+#import <TargetConditionals.h>
 #import "GTMSenTestCase.h"
+
 #import "Wiktionary.h"
 
-//index.db contents
-//1 a
-//2 aah
-//3 abandon
-//4 abandoned
-//5 abbey
-//6 abducted
-//7 abigail
-//8 abilities
-//9 ability
-//10 able
-//11 aboard
-//12 abort
-//13 abortion
-//14 about
-//15 above
-//16 absence
-//17 absent
-//18 absolute
-
 @interface WiktionaryTest : SenTestCase {
-	Wiktionary* wiktionary;
-	
+	Wiktionary *wiktionary;
 }
-
 @end
+
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 @implementation WiktionaryTest
 
@@ -51,6 +33,7 @@
 	STAssertNotNULL( wiktionary.wordDb, nil ); 
 	char* value = tcbdbget2(wiktionary.indexDb, "you");
 	STAssertEqualStrings( @"you", [NSString stringWithUTF8String:value], nil );
+	
 	free( value );
 	
 }
@@ -92,4 +75,7 @@
 	STAssertEqualStrings( idx.key, @"zoe", nil );
 }
 
+
 @end
+
+#endif

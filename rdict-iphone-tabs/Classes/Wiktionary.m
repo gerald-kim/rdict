@@ -9,6 +9,7 @@
 #import "Wiktionary.h"
 
 @implementation Wiktionary
+
 @synthesize indexDb;
 @synthesize wordDb;
 

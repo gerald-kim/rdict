@@ -12,14 +12,13 @@
 #import "WiktionaryEntry.h"
 
 @interface Wiktionary : NSObject {
-
 	TCBDB *indexDb;
 	TCBDB *wordDb;	
 	BDBCUR *forwardCursor;
 }
 
-@property TCBDB *indexDb;
-@property TCBDB *wordDb;
+@property (nonatomic, assign) TCBDB *indexDb;
+@property (nonatomic, assign) TCBDB *wordDb;
 
 - (id) init;
 - (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma;
