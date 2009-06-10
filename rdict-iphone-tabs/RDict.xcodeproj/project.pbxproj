@@ -68,8 +68,8 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* RDictAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDictAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDictAppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* RDictAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RDictAppDelegate.h; path = Classes/RDictAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RDictAppDelegate.m; path = Classes/RDictAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* RDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,12 +85,12 @@
 		EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBF4A190FE001900092357C /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
-		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryViewController.h; sourceTree = "<group>"; };
-		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryViewController.m; sourceTree = "<group>"; };
-		EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
-		EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
-		EFEA07C80FDFF4EA00490192 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		EFEA07C90FDFF4EA00490192 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryViewController.h; path = Classes/DictionaryViewController.h; sourceTree = "<group>"; };
+		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryViewController.m; path = Classes/DictionaryViewController.m; sourceTree = "<group>"; };
+		EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewViewController.h; path = Classes/ReviewViewController.h; sourceTree = "<group>"; };
+		EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReviewViewController.m; path = Classes/ReviewViewController.m; sourceTree = "<group>"; };
+		EFEA07C80FDFF4EA00490192 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Classes/SearchViewController.h; sourceTree = "<group>"; };
+		EFEA07C90FDFF4EA00490192 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Classes/SearchViewController.m; sourceTree = "<group>"; };
 		EFEA07CA0FDFF4EA00490192 /* Wiktionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wiktionary.h; sourceTree = "<group>"; };
 		EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wiktionary.m; sourceTree = "<group>"; };
 		EFEA07CC0FDFF4EA00490192 /* WiktionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiktionaryEntry.h; sourceTree = "<group>"; };
@@ -114,7 +114,6 @@
 		EFEA07FB0FDFF53D00490192 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
 		EFEA07FC0FDFF53D00490192 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
-		EFEA08760FDFF7C100490192 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,20 +149,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */,
-				EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */,
-				EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */,
-				EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */,
-				EFEA07C80FDFF4EA00490192 /* SearchViewController.h */,
-				EFEA07C90FDFF4EA00490192 /* SearchViewController.m */,
 				EFEA07CA0FDFF4EA00490192 /* Wiktionary.h */,
 				EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */,
 				EFEA07CC0FDFF4EA00490192 /* WiktionaryEntry.h */,
 				EFEA07CD0FDFF4EA00490192 /* WiktionaryEntry.m */,
 				EFEA07CE0FDFF4EA00490192 /* WiktionaryIndex.h */,
 				EFEA07CF0FDFF4EA00490192 /* WiktionaryIndex.m */,
-				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
-				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -181,6 +172,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				EFBF4A780FE003650092357C /* Controllers */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				EFEA08320FDFF5FA00490192 /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -195,6 +187,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EF8D0B350FDFFFE800B093EB /* GTM */,
 				EFEA07D70FDFF4F900490192 /* tokyocabinet */,
 				32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -218,7 +211,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EFEA08760FDFF7C100490192 /* SenTestingKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -237,6 +229,21 @@
 				EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */,
 			);
 			name = GTM;
+			sourceTree = "<group>";
+		};
+		EFBF4A780FE003650092357C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */,
+				EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */,
+				EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */,
+				EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */,
+				EFEA07C80FDFF4EA00490192 /* SearchViewController.h */,
+				EFEA07C90FDFF4EA00490192 /* SearchViewController.m */,
+				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
+				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		EFEA07D70FDFF4F900490192 /* tokyocabinet */ = {
@@ -268,7 +275,6 @@
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EF8D0B350FDFFFE800B093EB /* GTM */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 			);
 			name = Tests;
