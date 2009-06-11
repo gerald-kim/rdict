@@ -51,6 +51,8 @@
 		1F7D58640FC5DC60006C1B00 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D58630FC5DC60006C1B00 /* CardManager.m */; };
 		1F7D58650FC5DC60006C1B00 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D58630FC5DC60006C1B00 /* CardManager.m */; };
 		1F7D5AA40FC60117006C1B00 /* ORMTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D5AA30FC60117006C1B00 /* ORMTestCase.m */; };
+		1F8CE73D0FDB867B00918916 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F8CE73C0FDB867B00918916 /* dist.plist */; };
+		1F8CE73E0FDB867B00918916 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F8CE73C0FDB867B00918916 /* dist.plist */; };
 		1F9D6D040FCE5E7A000A6908 /* DictionaryEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D030FCE5E7A000A6908 /* DictionaryEntryTest.m */; };
 		1F9D6D0B0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */; };
 		1F9D6D0C0FCE5FF7000A6908 /* DictionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */; };
@@ -195,6 +197,7 @@
 		1F7D5AE90FC603A9006C1B00 /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-SQLitePersistence.h"; path = "sqlitepersistentobjects/src/UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		1F7D5AEA0FC603A9006C1B00 /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-SQLitePersistence.m"; path = "sqlitepersistentobjects/src/UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
 		1F7D5B470FC60687006C1B00 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1F8CE73C0FDB867B00918916 /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		1F9D6D030FCE5E7A000A6908 /* DictionaryEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntryTest.m; sourceTree = "<group>"; };
 		1F9D6D090FCE5FF7000A6908 /* DictionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryEntry.h; sourceTree = "<group>"; };
 		1F9D6D0A0FCE5FF7000A6908 /* DictionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryEntry.m; sourceTree = "<group>"; };
@@ -381,6 +384,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				1F09752D0FBF7D0B00665994 /* Test-Info.plist */,
 				1F4DAB590FCE84DA002B4A90 /* README */,
+				1F8CE73C0FDB867B00918916 /* dist.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -555,6 +559,7 @@
 				1FC228D80FC66A3A0033578D /* ReviewHomeView.xib in Resources */,
 				1F4DAB5B0FCE84DA002B4A90 /* README in Resources */,
 				1F7C96380FCFA55600DD5892 /* dictionary_js.html in Resources */,
+				1F8CE73D0FDB867B00918916 /* dist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +571,7 @@
 				1FC228CC0FC6669D0033578D /* CardFront.xib in Resources */,
 				1F4DAB5A0FCE84DA002B4A90 /* README in Resources */,
 				1F7C96370FCFA55600DD5892 /* dictionary_js.html in Resources */,
+				1F8CE73E0FDB867B00918916 /* dist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +751,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "amplio@ampliostudios.com";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
