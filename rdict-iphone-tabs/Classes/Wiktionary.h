@@ -15,14 +15,19 @@
 	TCBDB *indexDb;
 	TCBDB *wordDb;	
 	BDBCUR *forwardCursor;
+	BDBCUR *backwardCursor;
 }
 
-@property (nonatomic, assign) TCBDB *indexDb;
-@property (nonatomic, assign) TCBDB *wordDb;
+@property (nonatomic, readonly) TCBDB *indexDb;
+@property (nonatomic, readonly) TCBDB *wordDb;
 
 - (id) init;
 - (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma;
+
 - (NSMutableArray*) listForward:(NSString*) lemma;
 - (NSMutableArray*) listForward:(NSString*) lemma withLimit:(NSUInteger) limit;
+
+- (NSMutableArray*) listBackward:(NSString*) lemma;
+- (NSMutableArray*) listBackward:(NSString*) lemma withLimit:(NSUInteger) limit;
 
 @end

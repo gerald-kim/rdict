@@ -68,13 +68,26 @@
 	STAssertEqualStrings( idx.key, @"aboard", nil );
 }
 
-- (void) testInitialForwardListingShouldStopAtLast {
+- (void) testForwardListingShouldStopAtLast {
 	NSArray *list = [wiktionary listForward:@"zoe"];
 	WiktionaryIndex *idx = [list objectAtIndex:0];
 	STAssertEquals( [list count], (NSUInteger) 4, nil );
 	STAssertEqualStrings( idx.key, @"zoe", nil );
 }
 
+- (void) testBackwardListing {
+	NSArray *list = [wiktionary listBackward:@"zoo"];
+	WiktionaryIndex *idx = [list objectAtIndex:0];
+	STAssertEquals( [list count], (NSUInteger) 10, nil );
+	STAssertEqualStrings( idx.key, @"zoo", nil );
+}
+
+- (void) testBackwardShouldStopAtFirst {
+	NSArray *list = [wiktionary listBackward:@"abbey"];
+	WiktionaryIndex *idx = [list objectAtIndex:0];
+	STAssertEquals( [list count], (NSUInteger) 5, nil );
+	STAssertEqualStrings( idx.key, @"abbey", nil );
+}
 
 @end
 

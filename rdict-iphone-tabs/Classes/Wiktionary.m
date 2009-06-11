@@ -33,6 +33,8 @@
 	
 	forwardCursor = tcbdbcurnew( indexDb );
 	tcbdbcurfirst( forwardCursor );
+	backwardCursor = tcbdbcurnew( indexDb );
+	tcbdbcurfirst( backwardCursor );
 	
 	return self;
 }
@@ -78,6 +80,34 @@
 
 	return array;
 }
+
+- (NSMutableArray*) listBackward:(NSString*) lemma  {
+	return [self listBackward:lemma withLimit:10];
+}
+
+- (NSMutableArray*) listBackward:(NSString*) lemma withLimit:(NSUInteger) limit {
+	NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:limit];
+	
+	tcbdbcurjump2( backwardCursor, [lemma UTF8String]);
+	
+	do {
+		char* key = tcbdbcurkey2( backwardCursor );
+		if ( key ) {		
+			char* val = tcbdbcurval2( forwardCursor );
+			
+			WiktionaryIndex *index = [[WiktionaryIndex alloc] initWithUTF8KeyString:key andUTF8LemmaString:val];
+			[array addObject:index];
+			[index release];
+			free(key);
+			free(val);
+		} else {
+			break;
+		}
+	} while ( tcbdbcurprev( backwardCursor ) &&  --limit > 0 );	
+	
+	return array;
+}
+
 
 - (void) dealloc {
 	tcbdbclose( indexDb );
