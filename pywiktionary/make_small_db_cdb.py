@@ -41,7 +41,7 @@ class SmallCdbMaker:
             if word_map.has_key( c.key() ):
                 db_small.add( c.key(), c.val() )
             
-                if db_small.numentries >= 700:
+                if db_small.numentries >= 400:
                     db_small.finish()
                     i = i + 1
                     small_filename = ('word%d' % i)
