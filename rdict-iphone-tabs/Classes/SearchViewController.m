@@ -38,8 +38,8 @@
 //	wiktionary = delegate.wiktionary;
 //	[delegate release];
 	wiktionary = [[Wiktionary alloc] init];
-	[wiktionary jumpToWord:@"actor"];
-	wordList = [wiktionary.wordList mutableCopy];
+	[wiktionary fillWordList:@"a"];
+	//wordList = [wiktionary.wordList mutableCopy];
 
 	[tableView reloadData];
 }
@@ -62,9 +62,9 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	NSLog( @"Input text : %@", searchText ); 
 
-	[wiktionary jumpToWord:searchText];
-	//wordList = [wiktionary.wordList mutableCopy];
-	//[tableView reloadData];
+	NSUInteger row = [wiktionary fillWordList:searchText];
+	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
+	[tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
@@ -88,7 +88,7 @@
 #pragma mark Table View Data Source Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [wordList count];
+	return [wiktionary.wordList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,7 +100,7 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
 	
-	WiktionaryIndex *index = [wordList objectAtIndex:indexPath.row];
+	WiktionaryIndex *index = [wiktionary.wordList objectAtIndex:indexPath.row];
 	cell.text = index.lemma;
 	
 //	if( [listData count] - 1 == indexPath.row ) {

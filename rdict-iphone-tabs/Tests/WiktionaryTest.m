@@ -51,18 +51,18 @@
 	STAssertNULL( entry, nil );
 }
 
-- (void) testJumpToFirstWord {
-	NSInteger targetIndex = [wiktionary jumpToWord:@"a"];
-	STAssertEquals( targetIndex, (NSInteger) 0, nil );
-	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
-	STAssertEqualStrings( wiktionaryIndex.key, @"a", nil );
-	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"adolescent", nil );
+- (void) testJumpToWord {
+	STAssertEqualStrings( [wiktionary jumpToWord:@"a"], @"a", nil );
+	STAssertEqualStrings( [wiktionary jumpToWord:@"-"], @"a", nil );
+	STAssertEqualStrings( [wiktionary jumpToWord:@"aah"], @"aah", nil );
+	STAssertEqualStrings( [wiktionary jumpToWord:@"aaha"], @"aah", nil );
+	STAssertEqualStrings( [wiktionary jumpToWord:@"zoo"], @"zoo", nil );
+	STAssertEqualStrings( [wiktionary jumpToWord:@"zooh"], @"zoo", nil );
 }
 
-- (void) testJumpToLastWord {
-	NSInteger targetIndex = [wiktionary jumpToWord:@"zoo"];
-	STAssertEquals( targetIndex, (NSInteger) 99, nil );
+- (void) testFillWordList {
+	NSUInteger targetIndex = [wiktionary fillWordList:@"zoo"];
+	STAssertEquals( targetIndex, (NSUInteger) 99, nil );
 	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"worry", nil );
 	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
@@ -70,8 +70,8 @@
 }
 
 - (void) testJumpToCloseToFirst {
-	NSInteger targetIndex = [wiktionary jumpToWord:@"able"];
-	STAssertEquals( targetIndex, (NSInteger) 9, nil );
+	NSUInteger targetIndex = [wiktionary fillWordList:@"able"];
+	STAssertEquals( targetIndex, (NSUInteger) 9, nil );
 	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"a", nil );
 	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
@@ -79,13 +79,14 @@
 }
 
 - (void) testJumpToMiddle {
-	NSInteger targetIndex = [wiktionary jumpToWord:@"adolescent"];
-	STAssertEquals( targetIndex, (NSInteger) 33, nil );
+	NSUInteger targetIndex = [wiktionary fillWordList:@"adolescent"];
+	STAssertEquals( targetIndex, (NSUInteger) 33, nil );
 	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"activity", nil );
 	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
 	STAssertEqualStrings( wiktionaryIndex.key, @"al", nil );
 }
+
 
 @end
 

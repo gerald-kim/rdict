@@ -27,7 +27,8 @@
 
 - (WiktionaryEntry*) getWiktionaryEntry: (NSString*) lemma;
 - (WiktionaryIndex*) getWiktionaryIndexFromCursor:(BDBCUR*) cursor;
-- (NSInteger) jumpToWord:(NSString*) word;
+- (NSString*) jumpToWord:(NSString*) word;
+- (NSUInteger) fillWordList:(NSString*) word;
 
 //- (NSMutableArray*) listBackward:(NSString*) lemma withLimit:(NSUInteger) limit;
 

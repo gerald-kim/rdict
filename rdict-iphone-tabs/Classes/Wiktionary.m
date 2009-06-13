@@ -75,7 +75,6 @@ const NSUInteger LIST_SIZE = 100;
 	WiktionaryIndex *index = nil;
 	if ( key ) {		
 		char* val = tcbdbcurval2( cursor );
-		
 		index = [[WiktionaryIndex alloc] initWithUTF8KeyString:key andUTF8LemmaString:val];
 		free(val);
 	}
@@ -83,33 +82,40 @@ const NSUInteger LIST_SIZE = 100;
 	return index;
 }
 
-- (NSInteger) jumpToWord:(NSString*) word {
-	NSString* foundWord;
-	
-	for( int i = [word length]; i >= 0; i-- ) {
-		foundWord = [word substringToIndex:(NSUInteger)i];
-		
-		if ( tcbdbcurjump2( wordCursor, [foundWord UTF8String] ) ) {
-			char* key = tcbdbcurkey2( wordCursor );
-			if( strcmp( key, [foundWord UTF8String] ) == 0 ) {
-				NSLog( @"Found %d, %s", i, key ); 				
-				break;
+- (NSString*) jumpToWord:(NSString*) word {
+	bool jumpSuccess = tcbdbcurjump2( wordCursor, [word UTF8String] );
+	NSString *jumpWord = NULL;
+	if ( jumpSuccess ) {
+		char* key = tcbdbcurkey2( wordCursor );
+		jumpWord = [NSString stringWithUTF8String:key];
+		NSLog( @"jump success : %@, %@", word, jumpWord );
+		free( key );
+		if ( ![jumpWord hasPrefix:word] ) {
+			if ( tcbdbcurprev( wordCursor ) ) {
+				char* key = tcbdbcurkey2( wordCursor );
+				jumpWord = [NSString stringWithUTF8String:key];
+				free( key );
 			}
-			free( key );
-		}
-		[foundWord release];
-	}
-	
-	if( [foundWord length] == 0 ) {
-		return (NSInteger) -1;
-	}
-	
-	NSLog( @"move cursor to %@", foundWord );
-	[wordList removeAllObjects];
-	NSLog( @"moved cursor to %@", foundWord );
+			NSLog( @"noPrefix %@, %@", word, jumpWord ); 	
 
-	tcbdbcurjump2( forwardCursor, [foundWord UTF8String] );
-	tcbdbcurjump2( backwardCursor, [foundWord UTF8String] );	
+		}
+	} 
+	if ( !jumpSuccess ) {
+		NSLog( @"JumpFail %@", word ); 	
+		tcbdbcurlast( wordCursor );
+		char* key = tcbdbcurkey2( wordCursor );
+		jumpWord = [NSString stringWithUTF8String:key];
+		free( key );
+	}
+	return jumpWord;
+}
+
+- (NSUInteger) fillWordList:(NSString*) word {
+	NSString* jumpWord = [self jumpToWord:word];
+	
+	[wordList removeAllObjects];
+	tcbdbcurjump2( forwardCursor, [jumpWord UTF8String] );
+	tcbdbcurjump2( backwardCursor, [jumpWord UTF8String] );	
 	tcbdbcurprev( backwardCursor );
 	
 	int i = 0;
@@ -131,12 +137,14 @@ const NSUInteger LIST_SIZE = 100;
 	
 	for ( int i = 0; i < LIST_SIZE; i++ ) {
 		WiktionaryIndex* index = [wordList objectAtIndex:(NSUInteger)i];
-		if ( [foundWord isEqualToString:index.key] ) {
+		if ( [jumpWord isEqualToString:index.key] ) {
 			return (NSUInteger) i;
 		}
-	}
+	}	
 	return (NSUInteger) 0;
 }
+
+
 
 /*
 - (NSMutableArray*) listForward:(NSString*) lemma withLimit:(NSUInteger) limit {
