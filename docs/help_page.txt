@@ -1,65 +1,27 @@
-﻿New to RDict?
+New to RDict?
 
-If you're new to RDict and want to get an idea of how it works, read on.  Here, we'll give you a quick tour of how RDict can be used to look up the definitions of words, and maintain and improve your vocabulary.
+Here are a few simple tips to help you get started.  For more detailed help, please visit www.ampliostudios.com/rdict/help
 
-The first step is to download the app from the Apple store.  Because we're going to focus on how RDict works, we'll skip that part here.  If you need information on how to download RDict to your iPhone or iPod Touch, please visit this page.
+Introduction
 
-When you start RDict for the first time, you'll see the Dictionary screen, shown in the picture below.
+RDict has two main components: the Dictionary and the Review screen.  You can switch between the two views using the tab bar, located at the bottom of the screen. 
 
-<dic screen>
+Dictionary Mode
 
-Looking up a word on the Dictionary screen is simple: when you touch the search box, a keyboard will pop up.  Type in your word, and when you're finished, press the 'Search' button.
+By default, RDict always shows you the Dictionary screen when you first load.  With the Dictionary, you can look up words of your choice.  If, after looking up a word, you decide that you would like RDict to help you remember that word, press the 'Remember' button located next to the definition of your choice.  RDict will automatically add a flashcard to your stack when you press the button.
 
-If there's an exact match, RDict will show you the definition for the word you entered; if not, RDict will show you a list of words similar to the one you entered.  To choose a word, simply touch it, and RDict will display the dictionary page for the word.
+Review Mode
 
-Dictionary pages in RDict look like the picture shown below.  The word you looked up appears first, followed by additional information.  The structure of the entry resembles the structure in the Wiktionary web page.  A separate entry exists for the noun, verb or other parts of speech.  Synonyms are often provided.  In some cases, examples are provided too.
+To review your flashcards, you visit the Review screen by tapping the 'Review' tab on the tab bar.  On the Review screen, you can choose from a number of options.  If there are cards scheduled to be practiced today, press the "Practice today's cards" button to practice those.  Using the menu, you can also choose different card sets too.  For example, you can choose to practice the 20 cards you have the most trouble remembering.
 
-In the dictionary page for a word, some words will appear in blue.  Blue words are a convenient shortcut: simply touch them and RDict will show you the entry for the word.  No typing required.
+Practicing
 
-You'll notice that right now we don't have a pronunciation audio file for your listening.  Don't worry, we're working hard on this and it should be available soon in a free update for customers who've already purchased RDict.
+Practicing with a set of flashcards is pretty straightforward.  RDict will show you the front of a card, on which a practice word appears.  When RDict shows you the card, think and try to remember the definition.  When you remember it (or if you can't remember it), click on 'View Answer'.  RDict will turn the card over, showing you the definition of the word.  Look at the definition.  Is it the one you remembered?  How easy was it to remember?  Tell RDict how easy it was to remember the definition by touching one of the difficulty buttons.  RDict will use this information to schedule the card for later practice.  When you are finished reviewing all the cards, RDict will return you to the Review screen.  Please note that you can quit the review session at any time.
 
-At times, you may want to compare the definitions of two words, or simply review a definition you looked up previously.  For your convenience, RDict has 'Backwards' and 'Forwards' arrows at the top of the screen.  These arrows are just like the buttons on your web browser: touching the 'Backwards' arrow shows you the entry for the word you looked up previously.  The 'Forwards' arrow allows you to move forward to more recent searches again in your history.
+Study Preferences
 
-So far, we've talked about the dictionary part of RDict.  Next, we describe how RDict helps you to remember the words you look up.
+On the study preferences screen, you can make changes to the way RDict schedules cards for your review.  For example, you can adjust the maximum number of cards you wish to practice in a day.  Other properties of the study method can also be adjusted.  Please view the website for full details.
 
-You've probably already noticed the 'Remember' buttons on the dictionary screen (shown above).  Their purpose is pretty simple.  If, after looking up a word, you decide that this is a word you'd like help with remembering, press the 'Remember' button.  When you press the button, RDict creates a flashcard for the word in memory, which you review later.  Flashcards look like the following:
+Manage Your Cards
 
-<flashcard front>
-<flashcard back>
-
-In addition to creating a flashcard, RDict also schedules a practice time for you to view the card.  The first practice time is usually the same day you press the remember button.  Future practice times depend on how easy or hard it is for you to recall the definition of the word on the card.
-
-Studying with RDict is done in 'Review Sessions'.  Review sessions typically works as follows.  First, take a look at the iPhone home screen below.
-
-<screen>
-
-See the little '12' number at the top right corner of the RDict icon?  That number is showing you that there are 12 cards scheduled to be practised today.  The number is updated each day, according to how many cards are scheduled for practice.  You can practice any time of the day: morning, afternoon or evening.  And, if you're busy, RDict will automatically reschedule your cards to make sure that you have a manageable amount.
-
-To practise in a review session, start RDict by touching the icon.
-
-<screen>
-
-After RDict launches, you can start the review mode by tapping the review icon on the tab bar: it's the one on the bottom right side of the screen.  Pressing this button brings you to the Review Home screen.  The Review Home screen shows you the number of cards scheduled for review today, and approximately how long your review session will take.  There's also a button for managing your stack of cards, but we'll explain that a bit later.  
-
-If you click 'Start', a practice session will start up.
-
-<practice session screen>
-
-Practising with RDict is pretty straightforward.  When you click 'Start', RDict loads the scheduled cards into memory, and shows you the flashcards, one at a time.  First, you'll see the front of the card.  The front will have a word on it, as shown in the example below.
-
-<front of flashcard>
-
-By showing you the front of a card, RDict is challenging you to remember the definition.  Once you've remembered the definition (or realized you've forgotten it), press 'View Answer'.  This will flip the card over to the other side, which appears as follows:
-
-<back of flashcard>
-
-When you click 'View Answer', RDict flips the flashcard over, revealing the definition of the word you've been quizzed on.  Did you remember the definition correctly?  Was it easy? Or did you forget?
-RDict want's to know!  Tell RDict how easy or hard it was for you to remember the definition, using one of the four buttons that appears on the bottom of the card.  For example, if you've totally forgotten the word, press the 'I forget' button.  After you press one of the buttons, RDict will show you the next scheduled.
-
-And that's it!  You practice a set of flashcards daily to remember the definitions of the word you look up with the dictionary.  As mentioned, RDict schedules harder words for earlier and more frequent practice, and the scheduling algorithm makes sure that you don't have an unmanageable amount of cards to practice in a single day.
-
-Practice on the bus, subway or on the plane.  Or, squeeze in a quick practice session before you go to bed.  We hope you find reviewing with RDict convenient.  We'd love to hear how well it works for you, or take suggestions for future improvements.
-
-For more information or more specific help, you can vie the support forums, or check the F.A.Q. page.  If your question hasn't been answered yet, send us an email or post on the forums, and we'd be happy to help you out.
-
-Be sure to watch the updates page; we have lot's of new ideas that we plan to add to RDict over the upcoming year!
+From time to time, you may wish to manually edit your card stack.  For example, you may wish to delete a word from your card stack.  You may also wish to add to or edit the definition of the word.  By pressing on the 'Manage Your Cards' button, RDict will bring you to a screen which allows you to add, edit and delete cards in your stack.  Also, you can view information about your card stack on this screen.  For example, how many cards are 'Easy' to remember, how many are 'Hard', etc.

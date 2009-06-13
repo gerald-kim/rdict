@@ -1,0 +1,8 @@
+RDict
+
+Version 1.0 (244)
+
+Copyright 2009 - 2010 Amplio Studios Inc.
+All rights reserved.
+
+Visit www.ampliostudios.com for more information.
