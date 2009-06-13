@@ -16,14 +16,17 @@
 
 @synthesize dictionaryViewController;
 @synthesize searchBar;
-@synthesize listData;
+@synthesize tableView;
 @synthesize wiktionary;
+@synthesize wordList;
 
 - (void)viewWillAppear:(BOOL)animated {
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	//[searchBar becomeFirstResponder];
+	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:33 inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
 }
 
 
@@ -35,9 +38,10 @@
 //	wiktionary = delegate.wiktionary;
 //	[delegate release];
 	wiktionary = [[Wiktionary alloc] init];
-	
-	listData = [[NSMutableArray alloc] init];
-	[listData addObjectsFromArray: [wiktionary listForward:nil withLimit:20]];
+	[wiktionary jumpToWord:@"actor"];
+	wordList = [wiktionary.wordList mutableCopy];
+
+	[tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +51,6 @@
 
 
 - (void)dealloc {
-	[listData release];
 	[wiktionary release];
 	[dictionaryViewController release];
     [super dealloc];
@@ -58,10 +61,15 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	NSLog( @"Input text : %@", searchText ); 
+
+	[wiktionary jumpToWord:searchText];
+	//wordList = [wiktionary.wordList mutableCopy];
+	//[tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
 	[searchBarArg resignFirstResponder];
+
 //	[tableView becomeFirstResponder];
 }
 
@@ -80,7 +88,7 @@
 #pragma mark Table View Data Source Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.listData count];
+	return [wordList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,14 +100,14 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
 	
-	WiktionaryIndex *index = [self.listData objectAtIndex:indexPath.row];
+	WiktionaryIndex *index = [wordList objectAtIndex:indexPath.row];
 	cell.text = index.lemma;
 	
-	if( [listData count] - 1 == indexPath.row ) {
-		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
+//	if( [listData count] - 1 == indexPath.row ) {
+//		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
 //		[self.listData removeObjectAtIndex:(NSUInteger)0];
-		[tableView reloadData];
-	}
+//		[tableView reloadData];
+//	}
 	
 	return cell;
 }

@@ -51,42 +51,40 @@
 	STAssertNULL( entry, nil );
 }
 
-- (void) testInitialForwardListingStartsFromFirst {
-	NSArray *list = [wiktionary listForward:nil];
-	STAssertEquals( [list count], (NSUInteger) 10, nil );
-	WiktionaryIndex *idx = [list objectAtIndex:0];
-	STAssertEqualStrings( idx.key, @"a", nil );
-	idx = [list objectAtIndex:9];
-	STAssertEqualStrings( idx.key, @"able", nil );
+- (void) testJumpToFirstWord {
+	NSInteger targetIndex = [wiktionary jumpToWord:@"a"];
+	STAssertEquals( targetIndex, (NSInteger) 0, nil );
+	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	STAssertEqualStrings( wiktionaryIndex.key, @"a", nil );
+	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	STAssertEqualStrings( wiktionaryIndex.key, @"adolescent", nil );
 }
 
-- (void) testInitialForwardListingShouldKeepLocation {
-	[wiktionary listForward:nil];
-	NSArray *list = [wiktionary listForward:nil];
-	WiktionaryIndex *idx = [list objectAtIndex:0];
-	STAssertEquals( [list count], (NSUInteger) 10, nil );
-	STAssertEqualStrings( idx.key, @"aboard", nil );
+- (void) testJumpToLastWord {
+	NSInteger targetIndex = [wiktionary jumpToWord:@"zoo"];
+	STAssertEquals( targetIndex, (NSInteger) 99, nil );
+	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	STAssertEqualStrings( wiktionaryIndex.key, @"worry", nil );
+	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	STAssertEqualStrings( wiktionaryIndex.key, @"zoo", nil );
 }
 
-- (void) testForwardListingShouldStopAtLast {
-	NSArray *list = [wiktionary listForward:@"zoe"];
-	WiktionaryIndex *idx = [list objectAtIndex:0];
-	STAssertEquals( [list count], (NSUInteger) 4, nil );
-	STAssertEqualStrings( idx.key, @"zoe", nil );
+- (void) testJumpToCloseToFirst {
+	NSInteger targetIndex = [wiktionary jumpToWord:@"able"];
+	STAssertEquals( targetIndex, (NSInteger) 9, nil );
+	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	STAssertEqualStrings( wiktionaryIndex.key, @"a", nil );
+	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	STAssertEqualStrings( wiktionaryIndex.key, @"adolescent", nil );
 }
 
-- (void) testBackwardListing {
-	NSArray *list = [wiktionary listBackward:@"zoo"];
-	WiktionaryIndex *idx = [list objectAtIndex:0];
-	STAssertEquals( [list count], (NSUInteger) 10, nil );
-	STAssertEqualStrings( idx.key, @"zoo", nil );
-}
-
-- (void) testBackwardShouldStopAtFirst {
-	NSArray *list = [wiktionary listBackward:@"abbey"];
-	WiktionaryIndex *idx = [list objectAtIndex:0];
-	STAssertEquals( [list count], (NSUInteger) 5, nil );
-	STAssertEqualStrings( idx.key, @"abbey", nil );
+- (void) testJumpToMiddle {
+	NSInteger targetIndex = [wiktionary jumpToWord:@"adolescent"];
+	STAssertEquals( targetIndex, (NSInteger) 33, nil );
+	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	STAssertEqualStrings( wiktionaryIndex.key, @"activity", nil );
+	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	STAssertEqualStrings( wiktionaryIndex.key, @"al", nil );
 }
 
 @end
