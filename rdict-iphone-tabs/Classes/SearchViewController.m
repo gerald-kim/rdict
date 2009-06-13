@@ -18,30 +18,23 @@
 @synthesize searchBar;
 @synthesize tableView;
 @synthesize wiktionary;
-@synthesize wordList;
 
 - (void)viewWillAppear:(BOOL)animated {
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	//[searchBar becomeFirstResponder];
-	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:33 inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
+	[searchBar becomeFirstResponder];
 }
 
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	NSLog(@"viewDidLoad called");
-//	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
-//	wiktionary = delegate.wiktionary;
-//	[delegate release];
-	wiktionary = [[Wiktionary alloc] init];
+	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
+	wiktionary = delegate.wiktionary;
+	
 	[wiktionary fillWordList:@"a"];
-	//wordList = [wiktionary.wordList mutableCopy];
-
-	[tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +62,6 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
 	[searchBarArg resignFirstResponder];
-
-//	[tableView becomeFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -83,7 +74,6 @@
 }
 
 
-
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
@@ -91,7 +81,7 @@
 	return [wiktionary.wordList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
 	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
 	
@@ -114,7 +104,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog( @"Index : %d", indexPath.row );
-	
 }
 
 

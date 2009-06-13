@@ -16,12 +16,10 @@
 	IBOutlet UISearchBar *searchBar;
 	IBOutlet UITableView *tableView;
 	Wiktionary* wiktionary;
-	NSMutableArray* wordList;
 }
 
 @property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) Wiktionary *wiktionary; 
-@property (nonatomic, retain) NSMutableArray *wordList;
 @end
