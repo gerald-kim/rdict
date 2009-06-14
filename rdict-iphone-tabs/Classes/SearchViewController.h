@@ -14,13 +14,12 @@
 @interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
 	DictionaryViewController *dictionaryViewController;
 	IBOutlet UISearchBar *searchBar;
-	NSMutableArray *listData;
+	IBOutlet UITableView *tableView;
 	Wiktionary* wiktionary;
 }
 
 @property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, retain) NSMutableArray *listData; 
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) Wiktionary *wiktionary; 
-
 @end

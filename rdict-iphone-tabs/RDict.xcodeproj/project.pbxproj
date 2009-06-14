@@ -50,13 +50,6 @@
 			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
 			remoteInfo = tokyocabinet;
 		};
-		EFBF4A420FE002960092357C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFBF4A160FE001900092357C;
-			remoteInfo = UnitTests;
-		};
 		EFEA07F30FDFF51D00490192 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -305,7 +298,6 @@
 			);
 			dependencies = (
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
-				EFBF4A430FE002960092357C /* PBXTargetDependency */,
 			);
 			name = RDict;
 			productName = RDict;
@@ -457,11 +449,6 @@
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
 			targetProxy = EFBF4A1E0FE001A10092357C /* PBXContainerItemProxy */;
-		};
-		EFBF4A430FE002960092357C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFBF4A160FE001900092357C /* UnitTests */;
-			targetProxy = EFBF4A420FE002960092357C /* PBXContainerItemProxy */;
 		};
 		EFEA07F40FDFF51D00490192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

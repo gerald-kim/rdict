@@ -16,28 +16,25 @@
 
 @synthesize dictionaryViewController;
 @synthesize searchBar;
-@synthesize listData;
+@synthesize tableView;
 @synthesize wiktionary;
 
 - (void)viewWillAppear:(BOOL)animated {
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	//[searchBar becomeFirstResponder];
+	[searchBar becomeFirstResponder];
 }
 
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	NSLog(@"viewDidLoad called");
-//	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
-//	wiktionary = delegate.wiktionary;
-//	[delegate release];
-	wiktionary = [[Wiktionary alloc] init];
+	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
+	wiktionary = delegate.wiktionary;
 	
-	listData = [[NSMutableArray alloc] init];
-	[listData addObjectsFromArray: [wiktionary listForward:nil withLimit:20]];
+	[wiktionary fillWordList:@"a"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +44,6 @@
 
 
 - (void)dealloc {
-	[listData release];
 	[wiktionary release];
 	[dictionaryViewController release];
     [super dealloc];
@@ -58,11 +54,14 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	NSLog( @"Input text : %@", searchText ); 
+
+	NSUInteger row = [wiktionary fillWordList:searchText];
+	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
+	[tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
 	[searchBarArg resignFirstResponder];
-//	[tableView becomeFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -75,15 +74,14 @@
 }
 
 
-
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.listData count];
+	return [wiktionary.wordList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
 	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
 	
@@ -92,21 +90,20 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
 	
-	WiktionaryIndex *index = [self.listData objectAtIndex:indexPath.row];
+	WiktionaryIndex *index = [wiktionary.wordList objectAtIndex:indexPath.row];
 	cell.text = index.lemma;
 	
-	if( [listData count] - 1 == indexPath.row ) {
-		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
+//	if( [listData count] - 1 == indexPath.row ) {
+//		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
 //		[self.listData removeObjectAtIndex:(NSUInteger)0];
-		[tableView reloadData];
-	}
+//		[tableView reloadData];
+//	}
 	
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog( @"Index : %d", indexPath.row );
-	
 }
 
 
