@@ -3,7 +3,7 @@
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/7/09.
-//  Copyright 2009 NHN. All rights reserved.
+//  Copyright 2009 Amplio Studios. All rights reserved.
 //
 
 #import <TargetConditionals.h>
@@ -39,7 +39,7 @@
 }
 
 - (void) testGetWiktionaryEntry {
-	WiktionaryEntry *entry = [wiktionary getWiktionaryEntry:@"you"];
+	WordEntry *entry = [wiktionary wordEntryByLemma:@"you"];
 	STAssertNotNULL( entry, nil );
 	STAssertEqualStrings( @"you", entry.lemma, nil );
 	STAssertTrue( [entry.definitionHtml length] > 100, nil ); 
@@ -47,43 +47,43 @@
 }
 
 - (void) testGetEmptyWiktionaryEntry {
-	WiktionaryEntry *entry = [wiktionary getWiktionaryEntry:@"youuuu"];
+	WordEntry *entry = [wiktionary wordEntryByLemma:@"youuuu"];
 	STAssertNULL( entry, nil );
 }
 
 - (void) testJumpToWord {
-	STAssertEqualStrings( [wiktionary jumpToWord:@"a"], @"a", nil );
-	STAssertEqualStrings( [wiktionary jumpToWord:@"-"], @"a", nil );
-	STAssertEqualStrings( [wiktionary jumpToWord:@"aah"], @"aah", nil );
-	STAssertEqualStrings( [wiktionary jumpToWord:@"aaha"], @"aah", nil );
-	STAssertEqualStrings( [wiktionary jumpToWord:@"zoo"], @"zoo", nil );
-	STAssertEqualStrings( [wiktionary jumpToWord:@"zooh"], @"zoo", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"a"], @"a", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"-"], @"a", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"aah"], @"aah", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"aaha"], @"aah", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"zoo"], @"zoo", nil );
+	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"zooh"], @"zoo", nil );
 }
 
 - (void) testFillWordList {
-	NSUInteger targetIndex = [wiktionary fillWordList:@"zoo"];
+	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"zoo"];
 	STAssertEquals( targetIndex, (NSUInteger) 99, nil );
-	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"worry", nil );
-	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
 	STAssertEqualStrings( wiktionaryIndex.key, @"zoo", nil );
 }
 
 - (void) testJumpToCloseToFirst {
-	NSUInteger targetIndex = [wiktionary fillWordList:@"able"];
+	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"able"];
 	STAssertEquals( targetIndex, (NSUInteger) 9, nil );
-	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"a", nil );
-	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
 	STAssertEqualStrings( wiktionaryIndex.key, @"adolescent", nil );
 }
 
 - (void) testJumpToMiddle {
-	NSUInteger targetIndex = [wiktionary fillWordList:@"adolescent"];
+	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"adolescent"];
 	STAssertEquals( targetIndex, (NSUInteger) 33, nil );
-	WiktionaryIndex *wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)0];
+	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"activity", nil );
-	wiktionaryIndex = [wiktionary.wordList objectAtIndex:(NSUInteger)99];
+	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
 	STAssertEqualStrings( wiktionaryIndex.key, @"al", nil );
 }
 

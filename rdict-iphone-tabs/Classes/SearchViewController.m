@@ -3,14 +3,14 @@
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/6/09.
-//  Copyright 2009 NHN. All rights reserved.
+//  Copyright 2009 Amplio Studios. All rights reserved.
 //
 
 #import "SearchViewController.h"
 #import "DictionaryViewController.h"
 #import "RDictAppDelegate.h"
 #import "Wiktionary.h"
-#import "WiktionaryIndex.h"
+#import "WordIndex.h"
 
 @implementation SearchViewController
 
@@ -34,7 +34,7 @@
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	wiktionary = delegate.wiktionary;
 	
-	[wiktionary fillWordList:@"a"];
+	[wiktionary fillIndexesByKey:@"a"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +55,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	NSLog( @"Input text : %@", searchText ); 
 
-	NSUInteger row = [wiktionary fillWordList:searchText];
+	NSUInteger row = [wiktionary fillIndexesByKey:searchText];
 	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
 	[tableView reloadData];
 }
@@ -78,7 +78,7 @@
 #pragma mark Table View Data Source Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [wiktionary.wordList count];
+	return [wiktionary.wordIndexes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,7 +90,7 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
 	
-	WiktionaryIndex *index = [wiktionary.wordList objectAtIndex:indexPath.row];
+	WordIndex *index = [wiktionary.wordIndexes objectAtIndex:indexPath.row];
 	cell.text = index.lemma;
 	
 //	if( [listData count] - 1 == indexPath.row ) {
