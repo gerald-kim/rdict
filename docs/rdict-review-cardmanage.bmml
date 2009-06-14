@@ -1,0 +1,43 @@
+<mockup version="1.0" skin="sketch" measuredW="703" measuredH="537">
+  <controls>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::iPhone" x="411" y="17" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::iPhone" x="99" y="17" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Button" x="434" y="113" w="-1" h="-1" measuredW="64" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%3CCards</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::HRule" x="441" y="141" w="218" h="-1" measuredW="100" measuredH="5" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="516" y="116" w="-1" h="-1" measuredW="61" measuredH="23" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Card%20edit</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::ButtonBar" x="488" y="275" w="-1" h="-1" measuredW="128" measuredH="29" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Save%2C%20Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="132" y="156" w="-1" h="-1" measuredW="215" measuredH="247" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Word1%0A__%20meaning%20%7E%7E%7E%7E%7E%0A-%20Word2%0A__%20%7E%7E%7E%7E%7E%2C%20%28%3E%29%0A...%0A__%20...</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="444" y="156" w="-1" h="-1" measuredW="215" measuredH="89" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Word1%0A__%20meaning%20%7E%7E%7E%7E%7E</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="122" y="113" w="-1" h="-1" measuredW="70" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%3CReview</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::HRule" x="129" y="141" w="218" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="204" y="116" w="-1" h="-1" measuredW="39" measuredH="23" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cards</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
