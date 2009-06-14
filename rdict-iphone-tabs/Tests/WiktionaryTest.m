@@ -28,6 +28,7 @@
 	[wiktionary release];
 }
 
+
 - (void) testInit {
 	STAssertNotNULL( wiktionary.indexDb, nil ); 
 	STAssertNotNULL( wiktionary.wordDb, nil ); 
@@ -46,18 +47,20 @@
 	
 }
 
+
 - (void) testGetEmptyWiktionaryEntry {
 	WordEntry *entry = [wiktionary wordEntryByLemma:@"youuuu"];
 	STAssertNULL( entry, nil );
 }
 
+
 - (void) testJumpToWord {
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"a"], @"a", nil );
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"-"], @"a", nil );
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"aah"], @"aah", nil );
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"aaha"], @"aah", nil );
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"zoo"], @"zoo", nil );
-	STAssertEqualStrings( [wiktionary findIndexKeyByQuery:@"zooh"], @"zoo", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"a"].key, @"a", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"-"].key, @"a", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aah"].key, @"aah", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aaha"].key, @"aah", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"zoo"].key, @"zoo", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"zooh"].key, @"zoo", nil );
 }
 
 - (void) testFillWordList {
@@ -86,7 +89,6 @@
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
 	STAssertEqualStrings( wiktionaryIndex.key, @"al", nil );
 }
-
 
 @end
 

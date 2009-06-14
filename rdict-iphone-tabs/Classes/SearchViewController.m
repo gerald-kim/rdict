@@ -19,6 +19,23 @@
 @synthesize tableView;
 @synthesize wiktionary;
 
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
+	self.wiktionary = delegate.wiktionary;
+	[delegate release];
+	
+	[wiktionary fillIndexesByKey:@"a"];
+}
+
+- (void)dealloc {
+	[wiktionary release];
+	[dictionaryViewController release];
+    [super dealloc];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 
 }
@@ -28,14 +45,6 @@
 }
 
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-
-	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
-	wiktionary = delegate.wiktionary;
-	
-	[wiktionary fillIndexesByKey:@"a"];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -43,11 +52,6 @@
 }
 
 
-- (void)dealloc {
-	[wiktionary release];
-	[dictionaryViewController release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Search Bar Methods
@@ -56,22 +60,29 @@
 	NSLog( @"Input text : %@", searchText ); 
 
 	NSUInteger row = [wiktionary fillIndexesByKey:searchText];
-	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
 	[tableView reloadData];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBarArg {
-	[searchBarArg resignFirstResponder];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	if( dictionaryViewController == nil ) {
-		dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
+	if( self.dictionaryViewController == nil ) {
+		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
 	}
 	
-	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 
+	WordIndex* index = [[wiktionary findIndexByQuery:searchBar.text] autorelease];
+	dictionaryViewController.lemma = index.key;
 	
+	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 	
 }
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) aSearchBar {
+	if ( [searchBar.text length] > 0 ) {
+		searchBar.text = @"";
+	} else {
+		[searchBar resignFirstResponder];
+	}
+}
+
 
 
 #pragma mark -
@@ -83,7 +94,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
-	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
+//	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {

@@ -70,32 +70,39 @@
 	return entry;
 }
 
-- (NSString*) findIndexKeyByQuery:(NSString*) aQuery {
+- (WordIndex*) findIndexByQuery:(NSString*) aQuery {
 	bool jumpSuccess = tcbdbcurjump2( wordCursor, [aQuery UTF8String] );
-	NSString *indexKey = NULL;
+	NSMutableString *indexKey = [[[NSMutableString alloc] init] autorelease];
+	
 	if ( jumpSuccess ) {
 		char* key = tcbdbcurkey2( wordCursor );
-		indexKey = [NSString stringWithUTF8String:key];
+		[indexKey setString:[NSString stringWithUTF8String:key]];
+		
 		NSLog( @"jump success : %@, %@", aQuery, indexKey );
 		free( key );
 		if ( ![indexKey hasPrefix:aQuery] ) {
 			if ( tcbdbcurprev( wordCursor ) ) {
 				char* key = tcbdbcurkey2( wordCursor );
-				indexKey = [NSString stringWithUTF8String:key];
+				[indexKey setString:[NSString stringWithUTF8String:key]];
 				free( key );
 			}
 			NSLog( @"noPrefix %@, %@", aQuery, indexKey ); 	
-
 		}
 	} 
 	if ( !jumpSuccess ) {
 		NSLog( @"JumpFail %@", aQuery ); 	
 		tcbdbcurlast( wordCursor );
 		char* key = tcbdbcurkey2( wordCursor );
-		indexKey = [NSString stringWithUTF8String:key];
+		[indexKey setString:[NSString stringWithUTF8String:key]];
 		free( key );
 	}
-	return indexKey;
+	
+	tcbdbcurjump2( wordCursor, [indexKey UTF8String] );
+	char* val = tcbdbcurval2( wordCursor );
+	WordIndex* index = [[WordIndex alloc] initWithKeyString:[indexKey UTF8String] andLemmaString:val];
+	free( val );
+	
+	return index;
 }
 
 - (WordIndex*) wordIndexFromCursor:(BDBCUR*) cursor {
@@ -111,7 +118,8 @@
 }
 
 - (NSUInteger) fillIndexesByKey:(NSString*) aWord {
-	NSString* indexKey = [self findIndexKeyByQuery:aWord];
+	WordIndex* wordIndex = [[self findIndexByQuery:aWord] autorelease];
+	NSString* indexKey = [NSString stringWithString:wordIndex.key];
 	
 	[wordIndexes removeAllObjects];
 	tcbdbcurjump2( forwardCursor, [indexKey UTF8String] );
@@ -141,6 +149,7 @@
 			return (NSUInteger) i;
 		}
 	}	
+	
 	return (NSUInteger) 0;
 }
 

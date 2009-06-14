@@ -43,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFBF4A160FE001900092357C /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
 		EFBF4A1E0FE001A10092357C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -299,6 +306,7 @@
 			);
 			dependencies = (
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
+				EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */,
 			);
 			name = RDict;
 			productName = RDict;
@@ -312,7 +320,7 @@
 				EFBF4A130FE001900092357C /* Resources */,
 				EFBF4A140FE001900092357C /* Sources */,
 				EFBF4A150FE001900092357C /* Frameworks */,
-				EFBF4A290FE001C50092357C /* ShellScript */,
+				EF6D9EAD0FE5620E0096BA53 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -386,7 +394,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EFBF4A290FE001C50092357C /* ShellScript */ = {
+		EF6D9EAD0FE5620E0096BA53 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,6 +454,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFBF4A160FE001900092357C /* UnitTests */;
+			targetProxy = EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */;
+		};
 		EFBF4A1F0FE001A10092357C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;

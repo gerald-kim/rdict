@@ -26,7 +26,7 @@
 
 
 - (WordEntry*) wordEntryByLemma: (NSString*) aLemma;
-- (NSString*) findIndexKeyByQuery:(NSString*) aQuery;
+- (WordIndex*) findIndexByQuery:(NSString*) aQuery;
 - (NSUInteger) fillIndexesByKey:(NSString*) aWord;
 
 //- (NSMutableArray*) listBackward:(NSString*) lemma withLimit:(NSUInteger) limit;

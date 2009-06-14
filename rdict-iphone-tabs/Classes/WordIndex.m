@@ -12,16 +12,16 @@
 @synthesize key;
 @synthesize lemma;
 
-- (id) initWithKeyString:(char *) keyArg andLemmaString:(char*) lemmaArg {
+- (id) initWithKeyString:(const char *) keyArg andLemmaString:(const char*) lemmaArg {
 	key = [[NSString alloc] initWithUTF8String:keyArg];
 	lemma = [[NSString alloc] initWithUTF8String:lemmaArg];
-	
+
 	return self;
 }
 
 - (void) dealloc {
-	[self.lemma release];
-	[self.key release];
+	[lemma release];
+	[key release];
 	[super dealloc];
 }
 

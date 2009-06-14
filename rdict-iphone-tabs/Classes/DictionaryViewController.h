@@ -11,9 +11,11 @@
 
 @interface DictionaryViewController : UIViewController {
 	IBOutlet UIButton* titleButton;
+	NSString* lemma;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton* titleButton;
+@property (nonatomic, retain) NSString* lemma;
 
 - (IBAction) titleButtonPressed:(id)sender;
 

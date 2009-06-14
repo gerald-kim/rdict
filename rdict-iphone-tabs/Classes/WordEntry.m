@@ -14,14 +14,14 @@
 @synthesize definitionHtml;
 
 - (id) initWithLemma:(NSString *) lemmaArg andDefinitionHtml:(NSString *) definitionHtmlArg {
-	lemma = lemmaArg;
-	definitionHtml = [NSMutableString stringWithString: definitionHtmlArg];
+	self.lemma = lemmaArg;
+	self.definitionHtml = [NSMutableString stringWithString: definitionHtmlArg];
 	return self;
 }
 
 - (void)dealloc {
-	[self.lemma release];
-	[self.definitionHtml release];
+	[lemma release];
+	[definitionHtml release];
 	[super dealloc];
 }
 
