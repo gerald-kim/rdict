@@ -1,0 +1,48 @@
+<mockup version="1.0" skin="sketch" measuredW="721" measuredH="533">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="77" y="13" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Arrow" x="295" y="91" w="134" h="50" measuredW="150" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="108" y="178" w="200" h="-1" measuredW="215" measuredH="68" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Overall%20retension%20score%2C%20%5B99%5D%20%3E%0ATotal%20memory%20card%2C%20%5B100%5D%20%3E</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Paragraph" x="108" y="128" w="200" h="50" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Today%20you%20have%20_5_%20items%20to%20study.%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::StickyNote" x="407" y="70" w="304" h="334" measuredW="109" measuredH="123" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20can%20be%20substituted%20with%20following%20sentences%0Aby%20%7E%7E%7E%0A--------------%0AThere%20no%20scheduled%20items.%20%0AYou%20can%20study%20in%20advance.%0A--------------%0AYou%20searched%2010%20words%20today.%0ADo%20you%20want%20to%20review%20it%3F%0A---------------%0AYou%20didn%27t%20studied%20long%20time.%0AToo%20many%20cards%20for%20today.%0ADo%20you%20want%20to%20reschedule%20from%20today%3F</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::DataGrid" x="108" y="279" w="200" h="86" measuredW="101" measuredH="86" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Date%2C%20Cards%0A6/15%2C%2010%0A6/16%2C%2012</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="108" y="256" w="-1" h="-1" measuredW="104" measuredH="23" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Study%20Schedules</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::ButtonBar" x="125" y="392" w="-1" h="-1" measuredW="170" measuredH="29" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>One%2C%20Two%2C%20Three</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::HRule" x="108" y="368" w="210" h="-1" measuredW="100" measuredH="5" zOrder="5" locked="false" isInGroup="-1"/>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="308" y="128" w="-1" h="236" measuredW="16" measuredH="100" zOrder="7" locked="false" isInGroup="-1"/>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Button" x="207" y="150" w="-1" h="-1" measuredW="64" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Review</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
