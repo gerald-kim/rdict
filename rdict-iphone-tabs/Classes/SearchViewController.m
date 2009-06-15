@@ -21,18 +21,18 @@
 
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+	self.title = @"Search";
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
 	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];
+	[super viewDidLoad];
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-
+- (void)viewWillAppear:(BOOL) animated {
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -10,11 +10,13 @@
 
 
 @interface DictionaryViewController : UIViewController {
-	IBOutlet UIButton* titleButton;
+	IBOutlet UIButton* backButton;
+//	IBOutlet UINavigationItem* navigationItem;
 	NSString* lemma;
 }
 
-@property (nonatomic, retain) IBOutlet UIButton* titleButton;
+@property (nonatomic, retain) IBOutlet UIButton* backButton;
+//@property (nonatomic, retain) IBOutlet UINavigationItem* navigationItem;
 @property (nonatomic, retain) NSString* lemma;
 
 - (IBAction) titleButtonPressed:(id)sender;

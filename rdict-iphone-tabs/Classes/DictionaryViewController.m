@@ -10,14 +10,23 @@
 
 
 @implementation DictionaryViewController
-@synthesize titleButton;
+@synthesize backButton;
+//@synthesize navigationItem;
 @synthesize lemma;
 
 - (void)viewWillAppear:(BOOL)animated {
-//	self.navigationController.navigationBarHidden = NO;
-	[titleButton setTitle:lemma forState:UIControlStateNormal];
-	[titleButton setTitle:lemma forState:UIControlStateSelected];
+	self.title = lemma;
+	self.navigationController.navigationBarHidden = NO;
+	[super viewWillAppear:animated];
+//	self.navigationItem.rightBarButtonItem = 
+//	[titleButton setTitle:lemma forState:UIControlStateNormal];
+//	[titleButton setTitle:lemma forState:UIControlStateSelected];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+	self.navigationController.navigationBarHidden = YES;
+}
+
 
 
 - (IBAction) titleButtonPressed:(id)sender {
