@@ -8,18 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class Wiktionary;
 
 @interface DictionaryViewController : UIViewController {
-	IBOutlet UIButton* backButton;
-//	IBOutlet UINavigationItem* navigationItem;
+	IBOutlet UIWebView* webView;
 	NSString* lemma;
+	Wiktionary* wiktionary;
 }
 
-@property (nonatomic, retain) IBOutlet UIButton* backButton;
-//@property (nonatomic, retain) IBOutlet UINavigationItem* navigationItem;
+@property (nonatomic, retain) IBOutlet UIWebView* webView;
 @property (nonatomic, retain) NSString* lemma;
-
-- (IBAction) titleButtonPressed:(id)sender;
-
+@property (nonatomic, retain) Wiktionary* wiktionary;
 
 @end

@@ -7,40 +7,41 @@
 //
 
 #import "DictionaryViewController.h"
-
+#import "RDictAppDelegate.h"
+#import "Wiktionary.h"
 
 @implementation DictionaryViewController
-@synthesize backButton;
-//@synthesize navigationItem;
+@synthesize webView;
 @synthesize lemma;
+@synthesize wiktionary;
+
+- (void)viewDidLoad {
+	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
+	self.wiktionary = delegate.wiktionary;
+//	[delegate release];
+	[super viewDidLoad];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
 	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
+//	[entry release];
+	
 	[super viewWillAppear:animated];
-//	self.navigationItem.rightBarButtonItem = 
-//	[titleButton setTitle:lemma forState:UIControlStateNormal];
-//	[titleButton setTitle:lemma forState:UIControlStateSelected];
 }
+
+- (void) viewDidAppear:(BOOL)animated {
+	WordEntry* entry = [wiktionary wordEntryByLemma:lemma];
+	
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSURL *baseURL = [NSURL fileURLWithPath:path];	
+	
+	[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
+}	
 
 - (void)viewWillDisappear:(BOOL)animated {
 	self.navigationController.navigationBarHidden = YES;
 }
-
-
-
-- (IBAction) titleButtonPressed:(id)sender {
-	[self.navigationController popViewControllerAnimated:YES];
-}
-
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -49,9 +50,12 @@
 
 
 - (void)dealloc {
+	[webView release];
+	[wiktionary release];
 	[lemma release];
     [super dealloc];
 }
+
 
 
 @end

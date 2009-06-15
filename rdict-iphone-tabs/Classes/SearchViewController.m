@@ -9,8 +9,7 @@
 #import "SearchViewController.h"
 #import "DictionaryViewController.h"
 #import "RDictAppDelegate.h"
-#import "Wiktionary.h"
-#import "WordIndex.h"
+#import "Wiktionary.h";
 
 @implementation SearchViewController
 
@@ -25,7 +24,7 @@
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
-	[delegate release];
+//	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];
 	[super viewDidLoad];
