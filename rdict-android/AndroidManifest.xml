@@ -11,6 +11,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        
+        <activity android:name=".DictionaryActivity" android:label="Dictionary"></activity>
+		  <activity android:name=".ReviewActivity" android:label="Review"></activity>
+		  <activity android:name=".HistoryActivity" android:label="History"></activity>
+		  <activity android:name=".SettingsActivity" android:label="Settings"></activity>
+    
+</application>
 
 </manifest> 
