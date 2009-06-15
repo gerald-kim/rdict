@@ -19,16 +19,16 @@
 		EFBF4A220FE001AB0092357C /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B3A0FDFFFE800B093EB /* GTMSenTestCase.m */; };
 		EFBF4A230FE001AB0092357C /* WiktionaryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA08330FDFF61500490192 /* WiktionaryTest.m */; };
 		EFBF4A2B0FE001DA0092357C /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
-		EFBF4A2C0FE001DA0092357C /* WiktionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WiktionaryEntry.m */; };
-		EFBF4A2D0FE001DA0092357C /* WiktionaryIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WiktionaryIndex.m */; };
+		EFBF4A2C0FE001DA0092357C /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
+		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
 		EFBF4A3C0FE002500092357C /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
 		EFBF4A3D0FE002500092357C /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
 		EFEA07D00FDFF4EA00490192 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
 		EFEA07D10FDFF4EA00490192 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
 		EFEA07D20FDFF4EA00490192 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
 		EFEA07D30FDFF4EA00490192 /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
-		EFEA07D40FDFF4EA00490192 /* WiktionaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WiktionaryEntry.m */; };
-		EFEA07D50FDFF4EA00490192 /* WiktionaryIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WiktionaryIndex.m */; };
+		EFEA07D40FDFF4EA00490192 /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
+		EFEA07D50FDFF4EA00490192 /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
 		EFEA07EE0FDFF51700490192 /* myconf.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07DA0FDFF4F900490192 /* myconf.c */; };
 		EFEA07EF0FDFF51700490192 /* tchdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07DE0FDFF4F900490192 /* tchdb.c */; };
 		EFEA07F00FDFF51700490192 /* tcutil.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07E00FDFF4F900490192 /* tcutil.c */; };
@@ -43,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFBF4A160FE001900092357C /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
 		EFBF4A1E0FE001A10092357C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -86,10 +93,10 @@
 		EFEA07C90FDFF4EA00490192 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Classes/SearchViewController.m; sourceTree = "<group>"; };
 		EFEA07CA0FDFF4EA00490192 /* Wiktionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wiktionary.h; sourceTree = "<group>"; };
 		EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wiktionary.m; sourceTree = "<group>"; };
-		EFEA07CC0FDFF4EA00490192 /* WiktionaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiktionaryEntry.h; sourceTree = "<group>"; };
-		EFEA07CD0FDFF4EA00490192 /* WiktionaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiktionaryEntry.m; sourceTree = "<group>"; };
-		EFEA07CE0FDFF4EA00490192 /* WiktionaryIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WiktionaryIndex.h; sourceTree = "<group>"; };
-		EFEA07CF0FDFF4EA00490192 /* WiktionaryIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WiktionaryIndex.m; sourceTree = "<group>"; };
+		EFEA07CC0FDFF4EA00490192 /* WordEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordEntry.h; sourceTree = "<group>"; };
+		EFEA07CD0FDFF4EA00490192 /* WordEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordEntry.m; sourceTree = "<group>"; };
+		EFEA07CE0FDFF4EA00490192 /* WordIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordIndex.h; sourceTree = "<group>"; };
+		EFEA07CF0FDFF4EA00490192 /* WordIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordIndex.m; sourceTree = "<group>"; };
 		EFEA07D80FDFF4F900490192 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
 		EFEA07D90FDFF4F900490192 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		EFEA07DA0FDFF4F900490192 /* myconf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = myconf.c; sourceTree = "<group>"; };
@@ -139,16 +146,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				EFEA07CA0FDFF4EA00490192 /* Wiktionary.h */,
 				EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */,
-				EFEA07CC0FDFF4EA00490192 /* WiktionaryEntry.h */,
-				EFEA07CD0FDFF4EA00490192 /* WiktionaryEntry.m */,
-				EFEA07CE0FDFF4EA00490192 /* WiktionaryIndex.h */,
-				EFEA07CF0FDFF4EA00490192 /* WiktionaryIndex.m */,
+				EFEA07CC0FDFF4EA00490192 /* WordEntry.h */,
+				EFEA07CD0FDFF4EA00490192 /* WordEntry.m */,
+				EFEA07CE0FDFF4EA00490192 /* WordIndex.h */,
+				EFEA07CF0FDFF4EA00490192 /* WordIndex.m */,
 			);
+			name = Models;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -166,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				EFBF4A780FE003650092357C /* Controllers */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Models */,
 				EFEA08320FDFF5FA00490192 /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -298,6 +306,7 @@
 			);
 			dependencies = (
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
+				EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */,
 			);
 			name = RDict;
 			productName = RDict;
@@ -311,7 +320,7 @@
 				EFBF4A130FE001900092357C /* Resources */,
 				EFBF4A140FE001900092357C /* Sources */,
 				EFBF4A150FE001900092357C /* Frameworks */,
-				EFBF4A290FE001C50092357C /* ShellScript */,
+				EF6D9EAD0FE5620E0096BA53 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -385,7 +394,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EFBF4A290FE001C50092357C /* ShellScript */ = {
+		EF6D9EAD0FE5620E0096BA53 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -411,8 +420,8 @@
 				EFEA07D10FDFF4EA00490192 /* ReviewViewController.m in Sources */,
 				EFEA07D20FDFF4EA00490192 /* SearchViewController.m in Sources */,
 				EFEA07D30FDFF4EA00490192 /* Wiktionary.m in Sources */,
-				EFEA07D40FDFF4EA00490192 /* WiktionaryEntry.m in Sources */,
-				EFEA07D50FDFF4EA00490192 /* WiktionaryIndex.m in Sources */,
+				EFEA07D40FDFF4EA00490192 /* WordEntry.m in Sources */,
+				EFEA07D50FDFF4EA00490192 /* WordIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,8 +434,8 @@
 				EFBF4A220FE001AB0092357C /* GTMSenTestCase.m in Sources */,
 				EFBF4A230FE001AB0092357C /* WiktionaryTest.m in Sources */,
 				EFBF4A2B0FE001DA0092357C /* Wiktionary.m in Sources */,
-				EFBF4A2C0FE001DA0092357C /* WiktionaryEntry.m in Sources */,
-				EFBF4A2D0FE001DA0092357C /* WiktionaryIndex.m in Sources */,
+				EFBF4A2C0FE001DA0092357C /* WordEntry.m in Sources */,
+				EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +454,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFBF4A160FE001900092357C /* UnitTests */;
+			targetProxy = EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */;
+		};
 		EFBF4A1F0FE001A10092357C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;

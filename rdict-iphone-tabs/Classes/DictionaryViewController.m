@@ -3,7 +3,7 @@
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/6/09.
-//  Copyright 2009 NHN. All rights reserved.
+//  Copyright 2009 Amplio Studios. All rights reserved.
 //
 
 #import "DictionaryViewController.h"
@@ -11,11 +11,12 @@
 
 @implementation DictionaryViewController
 @synthesize titleButton;
+@synthesize lemma;
 
 - (void)viewWillAppear:(BOOL)animated {
 //	self.navigationController.navigationBarHidden = NO;
-	[titleButton setTitle:@"Title" forState:UIControlStateNormal];
-	[titleButton setTitle:@"Title" forState:UIControlStateSelected];
+	[titleButton setTitle:lemma forState:UIControlStateNormal];
+	[titleButton setTitle:lemma forState:UIControlStateSelected];
 }
 
 
@@ -39,6 +40,7 @@
 
 
 - (void)dealloc {
+	[lemma release];
     [super dealloc];
 }
 
