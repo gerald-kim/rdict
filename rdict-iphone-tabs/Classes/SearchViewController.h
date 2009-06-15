@@ -11,10 +11,11 @@
 @class DictionaryViewController;
 @class Wiktionary;
 
-@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
+@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate> {
 	DictionaryViewController *dictionaryViewController;
 	IBOutlet UISearchBar *searchBar;
 	IBOutlet UITableView *tableView;
+
 	Wiktionary* wiktionary;
 }
 

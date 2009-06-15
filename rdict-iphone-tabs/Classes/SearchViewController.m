@@ -30,49 +30,52 @@
 	[wiktionary fillIndexesByKey:@"a"];
 }
 
-- (void)dealloc {
-	[wiktionary release];
-	[dictionaryViewController release];
-    [super dealloc];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 	[searchBar becomeFirstResponder];
 }
 
-
+- (void)dealloc {
+	[wiktionary release];
+	[dictionaryViewController release];
+    [super dealloc];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
 }
 
-
+- (void)showDictionaryView:(NSString*) lemma {
+	if( self.dictionaryViewController == nil ) {
+		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
+	}
+	
+	dictionaryViewController.lemma = lemma;
+	
+	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 	
+	
+}
 
 #pragma mark -
 #pragma mark Search Bar Methods
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-	NSLog( @"Input text : %@", searchText ); 
-
-	NSUInteger row = [wiktionary fillIndexesByKey:searchText];
+	NSUInteger row = [wiktionary fillIndexesByKey:[searchText lowercaseString]];
+	
 	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
 	[tableView reloadData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
-	if( self.dictionaryViewController == nil ) {
-		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
-	}
-	
 	WordIndex* index = [[wiktionary findIndexByQuery:searchBar.text] autorelease];
-	dictionaryViewController.lemma = index.key;
-	
-	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 	
+	[self showDictionaryView: index.lemma];	
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) aSearchBar {
@@ -114,8 +117,25 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog( @"Index : %d", indexPath.row );
+	WordIndex *index = [wiktionary.wordIndexes objectAtIndex:indexPath.row];
+	if( ![searchBar isFirstResponder] ) {
+		searchBar.text = index.lemma;
+	}
+	[self showDictionaryView:index.lemma];
 }
+
+#pragma mark -
+#pragma mark ScrollViewDelegate  Methods
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[searchBar resignFirstResponder];
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+	
+}
+
+
 
 
 @end
