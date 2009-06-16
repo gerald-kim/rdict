@@ -12,11 +12,13 @@
 
 @interface DictionaryViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView* webView;
+	IBOutlet UIActivityIndicatorView *activityIndicatorView;
 	NSString* lemma;
 	Wiktionary* wiktionary;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView* webView;
+@property (nonatomic, retain) 	IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, retain) NSString* lemma;
 @property (nonatomic, retain) Wiktionary* wiktionary;
 

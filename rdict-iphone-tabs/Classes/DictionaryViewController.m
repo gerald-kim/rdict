@@ -25,6 +25,8 @@
 - (void)viewWillAppear:(BOOL)animated {
 	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
+	activityIndicatorView.hidden = NO;
+	[activityIndicatorView startAnimating];
 	
 	WordEntry* entry = [wiktionary wordEntryByLemma:lemma];
 	[entry decorateDefinition];
@@ -66,6 +68,8 @@
 #pragma mark UIWebViewDelegate Method
 
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
+	activityIndicatorView.hidden = YES;
+	[activityIndicatorView stopAnimating];
 	NSLog( @"did finish load" );
 //	[webView stringByEvaluatingJavaScriptFromString:@"documentReady(); alert( 123 );"];
 }
