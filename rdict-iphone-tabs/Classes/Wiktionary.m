@@ -62,11 +62,11 @@
 	
 	if( !value ){
 //		[self logtcbdberror:wordDb];
-		return NULL;
+		return nil;
 	}
 	
 	WordEntry *entry = [[WordEntry alloc] initWithLemma:aLemma andDefinitionHtml:[NSString stringWithUTF8String:value]];
-	
+	free( value );
 	return entry;
 }
 

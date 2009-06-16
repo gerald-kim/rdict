@@ -22,4 +22,6 @@
 @property (nonatomic, retain) NSString* lemma;
 @property (nonatomic, retain) Wiktionary* wiktionary;
 
+- (void) showWordDefinition: (NSString *) query;
+
 @end

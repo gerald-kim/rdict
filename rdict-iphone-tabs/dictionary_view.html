@@ -1,4 +1,5 @@
-<!--
+<html>
+<head>
 <script type="text/javascript" src="jquery-1.3.2.js"></script>
 <script type="text/javascript">
 
@@ -8,7 +9,7 @@ $(document).ready( function() {
     
     $("a.rdict").attr( 'href', 
     	function () { 
-          return '/lookup?q=' + encodeURIComponent( $(this).attr('href') ); 
+          return 'rdict://lookup?lemma=' + encodeURIComponent( $(this).attr('href') ); 
     	}
     ); 
     $(".remember").click( function() {
@@ -23,7 +24,8 @@ function remember_word(obj) {
     definition_li.children('dl').empty();
     definition = definition_li.text();
 
-	window.location = '/save?def=' + decodeURIComponent(definition);
+	window.location = 'rdict://save?definition=' + decodeURIComponent(definition);
 }
 </script>
--->
+</head>
+<body>
