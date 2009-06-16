@@ -10,7 +10,7 @@
 
 @class Wiktionary;
 
-@interface DictionaryViewController : UIViewController {
+@interface DictionaryViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView* webView;
 	NSString* lemma;
 	Wiktionary* wiktionary;

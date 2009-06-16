@@ -57,9 +57,7 @@
 	}
 	
 	dictionaryViewController.lemma = lemma;
-	
-	[self.navigationController pushViewController:dictionaryViewController animated:YES];	 	
-	
+	[self.navigationController pushViewController:dictionaryViewController animated:YES];
 }
 
 #pragma mark -

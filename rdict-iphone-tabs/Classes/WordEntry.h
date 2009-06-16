@@ -19,6 +19,6 @@
 @property (nonatomic, retain) NSMutableString *definitionHtml;
 
 - (id) initWithLemma:(NSString *) lemmaArg andDefinitionHtml:(NSString *) definitionHtmlArg;
-
+- (void) decorateDefinition;
 
 @end
