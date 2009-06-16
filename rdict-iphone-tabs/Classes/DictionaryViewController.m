@@ -25,7 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
-
+	
 	WordEntry* entry = [wiktionary wordEntryByLemma:lemma];
 	[entry decorateDefinition];
 	
@@ -33,7 +33,7 @@
 	NSURL *baseURL = [NSURL fileURLWithPath:path];	
 	
 	[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
-	//	[webView stringByEvaluatingJavaScriptFromString:@"$(document).ready( function() { alert( '123' ); } )"];
+	
 	[entry release];
 	//	[baseURL release];
 	//	[path release];
@@ -65,9 +65,14 @@
 #pragma mark -
 #pragma mark UIWebViewDelegate Method
 
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
+	NSLog( @"did finish load" );
+//	[webView stringByEvaluatingJavaScriptFromString:@"documentReady(); alert( 123 );"];
+}
+
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *url = [request URL];
-	NSLog( @"request called %@", [url relativePath] );	
+	NSLog( @"request called %@, %@", [url scheme], [url query] );	
 	if ([@"/save" isEqualToString: [url relativePath]]) {		
 		
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
