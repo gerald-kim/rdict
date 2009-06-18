@@ -8,18 +8,15 @@ import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 import com.strangegizmo.cdb.ModdedCdb;
 
 public class Dictionary {
-
-	private InputStream _htmlStream = null;
-	private Vector _searchFiles = null;
+	private Vector<InputStream> _searchFiles = null;
+	private DictionaryEntryFactory _factory = null;
 	
-	public Dictionary(InputStream htmlStream, Vector searchFiles) {
-		_htmlStream = htmlStream;
+	public Dictionary(InputStream htmlStream, Vector<InputStream> searchFiles) {
 		_searchFiles = searchFiles;
+		_factory = new DictionaryEntryFactory(htmlStream);
 	}
 	
 	public DictionaryEntry searchByWord(String word) {
-		DictionaryEntry entry = null;
-		
 		String def = null;
 		
 		ModdedCdb db = null;
@@ -42,7 +39,7 @@ public class Dictionary {
   				
   		db.close();
 		
-		return DictionaryEntryFactory.makeHTMLifiedEntry(_htmlStream, word, def);
+		return _factory.makeHTMLifiedEntry(word, def);
 	}
 
 }

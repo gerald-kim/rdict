@@ -15,7 +15,7 @@ import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 public class DictionaryTest extends TestCase {
 	
 	private InputStream _htmlStream = null;
-	private Vector _assetInputstreams = null;
+	private Vector<InputStream> _assetInputstreams = null;
 	
 	public void setUp() {
 		// set up search results page stream
@@ -27,7 +27,7 @@ public class DictionaryTest extends TestCase {
 		}
 		
 		// set up dictionary db streams
-		_assetInputstreams = new Vector();
+		_assetInputstreams = new Vector<InputStream>();
 		File dir = new File("assets");
 	    String[] assetPaths = dir.list();
 	    

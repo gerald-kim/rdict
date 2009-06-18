@@ -19,8 +19,6 @@ public class DictionaryActivity extends Activity {
 	private Button searchButton;
     private static WebView searchResultsPage;
 
-    private Vector _assetInputstreams = new Vector();
-    
     private Dictionary _dictionary = null;
     
     /** Called when the activity is first created. */
@@ -38,31 +36,9 @@ public class DictionaryActivity extends Activity {
 		DictionaryActivity.searchResultsPage.getSettings().setJavaScriptEnabled(true);
 		DictionaryActivity.searchResultsPage.loadData("Search", "text/html", "utf-8");
 		
-		String [] assetPaths = null;
-      	try {
-  			 assetPaths = this.getAssets().list("");
-  		} catch (IOException e1) {
-  			e1.printStackTrace();
-  		}
-      	
-  		for(int i = 0; i < assetPaths.length;i++) {
-  			if(-1 != assetPaths[i].indexOf("word")){
-	      		try {
-	      			_assetInputstreams.add(this.getAssets().open(assetPaths[i]));
-	  			} catch (IOException e) {
-	  				e.printStackTrace();
-	  			}
-  			}
-      	}
-  		
-  		InputStream htmlStream = null;
-		try {
-			htmlStream = this.getAssets().open("dictionary_js.html");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-  		
-  		_dictionary = new Dictionary(htmlStream, _assetInputstreams);
+		InputStream htmlStream = this.loadAssetAsStream("dictionary_js.html");
+		
+		_dictionary = loadDictionary(htmlStream);
     }
     
     private OnClickListener mCorkyListener = new OnClickListener() {
@@ -70,7 +46,6 @@ public class DictionaryActivity extends Activity {
            	DictionaryEntry dicEntry = _dictionary.searchByWord(searchText.getText().toString());
 	  		
 	      	if(dicEntry != null){
-	      		System.out.println(dicEntry.entry);
 	      		DictionaryActivity.searchResultsPage.loadDataWithBaseURL("fake://dagnabbit",dicEntry.entry, "text/html", "utf-8", null);
 	      	}
 	      	else{
@@ -79,4 +54,38 @@ public class DictionaryActivity extends Activity {
         }
     };
 
+	private Dictionary loadDictionary(InputStream htmlStream) {
+		String[] assetPaths = this.getAssetPaths();
+      	
+		Vector<InputStream> _assetInputstreams = new Vector<InputStream>();
+		
+  		for(int i = 0; i < assetPaths.length;i++) {
+  			if(-1 != assetPaths[i].indexOf("word"))
+  				_assetInputstreams.add(this.loadAssetAsStream(assetPaths[i]));
+      	}
+  		
+  		return new Dictionary(htmlStream, _assetInputstreams);
+	}
+	
+	private String[] getAssetPaths(){
+		String [] assetPaths = null;
+      	try {
+  			 assetPaths = this.getAssets().list("");
+  		} catch (IOException e1) {
+  			e1.printStackTrace();
+  		}
+  		
+  		return assetPaths;
+	}
+    
+    private InputStream loadAssetAsStream(String path){
+    	InputStream stream = null;
+		try {
+			stream = this.getAssets().open(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return stream;
+    }
 }

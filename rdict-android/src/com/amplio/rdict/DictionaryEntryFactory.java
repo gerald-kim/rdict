@@ -5,29 +5,25 @@ import java.io.InputStream;
 
 public class DictionaryEntryFactory {
 	
-	public static class DictionaryEntry {
-		public String word = null;
-		public String  entry = null;
-		
-		public DictionaryEntry(String key, String value){
-			word = key;
-			entry = value;
-		}
-	}
-	
 	private String _htmlFileContents = null;
 	
-	public DictionaryEntryFactory(String htmlFileContents){
-		_htmlFileContents = htmlFileContents;
+	public DictionaryEntryFactory(InputStream htmlStream){
+		_htmlFileContents = loadHTMLFileContents(htmlStream);
 	}
-		
-	public static DictionaryEntry makeEntry(String word, String def) {
+	
+	public DictionaryEntry makeEntry(String word, String def) {
 		return new DictionaryEntry(word, def);
 	}
 
-	public static DictionaryEntry makeHTMLifiedEntry(InputStream htmlStream, String word, String def){
+	public DictionaryEntry makeHTMLifiedEntry(String word, String def){
 		StringBuffer sb = new StringBuffer();
+		sb.append(_htmlFileContents);
+		sb.append(def);
 		
+		return new DictionaryEntry(word, sb.toString());
+	}
+	
+	private String loadHTMLFileContents(InputStream htmlStream) {
 		byte[] buffer = null;
 		try {
 			int size = htmlStream.available();
@@ -39,17 +35,17 @@ public class DictionaryEntryFactory {
 		catch (IOException e) {
 			throw new RuntimeException(e);
         }
-
-		sb.append(new String(buffer));
-		sb.append(def);
 		
-		return new DictionaryEntry(word, sb.toString());
+		return new String(buffer);
 	}
 
-
-
-
-
-	
-
+	public static class DictionaryEntry {
+		public String word = null;
+		public String  entry = null;
+		
+		public DictionaryEntry(String key, String value){
+			word = key;
+			entry = value;
+		}
+	}
 }
