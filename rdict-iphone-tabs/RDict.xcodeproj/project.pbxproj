@@ -12,9 +12,55 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		EF1A13CA0FE7ACCC004609D0 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF1A13C90FE7ACCC004609D0 /* jquery-1.3.2.min.js */; };
-		EF1A13CC0FE7ACDF004609D0 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF1A13CB0FE7ACDF004609D0 /* dictionary_view.html */; };
+		EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
+		EF2E74AF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
+		EF2E74B00FE9B2B9008B8AEC /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
+		EF2E74B10FE9B2B9008B8AEC /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
+		EF2E74B20FE9B2B9008B8AEC /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
+		EF2E74B30FE9B2B9008B8AEC /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
+		EF2E74B40FE9B2B9008B8AEC /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
+		EF2E74B50FE9B2B9008B8AEC /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
+		EF2E74B60FE9B2B9008B8AEC /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
+		EF2E74B70FE9B2B9008B8AEC /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
+		EF2E74B80FE9B2B9008B8AEC /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
+		EF2E74B90FE9B2B9008B8AEC /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
+		EF2E74BA0FE9B2B9008B8AEC /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
+		EF2E74BB0FE9B2B9008B8AEC /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
+		EF2E74BC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
+		EF2E74BD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
+		EF2E74BE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
+		EF2E74BF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
+		EF2E74C00FE9B2B9008B8AEC /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
+		EF2E74C10FE9B2B9008B8AEC /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
+		EF2E74C20FE9B2B9008B8AEC /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
+		EF2E74C30FE9B2B9008B8AEC /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
+		EF2E74C40FE9B2B9008B8AEC /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
+		EF2E74C50FE9B2B9008B8AEC /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
+		EF2E74C60FE9B2B9008B8AEC /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
+		EF2E74C70FE9B2B9008B8AEC /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
+		EF2E74C80FE9B2B9008B8AEC /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
+		EF2E74C90FE9B2B9008B8AEC /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
+		EF2E74CA0FE9B2B9008B8AEC /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
+		EF2E74CB0FE9B2B9008B8AEC /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
+		EF2E74CC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
+		EF2E74CD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
+		EF2E74CE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
+		EF2E74D00FE9B2E1008B8AEC /* SPOTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */; };
+		EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
+		EF2E74D40FE9B2F9008B8AEC /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
+		EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
+		EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
+		EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
+		EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
+		EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
+		EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
+		EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */; };
+		EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
+		EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
+		EF2E75580FE9BBB0008B8AEC /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */; };
+		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
+		EF2E755A0FE9BBBB008B8AEC /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
+		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
 		EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EFBF4A200FE001AB0092357C /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */; };
 		EFBF4A210FE001AB0092357C /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */; };
@@ -37,11 +83,8 @@
 		EFEA07F10FDFF51700490192 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07DC0FDFF4F900490192 /* tcbdb.c */; };
 		EFEA07F20FDFF51700490192 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07D80FDFF4F900490192 /* md5.c */; };
 		EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
-		EFEA07FD0FDFF53D00490192 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F70FDFF53D00490192 /* DictionaryView.xib */; };
 		EFEA07FE0FDFF53D00490192 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
 		EFEA07FF0FDFF53D00490192 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
-		EFEA08000FDFF53D00490192 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FB0FDFF53D00490192 /* ReviewView.xib */; };
-		EFEA08010FDFF53D00490192 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FC0FDFF53D00490192 /* SearchView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +118,54 @@
 		1D6058910D05DD3D006BFB54 /* RDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* RDict-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RDict-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		EF1A13C90FE7ACCC004609D0 /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.3.2.min.js"; sourceTree = SOURCE_ROOT; };
-		EF1A13CB0FE7ACDF004609D0 /* dictionary_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dictionary_view.html; sourceTree = "<group>"; };
+		EF2E73170FE86454008B8AEC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EF2E748F0FE9B2B8008B8AEC /* NSData-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74910FE9B2B8008B8AEC /* NSDate-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74930FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray-MultipleSort.h"; sourceTree = "<group>"; };
+		EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray-MultipleSort.m"; sourceTree = "<group>"; };
+		EF2E74950FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74970FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74990FE9B2B8008B8AEC /* NSObject-ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-ClassName.h"; sourceTree = "<group>"; };
+		EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-ClassName.m"; sourceTree = "<group>"; };
+		EF2E749B0FE9B2B8008B8AEC /* NSObject-MissingKV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-MissingKV.h"; sourceTree = "<group>"; };
+		EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-MissingKV.m"; sourceTree = "<group>"; };
+		EF2E749D0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E749F0FE9B2B8008B8AEC /* NSString-NumberStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-NumberStuff.h"; sourceTree = "<group>"; };
+		EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-NumberStuff.m"; sourceTree = "<group>"; };
+		EF2E74A10FE9B2B8008B8AEC /* NSString-SQLiteColumnName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-SQLiteColumnName.h"; sourceTree = "<group>"; };
+		EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-SQLiteColumnName.m"; sourceTree = "<group>"; };
+		EF2E74A30FE9B2B8008B8AEC /* NSString-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74A50FE9B2B8008B8AEC /* NSString-UppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-UppercaseFirst.h"; sourceTree = "<group>"; };
+		EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-UppercaseFirst.m"; sourceTree = "<group>"; };
+		EF2E74A70FE9B2B9008B8AEC /* SQLiteInstanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteInstanceManager.h; sourceTree = "<group>"; };
+		EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteInstanceManager.m; sourceTree = "<group>"; };
+		EF2E74A90FE9B2B9008B8AEC /* SQLitePersistentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLitePersistentObject.h; sourceTree = "<group>"; };
+		EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLitePersistentObject.m; sourceTree = "<group>"; };
+		EF2E74AB0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-SQLitePersistentObject.h"; sourceTree = "<group>"; };
+		EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-SQLitePersistentObject.m"; sourceTree = "<group>"; };
+		EF2E74AD0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
+		EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
+		EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPOTest.m; path = Tests/SPOTest.m; sourceTree = "<group>"; };
+		EF2E74D10FE9B2F9008B8AEC /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		EF2E74D20FE9B2F9008B8AEC /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardFrontView.xib; path = Resources/CardFrontView.xib; sourceTree = "<group>"; };
+		EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = dictionary_view.html; path = Resources/dictionary_view.html; sourceTree = "<group>"; };
+		EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DictionaryView.xib; path = Resources/DictionaryView.xib; sourceTree = "<group>"; };
+		EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.min.js"; path = "Resources/jquery-1.3.2.min.js"; sourceTree = "<group>"; };
+		EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
+		EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RDict-Info.plist"; path = "Resources/RDict-Info.plist"; sourceTree = "<group>"; };
+		EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = Resources/ReviewView.xib; sourceTree = "<group>"; };
+		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
+		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "Resources/UnitTests-Info.plist"; sourceTree = "<group>"; };
+		EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardBackView.xib; path = Resources/CardBackView.xib; sourceTree = "<group>"; };
 		EF8D0B360FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestMain.m"; sourceTree = DEVELOPER_DIR; };
@@ -88,7 +173,6 @@
 		EF8D0B3A0FDFFFE800B093EB /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFBF4A190FE001900092357C /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryViewController.h; path = Classes/DictionaryViewController.h; sourceTree = "<group>"; };
 		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryViewController.m; path = Classes/DictionaryViewController.m; sourceTree = "<group>"; };
 		EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewViewController.h; path = Classes/ReviewViewController.h; sourceTree = "<group>"; };
@@ -112,11 +196,8 @@
 		EFEA07E00FDFF4F900490192 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcutil.c; sourceTree = "<group>"; };
 		EFEA07E10FDFF4F900490192 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
 		EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFEA07F70FDFF53D00490192 /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DictionaryView.xib; sourceTree = "<group>"; };
 		EFEA07F90FDFF53D00490192 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
 		EFEA07FA0FDFF53D00490192 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
-		EFEA07FB0FDFF53D00490192 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
-		EFEA07FC0FDFF53D00490192 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +210,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
+				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */,
+				EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +236,8 @@
 		080E96DDFE201D6D7F000001 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF2E74D10FE9B2F9008B8AEC /* Card.h */,
+				EF2E74D20FE9B2F9008B8AEC /* Card.m */,
 				EFEA07CA0FDFF4EA00490192 /* Wiktionary.h */,
 				EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */,
 				EFEA07CC0FDFF4EA00490192 /* WordEntry.h */,
@@ -184,7 +269,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				EFBF4A190FE001900092357C /* UnitTests-Info.plist */,
+				EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -192,6 +277,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EF2E748E0FE9B2B8008B8AEC /* sqlitepersistentobjects */,
 				EF8D0B350FDFFFE800B093EB /* GTM */,
 				EFEA07D70FDFF4F900490192 /* tokyocabinet */,
 				32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */,
@@ -203,14 +289,16 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
+				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
+				EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */,
+				EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */,
+				EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */,
+				EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */,
+				EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */,
+				EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */,
+				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
-				EFEA07F70FDFF53D00490192 /* DictionaryView.xib */,
-				EFEA07FB0FDFF53D00490192 /* ReviewView.xib */,
-				EFEA07FC0FDFF53D00490192 /* SearchView.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* RDict-Info.plist */,
-				EF1A13CB0FE7ACDF004609D0 /* dictionary_view.html */,
-				EF1A13C90FE7ACCC004609D0 /* jquery-1.3.2.min.js */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -218,11 +306,51 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF2E73170FE86454008B8AEC /* libsqlite3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF2E748E0FE9B2B8008B8AEC /* sqlitepersistentobjects */ = {
+			isa = PBXGroup;
+			children = (
+				EF2E748F0FE9B2B8008B8AEC /* NSData-SQLitePersistence.h */,
+				EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */,
+				EF2E74910FE9B2B8008B8AEC /* NSDate-SQLitePersistence.h */,
+				EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */,
+				EF2E74930FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.h */,
+				EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */,
+				EF2E74950FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.h */,
+				EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */,
+				EF2E74970FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.h */,
+				EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */,
+				EF2E74990FE9B2B8008B8AEC /* NSObject-ClassName.h */,
+				EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */,
+				EF2E749B0FE9B2B8008B8AEC /* NSObject-MissingKV.h */,
+				EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */,
+				EF2E749D0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.h */,
+				EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */,
+				EF2E749F0FE9B2B8008B8AEC /* NSString-NumberStuff.h */,
+				EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */,
+				EF2E74A10FE9B2B8008B8AEC /* NSString-SQLiteColumnName.h */,
+				EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */,
+				EF2E74A30FE9B2B8008B8AEC /* NSString-SQLitePersistence.h */,
+				EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */,
+				EF2E74A50FE9B2B8008B8AEC /* NSString-UppercaseFirst.h */,
+				EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */,
+				EF2E74A70FE9B2B9008B8AEC /* SQLiteInstanceManager.h */,
+				EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */,
+				EF2E74A90FE9B2B9008B8AEC /* SQLitePersistentObject.h */,
+				EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */,
+				EF2E74AB0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.h */,
+				EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */,
+				EF2E74AD0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.h */,
+				EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */,
+			);
+			path = sqlitepersistentobjects;
 			sourceTree = "<group>";
 		};
 		EF8D0B350FDFFFE800B093EB /* GTM */ = {
@@ -282,6 +410,7 @@
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 			);
 			name = Tests;
@@ -379,14 +508,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1A13CA0FE7ACCC004609D0 /* jquery-1.3.2.min.js in Resources */,
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				EFEA07FD0FDFF53D00490192 /* DictionaryView.xib in Resources */,
 				EFEA07FE0FDFF53D00490192 /* index.db in Resources */,
 				EFEA07FF0FDFF53D00490192 /* word.db in Resources */,
-				EFEA08000FDFF53D00490192 /* ReviewView.xib in Resources */,
-				EFEA08010FDFF53D00490192 /* SearchView.xib in Resources */,
-				EF1A13CC0FE7ACDF004609D0 /* dictionary_view.html in Resources */,
+				EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */,
+				EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */,
+				EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */,
+				EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */,
+				EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */,
+				EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */,
+				EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */,
+				EF2E75580FE9BBB0008B8AEC /* UnitTests-Info.plist in Resources */,
+				EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +528,8 @@
 			files = (
 				EFBF4A3C0FE002500092357C /* index.db in Resources */,
 				EFBF4A3D0FE002500092357C /* word.db in Resources */,
+				EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */,
+				EF2E755A0FE9BBBB008B8AEC /* jquery-1.3.2.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +564,24 @@
 				EFEA07D30FDFF4EA00490192 /* Wiktionary.m in Sources */,
 				EFEA07D40FDFF4EA00490192 /* WordEntry.m in Sources */,
 				EFEA07D50FDFF4EA00490192 /* WordIndex.m in Sources */,
+				EF2E74BF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */,
+				EF2E74C00FE9B2B9008B8AEC /* NSDate-SQLitePersistence.m in Sources */,
+				EF2E74C10FE9B2B9008B8AEC /* NSMutableArray-MultipleSort.m in Sources */,
+				EF2E74C20FE9B2B9008B8AEC /* NSMutableData-SQLitePersistence.m in Sources */,
+				EF2E74C30FE9B2B9008B8AEC /* NSNumber-SQLitePersistence.m in Sources */,
+				EF2E74C40FE9B2B9008B8AEC /* NSObject-ClassName.m in Sources */,
+				EF2E74C50FE9B2B9008B8AEC /* NSObject-MissingKV.m in Sources */,
+				EF2E74C60FE9B2B9008B8AEC /* NSObject-SQLitePersistence.m in Sources */,
+				EF2E74C70FE9B2B9008B8AEC /* NSString-NumberStuff.m in Sources */,
+				EF2E74C80FE9B2B9008B8AEC /* NSString-SQLiteColumnName.m in Sources */,
+				EF2E74C90FE9B2B9008B8AEC /* NSString-SQLitePersistence.m in Sources */,
+				EF2E74CA0FE9B2B9008B8AEC /* NSString-UppercaseFirst.m in Sources */,
+				EF2E74CB0FE9B2B9008B8AEC /* SQLiteInstanceManager.m in Sources */,
+				EF2E74CC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */,
+				EF2E74CD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */,
+				EF2E74CE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
+				EF2E74D40FE9B2F9008B8AEC /* Card.m in Sources */,
+				EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +596,24 @@
 				EFBF4A2B0FE001DA0092357C /* Wiktionary.m in Sources */,
 				EFBF4A2C0FE001DA0092357C /* WordEntry.m in Sources */,
 				EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */,
+				EF2E74AF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */,
+				EF2E74B00FE9B2B9008B8AEC /* NSDate-SQLitePersistence.m in Sources */,
+				EF2E74B10FE9B2B9008B8AEC /* NSMutableArray-MultipleSort.m in Sources */,
+				EF2E74B20FE9B2B9008B8AEC /* NSMutableData-SQLitePersistence.m in Sources */,
+				EF2E74B30FE9B2B9008B8AEC /* NSNumber-SQLitePersistence.m in Sources */,
+				EF2E74B40FE9B2B9008B8AEC /* NSObject-ClassName.m in Sources */,
+				EF2E74B50FE9B2B9008B8AEC /* NSObject-MissingKV.m in Sources */,
+				EF2E74B60FE9B2B9008B8AEC /* NSObject-SQLitePersistence.m in Sources */,
+				EF2E74B70FE9B2B9008B8AEC /* NSString-NumberStuff.m in Sources */,
+				EF2E74B80FE9B2B9008B8AEC /* NSString-SQLiteColumnName.m in Sources */,
+				EF2E74B90FE9B2B9008B8AEC /* NSString-SQLitePersistence.m in Sources */,
+				EF2E74BA0FE9B2B9008B8AEC /* NSString-UppercaseFirst.m in Sources */,
+				EF2E74BB0FE9B2B9008B8AEC /* SQLiteInstanceManager.m in Sources */,
+				EF2E74BC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */,
+				EF2E74BD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */,
+				EF2E74BE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
+				EF2E74D00FE9B2E1008B8AEC /* SPOTest.m in Sources */,
+				EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +724,10 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -578,6 +752,10 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,

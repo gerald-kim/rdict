@@ -20,6 +20,7 @@
 
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
 	self.title = @"Search";
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
@@ -27,14 +28,15 @@
 //	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];
-	[super viewDidLoad];
 }
 
 
 - (void)viewWillAppear:(BOOL) animated {
+	[super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 	[searchBar becomeFirstResponder];

@@ -35,6 +35,13 @@
 	STAssertTrue( [c existsInDB], nil );
 	double d = [Card performSQLAggregation:@"select count(*) from card"];
 	NSLog( @"count : %f", d );
+	
+	Card* cardByPK = [Card findByPK:c.pk];
+	STAssertEqualStrings( c.question, cardByPK.question, nil );
+	
+	//Card* cardByQuestion = [Card findByQuestion:c.question];
+	//STAssertEqualStrings( c.question, cardByQuestion.question, nil );
+
 }
 
 @end

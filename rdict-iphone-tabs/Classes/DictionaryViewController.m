@@ -17,11 +17,13 @@
 @synthesize activityIndicatorView;
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
 	activityIndicatorView.hidden = NO;
@@ -31,9 +33,11 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 }	
 
 - (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
 	self.navigationController.navigationBarHidden = YES;
 }
 
