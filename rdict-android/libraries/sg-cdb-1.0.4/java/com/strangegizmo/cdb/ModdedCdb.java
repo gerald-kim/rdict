@@ -94,6 +94,41 @@ public class ModdedCdb {
 	 * @exception java.io.IOException if the CDB file could not be
 	 *  opened.
 	 */
+	public ModdedCdb(RandomAccessInput rai) throws IOException {
+		/* Open the CDB file. */
+		file_ = rai;
+
+		/* Read and parse the slot table.  We do not throw an exception
+		 * if this fails; the file might empty, which is not an error. */
+		try {
+			/* Read the table. */
+			byte[] table = new byte[2048];
+			file_.readFully(table);
+
+			/* Create and parse the table. */
+			slotTable_ = new int[256 * 2];
+
+			int offset = 0;
+			for (int i = 0; i < 256; i++) {
+				int pos = table[offset++] & 0xff
+					| ((table[offset++] & 0xff) <<  8)
+					| ((table[offset++] & 0xff) << 16)
+					| ((table[offset++] & 0xff) << 24);
+
+				int len = table[offset++] & 0xff
+					| ((table[offset++] & 0xff) <<  8)
+					| ((table[offset++] & 0xff) << 16)
+					| ((table[offset++] & 0xff) << 24);
+
+				slotTable_[i << 1] = pos;
+				slotTable_[(i << 1) + 1] = len;
+			}
+		} catch (IOException e) {
+			slotTable_ = null;
+			e.printStackTrace();
+		}
+	}
+	
 	public ModdedCdb(InputStream inputstream) throws IOException {
 		/* Open the CDB file. */
 		file_ = new UIOStreamBuilder(inputstream).create();
@@ -123,8 +158,9 @@ public class ModdedCdb {
 				slotTable_[i << 1] = pos;
 				slotTable_[(i << 1) + 1] = len;
 			}
-		} catch (IOException ignored) {
+		} catch (IOException e) {
 			slotTable_ = null;
+			e.printStackTrace();
 		}
 	}
 

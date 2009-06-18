@@ -20,10 +20,13 @@ public class CDBTest extends TestCase {
 		
 		String value = new String(db.find(key.getBytes()));
 		
+		assertEquals("flam", value);
+		
+		value = new String(db.find(key.getBytes()));
+		
 		db.close();
 		
 		assertEquals("flam", value);
-		
 	}
 	
 } 

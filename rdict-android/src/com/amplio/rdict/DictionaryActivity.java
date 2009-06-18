@@ -2,22 +2,22 @@ package com.amplio.rdict;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Vector;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 
-public class DictionaryActivity extends Activity {
+public class DictionaryActivity extends Activity implements AssetInputStreamProvider{
 	private EditText searchText;
 	private Button searchButton;
-    private static WebView searchResultsPage;
+    private WebView _searchResultsPage;
 
     private Dictionary _dictionary = null;
     
@@ -28,45 +28,30 @@ public class DictionaryActivity extends Activity {
 		setContentView(R.layout.dictionary);
 		
 		this.searchText = (EditText)findViewById(R.id.widget43);
-		
 		this.searchButton = (Button)findViewById(R.id.widget44);
-		this.searchButton.setOnClickListener(mCorkyListener);
-
-		DictionaryActivity.searchResultsPage = (WebView) findViewById(R.id.webview);
-		DictionaryActivity.searchResultsPage.getSettings().setJavaScriptEnabled(true);
-		DictionaryActivity.searchResultsPage.loadData("Search", "text/html", "utf-8");
+		this.searchButton.setOnClickListener(_searchButtonListener);
 		
-		InputStream htmlStream = this.loadAssetAsStream("dictionary_js.html");
+		_searchResultsPage = (WebView) findViewById(R.id.webview);
+		_searchResultsPage.getSettings().setJavaScriptEnabled(true);
+		_searchResultsPage.setWebViewClient(new DictionaryWebViewClient());
+		_searchResultsPage.loadData("Search", "text/html", "utf-8");
 		
-		_dictionary = loadDictionary(htmlStream);
+		_dictionary = new Dictionary(getAssetInputStream("dictionary_js.html"), this.getAssetPaths(), this);
     }
-    
-    private OnClickListener mCorkyListener = new OnClickListener() {
+
+    private OnClickListener _searchButtonListener = new OnClickListener() {
         public void onClick(View v) {
-           	DictionaryEntry dicEntry = _dictionary.searchByWord(searchText.getText().toString());
-	  		
-	      	if(dicEntry != null){
-	      		DictionaryActivity.searchResultsPage.loadDataWithBaseURL("fake://dagnabbit",dicEntry.entry, "text/html", "utf-8", null);
-	      	}
-	      	else{
-	      		DictionaryActivity.searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
-	      	}
+        	DictionaryEntry dicEntry = _dictionary.searchByWord(searchText.getText().toString());
+        	
+			if(dicEntry != null){
+				_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+			}
+			else {
+				  _searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+			}
         }
     };
-
-	private Dictionary loadDictionary(InputStream htmlStream) {
-		String[] assetPaths = this.getAssetPaths();
-      	
-		Vector<InputStream> _assetInputstreams = new Vector<InputStream>();
-		
-  		for(int i = 0; i < assetPaths.length;i++) {
-  			if(-1 != assetPaths[i].indexOf("word"))
-  				_assetInputstreams.add(this.loadAssetAsStream(assetPaths[i]));
-      	}
-  		
-  		return new Dictionary(htmlStream, _assetInputstreams);
-	}
-	
+    
 	private String[] getAssetPaths(){
 		String [] assetPaths = null;
       	try {
@@ -78,8 +63,8 @@ public class DictionaryActivity extends Activity {
   		return assetPaths;
 	}
     
-    private InputStream loadAssetAsStream(String path){
-    	InputStream stream = null;
+	public InputStream getAssetInputStream(String path) {
+		InputStream stream = null;
 		try {
 			stream = this.getAssets().open(path);
 		} catch (IOException e) {
@@ -87,5 +72,32 @@ public class DictionaryActivity extends Activity {
 		}
 		
 		return stream;
+	}
+	
+    private class DictionaryWebViewClient extends WebViewClient{
+    	@Override 
+    	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+    		if (url.contains("lookup")) {
+    			String word = url.substring(url.indexOf('=') + 1);
+    			System.out.println(word);
+    			DictionaryEntry dicEntry = _dictionary.searchByWord(word);
+	
+    			if(dicEntry != null){
+    				_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+    			}
+    			else {
+					  _searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+    			}
+    			return true;
+    		}
+    		else if (url.contains("save")) {
+    			System.out.println("Card Saved!");
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+
+    	}
     }
 }
