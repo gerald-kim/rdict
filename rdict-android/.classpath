@@ -5,5 +5,6 @@
 	<classpathentry kind="src" path="libraries/sg-cdb-1.0.4/java"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="libraries/uio-4.6/uio.jar"/>
+	<classpathentry kind="lib" path="/Users/sbodnar/programming/tools/db4o-7.4/lib/db4o-7.4.88.12908-java1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
