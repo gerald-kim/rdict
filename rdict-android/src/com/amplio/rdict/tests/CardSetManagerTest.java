@@ -1,5 +1,9 @@
 package com.amplio.rdict.tests;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import junit.framework.TestCase;
 
 import com.amplio.rdict.Card;
@@ -25,8 +29,7 @@ public class CardSetManagerTest extends TestCase {
 			db.delete(set.get(i));
 		
 		db.close();
-	}
-	
+	}	
 	
 	public void testSaveCardsWithDb4o(){
 		Card c1 = new Card("Q", "A");
@@ -61,9 +64,9 @@ public class CardSetManagerTest extends TestCase {
 		
 		Card cardForToday = new Card("today" , "the answer");
 		Card cardFor19700101 = new Card("1970 baby yeah!", "the answer");
-		cardFor19700101.scheduled = "19700101";
+		cardFor19700101.date_scheduled = "19700101";
 		Card cardFor19700102 = new Card("1970 second day", "the answer");
-		cardFor19700102.scheduled = "19700102";
+		cardFor19700102.date_scheduled = "19700102";
 		
 		mgr.save(cardForToday);
 		mgr.save(cardFor19700101);
@@ -96,5 +99,72 @@ public class CardSetManagerTest extends TestCase {
 		ObjectSet cardsScheduled = mgr.loadCardsByScheduledDate("19700101");
 		
 		assertEquals(0, cardsScheduled.size());
+	}
+	
+	public void testLoadCardsScheduledForToday() {
+		Card cardLookedupToday = new Card("lookeduptoday","an answer");
+        cardLookedupToday.schedule();
+        
+        Card cardScheduledForToday = new Card("today", "the answer");
+        cardScheduledForToday.date_scheduled = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		
+		CardSetManager mgr = new CardSetManager(db);
+		mgr.save(cardLookedupToday);
+		mgr.save(cardScheduledForToday);
+		
+		ObjectSet cards = mgr.loadCardsScheduledForToday();
+		
+		assertEquals(1, cards.size());
+
+		Card card = (Card) cards.get(0);
+		assertEquals("today", card.question);
+	}
+	
+	public void testLoadCardsLookedupToday() {
+		Card cardLookedupToday = new Card("lookeduptoday","an answer");
+		Card cardLookedupIn1970 = new Card("today", "the answer");
+		cardLookedupIn1970.date_lookedup = "19700101";
+		
+		CardSetManager mgr = new CardSetManager(db);
+		mgr.save(cardLookedupToday);
+		mgr.save(cardLookedupIn1970);
+		
+		ObjectSet cards = mgr.loadCardsLookedupToday();
+		
+		assertEquals(1, cards.size());
+
+		Card card = (Card) cards.get(0);
+		assertEquals("lookeduptoday", card.question);
+	}
+	
+	public void testLoadTopNHardestCards() {
+		int n = 20;
+		int totalNumCards = n + 2;
+		
+		Card[] hardCards = new Card[totalNumCards];
+		
+		for(int i = 0; i < totalNumCards - 1; i++){
+			Card c = new Card("hardCard", "answer");
+			c.easiness = 1;
+			hardCards[i] = c;
+		}
+		
+		Card easyCard = new Card("easyCard", "answer");
+		easyCard.easiness = 4;
+		hardCards[totalNumCards - 1] = easyCard;
+
+		CardSetManager mgr = new CardSetManager(db);
+		for(int i = 0; i < totalNumCards; i++){
+			mgr.save(hardCards[i]);
+		}
+		
+		Object[] cards = mgr.loadTopNHardestCards(n);
+		
+		assertEquals(n, cards.length);
+
+		for(int i = 0; i < n; i++){
+			Card card = (Card) cards[i];
+			assertEquals(1.0, card.easiness);
+		}
 	}
 }

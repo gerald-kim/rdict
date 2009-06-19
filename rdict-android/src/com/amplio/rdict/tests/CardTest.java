@@ -22,7 +22,8 @@ public class CardTest extends TestCase {
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 		Date now  = Calendar.getInstance().getTime();
 		
-        assertEquals(dateformatYYYYMMDD.format(now), c.scheduled);
+        assertEquals(dateformatYYYYMMDD.format(now), c.date_lookedup);
+        assertEquals(null, c.date_scheduled);
 	}
 	
 	public void testRounding() {
@@ -67,13 +68,13 @@ public class CardTest extends TestCase {
 		c.schedule();
 		
 		Date oneDayLater = new Date();
-		oneDayLater.setTime(oneDayLater.getTime() + 60*60*24);
+		oneDayLater.setTime(oneDayLater.getTime() + 1000*60*60*24);
 		
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 		
 		String expectedScheduled = dateformatYYYYMMDD.format(oneDayLater);
 		
-		assertEquals(expectedScheduled, c.scheduled);
+		assertEquals(expectedScheduled, c.date_scheduled);
 	}
 	
 	public void testCalcEasinessByGrade() {

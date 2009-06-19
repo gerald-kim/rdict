@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Vector;
 
 public class Card {
 
@@ -13,7 +12,8 @@ public class Card {
 	public double easiness;
 	public int repsSinceLapse;
 	public int interval;
-	public String scheduled;
+	public String date_scheduled;
+	public String date_lookedup;
 
 	public Card(String question, String answer) {
 		this.question = question;
@@ -25,7 +25,9 @@ public class Card {
 		
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 		Date now  = Calendar.getInstance().getTime();
-        this.scheduled = dateformatYYYYMMDD.format(now);
+        this.date_lookedup = dateformatYYYYMMDD.format(now);
+        
+        this.date_scheduled = null;
 	}
 
 	public void calcInterval() {
@@ -58,18 +60,24 @@ public class Card {
 		
 		SimpleDateFormat dateformatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");
 		
+		String temp_date = this.date_scheduled;
+		
+		if(null == temp_date){
+			temp_date = dateformatYYYYMMDD.format(new Date());
+		}
+		
 		Date date = null;
 		try {
-			date = dateformatYYYYMMDD.parse(this.scheduled);
+			date = dateformatYYYYMMDD.parse(temp_date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		Date newDate = new Date();
-		newDate.setTime(date.getTime() + this.interval*60*60*24);
+		newDate.setTime(date.getTime() + this.interval*1000*60*60*24);
 		
 		
-		this.scheduled = dateformatYYYYMMDD.format(newDate);
+		this.date_scheduled = dateformatYYYYMMDD.format(newDate);
 	}
 
 }
