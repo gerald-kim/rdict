@@ -1,7 +1,6 @@
 package com.amplio.rdict;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import com.db4o.ObjectContainer;
@@ -9,11 +8,6 @@ import com.db4o.ObjectSet;
 import com.db4o.query.Query;
 
 public class CardSetManager {
-	
-	public static final int CARD_SET_TODAYS_SCHEDULED = 0;
-	public static final int CARD_SET_TOP_N_HARDEST = 1;
-	public static final int CARD_SET_WORDS_SEARCHED_TODAY = 2;
-	
 	public ObjectContainer db = null;
 	
 	public CardSetManager (ObjectContainer db) {

@@ -14,13 +14,22 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int tab_label=0x7f050006;
+        public static final int lookedup_today_go=0x7f05000e;
+        public static final int lookedup_today_label=0x7f05000d;
+        public static final int practice_another_label=0x7f05000a;
+        public static final int tab_label=0x7f05000f;
+        public static final int today_label=0x7f050007;
+        public static final int todays_cards_go=0x7f050009;
+        public static final int top_20_go=0x7f05000c;
+        public static final int top_20_label=0x7f05000b;
         public static final int webview=0x7f050005;
+        public static final int welcome_mesg=0x7f050008;
         public static final int widget0=0x7f050000;
         public static final int widget41=0x7f050001;
         public static final int widget42=0x7f050004;
         public static final int widget43=0x7f050002;
         public static final int widget44=0x7f050003;
+        public static final int widget50=0x7f050006;
     }
     public static final class layout {
         public static final int dictionary=0x7f030000;

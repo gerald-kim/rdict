@@ -100,4 +100,8 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 
     	}
     }
+
+	public String getReviewHomeGreeting() {
+		return null;
+	}
 }
