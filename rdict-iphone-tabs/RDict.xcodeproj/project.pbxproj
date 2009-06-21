@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		EF1FAF4D0FEE87CE0085BB49 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */; };
 		EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
 		EF2E74AF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
 		EF2E74B00FE9B2B9008B8AEC /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
@@ -57,7 +58,6 @@
 		EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */; };
 		EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
 		EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
-		EF2E75580FE9BBB0008B8AEC /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */; };
 		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E755A0FE9BBBB008B8AEC /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
@@ -161,10 +161,10 @@
 		EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DictionaryView.xib; path = Resources/DictionaryView.xib; sourceTree = "<group>"; };
 		EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.min.js"; path = "Resources/jquery-1.3.2.min.js"; sourceTree = "<group>"; };
 		EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RDict-Info.plist"; path = "Resources/RDict-Info.plist"; sourceTree = "<group>"; };
+		EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RDict-Info.plist"; sourceTree = "<group>"; };
 		EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = Resources/ReviewView.xib; sourceTree = "<group>"; };
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
-		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "Resources/UnitTests-Info.plist"; sourceTree = "<group>"; };
+		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardBackView.xib; path = Resources/CardBackView.xib; sourceTree = "<group>"; };
 		EF8D0B360FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = DEVELOPER_DIR; };
@@ -517,7 +517,6 @@
 				EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */,
 				EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */,
 				EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */,
-				EF2E75580FE9BBB0008B8AEC /* UnitTests-Info.plist in Resources */,
 				EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +525,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1FAF4D0FEE87CE0085BB49 /* UnitTests-Info.plist in Resources */,
 				EFBF4A3C0FE002500092357C /* index.db in Resources */,
 				EFBF4A3D0FE002500092357C /* word.db in Resources */,
 				EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */,
