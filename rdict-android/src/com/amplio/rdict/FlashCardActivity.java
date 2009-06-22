@@ -70,17 +70,17 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		this.i_forgot_button.setVisibility(View.INVISIBLE);
 		
 		switch(ReviewActivity.reviewMode){
-		case ReviewManager.EXERCISES_SCHEDULED_TODAY: 
-			this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsScheduledForToday().toArray();
-			break;
-		case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
-			this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsLookedupToday().toArray();
-			break;
-		case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
-			this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadTopNHardestCards(20);
-			break;
-		default:
-			System.out.println("Bad argument here in FlashCardActivity");
+			case ReviewManager.EXERCISES_SCHEDULED_TODAY: 
+				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsScheduledForToday().toArray();
+				break;
+			case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
+				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsLookedupToday().toArray();
+				break;
+			case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
+				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadTopNHardestCards(20);
+				break;
+			default:
+				System.out.println("Bad argument here in FlashCardActivity");
 		}
 		
 		this.word_label.setText(((Card)cardSet[cardSetIndex]).question);
@@ -100,6 +100,11 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				this.i_forgot_button.setVisibility(View.VISIBLE);
 			}
 			else{
+				
+				Card c = (Card)cardSet[cardSetIndex];
+				c.schedule();
+				ReviewActivity.reviewManager.cardsMgr.save(c);
+
 				cardSetIndex++;
 				
 				if(cardSetIndex < cardSet.length){

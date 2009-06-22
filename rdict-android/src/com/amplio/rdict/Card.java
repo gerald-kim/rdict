@@ -76,7 +76,6 @@ public class Card {
 		Date newDate = new Date();
 		newDate.setTime(date.getTime() + this.interval*1000*60*60*24);
 		
-		
 		this.date_scheduled = dateformatYYYYMMDD.format(newDate);
 	}
 
