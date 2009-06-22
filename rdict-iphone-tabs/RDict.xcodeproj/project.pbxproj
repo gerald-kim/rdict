@@ -46,7 +46,7 @@
 		EF2E74CC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
 		EF2E74CD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
 		EF2E74CE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
-		EF2E74D00FE9B2E1008B8AEC /* SPOTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */; };
+		EF2E74D00FE9B2E1008B8AEC /* CardPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */; };
 		EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
 		EF2E74D40FE9B2F9008B8AEC /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
 		EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
@@ -153,7 +153,7 @@
 		EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-SQLitePersistentObject.m"; sourceTree = "<group>"; };
 		EF2E74AD0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
-		EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPOTest.m; path = Tests/SPOTest.m; sourceTree = "<group>"; };
+		EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardPersistenceTest.m; path = Tests/CardPersistenceTest.m; sourceTree = "<group>"; };
 		EF2E74D10FE9B2F9008B8AEC /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		EF2E74D20FE9B2F9008B8AEC /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardFrontView.xib; path = Resources/CardFrontView.xib; sourceTree = "<group>"; };
@@ -269,7 +269,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -296,6 +295,7 @@
 				EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */,
 				EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */,
 				EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */,
+				EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */,
 				EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
@@ -410,7 +410,7 @@
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EF2E74CF0FE9B2E1008B8AEC /* SPOTest.m */,
+				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 			);
 			name = Tests;
@@ -508,13 +508,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */,
 				EFEA07FE0FDFF53D00490192 /* index.db in Resources */,
 				EFEA07FF0FDFF53D00490192 /* word.db in Resources */,
 				EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */,
 				EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */,
 				EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */,
 				EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */,
-				EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */,
 				EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */,
 				EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */,
 				EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */,
@@ -612,7 +612,7 @@
 				EF2E74BC0FE9B2B9008B8AEC /* SQLitePersistentObject.m in Sources */,
 				EF2E74BD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */,
 				EF2E74BE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
-				EF2E74D00FE9B2E1008B8AEC /* SPOTest.m in Sources */,
+				EF2E74D00FE9B2E1008B8AEC /* CardPersistenceTest.m in Sources */,
 				EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
