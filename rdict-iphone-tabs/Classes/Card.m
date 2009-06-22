@@ -24,7 +24,6 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"scheduled", @"@\"NSDate\""),
 					DECLARE_PROPERTY( @"studied", @"@\"NSDate\""),
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
-//					DECLARE_PROPERTY( @"scheduled", @"@\"NSString\"")
 )
 
 /*
