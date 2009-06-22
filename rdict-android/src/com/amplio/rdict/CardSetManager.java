@@ -46,7 +46,11 @@ public class CardSetManager {
 		query.constrain(Card.class);
 		query.descend("easiness").orderAscending();
 		ObjectSet cards = query.execute();
-		return cards.subList(0, 20).toArray();
+		
+		if(cards.size() < 20)
+			return cards.toArray();
+		else
+			return cards.subList(0, 20).toArray();
 	}
 
 
