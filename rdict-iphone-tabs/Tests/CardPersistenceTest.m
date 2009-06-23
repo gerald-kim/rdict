@@ -67,8 +67,20 @@
 	[self assertCardEquals:expected actual:actual];
 }
 
--(void) findScheduledCards {
+-(void) testFindScheduledCards {
+	Card* expected1 = [[Card alloc] initWithQuestion:@"question 1" andAnswer:@"answer"];
+	expected1.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) -(SECONDS_IN_ONE_DAY)];
+	[expected1 save];
+	Card* expected2 = [[Card alloc] initWithQuestion:@"question 2" andAnswer:@"answer"];
+	expected2.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) -(SECONDS_IN_ONE_DAY*2)];
+	[expected2 save];
+	Card* expected3 = [[Card alloc] initWithQuestion:@"question 3" andAnswer:@"answer"];
+	[expected3 save];
 	
+	NSArray* scheduled = (NSArray*) [Card findByCriteria:@"where scheduled <= date()"];
+	STAssertEquals( (NSUInteger) 2, [scheduled count], nil );
+	STAssertEqualStrings( @"question 1", ((Card*) [scheduled objectAtIndex:(NSUInteger)0]).question, nil );
+	STAssertEqualStrings( @"question 2", ((Card*) [scheduled objectAtIndex:(NSUInteger)1]).question, nil );
 }
 
 
