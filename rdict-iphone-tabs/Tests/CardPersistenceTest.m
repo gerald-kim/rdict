@@ -77,10 +77,13 @@
 	Card* expected3 = [[Card alloc] initWithQuestion:@"question 3" andAnswer:@"answer"];
 	[expected3 save];
 	
-	NSArray* scheduled = (NSArray*) [Card findByCriteria:@"where scheduled <= date()"];
+	NSArray* scheduled = (NSArray*) [Card findByScheduled];
 	STAssertEquals( (NSUInteger) 2, [scheduled count], nil );
 	STAssertEqualStrings( @"question 1", ((Card*) [scheduled objectAtIndex:(NSUInteger)0]).question, nil );
 	STAssertEqualStrings( @"question 2", ((Card*) [scheduled objectAtIndex:(NSUInteger)1]).question, nil );
+	
+	int scheduledCount = [Card countByScheduled];
+	STAssertEquals( 2, scheduledCount, nil );
 }
 
 

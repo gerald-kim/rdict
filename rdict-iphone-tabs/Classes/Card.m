@@ -26,6 +26,14 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
 )
 
++ (NSArray*) findByScheduled {
+	return [Card findByCriteria:@"where scheduled <= date()"];	
+}
+
++ (int) countByScheduled {
+	return [Card countByCriteria:@"where scheduled <= date()"];
+}
+
 /*
 +(NSArray *)transients
 {

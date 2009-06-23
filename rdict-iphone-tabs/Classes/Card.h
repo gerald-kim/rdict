@@ -39,6 +39,10 @@
 @property (nonatomic, retain) NSDate* studied;
 @property (nonatomic, retain) NSDate* created;
 
++ (NSArray*) findByScheduled;
++ (int) countByScheduled;
+
 - (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a;
+
 
 @end
