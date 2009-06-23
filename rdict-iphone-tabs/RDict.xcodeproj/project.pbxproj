@@ -53,7 +53,7 @@
 		EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
 		EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
-		EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Sources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
+		EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
 		EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */; };
 		EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
@@ -61,6 +61,9 @@
 		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E755A0FE9BBBB008B8AEC /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
+		EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
+		EF7CB7E70FF11CB9005B7FCD /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7E60FF11CB9005B7FCD /* CardFrontViewController.m */; };
+		EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
 		EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EFBF4A200FE001AB0092357C /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */; };
 		EFBF4A210FE001AB0092357C /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */; };
@@ -166,6 +169,11 @@
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
 		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardBackView.xib; path = Resources/CardBackView.xib; sourceTree = "<group>"; };
+		EF7CB7C90FF11BAE005B7FCD /* ReviewSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewSessionController.h; path = Classes/ReviewSessionController.h; sourceTree = "<group>"; };
+		EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReviewSessionController.m; path = Classes/ReviewSessionController.m; sourceTree = "<group>"; };
+		EF7CB7E50FF11CB9005B7FCD /* CardFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFrontViewController.h; sourceTree = "<group>"; };
+		EF7CB7E60FF11CB9005B7FCD /* CardFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardFrontViewController.m; sourceTree = "<group>"; };
+		EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewSessionView.xib; path = Resources/ReviewSessionView.xib; sourceTree = "<group>"; };
 		EF8D0B360FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.h"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestDelegate.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMIPhoneUnitTestMain.m"; sourceTree = DEVELOPER_DIR; };
@@ -291,11 +299,6 @@
 				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
 				EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */,
-				EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */,
-				EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */,
-				EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */,
-				EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */,
-				EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */,
 				EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
@@ -353,6 +356,36 @@
 			path = sqlitepersistentobjects;
 			sourceTree = "<group>";
 		};
+		EF7CB7E10FF11C3F005B7FCD /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */,
+				EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */,
+				EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */,
+				EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */,
+				EFEA07C80FDFF4EA00490192 /* SearchViewController.h */,
+				EFEA07C90FDFF4EA00490192 /* SearchViewController.m */,
+			);
+			name = Dictionary;
+			sourceTree = "<group>";
+		};
+		EF7CB7E20FF11C53005B7FCD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */,
+				EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */,
+				EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */,
+				EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */,
+				EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */,
+				EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */,
+				EF7CB7C90FF11BAE005B7FCD /* ReviewSessionController.h */,
+				EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */,
+				EF7CB7E50FF11CB9005B7FCD /* CardFrontViewController.h */,
+				EF7CB7E60FF11CB9005B7FCD /* CardFrontViewController.m */,
+			);
+			name = Review;
+			sourceTree = "<group>";
+		};
 		EF8D0B350FDFFFE800B093EB /* GTM */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,12 +402,8 @@
 		EFBF4A780FE003650092357C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */,
-				EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */,
-				EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */,
-				EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */,
-				EFEA07C80FDFF4EA00490192 /* SearchViewController.h */,
-				EFEA07C90FDFF4EA00490192 /* SearchViewController.m */,
+				EF7CB7E10FF11C3F005B7FCD /* Dictionary */,
+				EF7CB7E20FF11C53005B7FCD /* Review */,
 				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
 			);
@@ -508,16 +537,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */,
+				EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Resources */,
 				EF2E75550FE9BBB0008B8AEC /* RDict-Info.plist in Resources */,
 				EFEA07FE0FDFF53D00490192 /* index.db in Resources */,
 				EFEA07FF0FDFF53D00490192 /* word.db in Resources */,
 				EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */,
-				EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */,
 				EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */,
 				EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */,
 				EF2E75560FE9BBB0008B8AEC /* ReviewView.xib in Resources */,
 				EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */,
 				EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */,
+				EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +612,8 @@
 				EF2E74CD0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m in Sources */,
 				EF2E74CE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
 				EF2E74D40FE9B2F9008B8AEC /* Card.m in Sources */,
-				EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Sources */,
+				EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */,
+				EF7CB7E70FF11CB9005B7FCD /* CardFrontViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

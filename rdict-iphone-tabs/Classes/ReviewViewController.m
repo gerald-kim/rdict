@@ -6,11 +6,13 @@
 //  Copyright 2009 Amplio Studios. All rights reserved.
 //
 
-#import "ReviewViewController.h"
 #import "RDictAppDelegate.h"
+#import "ReviewViewController.h"
+#import "ReviewSessionController.h"
 
 
 @implementation ReviewViewController
+@synthesize reviewSessionController;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -28,7 +30,7 @@
 	[super viewDidAppear:animated];
 }	
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBarHidden = YES;
 }
@@ -38,10 +40,16 @@
     // Release anything that's not essential, such as cached data
 }
 
-
 - (void)dealloc {
     [super dealloc];
 }
 
+- (IBAction) studyButtonClicked:(id) sender {
+	if( self.reviewSessionController == nil ) {
+		self.reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];		
+	}
+	
+	[self.navigationController pushViewController:reviewSessionController animated:YES];
+}
 
 @end
