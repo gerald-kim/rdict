@@ -28,11 +28,10 @@ class SmallCdbMaker:
         
         c = db_word.curnew()
         c.first()
-                
-        i = 0
-        small_filename = ('word%d' % i)
-        db_small = self._open_db( self._get_db_filepath( self.small_db_dir, small_filename ) )
-
+        
+        path = self._get_db_filepath( self.small_db_dir, "tmp_db")
+        db_small = self._open_db(path)
+        
         while 1:
             try:
                 c.key()
@@ -43,9 +42,14 @@ class SmallCdbMaker:
             
                 if db_small.numentries >= 400:
                     db_small.finish()
-                    i = i + 1
-                    small_filename = ('word%d' % i)
-                    db_small = self._open_db(self._get_db_filepath( self.small_db_dir, small_filename ) )
+                    
+                    #rename tmp db to last word in file
+                    small_filename = self._get_db_filepath(self.small_db_dir, c.key() + "_word")
+                    os.rename(self._get_db_filepath( self.small_db_dir, "tmp_db"), small_filename)
+                    
+                    #open new tmp db
+                    path = self._get_db_filepath( self.small_db_dir, "tmp_db")
+                    db_small = self._open_db(path)
                     
             c.next()
             
@@ -57,12 +61,16 @@ class SmallCdbMaker:
     def _get_db_filepath( self, dir, name ):
         return os.path.join( os.path.dirname( __file__ ), dir, name + '.db' )
     
+    def get_file_size(self, f):
+        f.seek(0,2)
+        return f.tell()
+    
     def _open_db( self, path ):
         db = cdb.cdbmake(path, path + ".tmp");
         return db
         
     def get_popular_word_map( self ):
-        file = open( 'popular_10000.txt' )
+        file = open( './popular_10000.txt' )
         word_list = file.readlines()
         word_map = {}
         for word in word_list:
@@ -73,7 +81,6 @@ if __name__ == '__main__':
     if len( sys.argv ) < 2:
         print( "Usage: %s dbdir" % ( sys.argv[0] ) ) 
         sys.exit( 1 )
-
     
     small_db_maker = SmallCdbMaker( sys.argv[1] )
     small_db_maker.create_smalldb_for_cdb()

@@ -56,6 +56,10 @@ public class DictionaryTest extends TestCase implements AssetInputStreamProvider
 		assertEquals(null, dicEntry);
 	}
 	
+	public void testStringComparison() {
+		assertTrue(0 > "apple".compareTo("fish"));
+	}
+	
 	public void testGetDirContents() {
 		File dir = new File("assets");
 	    

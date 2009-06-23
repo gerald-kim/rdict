@@ -25,21 +25,26 @@ public class Dictionary {
 		ModdedCdb db = null;
 		
   		for(int i = 0; i < _assetPaths.length;i++) {
-  			if(-1 != _assetPaths[i].indexOf("word")) {
-	      		try {
-	  				db = new ModdedCdb(_aisp.getAssetInputStream(_assetPaths[i]));
-	  			} catch (IOException e) {
-	  				e.printStackTrace();
-	  			}
-	  			
-	  			byte[] bytes = db.find(word.getBytes());
-	  		
-	  			db.close();
-	  			
-	  			if (bytes != null) {
-	  				def = new String(bytes);
-	  				break;
-	  			}
+  			// asset paths appear like assets/art
+  			int wordIndex = _assetPaths[i].indexOf("_word");
+  			
+  			if(-1 != wordIndex) {
+  				if(0 >= word.compareTo(_assetPaths[i].substring(_assetPaths[i].indexOf('/') + 1, wordIndex))){
+	      			try {
+		  				db = new ModdedCdb(_aisp.getAssetInputStream(_assetPaths[i]));
+		  			} catch (IOException e) {
+		  				e.printStackTrace();
+		  			}
+		  			
+		  			byte[] bytes = db.find(word.getBytes());
+		  		
+		  			db.close();
+		  			
+		  			if (bytes != null) {
+		  				def = new String(bytes);
+		  				break;
+		  			}
+	      		}
   			}
       	}	
   		
