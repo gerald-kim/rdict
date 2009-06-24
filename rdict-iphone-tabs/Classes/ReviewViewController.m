@@ -21,13 +21,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+	NSLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
-	self.navigationController.navigationBarHidden = NO;
+	self.navigationController.navigationBarHidden = NO;	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+
 }	
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -41,12 +41,17 @@
 }
 
 - (void)dealloc {
+	if( nil != self.reviewSessionController ) {
+		[reviewSessionController release];
+	}
     [super dealloc];
 }
 
 - (IBAction) studyButtonClicked:(id) sender {
-	if( self.reviewSessionController == nil ) {
-		self.reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];		
+	if( nil == self.reviewSessionController ) {
+		self.reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
+		self.reviewSessionController.hidesBottomBarWhenPushed = YES;
+		//self.reviewSessionController.wantsFullScreenLayout = YES;
 	}
 	
 	[self.navigationController pushViewController:reviewSessionController animated:YES];

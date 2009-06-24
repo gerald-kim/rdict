@@ -28,6 +28,9 @@
 //	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];
+
+	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 }
 
 
@@ -37,9 +40,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
-	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-	[searchBar becomeFirstResponder];
+//	[searchBar becomeFirstResponder];
 }
 
 - (void)dealloc {

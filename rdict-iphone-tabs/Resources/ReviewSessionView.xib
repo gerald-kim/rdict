@@ -43,10 +43,6 @@
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
-			<object class="IBUIViewController" id="801228095">
-				<string key="IBUINibName">CardFrontView</string>
-				<bool key="IBUIWantsFullScreenLayout">YES</bool>
-			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -58,22 +54,6 @@
 						<reference key="destination" ref="1053961578"/>
 					</object>
 					<int key="connectionID">8</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">cardFrontViewController</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="801228095"/>
-					</object>
-					<int key="connectionID">10</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">reviewSessionController</string>
-						<reference key="source" ref="801228095"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">11</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -103,11 +83,6 @@
 						<reference key="object" ref="1053961578"/>
 						<reference key="parent" ref="845353201"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="801228095"/>
-						<reference key="parent" ref="845353201"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -118,18 +93,12 @@
 					<string>-2.CustomClassName</string>
 					<string>7.IBEditorWindowLastContentRect</string>
 					<string>7.IBPluginDependency</string>
-					<string>9.CustomClassName</string>
-					<string>9.IBEditorWindowLastContentRect</string>
-					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ReviewSessionController</string>
 					<string>UIResponder</string>
 					<string>{{21, 362}, {320, 460}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CardFrontViewController</string>
-					<string>{{508, 302}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -161,6 +130,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CardFrontViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">showAnswerButtonClicked:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">reviewSessionController</string>
 						<string key="NS.object.0">ReviewSessionController</string>
