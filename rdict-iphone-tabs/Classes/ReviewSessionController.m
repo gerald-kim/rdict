@@ -7,6 +7,8 @@
 //
 
 #import "ReviewSessionController.h"
+#import "CardFrontViewController.h"
+#import "CardBackViewController.h"
 
 @implementation ReviewSessionController
 @synthesize cardFrontViewController;
@@ -15,10 +17,10 @@
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
 	if( self.cardFrontViewController == nil ) {
-		self.cardFrontViewController = [[UIViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
+		self.cardFrontViewController = [[CardFrontViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	}
 	if( self.cardBackViewController == nil ) {
-		self.cardBackViewController = [[UIViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
+		self.cardBackViewController = [[CardBackViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
 	}
 	
 	[self.view insertSubview:cardFrontViewController.view atIndex:0];

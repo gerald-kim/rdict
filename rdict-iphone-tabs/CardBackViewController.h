@@ -1,5 +1,5 @@
 //
-//  CardFrontViewController.h
+//  CardBackViewController.h
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/27/09.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CardFrontViewController : UIViewController {
+@interface CardBackViewController : UIViewController {
 
 }
 

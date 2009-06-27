@@ -1,15 +1,15 @@
 //
-//  CardFrontViewController.m
+//  CardBackViewController.m
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/27/09.
 //  Copyright 2009 NHN. All rights reserved.
 //
 
-#import "CardFrontViewController.h"
+#import "CardBackViewController.h"
 
 
-@implementation CardFrontViewController
+@implementation CardBackViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class CardFrontViewController;
+@class CardBackViewController;
 
 @interface ReviewSessionController : UIViewController {
-	UIViewController* cardFrontViewController;
-	UIViewController* cardBackViewController;
+	CardFrontViewController* cardFrontViewController;
+	CardBackViewController* cardBackViewController;
 }
 
-@property (nonatomic, retain) UIViewController* cardFrontViewController;
-@property (nonatomic, retain) UIViewController* cardBackViewController;
+@property (nonatomic, retain) CardFrontViewController* cardFrontViewController;
+@property (nonatomic, retain) CardBackViewController* cardBackViewController;
 
 - (IBAction) showAnswerButtonClicked : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;	
