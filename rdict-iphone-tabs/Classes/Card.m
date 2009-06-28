@@ -27,11 +27,11 @@ DECLARE_PROPERTIES (
 )
 
 + (NSArray*) findByScheduled {
-	return [Card findByCriteria:@"where scheduled <= date()"];	
+	return [Card findByCriteria:@"where scheduled <= datetime()"];	
 }
 
 + (int) countByScheduled {
-	return [Card countByCriteria:@"where scheduled <= date()"];
+	return [Card countByCriteria:@"where scheduled <= datetime()"];
 }
 
 /*

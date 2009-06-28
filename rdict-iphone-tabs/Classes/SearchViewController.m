@@ -105,7 +105,7 @@
 	}
 	
 	WordIndex *index = [wiktionary.wordIndexes objectAtIndex:indexPath.row];
-	cell.text = index.lemma;
+	cell.textLabel.text = index.lemma;
 	
 //	if( [listData count] - 1 == indexPath.row ) {
 //		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
