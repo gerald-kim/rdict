@@ -55,6 +55,7 @@
 	}
 	
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
+//	reviewSessionController.cards = ;
 }
 
 @end
