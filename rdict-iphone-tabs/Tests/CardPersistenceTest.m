@@ -69,10 +69,13 @@
 
 -(void) testFindScheduledCards {
 	Card* expected1 = [[Card alloc] initWithQuestion:@"question 1" andAnswer:@"answer"];
-	expected1.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) -(SECONDS_IN_ONE_DAY)];
+	//TODO Check timeinterval calc
+	expected1.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) - (SECONDS_IN_ONE_DAY+10000)];
+	NSLog( @"expected1.scheduled : %@", expected1.scheduled );
 	[expected1 save];
 	Card* expected2 = [[Card alloc] initWithQuestion:@"question 2" andAnswer:@"answer"];
-	expected2.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) -(SECONDS_IN_ONE_DAY*2)];
+	expected2.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) - (SECONDS_IN_ONE_DAY*3)];
+	NSLog( @"expected2.scheduled : %@", expected2.scheduled );	
 	[expected2 save];
 	Card* expected3 = [[Card alloc] initWithQuestion:@"question 3" andAnswer:@"answer"];
 	[expected3 save];

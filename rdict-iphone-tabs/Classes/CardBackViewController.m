@@ -10,7 +10,9 @@
 
 @implementation CardBackViewController
 
-@synthesize segmentControl;
+@synthesize statusLabel;
+@synthesize questionLabel;
+@synthesize answerTextView;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -22,7 +24,6 @@
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"CBC.viewWillAppear" );
-	segmentControl.selectedSegmentIndex = -1;
 }
 
 - (void)viewDidAppear:(BOOL) animated {

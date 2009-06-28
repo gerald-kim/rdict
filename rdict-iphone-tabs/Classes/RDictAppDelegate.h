@@ -3,7 +3,7 @@
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/6/09.
-//  Copyright NHN 2009. All rights reserved.
+//  Copyright ampliostudios 2009. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -28,7 +28,7 @@
 	
 	int cardCount = [Card count];
 	NSLog( @"Card counts: %d", cardCount );
-	cardInfomationLabel.text = [[NSString alloc] initWithFormat:@"There %d cards to review today.", cardCount];
+	cardInfomationLabel.text = [NSString stringWithFormat:@"There %d cards to review today.", cardCount];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -46,9 +46,7 @@
 }
 
 - (void)dealloc {
-	if( nil != self.reviewSessionController ) {
-		[reviewSessionController release];
-	}
+	[reviewSessionController release];
     [super dealloc];
 }
 
@@ -61,7 +59,6 @@
 	
 	reviewSessionController.cards = [Card allObjects];
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
-//	reviewSessionController.cards = ;
 }
 
 @end

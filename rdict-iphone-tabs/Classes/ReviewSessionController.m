@@ -3,7 +3,7 @@
 //  RDict
 //
 //  Created by Jaewoo Kim on 6/23/09.
-//  Copyright 2009 NHN. All rights reserved.
+//  Copyright 2009 ampliostudios. All rights reserved.
 //
 
 #import "ReviewSessionController.h"
@@ -14,6 +14,7 @@
 @interface ReviewSessionController()
 
 - (void)showCardFrontView;
+- (void)showCardBackView;
 
 @end
 
@@ -45,10 +46,10 @@
 }	
 
 - (void)viewDidUnload {
+	[cards release];
+	[uncertainCards release];
 	[cardFrontViewController release];
-	cardFrontViewController = nil;
 	[cardBackViewController release];
-	cardBackViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,29 +61,49 @@
 }
 
 - (void)showCardFrontView {
-	Card* currentCard = [cards objectAtIndex:[cards count] - cardsRemain];
+//	if( cardsRemain > 0 ) {
+		currentCard = [cards objectAtIndex:[cards count] - cardsRemain];		
+//	} else if ( [uncertainCards count] > 0 ) {
+//		currentCard = [uncertainCards objectAtIndex:0];
+//	}
 	
 	cardFrontViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
 	cardFrontViewController.questionLabel.text = currentCard.question;
+	
 	[self.view bringSubviewToFront:cardFrontViewController.view];	
+}
+
+- (void)showCardBackView {	
+	cardBackViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
+	cardBackViewController.questionLabel.text = currentCard.question;
+	cardBackViewController.answerTextView.text = currentCard.answer;
+	
+	[self.view bringSubviewToFront:cardBackViewController.view];
+
 }
 
 - (IBAction) answerButtonClicked : (id) sender {	
 	NSLog( @"RSC.showAnswerButton" );
 	//[self.navigationController popViewControllerAnimated:YES];
-	
-	[self.view bringSubviewToFront:cardBackViewController.view];
-	cardBackViewController.segmentControl.selectedSegmentIndex = -1;
+	[self showCardBackView];
 }
 
 
-- (IBAction) scoreButtonClicked : (id) sender {	
-	NSLog( @"RSC.scoreButtonClicked" );
-	if ( -1 == cardBackViewController.segmentControl.selectedSegmentIndex ) {
-		return;
+- (IBAction) scoreButtonClicked : (id) sender {
+	UIButton *button = (UIButton*) sender;
+	NSLog( @"RSC.scoreButtonClicked %@", button.currentTitle );
+
+	NSUInteger score = [button.currentTitle intValue];
+	if( score < 3 ) {
+		[uncertainCards addObject:currentCard];
 	}
+//	[currentCard studyWithScore:[button.currentTitle intValue]];	
 	
-	cardsRemain--;
+//	if( cardsRemain > 0 ) {
+		cardsRemain--;		
+//	} else if ( [uncertainCards count] > 0 ) {
+//		[uncertainCards removeObject:currentCard];
+//	}
 	
 	if ( 0 == cardsRemain ) {
 		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
