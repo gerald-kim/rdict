@@ -14,6 +14,8 @@
 @interface ReviewSessionController : UIViewController {
 	CardFrontViewController* cardFrontViewController;
 	CardBackViewController* cardBackViewController;
+
+	NSUInteger cardsRemain;
 	NSArray* cards;
 	NSMutableArray* uncertainCards;
 }
@@ -21,12 +23,9 @@
 @property (nonatomic, retain) CardFrontViewController* cardFrontViewController;
 @property (nonatomic, retain) CardBackViewController* cardBackViewController;
 @property (nonatomic, retain) NSArray* cards;
-@property (nonatomic, retain) NSMutableArray* uncertainCards;
 
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	
-
-
 
 
 @end

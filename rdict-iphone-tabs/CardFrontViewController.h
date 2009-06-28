@@ -10,8 +10,12 @@
 
 
 @interface CardFrontViewController : UIViewController {
-
+	IBOutlet UILabel* statusLabel;
+	IBOutlet UILabel* questionLabel;
 }
+
+@property (nonatomic, retain) IBOutlet UILabel* statusLabel;
+@property (nonatomic, retain) IBOutlet UILabel* questionLabel;
 
 
 @end

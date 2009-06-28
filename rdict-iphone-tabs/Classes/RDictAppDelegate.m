@@ -10,6 +10,7 @@
 
 #import "SearchViewController.h"
 #import "Wiktionary.h"
+#import "SQLiteInstanceManager.h"
 
 @implementation RDictAppDelegate
 
@@ -24,6 +25,10 @@
 
     [window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
+	
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
+#endif
 }
 
 

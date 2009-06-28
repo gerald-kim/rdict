@@ -9,10 +9,11 @@
 #import "RDictAppDelegate.h"
 #import "ReviewViewController.h"
 #import "ReviewSessionController.h"
-
+#import "Card.h"
 
 @implementation ReviewViewController
 @synthesize reviewSessionController;
+@synthesize cardInfomationLabel;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -24,6 +25,10 @@
 	NSLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
+	
+	int cardCount = [Card count];
+	NSLog( @"Card counts: %d", cardCount );
+	cardInfomationLabel.text = [[NSString alloc] initWithFormat:@"There %d cards to review today.", cardCount];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -50,10 +55,11 @@
 - (IBAction) studyButtonClicked:(id) sender {
 	if( nil == self.reviewSessionController ) {
 		self.reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
-		self.reviewSessionController.hidesBottomBarWhenPushed = YES;
+		reviewSessionController.hidesBottomBarWhenPushed = YES;
 		//self.reviewSessionController.wantsFullScreenLayout = YES;
 	}
 	
+	reviewSessionController.cards = [Card allObjects];
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
 //	reviewSessionController.cards = ;
 }

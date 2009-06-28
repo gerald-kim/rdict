@@ -12,9 +12,11 @@
 
 @interface ReviewViewController : UIViewController {
 	IBOutlet ReviewSessionController* reviewSessionController;
+	IBOutlet UILabel* cardInfomationLabel;
 }
 
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
+@property (nonatomic, retain) UILabel* cardInfomationLabel;
 
 - (IBAction) studyButtonClicked:(id) sender;
 

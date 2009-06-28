@@ -9,12 +9,19 @@
 #import "ReviewSessionController.h"
 #import "CardFrontViewController.h"
 #import "CardBackViewController.h"
+#import "Card.h"
+
+@interface ReviewSessionController()
+
+- (void)showCardFrontView;
+
+@end
+
 
 @implementation ReviewSessionController
 @synthesize cardFrontViewController;
 @synthesize cardBackViewController;
 @synthesize cards;
-@synthesize uncertainCards;
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
@@ -32,7 +39,9 @@
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];	
-	[self.view bringSubviewToFront:cardFrontViewController.view];
+	
+	cardsRemain = [cards count];
+	[self showCardFrontView];
 }	
 
 - (void)viewDidUnload {
@@ -50,6 +59,14 @@
     [super dealloc];
 }
 
+- (void)showCardFrontView {
+	Card* currentCard = [cards objectAtIndex:[cards count] - cardsRemain];
+	
+	cardFrontViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
+	cardFrontViewController.questionLabel.text = currentCard.question;
+	[self.view bringSubviewToFront:cardFrontViewController.view];	
+}
+
 - (IBAction) answerButtonClicked : (id) sender {	
 	NSLog( @"RSC.showAnswerButton" );
 	//[self.navigationController popViewControllerAnimated:YES];
@@ -65,8 +82,14 @@
 		return;
 	}
 	
-	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-	[self.navigationController popViewControllerAnimated:YES];
+	cardsRemain--;
+	
+	if ( 0 == cardsRemain ) {
+		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+		[self.navigationController popViewControllerAnimated:YES];		
+	} else {
+		[self showCardFrontView];
+	}
 }
 
 @end

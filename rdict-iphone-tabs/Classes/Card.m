@@ -46,7 +46,7 @@ DECLARE_PROPERTIES (
     return [NSString stringWithFormat:@"<Card.%d %@>", [self pk], question];
 }
 
-- (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a{
+- (id) initWithQuestion:(NSString *)q andAnswer:(NSString *)a {
 	[super init];
 
 	self.question = q;

@@ -9,6 +9,7 @@
 #import "DictionaryViewController.h"
 #import "RDictAppDelegate.h"
 #import "Wiktionary.h"
+#import "Card.h"
 
 @implementation DictionaryViewController
 @synthesize webView;
@@ -83,19 +84,15 @@
 
 - (void) handleRdictRequest:(NSURL*) url {
 	if ([@"save" isEqualToString: [url host]]) {		
+		NSLog( @"Save called %@", [url host] );	
 		
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
 		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
-		/*
-		 Card *card = [[Card alloc] initWithQuestion: self.usersWord.text Answer: selectedDefinition];
-		 
-		 [card schedule];
-		 [card save];
-		 [card release];
-		 */
 		
-		NSLog( @"Save called %@", [url host] );	
+		Card* card = [[Card alloc] initWithQuestion:self.lemma andAnswer:selectedDefinition];
+		[card save];
+		[card release];
 	} else if ([@"lookup" isEqualToString:[url host]]){
 		[self handleWordLookUp: url];
 	}
@@ -109,6 +106,7 @@
 	activityIndicatorView.hidden = YES;	
 }
 
+
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *url = [request URL];
 	NSLog( @"request called %@://%@/%@?%@", [url scheme], [url host], [url relativePath], [url query] );	
@@ -118,10 +116,7 @@
 		return NO;
 	}
 	return YES;
-	
-	
 }
-
 
 
 @end
