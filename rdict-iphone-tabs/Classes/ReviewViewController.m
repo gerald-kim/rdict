@@ -51,13 +51,15 @@
 }
 
 - (IBAction) studyButtonClicked:(id) sender {
-	if( nil == self.reviewSessionController ) {
-		self.reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
+	if( nil == reviewSessionController ) {
+		reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
 		reviewSessionController.hidesBottomBarWhenPushed = YES;
 		//self.reviewSessionController.wantsFullScreenLayout = YES;
 	}
 	
-	reviewSessionController.cards = [Card allObjects];
+
+	reviewSessionController.scheduledCards = [[Card allObjects] autorelease];
+
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
 }
 

@@ -10,22 +10,25 @@
 
 @class CardFrontViewController;
 @class CardBackViewController;
+@class ReviewUnfinishedViewController;
+@class ReviewFinishedViewController;
 @class Card;
 
 @interface ReviewSessionController : UIViewController {
 	CardFrontViewController* cardFrontViewController;
 	CardBackViewController* cardBackViewController;
-
+	ReviewUnfinishedViewController* reviewUnfinishedViewController;
+	ReviewFinishedViewController* reviewFinishedViewController;
+	
 	NSUInteger cardsRemain;
 	
 	NSArray* cards;
+	NSArray* scheduledCards;
 	NSMutableArray* uncertainCards;
 	Card* currentCard;
 }
 
-@property (nonatomic, retain) CardFrontViewController* cardFrontViewController;
-@property (nonatomic, retain) CardBackViewController* cardBackViewController;
-@property (nonatomic, retain) NSArray* cards;
+@property (nonatomic, retain) NSArray* scheduledCards;
 
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	

@@ -9,10 +9,12 @@
 #import "ReviewSessionController.h"
 #import "CardFrontViewController.h"
 #import "CardBackViewController.h"
+#import "ReviewUnfinishedViewController.h"
 #import "Card.h"
 
 @interface ReviewSessionController()
 
+- (void)initCards:(NSArray*) theCards;
 - (void)showCardFrontView;
 - (void)showCardBackView;
 
@@ -20,36 +22,51 @@
 
 
 @implementation ReviewSessionController
-@synthesize cardFrontViewController;
-@synthesize cardBackViewController;
-@synthesize cards;
+
+@synthesize scheduledCards;
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
 	[super viewDidLoad];
-	if( self.cardFrontViewController == nil ) {
-		self.cardFrontViewController = [[CardFrontViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
+	if( cardFrontViewController == nil ) {
+		cardFrontViewController = [[CardFrontViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 		[self.view insertSubview:cardFrontViewController.view atIndex:0];
 	}
-	if( self.cardBackViewController == nil ) {
-		self.cardBackViewController = [[CardBackViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
+	if( cardBackViewController == nil ) {
+		cardBackViewController = [[CardBackViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
 		[self.view insertSubview:cardBackViewController.view atIndex:0];
-	}	
+	}
+	
 }
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];	
 	
-	cardsRemain = [cards count];
+	
+	[self initCards:scheduledCards];
+	uncertainCards = [[NSMutableArray alloc] init];
+	
 	[self showCardFrontView];
 }	
 
+- (void)viewDidDisappear:(BOOL) animated {
+	NSLog( @"RSC.viewDidDisappear" );
+	NSLog( @"RSC.viewDidDisappear scheduledCards.retainCount : %d", [scheduledCards retainCount] );
+
+//	[scheduledCards release];
+	scheduledCards = nil;
+//	[uncertainCards release];
+//	NSLog( @"RSC.viewDidDisappear scheduledCards.retainCount : %d", [scheduledCards retainCount] );
+	
+}
+
 - (void)viewDidUnload {
-	[cards release];
-	[uncertainCards release];
+	NSLog( @"RSC.viewDidUnload" );
 	[cardFrontViewController release];
+	cardFrontViewController = nil;
 	[cardBackViewController release];
+	cardFrontViewController = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,13 +77,17 @@
     [super dealloc];
 }
 
-- (void)showCardFrontView {
-//	if( cardsRemain > 0 ) {
-		currentCard = [cards objectAtIndex:[cards count] - cardsRemain];		
-//	} else if ( [uncertainCards count] > 0 ) {
-//		currentCard = [uncertainCards objectAtIndex:0];
-//	}
+- (void)initCards:(NSArray *)theCards {
+	NSLog( @"RSC.initCards 0x%x", theCards );
 	
+	cards = theCards;
+	cardsRemain = [cards count];
+}
+
+- (void)showCardFrontView {
+	currentCard = [cards objectAtIndex:[cards count] - cardsRemain];	
+	NSLog( @"RSC.showCardFrontView card(0x%x, %d) ", currentCard, [currentCard retainCount] );
+
 	cardFrontViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
 	cardFrontViewController.questionLabel.text = currentCard.question;
 	
@@ -79,7 +100,6 @@
 	cardBackViewController.answerTextView.text = currentCard.answer;
 	
 	[self.view bringSubviewToFront:cardBackViewController.view];
-
 }
 
 - (IBAction) answerButtonClicked : (id) sender {	
@@ -91,26 +111,29 @@
 
 - (IBAction) scoreButtonClicked : (id) sender {
 	UIButton *button = (UIButton*) sender;
-	NSLog( @"RSC.scoreButtonClicked %@", button.currentTitle );
-
 	NSUInteger score = [button.currentTitle intValue];
-	if( score < 3 ) {
-		[uncertainCards addObject:currentCard];
-	}
-//	[currentCard studyWithScore:[button.currentTitle intValue]];	
+	NSLog( @"RSC.scoreButtonClicked score: %d", score );
+	NSLog( @"RSC.scoreButtonClicked card(0x%x, %d) ", currentCard, [currentCard retainCount] );
 	
-//	if( cardsRemain > 0 ) {
-		cardsRemain--;		
-//	} else if ( [uncertainCards count] > 0 ) {
-//		[uncertainCards removeObject:currentCard];
-//	}
+	cardsRemain--;		
+	
+	if( YES ) {
+		if( score <= 3 ) {
+			[uncertainCards addObject:currentCard];
+		}
+//		[currentCard studyWithScore:[button.currentTitle intValue]];	
+		
+		if( 0 == cardsRemain && [uncertainCards count] > 0 ) {
+			[self initCards:uncertainCards];
+		}
+	} 
 	
 	if ( 0 == cardsRemain ) {
 		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 		[self.navigationController popViewControllerAnimated:YES];		
 	} else {
 		[self showCardFrontView];
-	}
+	}	 	
 }
 
 @end
