@@ -58,7 +58,7 @@
 	}
 	
 
-	reviewSessionController.scheduledCards = [[Card allObjects] autorelease];
+	reviewSessionController.reviewCards = [Card allObjects];
 
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
 }

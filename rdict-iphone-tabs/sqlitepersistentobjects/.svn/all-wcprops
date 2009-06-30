@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 27
-/svn/!svn/ver/135/trunk/src
+/svn/!svn/ver/138/trunk/src
 END
 UIImage-SQLitePersistence.m
 K 25
@@ -49,7 +49,7 @@ SQLitePersistentObject.m
 K 25
 svn:wc:ra_dav:version-url
 V 52
-/svn/!svn/ver/135/trunk/src/SQLitePersistentObject.m
+/svn/!svn/ver/138/trunk/src/SQLitePersistentObject.m
 END
 NSObject-ClassName.m
 K 25
@@ -90,8 +90,8 @@ END
 SQLiteInstanceManager.m
 K 25
 svn:wc:ra_dav:version-url
-V 50
-/svn/!svn/ver/72/trunk/src/SQLiteInstanceManager.m
+V 51
+/svn/!svn/ver/136/trunk/src/SQLiteInstanceManager.m
 END
 UIColor-SQLitePersistentObject.m
 K 25
