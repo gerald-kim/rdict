@@ -9,18 +9,23 @@
 #import "ReviewSessionController.h"
 #import "CardFrontViewController.h"
 #import "CardBackViewController.h"
+#import "ReviewUnfinishedViewController.h"
+#import "ReviewFinishedViewController.h"
 #import "Card.h"
 
 @interface ReviewSessionController()
 
-- (void)showCardFrontView;
-- (void)showCardBackView;
+- (void) showCardFrontView;
+- (void) showCardBackView;
+- (void) showReviewUnfinishedView;
+- (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
 
 @end
 
 
 @implementation ReviewSessionController
+
 @synthesize reviewCards;
 
 - (void)viewDidLoad {
@@ -34,6 +39,15 @@
 		cardBackViewController = [[CardBackViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
 		[self.view insertSubview:cardBackViewController.view atIndex:0];
 	}	
+	if( reviewUnfinishedViewController == nil ) {
+		reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
+		[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
+	}	
+	if( reviewFinishedViewController == nil ) {
+		reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
+		[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
+	}	
+	
 }
 
 - (void) initCards:(NSArray*) theCards {
@@ -95,6 +109,15 @@
 
 }
 
+- (void) showReviewUnfinishedView {
+	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
+}
+
+- (void) showReviewFinishedView {
+	[self.view bringSubviewToFront:reviewFinishedViewController.view];	
+}
+
+
 - (IBAction) answerButtonClicked : (id) sender {	
 	NSLog( @"RSC.showAnswerButton" );
 	//[self.navigationController popViewControllerAnimated:YES];
@@ -104,26 +127,37 @@
 
 - (IBAction) scoreButtonClicked : (id) sender {
 	UIButton *button = (UIButton*) sender;
-	NSLog( @"RSC.scoreButtonClicked %@", button.currentTitle );
-
 	NSUInteger score = [button.currentTitle intValue];
-	if( score < 3 ) {
-		[uncertainCards addObject:currentCard];
-	}
-//	[currentCard studyWithScore:[button.currentTitle intValue]];	
 	
-//	if( cardsRemain > 0 ) {
-		cardsRemain--;		
-//	} else if ( [uncertainCards count] > 0 ) {
-//		[uncertainCards removeObject:currentCard];
-//	}
+	cardsRemain--;		
+
+	if( cards == reviewCards ) {
+		if( score <= 3 ) {
+			[uncertainCards addObject:currentCard];
+		}
+	//	[currentCard studyWithScore:[button.currentTitle intValue]];	
+		if ( 0 == cardsRemain &&  0 != [uncertainCards count]  ) {
+			[self showReviewUnfinishedView];
+			return;
+		}
+	}
 	
 	if ( 0 == cardsRemain ) {
-		[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
-		[self.navigationController popViewControllerAnimated:YES];		
+		[self showReviewFinishedView];
 	} else {
 		[self showCardFrontView];
 	}
+}
+
+- (IBAction) reviewAgainButtonClicked : (id) sender {
+	[self initCards:uncertainCards];
+	[self showCardFrontView];
+}
+
+- (IBAction) reviewCompleteButtonClicked : (id) sender {
+	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+	[self.navigationController popViewControllerAnimated:YES];		
+	
 }
 
 @end

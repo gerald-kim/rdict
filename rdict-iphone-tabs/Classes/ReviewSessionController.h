@@ -10,11 +10,15 @@
 
 @class CardFrontViewController;
 @class CardBackViewController;
+@class ReviewUnfinishedViewController;
+@class ReviewFinishedViewController;
 @class Card;
 
 @interface ReviewSessionController : UIViewController {
 	CardFrontViewController* cardFrontViewController;
 	CardBackViewController* cardBackViewController;
+	ReviewUnfinishedViewController* reviewUnfinishedViewController;
+	ReviewFinishedViewController* reviewFinishedViewController;
 
 	NSUInteger cardsRemain;
 	
@@ -28,6 +32,7 @@
 
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	
-
+- (IBAction) reviewAgainButtonClicked : (id) sender;
+- (IBAction) reviewCompleteButtonClicked : (id) sender;
 
 @end
