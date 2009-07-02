@@ -43,6 +43,6 @@
 + (int) countByScheduled;
 
 - (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a;
-
+- (void) study:(NSUInteger) grade;
 
 @end

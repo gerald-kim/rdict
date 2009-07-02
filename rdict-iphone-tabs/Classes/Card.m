@@ -41,6 +41,7 @@ DECLARE_PROPERTIES (
 }
 */
 
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<Card.%d %@>", [self pk], question];
@@ -66,6 +67,7 @@ DECLARE_PROPERTIES (
 	return self;
 }
 
+
 - (void)dealloc
 {
 	NSLog( @"Card(0x%x).dealloc", self ); 
@@ -77,6 +79,29 @@ DECLARE_PROPERTIES (
     [super dealloc];
 }
 
+
+- (void) study:(NSUInteger) theGrade {
+	self.grade = theGrade;
+	if ( theGrade < 3 ) {
+		self.repsSinceLapse = 0;
+	} else {
+		self.repsSinceLapse += 1;
+		float newEasiness = self.easiness + (0.1 - (5 - theGrade) * (0.08 + (5 - theGrade) * 0.02));
+		self.easiness = newEasiness >= 1.3 ? newEasiness : 1.3;
+	}
+	
+	if ( self.repsSinceLapse == 0 ) {
+		self.interval = 1;
+	} else if ( self.repsSinceLapse == 1 ) {
+		self.interval = 6;		
+	} else {
+		self.interval = self.interval * self.easiness;
+	}
+	
+	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
+	self.studied = [[NSDate alloc] init];	
+	[self save];
+}
 /*
 + (NSArray*) findScheduled {
 }

@@ -135,7 +135,7 @@
 		if( score <= 3 ) {
 			[uncertainCards addObject:currentCard];
 		}
-	//	[currentCard studyWithScore:[button.currentTitle intValue]];	
+		[currentCard study:score];
 		if ( 0 == cardsRemain &&  0 != [uncertainCards count]  ) {
 			[self showReviewUnfinishedView];
 			return;

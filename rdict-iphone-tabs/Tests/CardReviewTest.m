@@ -30,6 +30,21 @@
 	STAssertNil( card.studied, nil );
 }
 
+-(void) testForgot {
+	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	double oldEasiness = card.easiness;
+	[card study:0];
+	STAssertEquals( oldEasiness, card.easiness, nil );
+	STAssertNotNil( card.studied, nil );	
+}
+
+-(void) testMinimalEasinessShouldGreaterThen1_3 {
+	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	card.easiness = 1.31;
+	[card study:3];
+	STAssertEquals( 1.3, card.easiness, nil );
+}
+
 @end
 
 #endif
