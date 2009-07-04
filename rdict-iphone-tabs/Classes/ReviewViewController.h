@@ -13,10 +13,12 @@
 @interface ReviewViewController : UIViewController {
 	IBOutlet ReviewSessionController* reviewSessionController;
 	IBOutlet UILabel* cardInfomationLabel;
+	IBOutlet UITextView* scheduleText;
 }
 
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
 @property (nonatomic, retain) UILabel* cardInfomationLabel;
+@property (nonatomic, retain) UITextView* scheduleText;
 
 - (IBAction) studyButtonClicked:(id) sender;
 

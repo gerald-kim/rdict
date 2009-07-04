@@ -7,6 +7,7 @@
 //
 
 #import "Card.h"
+#import "SLStmt.h"
 
 @implementation Card
 @synthesize question, answer;
@@ -26,12 +27,39 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
 )
 
-+ (NSArray*) findByScheduled {
-	return [Card findByCriteria:@"where scheduled <= datetime()"];	
-}
 
 + (int) countByScheduled {
-	return [Card countByCriteria:@"where scheduled <= datetime()"];
+	return [Card countByCriteria:[self scheduledCardCriteria]];
+}
+
++ (NSArray*) findByScheduled {
+	return [Card findByCriteria:[self scheduledCardCriteria]];	
+}
+
++ (NSString*) scheduledCardCriteria {
+	return [NSString stringWithString:@"where scheduled < date('now', '+1 day')"];	
+}
+
++ (NSString*) searchedTodayCriteria {
+	return [NSString stringWithString:@"where created < date('now', '+1 day')"];	
+}
+
++ (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {
+	SLStmt* stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:
+				   @"select date( scheduled ) date, count(*) count " 
+					"from card where scheduled > date('now', '+1 day') "
+					"group by date(scheduled) limit %d", limit]];
+									
+	NSMutableArray *scheduleArray = [NSMutableArray array];
+	
+	while( [stmt step] ) {
+		NSArray *row = [NSArray arrayWithObjects: [stmt stringValue:0], [stmt stringValue:1], nil];
+		[scheduleArray addObject:row];
+	}
+	[stmt close];
+	
+	return scheduleArray;
+	
 }
 
 /*

@@ -27,7 +27,7 @@
 }
 
 -(void) tearDown {
-	unlink("test.db");
+	[[SQLiteInstanceManager sharedManager] deleteDatabase];
 }
 
 -(void) assertCardEquals:(Card*) expected actual:(Card*) actual {
@@ -78,6 +78,7 @@
 	NSLog( @"expected2.scheduled : %@", expected2.scheduled );	
 	[expected2 save];
 	Card* expected3 = [[Card alloc] initWithQuestion:@"question 3" andAnswer:@"answer"];
+	expected3.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) + (SECONDS_IN_ONE_DAY)];
 	[expected3 save];
 	
 	NSArray* scheduled = (NSArray*) [Card findByScheduled];
@@ -87,8 +88,21 @@
 	
 	int scheduledCount = [Card countByScheduled];
 	STAssertEquals( 2, scheduledCount, nil );
+	
+	NSArray* schedule = [Card reviewSchedulesWithLimit:2];
+	STAssertEquals( (NSUInteger) 1, [schedule count], nil );
+	NSArray* row = [schedule objectAtIndex:0];
+	STAssertEqualStrings( @"1", [row objectAtIndex:1], nil );
+//	NSLog( @"%@ : %@", [row objectAtIndex:0], [row objectAtIndex:1] );	
 }
 
+-(void) testFindSearchedTodayCards {
+	Card* expected1 = [[Card alloc] initWithQuestion:@"question 1" andAnswer:@"answer"];
+	[expected1 save];
+
+	STAssertEquals( 1, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
+	
+}
 
 @end
 

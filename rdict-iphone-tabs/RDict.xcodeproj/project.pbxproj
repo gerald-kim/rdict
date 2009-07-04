@@ -58,6 +58,58 @@
 		EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
 		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
+		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
+		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
+		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
+		EF54C54B0FFF36D000BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
+		EF54C54C0FFF36D000BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
+		EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
+		EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
+		EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
+		EF54C5500FFF36D000BFDCB6 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
+		EF54C5510FFF36D000BFDCB6 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
+		EF54C5520FFF36D000BFDCB6 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
+		EF54C5530FFF36D000BFDCB6 /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
+		EF54C5540FFF36D000BFDCB6 /* ReviewUnfinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD00FF7B88F00889749 /* ReviewUnfinishedView.xib */; };
+		EF54C5550FFF36D000BFDCB6 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
+		EF54C5570FFF36D000BFDCB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		EF54C5580FFF36D000BFDCB6 /* RDictAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RDictAppDelegate.m */; };
+		EF54C5590FFF36D000BFDCB6 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
+		EF54C55A0FFF36D000BFDCB6 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
+		EF54C55B0FFF36D000BFDCB6 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
+		EF54C55C0FFF36D000BFDCB6 /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
+		EF54C55D0FFF36D000BFDCB6 /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
+		EF54C55E0FFF36D000BFDCB6 /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
+		EF54C55F0FFF36D000BFDCB6 /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
+		EF54C5600FFF36D000BFDCB6 /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
+		EF54C5610FFF36D000BFDCB6 /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
+		EF54C5620FFF36D000BFDCB6 /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
+		EF54C5630FFF36D000BFDCB6 /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
+		EF54C5640FFF36D000BFDCB6 /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
+		EF54C5650FFF36D000BFDCB6 /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
+		EF54C5660FFF36D000BFDCB6 /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
+		EF54C5670FFF36D000BFDCB6 /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
+		EF54C5680FFF36D000BFDCB6 /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
+		EF54C5690FFF36D000BFDCB6 /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
+		EF54C56A0FFF36D000BFDCB6 /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
+		EF54C56B0FFF36D000BFDCB6 /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
+		EF54C56C0FFF36D000BFDCB6 /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
+		EF54C56D0FFF36D000BFDCB6 /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
+		EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
+		EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
+		EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
+		EF54C5710FFF36D000BFDCB6 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
+		EF54C5720FFF36D000BFDCB6 /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC70FF7B86800889749 /* CardFrontViewController.m */; };
+		EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
+		EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
+		EF54C5760FFF36D000BFDCB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		EF54C5770FFF36D000BFDCB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
+		EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
+		EF54C5860FFF372100BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5830FFF372100BFDCB6 /* index.db */; };
+		EF54C5870FFF372100BFDCB6 /* redirect.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5840FFF372100BFDCB6 /* redirect.db */; };
+		EF54C5880FFF372100BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5850FFF372100BFDCB6 /* word.db */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
 		EF770FCC0FF7B86800889749 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
 		EF770FCD0FF7B86800889749 /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC70FF7B86800889749 /* CardFrontViewController.m */; };
@@ -68,6 +120,9 @@
 		EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
 		EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
 		EF92DC330FFC31AF008591C6 /* CardReviewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF92DC320FFC31AF008591C6 /* CardReviewTest.m */; };
+		EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
+		EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
+		EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EFBF4A200FE001AB0092357C /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */; };
 		EFBF4A210FE001AB0092357C /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */; };
@@ -90,11 +145,23 @@
 		EFEA07F10FDFF51700490192 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07DC0FDFF4F900490192 /* tcbdb.c */; };
 		EFEA07F20FDFF51700490192 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07D80FDFF4F900490192 /* md5.c */; };
 		EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
-		EFEA07FE0FDFF53D00490192 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
-		EFEA07FF0FDFF53D00490192 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
+			remoteInfo = tokyocabinet;
+		};
+		EF54C5460FFF36D000BFDCB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFBF4A160FE001900092357C;
+			remoteInfo = UnitTests;
+		};
 		EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -173,6 +240,11 @@
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
 		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardBackView.xib; path = Resources/CardBackView.xib; sourceTree = "<group>"; };
+		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
+		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
+		EF54C5840FFF372100BFDCB6 /* redirect.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = redirect.db; sourceTree = "<group>"; };
+		EF54C5850FFF372100BFDCB6 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
 		EF770E830FF754D900889749 /* jquery-1.3.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.js"; path = "Resources/jquery-1.3.2.js"; sourceTree = "<group>"; };
 		EF770FC40FF7B86800889749 /* CardBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBackViewController.h; path = Classes/CardBackViewController.h; sourceTree = "<group>"; };
 		EF770FC50FF7B86800889749 /* CardBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBackViewController.m; path = Classes/CardBackViewController.m; sourceTree = "<group>"; };
@@ -194,6 +266,8 @@
 		EF8D0B3A0FDFFFE800B093EB /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
 		EF92DC320FFC31AF008591C6 /* CardReviewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardReviewTest.m; path = Tests/CardReviewTest.m; sourceTree = "<group>"; };
+		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
+		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryViewController.h; path = Classes/DictionaryViewController.h; sourceTree = "<group>"; };
 		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryViewController.m; path = Classes/DictionaryViewController.m; sourceTree = "<group>"; };
@@ -233,6 +307,18 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF54C5750FFF36D000BFDCB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF54C5760FFF36D000BFDCB6 /* Foundation.framework in Frameworks */,
+				EF54C5770FFF36D000BFDCB6 /* UIKit.framework in Frameworks */,
+				EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */,
+				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
+				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +363,7 @@
 				1D6058910D05DD3D006BFB54 /* RDict.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
+				EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,6 +385,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				EFAA21F50FFF510A00D5EBFB /* sqlite-m */,
 				EF2E748E0FE9B2B8008B8AEC /* sqlitepersistentobjects */,
 				EF8D0B350FDFFFE800B093EB /* GTM */,
 				EFEA07D70FDFF4F900490192 /* tokyocabinet */,
@@ -310,13 +398,15 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF54C5820FFF372100BFDCB6 /* enwiktionary.db */,
+				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
 				EF770E830FF754D900889749 /* jquery-1.3.2.js */,
 				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
 				EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */,
 				EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
-				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
+				EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -371,6 +461,16 @@
 			path = sqlitepersistentobjects;
 			sourceTree = "<group>";
 		};
+		EF54C5820FFF372100BFDCB6 /* enwiktionary.db */ = {
+			isa = PBXGroup;
+			children = (
+				EF54C5830FFF372100BFDCB6 /* index.db */,
+				EF54C5840FFF372100BFDCB6 /* redirect.db */,
+				EF54C5850FFF372100BFDCB6 /* word.db */,
+			);
+			path = enwiktionary.db;
+			sourceTree = "<group>";
+		};
 		EF7CB7E10FF11C3F005B7FCD /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +520,15 @@
 				EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */,
 			);
 			name = GTM;
+			sourceTree = "<group>";
+		};
+		EFAA21F50FFF510A00D5EBFB /* sqlite-m */ = {
+			isa = PBXGroup;
+			children = (
+				EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */,
+				EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */,
+			);
+			path = "sqlite-m";
 			sourceTree = "<group>";
 		};
 		EFBF4A780FE003650092357C /* Controllers */ = {
@@ -501,6 +610,25 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* RDict.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EF54C5420FFF36D000BFDCB6 /* RDict Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF54C57B0FFF36D000BFDCB6 /* Build configuration list for PBXNativeTarget "RDict Test" */;
+			buildPhases = (
+				EF54C5470FFF36D000BFDCB6 /* Resources */,
+				EF54C5560FFF36D000BFDCB6 /* Sources */,
+				EF54C5750FFF36D000BFDCB6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */,
+				EF54C5450FFF36D000BFDCB6 /* PBXTargetDependency */,
+			);
+			name = "RDict Test";
+			productName = RDict;
+			productReference = EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EFBF4A160FE001900092357C /* UnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFBF4A1C0FE001900092357C /* Build configuration list for PBXNativeTarget "UnitTests" */;
@@ -549,6 +677,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				EF54C5420FFF36D000BFDCB6 /* RDict Test */,
 				1D6058900D05DD3D006BFB54 /* RDict */,
 				EFBF4A160FE001900092357C /* UnitTests */,
 				EFEA07EA0FDFF50B00490192 /* tokyocabinet */,
@@ -564,8 +693,6 @@
 				EF2E75510FE9BBB0008B8AEC /* dictionary_view.html in Resources */,
 				EF2E75530FE9BBB0008B8AEC /* jquery-1.3.2.min.js in Resources */,
 				EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */,
-				EFEA07FE0FDFF53D00490192 /* index.db in Resources */,
-				EFEA07FF0FDFF53D00490192 /* word.db in Resources */,
 				EF2E75500FE9BBB0008B8AEC /* CardFrontView.xib in Resources */,
 				EF2E75520FE9BBB0008B8AEC /* DictionaryView.xib in Resources */,
 				EF2E75540FE9BBB0008B8AEC /* MainWindow.xib in Resources */,
@@ -575,6 +702,30 @@
 				EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */,
 				EF770FD10FF7B88F00889749 /* ReviewUnfinishedView.xib in Resources */,
 				EF770FD30FF7B8A000889749 /* ReviewFinishedView.xib in Resources */,
+				EF54C5860FFF372100BFDCB6 /* index.db in Resources */,
+				EF54C5870FFF372100BFDCB6 /* redirect.db in Resources */,
+				EF54C5880FFF372100BFDCB6 /* word.db in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF54C5470FFF36D000BFDCB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */,
+				EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */,
+				EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */,
+				EF54C54B0FFF36D000BFDCB6 /* index.db in Resources */,
+				EF54C54C0FFF36D000BFDCB6 /* word.db in Resources */,
+				EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */,
+				EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */,
+				EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */,
+				EF54C5500FFF36D000BFDCB6 /* ReviewView.xib in Resources */,
+				EF54C5510FFF36D000BFDCB6 /* SearchView.xib in Resources */,
+				EF54C5520FFF36D000BFDCB6 /* CardBackView.xib in Resources */,
+				EF54C5530FFF36D000BFDCB6 /* ReviewSessionView.xib in Resources */,
+				EF54C5540FFF36D000BFDCB6 /* ReviewUnfinishedView.xib in Resources */,
+				EF54C5550FFF36D000BFDCB6 /* ReviewFinishedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +792,45 @@
 				EF770FCD0FF7B86800889749 /* CardFrontViewController.m in Sources */,
 				EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */,
 				EF770FCF0FF7B86800889749 /* ReviewUnfinishedViewController.m in Sources */,
+				EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF54C5560FFF36D000BFDCB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF54C5570FFF36D000BFDCB6 /* main.m in Sources */,
+				EF54C5580FFF36D000BFDCB6 /* RDictAppDelegate.m in Sources */,
+				EF54C5590FFF36D000BFDCB6 /* DictionaryViewController.m in Sources */,
+				EF54C55A0FFF36D000BFDCB6 /* ReviewViewController.m in Sources */,
+				EF54C55B0FFF36D000BFDCB6 /* SearchViewController.m in Sources */,
+				EF54C55C0FFF36D000BFDCB6 /* Wiktionary.m in Sources */,
+				EF54C55D0FFF36D000BFDCB6 /* WordEntry.m in Sources */,
+				EF54C55E0FFF36D000BFDCB6 /* WordIndex.m in Sources */,
+				EF54C55F0FFF36D000BFDCB6 /* NSData-SQLitePersistence.m in Sources */,
+				EF54C5600FFF36D000BFDCB6 /* NSDate-SQLitePersistence.m in Sources */,
+				EF54C5610FFF36D000BFDCB6 /* NSMutableArray-MultipleSort.m in Sources */,
+				EF54C5620FFF36D000BFDCB6 /* NSMutableData-SQLitePersistence.m in Sources */,
+				EF54C5630FFF36D000BFDCB6 /* NSNumber-SQLitePersistence.m in Sources */,
+				EF54C5640FFF36D000BFDCB6 /* NSObject-ClassName.m in Sources */,
+				EF54C5650FFF36D000BFDCB6 /* NSObject-MissingKV.m in Sources */,
+				EF54C5660FFF36D000BFDCB6 /* NSObject-SQLitePersistence.m in Sources */,
+				EF54C5670FFF36D000BFDCB6 /* NSString-NumberStuff.m in Sources */,
+				EF54C5680FFF36D000BFDCB6 /* NSString-SQLiteColumnName.m in Sources */,
+				EF54C5690FFF36D000BFDCB6 /* NSString-SQLitePersistence.m in Sources */,
+				EF54C56A0FFF36D000BFDCB6 /* NSString-UppercaseFirst.m in Sources */,
+				EF54C56B0FFF36D000BFDCB6 /* SQLiteInstanceManager.m in Sources */,
+				EF54C56C0FFF36D000BFDCB6 /* SQLitePersistentObject.m in Sources */,
+				EF54C56D0FFF36D000BFDCB6 /* UIColor-SQLitePersistentObject.m in Sources */,
+				EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */,
+				EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */,
+				EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */,
+				EF54C5710FFF36D000BFDCB6 /* CardBackViewController.m in Sources */,
+				EF54C5720FFF36D000BFDCB6 /* CardFrontViewController.m in Sources */,
+				EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */,
+				EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */,
+				EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +864,7 @@
 				EF2E74D00FE9B2E1008B8AEC /* CardPersistenceTest.m in Sources */,
 				EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */,
 				EF92DC330FFC31AF008591C6 /* CardReviewTest.m in Sources */,
+				EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +883,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
+			targetProxy = EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */;
+		};
+		EF54C5450FFF36D000BFDCB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFBF4A160FE001900092357C /* UnitTests */;
+			targetProxy = EF54C5460FFF36D000BFDCB6 /* PBXContainerItemProxy */;
+		};
 		EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFBF4A160FE001900092357C /* UnitTests */;
@@ -748,13 +949,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "361DD042-4B7D-4421-855C-0E2440D6414D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
@@ -763,14 +964,48 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "361DD042-4B7D-4421-855C-0E2440D6414D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+		EF54C57C0FFF36D000BFDCB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = "RDict-Info copy.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
+				);
+				PRODUCT_NAME = "RDict Test";
+			};
+			name = Debug;
+		};
+		EF54C57D0FFF36D000BFDCB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = "RDict-Info copy.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
+				);
+				PRODUCT_NAME = "RDict Test";
 			};
 			name = Release;
 		};
@@ -873,6 +1108,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF54C57B0FFF36D000BFDCB6 /* Build configuration list for PBXNativeTarget "RDict Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF54C57C0FFF36D000BFDCB6 /* Debug */,
+				EF54C57D0FFF36D000BFDCB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

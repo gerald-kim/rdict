@@ -14,6 +14,7 @@
 @implementation ReviewViewController
 @synthesize reviewSessionController;
 @synthesize cardInfomationLabel;
+@synthesize scheduleText;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -26,7 +27,15 @@
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
 	
-	int cardCount = [Card count];
+	
+	int cardCount = [Card countByScheduled];
+	NSArray* schedule = [Card reviewSchedulesWithLimit:7];
+	NSMutableString* text = [NSMutableString string];
+	for( NSArray* row in schedule ) {
+		[text appendFormat:@"%@ : %@\n", [row objectAtIndex:0], [row objectAtIndex:1]];
+	}
+	scheduleText.text = text;
+	
 	NSLog( @"Card counts: %d", cardCount );
 	cardInfomationLabel.text = [NSString stringWithFormat:@"There %d cards to review today.", cardCount];
 }
@@ -58,7 +67,7 @@
 	}
 	
 
-	reviewSessionController.reviewCards = [Card allObjects];
+	reviewSessionController.reviewCards = [Card findByScheduled];
 
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
 }
