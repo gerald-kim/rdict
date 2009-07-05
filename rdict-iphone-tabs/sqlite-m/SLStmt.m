@@ -8,7 +8,6 @@
 //
 
 #import "SLStmt.h"
-#import "SLDatabase.h"
 #import "SQLiteInstanceManager.h"
 
 @implementation SLStmt
