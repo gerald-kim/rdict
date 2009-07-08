@@ -7,6 +7,7 @@ INSTALL
 * python-openid 2.2.4 - in the sandbox directory 
 * django-test-utils - http://ericholscher.com/projects/django-test-utils/index.html  
 * elementtree
+* tc
 
 * firepython 
  $ git submodule init
