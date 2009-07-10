@@ -5,6 +5,7 @@
 
 from BeautifulSoup import BeautifulSoup
 from cStringIO import StringIO
+import re 
 
 class WiktionaryFilter:
     
@@ -15,7 +16,7 @@ class WiktionaryFilter:
         
         buffer = StringIO()
 #        buffer.write( '<!DOCTYPE html><html lang="en"><head><meta charset=utf-8></head><body>\n')
-        h2s = bodyContent.findAll( 'h2', {'class':'head'}  )
+        h2s = bodyContent.findAll( 'h2', {'class':'head'} )
         
         englishHead = h2s[0]
         otherLangHead = None
@@ -31,10 +32,10 @@ class WiktionaryFilter:
 #        buffer.write( '</body></html>' )
         buffer.flush()
         
-        return BeautifulSoup( buffer.getvalue(), fromEncoding='utf-8' )
+        return BeautifulSoup( buffer.getvalue(), fromEncoding = 'utf-8' )
 
     def pullUpHeadSpanContent( self, content ):
-        headSpans = content.findAll('span', {'class':'mw-headline'} )
+        headSpans = content.findAll( 'span', {'class':'mw-headline'} )
         for headSpan in headSpans:
             parent = headSpan.parent
             parent['class'] = 'head' 
@@ -66,3 +67,48 @@ class WiktionaryFilter:
                 soups = content.findAll( tag, attr )
                 [ s.extract() for s in soups ]
             
+    def soup_filter_removeUnnecessaryHeadings( self, content ):
+        UNNECESSARY_HEADINGS = [u'Translations']
+        
+        for unnecessary_heading in UNNECESSARY_HEADINGS:
+            headings = content.findAll( attrs = {'class':'head' } )
+            for heading in headings:
+                print "HEADING:", heading, heading.contents
+                extracts = []
+                if unnecessary_heading == heading.contents[0]:
+                    print "unnecessary:", heading
+                    extracts.append( heading )
+                    g = heading.nextSiblingGenerator()
+                    n = g.next()
+                    while n != None and n not in headings:
+                        print n
+                        extracts.append( n )
+                        n = g.next()
+                    
+                    [ s.extract() for s in extracts ]
+                    
+    def soup_filter_removeEmptyP( self, content ):
+        ps = content.findAll( 'p' )
+        
+        for p in ps:
+            childrens = p.findChildren()
+            if len( childrens ) == 1 and u'a' == childrens[0].name:
+                p.extract()
+
+    def soup_filter_extractPronounciation( self, content ):
+        extiwAs = content.findAll( 'a', {'class':'extiw'} )
+        
+        for a in extiwAs:
+            try:
+                if len( a.contents ) == 1 and a.contents[0] in [u'IPA', u'SAMPA']:
+                    li = a.parent
+                    ul = li.parent
+                    ul.contents = [li]
+                    break
+            except:
+                pass
+        
+    def soup_filter_removeMentionSpans( self, content ):
+        spans = content.findAll( 'span', {'class':re.compile('mention-.+')} )
+        [ s.replaceWith( s.contents[0] ) for s in spans ]
+    
