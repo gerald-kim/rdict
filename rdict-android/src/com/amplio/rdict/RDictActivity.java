@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class RDictActivity extends TabActivity {
 	
-	private static final String[] TABS = { "Dictionary", "Review", "History", "Settings"};
+	private static final String[] TABS = { "Search", "Review", "History", "Settings"};
 	public static ObjectContainer db = null;
 	
     /** Called when the activity is first created. */

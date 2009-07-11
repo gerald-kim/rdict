@@ -13,15 +13,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 
-public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener, TextWatcher{
+public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private Button searchButton;
-    private WebView _searchResultsPage;
+    private ListView _wordList;
+	private WebView _searchResultsPage;
 
     private Dictionary _dictionary = null;
     
@@ -39,6 +46,9 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		
 		this.searchButton = (Button)findViewById(R.id.widget44);
 		this.searchButton.setOnClickListener(this);
+		
+		_wordList = (ListView) findViewById(R.id.listview);
+		_wordList.setOnItemClickListener(this);
 		
 		_searchResultsPage = (WebView) findViewById(R.id.webview);
 		_searchResultsPage.getSettings().setJavaScriptEnabled(true);
@@ -136,7 +146,23 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		Vector<String> v = this._dictionary.findMatchingWords(s.toString());
 		
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
+		
 		for(int i = 0; i < v.size(); i++)
-			System.out.println(v.get(i));
+			aa.add(v.get(i));
+
+		_wordList.setAdapter(aa);
+		aa.notifyDataSetChanged();
+	}
+
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		DictionaryEntry dicEntry = _dictionary.searchByWord(((TextView)view).getText().toString());
+    	
+		if(dicEntry != null){
+			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+		}
+		else {
+			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+		}
 	}
 }

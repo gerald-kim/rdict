@@ -12,6 +12,7 @@
             </intent-filter>
         </activity>
         
+        <activity android:name=".SearchActivity" android:label="Search"></activity>
         <activity android:name=".DictionaryActivity" android:label="Dictionary"></activity>
 		  <activity android:name=".ReviewActivity" android:label="Review"></activity>
 		  <activity android:name=".FlashCardActivity" android:label="FlashCards"></activity>
