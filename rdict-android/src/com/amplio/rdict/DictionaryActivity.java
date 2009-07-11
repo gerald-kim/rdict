@@ -2,32 +2,21 @@ package com.amplio.rdict;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Vector;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 
-public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener, TextWatcher, OnItemClickListener {
+public class DictionaryActivity extends Activity implements AssetInputStreamProvider {
 	private EditText searchText;
 	private Button searchButton;
-    private ListView _wordList;
+   
 	private WebView _searchResultsPage;
 
     private Dictionary _dictionary = null;
@@ -42,13 +31,8 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		
 		this.searchText = (EditText)findViewById(R.id.widget43);
 		
-		this.searchText.addTextChangedListener(this);
-		
-		this.searchButton = (Button)findViewById(R.id.widget44);
-		this.searchButton.setOnClickListener(this);
-		
-		_wordList = (ListView) findViewById(R.id.listview);
-		_wordList.setOnItemClickListener(this);
+		//this.searchButton = (Button)findViewById(R.id.widget44);
+		//this.searchButton.setOnClickListener(this);
 		
 		_searchResultsPage = (WebView) findViewById(R.id.webview);
 		_searchResultsPage.getSettings().setJavaScriptEnabled(true);
@@ -69,6 +53,15 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	System.out.println("Dic resumed.");
     	
     	super.onResume();
+    		
+    	if(SearchActivity.searchWord != null){
+    		DictionaryEntry dicEntry = this._dictionary.searchByWord(SearchActivity.searchWord);
+    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+		}
+		else {
+			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+		}
+    	
 		_cardSetMgr = new CardSetManager(RDictActivity.db);
     }
     
@@ -125,44 +118,4 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 
     	}
     }
-
-	public void onClick(View v) {
-		DictionaryEntry dicEntry = _dictionary.searchByWord(searchText.getText().toString());
-    	
-		if(dicEntry != null){
-			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
-		}
-		else {
-			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
-		}
-	}
-
-	public void afterTextChanged(Editable s) {
-	}
-
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
-
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		Vector<String> v = this._dictionary.findMatchingWords(s.toString());
-		
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
-		
-		for(int i = 0; i < v.size(); i++)
-			aa.add(v.get(i));
-
-		_wordList.setAdapter(aa);
-		aa.notifyDataSetChanged();
-	}
-
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		DictionaryEntry dicEntry = _dictionary.searchByWord(((TextView)view).getText().toString());
-    	
-		if(dicEntry != null){
-			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
-		}
-		else {
-			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
-		}
-	}
 }

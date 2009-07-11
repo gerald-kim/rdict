@@ -14,17 +14,22 @@ android:orientation="horizontal"
 android:layout_x="0px"
 android:layout_y="3px"
 >
+<Button
+android:id="@+id/back_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:text="Back" android:soundEffectsEnabled="true">
+</Button>
 <EditText
-android:id="@+id/widget43"
+android:id="@+id/title"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text=""
-android:width="260px" android:textSize="14sp">
+android:width="210px" android:textSize="14sp">
 </EditText>
 <Button
-android:id="@+id/widget44"
+android:id="@+id/forward_button"
 android:layout_width="wrap_content"
-android:layout_height="wrap_content" android:text="Go" android:soundEffectsEnabled="true">
+android:layout_height="wrap_content" android:text="Forw" android:soundEffectsEnabled="true">
 </Button>
 </TableRow>
 
@@ -32,26 +37,11 @@ android:layout_height="wrap_content" android:text="Go" android:soundEffectsEnabl
 android:id="@+id/widget42"
 android:layout_width="fill_parent"
 android:orientation="horizontal"
-android:layout_x="0px" android:layout_y="50px" android:layout_height="wrap_content">
-
-<ListView 
-	android:id="@+id/listview"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-	android:visibility="visible">
-</ListView>
-
-</TableRow>
-
-<TableRow
-android:id="@+id/widget42"
-android:layout_width="fill_parent"
-android:orientation="horizontal"
-android:layout_x="0px" android:layout_y="50px" android:layout_height="wrap_content">
+android:layout_x="0px" android:layout_y="50px" android:layout_height="fill_parent">
 
 <WebView 
 	android:id="@+id/webview"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-	android:visibility="visible">
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
 </WebView>
 
 </TableRow>
