@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class DictionaryEntryFactory {
-	
 	private String _htmlFileContents = null;
 	
 	public DictionaryEntryFactory(InputStream htmlStream){

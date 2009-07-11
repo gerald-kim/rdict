@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import junit.framework.TestCase;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.amplio.rdict.AssetInputStreamProvider;
 import com.amplio.rdict.Dictionary;
@@ -15,29 +16,25 @@ public class DictionaryTest extends TestCase implements AssetInputStreamProvider
 	
 	private InputStream _htmlStream = null;
 	
-	String[] _assetPaths = null;
+	private SQLiteDatabase con = null;
 	
 	public void setUp() {
 		// set up search results page stream
 		File file = new File("assets/dictionary_js.html");
+		
 		try {
 			_htmlStream = (InputStream) new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		File dir = new File("assets");
-	    _assetPaths = dir.list();
-	    
-	    for(int i = 1; i < _assetPaths.length;i++) {
-	    	if(-1 != _assetPaths[i].indexOf("word")){
-	    		_assetPaths[i] = "assets/" + _assetPaths[i];
-	    	}
-	    }
+	}
+	
+	public void tearDown() {
+		con.close();
 	}
 	
 	public void testSearch() {
-		Dictionary dic = new Dictionary(_htmlStream, _assetPaths, this);
+		Dictionary dic = new Dictionary(con, _htmlStream);
 		
 		DictionaryEntry dicEntry = dic.searchByWord("fish");
 		
@@ -49,7 +46,7 @@ public class DictionaryTest extends TestCase implements AssetInputStreamProvider
 	}
 	
 	public void testSearchReturnsNullIfNotFound() {
-		Dictionary dic = new Dictionary(_htmlStream, _assetPaths, this);
+		Dictionary dic = new Dictionary(con, _htmlStream);
 		
 		DictionaryEntry dicEntry = dic.searchByWord("dfasdfasdf");
 		

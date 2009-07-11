@@ -4,7 +4,7 @@
 import sys
 import os
 import tc
-import cdb
+import sqlite3
 
 reload( sys )
 sys.setdefaultencoding( "utf-8" )
@@ -29,8 +29,16 @@ class SmallCdbMaker:
         c = db_word.curnew()
         c.first()
         
-        path = self._get_db_filepath( self.small_db_dir, "tmp_db")
-        db_small = self._open_db(path)
+        insert_count = 0
+        i = 0
+        small_filename = ('word')
+        
+        conn = sqlite3.connect(self._get_db_filepath( self.small_db_dir, small_filename ))
+        small_db_c = conn.cursor()
+        small_db_c.execute('''create table word_db (_id integer primary key, word text, def text)''')
+        
+        small_db_c.execute('''CREATE TABLE "android_metadata" ("locale" TEXT DEFAULT 'en_US')''');
+        small_db_c.execute('''INSERT INTO "android_metadata" VALUES ('en_US')''');
         
         while 1:
             try:
@@ -38,39 +46,23 @@ class SmallCdbMaker:
             except KeyError:
                 break
             if word_map.has_key( c.key() ):
-                db_small.add( c.key(), c.val() )
-            
-                if db_small.numentries >= 400:
-                    db_small.finish()
-                    
-                    #rename tmp db to last word in file
-                    small_filename = self._get_db_filepath(self.small_db_dir, c.key() + "_word")
-                    os.rename(self._get_db_filepath( self.small_db_dir, "tmp_db"), small_filename)
-                    
-                    #open new tmp db
-                    path = self._get_db_filepath( self.small_db_dir, "tmp_db")
-                    db_small = self._open_db(path)
+                small_db_c.execute('insert into word_db values (null,?,?)', [c.key(), c.val()])
+                insert_count = insert_count + 1
                     
             c.next()
-            
-        db_small.finish()
-        del(db_small)
+        
+        small_db_c.execute('''create index word_db_index on word_db(word);''');
+        
+        conn.commit()
+        small_db_c.close()
         
         db_word.close()
         
     def _get_db_filepath( self, dir, name ):
         return os.path.join( os.path.dirname( __file__ ), dir, name + '.db' )
     
-    def get_file_size(self, f):
-        f.seek(0,2)
-        return f.tell()
-    
-    def _open_db( self, path ):
-        db = cdb.cdbmake(path, path + ".tmp");
-        return db
-        
     def get_popular_word_map( self ):
-        file = open( './popular_10000.txt' )
+        file = open( 'popular_10000.txt' )
         word_list = file.readlines()
         word_map = {}
         for word in word_list:
@@ -81,6 +73,7 @@ if __name__ == '__main__':
     if len( sys.argv ) < 2:
         print( "Usage: %s dbdir" % ( sys.argv[0] ) ) 
         sys.exit( 1 )
+
     
     small_db_maker = SmallCdbMaker( sys.argv[1] )
     small_db_maker.create_smalldb_for_cdb()

@@ -2,9 +2,13 @@ package com.amplio.rdict;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Vector;
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -14,7 +18,7 @@ import android.widget.EditText;
 
 import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 
-public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener{
+public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener, TextWatcher{
 	private EditText searchText;
 	private Button searchButton;
     private WebView _searchResultsPage;
@@ -30,6 +34,9 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		setContentView(R.layout.dictionary);
 		
 		this.searchText = (EditText)findViewById(R.id.widget43);
+		
+		this.searchText.addTextChangedListener(this);
+		
 		this.searchButton = (Button)findViewById(R.id.widget44);
 		this.searchButton.setOnClickListener(this);
 		
@@ -38,7 +45,8 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		_searchResultsPage.setWebViewClient(new DictionaryWebViewClient());
 		_searchResultsPage.loadData("Search", "text/html", "utf-8");
 		
-		_dictionary = new Dictionary(getAssetInputStream("dictionary_js.html"), this.getAssetPaths(), this);
+		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
+    	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
     }
     
     public void onStart(){
@@ -66,17 +74,6 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	
     	super.onStop();
     }
-    
-	private String[] getAssetPaths(){
-		String [] assetPaths = null;
-      	try {
-  			 assetPaths = this.getAssets().list("");
-  		} catch (IOException e1) {
-  			e1.printStackTrace();
-  		}
-  		
-  		return assetPaths;
-	}
     
 	public InputStream getAssetInputStream(String path) {
 		InputStream stream = null;
@@ -128,5 +125,18 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		else {
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
 		}
+	}
+
+	public void afterTextChanged(Editable s) {
+	}
+
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	}
+
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		Vector<String> v = this._dictionary.findMatchingWords(s.toString());
+		
+		for(int i = 0; i < v.size(); i++)
+			System.out.println(v.get(i));
 	}
 }

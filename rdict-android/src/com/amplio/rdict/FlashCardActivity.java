@@ -38,8 +38,11 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		this.easy_button = (Button)findViewById(R.id.easy_button);
 		this.easy_button.setOnClickListener(this);
 		this.not_bad_button = (Button)findViewById(R.id.not_bad_button);
+		this.not_bad_button.setOnClickListener(this);
 		this.hard_button = (Button)findViewById(R.id.hard_button);
+		this.hard_button.setOnClickListener(this);
 		this.i_forgot_button = (Button)findViewById(R.id.i_forgot_button);
+		this.i_forgot_button.setOnClickListener(this);
 		
 		System.out.println("FlashCard - created");
 		
@@ -99,12 +102,12 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				this.hard_button.setVisibility(View.VISIBLE);
 				this.i_forgot_button.setVisibility(View.VISIBLE);
 			}
-			else{
-				
+			else {
 				Card c = (Card)cardSet[cardSetIndex];
+				c.adjustEasinessByGrade(getGradeByButton(v));
 				c.schedule();
 				ReviewActivity.reviewManager.cardsMgr.save(c);
-
+				
 				cardSetIndex++;
 				
 				if(cardSetIndex < cardSet.length){
@@ -126,6 +129,13 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				}
 			}
 		}
+	}
+
+	private int getGradeByButton(View view) {
+		if(view == this.easy_button) return 4;
+		else if (view == this.not_bad_button) return 3;
+		else if (view == this.hard_button) return 2;
+		else return 1; // i forgot button
 	}
 	
 }

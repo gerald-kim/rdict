@@ -1,7 +1,6 @@
 package com.amplio.rdict.tests;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import junit.framework.TestCase;
