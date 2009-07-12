@@ -18,7 +18,7 @@ public class Dictionary {
 	}
 	
 	public DictionaryEntry searchByWord(String word) {
-		Cursor c = _con.rawQuery("select def from word_db where word GLOB ? limit 1", new String[]{word});
+		Cursor c = _con.rawQuery("select def from word_db where word = ? limit 1", new String[]{word});
 		
 		if(0 < c.getCount()){
 			c.moveToNext();

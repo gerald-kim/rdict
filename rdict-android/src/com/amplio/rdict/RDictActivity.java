@@ -7,6 +7,7 @@ import android.app.TabActivity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +18,8 @@ public class RDictActivity extends TabActivity {
 	
 	private static final String[] TABS = { "Search", "Review", "History", "Settings"};
 	public static ObjectContainer db = null;
+	
+	private HistoryManager _historyMgr = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -43,6 +46,11 @@ public class RDictActivity extends TabActivity {
         	RDictActivity.db.close();
         
         RDictActivity.db = Db4o.openFile(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
+        
+        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+    	_historyMgr = new HistoryManager(con);
+    	
+    	_historyMgr.createTableIfNotExists(con);
     }
     
     public static class MyTabIndicator extends LinearLayout {

@@ -15,13 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
 	private Dictionary _dictionary = null;
+	private HistoryManager _historyMgr = null;
 	
 	public static Word searchWord = null;
 	public Vector<Word> words = null;
@@ -40,8 +40,9 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		_wordList = (ListView) findViewById(R.id.listview);
 		_wordList.setOnItemClickListener(this);
 		
-		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
+		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
+    	_historyMgr = new HistoryManager(con);
     }
     
     public void onStart(){
@@ -99,7 +100,11 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		int index = parent.getPositionForView(view);
 		
-		SearchActivity.searchWord = words.elementAt(index); 
+		SearchActivity.searchWord = words.elementAt(index);
+		
+		_historyMgr.addHistoryRecord(SearchActivity.searchWord._word);
+		System.out.println("Saved " + SearchActivity.searchWord._word);
+		
 		SearchActivity.searchHistory.clear();
 					
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);

@@ -68,20 +68,15 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     
     public void refreshDicPage(String word, boolean recordHistory) {
     	DictionaryEntry dicEntry = _dictionary.searchByWord(word);
+    	this.title.setText(word);
     	
-    	if(dicEntry != null){
-    		if(recordHistory)
-    			SearchActivity.searchHistory.addWord(new Word(1, dicEntry.word, dicEntry.entry));
-
+    	if(recordHistory)
+			SearchActivity.searchHistory.addWord(new Word(1, word, null));
+    	
+    	if(dicEntry != null)
     		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
-    		
-    		this.title.setText(word);
-		}
-		else {
+		else
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
-			
-			this.title.setText("No Results");
-		}
     	
     	this._backButton.setEnabled(SearchActivity.searchHistory.canGoBack());
     	this._forwardButton.setEnabled(SearchActivity.searchHistory.canGoForward());	
