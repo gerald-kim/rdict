@@ -18,7 +18,7 @@ public class Dictionary {
 	}
 	
 	public DictionaryEntry searchByWord(String word) {
-		Cursor c = _con.rawQuery("select def from word_db where word GLOB '" +  word + "' limit 1", null);
+		Cursor c = _con.rawQuery("select def from word_db where word GLOB ? limit 1", new String[]{word});
 		
 		if(0 < c.getCount()){
 			c.moveToNext();
@@ -29,13 +29,25 @@ public class Dictionary {
   		}
 	}
 	
-	public Vector<String> findMatchingWords(String str) {
-		Vector<String> matches = new Vector<String>();
-		Cursor c = _con.rawQuery("select word from word_db where word GLOB '" + str + "*' limit 10", null);
+	public DictionaryEntry getWordByID(long id) {
+		Cursor c = _con.rawQuery("select word, def from word_db where _id = " + id, null);
+		
+		if(0 < c.getCount()){
+			c.moveToNext();
+			return _factory.makeHTMLifiedEntry(c.getString(0), c.getString(1));
+		}
+  		else {
+  			return null;
+  		}
+	}
+	
+	public Vector<Word> findMatchingWords(String str) {
+		Vector<Word> matches = new Vector<Word>();
+		Cursor c = _con.rawQuery("select * from word_db where word GLOB '" + str + "*' limit 50", null);
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
-			matches.add(c.getString(0));
+			matches.add(new Word(c.getLong(0), c.getString(1), c.getString(2)));
 		}
   		
 		return matches;

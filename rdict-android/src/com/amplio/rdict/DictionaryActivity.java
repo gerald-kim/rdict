@@ -6,41 +6,48 @@ import java.io.InputStream;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
 
-public class DictionaryActivity extends Activity implements AssetInputStreamProvider {
-	private EditText searchText;
-	private Button searchButton;
-   
-	private WebView _searchResultsPage;
+public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener {
+	private TextView title = null;
+	private Button _backButton = null;
+	private Button _forwardButton = null;
+	private WebView _searchResultsPage = null;
 
     private Dictionary _dictionary = null;
-    
     private CardSetManager _cardSetMgr = null;
     
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);		
+    	super.onCreate(savedInstanceState);
 		setContentView(R.layout.dictionary);
+    	
+    	SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
+    	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
+    	
+    	_cardSetMgr = new CardSetManager(RDictActivity.db);
+    	
+		this.title = (TextView)findViewById(R.id.title);
 		
-		this.searchText = (EditText)findViewById(R.id.widget43);
+		_backButton = (Button)findViewById(R.id.back_button);
+		_backButton.setOnClickListener(this);
 		
-		//this.searchButton = (Button)findViewById(R.id.widget44);
-		//this.searchButton.setOnClickListener(this);
+		_forwardButton = (Button)findViewById(R.id.forward_button);
+		_forwardButton.setOnClickListener(this);
 		
 		_searchResultsPage = (WebView) findViewById(R.id.webview);
 		_searchResultsPage.getSettings().setJavaScriptEnabled(true);
-		_searchResultsPage.setWebViewClient(new DictionaryWebViewClient());
-		_searchResultsPage.loadData("Search", "text/html", "utf-8");
 		
-		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
-    	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
+		DictionaryWebViewClient client = new DictionaryWebViewClient();
+		client.dicActivity = this;
+		_searchResultsPage.setWebViewClient(client);
     }
     
     public void onStart(){
@@ -53,16 +60,37 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	System.out.println("Dic resumed.");
     	
     	super.onResume();
-    		
-    	if(SearchActivity.searchWord != null){
-    		DictionaryEntry dicEntry = this._dictionary.searchByWord(SearchActivity.searchWord);
+    	
+    	this.refreshDicPage(SearchActivity.searchWord._word, true);
+    	    	
+		_cardSetMgr = new CardSetManager(RDictActivity.db);
+    }
+    
+    public void refreshDicPage(String word, boolean recordHistory) {
+    	DictionaryEntry dicEntry = _dictionary.searchByWord(word);
+    	
+    	if(dicEntry != null){
+    		if(recordHistory)
+    			SearchActivity.searchHistory.addWord(new Word(1, dicEntry.word, dicEntry.entry));
+
     		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+    		
+    		this.title.setText(word);
 		}
 		else {
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+			
+			this.title.setText("No Results");
 		}
     	
-		_cardSetMgr = new CardSetManager(RDictActivity.db);
+    	this._backButton.setEnabled(SearchActivity.searchHistory.canGoBack());
+    	this._forwardButton.setEnabled(SearchActivity.searchHistory.canGoForward());	
+    }
+    
+    public void addCard(String def){
+    	Card card = new Card(title.getText().toString(), def);
+		card.schedule();
+		_cardSetMgr.save(card);
     }
     
     public void onPause() {
@@ -88,34 +116,13 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		
 		return stream;
 	}
-	
-    private class DictionaryWebViewClient extends WebViewClient{
-    	@Override 
-    	public boolean shouldOverrideUrlLoading(WebView view, String url) {
-    		if (url.contains("lookup")) {
-    			String word = url.substring(url.indexOf('=') + 1);
-    			DictionaryEntry dicEntry = _dictionary.searchByWord(word);
-	
-    			if(dicEntry != null){
-    				_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
-    			}
-    			else {
-					  _searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
-    			}
-    			return true;
-    		}
-    		else if (url.contains("save")) {
-    			System.out.println(url);
-    			String def = url.substring(url.indexOf('=') + 1);
-    			Card card = new Card(searchText.getText().toString(), def);
-    			card.schedule();
-    			_cardSetMgr.save(card);
-    			return true;
-    		}
-    		else {
-    			return false;
-    		}
 
-    	}
-    }
+	public void onClick(View v) {
+		if(this._backButton == v)
+			SearchActivity.searchHistory.goBack();
+		else
+			SearchActivity.searchHistory.goForward();
+		
+		this.refreshDicPage(SearchActivity.searchHistory.getWord()._word, false);
+	}
 }
