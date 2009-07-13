@@ -42,9 +42,23 @@ class WordModelTest( unittest.TestCase ):
         self.assertTrue( word.downloaded )
         
         page = word.page
-        print page.encode( 'utf-8' )
+        #print page.encode( 'utf-8' )
         self.assertTrue( page.startswith( u'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN' ) )
         self.assertTrue( page.endswith( u'</body></html>\n' ) )
+
+    def longtest_page_filter(self):
+        word = Word( u'get', 123 )
+        
+        self.assertFalse( word.downloaded )
+        self.assertFalse( word.filtered )
+        word.download_page()
+        word.filter_page()
+        self.assertTrue( word.downloaded )
+        self.assertTrue( word.filtered )
+        
+        definition = word.definition
+        #print definition.encode( 'utf-8' )
+        self.assertTrue( len( definition ) > 10 * 1024 )
         
 
 if __name__ == "__main__":

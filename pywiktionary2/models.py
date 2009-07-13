@@ -13,6 +13,8 @@ import os
 import urllib2
 import bz2
 
+from wiktionary_filter import *
+
 WORD_DB = 'word.db'
 FILE_DIR = 'word.db.files'
 
@@ -22,7 +24,7 @@ def setup_test_env():
     FILE_DIR = 'tests.db.files' 
 
 def create_session():
-    engine = create_engine( 'sqlite:///' + WORD_DB, echo = False, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
+    engine = create_engine( 'sqlite:///' + WORD_DB, echo = True, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
     if not u'words' in engine.table_names():
         metadata = MetaData()
         words_table = Table( 'words', metadata,
@@ -88,18 +90,41 @@ class Word( Base ):
 #            self.session.flush()
             print u"Unexpected error on word(%s):" % ( self.lemma )
 #                traceback.print_exception( *sys.exc_info() )
-#                raise        
+#                raise
+
+    def filter_page( self ):
+        try:
+            filter = WiktionaryFilter()
+            content = filter.findContent( self.page )
+            filter.executeSoupFilters( content )
+            
+            f = bz2.BZ2File( self.get_definition_path(), 'w' )
+            f.write( str( content ) )
+            f.close()
+            
+            self.filtered = True
+        except KeyboardInterrupt:
+            raise
+        except:
+            self.filtered = None
+            print u"filtering error: %s" % ( self.lemma )
+        
+    def read_bzip_file( self, path ):
+        f = bz2.BZ2File( path )
+        content = unicode( f.read(), 'utf-8' )
+        f.close()
+        
+        return content
         
     def get_page( self ):
         if not self.downloaded:
             return None
-        
-        f = bz2.BZ2File( self.get_page_path() )
-        page = unicode( f.read(), 'utf-8' )
-        f.close()
-        
-        return page
+        return self.read_bzip_file( self.get_page_path() )
+
+    def get_definition( self ):
+        if not self.filtered:
+            return None
+        return self.read_bzip_file( self.get_definition_path() )
     
     page = property( get_page )
-        
-   
+    definition = property( get_definition )
