@@ -73,13 +73,22 @@ class Word( Base ):
         return os.path.join( self.get_file_dir(), self.get_file_name() + ".def.bz2" )
         
     def download_page( self ):
-        url = "http://en.wiktionary.com/wiki/" + urllib2.quote( self.get_file_name() )
-        #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
-        os.system( 'mkdir -p %s' % self.get_file_dir() )
-        os.system( 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() ) )
-        
-        #os.system( ) 
-        self.downloaded = True
+        try:
+            url = "http://en.wiktionary.com/wiki/" + urllib2.quote( self.get_file_name() )
+            #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
+            os.system( 'mkdir -p %s' % self.get_file_dir() )
+            os.system( 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() ) )
+            
+            #os.system( ) 
+            self.downloaded = True
+        except KeyboardInterrupt:
+            raise
+        except:
+            self.downloaded = None
+#            self.session.flush()
+            print u"Unexpected error on word(%s):" % ( self.lemma )
+#                traceback.print_exception( *sys.exc_info() )
+#                raise        
         
     def get_page( self ):
         if not self.downloaded:

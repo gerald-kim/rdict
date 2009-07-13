@@ -7,6 +7,8 @@
 
 from models import *
 import time 
+import sys
+import traceback
 
 if __name__ == '__main__':
     s = create_session()
@@ -16,12 +18,8 @@ if __name__ == '__main__':
     while q.count() > 0:
         for word in q.slice( 0, 10 ).all():
             time.sleep( 1 )
-
             word.download_page()
 
             WordCount += 1
             if WordCount % 100 == 0:
-                print "\033[A", WordCount
-                
-        
-    
+                print "Downloaded: ", WordCount
