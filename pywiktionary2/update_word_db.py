@@ -77,7 +77,6 @@ class WordHandler( WikiHandler ):
         WordCount += 1
         if WordCount % 100 == 0:
             self.session.flush()
-            self.session.commit()
             print "\033[A", WordCount
 
 
@@ -93,8 +92,6 @@ class WordDbMaker:
         xml.sax.parse( f, WordHandler( session ) )
         
         f.close()
-        session.flush()
-        session.commit()
         session.close()
         
     
@@ -106,4 +103,3 @@ if __name__ == '__main__':
           
     maker = WordDbMaker( sys.argv[1] )
     maker.process_redir_and_filter_english()
-    

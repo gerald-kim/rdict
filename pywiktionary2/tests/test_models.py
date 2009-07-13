@@ -12,13 +12,12 @@ setup_test_env()
 class SessionTest( unittest.TestCase ):
     def test_session_creation( self ):
         session = create_session()
-        session.commit()
         self.assertTrue( None != session )
 
 class WordModelTest( unittest.TestCase ):
     def setUp( self ):
         self.session = create_session()
-        #self.session.begin()
+        self.session.begin()
         
     def tearDown( self ):
         self.session.flush()

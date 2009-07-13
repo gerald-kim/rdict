@@ -33,7 +33,10 @@ def create_session():
         )
         metadata.create_all( engine )
         
-    Session = sessionmaker( bind = engine )
+        #Index( 'idx_downloaded', word_table.downloaded )
+
+        
+    Session = sessionmaker( bind = engine, autocommit = True, autoflush = True )
     session = Session()
     return session
 
@@ -50,6 +53,8 @@ class Word( Base ):
     def __init__( self, lemma, revision ):
         self.lemma = lemma
         self.revision = revision
+        self.downloaded = False
+        self.filtered = False
     
     def __repr__( self ):
         return "<Word('%s','%d')>" % ( self.lemma, self.revision )
@@ -69,7 +74,7 @@ class Word( Base ):
         
     def download_page( self ):
         url = "http://en.wiktionary.com/wiki/" + urllib2.quote( self.get_file_name() )
-        print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
+        #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
         os.system( 'mkdir -p %s' % self.get_file_dir() )
         os.system( 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() ) )
         
