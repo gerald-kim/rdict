@@ -15,7 +15,7 @@ TEST_WIKTIONARY_PAGE = open( os.path.join( os.path.dirname( __file__ ), 'pages',
 
 class WiktionaryFilterTest( unittest.TestCase ):
     
-    def longTestFilter( self ):
+    def longtest_filter( self ):
         '''
         testFilter (WiktionaryFilterTest)
         

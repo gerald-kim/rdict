@@ -21,7 +21,7 @@ FILE_DIR = 'word.db.files'
 def setup_test_env():
     global WORD_DB, FILE_DIR
     WORD_DB = 'tests.db'
-    FILE_DIR = 'tests.db.files' 
+    FILE_DIR = 'tests.db.files'
 
 def create_session():
     engine = create_engine( 'sqlite:///' + WORD_DB, echo = True, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
@@ -34,10 +34,10 @@ def create_session():
             Column( 'filtered', BOOLEAN )
         )
         metadata.create_all( engine )
-        
+
         #Index( 'idx_downloaded', word_table.downloaded )
 
-        
+
     Session = sessionmaker( bind = engine, autocommit = True, autoflush = True )
     session = Session()
     return session
@@ -46,42 +46,42 @@ Base = declarative_base()
 
 class Word( Base ):
     __tablename__ = 'words'
-    
+
     lemma = Column( String, primary_key = True )
     revision = Column( Integer )
     downloaded = Column( BOOLEAN )
     filtered = Column( BOOLEAN )
-    
+
     def __init__( self, lemma, revision ):
         self.lemma = lemma
         self.revision = revision
         self.downloaded = False
         self.filtered = False
-    
+
     def __repr__( self ):
-        return "<Word('%s','%d')>" % ( self.lemma, self.revision )
+        return u"<Word('%s','%d')>" % ( self.lemma, self.revision )
 
     def get_file_name( self ):
         return self.lemma.replace( ' ', '_' )
-    
+
     def get_file_dir( self ):
         hash = sha1( self.lemma ).hexdigest()
         return os.path.join( os.path.dirname( __file__ ), FILE_DIR, hash[0:2], hash[2:4] )
-                             
+
     def get_page_path( self ):
         return os.path.join( self.get_file_dir(), self.get_file_name() + ".html.bz2" )
-        
+
     def get_definition_path( self ):
         return os.path.join( self.get_file_dir(), self.get_file_name() + ".def.bz2" )
-        
+
     def download_page( self ):
         try:
             url = "http://en.wiktionary.com/wiki/" + urllib2.quote( self.get_file_name() )
             #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
             os.system( 'mkdir -p %s' % self.get_file_dir() )
             os.system( 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() ) )
-            
-            #os.system( ) 
+
+            #os.system( )
             self.downloaded = True
         except KeyboardInterrupt:
             raise
@@ -97,25 +97,25 @@ class Word( Base ):
             filter = WiktionaryFilter()
             content = filter.findContent( self.page )
             filter.executeSoupFilters( content )
-            
+
             f = bz2.BZ2File( self.get_definition_path(), 'w' )
             f.write( str( content ) )
             f.close()
-            
+
             self.filtered = True
         except KeyboardInterrupt:
             raise
         except:
             self.filtered = None
             print u"filtering error: %s" % ( self.lemma )
-        
+
     def read_bzip_file( self, path ):
         f = bz2.BZ2File( path )
         content = unicode( f.read(), 'utf-8' )
         f.close()
-        
+
         return content
-        
+
     def get_page( self ):
         if not self.downloaded:
             return None
@@ -125,6 +125,6 @@ class Word( Base ):
         if not self.filtered:
             return None
         return self.read_bzip_file( self.get_definition_path() )
-    
+
     page = property( get_page )
     definition = property( get_definition )

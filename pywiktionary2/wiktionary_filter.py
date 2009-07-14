@@ -116,8 +116,12 @@ class WiktionaryFilter:
 import sys
 
 if __name__ == '__main__':
+    #import psyco
+    #psyco.full()
+
+    page = sys.stdin.read() 
     filter = WiktionaryFilter()
-    content = filter.findContent( sys.stdin.read() )
+    content = filter.findContent( page )
     filter.executeSoupFilters( content )
     
     print str( content )
