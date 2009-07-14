@@ -12,11 +12,11 @@ import traceback
 
 if __name__ == '__main__':
     s = create_session()
-    q = s.query(Word).filter_by( downloaded = True, filtered = False )
+    q = s.query(Word).filter_by( downloaded = True ).filter_by( filtered = False )
     WordCount = 0
     
     while q.count() > 0:
-        for word in q.slice( 0, 10 ).all():
+        for word in q.slice( 0, 100 ).all():
             word.filter_page()
 
             WordCount += 1

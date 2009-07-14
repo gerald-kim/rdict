@@ -16,7 +16,7 @@ if __name__ == '__main__':
     WordCount = 0
     
     while q.count() > 0:
-        for word in q.slice( 0, 10 ).all():
+        for word in q.slice( 0, 100 ).all():
             time.sleep( 1 )
             word.download_page()
 
