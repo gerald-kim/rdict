@@ -161,14 +161,11 @@
 #endif
 
 #define _MYNOZLIB
-
 #if defined(_MYNOZLIB)
 #define TCUSEZLIB      0
 #else
 #define TCUSEZLIB      1
 #endif
-
-#define _MYNOBZIP
 
 #if defined(_MYNOBZIP)
 #define TCUSEBZIP      0

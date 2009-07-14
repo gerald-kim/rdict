@@ -74,6 +74,7 @@ typedef struct {                         /* type of structure for a B+ tree data
   uint64_t lleaf;                        /* ID number of the last visited leaf */
   bool tran;                             /* whether in the transaction */
   char *rbopaque;                        /* opaque for rollback */
+  uint64_t clock;                        /* logical clock */
   int64_t cnt_saveleaf;                  /* tesing counter for leaf save times */
   int64_t cnt_loadleaf;                  /* tesing counter for leaf load times */
   int64_t cnt_killleaf;                  /* tesing counter for leaf kill times */
@@ -108,6 +109,7 @@ enum {                                   /* enumeration for open modes */
 
 typedef struct {                         /* type of structure for a B+ tree cursor */
   TCBDB *bdb;                            /* database object */
+  uint64_t clock;                        /* logical clock */
   uint64_t id;                           /* ID number of the leaf */
   int32_t kidx;                          /* number of the key */
   int32_t vidx;                          /* number of the value */
@@ -220,6 +222,15 @@ bool tcbdbsetcache(TCBDB *bdb, int32_t lcnum, int32_t ncnum);
    If successful, the return value is true, else, it is false.
    Note that the mapping parameters should be set before the database is opened. */
 bool tcbdbsetxmsiz(TCBDB *bdb, int64_t xmsiz);
+
+
+/* Set the unit step number of auto defragmentation of a B+ tree database object.
+   `bdb' specifies the B+ tree database object which is not opened.
+   `dfunit' specifie the unit step number.  If it is not more than 0, the auto defragmentation
+   is disabled.  It is disabled by default.
+   If successful, the return value is true, else, it is false.
+   Note that the defragmentation parameter should be set before the database is opened. */
+bool tcbdbsetdfunit(TCBDB *bdb, int32_t dfunit);
 
 
 /* Open a database file and connect a B+ tree database object.
@@ -464,7 +475,7 @@ int tcbdbvsiz2(TCBDB *bdb, const char *kstr);
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
    The return value is a list object of the keys of the corresponding records.  This function
-   does never fail and return an empty list even if no record corresponds.
+   does never fail.  It returns an empty list even if no record corresponds.
    Because the object of the return value is created with the function `tclistnew', it should
    be deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcbdbrange(TCBDB *bdb, const void *bkbuf, int bksiz, bool binc,
@@ -482,7 +493,7 @@ TCLIST *tcbdbrange(TCBDB *bdb, const void *bkbuf, int bksiz, bool binc,
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
    The return value is a list object of the keys of the corresponding records.  This function
-   does never fail and return an empty list even if no record corresponds.
+   does never fail.  It returns an empty list even if no record corresponds.
    Because the object of the return value is created with the function `tclistnew', it should
    be deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcbdbrange2(TCBDB *bdb, const char *bkstr, bool binc,
@@ -495,8 +506,8 @@ TCLIST *tcbdbrange2(TCBDB *bdb, const char *bkstr, bool binc,
    `psiz' specifies the size of the region of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail
-   and return an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail.
+   It returns an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcbdbfwmkeys(TCBDB *bdb, const void *pbuf, int psiz, int max);
@@ -507,8 +518,8 @@ TCLIST *tcbdbfwmkeys(TCBDB *bdb, const void *pbuf, int psiz, int max);
    `pstr' specifies the string of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail
-   and return an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail.
+   It returns an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcbdbfwmkeys2(TCBDB *bdb, const char *pstr, int max);
@@ -992,6 +1003,20 @@ bool tcbdbsetcapnum(TCBDB *bdb, uint64_t capnum);
 bool tcbdbsetcodecfunc(TCBDB *bdb, TCCODEC enc, void *encop, TCCODEC dec, void *decop);
 
 
+/* Get the unit step number of auto defragmentation of a B+ tree database object.
+   `bdb' specifies the B+ tree database object.
+   The return value is the unit step number of auto defragmentation. */
+uint32_t tcbdbdfunit(TCBDB *bdb);
+
+
+/* Perform dynamic defragmentation of a B+ tree database object.
+   `bdb' specifies the B+ tree database object connected as a writer.
+   `step' specifie the number of steps.  If it is not more than 0, the whole file is defragmented
+   gradually without keeping a continuous lock.
+   If successful, the return value is true, else, it is false. */
+bool tcbdbdefrag(TCBDB *bdb, int64_t step);
+
+
 /* Store a new record into a B+ tree database object with backward duplication.
    `bdb' specifies the B+ tree database object connected as a writer.
    `kbuf' specifies the pointer to the region of the key.
@@ -1030,8 +1055,10 @@ bool tcbdbputdupback2(TCBDB *bdb, const char *kstr, const char *vstr);
    not modified.  If it is `(void *)-1', the record is removed.
    `op' specifies an arbitrary pointer to be given as a parameter of the callback function.  If
    it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
-bool tcbdbputproc(TCBDB *bdb, const void *kbuf, int ksiz, const char *vbuf, int vsiz,
+   If successful, the return value is true, else, it is false.
+   Note that the callback function can not perform any database operation because the function
+   is called in the critical section guarded by the same locks of database operations. */
+bool tcbdbputproc(TCBDB *bdb, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
                   TCPDPROC proc, void *op);
 
 
@@ -1066,7 +1093,9 @@ bool tcbdbcurjumpback2(BDBCUR *cur, const char *kstr);
    or false to stop iteration.
    `op' specifies an arbitrary pointer to be given as a parameter of the iterator function.  If
    it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
+   If successful, the return value is true, else, it is false.
+   Note that the callback function can not perform any database operation because the function
+   is called in the critical section guarded by the same locks of database operations. */
 bool tcbdbforeach(TCBDB *bdb, TCITER iter, void *op);
 
 

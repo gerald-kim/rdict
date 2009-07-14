@@ -395,7 +395,7 @@ char *(*_tc_bzdecompress)(const char *, int, int *) = NULL;
 #if TCUSEEXLZMA
 
 
-#include <lzmalib.h>
+#include "lzmadec.h"
 
 
 void *_tc_recencode(const void *ptr, int size, int *sp, void *op){
