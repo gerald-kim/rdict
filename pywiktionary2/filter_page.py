@@ -18,6 +18,7 @@ if __name__ == '__main__':
     while q.count() > 0:
         for word in q.slice( 0, 100 ).all():
             word.filter_page()
+            s.flush()
 
             WordCount += 1
             if WordCount % 100 == 0:

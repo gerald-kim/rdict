@@ -19,7 +19,8 @@ if __name__ == '__main__':
         for word in q.slice( 0, 100 ).all():
             time.sleep( 1 )
             word.download_page()
-
+            s.flush()
+            
             WordCount += 1
             if WordCount % 100 == 0:
                 print "Downloaded: ", WordCount
