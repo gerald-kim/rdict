@@ -2,6 +2,7 @@
 # Copyright (c) 2009, Amplio Studios
 # All rights reserved.
 # Created at Jul 7, 2009 by evacuee
+
 from BeautifulSoup import BeautifulSoup
 
 import unittest
@@ -11,8 +12,16 @@ from wiktionary_filter import WiktionaryFilter
 
 TEST_WIKTIONARY_PAGE = open( os.path.join( os.path.dirname( __file__ ), 'pages', 'get.html' ) ).read()
 
+
 class WiktionaryFilterTest( unittest.TestCase ):
-    def testFilter( self ):
+    
+    def longtest_filter( self ):
+        '''
+        testFilter (WiktionaryFilterTest)
+        
+        to run this test you should run nosetests with -i option
+            $ nosetests -i longTest
+        '''
         filter = WiktionaryFilter()
         content = filter.findContent( TEST_WIKTIONARY_PAGE )
 
@@ -24,10 +33,6 @@ class WiktionaryFilterTest( unittest.TestCase ):
         f.write( str( content ) )
         f.close()
         os.system( "open /tmp/get.html" ) 
-#        filter.executeRegexFilters()
-#        out = filter.html()
-#        
-#        self.assertTrue( None != out )
 
 class SoupFilterTest( unittest.TestCase ):
     def setUp( self ):

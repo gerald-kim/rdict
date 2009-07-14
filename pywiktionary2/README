@@ -1,0 +1,10 @@
+
+RUN SEQUENCE
+============ 
+
+* update_xml.py
+* update_word_db.py enwiktionary-???.xml
+* download_page.py
+* filter_page.py
+* dump_to_tokyocabinet.py
+

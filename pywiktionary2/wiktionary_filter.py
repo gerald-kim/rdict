@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Copyright (c) 2009, Amplio Studios
 # All rights reserved.
@@ -73,15 +74,15 @@ class WiktionaryFilter:
         for unnecessary_heading in UNNECESSARY_HEADINGS:
             headings = content.findAll( attrs = {'class':'head' } )
             for heading in headings:
-                print "HEADING:", heading, heading.contents
+                #print "HEADING:", heading, heading.contents
                 extracts = []
                 if unnecessary_heading == heading.contents[0]:
-                    print "unnecessary:", heading
+                    #print "unnecessary:", heading
                     extracts.append( heading )
                     g = heading.nextSiblingGenerator()
                     n = g.next()
                     while n != None and n not in headings:
-                        print n
+                        #print n
                         extracts.append( n )
                         n = g.next()
                     
@@ -112,3 +113,15 @@ class WiktionaryFilter:
         spans = content.findAll( 'span', {'class':re.compile('mention-.+')} )
         [ s.replaceWith( s.contents[0] ) for s in spans ]
     
+import sys
+
+if __name__ == '__main__':
+    #import psyco
+    #psyco.full()
+
+    page = sys.stdin.read() 
+    filter = WiktionaryFilter()
+    content = filter.findContent( page )
+    filter.executeSoupFilters( content )
+    
+    print str( content )
