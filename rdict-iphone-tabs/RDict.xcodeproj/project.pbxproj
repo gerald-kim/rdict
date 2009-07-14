@@ -133,9 +133,9 @@
 		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
 		EFBF4A3C0FE002500092357C /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
 		EFBF4A3D0FE002500092357C /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
-		EFD7ECA0100CB9B800623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EC88100CB87600623BEE /* libbz2.dylib */; };
-		EFD7ECB7100CBAD000623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EC88100CB87600623BEE /* libbz2.dylib */; };
-		EFD7ECDB100CBB2600623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EC88100CB87600623BEE /* libbz2.dylib */; };
+		EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
+		EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
+		EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFEA07D00FDFF4EA00490192 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
 		EFEA07D10FDFF4EA00490192 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
 		EFEA07D20FDFF4EA00490192 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
@@ -272,9 +272,7 @@
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFD7EC88100CB87600623BEE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		EFD7EC8A100CB87600623BEE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EFD7EC8F100CB8A600623BEE /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
+		EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryViewController.h; path = Classes/DictionaryViewController.h; sourceTree = "<group>"; };
 		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryViewController.m; path = Classes/DictionaryViewController.m; sourceTree = "<group>"; };
 		EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewViewController.h; path = Classes/ReviewViewController.h; sourceTree = "<group>"; };
@@ -313,7 +311,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
-				EFD7ECB7100CBAD000623BEE /* libbz2.dylib in Frameworks */,
+				EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +324,7 @@
 				EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */,
 				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
 				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
-				EFD7ECA0100CB9B800623BEE /* libbz2.dylib in Frameworks */,
+				EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +334,7 @@
 			files = (
 				EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */,
 				EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */,
-				EFD7ECDB100CBB2600623BEE /* libbz2.dylib in Frameworks */,
+				EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,9 +385,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				EFD7EC88100CB87600623BEE /* libbz2.dylib */,
-				EFD7EC8A100CB87600623BEE /* libz.dylib */,
-				EFD7EC8F100CB8A600623BEE /* libm.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -426,6 +421,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */,
 				EF2E73170FE86454008B8AEC /* libsqlite3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -963,6 +959,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -978,6 +975,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";

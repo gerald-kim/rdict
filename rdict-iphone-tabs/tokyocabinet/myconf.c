@@ -23,9 +23,6 @@
  *************************************************************************************************/
 
 
-int _tc_dummy_cnt = 0;
-
-
 int _tc_dummyfunc(void){
   return 0;
 }
@@ -395,7 +392,7 @@ char *(*_tc_bzdecompress)(const char *, int, int *) = NULL;
 #if TCUSEEXLZMA
 
 
-#include "lzmadec.h"
+#include <lzmalib.h>
 
 
 void *_tc_recencode(const void *ptr, int size, int *sp, void *op){

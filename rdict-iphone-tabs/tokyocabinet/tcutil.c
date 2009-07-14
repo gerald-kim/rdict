@@ -334,13 +334,13 @@ static void tcvxstrprintf(TCXSTR *xstr, const char *format, va_list ap){
       case 'b':
         if(lnum >= 2){
           tlen = tcnumtostrbin(va_arg(ap, unsigned long long), tbuf,
-                               tcatoi(cbuf + 1), (cbuf[1] == '0') ? '0' : ' ');
+                               atoi(cbuf + 1), cbuf[1] == '0' ? '0' : ' ');
         } else if(lnum >= 1){
           tlen = tcnumtostrbin(va_arg(ap, unsigned long), tbuf,
-                               tcatoi(cbuf + 1), (cbuf[1] == '0') ? '0' : ' ');
+                               atoi(cbuf + 1), cbuf[1] == '0' ? '0' : ' ');
         } else {
           tlen = tcnumtostrbin(va_arg(ap, unsigned int), tbuf,
-                               tcatoi(cbuf + 1), (cbuf[1] == '0') ? '0' : ' ');
+                               atoi(cbuf + 1), cbuf[1] == '0' ? '0' : ' ');
         }
         TCXSTRCAT(xstr, tbuf, tlen);
         break;
@@ -419,23 +419,6 @@ TCLIST *tclistnew2(int anum){
   TCMALLOC(list->array, sizeof(list->array[0]) * list->anum);
   list->start = 0;
   list->num = 0;
-  return list;
-}
-
-
-/* Create a list object with initial string elements. */
-TCLIST *tclistnew3(const char *str, ...){
-  TCLIST *list = tclistnew();
-  if(str){
-    tclistpush2(list, str);
-    va_list ap;
-    va_start(ap, str);
-    const char *elem;
-    while((elem = va_arg(ap, char *)) != NULL){
-      tclistpush2(list, elem);
-    }
-    va_end(ap);
-  }
   return list;
 }
 
@@ -917,47 +900,16 @@ void tclistsortex(TCLIST *list, int (*cmp)(const TCLISTDATUM *, const TCLISTDATU
 }
 
 
-/* Invert elements of a list object. */
-void tclistinvert(TCLIST *list){
-  assert(list);
-  TCLISTDATUM *top = list->array + list->start;
-  TCLISTDATUM *bot = top + list->num - 1;
-  while(top < bot){
-    TCLISTDATUM swap = *top;
-    *top = *bot;
-    *bot = swap;
-    top++;
-    bot--;
-  }
-}
-
-
-/* Perform formatted output into a list object. */
-void tclistprintf(TCLIST *list, const char *format, ...){
-  assert(list && format);
-  TCXSTR *xstr = tcxstrnew();
-  va_list ap;
-  va_start(ap, format);
-  tcvxstrprintf(xstr, format, ap);
-  va_end(ap);
-  int size = TCXSTRSIZE(xstr);
-  char *ptr = tcxstrtomalloc(xstr);
-  tclistpushmalloc(list, ptr, size);
-}
-
-
 
 /*************************************************************************************************
  * hash map
  *************************************************************************************************/
 
 
-#define TCMAPKMAXSIZ   0xfffff           // maximum size of each key
-#define TCMAPDEFBNUM   4093              // default bucket number
+#define TCMAPBNUM      4093              // allocation unit number of a map
 #define TCMAPZMMINSIZ  131072            // minimum memory size to use nullified region
 #define TCMAPCSUNIT    52                // small allocation unit size of map concatenation
 #define TCMAPCBUNIT    252               // big allocation unit size of map concatenation
-#define TCMAPTINYBNUM  31                // bucket number of a tiny map
 
 /* get the first hash value */
 #define TCMAPHASH1(TC_res, TC_kbuf, TC_ksiz) \
@@ -986,7 +938,7 @@ void tclistprintf(TCLIST *list, const char *format, ...){
 
 /* Create a map object. */
 TCMAP *tcmapnew(void){
-  return tcmapnew2(TCMAPDEFBNUM);
+  return tcmapnew2(TCMAPBNUM);
 }
 
 
@@ -1012,37 +964,14 @@ TCMAP *tcmapnew2(uint32_t bnum){
 }
 
 
-/* Create a map object with initial string elements. */
-TCMAP *tcmapnew3(const char *str, ...){
-  TCMAP *map = tcmapnew2(TCMAPTINYBNUM);
-  if(str){
-    va_list ap;
-    va_start(ap, str);
-    const char *key = str;
-    const char *elem;
-    while((elem = va_arg(ap, char *)) != NULL){
-      if(key){
-        tcmapput2(map, key, elem);
-        key = NULL;
-      } else {
-        key = elem;
-      }
-    }
-    va_end(ap);
-  }
-  return map;
-}
-
-
 /* Copy a map object. */
 TCMAP *tcmapdup(const TCMAP *map){
   assert(map);
-  TCMAP *nmap = tcmapnew2(tclmax(tclmax(map->bnum, map->rnum), TCMAPDEFBNUM));
+  TCMAP *nmap = tcmapnew2(tclmax(tclmax(map->bnum, map->rnum), TCMAPBNUM));
   TCMAPREC *rec = map->first;
   while(rec){
     char *dbuf = (char *)rec + sizeof(*rec);
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    tcmapput(nmap, dbuf, rksiz, dbuf + rksiz + TCALIGNPAD(rksiz), rec->vsiz);
+    tcmapput(nmap, dbuf, rec->ksiz, dbuf + rec->ksiz + TCALIGNPAD(rec->ksiz), rec->vsiz);
     rec = rec->next;
   }
   return nmap;
@@ -1070,26 +999,22 @@ void tcmapdel(TCMAP *map){
 /* Store a record into a map object. */
 void tcmapput(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz){
   assert(map && kbuf && ksiz >= 0 && vbuf && vsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1125,10 +1050,11 @@ void tcmapput(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
   dbuf[ksiz+psiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1151,26 +1077,22 @@ void tcmapput2(TCMAP *map, const char *kstr, const char *vstr){
 /* Store a new record into a map object. */
 bool tcmapputkeep(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz){
   assert(map && kbuf && ksiz >= 0 && vbuf && vsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1188,10 +1110,11 @@ bool tcmapputkeep(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int 
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
   dbuf[ksiz+psiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1215,26 +1138,22 @@ bool tcmapputkeep2(TCMAP *map, const char *kstr, const char *vstr){
 /* Concatenate a value at the end of the value of the existing record in a map object. */
 void tcmapputcat(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz){
   assert(map && kbuf && ksiz >= 0 && vbuf && vsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1274,10 +1193,11 @@ void tcmapputcat(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int v
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
   dbuf[ksiz+psiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1300,26 +1220,22 @@ void tcmapputcat2(TCMAP *map, const char *kstr, const char *vstr){
 /* Remove a record of a map object. */
 bool tcmapout(TCMAP *map, const void *kbuf, int ksiz){
   assert(map && kbuf && ksiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1328,7 +1244,7 @@ bool tcmapout(TCMAP *map, const void *kbuf, int ksiz){
         rec = rec->right;
       } else {
         map->rnum--;
-        map->msiz -= rksiz + rec->vsiz;
+        map->msiz -= rec->ksiz + rec->vsiz;
         if(rec->prev) rec->prev->next = rec->next;
         if(rec->next) rec->next->prev = rec->prev;
         if(rec == map->first) map->first = rec->next;
@@ -1367,29 +1283,25 @@ bool tcmapout2(TCMAP *map, const char *kstr){
 /* Retrieve a record in a map object. */
 const void *tcmapget(const TCMAP *map, const void *kbuf, int ksiz, int *sp){
   assert(map && kbuf && ksiz >= 0 && sp);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   TCMAPREC *rec = map->buckets[hash%map->bnum];
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         rec = rec->left;
       } else if(kcmp > 0){
         rec = rec->right;
       } else {
         *sp = rec->vsiz;
-        return dbuf + rksiz + TCALIGNPAD(rksiz);
+        return dbuf + rec->ksiz + TCALIGNPAD(rec->ksiz);
       }
     }
   }
@@ -1401,28 +1313,24 @@ const void *tcmapget(const TCMAP *map, const void *kbuf, int ksiz, int *sp){
 const char *tcmapget2(const TCMAP *map, const char *kstr){
   assert(map && kstr);
   int ksiz = strlen(kstr);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kstr, ksiz);
   TCMAPREC *rec = map->buckets[hash%map->bnum];
   TCMAPHASH2(hash, kstr, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kstr, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kstr, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         rec = rec->left;
       } else if(kcmp > 0){
         rec = rec->right;
       } else {
-        return dbuf + rksiz + TCALIGNPAD(rksiz);
+        return dbuf + rec->ksiz + TCALIGNPAD(rec->ksiz);
       }
     }
   }
@@ -1433,22 +1341,18 @@ const char *tcmapget2(const TCMAP *map, const char *kstr){
 /* Move a record to the edge of a map object. */
 bool tcmapmove(TCMAP *map, const void *kbuf, int ksiz, bool head){
   assert(map && kbuf && ksiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   TCMAPREC *rec = map->buckets[hash%map->bnum];
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         rec = rec->left;
       } else if(kcmp > 0){
@@ -1502,7 +1406,7 @@ const void *tcmapiternext(TCMAP *map, int *sp){
   if(!map->cur) return NULL;
   rec = map->cur;
   map->cur = rec->next;
-  *sp = rec->ksiz & TCMAPKMAXSIZ;
+  *sp = rec->ksiz;
   return (char *)rec + sizeof(*rec);
 }
 
@@ -1540,7 +1444,7 @@ TCLIST *tcmapkeys(const TCMAP *map){
   TCMAPREC *rec = map->first;
   while(rec){
     char *dbuf = (char *)rec + sizeof(*rec);
-    TCLISTPUSH(list, dbuf, rec->ksiz & TCMAPKMAXSIZ);
+    TCLISTPUSH(list, dbuf, rec->ksiz);
     rec = rec->next;
   }
   return list;
@@ -1554,8 +1458,7 @@ TCLIST *tcmapvals(const TCMAP *map){
   TCMAPREC *rec = map->first;
   while(rec){
     char *dbuf = (char *)rec + sizeof(*rec);
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    TCLISTPUSH(list, dbuf + rksiz + TCALIGNPAD(rksiz), rec->vsiz);
+    TCLISTPUSH(list, dbuf + rec->ksiz + TCALIGNPAD(rec->ksiz), rec->vsiz);
     rec = rec->next;
   }
   return list;
@@ -1565,26 +1468,22 @@ TCLIST *tcmapvals(const TCMAP *map){
 /* Add an integer to a record in a map object. */
 int tcmapaddint(TCMAP *map, const void *kbuf, int ksiz, int num){
   assert(map && kbuf && ksiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1603,10 +1502,11 @@ int tcmapaddint(TCMAP *map, const void *kbuf, int ksiz, int num){
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, &num, sizeof(num));
   dbuf[ksiz+psiz+sizeof(num)] = '\0';
   rec->vsiz = sizeof(num);
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1623,26 +1523,22 @@ int tcmapaddint(TCMAP *map, const void *kbuf, int ksiz, int num){
 /* Add a real number to a record in a map object. */
 double tcmapadddouble(TCMAP *map, const void *kbuf, int ksiz, double num){
   assert(map && kbuf && ksiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1661,10 +1557,11 @@ double tcmapadddouble(TCMAP *map, const void *kbuf, int ksiz, double num){
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, &num, sizeof(num));
   dbuf[ksiz+psiz+sizeof(num)] = '\0';
   rec->vsiz = sizeof(num);
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1719,7 +1616,7 @@ void *tcmapdump(const TCMAP *map, int *sp){
   int tsiz = 0;
   TCMAPREC *rec = map->first;
   while(rec){
-    tsiz += (rec->ksiz & TCMAPKMAXSIZ) + rec->vsiz + sizeof(int) * 2;
+    tsiz += rec->ksiz + rec->vsiz + sizeof(int) * 2;
     rec = rec->next;
   }
   char *buf;
@@ -1728,7 +1625,7 @@ void *tcmapdump(const TCMAP *map, int *sp){
   rec = map->first;
   while(rec){
     const char *kbuf = (char *)rec + sizeof(*rec);
-    int ksiz = rec->ksiz & TCMAPKMAXSIZ;
+    int ksiz = rec->ksiz;
     const char *vbuf = kbuf + ksiz + TCALIGNPAD(ksiz);
     int vsiz = rec->vsiz;
     int step;
@@ -1750,7 +1647,7 @@ void *tcmapdump(const TCMAP *map, int *sp){
 /* Create a map object from a serialized byte array. */
 TCMAP *tcmapload(const void *ptr, int size){
   assert(ptr && size >= 0);
-  TCMAP *map = tcmapnew2(tclmin(size / 6 + 1, TCMAPDEFBNUM));
+  TCMAP *map = tcmapnew();
   const char *rp = ptr;
   const char *ep = (char *)ptr + size;
   while(rp < ep){
@@ -1777,26 +1674,22 @@ TCMAP *tcmapload(const void *ptr, int size){
 /* Store a record and make it semivolatile in a map object. */
 void tcmapput3(TCMAP *map, const void *kbuf, int ksiz, const char *vbuf, int vsiz){
   assert(map && kbuf && ksiz >= 0 && vbuf && vsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1841,10 +1734,11 @@ void tcmapput3(TCMAP *map, const void *kbuf, int ksiz, const char *vbuf, int vsi
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
   dbuf[ksiz+psiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1861,26 +1755,22 @@ void tcmapput3(TCMAP *map, const void *kbuf, int ksiz, const char *vbuf, int vsi
 void tcmapput4(TCMAP *map, const void *kbuf, int ksiz,
                const void *fvbuf, int fvsiz, const void *lvbuf, int lvsiz){
   assert(map && kbuf && ksiz >= 0 && fvbuf && fvsiz >= 0 && lvbuf && lvsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -1920,12 +1810,13 @@ void tcmapput4(TCMAP *map, const void *kbuf, int ksiz,
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   ksiz += psiz;
   memcpy(dbuf + ksiz, fvbuf, fvsiz);
   memcpy(dbuf + ksiz + fvsiz, lvbuf, lvsiz);
   dbuf[ksiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -1941,26 +1832,22 @@ void tcmapput4(TCMAP *map, const void *kbuf, int ksiz,
 /* Concatenate a value at the existing record and make it semivolatile in a map object. */
 void tcmapputcat3(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz){
   assert(map && kbuf && ksiz >= 0 && vbuf && vsiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   int bidx = hash % map->bnum;
   TCMAPREC *rec = map->buckets[bidx];
   TCMAPREC **entp = map->buckets + bidx;
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       entp = &(rec->left);
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       entp = &(rec->right);
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         entp = &(rec->left);
         rec = rec->left;
@@ -2009,10 +1896,11 @@ void tcmapputcat3(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int 
   char *dbuf = (char *)rec + sizeof(*rec);
   memcpy(dbuf, kbuf, ksiz);
   dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
+  rec->ksiz = ksiz;
   memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
   dbuf[ksiz+psiz+vsiz] = '\0';
   rec->vsiz = vsiz;
+  rec->hash = hash;
   rec->left = NULL;
   rec->right = NULL;
   rec->prev = map->last;
@@ -2022,137 +1910,24 @@ void tcmapputcat3(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int 
   if(map->last) map->last->next = rec;
   map->last = rec;
   map->rnum++;
-}
-
-
-/* Store a record into a map object with a duplication handler. */
-bool tcmapputproc(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op){
-  assert(map && kbuf && ksiz >= 0 && proc);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
-  TCMAPHASH1(hash, kbuf, ksiz);
-  int bidx = hash % map->bnum;
-  TCMAPREC *rec = map->buckets[bidx];
-  TCMAPREC **entp = map->buckets + bidx;
-  TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
-  while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
-      entp = &(rec->left);
-      rec = rec->left;
-    } else if(hash < rhash){
-      entp = &(rec->right);
-      rec = rec->right;
-    } else {
-      char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
-      if(kcmp < 0){
-        entp = &(rec->left);
-        rec = rec->left;
-      } else if(kcmp > 0){
-        entp = &(rec->right);
-        rec = rec->right;
-      } else {
-        int psiz = TCALIGNPAD(ksiz);
-        int nvsiz;
-        char *nvbuf = proc(dbuf + ksiz + psiz, rec->vsiz, &nvsiz, op);
-        if(nvbuf == (void *)-1){
-          map->rnum--;
-          map->msiz -= rksiz + rec->vsiz;
-          if(rec->prev) rec->prev->next = rec->next;
-          if(rec->next) rec->next->prev = rec->prev;
-          if(rec == map->first) map->first = rec->next;
-          if(rec == map->last) map->last = rec->prev;
-          if(rec == map->cur) map->cur = rec->next;
-          if(rec->left && !rec->right){
-            *entp = rec->left;
-          } else if(!rec->left && rec->right){
-            *entp = rec->right;
-          } else if(!rec->left && !rec->left){
-            *entp = NULL;
-          } else {
-            *entp = rec->left;
-            TCMAPREC *tmp = *entp;
-            while(tmp->right){
-              tmp = tmp->right;
-            }
-            tmp->right = rec->right;
-          }
-          TCFREE(rec);
-          return true;
-        }
-        if(!nvbuf) return false;
-        map->msiz += nvsiz - rec->vsiz;
-        if(nvsiz > rec->vsiz){
-          TCMAPREC *old = rec;
-          TCREALLOC(rec, rec, sizeof(*rec) + ksiz + psiz + nvsiz + 1);
-          if(rec != old){
-            if(map->first == old) map->first = rec;
-            if(map->last == old) map->last = rec;
-            if(map->cur == old) map->cur = rec;
-            *entp = rec;
-            if(rec->prev) rec->prev->next = rec;
-            if(rec->next) rec->next->prev = rec;
-            dbuf = (char *)rec + sizeof(*rec);
-          }
-        }
-        memcpy(dbuf + ksiz + psiz, nvbuf, nvsiz);
-        dbuf[ksiz+psiz+nvsiz] = '\0';
-        rec->vsiz = nvsiz;
-        TCFREE(nvbuf);
-        return true;
-      }
-    }
-  }
-  if(!vbuf) return false;
-  int psiz = TCALIGNPAD(ksiz);
-  int asiz = sizeof(*rec) + ksiz + psiz + vsiz + 1;
-  int unit = (asiz <= TCMAPCSUNIT) ? TCMAPCSUNIT : TCMAPCBUNIT;
-  asiz = (asiz - 1) + unit - (asiz - 1) % unit;
-  map->msiz += ksiz + vsiz;
-  TCMALLOC(rec, asiz);
-  char *dbuf = (char *)rec + sizeof(*rec);
-  memcpy(dbuf, kbuf, ksiz);
-  dbuf[ksiz] = '\0';
-  rec->ksiz = ksiz | hash;
-  memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
-  dbuf[ksiz+psiz+vsiz] = '\0';
-  rec->vsiz = vsiz;
-  rec->left = NULL;
-  rec->right = NULL;
-  rec->prev = map->last;
-  rec->next = NULL;
-  *entp = rec;
-  if(!map->first) map->first = rec;
-  if(map->last) map->last->next = rec;
-  map->last = rec;
-  map->rnum++;
-  return true;
 }
 
 
 /* Retrieve a semivolatile record in a map object. */
 const void *tcmapget3(TCMAP *map, const void *kbuf, int ksiz, int *sp){
   assert(map && kbuf && ksiz >= 0 && sp);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
+  unsigned int hash;
   TCMAPHASH1(hash, kbuf, ksiz);
   TCMAPREC *rec = map->buckets[hash%map->bnum];
   TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
   while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
+    if(hash > rec->hash){
       rec = rec->left;
-    } else if(hash < rhash){
+    } else if(hash < rec->hash){
       rec = rec->right;
     } else {
       char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
+      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rec->ksiz);
       if(kcmp < 0){
         rec = rec->left;
       } else if(kcmp > 0){
@@ -2168,7 +1943,7 @@ const void *tcmapget3(TCMAP *map, const void *kbuf, int ksiz, int *sp){
           map->last = rec;
         }
         *sp = rec->vsiz;
-        return dbuf + rksiz + TCALIGNPAD(rksiz);
+        return dbuf + rec->ksiz + TCALIGNPAD(rec->ksiz);
       }
     }
   }
@@ -2176,61 +1951,12 @@ const void *tcmapget3(TCMAP *map, const void *kbuf, int ksiz, int *sp){
 }
 
 
-/* Retrieve a string record in a map object with specifying the default value string. */
-const char *tcmapget4(TCMAP *map, const char *kstr, const char *dstr){
-  assert(map && kstr && dstr);
-  int vsiz;
-  const char *vbuf = tcmapget(map, kstr, strlen(kstr), &vsiz);
-  return vbuf ? vbuf : dstr;
-}
-
-
-/* Initialize the iterator of a map object at the record corresponding a key. */
-void tcmapiterinit2(TCMAP *map, const void *kbuf, int ksiz){
-  assert(map && kbuf && ksiz >= 0);
-  if(ksiz > TCMAPKMAXSIZ) ksiz = TCMAPKMAXSIZ;
-  uint32_t hash;
-  TCMAPHASH1(hash, kbuf, ksiz);
-  TCMAPREC *rec = map->buckets[hash%map->bnum];
-  TCMAPHASH2(hash, kbuf, ksiz);
-  hash &= ~TCMAPKMAXSIZ;
-  while(rec){
-    uint32_t rhash = rec->ksiz & ~TCMAPKMAXSIZ;
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    if(hash > rhash){
-      rec = rec->left;
-    } else if(hash < rhash){
-      rec = rec->right;
-    } else {
-      char *dbuf = (char *)rec + sizeof(*rec);
-      int kcmp = TCKEYCMP(kbuf, ksiz, dbuf, rksiz);
-      if(kcmp < 0){
-        rec = rec->left;
-      } else if(kcmp > 0){
-        rec = rec->right;
-      } else {
-        map->cur = rec;
-        return;
-      }
-    }
-  }
-}
-
-
-/* Initialize the iterator of a map object at the record corresponding a key string. */
-void tcmapiterinit3(TCMAP *map, const char *kstr){
-  assert(map && kstr);
-  tcmapiterinit2(map, kstr, strlen(kstr));
-}
-
-
 /* Get the value bound to the key fetched from the iterator of a map object. */
 const void *tcmapiterval(const void *kbuf, int *sp){
   assert(kbuf && sp);
   TCMAPREC *rec = (TCMAPREC *)((char *)kbuf - sizeof(*rec));
-  uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
   *sp = rec->vsiz;
-  return (char *)kbuf + rksiz + TCALIGNPAD(rksiz);
+  return (char *)kbuf + rec->ksiz + TCALIGNPAD(rec->ksiz);
 }
 
 
@@ -2238,8 +1964,7 @@ const void *tcmapiterval(const void *kbuf, int *sp){
 const char *tcmapiterval2(const char *kstr){
   assert(kstr);
   TCMAPREC *rec = (TCMAPREC *)(kstr - sizeof(*rec));
-  uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-  return kstr + rksiz + TCALIGNPAD(rksiz);
+  return kstr + rec->ksiz + TCALIGNPAD(rec->ksiz);
 }
 
 
@@ -2267,8 +1992,7 @@ const char **tcmapvals2(const TCMAP *map, int *np){
   int anum = 0;
   TCMAPREC *rec = map->first;
   while(rec){
-    uint32_t rksiz = rec->ksiz & TCMAPKMAXSIZ;
-    ary[(anum++)] = (char *)rec + sizeof(*rec) + rksiz + TCALIGNPAD(rksiz);
+    ary[(anum++)] = (char *)rec + sizeof(*rec) + rec->ksiz + TCALIGNPAD(rec->ksiz);
     rec = rec->next;
   }
   *np = anum;
@@ -2300,19 +2024,6 @@ void *tcmaploadone(const void *ptr, int size, const void *kbuf, int ksiz, int *s
     rp += rsiz;
   }
   return NULL;
-}
-
-
-/* Perform formatted output into a map object. */
-void tcmapprintf(TCMAP *map, const char *kstr, const char *format, ...){
-  assert(map && kstr && format);
-  TCXSTR *xstr = tcxstrnew();
-  va_list ap;
-  va_start(ap, format);
-  tcvxstrprintf(xstr, format, ap);
-  va_end(ap);
-  tcmapput(map, kstr, strlen(kstr), TCXSTRPTR(xstr), TCXSTRSIZE(xstr));
-  tcxstrdel(xstr);
 }
 
 
@@ -2644,139 +2355,11 @@ void tctreeputcat2(TCTREE *tree, const char *kstr, const char *vstr){
 }
 
 
-/* Store a record into a tree object with a duplication handler. */
-bool tctreeputproc(TCTREE *tree, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                   TCPDPROC proc, void *op){
-  assert(tree && kbuf && ksiz >= 0 && proc);
-  TCTREEREC *top = tctreesplay(tree, kbuf, ksiz);
-  if(!top){
-    if(!vbuf) return false;
-    int psiz = TCALIGNPAD(ksiz);
-    TCTREEREC *rec;
-    TCMALLOC(rec, sizeof(*rec) + ksiz + psiz + vsiz + 1);
-    char *dbuf = (char *)rec + sizeof(*rec);
-    memcpy(dbuf, kbuf, ksiz);
-    dbuf[ksiz] = '\0';
-    rec->ksiz = ksiz;
-    memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
-    dbuf[ksiz+psiz+vsiz] = '\0';
-    rec->vsiz = vsiz;
-    rec->left = NULL;
-    rec->right = NULL;
-    tree->root = rec;
-    tree->rnum = 1;
-    tree->msiz = ksiz + vsiz;
-    return true;
-  }
-  char *dbuf = (char *)top + sizeof(*top);
-  int cv = tree->cmp(kbuf, ksiz, dbuf, top->ksiz, tree->cmpop);
-  if(cv < 0){
-    if(!vbuf){
-      tree->root = top;
-      return false;
-    }
-    int psiz = TCALIGNPAD(ksiz);
-    TCTREEREC *rec;
-    TCMALLOC(rec, sizeof(*rec) + ksiz + psiz + vsiz + 1);
-    dbuf = (char *)rec + sizeof(*rec);
-    memcpy(dbuf, kbuf, ksiz);
-    dbuf[ksiz] = '\0';
-    rec->ksiz = ksiz;
-    memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
-    dbuf[ksiz+psiz+vsiz] = '\0';
-    rec->vsiz = vsiz;
-    rec->left = top->left;
-    rec->right = top;
-    top->left = NULL;
-    tree->rnum++;
-    tree->msiz += ksiz + vsiz;
-    tree->root = rec;
-  } else if(cv > 0){
-    if(!vbuf){
-      tree->root = top;
-      return false;
-    }
-    int psiz = TCALIGNPAD(ksiz);
-    TCTREEREC *rec;
-    TCMALLOC(rec, sizeof(*rec) + ksiz + psiz + vsiz + 1);
-    dbuf = (char *)rec + sizeof(*rec);
-    memcpy(dbuf, kbuf, ksiz);
-    dbuf[ksiz] = '\0';
-    rec->ksiz = ksiz;
-    memcpy(dbuf + ksiz + psiz, vbuf, vsiz);
-    dbuf[ksiz+psiz+vsiz] = '\0';
-    rec->vsiz = vsiz;
-    rec->left = top;
-    rec->right = top->right;
-    top->right = NULL;
-    tree->rnum++;
-    tree->msiz += ksiz + vsiz;
-    tree->root = rec;
-  } else {
-    int psiz = TCALIGNPAD(ksiz);
-    int nvsiz;
-    char *nvbuf = proc(dbuf + ksiz + psiz, top->vsiz, &nvsiz, op);
-    if(nvbuf == (void *)-1){
-      tree->rnum--;
-      tree->msiz -= top->ksiz + top->vsiz;
-      if(tree->cur == top){
-        TCTREEREC *rec = top->right;
-        if(rec){
-          while(rec->left){
-            rec = rec->left;
-          }
-        }
-        tree->cur = rec;
-      }
-      if(!top->left){
-        tree->root = top->right;
-      } else if(!top->right){
-        tree->root = top->left;
-      } else {
-        tree->root = top->left;
-        TCTREEREC *rec = tctreesplay(tree, kbuf, ksiz);
-        rec->right = top->right;
-        tree->root = rec;
-      }
-      TCFREE(top);
-      return true;
-    }
-    if(!nvbuf){
-      tree->root = top;
-      return false;
-    }
-    tree->msiz += nvsiz - top->vsiz;
-    if(nvsiz > top->vsiz){
-      TCTREEREC *old = top;
-      TCREALLOC(top, top, sizeof(*top) + ksiz + psiz + nvsiz + 1);
-      if(top != old){
-        if(tree->cur == old) tree->cur = top;
-        dbuf = (char *)top + sizeof(*top);
-      }
-    }
-    memcpy(dbuf + ksiz + psiz, nvbuf, nvsiz);
-    dbuf[ksiz+psiz+nvsiz] = '\0';
-    top->vsiz = nvsiz;
-    TCFREE(nvbuf);
-    tree->root = top;
-  }
-  return true;
-}
-
-
 /* Remove a record of a tree object. */
 bool tctreeout(TCTREE *tree, const void *kbuf, int ksiz){
   assert(tree && kbuf && ksiz >= 0);
   TCTREEREC *top = tctreesplay(tree, kbuf, ksiz);
   if(!top) return false;
-  char *dbuf = (char *)top + sizeof(*top);
-  int cv = tree->cmp(kbuf, ksiz, dbuf, top->ksiz, tree->cmpop);
-  if(cv != 0){
-    tree->root = top;
-    return false;
-  }
-  tree->rnum--;
-  tree->msiz -= top->ksiz + top->vsiz;
   if(tree->cur == top){
     TCTREEREC *rec = top->right;
     if(rec){
@@ -2786,6 +2369,14 @@ bool tctreeout(TCTREE *tree, const void *kbuf, int ksiz){
     }
     tree->cur = rec;
   }
+  char *dbuf = (char *)top + sizeof(*top);
+  int cv = tree->cmp(kbuf, ksiz, dbuf, top->ksiz, tree->cmpop);
+  if(cv != 0){
+    tree->root = top;
+    return false;
+  }
+  tree->rnum--;
+  tree->msiz -= top->ksiz + top->vsiz;
   if(!top->left){
     tree->root = top->right;
   } else if(!top->right){
@@ -2842,6 +2433,33 @@ void tctreeiterinit(TCTREE *tree){
     rec = rec->left;
   }
   tree->cur = rec;
+}
+
+
+/* Initialize the iterator of a tree object in front of records corresponding a key. */
+void tctreeiterinit2(TCTREE *tree, const void *kbuf, int ksiz){
+  assert(tree && kbuf && ksiz >= 0);
+  TCTREEREC *rec = tree->root;
+  while(rec){
+    char *dbuf = (char *)rec + sizeof(*rec);
+    int cv = tree->cmp(kbuf, ksiz, dbuf, rec->ksiz, tree->cmpop);
+    if(cv < 0){
+      tree->cur = rec;
+      rec = rec->left;
+    } else if(cv > 0){
+      rec = rec->right;
+    } else {
+      tree->cur = rec;
+      return;
+    }
+  }
+}
+
+
+/* Initialize the iterator of a tree object in front of records corresponding a key string. */
+void tctreeiterinit3(TCTREE *tree, const char *kstr){
+  assert(tree);
+  tctreeiterinit2(tree, kstr, strlen(kstr));
 }
 
 
@@ -3488,42 +3106,6 @@ const void *tctreeget3(const TCTREE *tree, const void *kbuf, int ksiz, int *sp){
 }
 
 
-/* Retrieve a string record in a tree object with specifying the default value string. */
-const char *tctreeget4(TCTREE *tree, const char *kstr, const char *dstr){
-  assert(tree && kstr && dstr);
-  int vsiz;
-  const char *vbuf = tctreeget(tree, kstr, strlen(kstr), &vsiz);
-  return vbuf ? vbuf : dstr;
-}
-
-
-/* Initialize the iterator of a tree object in front of records corresponding a key. */
-void tctreeiterinit2(TCTREE *tree, const void *kbuf, int ksiz){
-  assert(tree && kbuf && ksiz >= 0);
-  TCTREEREC *rec = tree->root;
-  while(rec){
-    char *dbuf = (char *)rec + sizeof(*rec);
-    int cv = tree->cmp(kbuf, ksiz, dbuf, rec->ksiz, tree->cmpop);
-    if(cv < 0){
-      tree->cur = rec;
-      rec = rec->left;
-    } else if(cv > 0){
-      rec = rec->right;
-    } else {
-      tree->cur = rec;
-      return;
-    }
-  }
-}
-
-
-/* Initialize the iterator of a tree object in front of records corresponding a key string. */
-void tctreeiterinit3(TCTREE *tree, const char *kstr){
-  assert(tree);
-  tctreeiterinit2(tree, kstr, strlen(kstr));
-}
-
-
 /* Get the value bound to the key fetched from the iterator of a tree object. */
 const void *tctreeiterval(const void *kbuf, int *sp){
   assert(kbuf && sp);
@@ -3636,19 +3218,6 @@ void *tctreeloadone(const void *ptr, int size, const void *kbuf, int ksiz, int *
 }
 
 
-/* Perform formatted output into a tree object. */
-void tctreeprintf(TCTREE *tree, const char *kstr, const char *format, ...){
-  assert(tree && kstr && format);
-  TCXSTR *xstr = tcxstrnew();
-  va_list ap;
-  va_start(ap, format);
-  tcvxstrprintf(xstr, format, ap);
-  va_end(ap);
-  tctreeput(tree, kstr, strlen(kstr), TCXSTRPTR(xstr), TCXSTRSIZE(xstr));
-  tcxstrdel(xstr);
-}
-
-
 
 /*************************************************************************************************
  * on-memory hash database
@@ -3656,7 +3225,7 @@ void tctreeprintf(TCTREE *tree, const char *kstr, const char *format, ...){
 
 
 #define TCMDBMNUM      8                 // number of internal maps
-#define TCMDBDEFBNUM   65536             // default bucket number
+#define TCMDBBNUM      65536             // allocation unit number of a map
 
 /* get the first hash value */
 #define TCMDBHASH(TC_res, TC_kbuf, TC_ksiz) \
@@ -3672,14 +3241,14 @@ void tctreeprintf(TCTREE *tree, const char *kstr, const char *format, ...){
 
 /* Create an on-memory hash database object. */
 TCMDB *tcmdbnew(void){
-  return tcmdbnew2(TCMDBDEFBNUM);
+  return tcmdbnew2(TCMDBBNUM);
 }
 
 
 /* Create an on-memory hash database with specifying the number of the buckets. */
 TCMDB *tcmdbnew2(uint32_t bnum){
   TCMDB *mdb;
-  if(bnum < 1) bnum = TCMDBDEFBNUM;
+  if(bnum < 1) bnum = TCMDBBNUM;
   bnum = bnum / TCMDBMNUM + 17;
   TCMALLOC(mdb, sizeof(*mdb));
   TCMALLOC(mdb->mmtxs, sizeof(pthread_rwlock_t) * TCMDBMNUM);
@@ -4033,19 +3602,6 @@ void tcmdbputcat3(TCMDB *mdb, const void *kbuf, int ksiz, const void *vbuf, int 
 }
 
 
-/* Store a record into a on-memory hash database object with a duplication handler. */
-bool tcmdbputproc(TCMDB *mdb, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op){
-  assert(mdb && kbuf && ksiz >= 0 && proc);
-  unsigned int mi;
-  TCMDBHASH(mi, kbuf, ksiz);
-  if(pthread_rwlock_wrlock((pthread_rwlock_t *)mdb->mmtxs + mi) != 0) return false;
-  bool rv = tcmapputproc(mdb->maps[mi], kbuf, ksiz, vbuf, vsiz, proc, op);
-  pthread_rwlock_unlock((pthread_rwlock_t *)mdb->mmtxs + mi);
-  return rv;
-}
-
-
 /* Retrieve a record and move it astern in an on-memory hash database. */
 void *tcmdbget3(TCMDB *mdb, const void *kbuf, int ksiz, int *sp){
   assert(mdb && kbuf && ksiz >= 0 && sp);
@@ -4063,35 +3619,6 @@ void *tcmdbget3(TCMDB *mdb, const void *kbuf, int ksiz, int *sp){
   }
   pthread_rwlock_unlock((pthread_rwlock_t *)mdb->mmtxs + mi);
   return rv;
-}
-
-
-/* Initialize the iterator of an on-memory map database object in front of a key. */
-void tcmdbiterinit2(TCMDB *mdb, const void *kbuf, int ksiz){
-  if(pthread_mutex_lock(mdb->imtx) != 0) return;
-  unsigned int mi;
-  TCMDBHASH(mi, kbuf, ksiz);
-  if(pthread_rwlock_rdlock((pthread_rwlock_t *)mdb->mmtxs + mi) != 0){
-    pthread_mutex_unlock(mdb->imtx);
-    return;
-  }
-  int vsiz;
-  if(tcmapget(mdb->maps[mi], kbuf, ksiz, &vsiz)){
-    for(int i = 0; i < TCMDBMNUM; i++){
-      tcmapiterinit(mdb->maps[i]);
-    }
-    tcmapiterinit2(mdb->maps[mi], kbuf, ksiz);
-    mdb->iter = mi;
-  }
-  pthread_rwlock_unlock((pthread_rwlock_t *)mdb->mmtxs + mi);
-  pthread_mutex_unlock(mdb->imtx);
-}
-
-
-/* Initialize the iterator of an on-memory map database object in front of a key string. */
-void tcmdbiterinit3(TCMDB *mdb, const char *kstr){
-  assert(mdb && kstr);
-  tcmdbiterinit2(mdb, kstr, strlen(kstr));
 }
 
 
@@ -4281,6 +3808,22 @@ void tcndbiterinit(TCNDB *ndb){
 }
 
 
+/* Initialize the iterator of an on-memory tree database object in front of a key. */
+void tcndbiterinit2(TCNDB *ndb, const void *kbuf, int ksiz){
+  assert(ndb && kbuf && ksiz >= 0);
+  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0) return;
+  tctreeiterinit2(ndb->tree, kbuf, ksiz);
+  pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
+}
+
+
+/* Initialize the iterator of an on-memory tree database object in front of a key string. */
+void tcndbiterinit3(TCNDB *ndb, const char *kstr){
+  assert(ndb && kstr);
+  tcndbiterinit2(ndb, kstr, strlen(kstr));
+}
+
+
 /* Get the next key of the iterator of an on-memory tree database object. */
 void *tcndbiternext(TCNDB *ndb, int *sp){
   assert(ndb && sp);
@@ -4428,17 +3971,6 @@ void tcndbputcat3(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int 
 }
 
 
-/* Store a record into a on-memory tree database object with a duplication handler. */
-bool tcndbputproc(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op){
-  assert(ndb && kbuf && ksiz >= 0 && proc);
-  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0) return false;
-  bool rv = tctreeputproc(ndb->tree, kbuf, ksiz, vbuf, vsiz, proc, op);
-  pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
-  return rv;
-}
-
-
 /* Retrieve a record in an on-memory tree database object without balancing nodes. */
 void *tcndbget3(TCNDB *ndb, const void *kbuf, int ksiz, int *sp){
   assert(ndb && kbuf && ksiz >= 0 && sp);
@@ -4454,22 +3986,6 @@ void *tcndbget3(TCNDB *ndb, const void *kbuf, int ksiz, int *sp){
   }
   pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
   return rv;
-}
-
-
-/* Initialize the iterator of an on-memory tree database object in front of a key. */
-void tcndbiterinit2(TCNDB *ndb, const void *kbuf, int ksiz){
-  assert(ndb && kbuf && ksiz >= 0);
-  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0) return;
-  tctreeiterinit2(ndb->tree, kbuf, ksiz);
-  pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
-}
-
-
-/* Initialize the iterator of an on-memory tree database object in front of a key string. */
-void tcndbiterinit3(TCNDB *ndb, const char *kstr){
-  assert(ndb && kstr);
-  tcndbiterinit2(ndb, kstr, strlen(kstr));
 }
 
 
@@ -4537,9 +4053,8 @@ void tcmpooldel(TCMPOOL *mpool){
 
 
 /* Relegate an arbitrary object to a memory pool object. */
-void *tcmpoolpush(TCMPOOL *mpool, void *ptr, void (*del)(void *)){
-  assert(mpool && del);
-  if(!ptr) return NULL;
+void tcmpoolput(TCMPOOL *mpool, void *ptr, void (*del)(void *)){
+  assert(mpool && ptr && del);
   if(pthread_mutex_lock(mpool->mutex) != 0) tcmyfatal("locking failed");
   int num = mpool->num;
   if(num >= mpool->anum){
@@ -4550,42 +4065,41 @@ void *tcmpoolpush(TCMPOOL *mpool, void *ptr, void (*del)(void *)){
   mpool->elems[num].del = del;
   mpool->num++;
   pthread_mutex_unlock(mpool->mutex);
-  return ptr;
 }
 
 
 /* Relegate an allocated region to a memory pool object. */
-void *tcmpoolpushptr(TCMPOOL *mpool, void *ptr){
-  assert(mpool);
-  return tcmpoolpush(mpool, ptr, (void (*)(void *))free);
+void tcmpoolputptr(TCMPOOL *mpool, void *ptr){
+  assert(mpool && ptr);
+  tcmpoolput(mpool, ptr, (void (*)(void *))free);
 }
 
 
 /* Relegate an extensible string object to a memory pool object. */
-TCXSTR *tcmpoolpushxstr(TCMPOOL *mpool, TCXSTR *xstr){
-  assert(mpool);
-  return tcmpoolpush(mpool, xstr, (void (*)(void *))tcxstrdel);
+void tcmpoolputxstr(TCMPOOL *mpool, TCXSTR *xstr){
+  assert(mpool && xstr);
+  tcmpoolput(mpool, xstr, (void (*)(void *))tcxstrdel);
 }
 
 
 /* Relegate a list object to a memory pool object. */
-TCLIST *tcmpoolpushlist(TCMPOOL *mpool, TCLIST *list){
-  assert(mpool);
-  return tcmpoolpush(mpool, list, (void (*)(void *))tclistdel);
+void tcmpoolputlist(TCMPOOL *mpool, TCLIST *list){
+  assert(mpool && list);
+  tcmpoolput(mpool, list, (void (*)(void *))tclistdel);
 }
 
 
 /* Relegate a map object to a memory pool object. */
-TCMAP *tcmpoolpushmap(TCMPOOL *mpool, TCMAP *map){
-  assert(mpool);
-  return tcmpoolpush(mpool, map, (void (*)(void *))tcmapdel);
+void tcmpoolputmap(TCMPOOL *mpool, TCMAP *map){
+  assert(mpool && map);
+  tcmpoolput(mpool, map, (void (*)(void *))tcmapdel);
 }
 
 
 /* Relegate a tree object to a memory pool object. */
-TCTREE *tcmpoolpushtree(TCMPOOL *mpool, TCTREE *tree){
-  assert(mpool);
-  return tcmpoolpush(mpool, tree, (void (*)(void *))tctreedel);
+void tcmpoolputtree(TCMPOOL *mpool, TCTREE *tree){
+  assert(mpool && tree);
+  tcmpoolput(mpool, tree, (void (*)(void *))tctreedel);
 }
 
 
@@ -4594,7 +4108,7 @@ void *tcmpoolmalloc(TCMPOOL *mpool, size_t size){
   assert(mpool && size > 0);
   void *ptr;
   TCMALLOC(ptr, size);
-  tcmpoolpush(mpool, ptr, (void (*)(void *))free);
+  tcmpoolput(mpool, ptr, (void (*)(void *))free);
   return ptr;
 }
 
@@ -4603,7 +4117,7 @@ void *tcmpoolmalloc(TCMPOOL *mpool, size_t size){
 TCXSTR *tcmpoolxstrnew(TCMPOOL *mpool){
   assert(mpool);
   TCXSTR *xstr = tcxstrnew();
-  tcmpoolpush(mpool, xstr, (void (*)(void *))tcxstrdel);
+  tcmpoolput(mpool, xstr, (void (*)(void *))tcxstrdel);
   return xstr;
 }
 
@@ -4612,7 +4126,7 @@ TCXSTR *tcmpoolxstrnew(TCMPOOL *mpool){
 TCLIST *tcmpoollistnew(TCMPOOL *mpool){
   assert(mpool);
   TCLIST *list = tclistnew();
-  tcmpoolpush(mpool, list, (void (*)(void *))tclistdel);
+  tcmpoolput(mpool, list, (void (*)(void *))tclistdel);
   return list;
 }
 
@@ -4621,7 +4135,7 @@ TCLIST *tcmpoollistnew(TCMPOOL *mpool){
 TCMAP *tcmpoolmapnew(TCMPOOL *mpool){
   assert(mpool);
   TCMAP *map = tcmapnew();
-  tcmpoolpush(mpool, map, (void (*)(void *))tcmapdel);
+  tcmpoolput(mpool, map, (void (*)(void *))tcmapdel);
   return map;
 }
 
@@ -4630,7 +4144,7 @@ TCMAP *tcmpoolmapnew(TCMPOOL *mpool){
 TCTREE *tcmpooltreenew(TCMPOOL *mpool){
   assert(mpool);
   TCTREE *tree = tctreenew();
-  tcmpoolpush(mpool, tree, (void (*)(void *))tctreedel);
+  tcmpoolput(mpool, tree, (void (*)(void *))tctreedel);
   return tree;
 }
 
@@ -4644,7 +4158,7 @@ TCMPOOL *tcmpoolglobal(void){
 }
 
 
-/* Detete the global memory pool object. */
+/* Detete global memory pool object. */
 static void tcmpooldelglobal(void){
   if(tcglobalmemorypool) tcmpooldel(tcglobalmemorypool);
 }
@@ -4658,7 +4172,8 @@ static void tcmpooldelglobal(void){
 
 #define TCRANDDEV      "/dev/urandom"    // path of the random device file
 #define TCDISTMAXLEN   4096              // maximum size of a string for distance checking
-#define TCDISTBUFSIZ   16384             // size of a distance buffer
+#define TCDISTBUFSIZ   16384             // size of an distance buffer
+#define TCCHIDXVNNUM   128               // number of virtual node of consistent hashing
 
 
 /* File descriptor of random number generator. */
@@ -4668,6 +4183,7 @@ int tcrandomdevfd = -1;
 /* private function prototypes */
 static void tcrandomfdclose(void);
 static time_t tcmkgmtime(struct tm *tm);
+static int tcchidxcmp(const void *a, const void *b);
 
 
 /* Get the larger value of two integers. */
@@ -4692,17 +4208,11 @@ unsigned long tclrand(void){
     if(cnt == 0) seed += time(NULL);
     if(tcrandomdevfd == -1 && (tcrandomdevfd = open(TCRANDDEV, O_RDONLY, 00644)) != -1)
       atexit(tcrandomfdclose);
-    if(tcrandomdevfd == -1 || read(tcrandomdevfd, &mask, sizeof(mask)) != sizeof(mask)){
-      double t = tctime();
-      uint64_t tmask;
-      memcpy(&tmask, &t, tclmin(sizeof(t), sizeof(tmask)));
-      mask = (mask << 8) ^ tmask;
-    }
+    if(tcrandomdevfd != -1) read(tcrandomdevfd, &mask, sizeof(mask));
     pthread_mutex_unlock(&mutex);
   }
   seed = seed * 123456789012301LL + 211;
-  uint64_t num = (mask ^ cnt++) ^ seed;
-  return TCSWAB64(num);
+  return (mask ^ cnt++) ^ seed;
 }
 
 
@@ -5042,7 +4552,7 @@ void tcstrutftoucs(const char *str, uint16_t *ary, int *np){
 
 
 /* Convert a UCS-2 array into a UTF-8 string. */
-int tcstrucstoutf(const uint16_t *ary, int num, char *str){
+void tcstrucstoutf(const uint16_t *ary, int num, char *str){
   assert(ary && num >= 0 && str);
   unsigned char *wp = (unsigned char *)str;
   for(int i = 0; i < num; i++){
@@ -5059,7 +4569,6 @@ int tcstrucstoutf(const uint16_t *ary, int num, char *str){
     }
   }
   *wp = '\0';
-  return (char *)wp - str;
 }
 
 
@@ -5081,7 +4590,7 @@ TCLIST *tcstrsplit(const char *str, const char *delims){
 
 
 /* Create a string by joining all elements of a list object. */
-char *tcstrjoin(const TCLIST *list, char delim){
+char *tcstrjoin(TCLIST *list, char delim){
   assert(list);
   int num = TCLISTNUM(list);
   int size = num + 1;
@@ -5103,117 +4612,30 @@ char *tcstrjoin(const TCLIST *list, char delim){
 }
 
 
-/* Convert a string to an integer. */
+/* Convert a string with a metric prefix to an integer. */
 int64_t tcatoi(const char *str){
   assert(str);
-  while(*str > '\0' && *str <= ' '){
-    str++;
+  char *end;
+  long double val = strtold(str, &end);
+  int inf = isinf(val);
+  if(inf != 0) return inf > 0 ? INT64_MAX : INT64_MIN;
+  if(!isnormal(val)) return 0;
+  if(*end == 'k' || *end == 'K'){
+    val *= 1LL << 10;
+  } else if(*end == 'm' || *end == 'M'){
+    val *= 1LL << 20;
+  } else if(*end == 'g' || *end == 'G'){
+    val *= 1LL << 30;
+  } else if(*end == 't' || *end == 'T'){
+    val *= 1LL << 40;
+  } else if(*end == 'p' || *end == 'P'){
+    val *= 1LL << 50;
+  } else if(*end == 'e' || *end == 'E'){
+    val *= 1LL << 60;
   }
-  int sign = 1;
-  int64_t num = 0;
-  if(*str == '-'){
-    str++;
-    sign = -1;
-  } else if(*str == '+'){
-    str++;
-  }
-  while(*str != '\0'){
-    if(*str < '0' || *str > '9') break;
-    num = num * 10 + *str - '0';
-    str++;
-  }
-  return num * sign;
-}
-
-
-/* Convert a string with a metric prefix to an integer. */
-int64_t tcatoix(const char *str){
-  assert(str);
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  int sign = 1;
-  if(*str == '-'){
-    str++;
-    sign = -1;
-  } else if(*str == '+'){
-    str++;
-  }
-  long double num = 0;
-  while(*str != '\0'){
-    if(*str < '0' || *str > '9') break;
-    num = num * 10 + *str - '0';
-    str++;
-  }
-  if(*str == '.'){
-    str++;
-    long double base = 10;
-    while(*str != '\0'){
-      if(*str < '0' || *str > '9') break;
-      num += (*str - '0') / base;
-      str++;
-      base *= 10;
-    }
-  }
-  num *= sign;
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  if(*str == 'k' || *str == 'K'){
-    num *= 1LL << 10;
-  } else if(*str == 'm' || *str == 'M'){
-    num *= 1LL << 20;
-  } else if(*str == 'g' || *str == 'G'){
-    num *= 1LL << 30;
-  } else if(*str == 't' || *str == 'T'){
-    num *= 1LL << 40;
-  } else if(*str == 'p' || *str == 'P'){
-    num *= 1LL << 50;
-  } else if(*str == 'e' || *str == 'E'){
-    num *= 1LL << 60;
-  }
-  if(num > INT64_MAX) return INT64_MAX;
-  if(num < INT64_MIN) return INT64_MIN;
-  return num;
-}
-
-
-/* Convert a string to a real number. */
-double tcatof(const char *str){
-  assert(str);
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  int sign = 1;
-  if(*str == '-'){
-    str++;
-    sign = -1;
-  } else if(*str == '+'){
-    str++;
-  }
-  if(tcstrifwm(str, "inf")) return HUGE_VAL * sign;
-  if(tcstrifwm(str, "nan")) return nan("");
-  long double num = 0;
-  while(*str != '\0'){
-    if(*str < '0' || *str > '9') break;
-    num = num * 10 + *str - '0';
-    str++;
-  }
-  if(*str == '.'){
-    str++;
-    long double base = 10;
-    while(*str != '\0'){
-      if(*str < '0' || *str > '9') break;
-      num += (*str - '0') / base;
-      str++;
-      base *= 10;
-    }
-  }
-  if(*str == 'e' || *str == 'E'){
-    str++;
-    num *= pow(10, tcatoi(str));
-  }
-  return num * sign;
+  if(val > INT64_MAX) return INT64_MAX;
+  if(val < INT64_MIN) return INT64_MIN;
+  return val;
 }
 
 
@@ -5294,6 +4716,66 @@ void tcmd5hash(const void *ptr, int size, char *buf){
     wp += sprintf(wp, "%02x", digest[i]);
   }
   *wp = '\0';
+}
+
+
+/* Create a consistent hashing object. */
+TCCHIDX *tcchidxnew(int range){
+  assert(range > 0);
+  TCCHIDX *chidx;
+  TCMALLOC(chidx, sizeof(*chidx));
+  int nnum = range * TCCHIDXVNNUM;
+  TCCHIDXNODE *nodes;
+  TCMALLOC(nodes, nnum * sizeof(*nodes));
+  unsigned int seed = 725;
+  for(int i = 0; i < range; i++){
+    int end = (i + 1) * TCCHIDXVNNUM;
+    for(int j = i * TCCHIDXVNNUM; j < end; j++){
+      nodes[j].seq = i;
+      nodes[j].hash = (seed = seed * 123456761 + 211);
+    }
+  }
+  qsort(nodes, nnum, sizeof(*nodes), tcchidxcmp);
+  chidx->nodes = nodes;
+  chidx->nnum = nnum;
+  return chidx;
+}
+
+
+/* Delete a consistent hashing object. */
+void tcchidxdel(TCCHIDX *chidx){
+  assert(chidx);
+  TCFREE(chidx->nodes);
+  TCFREE(chidx);
+}
+
+
+/* Get the consistent hashing value of a record. */
+int tcchidxhash(TCCHIDX *chidx, const void *ptr, int size){
+  assert(chidx && ptr && size >= 0);
+  uint32_t hash = 19771007;
+  const char *rp = (char *)ptr + size;
+  while(size--){
+    hash = (hash * 31) ^ *(uint8_t *)--rp;
+    hash ^= hash << 7;
+  }
+  TCCHIDXNODE *nodes = chidx->nodes;
+  int low = 0;
+  int high = chidx->nnum;
+  while(low < high){
+    int mid = (low + high) >> 1;
+    uint32_t nhash = nodes[mid].hash;
+    if(hash < nhash){
+      high = mid;
+    } else if(hash > nhash){
+      low = mid + 1;
+    } else {
+      low = mid;
+      break;
+    }
+  }
+  if(low >= chidx->nnum) low = 0;
+  return nodes[low].seq & INT_MAX;
 }
 
 
@@ -5409,7 +4891,8 @@ int64_t tcstrmktime(const char *str){
     str++;
   }
   if(*str == '\0') return 0;
-  if(str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) return tcatoih(str + 2);
+  if(str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+    return (int64_t)strtoll(str + 2, NULL, 16);
   struct tm ts;
   memset(&ts, 0, sizeof(ts));
   ts.tm_year = 70;
@@ -5420,80 +4903,73 @@ int64_t tcstrmktime(const char *str){
   ts.tm_sec = 0;
   ts.tm_isdst = 0;
   int len = strlen(str);
-  time_t t = (time_t)tcatoi(str);
-  const char *pv = str;
-  while(*pv >= '0' && *pv <= '9'){
-    pv++;
+  char *pv;
+  time_t t = (time_t)strtoll(str, &pv, 10);
+  if(*(signed char *)pv >= '\0' && *pv <= ' '){
+    while(*pv > '\0' && *pv <= ' '){
+      pv++;
+    }
+    if(*pv == '\0') return (int64_t)t;
   }
-  while(*pv > '\0' && *pv <= ' '){
-    pv++;
-  }
-  if(*pv == '\0') return (int64_t)t;
-  if((pv[0] == 's' || pv[0] == 'S') && pv[1] >= '\0' && pv[1] <= ' ')
+  if((pv[0] == 's' || pv[0] == 'S') && ((signed char *)pv)[1] >= '\0' && pv[1] <= ' ')
     return (int64_t)t;
-  if((pv[0] == 'm' || pv[0] == 'M') && pv[1] >= '\0' && pv[1] <= ' ')
+  if((pv[0] == 'm' || pv[0] == 'M') && ((signed char *)pv)[1] >= '\0' && pv[1] <= ' ')
     return (int64_t)t * 60;
-  if((pv[0] == 'h' || pv[0] == 'H') && pv[1] >= '\0' && pv[1] <= ' ')
+  if((pv[0] == 'h' || pv[0] == 'H') && ((signed char *)pv)[1] >= '\0' && pv[1] <= ' ')
     return (int64_t)t * 60 * 60;
-  if((pv[0] == 'd' || pv[0] == 'D') && pv[1] >= '\0' && pv[1] <= ' ')
+  if((pv[0] == 'd' || pv[0] == 'D') && ((signed char *)pv)[1] >= '\0' && pv[1] <= ' ')
     return (int64_t)t * 60 * 60 * 24;
   if(len > 4 && str[4] == '-'){
-    ts.tm_year = tcatoi(str) - 1900;
+    ts.tm_year = atoi(str) - 1900;
     if((pv = strchr(str, '-')) != NULL && pv - str == 4){
-      const char *rp = pv + 1;
-      ts.tm_mon = tcatoi(rp) - 1;
+      char *rp = pv + 1;
+      ts.tm_mon = atoi(rp) - 1;
       if((pv = strchr(rp, '-')) != NULL && pv - str == 7){
         rp = pv + 1;
-        ts.tm_mday = tcatoi(rp);
+        ts.tm_mday = atoi(rp);
         if((pv = strchr(rp, 'T')) != NULL && pv - str == 10){
           rp = pv + 1;
-          ts.tm_hour = tcatoi(rp);
+          ts.tm_hour = atoi(rp);
           if((pv = strchr(rp, ':')) != NULL && pv - str == 13){
             rp = pv + 1;
-            ts.tm_min = tcatoi(rp);
+            ts.tm_min = atoi(rp);
           }
           if((pv = strchr(rp, ':')) != NULL && pv - str == 16){
             rp = pv + 1;
-            ts.tm_sec = tcatoi(rp);
+            ts.tm_sec = atoi(rp);
           }
           if((pv = strchr(rp, '.')) != NULL && pv - str >= 19) rp = pv + 1;
-          pv = rp;
-          while(*pv >= '0' && *pv <= '9'){
-            pv++;
-          }
+          strtol(rp, &pv, 10);
           if((*pv == '+' || *pv == '-') && strlen(pv) >= 6 && pv[3] == ':')
-            ts.tm_sec -= (tcatoi(pv + 1) * 3600 + tcatoi(pv + 4) * 60) * (pv[0] == '+' ? 1 : -1);
+            ts.tm_sec -= (atoi(pv + 1) * 3600 + atoi(pv + 4) * 60) * (pv[0] == '+' ? 1 : -1);
         }
       }
     }
     return (int64_t)tcmkgmtime(&ts);
   }
   if(len > 4 && str[4] == '/'){
-    ts.tm_year = tcatoi(str) - 1900;
+    ts.tm_year = atoi(str) - 1900;
     if((pv = strchr(str, '/')) != NULL && pv - str == 4){
-      const char *rp = pv + 1;
-      ts.tm_mon = tcatoi(rp) - 1;
+      char *rp = pv + 1;
+      ts.tm_mon = atoi(rp) - 1;
       if((pv = strchr(rp, '/')) != NULL && pv - str == 7){
         rp = pv + 1;
-        ts.tm_mday = tcatoi(rp);
+        ts.tm_mday = atoi(rp);
         if((pv = strchr(rp, ' ')) != NULL && pv - str == 10){
           rp = pv + 1;
-          ts.tm_hour = tcatoi(rp);
+          ts.tm_hour = atoi(rp);
           if((pv = strchr(rp, ':')) != NULL && pv - str == 13){
             rp = pv + 1;
-            ts.tm_min = tcatoi(rp);
+            ts.tm_min = atoi(rp);
           }
           if((pv = strchr(rp, ':')) != NULL && pv - str == 16){
             rp = pv + 1;
-            ts.tm_sec = tcatoi(rp);
+            ts.tm_sec = atoi(rp);
           }
           if((pv = strchr(rp, '.')) != NULL && pv - str >= 19) rp = pv + 1;
-          pv = rp;
-          while(*pv >= '0' && *pv <= '9'){
-            pv++;
-          }
+          strtol(rp, &pv, 10);
           if((*pv == '+' || *pv == '-') && strlen(pv) >= 6 && pv[3] == ':')
-            ts.tm_sec -= (tcatoi(pv + 1) * 3600 + tcatoi(pv + 4) * 60) * (pv[0] == '+' ? 1 : -1);
+            ts.tm_sec -= (atoi(pv + 1) * 3600 + atoi(pv + 4) * 60) * (pv[0] == '+' ? 1 : -1);
         }
       }
     }
@@ -5504,7 +4980,7 @@ int64_t tcstrmktime(const char *str){
   while(*crp == ' '){
     crp++;
   }
-  ts.tm_mday = tcatoi(crp);
+  ts.tm_mday = atoi(crp);
   while((*crp >= '0' && *crp <= '9') || *crp == ' '){
     crp++;
   }
@@ -5539,7 +5015,7 @@ int64_t tcstrmktime(const char *str){
   while(*crp == ' '){
     crp++;
   }
-  ts.tm_year = tcatoi(crp);
+  ts.tm_year = atoi(crp);
   if(ts.tm_year >= 1969) ts.tm_year -= 1900;
   while(*crp >= '0' && *crp <= '9'){
     crp++;
@@ -5550,9 +5026,9 @@ int64_t tcstrmktime(const char *str){
   if(ts.tm_mday > 0 && ts.tm_mon >= 0 && ts.tm_year >= 0){
     int clen = strlen(crp);
     if(clen >= 8 && crp[2] == ':' && crp[5] == ':'){
-      ts.tm_hour = tcatoi(crp + 0);
-      ts.tm_min = tcatoi(crp + 3);
-      ts.tm_sec = tcatoi(crp + 6);
+      ts.tm_hour = atoi(crp + 0);
+      ts.tm_min = atoi(crp + 3);
+      ts.tm_sec = atoi(crp + 6);
       if(clen >= 14 && crp[8] == ' ' && (crp[9] == '+' || crp[9] == '-')){
         ts.tm_sec -= ((crp[10] - '0') * 36000 + (crp[11] - '0') * 3600 +
                       (crp[12] - '0') * 600 + (crp[13] - '0') * 60) * (crp[9] == '+' ? 1 : -1);
@@ -5625,6 +5101,17 @@ static void tcrandomfdclose(void){
 }
 
 
+/* Compare two consistent hashing nodes.
+   `a' specifies the pointer to one node object.
+   `b' specifies the pointer to the other node object.
+   The return value is positive if the former is big, negative if the latter is big, 0 if both
+   are equivalent. */
+static int tcchidxcmp(const void *a, const void *b){
+  if(((TCCHIDXNODE *)a)->hash == ((TCCHIDXNODE *)b)->hash) return 0;
+  return ((TCCHIDXNODE *)a)->hash > ((TCCHIDXNODE *)b)->hash;
+}
+
+
 /* Make the GMT from a time structure.
    `tm' specifies the pointer to the time structure.
    The return value is the GMT. */
@@ -5641,1167 +5128,6 @@ static time_t tcmkgmtime(struct tm *tm){
 
 
 /*************************************************************************************************
- * miscellaneous utilities (for experts)
- *************************************************************************************************/
-
-
-#define TCCHIDXVNNUM   128               // number of virtual node of consistent hashing
-
-
-/* private function prototypes */
-static int tcstrutfkwicputtext(const uint16_t *oary, const uint16_t *nary, int si, int ti,
-                               int end, char *buf, const TCLIST *uwords, int opts);
-static int tcchidxcmp(const void *a, const void *b);
-
-
-/* Check whether a string is numeric completely or not. */
-bool tcstrisnum(const char *str){
-  assert(str);
-  bool isnum = false;
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  if(*str == '-') str++;
-  while(*str >= '0' && *str <= '9'){
-    isnum = true;
-    str++;
-  }
-  if(*str == '.') str++;
-  while(*str >= '0' && *str <= '9'){
-    isnum = true;
-    str++;
-  }
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  return isnum && *str == '\0';
-}
-
-
-/* Convert a hexadecimal string to an integer. */
-int64_t tcatoih(const char *str){
-  assert(str);
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  if(str[0] == '0' && (str[1] == 'x' || str[1] == 'X')){
-    str += 2;
-  }
-  int64_t num = 0;
-  while(true){
-    if(*str >= '0' && *str <= '9'){
-      num = num * 0x10 + *str - '0';
-    } else if(*str >= 'a' && *str <= 'f'){
-      num = num * 0x10 + *str - 'a' + 10;
-    } else if(*str >= 'A' && *str <= 'F'){
-      num = num * 0x10 + *str - 'A' + 10;
-    } else {
-      break;
-    }
-    str++;
-  }
-  return num;
-}
-
-
-/* Skip space characters at head of a string. */
-const char *tcstrskipspc(const char *str){
-  assert(str);
-  while(*str > '\0' && *str <= ' '){
-    str++;
-  }
-  return str;
-}
-
-
-/* Normalize a UTF-8 string. */
-char *tcstrutfnorm(char *str, int opts){
-  assert(str);
-  uint16_t buf[TCDISTBUFSIZ];
-  uint16_t *ary;
-  int len = strlen(str);
-  if(len < TCDISTBUFSIZ){
-    ary = buf;
-  } else {
-    TCMALLOC(ary, len * sizeof(*ary));
-  }
-  int num;
-  tcstrutftoucs(str, ary, &num);
-  num = tcstrucsnorm(ary, num, opts);
-  tcstrucstoutf(ary, num, str);
-  if(ary != buf) TCFREE(ary);
-  return str;
-}
-
-
-/* Normalize a UCS-2 array. */
-int tcstrucsnorm(uint16_t *ary, int num, int opts){
-  assert(ary && num >= 0);
-  bool spcmode = opts & TCUNSPACE;
-  bool lowmode = opts & TCUNLOWER;
-  bool nacmode = opts & TCUNNOACC;
-  bool widmode = opts & TCUNWIDTH;
-  int wi = 0;
-  for(int i = 0; i < num; i++){
-    int c = ary[i];
-    int high = c >> 8;
-    if(high == 0x00){
-      if(c <= 0x0020 || c == 0x007f){
-        // control characters
-        if(spcmode){
-          ary[wi++] = 0x0020;
-          if(wi < 2 || ary[wi-2] == 0x0020) wi--;
-        } else if(c == 0x0009 || c == 0x000a || c == 0x000d){
-          ary[wi++] = c;
-        } else {
-          ary[wi++] = 0x0020;
-        }
-      } else if(c == 0x00a0){
-        // no-break space
-        if(spcmode){
-          ary[wi++] = 0x0020;
-          if(wi < 2 || ary[wi-2] == 0x0020) wi--;
-        } else {
-          ary[wi++] = c;
-        }
-      } else {
-        // otherwise
-        if(lowmode){
-          if(c < 0x007f){
-            if(c >= 0x0041 && c <= 0x005a) c += 0x20;
-          } else if(c >= 0x00c0 && c <= 0x00de && c != 0x00d7){
-            c += 0x20;
-          }
-        }
-        if(nacmode){
-          if(c >= 0x00c0 && c <= 0x00c5){
-            c = 'A';
-          } else if(c == 0x00c7){
-            c = 'C';
-          } if(c >= 0x00c7 && c <= 0x00cb){
-            c = 'E';
-          } if(c >= 0x00cc && c <= 0x00cf){
-            c = 'I';
-          } else if(c == 0x00d0){
-            c = 'D';
-          } else if(c == 0x00d1){
-            c = 'N';
-          } if((c >= 0x00d2 && c <= 0x00d6) || c == 0x00d8){
-            c = 'O';
-          } if(c >= 0x00d9 && c <= 0x00dc){
-            c = 'U';
-          } if(c == 0x00dd || c == 0x00de){
-            c = 'Y';
-          } else if(c == 0x00df){
-            c = 's';
-          } else if(c >= 0x00e0 && c <= 0x00e5){
-            c = 'a';
-          } else if(c == 0x00e7){
-            c = 'c';
-          } if(c >= 0x00e7 && c <= 0x00eb){
-            c = 'e';
-          } if(c >= 0x00ec && c <= 0x00ef){
-            c = 'i';
-          } else if(c == 0x00f0){
-            c = 'd';
-          } else if(c == 0x00f1){
-            c = 'n';
-          } if((c >= 0x00f2 && c <= 0x00f6) || c == 0x00f8){
-            c = 'o';
-          } if(c >= 0x00f9 && c <= 0x00fc){
-            c = 'u';
-          } if(c >= 0x00fd && c <= 0x00ff){
-            c = 'y';
-          }
-        }
-        ary[wi++] = c;
-      }
-    } else if(high == 0x01){
-      // latin-1 extended
-      if(lowmode){
-        if(c <= 0x0137){
-          if((c & 1) == 0) c++;
-        } else if(c == 0x0138){
-          c += 0;
-        } else if(c <= 0x0148){
-          if((c & 1) == 1) c++;
-        } else if(c == 0x0149){
-          c += 0;
-        } else if(c <= 0x0177){
-          if((c & 1) == 0) c++;
-        } else if(c == 0x0178){
-          c = 0x00ff;
-        } else if(c <= 0x017e){
-          if((c & 1) == 1) c++;
-        } else if(c == 0x017f){
-          c += 0;
-        }
-      }
-      if(nacmode){
-        if(c == 0x00ff){
-          c = 'y';
-        } else if(c <= 0x0105){
-          c = ((c & 1) == 0) ? 'A' : 'a';
-        } else if(c <= 0x010d){
-          c = ((c & 1) == 0) ? 'C' : 'c';
-        } else if(c <= 0x0111){
-          c = ((c & 1) == 0) ? 'D' : 'd';
-        } else if(c <= 0x011b){
-          c = ((c & 1) == 0) ? 'E' : 'e';
-        } else if(c <= 0x0123){
-          c = ((c & 1) == 0) ? 'G' : 'g';
-        } else if(c <= 0x0127){
-          c = ((c & 1) == 0) ? 'H' : 'h';
-        } else if(c <= 0x0131){
-          c = ((c & 1) == 0) ? 'I' : 'i';
-        } else if(c == 0x0134){
-          c = 'J';
-        } else if(c == 0x0135){
-          c = 'j';
-        } else if(c == 0x0136){
-          c = 'K';
-        } else if(c == 0x0137){
-          c = 'k';
-        } else if(c == 0x0138){
-          c = 'k';
-        } else if(c >= 0x0139 && c <= 0x0142){
-          c = ((c & 1) == 1) ? 'L' : 'l';
-        } else if(c >= 0x0143 && c <= 0x0148){
-          c = ((c & 1) == 1) ? 'N' : 'n';
-        } else if(c >= 0x0149 && c <= 0x014b){
-          c = ((c & 1) == 0) ? 'N' : 'n';
-        } else if(c >= 0x014c && c <= 0x0151){
-          c = ((c & 1) == 0) ? 'O' : 'o';
-        } else if(c >= 0x0154 && c <= 0x0159){
-          c = ((c & 1) == 0) ? 'R' : 'r';
-        } else if(c >= 0x015a && c <= 0x0161){
-          c = ((c & 1) == 0) ? 'S' : 's';
-        } else if(c >= 0x0162 && c <= 0x0167){
-          c = ((c & 1) == 0) ? 'T' : 't';
-        } else if(c >= 0x0168 && c <= 0x0173){
-          c = ((c & 1) == 0) ? 'U' : 'u';
-        } else if(c == 0x0174){
-          c = 'W';
-        } else if(c == 0x0175){
-          c = 'w';
-        } else if(c == 0x0176){
-          c = 'Y';
-        } else if(c == 0x0177){
-          c = 'y';
-        } else if(c == 0x0178){
-          c = 'Y';
-        } else if(c >= 0x0179 && c <= 0x017e){
-          c = ((c & 1) == 1) ? 'Z' : 'z';
-        } else if(c == 0x017f){
-          c = 's';
-        }
-      }
-      ary[wi++] = c;
-    } else if(high == 0x03){
-      // greek
-      if(lowmode){
-        if(c >= 0x0391 && c <= 0x03a9){
-          c += 0x20;
-        } else if(c >= 0x03d8 && c <= 0x03ef){
-          if((c & 1) == 0) c++;
-        } else if(c == 0x0374 || c == 0x03f7 || c == 0x03fa){
-          c++;
-        }
-      }
-      ary[wi++] = c;
-    } else if(high == 0x04){
-      // cyrillic
-      if(lowmode){
-        if(c <= 0x040f){
-          c += 0x50;
-        } else if(c <= 0x042f){
-          c += 0x20;
-        } else if(c >= 0x0460 && c <= 0x0481){
-          if((c & 1) == 0) c++;
-        } else if(c >= 0x048a && c <= 0x04bf){
-          if((c & 1) == 0) c++;
-        } else if(c == 0x04c0){
-          c = 0x04cf;
-        } else if(c >= 0x04c1 && c <= 0x04ce){
-          if((c & 1) == 1) c++;
-        } else if(c >= 0x04d0){
-          if((c & 1) == 0) c++;
-        }
-      }
-      ary[wi++] = c;
-    } else if(high == 0x20){
-      if(c == 0x2002 || c == 0x2003 || c == 0x2009){
-        // en space, em space, thin space
-        if(spcmode){
-          ary[wi++] = 0x0020;
-          if(wi < 2 || ary[wi-2] == 0x0020) wi--;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c == 0x2010){
-        // hyphen
-        ary[wi++] = widmode ? 0x002d : c;
-      } else if(c == 0x2015){
-        // fullwidth horizontal line
-        ary[wi++] = widmode ? 0x002d : c;
-      } else if(c == 0x2019){
-        // apostrophe
-        ary[wi++] = widmode ? 0x0027 : c;
-      } else if(c == 0x2033){
-        // double quotes
-        ary[wi++] = widmode ? 0x0022 : c;
-      } else {
-        // (otherwise)
-        ary[wi++] = c;
-      }
-    } else if(high == 0x22){
-      if(c == 0x2212){
-        // minus sign
-        ary[wi++] = widmode ? 0x002d : c;
-      } else {
-        // (otherwise)
-        ary[wi++] = c;
-      }
-    } else if(high == 0x30){
-      if(c == 0x3000){
-        // fullwidth space
-        if(spcmode){
-          ary[wi++] = 0x0020;
-          if(wi < 2 || ary[wi-2] == 0x0020) wi--;
-        } else if(widmode){
-          ary[wi++] = 0x0020;
-        } else {
-          ary[wi++] = c;
-        }
-      } else {
-        // (otherwise)
-        ary[wi++] = c;
-      }
-    } else if(high == 0xff){
-      if(c == 0xff01){
-        // fullwidth exclamation
-        ary[wi++] = widmode ? 0x0021 : c;
-      } else if(c == 0xff03){
-        // fullwidth igeta
-        ary[wi++] = widmode ? 0x0023 : c;
-      } else if(c == 0xff04){
-        // fullwidth dollar
-        ary[wi++] = widmode ? 0x0024 : c;
-      } else if(c == 0xff05){
-        // fullwidth parcent
-        ary[wi++] = widmode ? 0x0025 : c;
-      } else if(c == 0xff06){
-        // fullwidth ampersand
-        ary[wi++] = widmode ? 0x0026 : c;
-      } else if(c == 0xff0a){
-        // fullwidth asterisk
-        ary[wi++] = widmode ? 0x002a : c;
-      } else if(c == 0xff0b){
-        // fullwidth plus
-        ary[wi++] = widmode ? 0x002b : c;
-      } else if(c == 0xff0c){
-        // fullwidth comma
-        ary[wi++] = widmode ? 0x002c : c;
-      } else if(c == 0xff0e){
-        // fullwidth period
-        ary[wi++] = widmode ? 0x002e : c;
-      } else if(c == 0xff0f){
-        // fullwidth slash
-        ary[wi++] = widmode ? 0x002f : c;
-      } else if(c == 0xff1a){
-        // fullwidth colon
-        ary[wi++] = widmode ? 0x003a : c;
-      } else if(c == 0xff1b){
-        // fullwidth semicolon
-        ary[wi++] = widmode ? 0x003b : c;
-      } else if(c == 0xff1d){
-        // fullwidth equal
-        ary[wi++] = widmode ? 0x003d : c;
-      } else if(c == 0xff1f){
-        // fullwidth question
-        ary[wi++] = widmode ? 0x003f : c;
-      } else if(c == 0xff20){
-        // fullwidth atmark
-        ary[wi++] = widmode ? 0x0040 : c;
-      } else if(c == 0xff3c){
-        // fullwidth backslash
-        ary[wi++] = widmode ? 0x005c : c;
-      } else if(c == 0xff3e){
-        // fullwidth circumflex
-        ary[wi++] = widmode ? 0x005e : c;
-      } else if(c == 0xff3f){
-        // fullwidth underscore
-        ary[wi++] = widmode ? 0x005f : c;
-      } else if(c == 0xff5c){
-        // fullwidth vertical line
-        ary[wi++] = widmode ? 0x007c : c;
-      } else if(c >= 0xff21 && c <= 0xff3a){
-        // fullwidth alphabets
-        if(widmode){
-          if(lowmode){
-            ary[wi++] = c - 0xfee0 + 0x20;
-          } else {
-            ary[wi++] = c - 0xfee0;
-          }
-        } else if(lowmode){
-          ary[wi++] = c + 0x20;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff41 && c <= 0xff5a){
-        // fullwidth small alphabets
-        ary[wi++] = widmode ? c - 0xfee0 : c;
-      } else if(c >= 0xff10 && c <= 0xff19){
-        // fullwidth numbers
-        ary[wi++] = widmode ? c - 0xfee0 : c;
-      } else if(c == 0xff61){
-        // halfwidth full stop
-        ary[wi++] = widmode ? 0x3002 : c;
-      } else if(c == 0xff62){
-        // halfwidth left corner
-        ary[wi++] = widmode ? 0x300c : c;
-      } else if(c == 0xff63){
-        // halfwidth right corner
-        ary[wi++] = widmode ? 0x300d : c;
-      } else if(c == 0xff64){
-        // halfwidth comma
-        ary[wi++] = widmode ? 0x3001 : c;
-      } else if(c == 0xff65){
-        // halfwidth middle dot
-        ary[wi++] = widmode ? 0x30fb : c;
-      } else if(c == 0xff66){
-        // halfwidth wo
-        ary[wi++] = widmode ? 0x30f2 : c;
-      } else if(c >= 0xff67 && c <= 0xff6b){
-        // halfwidth small a-o
-        ary[wi++] = widmode ? (c - 0xff67) * 2 + 0x30a1 : c;
-      } else if(c >= 0xff6c && c <= 0xff6e){
-        // halfwidth small ya-yo
-        ary[wi++] = widmode ? (c - 0xff6c) * 2 + 0x30e3 : c;
-      } else if(c == 0xff6f){
-        // halfwidth small tu
-        ary[wi++] = widmode ? 0x30c3 : c;
-      } else if(c == 0xff70){
-        // halfwidth prolonged mark
-        ary[wi++] = widmode ? 0x30fc : c;
-      } else if(c >= 0xff71 && c <= 0xff75){
-        // halfwidth a-o
-        if(widmode){
-          ary[wi] = (c - 0xff71) * 2 + 0x30a2;
-          if(c == 0xff73 && i < num - 1 && ary[i+1] == 0xff9e){
-            ary[wi] = 0x30f4;
-            i++;
-          }
-          wi++;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff76 && c <= 0xff7a){
-        // halfwidth ka-ko
-        if(widmode){
-          ary[wi] = (c - 0xff76) * 2 + 0x30ab;
-          if(i < num - 1 && ary[i+1] == 0xff9e){
-            ary[wi]++;
-            i++;
-          }
-          wi++;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff7b && c <= 0xff7f){
-        // halfwidth sa-so
-        if(widmode){
-          ary[wi] = (c - 0xff7b) * 2 + 0x30b5;
-          if(i < num - 1 && ary[i+1] == 0xff9e){
-            ary[wi]++;
-            i++;
-          }
-          wi++;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff80 && c <= 0xff84){
-        // halfwidth ta-to
-        if(widmode){
-          ary[wi] = (c - 0xff80) * 2 + 0x30bf + (c >= 0xff82 ? 1 : 0);
-          if(i < num - 1 && ary[i+1] == 0xff9e){
-            ary[wi]++;
-            i++;
-          }
-          wi++;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff85 && c <= 0xff89){
-        // halfwidth na-no
-        ary[wi++] = widmode ? c - 0xcebb : c;
-      } else if(c >= 0xff8a && c <= 0xff8e){
-        // halfwidth ha-ho
-        if(widmode){
-          ary[wi] = (c - 0xff8a) * 3 + 0x30cf;
-          if(i < num - 1 && ary[i+1] == 0xff9e){
-            ary[wi]++;
-            i++;
-          } else if(i < num - 1 && ary[i+1] == 0xff9f){
-            ary[wi] += 2;
-            i++;
-          }
-          wi++;
-        } else {
-          ary[wi++] = c;
-        }
-      } else if(c >= 0xff8f && c <= 0xff93){
-        // halfwidth ma-mo
-        ary[wi++] = widmode ? c - 0xceb1 : c;
-      } else if(c >= 0xff94 && c <= 0xff96){
-        // halfwidth ya-yo
-        ary[wi++] = widmode ? (c - 0xff94) * 2 + 0x30e4 : c;
-      } else if(c >= 0xff97 && c <= 0xff9b){
-        // halfwidth ra-ro
-        ary[wi++] = widmode ? c - 0xceae : c;
-      } else if(c == 0xff9c){
-        // halfwidth wa
-        ary[wi++] = widmode ? 0x30ef : c;
-      } else if(c == 0xff9d){
-        // halfwidth nn
-        ary[wi++] = widmode ? 0x30f3 : c;
-      } else {
-        // otherwise
-        ary[wi++] = c;
-      }
-    } else {
-      // otherwise
-      ary[wi++] = c;
-    }
-  }
-  if(spcmode){
-    while(wi > 0 && ary[wi-1] == 0x0020){
-      wi--;
-    }
-  }
-  return wi;
-}
-
-
-/* Generate a keyword-in-context string from a text and keywords. */
-TCLIST *tcstrkwic(const char *str, const TCLIST *words, int width, int opts){
-  assert(str && words && width >= 0);
-  TCLIST *texts = tclistnew();
-  int len = strlen(str);
-  uint16_t *oary, *nary;
-  TCMALLOC(oary, sizeof(*oary) * len + 1);
-  TCMALLOC(nary, sizeof(*nary) * len + 1);
-  int oanum, nanum;
-  tcstrutftoucs(str, oary, &oanum);
-  tcstrutftoucs(str, nary, &nanum);
-  nanum = tcstrucsnorm(nary, nanum, TCUNLOWER | TCUNNOACC | TCUNWIDTH);
-  if(nanum != oanum){
-    memcpy(nary, oary, sizeof(*oary) * oanum);
-    for(int i = 0; i < oanum; i++){
-      if(nary[i] >= 'A' && nary[i] <= 'Z') nary[i] += 'a' - 'A';
-    }
-    nanum = oanum;
-  }
-  int wnum = TCLISTNUM(words);
-  TCLIST *uwords = tclistnew2(wnum);
-  for(int i = 0; i < wnum; i++){
-    const char *word;
-    int wsiz;
-    TCLISTVAL(word, words, i, wsiz);
-    uint16_t *uwary;
-    TCMALLOC(uwary, sizeof(*uwary) * wsiz + 1);
-    int uwnum;
-    tcstrutftoucs(word, uwary, &uwnum);
-    uwnum = tcstrucsnorm(uwary, uwnum, TCUNSPACE | TCUNLOWER | TCUNNOACC | TCUNWIDTH);
-    if(uwnum > 0){
-      tclistpushmalloc(uwords, uwary, sizeof(*uwary) * uwnum);
-    } else {
-      TCFREE(uwary);
-    }
-  }
-  wnum = TCLISTNUM(uwords);
-  int ri = 0;
-  int pi = 0;
-  while(ri < nanum){
-    int step = 0;
-    for(int i = 0; i < wnum; i++){
-      const char *val;
-      int uwnum;
-      TCLISTVAL(val, uwords, i, uwnum);
-      uint16_t *uwary = (uint16_t *)val;
-      uwnum /= sizeof(*uwary);
-      if(ri + uwnum <= nanum){
-        int ci = 0;
-        while(ci < uwnum && nary[ri+ci] == uwary[ci]){
-          ci++;
-        }
-        if(ci == uwnum){
-          int si = tclmax(ri - width, 0);
-          if(opts & TCKWNOOVER) si = tclmax(si, pi);
-          int ti = tclmin(ri + uwnum + width, nanum);
-          char *tbuf;
-          TCMALLOC(tbuf, (ti - si) * 5 + 1);
-          int wi = 0;
-          if(ri > si) wi += tcstrutfkwicputtext(oary, nary, si, ri, ri,
-                                                tbuf + wi, uwords, opts);
-          if(opts & TCKWMUTAB){
-            tbuf[wi++] = '\t';
-          } else if(opts & TCKWMUCTRL){
-            tbuf[wi++] = 0x02;
-          } else if(opts & TCKWMUBRCT){
-            tbuf[wi++] = '[';
-          }
-          wi += tcstrucstoutf(oary + ri, ci, tbuf + wi);
-          if(opts & TCKWMUTAB){
-            tbuf[wi++] = '\t';
-          } else if(opts & TCKWMUCTRL){
-            tbuf[wi++] = 0x03;
-          } else if(opts & TCKWMUBRCT){
-            tbuf[wi++] = ']';
-          }
-          if(ti > ri + ci) wi += tcstrutfkwicputtext(oary, nary, ri + ci, ti,
-                                                     nanum, tbuf + wi, uwords, opts);
-          if(wi > 0){
-            tclistpushmalloc(texts, tbuf, wi);
-          } else {
-            TCFREE(tbuf);
-          }
-          if(ti > step) step = ti;
-          if(step > pi) pi = step;
-          if(opts & TCKWNOOVER) break;
-        }
-      }
-    }
-    if(ri == 0 && step < 1 && (opts & TCKWPULEAD)){
-      int ti = tclmin(ri + width * 2, nanum);
-      if(ti > 0){
-        char *tbuf;
-        TCMALLOC(tbuf, ti * 5 + 1);
-        int wi = 0;
-        wi += tcstrutfkwicputtext(oary, nary, 0, ti, nanum, tbuf + wi, uwords, opts);
-        if(!(opts & TCKWNOOVER) && opts & TCKWMUTAB){
-          tbuf[wi++] = '\t';
-          tbuf[wi++] = '\t';
-        }
-        tclistpushmalloc(texts, tbuf, wi);
-      }
-      step = ti;
-    }
-    if(opts & TCKWNOOVER){
-      ri = (step > 0) ? step : ri + 1;
-    } else {
-      ri++;
-    }
-  }
-  tclistdel(uwords);
-  TCFREE(nary);
-  TCFREE(oary);
-  return texts;
-}
-
-
-/* Tokenize a text separating by white space characters. */
-TCLIST *tcstrtokenize(const char *str){
-  assert(str);
-  TCLIST *tokens = tclistnew();
-  const unsigned char *rp = (unsigned char *)str;
-  while(*rp != '\0'){
-    while(*rp <= ' '){
-      rp++;
-    }
-    if(*rp == '"'){
-      rp++;
-      TCXSTR *buf = tcxstrnew();
-      while(*rp != '\0'){
-        if(*rp == '\\'){
-          rp++;
-          if(*rp != '\0') TCXSTRCAT(buf, rp, 1);
-          rp++;
-        } else if(*rp == '"'){
-          rp++;
-          break;
-        } else {
-          TCXSTRCAT(buf, rp, 1);
-          rp++;
-        }
-      }
-      int size = TCXSTRSIZE(buf);
-      tclistpushmalloc(tokens, tcxstrtomalloc(buf), size);
-    } else {
-      const unsigned char *ep = rp;
-      while(*ep > ' '){
-        ep++;
-      }
-      if(ep > rp) TCLISTPUSH(tokens, rp, ep - rp);
-      if(*ep != '\0'){
-        rp = ep + 1;
-      } else {
-        break;
-      }
-    }
-  }
-  return tokens;
-}
-
-
-/* Create a list object by splitting a region by zero code. */
-TCLIST *tcstrsplit2(const void *ptr, int size){
-  assert(ptr && size >= 0);
-  TCLIST *list = tclistnew();
-  while(size >= 0){
-    const char *rp = ptr;
-    const char *ep = (const char *)ptr + size;
-    while(rp < ep){
-      if(*rp == '\0') break;
-      rp++;
-    }
-    TCLISTPUSH(list, ptr, rp - (const char *)ptr);
-    rp++;
-    size -= rp - (const char *)ptr;
-    ptr = rp;
-  }
-  return list;
-}
-
-
-/* Create a map object by splitting a string. */
-TCMAP *tcstrsplit3(const char *str, const char *delims){
-  assert(str && delims);
-  TCMAP *map = tcmapnew2(TCMAPTINYBNUM);
-  const char *kbuf = NULL;
-  int ksiz = 0;
-  while(true){
-    const char *sp = str;
-    while(*str != '\0' && !strchr(delims, *str)){
-      str++;
-    }
-    if(kbuf){
-      tcmapput(map, kbuf, ksiz, sp, str - sp);
-      kbuf = NULL;
-    } else {
-      kbuf = sp;
-      ksiz = str - sp;
-    }
-    if(*str == '\0') break;
-    str++;
-  }
-  return map;
-}
-
-
-/* Create a map object by splitting a region by zero code. */
-TCMAP *tcstrsplit4(const void *ptr, int size){
-  assert(ptr && size >= 0);
-  TCMAP *map = tcmapnew2(tclmin(size / 6 + 1, TCMAPDEFBNUM));
-  const char *kbuf = NULL;
-  int ksiz = 0;
-  while(size >= 0){
-    const char *rp = ptr;
-    const char *ep = (const char *)ptr + size;
-    while(rp < ep){
-      if(*rp == '\0') break;
-      rp++;
-    }
-    if(kbuf){
-      tcmapput(map, kbuf, ksiz, ptr, rp - (const char *)ptr);
-      kbuf = NULL;
-    } else {
-      kbuf = ptr;
-      ksiz = rp - (const char *)ptr;
-    }
-    rp++;
-    size -= rp - (const char *)ptr;
-    ptr = rp;
-  }
-  return map;
-}
-
-
-/* Create a region separated by zero code by joining all elements of a list object. */
-void *tcstrjoin2(const TCLIST *list, int *sp){
-  assert(list && sp);
-  int num = TCLISTNUM(list);
-  int size = num + 1;
-  for(int i = 0; i < num; i++){
-    size += TCLISTVALSIZ(list, i);
-  }
-  char *buf;
-  TCMALLOC(buf, size);
-  char *wp = buf;
-  for(int i = 0; i < num; i++){
-    if(i > 0) *(wp++) = '\0';
-    int vsiz;
-    const char *vbuf = tclistval(list, i, &vsiz);
-    memcpy(wp, vbuf, vsiz);
-    wp += vsiz;
-  }
-  *wp = '\0';
-  *sp = wp - buf;
-  return buf;
-}
-
-
-/* Create a string by joining all records of a map object. */
-char *tcstrjoin3(const TCMAP *map, char delim){
-  assert(map);
-  int num = (int)TCMAPRNUM(map);
-  int size = num * 2 + 1;
-  TCMAPREC *cur = map->cur;
-  tcmapiterinit((TCMAP *)map);
-  const char *kbuf;
-  int ksiz;
-  while((kbuf = tcmapiternext((TCMAP *)map, &ksiz)) != NULL){
-    int vsiz;
-    tcmapiterval(kbuf, &vsiz);
-    size += ksiz + vsiz;
-  }
-  char *buf;
-  TCMALLOC(buf, size);
-  char *wp = buf;
-  tcmapiterinit((TCMAP *)map);
-  bool first = true;
-  while((kbuf = tcmapiternext((TCMAP *)map, &ksiz)) != NULL){
-    if(first){
-      first = false;
-    } else {
-      *(wp++) = delim;
-    }
-    memcpy(wp, kbuf, ksiz);
-    wp += ksiz;
-    int vsiz;
-    const char *vbuf = tcmapiterval(kbuf, &vsiz);
-    *(wp++) = delim;
-    memcpy(wp, vbuf, vsiz);
-    wp += vsiz;
-  }
-  *wp = '\0';
-  ((TCMAP *)map)->cur = cur;
-  return buf;
-}
-
-
-/* Create a region separated by zero code by joining all records of a map object. */
-void *tcstrjoin4(const TCMAP *map, int *sp){
-  assert(map && sp);
-  int num = (int)TCMAPRNUM(map);
-  int size = num * 2 + 1;
-  TCMAPREC *cur = map->cur;
-  tcmapiterinit((TCMAP *)map);
-  const char *kbuf;
-  int ksiz;
-  while((kbuf = tcmapiternext((TCMAP *)map, &ksiz)) != NULL){
-    int vsiz;
-    tcmapiterval(kbuf, &vsiz);
-    size += ksiz + vsiz;
-  }
-  char *buf;
-  TCMALLOC(buf, size);
-  char *wp = buf;
-  tcmapiterinit((TCMAP *)map);
-  bool first = true;
-  while((kbuf = tcmapiternext((TCMAP *)map, &ksiz)) != NULL){
-    if(first){
-      first = false;
-    } else {
-      *(wp++) = '\0';
-    }
-    memcpy(wp, kbuf, ksiz);
-    wp += ksiz;
-    int vsiz;
-    const char *vbuf = tcmapiterval(kbuf, &vsiz);
-    *(wp++) = '\0';
-    memcpy(wp, vbuf, vsiz);
-    wp += vsiz;
-  }
-  *wp = '\0';
-  *sp = wp - buf;
-  ((TCMAP *)map)->cur = cur;
-  return buf;
-}
-
-
-/* Sort top records of an array. */
-void tctopsort(void *base, size_t nmemb, size_t size, size_t top,
-               int(*compar)(const void *, const void *)){
-  assert(base && size > 0 && compar);
-  if(nmemb < 1) return;
-  if(top > nmemb) top = nmemb;
-  char *bp = base;
-  char *ep = bp + nmemb * size;
-  char *rp = bp + size;
-  int num = 1;
-  char swap[size];
-  while(rp < ep){
-    if(num < top){
-      int cidx = num;
-      while(cidx > 0){
-        int pidx = (cidx - 1) / 2;
-        if(compar(bp + cidx * size, bp + pidx * size) <= 0) break;
-        memcpy(swap, bp + cidx * size, size);
-        memcpy(bp + cidx * size, bp + pidx * size, size);
-        memcpy(bp + pidx * size, swap, size);
-        cidx = pidx;
-      }
-      num++;
-    } else if(compar(rp, bp) < 0){
-      memcpy(swap, bp, size);
-      memcpy(bp, rp, size);
-      memcpy(rp, swap, size);
-      int pidx = 0;
-      int bot = num / 2;
-      while(pidx < bot){
-        int cidx = pidx * 2 + 1;
-        if(cidx < num - 1 && compar(bp + cidx * size, bp + (cidx + 1) * size) < 0) cidx++;
-        if(compar(bp + pidx * size, bp + cidx * size) > 0) break;
-        memcpy(swap, bp + pidx * size, size);
-        memcpy(bp + pidx * size, bp + cidx * size, size);
-        memcpy(bp + cidx * size, swap, size);
-        pidx = cidx;
-      }
-    }
-    rp += size;
-  }
-  num = top - 1;
-  while(num > 0){
-    memcpy(swap, bp, size);
-    memcpy(bp, bp + num * size, size);
-    memcpy(bp + num * size, swap, size);
-    int pidx = 0;
-    int bot = num / 2;
-    while(pidx < bot){
-      int cidx = pidx * 2 + 1;
-      if(cidx < num - 1 && compar(bp + cidx * size, bp + (cidx + 1) * size) < 0) cidx++;
-      if(compar(bp + pidx * size, bp + cidx * size) > 0) break;
-      memcpy(swap, bp + pidx * size, size);
-      memcpy(bp + pidx * size, bp + cidx * size, size);
-      memcpy(bp + cidx * size, swap, size);
-      pidx = cidx;
-    }
-    num--;
-  }
-}
-
-
-/* Suspend execution of the current thread. */
-bool tcsleep(double sec){
-  if(!isnormal(sec) || sec <= 0.0) return false;
-  if(sec <= 1.0 / sysconf(_SC_CLK_TCK)) return sched_yield() == 0;
-  double integ, fract;
-  fract = modf(sec, &integ);
-  struct timespec req, rem;
-  req.tv_sec = integ;
-  req.tv_nsec = tclmin(fract * 1000.0 * 1000.0 * 1000.0, 999999999);
-  while(nanosleep(&req, &rem) != 0){
-    if(errno != EINTR) return false;
-    req = rem;
-  }
-  return true;
-}
-
-
-/* Get the current system information. */
-TCMAP *tcsysinfo(void){
-#if defined(_SYS_LINUX_)
-  TCMAP *info = tcmapnew2(TCMAPTINYBNUM);
-  char path[1024];
-  sprintf(path, "/proc/%d/status", (int)getpid());
-  TCLIST *lines = tcreadfilelines(path);
-  if(lines){
-    int ln = tclistnum(lines);
-    char numbuf[TCNUMBUFSIZ];
-    for(int i = 0; i < ln; i++){
-      const char *line = TCLISTVALPTR(lines, i);
-      const char *rp = strchr(line, ':');
-      if(!rp) continue;
-      rp++;
-      while(*rp > '\0' && *rp <= ' '){
-        rp++;
-      }
-      if(tcstrifwm(line, "VmSize:")){
-        int64_t size = tcatoix(rp);
-        sprintf(numbuf, "%lld", (long long)size);
-        tcmapput2(info, "size", numbuf);
-      } else if(tcstrifwm(line, "VmRSS:")){
-        int64_t size = tcatoix(rp);
-        sprintf(numbuf, "%lld", (long long)size);
-        tcmapput2(info, "rss", numbuf);
-      }
-    }
-    tclistdel(lines);
-  }
-  sprintf(path, "/proc/meminfo");
-  lines = tcreadfilelines(path);
-  if(lines){
-    int ln = tclistnum(lines);
-    char numbuf[TCNUMBUFSIZ];
-    for(int i = 0; i < ln; i++){
-      const char *line = TCLISTVALPTR(lines, i);
-      const char *rp = strchr(line, ':');
-      if(!rp) continue;
-      rp++;
-      while(*rp > '\0' && *rp <= ' '){
-        rp++;
-      }
-      if(tcstrifwm(line, "MemTotal:")){
-        int64_t size = tcatoix(rp);
-        sprintf(numbuf, "%lld", (long long)size);
-        tcmapput2(info, "total", numbuf);
-      } else if(tcstrifwm(line, "MemFree:")){
-        int64_t size = tcatoix(rp);
-        sprintf(numbuf, "%lld", (long long)size);
-        tcmapput2(info, "free", numbuf);
-      } else if(tcstrifwm(line, "Cached:")){
-        int64_t size = tcatoix(rp);
-        sprintf(numbuf, "%lld", (long long)size);
-        tcmapput2(info, "cached", numbuf);
-      }
-    }
-    tclistdel(lines);
-  }
-  return info;
-#else
-  return NULL;
-#endif
-}
-
-
-/* Create a consistent hashing object. */
-TCCHIDX *tcchidxnew(int range){
-  assert(range > 0);
-  TCCHIDX *chidx;
-  TCMALLOC(chidx, sizeof(*chidx));
-  int nnum = range * TCCHIDXVNNUM;
-  TCCHIDXNODE *nodes;
-  TCMALLOC(nodes, nnum * sizeof(*nodes));
-  unsigned int seed = 725;
-  for(int i = 0; i < range; i++){
-    int end = (i + 1) * TCCHIDXVNNUM;
-    for(int j = i * TCCHIDXVNNUM; j < end; j++){
-      nodes[j].seq = i;
-      nodes[j].hash = (seed = seed * 123456761 + 211);
-    }
-  }
-  qsort(nodes, nnum, sizeof(*nodes), tcchidxcmp);
-  chidx->nodes = nodes;
-  chidx->nnum = nnum;
-  return chidx;
-}
-
-
-/* Delete a consistent hashing object. */
-void tcchidxdel(TCCHIDX *chidx){
-  assert(chidx);
-  TCFREE(chidx->nodes);
-  TCFREE(chidx);
-}
-
-
-/* Get the consistent hashing value of a record. */
-int tcchidxhash(TCCHIDX *chidx, const void *ptr, int size){
-  assert(chidx && ptr && size >= 0);
-  uint32_t hash = 19771007;
-  const char *rp = (char *)ptr + size;
-  while(size--){
-    hash = (hash * 31) ^ *(uint8_t *)--rp;
-    hash ^= hash << 7;
-  }
-  TCCHIDXNODE *nodes = chidx->nodes;
-  int low = 0;
-  int high = chidx->nnum;
-  while(low < high){
-    int mid = (low + high) >> 1;
-    uint32_t nhash = nodes[mid].hash;
-    if(hash < nhash){
-      high = mid;
-    } else if(hash > nhash){
-      low = mid + 1;
-    } else {
-      low = mid;
-      break;
-    }
-  }
-  if(low >= chidx->nnum) low = 0;
-  return nodes[low].seq & INT_MAX;
-}
-
-
-/* Put a text into a KWIC buffer.
-   `oary' specifies the original code array.
-   `nary' specifies the normalized code array.
-   `si' specifies the start index of the text.
-   `ti' specifies the terminal index of the text.
-   `end' specifies the end index of the code array.
-   `buf' specifies the pointer to the output buffer.
-   `uwords' specifies the list object of the words to be marked up.
-   `opts' specifies the options.
-   The return value is the length of the output. */
-static int tcstrutfkwicputtext(const uint16_t *oary, const uint16_t *nary, int si, int ti,
-                               int end, char *buf, const TCLIST *uwords, int opts){
-  assert(oary && nary && si >= 0 && ti >= 0 && end >= 0 && buf && uwords);
-  if(!(opts & TCKWNOOVER)) return tcstrucstoutf(oary + si, ti - si, buf);
-  if(!(opts & TCKWMUTAB) && !(opts & TCKWMUCTRL) && !(opts & TCKWMUBRCT))
-    return tcstrucstoutf(oary + si, ti - si, buf);
-  int wnum = TCLISTNUM(uwords);
-  int ri = si;
-  int wi = 0;
-  while(ri < ti){
-    int step = 0;
-    for(int i = 0; i < wnum; i++){
-      const char *val;
-      int uwnum;
-      TCLISTVAL(val, uwords, i, uwnum);
-      uint16_t *uwary = (uint16_t *)val;
-      uwnum /= sizeof(*uwary);
-      if(ri + uwnum <= end){
-        int ci = 0;
-        while(ci < uwnum && nary[ri+ci] == uwary[ci]){
-          ci++;
-        }
-        if(ci == uwnum){
-          if(opts & TCKWMUTAB){
-            buf[wi++] = '\t';
-          } else if(opts & TCKWMUCTRL){
-            buf[wi++] = 0x02;
-          } else if(opts & TCKWMUBRCT){
-            buf[wi++] = '[';
-          }
-          wi += tcstrucstoutf(oary + ri, ci, buf + wi);
-          if(opts & TCKWMUTAB){
-            buf[wi++] = '\t';
-          } else if(opts & TCKWMUCTRL){
-            buf[wi++] = 0x03;
-          } else if(opts & TCKWMUBRCT){
-            buf[wi++] = ']';
-          }
-          step = ri + ci;
-          break;
-        }
-      }
-    }
-    if(step > 0){
-      ri = step;
-    } else {
-      wi += tcstrucstoutf(oary + ri, 1, buf + wi);
-      ri++;
-    }
-  }
-  return wi;
-}
-
-
-/* Compare two consistent hashing nodes.
-   `a' specifies the pointer to one node object.
-   `b' specifies the pointer to the other node object.
-   The return value is positive if the former is big, negative if the latter is big, 0 if both
-   are equivalent. */
-static int tcchidxcmp(const void *a, const void *b){
-  if(((TCCHIDXNODE *)a)->hash == ((TCCHIDXNODE *)b)->hash) return 0;
-  return ((TCCHIDXNODE *)a)->hash > ((TCCHIDXNODE *)b)->hash;
-}
-
-
-
-/*************************************************************************************************
  * filesystem utilities
  *************************************************************************************************/
 
@@ -6813,30 +5139,9 @@ static int tcchidxcmp(const void *a, const void *b){
 /* Get the canonicalized absolute path of a file. */
 char *tcrealpath(const char *path){
   assert(path);
-  char buf[PATH_MAX+1];
-  if(realpath(path, buf)) return tcstrdup(buf);
-  if(errno == ENOENT){
-    const char *pv = strrchr(path, MYPATHCHR);
-    if(pv){
-      if(pv == path) return tcstrdup(path);
-      char *prefix = tcmemdup(path, pv - path);
-      if(!realpath(prefix, buf)){
-        TCFREE(prefix);
-        return NULL;
-      }
-      TCFREE(prefix);
-      pv++;
-    } else {
-      if(!realpath(MYCDIRSTR, buf)) return NULL;
-      pv = path;
-    }
-    if(buf[0] == MYPATHCHR && buf[1] == '\0') buf[0] = '\0';
-    char *str;
-    TCMALLOC(str, strlen(buf) + strlen(pv) + 2);
-    sprintf(str, "%s%c%s", buf, MYPATHCHR, pv);
-    return str;
-  }
-  return NULL;
+  char buf[PATH_MAX];
+  if(!realpath(path, buf)) return NULL;
+  return tcstrdup(buf);
 }
 
 
@@ -7125,6 +5430,7 @@ int tcsystem(const char **args, int anum){
  *************************************************************************************************/
 
 
+#define TCURLELBNUM    31                // bucket number of URL elements
 #define TCENCBUFSIZ    32                // size of a buffer for encoding name
 #define TCXMLATBNUM    31                // bucket number of XML attributes
 
@@ -7201,7 +5507,7 @@ char *tcurldecode(const char *str, int *sp){
 /* Break up a URL into elements. */
 TCMAP *tcurlbreak(const char *str){
   assert(str);
-  TCMAP *map = tcmapnew2(TCMAPTINYBNUM);
+  TCMAP *map = tcmapnew2(TCURLELBNUM);
   char *trim = tcstrdup(str);
   tcstrtrim(trim);
   const char *rp = trim;
@@ -7375,7 +5681,7 @@ char *tcurlresolve(const char *base, const char *target){
   }
   int num;
   char numbuf[TCNUMBUFSIZ];
-  if((vbuf = tcmapget2(belems, "port")) != NULL && (num = tcatoi(vbuf)) != port && num > 0){
+  if((vbuf = tcmapget2(belems, "port")) != NULL && (num = atoi(vbuf)) != port && num > 0){
     sprintf(numbuf, ":%d", num);
     tcxstrcat2(rbuf, numbuf);
   }
@@ -7887,32 +6193,14 @@ char *tchexdecode(const char *str, int *sp){
   TCMALLOC(buf, len + 1);
   char *wp = buf;
   for(int i = 0; i < len; i += 2){
-    while(str[i] >= '\0' && str[i] <= ' '){
+    while(strchr(" \n\r\t\f\v", str[i])){
       i++;
     }
-    int num = 0;
-    int c = str[i];
-    if(c == '\0') break;
-    if(c >= '0' && c <= '9'){
-      num = c - '0';
-    } else if(c >= 'a' && c <= 'f'){
-      num = c - 'a' + 10;
-    } else if(c >= 'A' && c <= 'F'){
-      num = c - 'A' + 10;
-    } else if(c == '\0'){
-      break;
-    }
-    c = str[i+1];
-    if(c >= '0' && c <= '9'){
-      num = num * 0x10 + c - '0';
-    } else if(c >= 'a' && c <= 'f'){
-      num = num * 0x10 + c - 'a' + 10;
-    } else if(c >= 'A' && c <= 'F'){
-      num = num * 0x10 + c - 'A' + 10;
-    } else if(c == '\0'){
-      break;
-    }
-    *(wp++) = num;
+    char mbuf[3];
+    if((mbuf[0] = str[i]) == '\0') break;
+    if((mbuf[1] = str[i+1]) == '\0') break;
+    mbuf[2] = '\0';
+    *(wp++) = strtol(mbuf, NULL, 16);
   }
   *wp = '\0';
   *sp = wp - buf;
@@ -8192,61 +6480,6 @@ char *tcxmlunescape(const char *str){
 }
 
 
-
-/*************************************************************************************************
- * encoding utilities (for experts)
- *************************************************************************************************/
-
-
-/* Encode a map object into a string in the x-www-form-urlencoded format. */
-char *tcwwwformencode(const TCMAP *params){
-  assert(params);
-  TCXSTR *xstr = tcxstrnew3(tcmaprnum(params) * TCXSTRUNIT * 3 + 1);
-  TCMAPREC *cur = params->cur;
-  tcmapiterinit((TCMAP *)params);
-  const char *kbuf;
-  int ksiz;
-  while((kbuf = tcmapiternext((TCMAP *)params, &ksiz)) != NULL){
-    int vsiz;
-    const char *vbuf = tcmapiterval(kbuf, &vsiz);
-    char *kenc = tcurlencode(kbuf, ksiz);
-    char *venc = tcurlencode(vbuf, vsiz);
-    if(TCXSTRSIZE(xstr) > 0) TCXSTRCAT(xstr, "&", 1);
-    tcxstrcat2(xstr, kenc);
-    TCXSTRCAT(xstr, "=", 1);
-    tcxstrcat2(xstr, venc);
-    TCFREE(venc);
-    TCFREE(kenc);
-  }
-  ((TCMAP *)params)->cur = cur;
-  return tcxstrtomalloc(xstr);
-}
-
-
-/* Decode a query string in the x-www-form-urlencoded format. */
-void tcwwwformdecode(const char *str, TCMAP *params){
-  assert(str && params);
-  TCLIST *pairs = tcstrsplit(str, "&;");
-  int num = TCLISTNUM(pairs);
-  for(int i = 0; i < num; i++){
-    char *key = tcstrdup(tclistval2(pairs, i));
-    char *val = strchr(key, '=');
-    if(val){
-      *(val++) = '\0';
-      int ksiz;
-      char *kbuf = tcurldecode(key, &ksiz);
-      int vsiz;
-      char *vbuf = tcurldecode(val, &vsiz);
-      tcmapput(params, kbuf, ksiz, vbuf, vsiz);
-      TCFREE(vbuf);
-      TCFREE(kbuf);
-    }
-    TCFREE(key);
-  }
-  tclistdel(pairs);
-}
-
-
 /* Split an XML string into tags and text sections. */
 TCLIST *tcxmlbreak(const char *str){
   assert(str);
@@ -8364,686 +6597,6 @@ TCMAP *tcxmlattrs(const char *str){
     }
   }
   return map;
-}
-
-
-/* Escape meta characters in a string with backslash escaping of the C language. */
-char *tccstrescape(const char *str){
-  assert(str);
-  int asiz = TCXSTRUNIT * 2;
-  char *buf;
-  TCMALLOC(buf, asiz + 4);
-  int wi = 0;
-  bool hex = false;
-  int c;
-  while((c = *(unsigned char *)str) != '\0'){
-    if(wi >= asiz){
-      asiz *= 2;
-      TCREALLOC(buf, buf, asiz + 4);
-    }
-    if(c < ' ' || c == 0x7f || c == '"' || c == '\'' || c == '\\'){
-      switch(c){
-      case '\t': wi += sprintf(buf + wi, "\\t"); break;
-      case '\n': wi += sprintf(buf + wi, "\\n"); break;
-      case '\r': wi += sprintf(buf + wi, "\\r"); break;
-      case '\\': wi += sprintf(buf + wi, "\\\\"); break;
-      default:
-        wi += sprintf(buf + wi, "\\x%02X", c);
-        hex = true;
-        break;
-      }
-    } else {
-      if(hex && ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'))){
-        wi += sprintf(buf + wi, "\\x%02X", c);
-        hex = true;
-      } else {
-        buf[wi++] = c;
-        hex = false;
-      }
-    }
-    str++;
-  }
-  buf[wi] = '\0';
-  return buf;
-}
-
-
-/* Unescape a string escaped by backslash escaping of the C language. */
-char *tccstrunescape(const char *str){
-  assert(str);
-  int asiz = TCXSTRUNIT * 2;
-  char *buf;
-  TCMALLOC(buf, asiz + 4);
-  int wi = 0;
-  int c;
-  while((c = *(unsigned char *)str) != '\0'){
-    if(wi >= asiz){
-      asiz *= 2;
-      TCREALLOC(buf, buf, asiz + 4);
-    }
-    if(c == '\\' && str[1] != '\0'){
-      str++;
-      int si = wi;
-      switch(*str){
-      case 'a': buf[wi++] = '\a'; break;
-      case 'b': buf[wi++] = '\b'; break;
-      case 't': buf[wi++] = '\t'; break;
-      case 'n': buf[wi++] = '\n'; break;
-      case 'v': buf[wi++] = '\v'; break;
-      case 'f': buf[wi++] = '\f'; break;
-      case 'r': buf[wi++] = '\r'; break;
-      }
-      if(si == wi){
-        c = *str;
-        if(c == 'x'){
-          str++;
-          int code = 0;
-          for(int i = 0; i < 2; i++){
-            c = *str;
-            if(c >= '0' && c <= '9'){
-              code = code * 0x10 + c - '0';
-            } else if(c >= 'A' && c <= 'F'){
-              code = code * 0x10 + c - 'A' + 10;
-            } else if(c >= 'a' && c <= 'f'){
-              code = code * 0x10 + c - 'a' + 10;
-            } else {
-              break;
-            }
-            str++;
-          }
-          buf[wi++] = code;
-        } else if(c == 'u' || c == 'U'){
-          int len = (c == 'U') ? 8 : 4;
-          str++;
-          int code = 0;
-          for(int i = 0; i < len; i++){
-            c = *str;
-            if(c >= '0' && c <= '9'){
-              code = code * 0x10 + c - '0';
-            } else if(c >= 'A' && c <= 'F'){
-              code = code * 0x10 + c - 'A' + 10;
-            } else if(c >= 'a' && c <= 'f'){
-              code = code * 0x10 + c - 'a' + 10;
-            } else {
-              break;
-            }
-            str++;
-          }
-          uint16_t ary[1];
-          ary[0] = code;
-          wi += tcstrucstoutf(ary, 1, buf + wi);
-        } else if(c >= '0' && c <= '8'){
-          int code = 0;
-          for(int i = 0; i < 3; i++){
-            c = *str;
-            if(c >= '0' && c <= '7'){
-              code = code * 8 + c - '0';
-            } else {
-              break;
-            }
-            str++;
-          }
-          buf[wi++] = code;
-        } else if(c != '\0'){
-          buf[wi++] = c;
-          str++;
-        }
-      } else {
-        str++;
-      }
-    } else {
-      buf[wi++] = c;
-      str++;
-    }
-  }
-  buf[wi] = '\0';
-  return buf;
-}
-
-
-/* Escape meta characters in a string with backslash escaping of JSON. */
-char *tcjsonescape(const char *str){
-  assert(str);
-  int asiz = TCXSTRUNIT * 2;
-  char *buf;
-  TCMALLOC(buf, asiz + 6);
-  int wi = 0;
-  int c;
-  while((c = *(unsigned char *)str) != '\0'){
-    if(wi >= asiz){
-      asiz *= 2;
-      TCREALLOC(buf, buf, asiz + 6);
-    }
-    if(c < ' ' || c == 0x7f || c == '"' || c == '\'' || c == '\\'){
-      switch(c){
-      case '\t': wi += sprintf(buf + wi, "\\t"); break;
-      case '\n': wi += sprintf(buf + wi, "\\n"); break;
-      case '\r': wi += sprintf(buf + wi, "\\r"); break;
-      case '\\': wi += sprintf(buf + wi, "\\\\"); break;
-      default: wi += sprintf(buf + wi, "\\u%04X", c); break;
-      }
-    } else {
-      buf[wi++] = c;
-    }
-    str++;
-  }
-  buf[wi] = '\0';
-  return buf;
-}
-
-
-/* Unescape a string escaped by backslash escaping of JSON. */
-char *tcjsonunescape(const char *str){
-  assert(str);
-  return tccstrunescape(str);
-}
-
-
-
-/*************************************************************************************************
- * template serializer
- *************************************************************************************************/
-
-
-#define TCTMPLUNIT     65536             // allocation unit size of a template string
-#define TCTMPLMAXDEP   256               // maximum depth of template blocks
-#define TCTMPLBEGSEP   "[%"              // default beginning separator
-#define TCTMPLENDSEP   "%]"              // default beginning separator
-#define TCTYPRFXLIST   "[list]\0:"       // type prefix for a list object
-#define TCTYPRFXMAP    "[map]\0:"        // type prefix for a list object
-
-
-/* private function prototypes */
-static TCLIST *tctmpltokenize(const char *expr);
-static int tctmpldumpeval(TCXSTR *xstr, const char *expr, const TCLIST *elems, int cur, int num,
-                          const TCMAP **stack, int depth);
-static const char *tctmpldumpevalvar(const TCMAP **stack, int depth, const char *name, int *sp);
-
-
-/* Create a template object. */
-TCTMPL *tctmplnew(void){
-  TCTMPL *tmpl;
-  TCMALLOC(tmpl, sizeof(*tmpl));
-  tmpl->elems = NULL;
-  tmpl->begsep = NULL;
-  tmpl->endsep = NULL;
-  tmpl->conf = tcmapnew2(TCMAPTINYBNUM);
-  return tmpl;
-}
-
-
-/* Delete a template object. */
-void tctmpldel(TCTMPL *tmpl){
-  assert(tmpl);
-  tcmapdel(tmpl->conf);
-  if(tmpl->endsep) TCFREE(tmpl->endsep);
-  if(tmpl->begsep) TCFREE(tmpl->begsep);
-  if(tmpl->elems) tclistdel(tmpl->elems);
-  TCFREE(tmpl);
-}
-
-
-/* Set the separator strings of a template object. */
-void tctmplsetsep(TCTMPL *tmpl, const char *begsep, const char *endsep){
-  assert(tmpl && begsep && endsep);
-  if(tmpl->endsep) TCFREE(tmpl->endsep);
-  if(tmpl->begsep) TCFREE(tmpl->begsep);
-  tmpl->begsep = tcstrdup(begsep);
-  tmpl->endsep = tcstrdup(endsep);
-}
-
-
-/* Load a template string into a template object. */
-void tctmplload(TCTMPL *tmpl, const char *str){
-  assert(tmpl && str);
-  const char *begsep = tmpl->begsep;
-  if(!begsep) begsep = TCTMPLBEGSEP;
-  const char *endsep = tmpl->endsep;
-  if(!endsep) endsep = TCTMPLENDSEP;
-  int beglen = strlen(begsep);
-  int endlen = strlen(endsep);
-  if(beglen < 1 || endlen < 1) return;
-  int begchr = *begsep;
-  int endchr = *endsep;
-  if(tmpl->elems) tclistdel(tmpl->elems);
-  tcmapclear(tmpl->conf);
-  TCLIST *elems = tclistnew();
-  const char *rp = str;
-  const char *pv = rp;
-  while(*rp != '\0'){
-    if(*rp == begchr && tcstrfwm(rp, begsep)){
-      if(rp > pv) TCLISTPUSH(elems, pv, rp - pv);
-      rp += beglen;
-      pv = rp;
-      while(*rp != '\0'){
-        if(*rp == endchr && tcstrfwm(rp, endsep)){
-          bool chop = false;
-          while(pv < rp && *pv > '\0' && *pv <= ' '){
-            pv++;
-          }
-          if(*pv == '"'){
-            pv++;
-            const char *sp = pv;
-            while(pv < rp && *pv != '"'){
-              pv++;
-            }
-            if(pv > sp) TCLISTPUSH(elems, sp, pv - sp);
-          } else if(*pv == '\''){
-            pv++;
-            const char *sp = pv;
-            while(pv < rp && *pv != '\''){
-              pv++;
-            }
-            if(pv > sp) TCLISTPUSH(elems, sp, pv - sp);
-          } else {
-            const char *ep = rp;
-            if(ep > pv && ep[-1] == '\\'){
-              ep--;
-              chop = true;
-            }
-            while(ep > pv && ((unsigned char *)ep)[-1] <= ' '){
-              ep--;
-            }
-            int len = ep - pv;
-            char *buf;
-            TCMALLOC(buf, len + 1);
-            *buf = '\0';
-            memcpy(buf + 1, pv, len);
-            tclistpushmalloc(elems, buf, len + 1);
-            if(tcstrfwm(pv, "CONF")){
-              const char *expr = (char *)TCLISTVALPTR(elems, TCLISTNUM(elems) - 1) + 1;
-              TCLIST *tokens = tctmpltokenize(expr);
-              int tnum = TCLISTNUM(tokens);
-              if(tnum > 1 && !strcmp(TCLISTVALPTR(tokens, 0), "CONF")){
-                const char *name = TCLISTVALPTR(tokens, 1);
-                const char *value = (tnum > 2) ? TCLISTVALPTR(tokens, 2) : "";
-                tcmapput2(tmpl->conf, name, value);
-              }
-              tclistdel(tokens);
-            }
-          }
-          rp += endlen;
-          if(chop){
-            if(*rp == '\r') rp++;
-            if(*rp == '\n') rp++;
-          }
-          break;
-        }
-        rp++;
-      }
-      pv = rp;
-    } else {
-      rp++;
-    }
-  }
-  if(rp > pv) TCLISTPUSH(elems, pv, rp - pv);
-  tmpl->elems = elems;
-}
-
-
-/* Load a template string from a file into a template object. */
-bool tctmplload2(TCTMPL *tmpl, const char *path){
-  assert(tmpl && path);
-  char *str = tcreadfile(path, -1, NULL);
-  if(!str) return false;
-  tctmplload(tmpl, str);
-  TCFREE(str);
-  return true;
-}
-
-
-/* Serialize the template string of a template object. */
-char *tctmpldump(TCTMPL *tmpl, const TCMAP *vars){
-  assert(tmpl && vars);
-  TCXSTR *xstr = tcxstrnew3(TCTMPLUNIT);
-  TCLIST *elems = tmpl->elems;
-  if(elems){
-    int cur = 0;
-    int num = TCLISTNUM(elems);
-    const TCMAP *stack[TCTMPLMAXDEP];
-    int depth = 0;
-    stack[depth++] = tmpl->conf;
-    stack[depth++] = vars;
-    while(cur < num){
-      const char *elem;
-      int esiz;
-      TCLISTVAL(elem, elems, cur, esiz);
-      if(*elem == '\0' && esiz > 0){
-        cur = tctmpldumpeval(xstr, elem + 1, elems, cur, num, stack, depth);
-      } else {
-        TCXSTRCAT(xstr, elem, esiz);
-        cur++;
-      }
-    }
-  }
-  return tcxstrtomalloc(xstr);
-}
-
-
-/* Get the value of a configuration variable of a template object. */
-const char *tctmplconf(TCTMPL *tmpl, const char *name){
-  assert(tmpl && name);
-  return tcmapget2(tmpl->conf, name);
-}
-
-
-/* Store a list object into a list object with the type information. */
-void tclistpushlist(TCLIST *list, const TCLIST *obj){
-  assert(list && obj);
-  char vbuf[sizeof(TCTYPRFXLIST) - 1 + sizeof(obj)];
-  memcpy(vbuf, TCTYPRFXLIST, sizeof(TCTYPRFXLIST) - 1);
-  memcpy(vbuf + sizeof(TCTYPRFXLIST) - 1, &obj, sizeof(obj));
-  tclistpush(list, vbuf, sizeof(vbuf));
-}
-
-
-/* Store a map object into a list object with the type information. */
-void tclistpushmap(TCLIST *list, const TCMAP *obj){
-  assert(list && obj);
-  char vbuf[sizeof(TCTYPRFXMAP) - 1 + sizeof(obj)];
-  memcpy(vbuf, TCTYPRFXMAP, sizeof(TCTYPRFXMAP) - 1);
-  memcpy(vbuf + sizeof(TCTYPRFXMAP) - 1, &obj, sizeof(obj));
-  tclistpush(list, vbuf, sizeof(vbuf));
-}
-
-
-/* Store a list object into a map object with the type information. */
-void tcmapputlist(TCMAP *map, const char *kstr, const TCLIST *obj){
-  assert(map && kstr && obj);
-  char vbuf[sizeof(TCTYPRFXLIST) - 1 + sizeof(obj)];
-  memcpy(vbuf, TCTYPRFXLIST, sizeof(TCTYPRFXLIST) - 1);
-  memcpy(vbuf + sizeof(TCTYPRFXLIST) - 1, &obj, sizeof(obj));
-  tcmapput(map, kstr, strlen(kstr), vbuf, sizeof(vbuf));
-}
-
-
-/* Store a map object into a map object with the type information. */
-void tcmapputmap(TCMAP *map, const char *kstr, const TCMAP *obj){
-  assert(map && kstr && obj);
-  char vbuf[sizeof(TCTYPRFXMAP) - 1 + sizeof(obj)];
-  memcpy(vbuf, TCTYPRFXMAP, sizeof(TCTYPRFXMAP) - 1);
-  memcpy(vbuf + sizeof(TCTYPRFXMAP) - 1, &obj, sizeof(obj));
-  tcmapput(map, kstr, strlen(kstr), vbuf, sizeof(vbuf));
-}
-
-
-/* Tokenize an template expression.
-   `expr' specifies the expression.
-   The return value is a list object of tokens. */
-static TCLIST *tctmpltokenize(const char *expr){
-  TCLIST *tokens = tclistnew();
-  const unsigned char *rp = (unsigned char *)expr;
-  while(*rp != '\0'){
-    while(*rp > '\0' && *rp <= ' '){
-      rp++;
-    }
-    const unsigned char *pv = rp;
-    if(*rp == '"'){
-      pv++;
-      rp++;
-      while(*rp != '\0' && *rp != '"'){
-        rp++;
-      }
-      TCLISTPUSH(tokens, pv, rp - pv);
-      if(*rp == '"') rp++;
-    } else if(*rp == '\''){
-      pv++;
-      rp++;
-      while(*rp != '\0' && *rp != '\''){
-        rp++;
-      }
-      TCLISTPUSH(tokens, pv, rp - pv);
-      if(*rp == '\'') rp++;
-    } else {
-      while(*rp > ' '){
-        rp++;
-      }
-      if(rp > pv) TCLISTPUSH(tokens, pv, rp - pv);
-    }
-  }
-  return tokens;
-}
-
-
-/* Evaluate an template expression.
-   `xstr' specifies the output buffer.
-   `expr' specifies the expression.
-   `elems' specifies the list of elements.
-   `cur' specifies the current offset of the elements.
-   `num' specifies the number of the elements.
-   `stack' specifies the variable scope stack.
-   `depth' specifies the current depth of the stack.
-   The return value is the next offset of the elements. */
-static int tctmpldumpeval(TCXSTR *xstr, const char *expr, const TCLIST *elems, int cur, int num,
-                          const TCMAP **stack, int depth){
-  assert(expr && elems && cur >= 0 && num >= 0 && stack && depth >= 0);
-  cur++;
-  TCLIST *tokens = tctmpltokenize(expr);
-  int tnum = TCLISTNUM(tokens);
-  if(tnum > 0){
-    const char *cmd = TCLISTVALPTR(tokens, 0);
-    if(!strcmp(cmd, "IF")){
-      bool sign = true;
-      const char *eq = NULL;
-      const char *rx = NULL;
-      for(int i = 1; i < tnum; i++){
-        const char *token = TCLISTVALPTR(tokens, i);
-        if(!strcmp(token, "NOT")){
-          sign = !sign;
-        } else if(!strcmp(token, "EQ")){
-          if(++i < tnum) eq = TCLISTVALPTR(tokens, i);
-        } else if(!strcmp(token, "RX")){
-          if(++i < tnum) rx = TCLISTVALPTR(tokens, i);
-        }
-      }
-      TCXSTR *altxstr = NULL;
-      if(xstr){
-        const char *name = (tnum > 1) ? TCLISTVALPTR(tokens, 1) : "__";
-        int vsiz;
-        const char *vbuf = tctmpldumpevalvar(stack, depth, name, &vsiz);
-        bool bval = false;
-        if(vbuf){
-          if(eq){
-            if(!strcmp(vbuf, eq)) bval = true;
-          } else if(rx){
-            if(tcregexmatch(vbuf, rx)) bval = true;
-          } else {
-            bval = true;
-          }
-        }
-        if(bval != sign){
-          altxstr = xstr;
-          xstr = NULL;
-        }
-      }
-      while(cur < num){
-        const char *elem;
-        int esiz;
-        TCLISTVAL(elem, elems, cur, esiz);
-        if(*elem == '\0' && esiz > 0){
-          cur = tctmpldumpeval(xstr, elem + 1, elems, cur, num, stack, depth);
-          if(!strcmp(elem + 1, "ELSE")){
-            xstr = altxstr;
-          } else if(!strcmp(elem + 1, "END")){
-            break;
-          }
-        } else {
-          if(xstr) TCXSTRCAT(xstr, elem, esiz);
-          cur++;
-        }
-      }
-    } else if(!strcmp(cmd, "FOREACH")){
-      const TCLIST *list = NULL;
-      if(xstr){
-        const char *name = (tnum > 1) ? TCLISTVALPTR(tokens, 1) : "";
-        int vsiz;
-        const char *vbuf = tctmpldumpevalvar(stack, depth, name, &vsiz);
-        if(vbuf && vsiz == sizeof(TCTYPRFXLIST) - 1 + sizeof(list)){
-          memcpy(&list, vbuf + sizeof(TCTYPRFXLIST) - 1, sizeof(list));
-        }
-      }
-      if(list && TCLISTNUM(list) > 0){
-        const char *name = (tnum > 2) ? TCLISTVALPTR(tokens, 2) : "";
-        TCMAP *vars = tcmapnew2(1);
-        if(depth < TCTMPLMAXDEP){
-          stack[depth] = vars;
-          depth++;
-        }
-        int lnum = TCLISTNUM(list);
-        int beg = cur;
-        for(int i = 0; i < lnum; i++){
-          const char *vbuf;
-          int vsiz;
-          TCLISTVAL(vbuf, list, i, vsiz);
-          if(vsiz == sizeof(TCTYPRFXLIST) - 1 + sizeof(TCLIST *)){
-            TCLIST *obj;
-            memcpy(&obj, vbuf + sizeof(TCTYPRFXLIST) - 1, sizeof(obj));
-            tcmapputlist(vars, name, obj);
-          } else if(vsiz == sizeof(TCTYPRFXMAP) - 1 + sizeof(TCMAP *)){
-            TCMAP *obj;
-            memcpy(&obj, vbuf + sizeof(TCTYPRFXMAP) - 1, sizeof(obj));
-            tcmapputmap(vars, name, obj);
-          } else {
-            tcmapput2(vars, name, vbuf);
-          }
-          cur = beg;
-          while(cur < num){
-            const char *elem;
-            int esiz;
-            TCLISTVAL(elem, elems, cur, esiz);
-            if(*elem == '\0' && esiz > 0){
-              cur = tctmpldumpeval(xstr, elem + 1, elems, cur, num, stack, depth);
-              if(!strcmp(elem + 1, "END")) break;
-            } else {
-              if(xstr) TCXSTRCAT(xstr, elem, esiz);
-              cur++;
-            }
-          }
-        }
-        tcmapdel(vars);
-      } else {
-        while(cur < num){
-          const char *elem;
-          int esiz;
-          TCLISTVAL(elem, elems, cur, esiz);
-          if(*elem == '\0' && esiz > 0){
-            cur = tctmpldumpeval(NULL, elem + 1, elems, cur, num, stack, depth);
-            if(!strcmp(elem + 1, "END")) break;
-          } else {
-            cur++;
-          }
-        }
-      }
-    } else if(xstr){
-      int vsiz;
-      const char *vbuf = tctmpldumpevalvar(stack, depth, cmd, &vsiz);
-      const char *enc = "";
-      const char *def = NULL;
-      for(int i = 1; i < tnum; i++){
-        const char *token = TCLISTVALPTR(tokens, i);
-        if(!strcmp(token, "ENC")){
-          if(++i < tnum) enc = TCLISTVALPTR(tokens, i);
-        } else if(!strcmp(token, "DEF")){
-          if(++i < tnum) def = TCLISTVALPTR(tokens, i);
-        }
-      }
-      if(!vbuf && def){
-        vbuf = def;
-        vsiz = strlen(def);
-      }
-      if(vbuf){
-        if(!strcmp(enc, "URL")){
-          char *ebuf = tcurlencode(vbuf, vsiz);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "BASE")){
-          char *ebuf = tcbaseencode(vbuf, vsiz);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "QUOTE")){
-          char *ebuf = tcquoteencode(vbuf, vsiz);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "HEX")){
-          char *ebuf = tchexencode(vbuf, vsiz);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "XML")){
-          char *ebuf = tcxmlescape(vbuf);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "CSTR")){
-          char *ebuf = tccstrescape(vbuf);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "JSON")){
-          char *ebuf = tcjsonescape(vbuf);
-          tcxstrcat2(xstr, ebuf);
-          TCFREE(ebuf);
-        } else if(!strcmp(enc, "MD5")){
-          char ebuf[48];
-          tcmd5hash(vbuf, vsiz, ebuf);
-          tcxstrcat2(xstr, ebuf);
-        } else {
-          tcxstrcat2(xstr, vbuf);
-        }
-      }
-    }
-  }
-  tclistdel(tokens);
-  return cur;
-}
-
-
-/* Evaluate a variable of a template expression.
-   `stack' specifies the variable scope stack.
-   `depth' specifies the current depth of the stack.
-   `name' specifies the variable name.
-   `sp' specifies the length of the region of the return value.
-   The return value is the pointer to the region of the evaluated value. */
-static const char *tctmpldumpevalvar(const TCMAP **stack, int depth, const char *name, int *sp){
-  assert(stack && depth >= 0 && name && sp);
-  const char *result = NULL;
-  TCLIST *tokens = tcstrsplit(name, ".");
-  int tnum = TCLISTNUM(tokens);
-  if(tnum > 0){
-    const char *token;
-    int tsiz;
-    TCLISTVAL(token, tokens, 0, tsiz);
-    for(int i = depth - 1; i >= 0; i--){
-      const TCMAP *vars = stack[i];
-      int vsiz;
-      const char *vbuf = tcmapget(vars, token, tsiz, &vsiz);
-      int tidx = 1;
-      if(vbuf){
-        while(vbuf){
-          if(vsiz == sizeof(TCTYPRFXLIST) - 1 + sizeof(TCLIST *)){
-            result = vbuf;
-            *sp = vsiz;
-            break;
-          } else if(vsiz == sizeof(TCTYPRFXMAP) - 1 + sizeof(TCMAP *)){
-            if(tidx < tnum){
-              memcpy(&vars, vbuf + sizeof(TCTYPRFXMAP) - 1, sizeof(TCMAP *));
-              TCLISTVAL(token, tokens, tidx, tsiz);
-              vbuf = tcmapget(vars, token, tsiz, &vsiz);
-              tidx++;
-            } else {
-              result = vbuf;
-              *sp = vsiz;
-              break;
-            }
-          } else {
-            result = vbuf;
-            *sp = vsiz;
-            break;
-          }
-        }
-        break;
-      }
-    }
-  }
-  tclistdel(tokens);
-  return result;
 }
 
 
@@ -9242,8 +6795,8 @@ typedef struct {                         // type of structure for a BWT characte
 
 
 /* private function prototypes */
-static void tcglobalinit(void);
-static void tcglobaldestroy(void);
+static void tcglobalmutexinit(void);
+static void tcglobalmutexdestroy(void);
 static void tcbwtsortstrcount(const char **arrays, int anum, int len, int level);
 static void tcbwtsortstrinsert(const char **arrays, int anum, int len, int skip);
 static void tcbwtsortstrheap(const char **arrays, int anum, int len, int skip);
@@ -9335,22 +6888,20 @@ void tczerounmap(void *ptr){
 
 
 /* Global mutex object. */
-static pthread_once_t tcglobalonce = PTHREAD_ONCE_INIT;
 static pthread_rwlock_t tcglobalmutex;
-static pthread_mutex_t tcpathmutex;
-static TCMAP *tcpathmap;
+static pthread_once_t tcglobalmutexonce = PTHREAD_ONCE_INIT;
 
 
 /* Lock the global mutex object. */
 bool tcglobalmutexlock(void){
-  pthread_once(&tcglobalonce, tcglobalinit);
+  pthread_once(&tcglobalmutexonce, tcglobalmutexinit);
   return pthread_rwlock_wrlock(&tcglobalmutex) == 0;
 }
 
 
 /* Lock the global mutex object by shared locking. */
 bool tcglobalmutexlockshared(void){
-  pthread_once(&tcglobalonce, tcglobalinit);
+  pthread_once(&tcglobalmutexonce, tcglobalmutexinit);
   return pthread_rwlock_rdlock(&tcglobalmutex) == 0;
 }
 
@@ -9358,30 +6909,6 @@ bool tcglobalmutexlockshared(void){
 /* Unlock the global mutex object. */
 bool tcglobalmutexunlock(void){
   return pthread_rwlock_unlock(&tcglobalmutex) == 0;
-}
-
-
-/* Lock the absolute path of a file. */
-bool tcpathlock(const char *path){
-  assert(path);
-  pthread_once(&tcglobalonce, tcglobalinit);
-  if(pthread_mutex_lock(&tcpathmutex) != 0) return false;
-  bool err = false;
-  if(tcpathmap && !tcmapputkeep2(tcpathmap, path, "")) err = true;
-  if(pthread_mutex_unlock(&tcpathmutex) != 0) err = true;
-  return !err;
-}
-
-
-/* Unock the absolute path of a file. */
-bool tcpathunlock(const char *path){
-  assert(path);
-  pthread_once(&tcglobalonce, tcglobalinit);
-  if(pthread_mutex_lock(&tcpathmutex) != 0) return false;
-  bool err = false;
-  if(tcpathmap && !tcmapout2(tcpathmap, path)) err = true;
-  if(pthread_mutex_unlock(&tcpathmutex) != 0) err = true;
-  return !err;
 }
 
 
@@ -9430,49 +6957,34 @@ int tccmplexical(const char *aptr, int asiz, const char *bptr, int bsiz, void *o
 /* Compare two keys as decimal strings of real numbers. */
 int tccmpdecimal(const char *aptr, int asiz, const char *bptr, int bsiz, void *op){
   assert(aptr && asiz >= 0 && bptr && bsiz >= 0);
+  int sign;
   int64_t anum = 0;
-  int64_t bnum = 0;
-  const unsigned char *rp = (unsigned char *)aptr;
-  int len = asiz;
-  int sign = 1;
-  while(len > 0 && (*rp <= ' ' || *rp == 0x7f)){
-    rp++;
-    len--;
-  }
-  if(len > 0 && *rp == '-'){
-    rp++;
-    len--;
+  sign = 1;
+  if(asiz > 0 && *aptr == '-'){
+    aptr++;
+    asiz--;
     sign = -1;
   }
-  for(int i = 0; i < len; i++){
-    int c = rp[i];
-    if(c < '0' || c > '9') break;
+  for(int i = 0; i < asiz; i++){
+    int c = aptr[i];
+    if(c < '0' || c > '9') continue;
     anum = anum * 10 + c - '0';
   }
   anum *= sign;
-  rp = (unsigned char *)bptr;
-  len = bsiz;
+  int64_t bnum = 0;
   sign = 1;
-  while(len > 0 && (*rp <= ' ' || *rp == 0x7f)){
-    rp++;
-    len--;
-  }
-  if(len > 0 && *rp == '-'){
-    rp++;
-    len--;
+  if(bsiz > 0 && *bptr == '-'){
+    bptr++;
+    bsiz--;
     sign = -1;
   }
-  for(int i = 0; i < len; i++){
-    int c = rp[i];
-    if(c < '0' || c > '9') break;
+  for(int i = 0; i < bsiz; i++){
+    int c = bptr[i];
+    if(c < '0' || c > '9') continue;
     bnum = bnum * 10 + c - '0';
   }
   bnum *= sign;
-  if(anum < bnum) return -1;
-  if(anum > bnum) return 1;
-  int rv;
-  TCCMPLEXICAL(rv, aptr, asiz, bptr, bsiz);
-  return rv;
+  return (anum < bnum) ? -1 : anum > bnum;
 }
 
 
@@ -9727,25 +7239,6 @@ char *tcbwtdecode(const char *ptr, int size, int idx){
 }
 
 
-/* Get the binary logarithm of an integer. */
-long tclog2l(long num){
-  if(num <= 1) return 0;
-  num >>= 1;
-  long rv = 0;
-  while(num > 0){
-    rv++;
-    num >>= 1;
-  }
-  return rv;
-}
-
-
-/* Get the binary logarithm of a real number. */
-double tclog2d(double num){
-  return log(num) / log(2);
-}
-
-
 /* Get the aligned offset of a file offset. */
 uint64_t tcpagealign(uint64_t off){
   int ps = sysconf(_SC_PAGESIZE);
@@ -9755,22 +7248,15 @@ uint64_t tcpagealign(uint64_t off){
 
 
 /* Initialize the global mutex object */
-static void tcglobalinit(void){
-  if(!TCUSEPTHREAD){
-    memset(&tcglobalmutex, 0, sizeof(tcglobalmutex));
-    memset(&tcpathmutex, 0, sizeof(tcpathmutex));
-  }
+static void tcglobalmutexinit(void){
+  if(!TCUSEPTHREAD) memset(&tcglobalmutex, 0, sizeof(tcglobalmutex));
   if(pthread_rwlock_init(&tcglobalmutex, NULL) != 0) tcmyfatal("rwlock error");
-  if(pthread_mutex_init(&tcpathmutex, NULL) != 0) tcmyfatal("mutex error");
-  tcpathmap = tcmapnew2(TCMAPTINYBNUM);
-  atexit(tcglobaldestroy);
+  atexit(tcglobalmutexdestroy);
 }
 
 
 /* Destroy the global mutex object */
-static void tcglobaldestroy(void){
-  tcmapdel(tcpathmap);
-  pthread_mutex_destroy(&tcpathmutex);
+static void tcglobalmutexdestroy(void){
   pthread_rwlock_destroy(&tcglobalmutex);
 }
 
@@ -10212,7 +7698,7 @@ static int tcgammadecode(const char *ptr, int size, char *obuf){
       *(wp++) = c - 1;
     }
   }
-  return wp - obuf;
+  return wp - obuf;;
 }
 
 

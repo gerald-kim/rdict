@@ -133,16 +133,6 @@ typedef int (*TCCMP)(const char *aptr, int asiz, const char *bptr, int bsiz, voi
    call, else, it is `NULL'. */
 typedef void *(*TCCODEC)(const void *ptr, int size, int *sp, void *op);
 
-/* type of the pointer to a callback function to process record duplication.
-   `vbuf' specifies the pointer to the region of the value.
-   `vsiz' specifies the size of the region of the value.
-   `sp' specifies the pointer to the variable into which the size of the region of the return
-   value is assigned.
-   `op' specifies the pointer to the optional opaque object.
-   The return value is the pointer to the result object allocated with `malloc'.  It is
-   released by the caller.  If it is `NULL', the record is not modified. */
-typedef void *(*TCPDPROC)(const void *vbuf, int vsiz, int *sp, void *op);
-
 /* type of the pointer to a iterator function.
    `kbuf' specifies the pointer to the region of the key.
    `ksiz' specifies the size of the region of the key.
@@ -305,13 +295,6 @@ TCLIST *tclistnew(void);
    `anum' specifies the number of elements expected to be stored in the list.
    The return value is the new list object. */
 TCLIST *tclistnew2(int anum);
-
-
-/* Create a list object with initial string elements.
-   `str' specifies the string of the first element.
-   The other arguments are other elements.  They should be trailed by a `NULL' argument.
-   The return value is the new list object. */
-TCLIST *tclistnew3(const char *str, ...);
 
 
 /* Copy a list object.
@@ -555,22 +538,6 @@ void tclistsortci(TCLIST *list);
 void tclistsortex(TCLIST *list, int (*cmp)(const TCLISTDATUM *, const TCLISTDATUM *));
 
 
-/* Invert elements of a list object.
-   `list' specifies the list object. */
-void tclistinvert(TCLIST *list);
-
-
-/* Perform formatted output into a list object.
-   `list' specifies the list object.
-   `format' specifies the printf-like format string.  The conversion character `%' can be used
-   with such flag characters as `s', `d', `o', `u', `x', `X', `c', `e', `E', `f', `g', `G', `@',
-   `?', `b', and `%'.  `@' works as with `s' but escapes meta characters of XML.  `?' works as
-   with `s' but escapes meta characters of URL.  `b' converts an integer to the string as binary
-   numbers.  The other conversion character work as with each original.
-   The other arguments are used according to the format string. */
-void tclistprintf(TCLIST *list, const char *format, ...);
-
-
 
 /*************************************************************************************************
  * hash map
@@ -578,8 +545,9 @@ void tclistprintf(TCLIST *list, const char *format, ...);
 
 
 typedef struct _TCMAPREC {               /* type of structure for an element of a map */
-  int32_t ksiz;                          /* size of the region of the key */
-  int32_t vsiz;                          /* size of the region of the value */
+  int ksiz;                              /* size of the region of the key */
+  int vsiz;                              /* size of the region of the value */
+  unsigned int hash;                     /* second hash value */
   struct _TCMAPREC *left;                /* pointer to the left child */
   struct _TCMAPREC *right;               /* pointer to the right child */
   struct _TCMAPREC *prev;                /* pointer to the previous element */
@@ -606,14 +574,6 @@ TCMAP *tcmapnew(void);
    `bnum' specifies the number of the buckets.
    The return value is the new map object. */
 TCMAP *tcmapnew2(uint32_t bnum);
-
-
-/* Create a map object with initial string elements.
-   `str' specifies the string of the first element.
-   The other arguments are other elements.  They should be trailed by a `NULL' argument.
-   The return value is the new map object.
-   The key and the value of each record are situated one after the other. */
-TCMAP *tcmapnew3(const char *str, ...);
 
 
 /* Copy a map object.
@@ -888,27 +848,6 @@ void tcmapput4(TCMAP *map, const void *kbuf, int ksiz,
 void tcmapputcat3(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
 
 
-/* Store a record into a map object with a duplication handler.
-   `map' specifies the map object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   `vbuf' specifies the pointer to the region of the value.  `NULL' means that record addition is
-   ommited if there is no corresponding record.
-   `vsiz' specifies the size of the region of the value.
-   `proc' specifies the pointer to the callback function to process duplication.  It receives
-   four parameters.  The first parameter is the pointer to the region of the value.  The second
-   parameter is the size of the region of the value.  The third parameter is the pointer to the
-   variable into which the size of the region of the return value is assigned.  The fourth
-   parameter is the pointer to the optional opaque object.  It returns the pointer to the result
-   object allocated with `malloc'.  It is released by the caller.  If it is `NULL', the record is
-   not modified.  If it is `(void *)-1', the record is removed.
-   `op' specifies an arbitrary pointer to be given as a parameter of the callback function.  If
-   it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
-bool tcmapputproc(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op);
-
-
 /* Retrieve a semivolatile record in a map object.
    `map' specifies the map object.
    `kbuf' specifies the pointer to the region of the key.
@@ -922,30 +861,6 @@ bool tcmapputproc(TCMAP *map, const void *kbuf, int ksiz, const void *vbuf, int 
    record is moved to the tail so that the record will survive for a time under LRU cache
    algorithm removing records from the head. */
 const void *tcmapget3(TCMAP *map, const void *kbuf, int ksiz, int *sp);
-
-
-/* Retrieve a string record in a map object with specifying the default value string.
-   `map' specifies the map object.
-   `kstr' specifies the string of the key.
-   `dstr' specifies the string of the default value.
-   The return value is the string of the value of the corresponding record or the default value
-   string. */
-const char *tcmapget4(TCMAP *map, const char *kstr, const char *dstr);
-
-
-/* Initialize the iterator of a map object at the record corresponding a key.
-   `map' specifies the map object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   If there is no record corresponding the condition, the iterator is not modified. */
-void tcmapiterinit2(TCMAP *map, const void *kbuf, int ksiz);
-
-
-/* Initialize the iterator of a map object at the record corresponding a key string.
-   `map' specifies the map object.
-   `kstr' specifies the string of the key.
-   If there is no record corresponding the condition, the iterator is not modified. */
-void tcmapiterinit3(TCMAP *map, const char *kstr);
 
 
 /* Get the value bound to the key fetched from the iterator of a map object.
@@ -1000,18 +915,6 @@ const char **tcmapvals2(const TCMAP *map, int *np);
 void *tcmaploadone(const void *ptr, int size, const void *kbuf, int ksiz, int *sp);
 
 
-/* Perform formatted output into a map object.
-   `map' specifies the map object.
-   `kstr' specifies the string of the key.
-   `format' specifies the printf-like format string.  The conversion character `%' can be used
-   with such flag characters as `s', `d', `o', `u', `x', `X', `c', `e', `E', `f', `g', `G', `@',
-   `?', `b', and `%'.  `@' works as with `s' but escapes meta characters of XML.  `?' works as
-   with `s' but escapes meta characters of URL.  `b' converts an integer to the string as binary
-   numbers.  The other conversion character work as with each original.
-   The other arguments are used according to the format string. */
-void tcmapprintf(TCMAP *map, const char *kstr, const char *format, ...);
-
-
 
 /*************************************************************************************************
  * ordered tree
@@ -1019,8 +922,8 @@ void tcmapprintf(TCMAP *map, const char *kstr, const char *format, ...);
 
 
 typedef struct _TCTREEREC {              /* type of structure for an element of a tree */
-  int32_t ksiz;                          /* size of the region of the key */
-  int32_t vsiz;                          /* size of the region of the value */
+  int ksiz;                              /* size of the region of the key */
+  int vsiz;                              /* size of the region of the value */
   struct _TCTREEREC *left;               /* pointer to the left child */
   struct _TCTREEREC *right;              /* pointer to the right child */
 } TCTREEREC;
@@ -1041,12 +944,7 @@ TCTREE *tctreenew(void);
 
 
 /* Create a tree object with specifying the custom comparison function.
-   `cmp' specifies the pointer to the custom comparison function.  It receives five parameters.
-   The first parameter is the pointer to the region of one key.  The second parameter is the size
-   of the region of one key.  The third parameter is the pointer to the region of the other key.
-   The fourth parameter is the size of the region of the other key.  The fifth parameter is the
-   pointer to the optional opaque object.  It returns positive if the former is big, negative if
-   the latter is big, 0 if both are equivalent.
+   `cmp' specifies the pointer to the custom comparison function.
    `cmpop' specifies an arbitrary pointer to be given as a parameter of the comparison function.
    If it is not needed, `NULL' can be specified.
    The return value is the new tree object.
@@ -1123,27 +1021,6 @@ void tctreeputcat(TCTREE *tree, const void *kbuf, int ksiz, const void *vbuf, in
 void tctreeputcat2(TCTREE *tree, const char *kstr, const char *vstr);
 
 
-/* Store a record into a tree object with a duplication handler.
-   `tree' specifies the tree object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   `vbuf' specifies the pointer to the region of the value.  `NULL' means that record addition is
-   ommited if there is no corresponding record.
-   `vsiz' specifies the size of the region of the value.
-   `proc' specifies the pointer to the callback function to process duplication.  It receives
-   four parameters.  The first parameter is the pointer to the region of the value.  The second
-   parameter is the size of the region of the value.  The third parameter is the pointer to the
-   variable into which the size of the region of the return value is assigned.  The fourth
-   parameter is the pointer to the optional opaque object.  It returns the pointer to the result
-   object allocated with `malloc'.  It is released by the caller.  If it is `NULL', the record is
-   not modified.  If it is `(void *)-1', the record is removed.
-   `op' specifies an arbitrary pointer to be given as a parameter of the callback function.  If
-   it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
-bool tctreeputproc(TCTREE *tree, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                   TCPDPROC proc, void *op);
-
-
 /* Remove a record of a tree object.
    `tree' specifies the tree object.
    `kbuf' specifies the pointer to the region of the key.
@@ -1186,6 +1063,23 @@ const char *tctreeget2(TCTREE *tree, const char *kstr);
    `tree' specifies the tree object.
    The iterator is used in order to access the key of every record stored in the tree object. */
 void tctreeiterinit(TCTREE *tree);
+
+
+/* Initialize the iterator of a tree object in front of records corresponding a key.
+   `tree' specifies the tree object.
+   `kbuf' specifies the pointer to the region of the key.
+   `ksiz' specifies the size of the region of the key.
+   The iterator is set to the first record corresponding the key or the next substitute if
+   completely matching record does not exist. */
+void tctreeiterinit2(TCTREE *tree, const void *kbuf, int ksiz);
+
+
+/* Initialize the iterator of a tree object in front of records corresponding a key string.
+   `tree' specifies the tree object.
+   `kstr' specifies the string of the key.
+   The iterator is set to the first record corresponding the key or the next substitute if
+   completely matching record does not exist. */
+void tctreeiterinit3(TCTREE *tree, const char *kstr);
 
 
 /* Get the next key of the iterator of a tree object.
@@ -1346,32 +1240,6 @@ void tctreeputcat3(TCTREE *tree, const void *kbuf, int ksiz, const void *vbuf, i
 const void *tctreeget3(const TCTREE *tree, const void *kbuf, int ksiz, int *sp);
 
 
-/* Retrieve a string record in a tree object with specifying the default value string.
-   `tree' specifies the tree object.
-   `kstr' specifies the string of the key.
-   `dstr' specifies the string of the default value.
-   The return value is the string of the value of the corresponding record or the default value
-   string. */
-const char *tctreeget4(TCTREE *tree, const char *kstr, const char *dstr);
-
-
-/* Initialize the iterator of a tree object in front of records corresponding a key.
-   `tree' specifies the tree object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   The iterator is set to the first record corresponding the key or the next substitute if
-   completely matching record does not exist. */
-void tctreeiterinit2(TCTREE *tree, const void *kbuf, int ksiz);
-
-
-/* Initialize the iterator of a tree object in front of records corresponding a key string.
-   `tree' specifies the tree object.
-   `kstr' specifies the string of the key.
-   The iterator is set to the first record corresponding the key or the next substitute if
-   completely matching record does not exist. */
-void tctreeiterinit3(TCTREE *tree, const char *kstr);
-
-
 /* Get the value bound to the key fetched from the iterator of a tree object.
    `kbuf' specifies the pointer to the region of the iteration key.
    `sp' specifies the pointer to the variable into which the size of the region of the return
@@ -1422,18 +1290,6 @@ const char **tctreevals2(const TCTREE *tree, int *np);
    Because an additional zero code is appended at the end of the region of the return value,
    the return value can be treated as a character string. */
 void *tctreeloadone(const void *ptr, int size, const void *kbuf, int ksiz, int *sp);
-
-
-/* Perform formatted output into a tree object.
-   `map' specifies the tree object.
-   `kstr' specifies the string of the key.
-   `format' specifies the printf-like format string.  The conversion character `%' can be used
-   with such flag characters as `s', `d', `o', `u', `x', `X', `c', `e', `E', `f', `g', `G', `@',
-   `?', `b', and `%'.  `@' works as with `s' but escapes meta characters of XML.  `?' works as
-   with `s' but escapes meta characters of URL.  `b' converts an integer to the string as binary
-   numbers.  The other conversion character work as with each original.
-   The other arguments are used according to the format string. */
-void tctreeprintf(TCTREE *tree, const char *kstr, const char *format, ...);
 
 
 
@@ -1620,8 +1476,8 @@ char *tcmdbiternext2(TCMDB *mdb);
    `psiz' specifies the size of the region of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail.
-   It returns an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail
+   and return an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use.  Note that this function
    may be very slow because every key in the database is scanned. */
@@ -1633,8 +1489,8 @@ TCLIST *tcmdbfwmkeys(TCMDB *mdb, const void *pbuf, int psiz, int max);
    `pstr' specifies the string of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail.
-   It returns an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail
+   and return an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use.  Note that this function
    may be very slow because every key in the database is scanned. */
@@ -1727,27 +1583,6 @@ void tcmdbput4(TCMDB *mdb, const void *kbuf, int ksiz,
 void tcmdbputcat3(TCMDB *mdb, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
 
 
-/* Store a record into a on-memory hash database object with a duplication handler.
-   `mdb' specifies the on-memory hash database object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   `vbuf' specifies the pointer to the region of the value.  `NULL' means that record addition is
-   ommited if there is no corresponding record.
-   `vsiz' specifies the size of the region of the value.
-   `proc' specifies the pointer to the callback function to process duplication.  It receives
-   four parameters.  The first parameter is the pointer to the region of the value.  The second
-   parameter is the size of the region of the value.  The third parameter is the pointer to the
-   variable into which the size of the region of the return value is assigned.  The fourth
-   parameter is the pointer to the optional opaque object.  It returns the pointer to the result
-   object allocated with `malloc'.  It is released by the caller.  If it is `NULL', the record is
-   not modified.  If it is `(void *)-1', the record is removed.
-   `op' specifies an arbitrary pointer to be given as a parameter of the callback function.  If
-   it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
-bool tcmdbputproc(TCMDB *mdb, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op);
-
-
 /* Retrieve a record and move it astern in an on-memory hash database object.
    `mdb' specifies the on-memory hash database object.
    `kbuf' specifies the pointer to the region of the key.
@@ -1764,28 +1599,8 @@ bool tcmdbputproc(TCMDB *mdb, const void *kbuf, int ksiz, const void *vbuf, int 
 void *tcmdbget3(TCMDB *mdb, const void *kbuf, int ksiz, int *sp);
 
 
-/* Initialize the iterator of an on-memory map database object in front of a key.
-   `mdb' specifies the on-memory map database object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   If there is no record corresponding the condition, the iterator is not modified. */
-void tcmdbiterinit2(TCMDB *mdb, const void *kbuf, int ksiz);
-
-
-/* Initialize the iterator of an on-memory map database object in front of a key string.
-   `mdb' specifies the on-memory map database object.
-   `kstr' specifies the string of the key.
-   If there is no record corresponding the condition, the iterator is not modified. */
-void tcmdbiterinit3(TCMDB *mdb, const char *kstr);
-
-
 /* Process each record atomically of an on-memory hash database object.
-   `iter' specifies the pointer to the iterator function called for each record.  It receives
-   five parameters.  The first parameter is the pointer to the region of the key.  The second
-   parameter is the size of the region of the key.  The third parameter is the pointer to the
-   region of the value.  The fourth parameter is the size of the region of the value.  The fifth
-   parameter is the pointer to the optional opaque object.  It returns true to continue iteration
-   or false to stop iteration.
+   `func' specifies the pointer to the iterator function called for each record.
    `op' specifies an arbitrary pointer to be given as a parameter of the iterator function.  If
    it is not needed, `NULL' can be specified. */
 void tcmdbforeach(TCMDB *mdb, TCITER iter, void *op);
@@ -1947,6 +1762,23 @@ int tcndbvsiz2(TCNDB *ndb, const char *kstr);
 void tcndbiterinit(TCNDB *ndb);
 
 
+/* Initialize the iterator of an on-memory tree database object in front of a key.
+   `ndb' specifies the on-memory tree database object.
+   `kbuf' specifies the pointer to the region of the key.
+   `ksiz' specifies the size of the region of the key.
+   The iterator is set to the first record corresponding the key or the next substitute if
+   completely matching record does not exist. */
+void tcndbiterinit2(TCNDB *ndb, const void *kbuf, int ksiz);
+
+
+/* Initialize the iterator of an on-memory tree database object in front of a key string.
+   `ndb' specifies the on-memory tree database object.
+   `kstr' specifies the string of the key.
+   The iterator is set to the first record corresponding the key or the next substitute if
+   completely matching record does not exist. */
+void tcndbiterinit3(TCNDB *ndb, const char *kstr);
+
+
 /* Get the next key of the iterator of an on-memory tree database object.
    `ndb' specifies the on-memory tree database object.
    `sp' specifies the pointer to the variable into which the size of the region of the return
@@ -1977,8 +1809,8 @@ char *tcndbiternext2(TCNDB *ndb);
    `psiz' specifies the size of the region of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail.
-   It returns an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail
+   and return an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcndbfwmkeys(TCNDB *ndb, const void *pbuf, int psiz, int max);
@@ -1989,8 +1821,8 @@ TCLIST *tcndbfwmkeys(TCNDB *ndb, const void *pbuf, int psiz, int max);
    `pstr' specifies the string of the prefix.
    `max' specifies the maximum number of keys to be fetched.  If it is negative, no limit is
    specified.
-   The return value is a list object of the corresponding keys.  This function does never fail.
-   It returns an empty list even if no key corresponds.
+   The return value is a list object of the corresponding keys.  This function does never fail
+   and return an empty list even if no key corresponds.
    Because the object of the return value is created with the function `tclistnew', it should be
    deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcndbfwmkeys2(TCNDB *ndb, const char *pstr, int max);
@@ -2082,27 +1914,6 @@ bool tcndbputkeep3(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int
 void tcndbputcat3(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
 
 
-/* Store a record into a on-memory tree database object with a duplication handler.
-   `ndb' specifies the on-memory tree database.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   `vbuf' specifies the pointer to the region of the value.  `NULL' means that record addition is
-   ommited if there is no corresponding record.
-   `vsiz' specifies the size of the region of the value.
-   `proc' specifies the pointer to the callback function to process duplication.  It receives
-   four parameters.  The first parameter is the pointer to the region of the value.  The second
-   parameter is the size of the region of the value.  The third parameter is the pointer to the
-   variable into which the size of the region of the return value is assigned.  The fourth
-   parameter is the pointer to the optional opaque object.  It returns the pointer to the result
-   object allocated with `malloc'.  It is released by the caller.  If it is `NULL', the record is
-   not modified.  If it is `(void *)-1', the record is removed.
-   `op' specifies an arbitrary pointer to be given as a parameter of the callback function.  If
-   it is not needed, `NULL' can be specified.
-   If successful, the return value is true, else, it is false. */
-bool tcndbputproc(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int vsiz,
-                  TCPDPROC proc, void *op);
-
-
 /* Retrieve a record in an on-memory tree database object without balancing nodes.
    `ndb' specifies the on-memory tree database object.
    `kbuf' specifies the pointer to the region of the key.
@@ -2118,30 +1929,8 @@ bool tcndbputproc(TCNDB *ndb, const void *kbuf, int ksiz, const void *vbuf, int 
 void *tcndbget3(TCNDB *ndb, const void *kbuf, int ksiz, int *sp);
 
 
-/* Initialize the iterator of an on-memory tree database object in front of a key.
-   `ndb' specifies the on-memory tree database object.
-   `kbuf' specifies the pointer to the region of the key.
-   `ksiz' specifies the size of the region of the key.
-   The iterator is set to the first record corresponding the key or the next substitute if
-   completely matching record does not exist. */
-void tcndbiterinit2(TCNDB *ndb, const void *kbuf, int ksiz);
-
-
-/* Initialize the iterator of an on-memory tree database object in front of a key string.
-   `ndb' specifies the on-memory tree database object.
-   `kstr' specifies the string of the key.
-   The iterator is set to the first record corresponding the key or the next substitute if
-   completely matching record does not exist. */
-void tcndbiterinit3(TCNDB *ndb, const char *kstr);
-
-
 /* Process each record atomically of an on-memory tree database object.
-   `iter' specifies the pointer to the iterator function called for each record.  It receives
-   five parameters.  The first parameter is the pointer to the region of the key.  The second
-   parameter is the size of the region of the key.  The third parameter is the pointer to the
-   region of the value.  The fourth parameter is the size of the region of the value.  The fifth
-   parameter is the pointer to the optional opaque object.  It returns true to continue iteration
-   or false to stop iteration.
+   `func' specifies the pointer to the iterator function called for each record.
    `op' specifies an arbitrary pointer to be given as a parameter of the iterator function.  If
    it is not needed, `NULL' can be specified. */
 void tcndbforeach(TCNDB *ndb, TCITER iter, void *op);
@@ -2179,59 +1968,50 @@ void tcmpooldel(TCMPOOL *mpool);
 
 /* Relegate an arbitrary object to a memory pool object.
    `mpool' specifies the memory pool object.
-   `ptr' specifies the pointer to the object to be relegated.  If it is `NULL', this function has
-   no effect.
+   `ptr' specifies the pointer to the object to be relegated.
    `del' specifies the pointer to the function to delete the object.
-   The return value is the pointer to the given object.
    This function assures that the specified object is deleted when the memory pool object is
    deleted. */
-void *tcmpoolpush(TCMPOOL *mpool, void *ptr, void (*del)(void *));
+void tcmpoolput(TCMPOOL *mpool, void *ptr, void (*del)(void *));
 
 
 /* Relegate an allocated region to a memory pool object.
-   `mpool' specifies the memory pool object.
-   `ptr' specifies the pointer to the region to be relegated.  If it is `NULL', this function has
-   no effect.
-   The return value is the pointer to the given object.
+   `ptr' specifies the pointer to the region to be relegated.
    This function assures that the specified region is released when the memory pool object is
    deleted. */
-void *tcmpoolpushptr(TCMPOOL *mpool, void *ptr);
+void tcmpoolputptr(TCMPOOL *mpool, void *ptr);
 
 
 /* Relegate an extensible string object to a memory pool object.
    `mpool' specifies the memory pool object.
-   `xstr' specifies the extensible string object.  If it is `NULL', this function has no effect.
-   The return value is the pointer to the given object.
+   `xstr' specifies the extensible string object.
    This function assures that the specified object is deleted when the memory pool object is
    deleted. */
-TCXSTR *tcmpoolpushxstr(TCMPOOL *mpool, TCXSTR *xstr);
+void tcmpoolputxstr(TCMPOOL *mpool, TCXSTR *xstr);
 
 
 /* Relegate a list object to a memory pool object.
    `mpool' specifies the memory pool object.
-   `list' specifies the list object.  If it is `NULL', this function has no effect.
-   The return value is the pointer to the given object.
+   `list' specifies the list object.
    This function assures that the specified object is deleted when the memory pool object is
    deleted. */
-TCLIST *tcmpoolpushlist(TCMPOOL *mpool, TCLIST *list);
+void tcmpoolputlist(TCMPOOL *mpool, TCLIST *list);
 
 
 /* Relegate a map object to a memory pool object.
    `mpool' specifies the memory pool object.
-   `map' specifies the map object.  If it is `NULL', this function has no effect.
-   The return value is the pointer to the given object.
+   `map' specifies the map object.
    This function assures that the specified object is deleted when the memory pool object is
    deleted. */
-TCMAP *tcmpoolpushmap(TCMPOOL *mpool, TCMAP *map);
+void tcmpoolputmap(TCMPOOL *mpool, TCMAP *map);
 
 
 /* Relegate a tree object to a memory pool object.
    `mpool' specifies the memory pool object.
-   `tree' specifies the tree object.  If it is `NULL', this function has no effect.
-   The return value is the pointer to the given object.
+   `tree' specifies the tree object.
    This function assures that the specified object is deleted when the memory pool object is
    deleted. */
-TCTREE *tcmpoolpushtree(TCMPOOL *mpool, TCTREE *tree);
+void tcmpoolputtree(TCMPOOL *mpool, TCTREE *tree);
 
 
 /* Allocate a region relegated to a memory pool object.
@@ -2271,6 +2051,17 @@ TCMPOOL *tcmpoolglobal(void);
 /*************************************************************************************************
  * miscellaneous utilities
  *************************************************************************************************/
+
+
+typedef struct {                         /* type of structure for a consistent hashing node */
+  uint32_t seq;                          /* sequential number */
+  uint32_t hash;                         /* hash value */
+} TCCHIDXNODE;
+
+typedef struct {                         /* type of structure for a consistent hashing object */
+  TCCHIDXNODE *nodes;                    /* node array */
+  int nnum;                              /* number of the node array */
+} TCCHIDX;
 
 
 /* Get the larger value of two integers.
@@ -2418,12 +2209,11 @@ void tcstrutftoucs(const char *str, uint16_t *ary, int *np);
 
 
 /* Convert a UCS-2 array into a UTF-8 string.
-   `ary' specifies the array of UCS-2 codes.
+   `ary' specifies the array of UCS-2 code codes.
    `num' specifies the number of the array.
    `str' specifies the pointer to the region into which the result UTF-8 string is written.  The
-   size of the buffer should be sufficient.
-   The return value is the length of the result string. */
-int tcstrucstoutf(const uint16_t *ary, int num, char *str);
+   size of the buffer should be sufficient. */
+void tcstrucstoutf(const uint16_t *ary, int num, char *str);
 
 
 /* Create a list object by splitting a string.
@@ -2431,8 +2221,8 @@ int tcstrucstoutf(const uint16_t *ary, int num, char *str);
    `delim' specifies a string containing delimiting characters.
    The return value is a list object of the split elements.
    If two delimiters are successive, it is assumed that an empty element is between the two.
-   Because the object of the return value is created with the function `tclistnew', it should be
-   deleted with the function `tclistdel' when it is no longer in use. */
+   Because the object of the return value is created with the function `tclistnew', it should
+   be deleted with the function `tclistdel' when it is no longer in use. */
 TCLIST *tcstrsplit(const char *str, const char *delims);
 
 
@@ -2442,32 +2232,16 @@ TCLIST *tcstrsplit(const char *str, const char *delims);
    The return value is the result string.
    Because the region of the return value is allocated with the `malloc' call, it should be
    released with the `free' call when it is no longer in use. */
-char *tcstrjoin(const TCLIST *list, char delim);
-
-
-/* Convert a string to an integer.
-   `str' specifies the string.
-   The return value is the integer.  If the string does not contain numeric expression, 0 is
-   returned.
-   This function is equivalent to `atoll' except that it does not depend on the locale. */
-int64_t tcatoi(const char *str);
+char *tcstrjoin(TCLIST *list, char delim);
 
 
 /* Convert a string with a metric prefix to an integer.
-   `str' specifies the string, which can be trailed by a binary metric prefix.  "K", "M", "G",
-   "T", "P", and "E" are supported.  They are case-insensitive.
+   `str' specifies a string which can be trailed by a binary metric prefix.  "K", "M", "G", "T",
+   "P", and "E" are supported.  They are case-insensitive.
    The return value is the integer.  If the string does not contain numeric expression, 0 is
    returned.  If the integer overflows the domain, `INT64_MAX' or `INT64_MIN' is returned
    according to the sign. */
-int64_t tcatoix(const char *str);
-
-
-/* Convert a string to a real number.
-   `str' specifies the string.
-   The return value is the real number.  If the string does not contain numeric expression, 0.0
-   is returned.
-   This function is equivalent to `atof' except that it does not depend on the locale. */
-double tcatof(const char *str);
+int64_t tcatoi(const char *str);
 
 
 /* Check whether a string matches a regular expression.
@@ -2499,6 +2273,28 @@ char *tcregexreplace(const char *str, const char *regex, const char *alt);
    `buf' specifies the pointer to the region into which the result string is written.  The size
    of the buffer should be equal to or more than 48 bytes. */
 void tcmd5hash(const void *ptr, int size, char *buf);
+
+
+/* Create a consistent hashing object.
+   `range' specifies the number of nodes.  It should be more than 0.  The range of hash values is
+   from 0 to less than the specified number.
+   The return value is the new consistent hashing object.
+   Consistent hashing is useful because the addition or removal of one node does not
+   significantly change the mapping of keys to nodes. */
+TCCHIDX *tcchidxnew(int range);
+
+
+/* Delete a consistent hashing object.
+   `chidx' specifies the consistent hashing object. */
+void tcchidxdel(TCCHIDX *chidx);
+
+
+/* Get the consistent hashing value of a record.
+   `chidx' specifies the consistent hashing object.
+   `ptr' specifies the pointer to the region of the record.
+   `size' specifies the size of the region.
+   The return value is the hash value of the record. */
+int tcchidxhash(TCCHIDX *chidx, const void *ptr, int size);
 
 
 /* Get the time of day in seconds.
@@ -2568,214 +2364,6 @@ int tcjetlag(void);
    `day' specifies the day of the date.
    The return value is the day of week of the date.  0 means Sunday and 6 means Saturday. */
 int tcdayofweek(int year, int mon, int day);
-
-
-
-/*************************************************************************************************
- * miscellaneous utilities (for experts)
- *************************************************************************************************/
-
-
-enum {                                   /* enumeration for UCS normalization */
-  TCUNSPACE = 1 << 0,                    /* white space normalization */
-  TCUNLOWER = 1 << 1,                    /* lower case normalization */
-  TCUNNOACC = 1 << 2,                    /* strip accent marks */
-  TCUNWIDTH = 1 << 3                     /* half-width normalization */
-};
-
-enum {                                   /* enumeration for KWIC generator */
-  TCKWMUTAB = 1 << 0,                    /* mark up by tabs */
-  TCKWMUCTRL = 1 << 1,                   /* mark up by control characters */
-  TCKWMUBRCT = 1 << 2,                   /* mark up by brackets */
-  TCKWNOOVER = 1 << 24,                  /* no overlap */
-  TCKWPULEAD = 1 << 25                   /* pick up the lead string */
-};
-
-typedef struct {                         /* type of structure for a consistent hashing node */
-  uint32_t seq;                          /* sequential number */
-  uint32_t hash;                         /* hash value */
-} TCCHIDXNODE;
-
-typedef struct {                         /* type of structure for a consistent hashing object */
-  TCCHIDXNODE *nodes;                    /* node array */
-  int nnum;                              /* number of the node array */
-} TCCHIDX;
-
-
-/* Check whether a string is numeric completely or not.
-   `str' specifies the string to be checked.
-   The return value is true if the string is numeric, else, it is false. */
-bool tcstrisnum(const char *str);
-
-
-/* Convert a hexadecimal string to an integer.
-   `str' specifies the string.
-   The return value is the integer.  If the string does not contain numeric expression, 0 is
-   returned. */
-int64_t tcatoih(const char *str);
-
-
-/* Skip space characters at head of a string.
-   `str' specifies the string.
-   The return value is the pointer to the first non-space character. */
-const char *tcstrskipspc(const char *str);
-
-
-/* Normalize a UTF-8 string.
-   `str' specifies the string of UTF-8.
-   `opts' specifies options by bitwise-or: `TCUNSPACE' specifies that white space characters are
-   normalized into the ASCII space and they are squeezed into one, `TCUNLOWER' specifies that
-   alphabetical characters are normalized into lower cases, `TCUNNOACC' specifies that
-   alphabetical characters with accent marks are normalized without accent marks, `TCUNWIDTH'
-   specifies that full-width characters are normalized into half-width characters.
-   The return value is the string itself. */
-char *tcstrutfnorm(char *str, int opts);
-
-
-/* Normalize a UCS-2 array.
-   `ary' specifies the array of UCS-2 codes.
-   `num' specifies the number of elements of the array.
-   `opts' specifies options by bitwise-or: `TCUNSPACE' specifies that white space characters are
-   normalized into the ASCII space and they are squeezed into one, `TCUNLOWER' specifies that
-   alphabetical characters are normalized into lower cases, `TCUNNOACC' specifies that
-   alphabetical characters with accent marks are normalized without accent marks, `TCUNWIDTH'
-   specifies that full-width characters are normalized into half-width characters.
-   The return value is the number of elements of the result array. */
-int tcstrucsnorm(uint16_t *ary, int num, int opts);
-
-
-/* Generate a keyword-in-context string from a text and keywords.
-   `str' specifies the text string of UTF-8.
-   `words' specifies a list object of the keyword strings.
-   `width' specifies the width of strings picked up around each keyword.
-   `opts' specifies options by bitwise-or: `TCKWMUTAB' specifies that each keyword is marked up
-   between two tab characters, `TCKWMUCTRL' specifies that each keyword is marked up by the STX
-   (0x02) code and the ETX (0x03) code, `TCKWMUBRCT' specifies that each keyword is marked up by
-   the two square brackets, `TCKWNOOVER' specifies that each context does not overlap,
-   `TCKWPULEAD' specifies that the lead string is picked up forcibly.
-   The return value is the list object whose elements are strings around keywords.
-   Because the object of the return value is created with the function `tclistnew', it should
-   be deleted with the function `tclistdel' when it is no longer in use. */
-TCLIST *tcstrkwic(const char *str, const TCLIST *words, int width, int opts);
-
-
-/* Tokenize a text separating by white space characters.
-   `str' specifies the string.
-   The return value is the list object whose elements are extracted tokens.
-   Because the object of the return value is created with the function `tclistnew', it should
-   be deleted with the function `tclistdel' when it is no longer in use. */
-TCLIST *tcstrtokenize(const char *str);
-
-
-/* Create a list object by splitting a region by zero code.
-   `ptr' specifies the pointer to the region.
-   `size' specifies the size of the region.
-   The return value is a list object of the split elements.
-   If two delimiters are successive, it is assumed that an empty element is between the two.
-   Because the object of the return value is created with the function `tclistnew', it should be
-   deleted with the function `tclistdel' when it is no longer in use. */
-TCLIST *tcstrsplit2(const void *ptr, int size);
-
-
-/* Create a map object by splitting a string.
-   `str' specifies the source string where the key and the value of each record are situated one
-   after the other.
-   `delim' specifies a string containing delimiting characters.
-   The return value is a map object of the split records.
-   Because the object of the return value is created with the function `tcmapnew', it should be
-   deleted with the function `tcmapdel' when it is no longer in use. */
-TCMAP *tcstrsplit3(const char *str, const char *delims);
-
-
-/* Create a map object by splitting a region by zero code.
-   `ptr' specifies the pointer to the region where the key and the value of each record are
-   situated one after the other.
-   `size' specifies the size of the region.
-   The return value is a map object of the split records.
-   Because the object of the return value is created with the function `tcmapnew', it should be
-   deleted with the function `tcmapdel' when it is no longer in use. */
-TCMAP *tcstrsplit4(const void *ptr, int size);
-
-
-/* Create a region separated by zero code by joining all elements of a list object.
-   `list' specifies a list object.
-   The return value is the result region.
-   `sp' specifies the pointer to the variable into which the size of the region of the return
-   value is assigned.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call when it is no longer in use. */
-void *tcstrjoin2(const TCLIST *list, int *sp);
-
-
-/* Create a string by joining all records of a map object.
-   `map' specifies a map object.
-   `delim' specifies a delimiting character.
-   The return value is the result string where the key and the value of each record are situated
-   one after the other.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call when it is no longer in use. */
-char *tcstrjoin3(const TCMAP *map, char delim);
-
-
-/* Create a region separated by zero code by joining all records of a map object.
-   `list' specifies a list object.
-   The return value is the result region, where the key and the value of each record are
-   situated one after the other.
-   `sp' specifies the pointer to the variable into which the size of the region of the return
-   value is assigned.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call when it is no longer in use. */
-void *tcstrjoin4(const TCMAP *map, int *sp);
-
-
-/* Sort top records of an array.
-   `base' spacifies the pointer to an array.
-   `nmemb' specifies the number of elements of the array.
-   `size' specifies the size of each element.
-   `top' specifies the number of top records.
-   `compar' specifies the pointer to comparing function.  The two arguments specify the pointers
-   of elements.  The comparing function should returns positive if the former is big, negative
-   if the latter is big, 0 if both are equal. */
-void tctopsort(void *base, size_t nmemb, size_t size, size_t top,
-               int(*compar)(const void *, const void *));
-
-
-/* Suspend execution of the current thread.
-   `sec' specifies the interval of the suspension in seconds.
-   If successful, the return value is true, else, it is false. */
-bool tcsleep(double sec);
-
-
-/* Get the current system information.
-   The return value is a map object of the current system information or `NULL' on failure.  The
-   key "size" specifies the process size in bytes.  The "rss" specifies the resident set size in
-   bytes.  "total" specifies the total size of the real memory.  "free" specifies the free size
-   of the real memory.  "cached" specifies the cached size of the real memory.
-   Because the object of the return value is created with the function `tcmapnew', it should be
-   deleted with the function `tcmapdel' when it is no longer in use. */
-TCMAP *tcsysinfo(void);
-
-
-/* Create a consistent hashing object.
-   `range' specifies the number of nodes.  It should be more than 0.  The range of hash values is
-   from 0 to less than the specified number.
-   The return value is the new consistent hashing object.
-   Consistent hashing is useful because the addition or removal of one node does not
-   significantly change the mapping of keys to nodes. */
-TCCHIDX *tcchidxnew(int range);
-
-
-/* Delete a consistent hashing object.
-   `chidx' specifies the consistent hashing object. */
-void tcchidxdel(TCCHIDX *chidx);
-
-
-/* Get the consistent hashing value of a record.
-   `chidx' specifies the consistent hashing object.
-   `ptr' specifies the pointer to the region of the record.
-   `size' specifies the size of the region.
-   The return value is the hash value of the record. */
-int tcchidxhash(TCCHIDX *chidx, const void *ptr, int size);
 
 
 
@@ -3225,28 +2813,8 @@ char *tcxmlescape(const char *str);
 char *tcxmlunescape(const char *str);
 
 
-
-/*************************************************************************************************
- * encoding utilities (for experts)
- *************************************************************************************************/
-
-
-/* Encode a map object into a string in the x-www-form-urlencoded format.
-   `params' specifies a map object of parameters.
-   The return value is the result string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call when it is no longer in use. */
-char *tcwwwformencode(const TCMAP *params);
-
-
-/* Decode a query string in the x-www-form-urlencoded format.
-   `str' specifies the query string.
-   `params' specifies a map object into which the result parameters are stored. */
-void tcwwwformdecode(const char *str, TCMAP *params);
-
-
 /* Split an XML string into tags and text sections.
-   `str' specifies the string.
+   `str' specifies the XML string.
    The return value is the list object whose elements are strings of tags or text sections.
    Because the object of the return value is created with the function `tclistnew', it should
    be deleted with the function `tclistdel' when it is no longer in use.  Because this function
@@ -3261,146 +2829,6 @@ TCLIST *tcxmlbreak(const char *str);
    Because the object of the return value is created with the function `tcmapnew', it should
    be deleted with the function `tcmapdel' when it is no longer in use. */
 TCMAP *tcxmlattrs(const char *str);
-
-
-/* Escape meta characters in a string with backslash escaping of the C language.
-   `str' specifies the string.
-   The return value is the pointer to the escaped string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call if when is no longer in use. */
-char *tccstrescape(const char *str);
-
-
-/* Unescape a string escaped by backslash escaping of the C language.
-   `str' specifies the string.
-   The return value is the unescaped string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call if when is no longer in use. */
-char *tccstrunescape(const char *str);
-
-
-/* Escape meta characters in a string with backslash escaping of JSON.
-   `str' specifies the string.
-   The return value is the pointer to the escaped string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call if when is no longer in use. */
-char *tcjsonescape(const char *str);
-
-
-/* Unescape a string escaped by backslash escaping of JSON.
-   `str' specifies the string.
-   The return value is the unescaped string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call if when is no longer in use. */
-char *tcjsonunescape(const char *str);
-
-
-
-/*************************************************************************************************
- * template serializer
- *************************************************************************************************/
-
-
-typedef struct {                         /* type of structure for a template */
-  TCLIST *elems;                         /* elements separated by the separators */
-  char *begsep;                          /* beginning separator */
-  char *endsep;                          /* ending separator */
-  TCMAP *conf;                           /* configuration variables */
-} TCTMPL;
-
-
-/* Create a template object.
-   The return value is the new template object. */
-TCTMPL *tctmplnew(void);
-
-
-/* Delete a template object.
-   `tmpl' specifies the template object. */
-void tctmpldel(TCTMPL *tmpl);
-
-
-/* Set the separator strings of a template object.
-   `tmpl' specifies the template object.
-   `begsep' specifies the beginning separator string.  By default, it is "[%".
-   `endsep' specifies the ending separator string.  By default, it is "%]". */
-void tctmplsetsep(TCTMPL *tmpl, const char *begsep, const char *endsep);
-
-
-/* Load a template string into a template object.
-   `tmpl' specifies the template object.
-   `str' specifies the template string.  Directives between "[%" and "%]" can be included in the
-   template string.  If the variable name is specified in the directive, it is expanded as the
-   value of the variable.  "." is used in order to access a record of a hash variable.  For
-   example, "[% foo.bar.baz %]" is expanded as the value of the record whose key is "baz" in the
-   hash variable of the record whose key is "bar" in the hash variable whose name is "foo".
-   Moreover, control flow directives are also supported.  "[% IF ... %]", "[% ELSE %]", and
-   "[% END %]" are conditional directives.  "[% FOREACH ... %]" and "[% END %]" are iterator
-   directives for a list object.  "[% CONF ... %]" is a configuration directive.  If the ending
-   separator of a directive is leaded by "\", the next linefeed character is ignored.  Variable
-   expansion directive needs the parameter for the variable name.  The optional parameter "DEF"
-   trailed by a string specifies the default value.  The optional parameter "ENC" trailed by a
-   string specifies the encoding format.  "URL" for the URL escape encoding, "XML" for the XML
-   escape encoding, "CSTR" for C-string escape encoding, and "JSON" for JSON escape encoding are
-   supported.  The conditional directive needs the parameter for the variable name.  If the
-   variable exists, the block to the correspondent ending directive is evaluated, else, the block
-   is ignored.  The optional parameter "EQ" trailed by a string specifies the string full
-   matching test.  The optional parameter "RX" trailed by a string specifies the regular
-   expression matching test.  The optional parameter "NOT" inverts the logical determination.
-   The iterator directive needs the parameter for the variable name of a list object.  The block
-   to the correspondent ending directive is evaluated for each element of the list.  The optional
-   parameter specifies the local variable name of each element.  The configuration directive
-   needs the parameters for the variable name and its value. */
-void tctmplload(TCTMPL *tmpl, const char *str);
-
-
-/* Load a template string from a file into a template object.
-   `tmpl' specifies the template object.
-   `path' specifies the input file.
-   If successful, the return value is true, else, it is false. */
-bool tctmplload2(TCTMPL *tmpl, const char *path);
-
-
-/* Serialize the template string of a template object.
-   `tmpl' specifies the template object.
-   `vars' specifies the variables to be applied into the template.
-   The return value is the dumped template string.
-   Because the region of the return value is allocated with the `malloc' call, it should be
-   released with the `free' call when it is no longer in use. */
-char *tctmpldump(TCTMPL *tmpl, const TCMAP *vars);
-
-
-/* Get the value of a configuration variable of a template object.
-   `tmpl' specifies the template object.
-   `name' specifies the name of the configuration variable.
-   The return value is the string value of the configuration variable or `NULL' if it is not
-   defined. */
-const char *tctmplconf(TCTMPL *tmpl, const char *name);
-
-
-/* Store a list object into a list object with the type information.
-   `list' specifies the container list object.
-   `obj' specifies the list object to be stored. */
-void tclistpushlist(TCLIST *list, const TCLIST *obj);
-
-
-/* Store a map object into a list object with the type information.
-   `list' specifies the container list object.
-   `obj' specifies the map object to be stored. */
-void tclistpushmap(TCLIST *list, const TCMAP *obj);
-
-
-/* Store a list object into a map object with the type information.
-   `map' specifies the container map object.
-   `kstr' specifies the string of the key.
-   `obj' specifies the list object to be stored. */
-void tcmapputlist(TCMAP *map, const char *kstr, const TCLIST *obj);
-
-
-/* Store a map object into a map object with the type information.
-   `map' specifies the container map object.
-   `kstr' specifies the string of the key.
-   `obj' specifies the map object to be stored. */
-void tcmapputmap(TCMAP *map, const char *kstr, const TCMAP *obj);
 
 
 
@@ -3524,8 +2952,6 @@ typedef struct {                         /* type of structure for a bit stream o
   int size;                              /* size of used region */
 } TCBITSTRM;
 
-typedef unsigned char TCBITMAP;          /* type of a bit map object */
-
 
 /* Create a bitmap object. */
 #define TCBITMAPNEW(TC_num) \
@@ -3634,8 +3060,8 @@ typedef unsigned char TCBITMAP;          /* type of a bit map object */
 
 #include <stdio.h>
 
-#define _TC_VERSION    "1.4.28"
-#define _TC_LIBVER     819
+#define _TC_VERSION    "1.3.27"
+#define _TC_LIBVER     704
 #define _TC_FORMATVER  "1.0"
 
 enum {                                   /* enumeration for error codes */
@@ -3668,8 +3094,7 @@ enum {                                   /* enumeration for error codes */
 enum {                                   /* enumeration for database type */
   TCDBTHASH,                             /* hash table */
   TCDBTBTREE,                            /* B+ tree */
-  TCDBTFIXED,                            /* fixed-length */
-  TCDBTTABLE                             /* table */
+  TCDBTFIXED                             /* fixed-length */
 };
 
 
@@ -3713,18 +3138,6 @@ bool tcglobalmutexlockshared(void);
 bool tcglobalmutexunlock(void);
 
 
-/* Lock the absolute path of a file.
-   `path' specifies the path of the file.
-   If successful, the return value is true, else, it is false. */
-bool tcpathlock(const char *path);
-
-
-/* Unock the absolute path of a file.
-   `path' specifies the path of the file.
-   If successful, the return value is true, else, it is false. */
-bool tcpathunlock(const char *path);
-
-
 /* Convert an integer to the string as binary numbers.
    `num' specifies the integer.
    `buf' specifies the pointer to the region into which the result string is written.  The size
@@ -3740,7 +3153,7 @@ int tcnumtostrbin(uint64_t num, char *buf, int col, int fc);
    `asiz' specifies the size of the region of one key.
    `bptr' specifies the pointer to the region of the other key.
    `bsiz' specifies the size of the region of the other key.
-   `op' is ignored.
+   `op' specifies the pointer to the optional opaque object.
    The return value is positive if the former is big, negative if the latter is big, 0 if both
    are equivalent. */
 int tccmplexical(const char *aptr, int asiz, const char *bptr, int bsiz, void *op);
@@ -3802,18 +3215,6 @@ char *tcbwtencode(const char *ptr, int size, int *idxp);
    value is allocated with the `malloc' call, it should be released with the `free' call when it
    is no longer in use. */
 char *tcbwtdecode(const char *ptr, int size, int idx);
-
-
-/* Get the binary logarithm of an integer.
-   `num' specifies an integer.
-   The return value is the binary logarithm. */
-long tclog2l(long num);
-
-
-/* Get the binary logarithm of a real number.
-   `num' specifies a real number.
-   The return value is the binary logarithm. */
-double tclog2d(double num);
 
 
 /* Get the aligned offset of a file offset.
@@ -3987,14 +3388,6 @@ uint64_t tcpagealign(uint64_t off);
   ((TC_list)->num)
 
 
-/* Alias of `tclistval' but not checking size. */
-#define TCLISTVAL(TC_ptr, TC_list, TC_index, TC_size) \
-  do { \
-    (TC_ptr) = (TC_list)->array[(TC_index)+(TC_list)->start].ptr; \
-    (TC_size) = (TC_list)->array[(TC_index)+(TC_list)->start].size; \
-  } while(false)
-
-
 /* Alias of `tclistval' but not checking size and not using the third parameter. */
 #define TCLISTVALPTR(TC_list, TC_index) \
   ((void *)((TC_list)->array[(TC_index)+(TC_list)->start].ptr))
@@ -4114,9 +3507,6 @@ uint64_t tcpagealign(uint64_t off);
 #define tcbdbcmpdecimal   tccmpdecimal
 #define tcbdbcmpint32     tccmpint32
 #define tcbdbcmpint64     tccmpint64
-#define tctdbqryprocout   tctdbqrysearchout
-#define tctdbqrysetmax(TC_tdb, TC_max) \
-  tctdbqrysetlimit((TC_tdb), (TC_max), 0)
 
 
 
