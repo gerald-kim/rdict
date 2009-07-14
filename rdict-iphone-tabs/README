@@ -1,0 +1,7 @@
+
+
+bzlib support in iPhoneOS(not simulator)
+=========================================
+
+$ cd /Developer/Platforms
+$ sudo cp ./iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/usr/include/bzlib.h iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/usr/include/
