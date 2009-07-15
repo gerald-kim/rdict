@@ -31,7 +31,8 @@ class TokyoCabinetExporterTest( unittest.TestCase ):
 
     def tearDown( self ):
         self.session.rollback()
-        os.system( 'rm -rf enwiktionary-test.db' )
+        self.exporter.close_tc()
+        os.system( 'rm -rf enwiktionary-test' )
 
 
     def test_get_words( self ):

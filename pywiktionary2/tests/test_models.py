@@ -35,7 +35,7 @@ class WordModelTest( unittest.TestCase ):
         self.assertTrue( file_dir.endswith( 'tests.db.files/3c/bc' ) )
         
     def longtest_page_retrival(self):
-        word = Word( u'get', 123 )
+        word = Word( u'piñata', 123 )
         
         self.assertFalse( word.downloaded )
         word.download_page()

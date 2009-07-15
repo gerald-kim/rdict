@@ -12,6 +12,7 @@ from hashlib import sha1
 import os
 import urllib2
 import bz2
+import time
 
 from wiktionary_filter import *
 
@@ -24,7 +25,7 @@ def setup_test_env():
     FILE_DIR = 'tests.db.files'
 
 def create_session():
-    engine = create_engine( 'sqlite:///' + WORD_DB, echo = True, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
+    engine = create_engine( 'sqlite:///' + WORD_DB, echo = False, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
     if not u'words' in engine.table_names():
         metadata = MetaData()
         words_table = Table( 'words', metadata,
@@ -38,7 +39,7 @@ def create_session():
         #Index( 'idx_downloaded', word_table.downloaded )
 
 
-    Session = sessionmaker( bind = engine, autocommit = True, autoflush = True )
+    Session = sessionmaker( bind = engine, autocommit = True  )
     session = Session()
     return session
 
@@ -62,10 +63,10 @@ class Word( Base ):
         return u"<Word('%s','%d')>" % ( self.lemma, self.revision )
 
     def get_file_name( self ):
-        return self.lemma.replace( ' ', '_' )
+        return urllib2.quote( self.lemma.encode( 'utf-8' ) )
 
     def get_file_dir( self ):
-        hash = sha1( self.lemma ).hexdigest()
+        hash = sha1( self.get_file_name() ).hexdigest()
         return os.path.join( os.path.dirname( __file__ ), FILE_DIR, hash[0:2], hash[2:4] )
 
     def get_page_path( self ):
@@ -75,11 +76,16 @@ class Word( Base ):
         return os.path.join( self.get_file_dir(), self.get_file_name() + ".def.bz2" )
 
     def download_page( self ):
+        if None != self.page:
+            self.downloaded = True
+            return
+
         try:
-            url = "http://en.wiktionary.com/wiki/" + urllib2.quote( self.get_file_name() )
+            time.sleep( 1 )
+            url = "http://en.wiktionary.com/wiki/" + self.get_file_name()
             #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
-            os.system( 'mkdir -p %s' % self.get_file_dir() )
-            os.system( 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() ) )
+            os.system( 'mkdir -p "%s"' % self.get_file_dir() )
+            os.system( 'wget -qc -O - "%s" | bzip2 -c9 > "%s"' % ( url, self.get_page_path() ) )
 
             #os.system( )
             self.downloaded = True
@@ -88,9 +94,9 @@ class Word( Base ):
         except:
             self.downloaded = None
 #            self.session.flush()
-            print u"Unexpected error on word(%s):" % ( self.lemma )
-#                traceback.print_exception( *sys.exc_info() )
-#                raise
+            print "Unexpected error on word(%s):" % ( self.lemma.encode('utf-8'))
+            #traceback.print_exception( *sys.exc_info() )
+            raise
 
     def filter_page( self ):
         try:
@@ -110,20 +116,22 @@ class Word( Base ):
             print u"filtering error: %s" % ( self.lemma )
 
     def read_bzip_file( self, path ):
-        f = bz2.BZ2File( path )
-        content = unicode( f.read(), 'utf-8' )
-        f.close()
+        content = None
+        try:
+            f = bz2.BZ2File( path )
+            content = unicode( f.read(), 'utf-8' )
+            f.close()
+        except IOError:
+            content = None
+        except UnicodeDecodeError:
+            content = None
 
         return content
 
     def get_page( self ):
-        if not self.downloaded:
-            return None
         return self.read_bzip_file( self.get_page_path() )
 
     def get_definition( self ):
-        if not self.filtered:
-            return None
         return self.read_bzip_file( self.get_definition_path() )
 
     page = property( get_page )
