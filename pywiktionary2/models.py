@@ -13,7 +13,7 @@ import os
 import urllib2
 import bz2
 import time
-
+import traceback
 from wiktionary_filter import *
 
 WORD_DB = 'word.db'
@@ -102,7 +102,7 @@ class Word( Base ):
         try:
             filter = WiktionaryFilter()
             content = filter.findContent( self.page )
-            filter.executeSoupFilters( content )
+            content = filter.executeFilters( content )
 
             f = bz2.BZ2File( self.get_definition_path(), 'w' )
             f.write( str( content ) )
@@ -114,6 +114,7 @@ class Word( Base ):
         except:
             self.filtered = None
             print u"filtering error: %s" % ( self.lemma )
+            traceback.print_exception( *sys.exc_info() )
 
     def read_bzip_file( self, path ):
         content = None

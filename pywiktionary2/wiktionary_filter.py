@@ -8,8 +8,35 @@ from BeautifulSoup import BeautifulSoup
 from cStringIO import StringIO
 import re 
 
+IGNORE_PARTS = {
+    'Abbreviations' : None, #fifteenth
+    'Affix' : None, #-nil-
+    'Alternative forms' : None, #toffee
+    'Anagrams' : None, #who
+    'Declension' : None, #who
+    'Descendants' : None, #mug, IQ
+    'Dictionary notes' : None, #resume
+    'Examples' : None, #exception that proves the rule
+    'External links' : None, #vivid
+    'Homographs' : None, #h
+    'Homonyms' : None, #bosh
+    'Homophones' : None, #root -> route(same pronouncation)
+    'Hyphenation' : None, #favour
+    'Inflection' : None, #tridens
+    'Noun form' : 'n.', #pâtés de foie gras -> only 1
+    'Older form' : 'n.', #Orchomenos -> 1
+    'Participle' : None, #haring -> 1
+    'Quotations' : None, #woman 
+    'References' : None, #wife 
+    'Romaji' : None, #gaido 
+    'Scientific names' : None, #tiger
+    'Shorthand' : None, #able
+    'Sources' : None, #able
+    'Trivia' : None, #starting
+    'Translations' : None, #name
+}
+
 class WiktionaryFilter:
-    
     def findContent( self, wiktionaryPage ):
         page = BeautifulSoup( wiktionaryPage )
         bodyContent = page.find( 'div', id = 'bodyContent' )
@@ -42,10 +69,16 @@ class WiktionaryFilter:
             parent['class'] = 'head' 
             parent.contents = headSpan.contents
                     
-    def executeSoupFilters( self, content ):
+    def executeFilters( self, content ):
         for d in dir( self ):
             if d.startswith( 'soup_filter_' ):
                 getattr( self, d )( content )
+                
+        contentStr = str( content )
+        for d in dir( self ):
+            if d.startswith( 'regex_filter_' ):
+                contentStr = getattr( self, d )( contentStr )
+        return BeautifulSoup( contentStr )
         
     def soup_filter_removeTitleInA( self, content ):
         for link in content.findAll( 'a' ):
@@ -55,10 +88,14 @@ class WiktionaryFilter:
         ELEMENTS = { 
             'span' : [ 
                 {'class':'editsection'},
+                {'class':'interProject'},
             ],
             'div' : [ 
                 {'id':'rank'},
+                {'class':'noprint'},
                 {'class':'infl-table'},
+                {'class':'floatright'},
+                {'class':re.compile( '.+tright' )}
             ],
         } 
         
@@ -109,10 +146,22 @@ class WiktionaryFilter:
             except:
                 pass
         
+        audioLinkSpans = content.findAll( 'span', {'class':'unicode audiolink'} )
+        for span in audioLinkSpans:
+            span.parent.extract()
+        
     def soup_filter_removeMentionSpans( self, content ):
-        spans = content.findAll( 'span', {'class':re.compile('mention-.+')} )
+        spans = content.findAll( 'span', {'class':re.compile( 'mention-.+' )} )
         [ s.replaceWith( s.contents[0] ) for s in spans ]
     
+    def regex_filter_shorten_qualifier1( self, content ):
+        r = re.compile( '<span class="ib-brac"><span class="qualifier-brac">\(</span></span><span class="ib-content"><span class="qualifier-content">(.+)</span></span><span class="ib-brac"><span class="qualifier-brac">\)</span></span>', re.UNICODE | re.MULTILINE )
+        return r.sub( r'(<i>\1</i>)', content )
+
+    def regex_filter_shorten_qualifier2( self, content ):
+        r = re.compile( '<span class="ib-brac">\(</span><span class="ib-content">(.+)</span><span class="ib-brac">\)</span>', re.UNICODE | re.MULTILINE )
+        return r.sub( r'(<i>\1</i>)', content )
+
 import sys
 
 if __name__ == '__main__':
@@ -122,6 +171,6 @@ if __name__ == '__main__':
     page = sys.stdin.read() 
     filter = WiktionaryFilter()
     content = filter.findContent( page )
-    filter.executeSoupFilters( content )
+    content = filter.executeFilters( content )
     
     print str( content )
