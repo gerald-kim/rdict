@@ -1,8 +1,5 @@
 package com.amplio.rdict;
 
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
-
 import android.app.TabActivity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,6 +10,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import com.amplio.rdict.history.HistoryManager;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
 
 public class RDictActivity extends TabActivity {
 	

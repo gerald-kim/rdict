@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.search;
 
 public class DictionaryEntry {
 	

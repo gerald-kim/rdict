@@ -1,7 +1,8 @@
-package com.amplio.rdict;
+package com.amplio.rdict.search;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 
 public class DictionaryEntryFactory {
 	private String _htmlFileContents = null;

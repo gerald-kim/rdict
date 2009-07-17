@@ -1,4 +1,5 @@
-package com.amplio.rdict;
+package com.amplio.rdict.review;
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +8,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
 
 public class ReviewActivity extends Activity implements OnClickListener{
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;

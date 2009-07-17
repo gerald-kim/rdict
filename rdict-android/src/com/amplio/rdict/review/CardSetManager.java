@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

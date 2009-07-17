@@ -1,7 +1,7 @@
-package com.amplio.rdict.tests;
+package com.amplio.rdict.tests.history;
 
-import com.amplio.rdict.History;
-import com.amplio.rdict.DictionaryEntry;
+import com.amplio.rdict.history.History;
+import com.amplio.rdict.search.DictionaryEntry;
 
 import junit.framework.TestCase;
 

@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests;
+package com.amplio.rdict.tests.search;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,9 +8,9 @@ import java.io.InputStream;
 import junit.framework.TestCase;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.amplio.rdict.AssetInputStreamProvider;
-import com.amplio.rdict.Dictionary;
-import com.amplio.rdict.DictionaryEntry;
+import com.amplio.rdict.search.AssetInputStreamProvider;
+import com.amplio.rdict.search.Dictionary;
+import com.amplio.rdict.search.DictionaryEntry;
 
 public class DictionaryTest extends TestCase implements AssetInputStreamProvider{
 	

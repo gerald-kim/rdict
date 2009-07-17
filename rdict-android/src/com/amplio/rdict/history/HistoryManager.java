@@ -1,8 +1,10 @@
-package com.amplio.rdict;
+package com.amplio.rdict.history;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
+
+import com.amplio.rdict.search.DictionaryEntry;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

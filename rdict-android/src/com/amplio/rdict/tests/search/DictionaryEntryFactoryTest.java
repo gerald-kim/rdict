@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests;
+package com.amplio.rdict.tests.search;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,8 +7,8 @@ import java.io.InputStream;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.DictionaryEntryFactory;
-import com.amplio.rdict.DictionaryEntry;
+import com.amplio.rdict.search.DictionaryEntry;
+import com.amplio.rdict.search.DictionaryEntryFactory;
 
 public class DictionaryEntryFactoryTest extends TestCase {
 

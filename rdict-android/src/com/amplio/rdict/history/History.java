@@ -1,6 +1,8 @@
-package com.amplio.rdict;
+package com.amplio.rdict.history;
 
 import java.util.Vector;
+
+import com.amplio.rdict.search.DictionaryEntry;
 
 public class History {
 

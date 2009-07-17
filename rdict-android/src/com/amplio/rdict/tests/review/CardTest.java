@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests;
+package com.amplio.rdict.tests.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.Card;
+import com.amplio.rdict.review.Card;
 
 public class CardTest extends TestCase {
 	

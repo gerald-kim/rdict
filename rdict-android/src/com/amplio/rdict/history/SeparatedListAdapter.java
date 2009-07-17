@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.history;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

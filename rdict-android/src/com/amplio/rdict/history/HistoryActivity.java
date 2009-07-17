@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.history;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,6 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+
+import com.amplio.rdict.R;
+import com.amplio.rdict.search.DictionaryActivity;
+import com.amplio.rdict.search.DictionaryEntry;
+import com.amplio.rdict.search.SearchActivity;
 
 public class HistoryActivity extends Activity implements OnItemClickListener {
 	

@@ -1,5 +1,12 @@
 package com.amplio.rdict.tests;
 
+import com.amplio.rdict.review.CardSetManagerTest;
+import com.amplio.rdict.tests.history.HistoryTest;
+import com.amplio.rdict.tests.review.CardTest;
+import com.amplio.rdict.tests.review.ReviewManagerTest;
+import com.amplio.rdict.tests.search.DictionaryEntryFactoryTest;
+import com.amplio.rdict.tests.search.DictionaryEntryTest;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

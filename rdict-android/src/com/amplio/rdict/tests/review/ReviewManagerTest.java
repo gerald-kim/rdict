@@ -1,12 +1,12 @@
-package com.amplio.rdict.tests;
+package com.amplio.rdict.tests.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.Card;
-import com.amplio.rdict.ReviewManager;
+import com.amplio.rdict.review.Card;
+import com.amplio.rdict.review.ReviewManager;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;

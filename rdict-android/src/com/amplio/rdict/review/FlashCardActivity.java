@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.review;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.amplio.rdict.R;
 
 public class FlashCardActivity extends Activity implements OnClickListener{
 	TextView progress_label = null;

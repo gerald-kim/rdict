@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.search;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+
+import com.amplio.rdict.R;
+import com.amplio.rdict.history.History;
+import com.amplio.rdict.history.HistoryManager;
 
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;

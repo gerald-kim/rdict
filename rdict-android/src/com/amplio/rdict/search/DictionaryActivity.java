@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.rdict.search;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,11 @@ import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.review.Card;
+import com.amplio.rdict.review.CardSetManager;
 
 public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener {
 	private TextView title = null;

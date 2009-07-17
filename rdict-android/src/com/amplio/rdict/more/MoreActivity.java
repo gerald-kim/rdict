@@ -1,9 +1,11 @@
-package com.amplio.rdict;
+package com.amplio.rdict.more;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class SettingsActivity extends Activity
+import com.amplio.rdict.R;
+
+public class MoreActivity extends Activity
 {
 	@Override
 	public void onCreate(Bundle icicle)
