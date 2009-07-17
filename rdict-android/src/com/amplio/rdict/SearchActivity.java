@@ -23,8 +23,8 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	private Dictionary _dictionary = null;
 	private HistoryManager _historyMgr = null;
 	
-	public static Word searchWord = null;
-	public Vector<Word> words = null;
+	public static Headword searchWord = null;
+	public Vector<Headword> words = null;
 	
 	public static History searchHistory = new History();
     
@@ -91,7 +91,7 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
 		for(int i = 0; i < words.size(); i++)
-			aa.add(words.get(i)._word);
+			aa.add(words.get(i).headword);
 
 		_wordList.setAdapter(aa);
 		aa.notifyDataSetChanged();
@@ -102,8 +102,8 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		SearchActivity.searchWord = words.elementAt(index);
 		
-		_historyMgr.addHistoryRecord(SearchActivity.searchWord._word);
-		System.out.println("Saved " + SearchActivity.searchWord._word);
+		_historyMgr.addHistoryRecord(SearchActivity.searchWord.headword);
+		System.out.println("Saved " + SearchActivity.searchWord.headword);
 		
 		SearchActivity.searchHistory.clear();
 					

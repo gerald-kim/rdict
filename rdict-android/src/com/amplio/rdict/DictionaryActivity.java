@@ -61,7 +61,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	
     	super.onResume();
     	
-    	this.refreshDicPage(SearchActivity.searchWord._word, true);
+    	this.refreshDicPage(SearchActivity.searchWord.headword, true);
     	    	
 		_cardSetMgr = new CardSetManager(RDictActivity.db);
     }
@@ -71,7 +71,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	this.title.setText(word);
     	
     	if(recordHistory)
-			SearchActivity.searchHistory.addWord(new Word(1, word, null));
+			SearchActivity.searchHistory.addWord(new Headword(1, word, null));
     	
     	if(dicEntry != null)
     		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
@@ -118,6 +118,6 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		else
 			SearchActivity.searchHistory.goForward();
 		
-		this.refreshDicPage(SearchActivity.searchHistory.getWord()._word, false);
+		this.refreshDicPage(SearchActivity.searchHistory.getWord().headword, false);
 	}
 }

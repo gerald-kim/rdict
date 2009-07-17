@@ -5,9 +5,9 @@ import java.util.Vector;
 public class History {
 
 	int _index = 0;
-	Vector<Word> words = new Vector<Word>();
+	Vector<Headword> words = new Vector<Headword>();
 	
-	public void addWord(Word word) {
+	public void addWord(Headword word) {
 		
 		if(_index < words.size()) {
 			words.setSize(_index + 1);
@@ -33,7 +33,7 @@ public class History {
 		_index--;
 	}
 
-	public Word getWord() {
+	public Headword getWord() {
 		return words.elementAt(_index);
 	}
 
