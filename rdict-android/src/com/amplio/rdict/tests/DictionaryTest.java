@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.amplio.rdict.AssetInputStreamProvider;
 import com.amplio.rdict.Dictionary;
-import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
+import com.amplio.rdict.DictionaryEntry;
 
 public class DictionaryTest extends TestCase implements AssetInputStreamProvider{
 	
@@ -38,11 +38,11 @@ public class DictionaryTest extends TestCase implements AssetInputStreamProvider
 		
 		DictionaryEntry dicEntry = dic.searchByWord("fish");
 		
-		assertEquals("fish", dicEntry.word);
-		assertTrue(-1 != dicEntry.entry.indexOf("</script>"));
+		assertEquals("fish", dicEntry.headword);
+		assertTrue(-1 != dicEntry.contents.indexOf("</script>"));
 		
 		dicEntry = dic.searchByWord("water");
-		assertEquals("water", dicEntry.word);
+		assertEquals("water", dicEntry.headword);
 	}
 	
 	public void testSearchReturnsNullIfNotFound() {

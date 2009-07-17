@@ -37,14 +37,4 @@ public class DictionaryEntryFactory {
 		
 		return new String(buffer);
 	}
-
-	public static class DictionaryEntry {
-		public String word = null;
-		public String  entry = null;
-		
-		public DictionaryEntry(String key, String value){
-			word = key;
-			entry = value;
-		}
-	}
 }

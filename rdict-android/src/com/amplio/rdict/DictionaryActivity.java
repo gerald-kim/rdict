@@ -12,8 +12,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
-
 public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener {
 	private TextView title = null;
 	private Button _backButton = null;
@@ -71,10 +69,10 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	this.title.setText(word);
     	
     	if(recordHistory)
-			SearchActivity.searchHistory.addWord(new Headword(1, word, null));
+			SearchActivity.searchHistory.addWord(dicEntry);
     	
     	if(dicEntry != null)
-    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.entry, "text/html", "utf-8", null);
+    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.contents, "text/html", "utf-8", null);
 		else
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
     	

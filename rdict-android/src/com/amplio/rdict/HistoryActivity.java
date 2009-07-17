@@ -22,7 +22,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 	
 	private HistoryManager _historyMgr = null;
 	
-	private Vector<Headword> words = null;
+	private Vector<DictionaryEntry> words = null;
 	
 	public Map<String,?> createItem(String title, String caption) {
 		Map<String,String> item = new HashMap<String,String>();
@@ -79,7 +79,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		
 		String word = parent.getAdapter().getItem(position).toString();
 		
-		SearchActivity.searchWord = new Headword(1, word, "something");
+		SearchActivity.searchWord = new DictionaryEntry(word, "something");
 		SearchActivity.searchHistory.clear();
 					
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);

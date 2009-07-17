@@ -8,7 +8,7 @@ import java.io.InputStream;
 import junit.framework.TestCase;
 
 import com.amplio.rdict.DictionaryEntryFactory;
-import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
+import com.amplio.rdict.DictionaryEntry;
 
 public class DictionaryEntryFactoryTest extends TestCase {
 
@@ -28,15 +28,14 @@ public class DictionaryEntryFactoryTest extends TestCase {
 		DictionaryEntryFactory factory = new DictionaryEntryFactory(_htmlStream);
 		DictionaryEntry dicEntry = factory.makeEntry("fish", "The entry appears here in HTML.");
 		
-		assertEquals("fish", dicEntry.word);
-		assertEquals("The entry appears here in HTML.", dicEntry.entry);
+		assertEquals("fish", dicEntry.headword);
+		assertEquals("The entry appears here in HTML.", dicEntry.contents);
 	}
 
 	public void testMakeHTMLifiedEntry() {
 		DictionaryEntryFactory factory = new DictionaryEntryFactory(_htmlStream);
 		DictionaryEntry dicEntry = factory.makeHTMLifiedEntry("fish", "The entry appears here in HTML.");
 		
-		assertTrue(-1 != dicEntry.entry.indexOf("script"));
+		assertTrue(-1 != dicEntry.contents.indexOf("script"));
 	}
-	
 }

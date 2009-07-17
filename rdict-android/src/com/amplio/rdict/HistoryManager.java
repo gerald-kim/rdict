@@ -21,14 +21,14 @@ public class HistoryManager {
 		_con.execSQL("insert into history values (null, ?, ?)", new String[]{word, sdf.format(cal.getTime())});
 	}
 	
-	public Vector<Headword> loadHistoryRecordsByDate(String yyyyMMdd) {
-		Vector<Headword> words = new Vector<Headword>();
+	public Vector<DictionaryEntry> loadHistoryRecordsByDate(String yyyyMMdd) {
+		Vector<DictionaryEntry> words = new Vector<DictionaryEntry>();
 		
 		Cursor c = _con.rawQuery("select _id, word, date from history where date = ? order by word ASC", new String[]{yyyyMMdd});
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
-			words.add(new Headword(c.getLong(0), c.getString(1), null));
+			words.add(new DictionaryEntry(c.getLong(0), c.getString(1), null));
 		}
 		
 		return words;

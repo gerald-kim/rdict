@@ -1,7 +1,7 @@
 package com.amplio.rdict.tests;
 
 import com.amplio.rdict.History;
-import com.amplio.rdict.Headword;
+import com.amplio.rdict.DictionaryEntry;
 
 import junit.framework.TestCase;
 
@@ -9,30 +9,30 @@ public class HistoryTest extends TestCase {
 
 	public void testCanGoBack() {
 		History h = new History();
-		h.addWord(new Headword(1, "word", "def"));
+		h.addWord(new DictionaryEntry(1, "word", "def"));
 		
 		assertTrue(! h.canGoBack());
 		
-		h.addWord(new Headword(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
 		
 		assertTrue(h.canGoBack());
 	}
 	
 	public void testCanGoForward() {
 		History h = new History();
-		h.addWord(new Headword(1, "word", "def"));
+		h.addWord(new DictionaryEntry(1, "word", "def"));
 		
 		assertTrue(! h.canGoForward());
 		
-		h.addWord(new Headword(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
 		
 		assertTrue(! h.canGoForward());
 	}
 
 	public void testGoForward() {
 		History h = new History();
-		h.addWord(new Headword(1, "word", "def"));
-		h.addWord(new Headword(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(1, "word", "def"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
 		
 		h.goForward();
 		
@@ -43,9 +43,9 @@ public class HistoryTest extends TestCase {
 	public void testGoBack() {
 		History h = new History();
 		
-		h.addWord(new Headword(1, "word", "def"));
-		h.addWord(new Headword(2, "word2", "def2"));
-		h.addWord(new Headword(3, "word3", "def3"));		
+		h.addWord(new DictionaryEntry(1, "word", "def"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(3, "word3", "def3"));		
 
 		h.goBack();
 		h.goBack();
@@ -60,9 +60,9 @@ public class HistoryTest extends TestCase {
 	public void testGetWord() {
 		History h = new History();
 		
-		h.addWord(new Headword(1, "word", "def"));
-		h.addWord(new Headword(2, "word2", "def2"));
-		h.addWord(new Headword(3, "word3", "def3"));		
+		h.addWord(new DictionaryEntry(1, "word", "def"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(3, "word3", "def3"));		
 
 		assertEquals(3, h.getWord().id);
 	}
@@ -72,14 +72,14 @@ public class HistoryTest extends TestCase {
 		
 		assertTrue(h.isEmpty());
 		
-		h.addWord(new Headword(1, "word", "def"));
+		h.addWord(new DictionaryEntry(1, "word", "def"));
 		
 		assertTrue(! h.isEmpty());
 	}
 	
 	public void testClear() {
 		History h = new History();
-		h.addWord(new Headword(1, "word", "def"));
+		h.addWord(new DictionaryEntry(1, "word", "def"));
 		
 		assertTrue(! h.isEmpty());
 		
@@ -91,14 +91,14 @@ public class HistoryTest extends TestCase {
 	public void testGoBackAndAddingErasesDownstreamItems() {
 		History h = new History();
 		
-		h.addWord(new Headword(1, "word", "def"));
-		h.addWord(new Headword(2, "word2", "def2"));
-		h.addWord(new Headword(3, "word3", "def3"));		
+		h.addWord(new DictionaryEntry(1, "word", "def"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
+		h.addWord(new DictionaryEntry(3, "word3", "def3"));		
 
 		h.goBack();
 		h.goBack();
 		
-		h.addWord(new Headword(4, "word4", "def4"));
+		h.addWord(new DictionaryEntry(4, "word4", "def4"));
 		
 		assertEquals(4, h.getWord().id);
 		assertTrue(h.canGoBack());

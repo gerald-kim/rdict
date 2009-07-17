@@ -6,8 +6,6 @@ import java.util.Vector;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.amplio.rdict.DictionaryEntryFactory.DictionaryEntry;
-
 public class Dictionary {
 	private DictionaryEntryFactory _factory = null;
 	private SQLiteDatabase _con = null;
@@ -41,13 +39,13 @@ public class Dictionary {
   		}
 	}
 	
-	public Vector<Headword> findMatchingWords(String str) {
-		Vector<Headword> matches = new Vector<Headword>();
+	public Vector<DictionaryEntry> findMatchingWords(String str) {
+		Vector<DictionaryEntry> matches = new Vector<DictionaryEntry>();
 		Cursor c = _con.rawQuery("select * from word_db where word GLOB '" + str + "*' limit 50", null);
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
-			matches.add(new Headword(c.getLong(0), c.getString(1), c.getString(2)));
+			matches.add(new DictionaryEntry(c.getLong(0), c.getString(1), c.getString(2)));
 		}
   		
 		return matches;

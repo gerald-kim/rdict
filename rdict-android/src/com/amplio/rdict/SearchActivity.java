@@ -23,8 +23,8 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	private Dictionary _dictionary = null;
 	private HistoryManager _historyMgr = null;
 	
-	public static Headword searchWord = null;
-	public Vector<Headword> words = null;
+	public static DictionaryEntry searchWord = null;
+	public Vector<DictionaryEntry> words = null;
 	
 	public static History searchHistory = new History();
     
