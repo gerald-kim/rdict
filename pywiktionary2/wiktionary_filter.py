@@ -37,7 +37,7 @@ IGNORE_PARTS = {
 }
 
 class WiktionaryFilter:
-    def findContent( self, wiktionaryPage ):
+    def findContentSoup( self, wiktionaryPage ):
         page = BeautifulSoup( wiktionaryPage )
         bodyContent = page.find( 'div', id = 'bodyContent' )
         self.pullUpHeadSpanContent( bodyContent )
@@ -78,7 +78,7 @@ class WiktionaryFilter:
         for d in dir( self ):
             if d.startswith( 'regex_filter_' ):
                 contentStr = getattr( self, d )( contentStr )
-        return BeautifulSoup( contentStr )
+        return contentStr
         
     def soup_filter_removeTitleInA( self, content ):
         for link in content.findAll( 'a' ):

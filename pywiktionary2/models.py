@@ -101,11 +101,11 @@ class Word( Base ):
     def filter_page( self ):
         try:
             filter = WiktionaryFilter()
-            content = filter.findContent( self.page )
-            content = filter.executeFilters( content )
+            contentSoup = filter.findContentSoup( self.page )
+            content = filter.executeFilters( contentSoup )
 
             f = bz2.BZ2File( self.get_definition_path(), 'w' )
-            f.write( str( content ) )
+            f.write( content )
             f.close()
 
             self.filtered = True
