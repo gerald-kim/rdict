@@ -23,14 +23,14 @@ class WiktionaryFilterTest( unittest.TestCase ):
             $ nosetests -i longTest
         '''
         filter = WiktionaryFilter()
-        content = filter.findContent( TEST_WIKTIONARY_PAGE )
+        contentSoup = filter.findContentSoup( TEST_WIKTIONARY_PAGE )
 
-        self.assertTrue( None != content )
+        self.assertTrue( None != contentSoup )
         
-        filter.executeSoupFilters( content )
+        content = filter.executeFilters( contentSoup )
         
         f = open( '/tmp/get.html', 'w' )
-        f.write( str( content ) )
+        f.write( content )
         f.close()
         os.system( "open /tmp/get.html" ) 
 
@@ -38,7 +38,7 @@ class SoupFilterTest( unittest.TestCase ):
     def setUp( self ):
         self.filter = WiktionaryFilter()
     
-    def testRemoveTitleAttrInA( self ):
+    def test_remove_title_attr_in_a( self ):
         content = BeautifulSoup( '<a href="http://test" title="title">link</a>' )
         self.filter.soup_filter_removeTitleInA( content )
         self.assertEquals( '<a href="http://test">link</a>', str( content ) )
