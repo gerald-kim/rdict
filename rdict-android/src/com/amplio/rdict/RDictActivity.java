@@ -17,9 +17,15 @@ import com.db4o.ObjectContainer;
 
 public class RDictActivity extends TabActivity {
 	
-	private static final String[] TABS = { "Search", "Review", "History", "Settings"};
-	public static ObjectContainer db = null;
+	private static final String BASE_PACKAGE = "com.amplio.rdict";
 	
+	private static final String[] ACTIVITY_PATHS = {BASE_PACKAGE + ".search.",
+													BASE_PACKAGE + ".review.",
+													BASE_PACKAGE + ".history.",
+													BASE_PACKAGE + ".more."};
+	private static final String[] TABS = { "Search", "Review", "History", "More"};
+	public static ObjectContainer db = null;
+	//test
 	private HistoryManager _historyMgr = null;
 	
     /** Called when the activity is first created. */
@@ -34,9 +40,8 @@ public class RDictActivity extends TabActivity {
     	
         for (int i = 0; i < TABS.length; i++){
         	TabHost.TabSpec tab = tabs.newTabSpec(TABS[i]);
-
-        	ComponentName activity = new ComponentName("com.amplio.rdict", 
-        						  					   "com.amplio.rdict." + TABS[i] + "Activity");
+        	
+        	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[i] + TABS[i] + "Activity");
 
         	tab.setContent(new Intent().setComponent(activity));
         	tab.setIndicator(TABS[i]);
