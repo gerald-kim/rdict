@@ -8,9 +8,8 @@ import com.amplio.rdict.R;
 public class MoreActivity extends Activity
 {
 	@Override
-	public void onCreate(Bundle icicle)
-	{
+	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		setContentView(R.layout.settings);
+		setContentView(R.layout.more);
 	}
 }
