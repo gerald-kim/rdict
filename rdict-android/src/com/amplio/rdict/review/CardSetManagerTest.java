@@ -164,4 +164,40 @@ public class CardSetManagerTest extends TestCase {
 			assertEquals(1.0, card.easiness);
 		}
 	}
+	
+	public void testLoadByPrefixIfNoneGiven(){
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card aCard = new Card("apple" , "the answer");
+		Card bCard = new Card("banana", "the answer");
+		Card cCard= new Card("coconunt", "the answer");
+
+		mgr.save(bCard);
+		mgr.save(aCard);
+		mgr.save(cCard);
+		
+		ObjectSet cards = mgr.loadCardsByPrefix("");
+		
+		assertEquals(3, cards.size());
+		assertEquals(aCard.question, ((Card) cards.get(0)).question);
+		assertEquals(bCard.question, ((Card) cards.get(1)).question);
+		assertEquals(cCard.question, ((Card) cards.get(2)).question);
+	}
+	
+	public void testLoadByPrefix(){
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card aCard = new Card("apple" , "the answer");
+		Card bCard = new Card("banana", "the answer");
+		Card cCard= new Card("coconunt", "the answer");
+
+		mgr.save(aCard);
+		mgr.save(bCard);
+		mgr.save(cCard);
+		
+		ObjectSet cards = mgr.loadCardsByPrefix("a");
+		
+		assertEquals(1, cards.size());
+		assertEquals(aCard.question, ((Card) cards.get(0)).question);
+	}
 }

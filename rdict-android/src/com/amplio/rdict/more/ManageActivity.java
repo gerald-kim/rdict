@@ -12,5 +12,11 @@ public class ManageActivity extends Activity{
 		super.onCreate(icicle);
 		setContentView(R.layout.manage);
 	}
+	
+	public void onResume() {
+		// load cards
+		// for each card
+		//		show a flashcard to user
+	}
 
 }
