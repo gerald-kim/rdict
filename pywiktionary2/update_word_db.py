@@ -16,6 +16,7 @@ class WikiHandler( xml.sax.ContentHandler ):
         self.element = None
         self.page = None
         self.text = ""
+        self.revision = 0
         self.long = {}
         
     def startElement( self, name, attrs ):
@@ -28,7 +29,7 @@ class WikiHandler( xml.sax.ContentHandler ):
                     #print self.page, len( self.text )
                     #print
                     pass
-                self.doPage( self.page, self.text )
+                self.doPage( self.page, self.text, self.revision )
                 self.page = None
             self.text = ""
         self.element = None
@@ -37,6 +38,8 @@ class WikiHandler( xml.sax.ContentHandler ):
         if self.element == "title":
             if self.checkPage( content ):
                 self.page = content
+        elif self.element == "id":
+            self.revision = int( content )
         elif self.element == "text":
             if self.page:
                 self.text += content
@@ -46,15 +49,15 @@ class WikiHandler( xml.sax.ContentHandler ):
     def checkPage( self, page ):
         return True
     
-    def doPage( self, page, text ):
+    def doPage( self, page, text, revision ):
         pass
 
 class WordHandler( WikiHandler ):
-    def __init__( self, session ):
-        self.session = session
+    def __init__( self, word_manager ):
+        self.word_manager = word_manager
         WikiHandler.__init__( self )
     
-    def doPage( self, page, text ):
+    def doPage( self, page, text, revision ):
         if page.startswith( u'Wiktionary:' ) or page.startswith( u'Help:' ):
             return
          
@@ -69,14 +72,11 @@ class WordHandler( WikiHandler ):
             return
         
         #self.db_tmp.put( page, text )
-        word = Word( page, 0 )
-        if self.session.query( Word ).filter_by( lemma = page ).count() == 0: 
-            self.session.add( word )
+        self.word_manager.save( Word( page, revision ) )
         
         global WordCount
         WordCount += 1
         if WordCount % 100 == 0:
-            self.session.flush()
             print "\033[A", WordCount
 
 
@@ -87,12 +87,13 @@ class WordDbMaker:
     def process_redir_and_filter_english( self ):
         f = os.popen( "bunzip2 -c %s" % self.xml_file, "r" )
         
-        session = create_session()
+        word_manager = WordManager()
+        word_manager.connect()
         
-        xml.sax.parse( f, WordHandler( session ) )
+        xml.sax.parse( f, WordHandler( word_manager ) )
         
         f.close()
-        session.close()
+        word_manager.close()
         
     
 if __name__ == '__main__':

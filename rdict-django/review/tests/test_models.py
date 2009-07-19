@@ -66,5 +66,3 @@ class CardTest( TransactionalTestCase ):
         c.study( 5, s )
         print c.interval
         print c.easiness
-
-        #TODO should make test case collectly
