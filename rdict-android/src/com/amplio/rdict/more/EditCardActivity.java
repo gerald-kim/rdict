@@ -1,14 +1,20 @@
 package com.amplio.rdict.more;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.review.Card;
+import com.amplio.rdict.review.CardSetManager;
 
 public class EditCardActivity extends Activity implements OnClickListener{
 
@@ -17,6 +23,8 @@ public class EditCardActivity extends Activity implements OnClickListener{
 	Button cancelButton = null;
 	Button saveButton = null;
 	Button deleteButton = null;
+	
+	CardSetManager cardSetMgr = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -31,19 +39,40 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		this.saveButton.setOnClickListener(this);
 		this.deleteButton = (Button) findViewById(R.id.delete_button);
 		this.deleteButton.setOnClickListener(this);
+		
+		cardSetMgr = new CardSetManager(RDictActivity.db);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		cardSetMgr = new CardSetManager(RDictActivity.db);
+		
+		this.headwordLabel.setText(ManageActivity.targetCard.question);
+		this.definitionText.setText(ManageActivity.targetCard.answer.replace("%20", " "));
 	}
 
 	public void onClick(View v) {
-		if(this.cancelButton == v) {
-		
+		if(this.saveButton == v){
+			Card c = ManageActivity.targetCard;
+			c.answer = this.definitionText.getText().toString().replace(" ", "%20");
+			this.cardSetMgr.save(c);
+			Toast.makeText(this, "Changes saved.", Toast.LENGTH_SHORT).show();
+			this.finish();
 		}
-		else if(this.saveButton == v){
-			//save
+		else if(this.deleteButton == v){
+			new AlertDialog.Builder(this)
+			.setTitle("Delete")
+			.setMessage("Delete this card?")
+			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {setResult(RESULT_OK); finish();}})
+			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
+				public void onClick(DialogInterface dialog, int whichButton) {}})
+			.show();
 		}
-		else {
-			//delete
+		else if(this.cancelButton == v){
+			this.finish();
 		}
-		
 	}
 	
 }

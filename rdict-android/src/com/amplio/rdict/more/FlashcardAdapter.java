@@ -22,19 +22,22 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 	
 	public View getView(int position, View view, ViewGroup parent) {
 		FlashcardViewWrapper fv = new FlashcardViewWrapper(View.inflate(this.context, R.layout.flashcard_ui_for_manage, null));
-		fv.view.setTag(fv);
 		
 		Card c = this.getItem(position);
 		
 		fv.headwordLabel.setText(c.question);
 		fv.definitionLabel.setText(c.answer.replace("%20", " "));
-		
+		fv.editButton.setTag(new Integer(position).toString());
 		fv.editButton.setOnClickListener(this);
 		
 		return fv.view;
 	}
 
 	public void onClick(View v) {
+		Card c = this.getItem( new Integer(v.getTag().toString()));
+		
+		ManageActivity.targetCard = c;
+		
 		Intent i = new Intent(context, EditCardActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
