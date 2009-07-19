@@ -75,6 +75,10 @@ class WordManager:
     def get_tuples_with_lemma_for_filter( self ):
         self.c.execute( 'select lemma from words where filtered = 0 and downloaded = 1' );
         return self.c.fetchall()
+    
+    def get_tuples_with_lemma_for_exporting(self):
+        self.c.execute( 'select lemma from words where filtered = 1 and downloaded = 1' );
+        return self.c.fetchall()
         
 class Word:
     def __init__( self, lemma, revision = 0, downloaded = False, filtered = False ):

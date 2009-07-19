@@ -22,32 +22,17 @@ class MockWord( Word ):
 
 class TokyoCabinetExporterTest( unittest.TestCase ):
     def setUp( self ):
-        self.session = create_session()
-        self.session.begin()
+        self.word_manager = WordManager()
+        self.word_manager.connect()
 
-        self.exporter = TokyoCabinetExporter( self.session, 'enwiktionary-test' )
+        self.exporter = TokyoCabinetExporter( 'enwiktionary-test' )
         self.exporter.open_tc()
 
 
     def tearDown( self ):
-        self.session.rollback()
+        self.word_manager.close()
         self.exporter.close_tc()
         os.system( 'rm -rf enwiktionary-test' )
-
-
-    def test_get_words( self ):
-        for lemma in [ u'c', u'c++', u'java', u'python', u'Python' ]:
-            word = Word( lemma, 0 )
-            word.downloaded = True
-            word.filtered = True
-            self.session.add( word )
-        self.session.add( Word( u'word', 0 ) )
-
-
-        words = self.exporter.get_words()
-
-        self.assertEquals( 5, len( words ) )
-        self.assertEquals( u'c', words[0].lemma )
 
     def test_export_word( self ):
         self.exporter.export_word( MockWord( 'b' ) )
