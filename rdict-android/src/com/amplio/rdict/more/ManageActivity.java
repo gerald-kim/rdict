@@ -36,15 +36,12 @@ public class ManageActivity extends Activity implements OnItemClickListener {
 		String prefix = "";
 		ObjectSet cards = this.cardMgr.loadCardsByPrefix(prefix);
 		
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
+		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
 		System.out.println(cards.size());
 		
-		for(int i=0; i < cards.size(); i++) {
-			//		show a flashcard to user
-			Card card = (Card) cards.get(i);
-			
-			aa.add(card.question + "\n" + card.answer);
+		for(int i = 0; i < cards.size(); i++) {
+			aa.add((Card) cards.get(i));
 		}
 
 		this.cardList.setAdapter(aa);

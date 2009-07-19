@@ -18,7 +18,7 @@ public final class R {
         public static final int back_button=0x7f050004;
         public static final int card_list_view=0x7f050019;
         public static final int def_label=0x7f05000c;
-        public static final int definition_button=0x7f050017;
+        public static final int definition_label=0x7f050017;
         public static final int easy_button=0x7f05000d;
         public static final int edit_button=0x7f050015;
         public static final int forward_button=0x7f050006;
