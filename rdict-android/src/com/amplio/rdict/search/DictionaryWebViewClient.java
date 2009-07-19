@@ -17,15 +17,11 @@ public class DictionaryWebViewClient extends WebViewClient{
 		if (url.contains("lookup")) {
 			String word = url.substring(url.indexOf('=') + 1);
 			this.dicActivity.refreshDicPage(word, true);
-			
-			Toast.makeText(this.context, "Added.", Toast.LENGTH_SHORT).show();
-			
 			return true;
 		}
 		else if (url.contains("save")) {
-			System.out.println(url);
+			Toast.makeText(this.context, "Added.", Toast.LENGTH_SHORT).show();
 			String def = url.substring(url.indexOf('=') + 1);
-			
 			this.dicActivity.addCard(def);
 			return true;
 		}

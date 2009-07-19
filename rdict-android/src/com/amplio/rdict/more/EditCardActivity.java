@@ -40,13 +40,13 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		this.deleteButton = (Button) findViewById(R.id.delete_button);
 		this.deleteButton.setOnClickListener(this);
 		
-		cardSetMgr = new CardSetManager(RDictActivity.db);
+		EditCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		cardSetMgr = new CardSetManager(RDictActivity.db);
+		EditCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 		
 		this.headwordLabel.setText(ManageActivity.targetCard.question);
 		this.definitionText.setText(ManageActivity.targetCard.answer.replace("%20", " "));
@@ -56,7 +56,7 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		if(this.saveButton == v){
 			Card c = ManageActivity.targetCard;
 			c.answer = this.definitionText.getText().toString().replace(" ", "%20");
-			this.cardSetMgr.save(c);
+			EditCardActivity.cardSetMgr.save(c);
 			Toast.makeText(this, "Changes saved.", Toast.LENGTH_SHORT).show();
 			this.finish();
 		}
@@ -67,7 +67,7 @@ public class EditCardActivity extends Activity implements OnClickListener{
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int whichButton) {
 														Card c = ManageActivity.targetCard;
-														cardSetMgr.deleteCard(c); finish();}})
+														EditCardActivity.cardSetMgr.deleteCard(c); finish();}})
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
 				public void onClick(DialogInterface dialog, int whichButton) {}})
 			.show();
