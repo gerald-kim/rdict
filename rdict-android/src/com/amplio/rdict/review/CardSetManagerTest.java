@@ -200,4 +200,26 @@ public class CardSetManagerTest extends TestCase {
 		assertEquals(1, cards.size());
 		assertEquals(aCard.question, ((Card) cards.get(0)).question);
 	}
+	
+	public void testDeleteCard() {
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card aCard = new Card("apple" , "the answer");
+		Card bCard = new Card("banana", "the answer");
+		Card cCard= new Card("coconunt", "the answer");
+
+		mgr.save(aCard);
+		mgr.save(bCard);
+		mgr.save(cCard);
+		
+		ObjectSet cards = mgr.loadCardsByPrefix("a");
+		
+		assertEquals(1, cards.size());
+		
+		mgr.deleteCard(aCard);
+		
+		cards = mgr.loadCardsByPrefix("a");
+		
+		assertEquals(0, cards.size());
+	}
 }

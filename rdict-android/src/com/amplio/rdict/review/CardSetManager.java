@@ -67,5 +67,7 @@ public class CardSetManager {
 		return cards;
 	}
 
-
+	public void deleteCard(Card card) {
+		db.delete(card);
+	}
 }
