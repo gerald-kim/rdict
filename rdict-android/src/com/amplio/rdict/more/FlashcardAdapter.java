@@ -2,8 +2,10 @@ package com.amplio.rdict.more;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.review.Card;
+import com.amplio.rdict.search.DictionaryActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -33,6 +35,8 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 	}
 
 	public void onClick(View v) {
-				
+		Intent i = new Intent(context, EditCardActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(i);
 	}
 }

@@ -22,6 +22,7 @@
 <activity android:name=".more.HelpActivity"></activity>
 <activity android:name=".more.ManageActivity"></activity>
 <activity android:name=".more.SettingsActivity"></activity>
+<activity android:name=".more.EditCardActivity"></activity>
 </application>
 
 </manifest> 
