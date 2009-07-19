@@ -2,11 +2,7 @@ package com.amplio.rdict.more;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
@@ -14,7 +10,7 @@ import com.amplio.rdict.review.Card;
 import com.amplio.rdict.review.CardSetManager;
 import com.db4o.ObjectSet;
 
-public class ManageActivity extends Activity implements OnItemClickListener {
+public class ManageActivity extends Activity {
 	
 	CardSetManager cardMgr = null;
 	
@@ -28,7 +24,6 @@ public class ManageActivity extends Activity implements OnItemClickListener {
 		this.cardMgr = new CardSetManager(RDictActivity.db);
 		
 		this.cardList = (ListView) findViewById(R.id.card_list_view);
-		this.cardList.setOnItemClickListener(this);
 	}
 	
 	public void onResume() {
@@ -47,10 +42,4 @@ public class ManageActivity extends Activity implements OnItemClickListener {
 		this.cardList.setAdapter(aa);
 		aa.notifyDataSetChanged();
 	}
-
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
