@@ -18,6 +18,10 @@
 		  <activity android:label="History" android:name=".history.HistoryActivity"></activity>
 		  <activity android:label="More" android:name=".more.MoreActivity"></activity>
     
+<activity android:name=".more.AboutActivity"></activity>
+<activity android:name=".more.HelpActivity"></activity>
+<activity android:name=".more.ManageActivity"></activity>
+<activity android:name=".more.SettingsActivity"></activity>
 </application>
 
 </manifest> 

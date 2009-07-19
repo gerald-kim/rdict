@@ -20,7 +20,7 @@ android:layout_weight="1"
 >
 </TextView>
 <Button
-android:id="@+id/widget49"
+android:id="@+id/help_button"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Help"
@@ -41,7 +41,7 @@ android:layout_weight="1"
 >
 </TextView>
 <Button
-android:id="@+id/widget50"
+android:id="@+id/about_button"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="About"
@@ -62,7 +62,7 @@ android:layout_weight="1"
 >
 </TextView>
 <Button
-android:id="@+id/widget51"
+android:id="@+id/manage_button"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="Manage"
@@ -83,7 +83,7 @@ android:layout_weight="1"
 >
 </TextView>
 <Button
-android:id="@+id/widget52"
+android:id="@+id/settings_button"
 android:layout_width="80px"
 android:layout_height="wrap_content"
 android:text="Settings"

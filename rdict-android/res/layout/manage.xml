@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/widget40"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/widget48"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="card managing stuff goes here."
+android:layout_weight="1"
+>
+</TextView>
+
+</LinearLayout>
