@@ -1,15 +1,17 @@
 package com.amplio.rdict.more;
 
-import com.amplio.rdict.R;
-import com.amplio.rdict.review.Card;
-import com.amplio.rdict.search.DictionaryActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.amplio.rdict.R;
+import com.amplio.rdict.review.Card;
 
 public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListener {
 
@@ -21,16 +23,18 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 	}
 	
 	public View getView(int position, View view, ViewGroup parent) {
-		FlashcardViewWrapper fv = new FlashcardViewWrapper(View.inflate(this.context, R.layout.flashcard_ui_for_manage, null));
-		
 		Card c = this.getItem(position);
 		
-		fv.headwordLabel.setText(c.question);
-		fv.definitionLabel.setText(c.answer.replace("%20", " "));
-		fv.editButton.setTag(new Integer(position).toString());
-		fv.editButton.setOnClickListener(this);
+		View fcView = View.inflate(this.context, R.layout.flashcard_ui_for_manage, null);
+		((TextView) fcView.findViewById(R.id.headword_label)).setText(c.question);
 		
-		return fv.view;
+		Button editButton = (Button) fcView.findViewById(R.id.edit_button);
+		editButton.setTag(new Integer(position).toString());
+		editButton.setOnClickListener(this);
+		
+		((TextView) fcView.findViewById(R.id.definition_label)).setText(c.answer.replace("%20", " "));
+		
+		return fcView;
 	}
 
 	public void onClick(View v) {
