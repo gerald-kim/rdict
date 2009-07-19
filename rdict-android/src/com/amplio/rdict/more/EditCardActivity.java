@@ -24,7 +24,7 @@ public class EditCardActivity extends Activity implements OnClickListener{
 	Button saveButton = null;
 	Button deleteButton = null;
 	
-	CardSetManager cardSetMgr = null;
+	public static CardSetManager cardSetMgr = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -65,7 +65,9 @@ public class EditCardActivity extends Activity implements OnClickListener{
 			.setTitle("Delete")
 			.setMessage("Delete this card?")
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {setResult(RESULT_OK); finish();}})
+				public void onClick(DialogInterface dialog, int whichButton) {
+														Card c = ManageActivity.targetCard;
+														cardSetMgr.deleteCard(c); finish();}})
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
 				public void onClick(DialogInterface dialog, int whichButton) {}})
 			.show();
