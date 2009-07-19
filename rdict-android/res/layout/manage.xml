@@ -6,13 +6,12 @@ android:layout_height="fill_parent"
 android:orientation="vertical"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
-<TextView
-android:id="@+id/widget48"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="card managing stuff goes here."
-android:layout_weight="1"
->
-</TextView>
+
+<ListView 
+	android:id="@+id/card_list_view"
+	android:layout_height="fill_parent" android:layout_width="fill_parent"
+	android:visibility="visible"
+	android:layout_weight="0">
+</ListView>
 
 </LinearLayout>
