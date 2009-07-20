@@ -3,10 +3,15 @@ package com.amplio.rdict.review;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
@@ -27,6 +32,9 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	private TextView lookedupTodayLabel = null;
 	private Button lookedupTodayButton = null;
 	
+	private ImageView cardCountGraph = null;
+	private ImageView gradeGraph = null;
+	
 	@Override
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
@@ -45,6 +53,9 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		this.lookedupTodayLabel = (TextView)findViewById(R.id.lookedup_today_label);
 		this.lookedupTodayButton = (Button)findViewById(R.id.lookedup_today_go);
 		this.lookedupTodayButton.setOnClickListener(this);
+		
+		this.cardCountGraph = (ImageView)findViewById(R.id.card_count_graph);
+		this.gradeGraph = (ImageView)findViewById(R.id.grade_graph);
 	}
 	
 	public void onClick(View view){
@@ -64,6 +75,21 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	
 	public void onResume() {
 		System.out.println("Review - Resumed");
+		
+		final Number[] data = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 };
+
+		// width, height, spacing
+		final SizeParams params = new SizeParams(50, 20, 1);
+
+		final Bitmap i = AndroidBarGraph.createGraph(data, params, Color.CYAN, Color.RED, Color.YELLOW);
+
+		this.cardCountGraph.setImageBitmap(i);
+		this.cardCountGraph.setBackgroundColor(Color.WHITE);
+		this.cardCountGraph.refreshDrawableState();
+		
+		this.gradeGraph.setImageBitmap(i);
+		this.gradeGraph.setBackgroundColor(Color.WHITE);
+		this.gradeGraph.refreshDrawableState();
 		
 		super.onResume();
 		

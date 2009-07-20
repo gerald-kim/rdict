@@ -1,10 +1,12 @@
-package com.amplio.rdict.review;
+package com.amplio.rdict.tests.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import junit.framework.TestCase;
 
+import com.amplio.rdict.review.Card;
+import com.amplio.rdict.review.CardSetManager;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -221,5 +223,51 @@ public class CardSetManagerTest extends TestCase {
 		cards = mgr.loadCardsByPrefix("a");
 		
 		assertEquals(0, cards.size());
+	}
+	
+	public void testLoadCardByHeadword() {
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card aCard = new Card("apple" , "the answer");
+		Card bCard = new Card("banana", "the answer");
+		Card cCard= new Card("coconunt", "the answer");
+
+		mgr.save(aCard);
+		mgr.save(bCard);
+		mgr.save(cCard);
+		
+		Card c = mgr.loadCardByHeadword("banana");
+		
+		assertEquals("banana", c.question);
+	}
+	
+	public void testLoadCardByHeadwordIfDuplicateExists() {
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card bCard1 = new Card("banana", "the answer");
+		Card bCard2 = new Card("banana", "the answer2");
+		Card cCard= new Card("coconunt", "the answer");
+
+		mgr.save(bCard1);
+		mgr.save(bCard2);
+		mgr.save(cCard);
+		
+		try {
+			mgr.loadCardByHeadword("banana");
+			fail();
+		}
+		catch(IllegalStateException ignore){}
+	}
+	
+	public void testLoadCardByHeadwordIfNoSuchCardExists() {
+		CardSetManager mgr = new CardSetManager(db);
+		
+		Card bCard1 = new Card("banana", "the answer");
+		
+		mgr.save(bCard1);
+		
+		Card c = mgr.loadCardByHeadword("fish");
+
+		assertEquals(null, c);
 	}
 }

@@ -70,4 +70,18 @@ public class CardSetManager {
 	public void deleteCard(Card card) {
 		db.delete(card);
 	}
+
+	public Card loadCardByHeadword(String headword) {
+		Query query = db.query();
+		query.constrain(Card.class);
+		query.descend("question").constrain(headword);
+		ObjectSet cards = query.execute();
+		
+		if(1 < cards.size())
+			throw new IllegalStateException("Duplicates cards exist in the database.");
+		else if (1 == cards.size())
+			return (Card) cards.get(0);
+		else
+			return null;
+	}
 }
