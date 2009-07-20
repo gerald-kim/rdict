@@ -8,3 +8,37 @@ RUN SEQUENCE
 * filter_page.py
 * dump_to_tokyocabinet.py
 
+
+
+HTML HEAD
+=========
+
+-------------
+<html>
+<head>
+<style>
+a.r {
+    background-image:url(star_off.png);   
+    background-repeat:no-repeat;   
+    float:right;
+    margin-left:5px;
+    margin-right:15px;   width:16px;height:16px;
+}
+a.r:hover {
+    background-image:url(star_on.png);
+}
+a.r:visited {
+    background-image:url(star_on.png);
+}
+</style>  
+<script type="text/javascript">
+function r( obj ) {
+    alert( 'remember'  );
+}
+function s( obj ) {
+    alert( 'search: ' + decodeURIComponent( obj.href  ) );
+}
+</script>
+</head>
+<body>
+-------------

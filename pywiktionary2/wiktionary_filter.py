@@ -117,6 +117,7 @@ class WiktionaryFilter:
                 {'class':'noprint'},
                 {'class':'infl-table'},
                 {'class':'floatright'},
+                {'class':'catlinks'},
                 {'class':re.compile( '.+tright' )}
             ],
         }
@@ -134,7 +135,7 @@ class WiktionaryFilter:
         for heading in headings:
             #print "HEADING:", heading, heading.contents
             extracts = []
-            if IGNORE_PARTS.has_key( heading.contents[0].strip() ):
+            if IGNORE_PARTS.has_key( heading.renderContents().strip() ):
                 #print "unnecessary:", heading
                 extracts.append( heading )
                 g = heading.nextSiblingGenerator()

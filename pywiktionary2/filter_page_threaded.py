@@ -54,6 +54,10 @@ def do_filter(filter_queue, result_queue):
 #            sys.stdout.flush()
 
             result_queue.put( lemma )
+        except sqlite3.OperationalError, e:
+            print e
+            word_manager.close()
+            word_manager.connect()            
         except Empty:
             print 'TIMEOUT'
 
