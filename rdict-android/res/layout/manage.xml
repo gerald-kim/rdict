@@ -16,7 +16,7 @@ android:layout_height="wrap_content"
 android:id="@+id/filter_text"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:text="EditText"
+android:text=""
 android:textSize="18sp"
 android:layout_weight="1"
 >
