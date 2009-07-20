@@ -47,6 +47,9 @@ public class AddCardActivity extends Activity implements OnClickListener{
 		if(this.saveButton == v){
 			Card c = new Card(this.headwordText.getText().toString(), this.definitionText.getText().toString().replace(" ", "%20"));
 
+			//AddCardActivity.cardSetMgr.
+			
+			
 			AddCardActivity.cardSetMgr.save(c);
 			Toast.makeText(this, "Card added.", Toast.LENGTH_SHORT).show();
 			this.finish();

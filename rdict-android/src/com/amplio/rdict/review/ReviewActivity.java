@@ -79,16 +79,16 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		final Number[] data = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 };
 
 		// width, height, spacing
-		final SizeParams params = new SizeParams(50, 12, 1);
+		final SizeParams params = new SizeParams(50, 20, 1);
 
-		final Bitmap i = AndroidBarGraph.createGraph(data);
+		final Bitmap i = AndroidBarGraph.createGraph(data, params, Color.CYAN, Color.RED, Color.YELLOW);
 
 		this.cardCountGraph.setImageBitmap(i);
-		this.cardCountGraph.setBackgroundColor(Color.BLUE);
+		this.cardCountGraph.setBackgroundColor(Color.WHITE);
 		this.cardCountGraph.refreshDrawableState();
 		
 		this.gradeGraph.setImageBitmap(i);
-		this.gradeGraph.setBackgroundColor(Color.RED);
+		this.gradeGraph.setBackgroundColor(Color.WHITE);
 		this.gradeGraph.refreshDrawableState();
 		
 		super.onResume();
