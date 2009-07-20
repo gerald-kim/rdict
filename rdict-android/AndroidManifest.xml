@@ -23,6 +23,7 @@
 <activity android:name=".more.ManageActivity"></activity>
 <activity android:name=".more.SettingsActivity"></activity>
 <activity android:name=".more.EditCardActivity"></activity>
+<activity android:name=".more.AddCardActivity"></activity>
 </application>
 
 </manifest> 

@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-android:id="@+id/widget40"
+android:id="@+id/widget28"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
-
-<LinearLayout
-android:id="@+id/widget57"
+<EditText
+android:id="@+id/headword_text"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
+android:text=""
 >
+</EditText>
 <EditText
-android:id="@+id/filter_text"
+android:id="@+id/definition_text"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text=""
 android:textSize="18sp"
-android:layout_weight="1"
 >
 </EditText>
-<Button
-android:id="@+id/add_button"
+<LinearLayout
+android:id="@+id/widget31"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:text="New Card"
+>
+<Button
+android:id="@+id/cancel_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Cancel"
+>
+</Button>
+<Button
+android:id="@+id/save_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Save"
 >
 </Button>
 </LinearLayout>
-
-<ListView 
-	android:id="@+id/card_list_view"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-	android:visibility="visible"
-	android:layout_weight="0">
-</ListView>
-
 </LinearLayout>
