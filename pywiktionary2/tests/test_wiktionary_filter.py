@@ -108,10 +108,10 @@ class SoupFilterTest( unittest.TestCase ):
 </dl>
 </li>
 <li>(<i>transitive</i>) definition2</a>.
-</li
+</li>
 </ol>''' )
         self.filter.soup_filter_add_remember_buttons( content )
-        self.assertEquals( u'<ol>\n<li><a href="#233c9f30" onclick="r(this)" class="r"></a>definition1\n<dl>\n<dd><i>Example1</i></dd>\n</dl>\n</li>\n<li><a href="#ea47d020" onclick="r(this)" class="r"></a>(<i>transitive</i>) definition2.\n</li></ol>', str( content ) )
+        self.assertEquals( u'<ol>\n<li><a href="#233c9f30" onclick="r(this)" class="r"></a>definition1\n<dl>\n<dd><i>Example1</i></dd>\n</dl>\n</li>\n<li><a href="#ea47d020" onclick="r(this)" class="r"></a>(<i>transitive</i>) definition2.\n</li>\n</ol>', str( content ) )
 
 if __name__ == "__main__":
     unittest.main()
