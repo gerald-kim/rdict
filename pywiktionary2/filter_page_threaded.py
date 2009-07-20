@@ -20,12 +20,12 @@ def do_queue(filter_queue):
     word_manager.connect()
 
     lemma_tuples = word_manager.get_tuples_with_lemma_for_filter()
-    print "LENGTH: ", len(lemma_tuples)
+#    print "LENGTH: ", len(lemma_tuples)
 
     for tuple in lemma_tuples:
         lemma = tuple[0]
-        print "put to filter_queue ", lemma.encode( 'utf-8' )
-        sys.stdout.flush()
+#        print "put to filter_queue ", lemma.encode( 'utf-8' )
+#        sys.stdout.flush()
         filter_queue.put( lemma )
 
     word_manager.close()
@@ -41,8 +41,8 @@ def do_filter(filter_queue, result_queue):
         try:
             lemma = filter_queue.get(timeout=0.5)
 
-            print "do filtering:", lemma
-            sys.stdout.flush()
+#            print "do filtering:", lemma
+#            sys.stdout.flush()
 
             word = Word( lemma )
             result = word.filter_page( word_manager )
@@ -50,8 +50,8 @@ def do_filter(filter_queue, result_queue):
                 word_manager.mark_filtered( lemma )
                 word_manager.commit()
 
-            print "done filtering:", lemma, ",", result
-            sys.stdout.flush()
+#            print "done filtering:", lemma, ",", result
+#            sys.stdout.flush()
 
             result_queue.put( lemma )
         except Empty:
@@ -74,11 +74,15 @@ if __name__ == '__main__':
 
     o = None
     stop_count = 0
+    word_count = 0
     while stop_count != THREAD_COUNT:
         try:
             o = result_queue.get(timeout=10)
-            print "done", o
-            sys.stdout.flush()
+            word_count = word_count + 1
+            if word_count % 100 == 0:
+                print "Filtered: ", word_count
+#            print "done", o
+#            sys.stdout.flush()
             if STOP == o:
                 stop_count = stop_count + 1
         except Empty:

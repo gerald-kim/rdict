@@ -6,6 +6,8 @@
 
 from BeautifulSoup import BeautifulSoup
 from cStringIO import StringIO
+import urllib2
+import hashlib
 import re
 
 IGNORE_PARTS = {
@@ -126,24 +128,23 @@ class WiktionaryFilter:
                 [ s.extract() for s in soups ]
 
     def soup_filter_removeUnnecessaryHeadings( self, content ):
-        UNNECESSARY_HEADINGS = [u'Translations']
+        #UNNECESSARY_HEADINGS = [u'Translations']
 
-        for unnecessary_heading in UNNECESSARY_HEADINGS:
-            headings = content.findAll( attrs={'class':'head' } )
-            for heading in headings:
-                #print "HEADING:", heading, heading.contents
-                extracts = []
-                if unnecessary_heading == heading.contents[0]:
-                    #print "unnecessary:", heading
-                    extracts.append( heading )
-                    g = heading.nextSiblingGenerator()
+        headings = content.findAll( attrs={'class':'head' } )
+        for heading in headings:
+            #print "HEADING:", heading, heading.contents
+            extracts = []
+            if IGNORE_PARTS.has_key( heading.contents[0].strip() ):
+                #print "unnecessary:", heading
+                extracts.append( heading )
+                g = heading.nextSiblingGenerator()
+                n = g.next()
+                while n != None and n not in headings:
+                    #print n
+                    extracts.append( n )
                     n = g.next()
-                    while n != None and n not in headings:
-                        #print n
-                        extracts.append( n )
-                        n = g.next()
 
-                    [ s.extract() for s in extracts ]
+                [ s.extract() for s in extracts ]
 
     def soup_filter_removeEmptyP( self, content ):
         ps = content.findAll( 'p' )
@@ -182,15 +183,22 @@ class WiktionaryFilter:
         links = content.findAll( 'a', {'href':re.compile( '^/wiki/Appendix:.+' )} )
         [a.replaceWith( a.renderContents() ) for a in links]
 
-    def soup_filter_remove_broken_links( self, content ):
+    def soup_filter_word_links( self, content ):
         links = content.findAll( 'a', {'href':re.compile( '^/wiki/+' )} )
         words = [unicode( a.renderContents(), 'utf-8') for a in links]
         existing_words = self.word_manager.find_existing_words( words )
         for a in links:
             if not existing_words.has_key( a.renderContents() ):
                 a.replaceWith( a.renderContents() )
-#            else:
-#                a.href = u'rdict' +
+            else:
+                a['href'] = urllib2.quote( a.renderContents() )
+                a['onclick'] = u"return s(this);"
+                
+    def soup_filter_add_remember_buttons(self, content ):
+        lis = content.findAll(lambda tag: tag.name == u'li' and tag.parent.name == u'ol' )
+        for li in lis:
+            hexdigest = hashlib.sha1( str( li ) ).hexdigest()
+            li.insert( 0, u'<a href="#%s" onclick="r(this)" class="r"></a>' % (hexdigest[:8]) )
 
     def regex_filter_shorten_qualifier1( self, content ):
         r = re.compile( '<span class="ib-brac"><span class="qualifier-brac">\(</span></span><span class="ib-content"><span class="qualifier-content">(.+)</span></span><span class="ib-brac"><span class="qualifier-brac">\)</span></span>', re.UNICODE | re.MULTILINE )

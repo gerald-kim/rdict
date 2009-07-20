@@ -95,10 +95,23 @@ class SoupFilterTest( unittest.TestCase ):
         self.filter.soup_filter_remove_appendix_links( content )
         self.assertEquals( u'idiomatic', str( content ) )
 
-    def test_remove_broken_links( self ):
+    def test_word_links( self ):
         content = BeautifulSoup( u'''<a href="/wiki/get_on">get on</a>, <a href="/wiki/get_on">getting</a>''' )
-        self.filter.soup_filter_remove_broken_links( content )
-        self.assertEquals( u'<a href="/wiki/get_on">get on</a>, getting', str( content ) )
+        self.filter.soup_filter_word_links( content )
+        self.assertEquals( u'<a href="get%20on" onclick="return s(this);">get on</a>, getting', str( content ) )
+
+    def test_add_remember_buttons( self ):
+        content = BeautifulSoup( u'''<ol>
+<li>definition1
+<dl>
+<dd><i>Example1</i></dd>
+</dl>
+</li>
+<li>(<i>transitive</i>) definition2</a>.
+</li
+</ol>''' )
+        self.filter.soup_filter_add_remember_buttons( content )
+        self.assertEquals( u'<ol>\n<li><a href="#233c9f30" onclick="r(this)" class="r"></a>definition1\n<dl>\n<dd><i>Example1</i></dd>\n</dl>\n</li>\n<li><a href="#ea47d020" onclick="r(this)" class="r"></a>(<i>transitive</i>) definition2.\n</li></ol>', str( content ) )
 
 if __name__ == "__main__":
     unittest.main()
