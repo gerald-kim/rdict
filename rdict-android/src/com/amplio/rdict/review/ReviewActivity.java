@@ -32,7 +32,8 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	private TextView lookedupTodayLabel = null;
 	private Button lookedupTodayButton = null;
 	
-	private ImageView sparklelineBitmap = null;
+	private ImageView cardCountGraph = null;
+	private ImageView gradeGraph = null;
 	
 	@Override
 	public void onCreate(Bundle icicle){
@@ -53,7 +54,8 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		this.lookedupTodayButton = (Button)findViewById(R.id.lookedup_today_go);
 		this.lookedupTodayButton.setOnClickListener(this);
 		
-		this.sparklelineBitmap = (ImageView)findViewById(R.id.sparkleline_bitmap);
+		this.cardCountGraph = (ImageView)findViewById(R.id.card_count_graph);
+		this.gradeGraph = (ImageView)findViewById(R.id.grade_graph);
 	}
 	
 	public void onClick(View view){
@@ -74,7 +76,6 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	public void onResume() {
 		System.out.println("Review - Resumed");
 		
-		
 		final Number[] data = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 };
 
 		// width, height, spacing
@@ -82,10 +83,13 @@ public class ReviewActivity extends Activity implements OnClickListener{
 
 		final Bitmap i = AndroidBarGraph.createGraph(data);
 
+		this.cardCountGraph.setImageBitmap(i);
+		this.cardCountGraph.setBackgroundColor(Color.BLUE);
+		this.cardCountGraph.refreshDrawableState();
 		
-		this.sparklelineBitmap.setImageBitmap(i);
-		this.sparklelineBitmap.setBackgroundColor(Color.BLUE);
-		this.sparklelineBitmap.refreshDrawableState();
+		this.gradeGraph.setImageBitmap(i);
+		this.gradeGraph.setBackgroundColor(Color.RED);
+		this.gradeGraph.refreshDrawableState();
 		
 		super.onResume();
 		

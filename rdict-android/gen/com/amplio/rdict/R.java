@@ -18,6 +18,7 @@ public final class R {
         public static final int add_button=0x7f050020;
         public static final int back_button=0x7f05000a;
         public static final int cancel_button=0x7f050006;
+        public static final int card_count_graph=0x7f050035;
         public static final int card_count_label=0x7f050034;
         public static final int card_list_view=0x7f050021;
         public static final int def_label=0x7f050014;
@@ -28,13 +29,14 @@ public final class R {
         public static final int edit_button=0x7f05001a;
         public static final int filter_text=0x7f05001f;
         public static final int forward_button=0x7f05000c;
+        public static final int grade_graph=0x7f050036;
         public static final int hard_button=0x7f050017;
         public static final int headword_label=0x7f05000f;
         public static final int headword_text=0x7f050003;
         public static final int help_button=0x7f050023;
         public static final int history_list=0x7f05001d;
         public static final int i_forgot_button=0x7f050018;
-        public static final int listview=0x7f050036;
+        public static final int listview=0x7f050037;
         public static final int lookedup_today_go=0x7f050033;
         public static final int lookedup_today_label=0x7f050032;
         public static final int manage_button=0x7f050028;
@@ -43,8 +45,7 @@ public final class R {
         public static final int progress_label=0x7f050012;
         public static final int save_button=0x7f050007;
         public static final int settings_button=0x7f05002a;
-        public static final int sparkleline_bitmap=0x7f050035;
-        public static final int tab_label=0x7f050037;
+        public static final int tab_label=0x7f050038;
         public static final int title=0x7f05000b;
         public static final int today_label=0x7f05002c;
         public static final int todays_cards_go=0x7f05002e;
