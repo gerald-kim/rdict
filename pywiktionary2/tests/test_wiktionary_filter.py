@@ -8,29 +8,31 @@ from BeautifulSoup import BeautifulSoup
 import unittest
 import os
 
-from wiktionary_filter import WiktionaryFilter
+from wiktionary_filter import *
 
 TEST_WIKTIONARY_PAGE = open( os.path.join( os.path.dirname( __file__ ), 'pages', 'get.html' ) ).read()
 
+mock_word_manager = MockWordManager()
+mock_word_manager.set_existing_words( [u'get on', u'gets', u'receive' ] )
 
 class WiktionaryFilterTest( unittest.TestCase ):
     def longtest_filter( self ):
-        filter = WiktionaryFilter()
+        filter = WiktionaryFilter( mock_word_manager )
         contentSoup = filter.findContentSoup( TEST_WIKTIONARY_PAGE )
 
         self.assertTrue( None != contentSoup )
-        
+
         content = filter.executeFilters( contentSoup )
-        
+
         f = open( '/tmp/get.html', 'w' )
         f.write( content )
         f.close()
-        os.system( "open /tmp/get.html" ) 
+        os.system( "open /tmp/get.html" )
 
 class SoupFilterTest( unittest.TestCase ):
     def setUp( self ):
-        self.filter = WiktionaryFilter()
-    
+        self.filter = WiktionaryFilter( mock_word_manager )
+
     def test_remove_title_attr_in_a( self ):
         content = BeautifulSoup( '<a href="http://test" title="title">link</a>' )
         self.filter.soup_filter_removeTitleInA( content )
@@ -46,14 +48,14 @@ class SoupFilterTest( unittest.TestCase ):
         self.filter.pullUpHeadSpanContent( content )
         self.assertEquals( '<h3 class="head">Etymology 1</h3>', str( content ) )
 
-        
-    def test_remove_unnecessary_elements( self ):    
-        content = BeautifulSoup( '''<div id="rank" title="Word frequency based on Project Gutenberg corpus"><a href="/wiki/away">away</a>&nbsp;«&nbsp;<a href="/wiki/against">against</a>&nbsp;«&nbsp;<a href="/wiki/though">though</a>&nbsp;«&nbsp;<a href="/wiki/Wiktionary:Frequency_lists">#149:&nbsp;get</a>&nbsp;»&nbsp;<a href="/wiki/eyes">eyes</a>&nbsp;»&nbsp;<a href="/wiki/hand">hand</a>&nbsp;»&nbsp;<a href="/wiki/young">young</a></div>                    
+
+    def test_remove_unnecessary_elements( self ):
+        content = BeautifulSoup( '''<div id="rank" title="Word frequency based on Project Gutenberg corpus"><a href="/wiki/away">away</a>&nbsp;«&nbsp;<a href="/wiki/against">against</a>&nbsp;«&nbsp;<a href="/wiki/though">though</a>&nbsp;«&nbsp;<a href="/wiki/Wiktionary:Frequency_lists">#149:&nbsp;get</a>&nbsp;»&nbsp;<a href="/wiki/eyes">eyes</a>&nbsp;»&nbsp;<a href="/wiki/hand">hand</a>&nbsp;»&nbsp;<a href="/wiki/young">young</a></div>
 <div class="infl-table"><table border="0" width="100%"></div>
 ''' )
         self.filter.soup_filter_removeUnnecessaryElements( content )
         self.assertEquals( '', str( content ).strip() )
-    
+
     def test_remove_heading( self ):
         content = BeautifulSoup( '''<h3 class="head">head1</h3>
 <h4 class="head">Translations</h4>
@@ -66,7 +68,7 @@ class SoupFilterTest( unittest.TestCase ):
 
     def test_remove_empty_p( self ):
         content = BeautifulSoup( '''<p><a name="Pronunciation" id="Pronunciation"></a></p><h3 class="head">Pronunciation</h3>''' )
-        
+
         self.filter.soup_filter_removeEmptyP( content )
         self.assertEquals( '<h3 class="head">Pronunciation</h3>', str( content ) )
 
@@ -76,13 +78,27 @@ class SoupFilterTest( unittest.TestCase ):
 <li>Rhymes: <a href="/wiki/Rhymes:English:-%C9%9Bt"><span class="IPA">-ɛt</span></a></li>
 </ul>''' )
         self.filter.soup_filter_extractPronounciation( content )
-        self.assertEquals( u'<ul><li><a href="http://en.wikipedia.org/wiki/IPA_chart_for_English" class="extiw">IPA</a>: <span class="IPA">/gɛt/</span>, <span class="IPA">/gɪt/</span>, <a href="http://en.wikipedia.org/wiki/SAMPA_chart_for_English" class="extiw">SAMPA</a>: <tt class="SAMPA">/gEt/</tt>, <tt class="SAMPA">/gIt/</tt></li></ul>', unicode(content) )
-        
+        self.assertEquals( u'<ul><li><a href="http://en.wikipedia.org/wiki/IPA_chart_for_English" class="extiw">IPA</a>: <span class="IPA">/gɛt/</span>, <span class="IPA">/gɪt/</span>, <a href="http://en.wikipedia.org/wiki/SAMPA_chart_for_English" class="extiw">SAMPA</a>: <tt class="SAMPA">/gEt/</tt>, <tt class="SAMPA">/gIt/</tt></li></ul>', unicode( content ) )
+
     def test_remove_mention_spans( self ):
         content = BeautifulSoup( u'''<span class="mention-Latn"><a href="/wiki/geta#Old_Norse">geta</a></span>. Akin to <a href="http://en.wikipedia.org/wiki/Old_English_language" class="extiw">Old English</a> <span class="mention-Latn"><a href="/wiki/%C4%A1ietan#Old_English" class="mw-redirect">gietan</a></span>''' )
-        self.filter.soup_filter_removeMentionSpans( content )
+        self.filter.soup_filter_remove_mention_spans( content )
         self.assertEquals( u'<a href="/wiki/geta#Old_Norse">geta</a>. Akin to <a href="http://en.wikipedia.org/wiki/Old_English_language" class="extiw">Old English</a> <a href="/wiki/%C4%A1ietan#Old_English" class="mw-redirect">gietan</a>', unicode( content ) )
-        
+
+    def test_remove_new_page_links( self ):
+        content = BeautifulSoup( u'''<a href="link" class="new">Link</a> <a href="link2" class="new">Link2</a>''' )
+        self.filter.soup_filter_remove_new_page_links( content )
+        self.assertEquals( u'Link Link2', str( content ) )
+
+    def test_remove_appendix_links( self ):
+        content = BeautifulSoup( u'''<a href="/wiki/Appendix:Glossary#I">idiomatic</a>''' )
+        self.filter.soup_filter_remove_appendix_links( content )
+        self.assertEquals( u'idiomatic', str( content ) )
+
+    def test_remove_broken_links( self ):
+        content = BeautifulSoup( u'''<a href="/wiki/get_on">get on</a>, <a href="/wiki/get_on">getting</a>''' )
+        self.filter.soup_filter_remove_broken_links( content )
+        self.assertEquals( u'<a href="/wiki/get_on">get on</a>, getting', str( content ) )
+
 if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

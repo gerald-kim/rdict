@@ -6,7 +6,7 @@
 # Created at Jul 13, 2009 by evacuee
 
 from models import *
-import time 
+import time
 import sys
 import traceback
 import multiprocessing
@@ -18,38 +18,38 @@ STOP = '##STOP##'
 def do_queue(filter_queue):
     word_manager = WordManager()
     word_manager.connect()
-        
+
     lemma_tuples = word_manager.get_tuples_with_lemma_for_filter()
     print "LENGTH: ", len(lemma_tuples)
-    
+
     for tuple in lemma_tuples:
         lemma = tuple[0]
         print "put to filter_queue ", lemma.encode( 'utf-8' )
-        sys.stdout.flush() 
+        sys.stdout.flush()
         filter_queue.put( lemma )
 
     word_manager.close()
-    [filter_queue.put(STOP) for i in range(THREAD_COUNT)]                    
-    
-    
+    [filter_queue.put(STOP) for i in range(THREAD_COUNT)]
+
+
 def do_filter(filter_queue, result_queue):
     word_manager = WordManager()
     word_manager.connect()
-    
+
     lemma = None
     while lemma != STOP:
         try:
             lemma = filter_queue.get(timeout=0.5)
-            
+
             print "do filtering:", lemma
             sys.stdout.flush()
-            
+
             word = Word( lemma )
-            result = word.filter_page()
+            result = word.filter_page( word_manager )
             if result:
                 word_manager.mark_filtered( lemma )
                 word_manager.commit()
-                
+
             print "done filtering:", lemma, ",", result
             sys.stdout.flush()
 
@@ -58,7 +58,7 @@ def do_filter(filter_queue, result_queue):
             print 'TIMEOUT'
 
     word_manager.close()
-            
+
     result_queue.put( STOP )
 
 if __name__ == '__main__':
@@ -67,9 +67,9 @@ if __name__ == '__main__':
 
     process = multiprocessing.Process(target=do_queue, args=(filter_queue, ) )
     process.start()
-    
+
     processes = [multiprocessing.Process(target=do_filter, args=(filter_queue, result_queue, )) for i in range(THREAD_COUNT)]
-    for p in processes: 
+    for p in processes:
         p.start()
 
     o = None
@@ -86,4 +86,3 @@ if __name__ == '__main__':
 
     time.sleep( 5 )
     print
-    

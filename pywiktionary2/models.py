@@ -25,27 +25,27 @@ class WordManager:
     def connect( self ):
         self.conn = sqlite3.connect( WORD_DB )
         self.conn.isolation_level = None
-    
+
         self.c = self.conn.cursor()
-        self.c.execute( 'PRAGMA synchronous = 2')
+        self.c.execute( 'PRAGMA synchronous = 2' )
         self.c.execute( "select count(*) from sqlite_master where type = 'table' and tbl_name = 'words'" )
         if self.c.next()[0] == 0:
             self.c.execute( "CREATE TABLE words ( lemma VARCHAR NOT NULL, revision INTEGER, downloaded BOOLEAN, filtered BOOLEAN, PRIMARY KEY (lemma))" )
 
     def begin( self ):
         self.c.execute( 'begin' )
-        
+
 
     def commit( self ):
         self.conn.commit()
-        
+
     def rollback( self ):
         self.conn.rollback()
-        
+
     def close( self ):
         self.c.close()
         self.conn.close()
-        
+
     def save( self, word ):
         self.c.execute( 'select revision from words where lemma = ?', ( word.lemma, ) )
         r = self.c.fetchone()
@@ -61,13 +61,13 @@ class WordManager:
             return Word( r[0], r[1], 1 == r[2], 1 == r[3] )
         else:
             return None
-        
+
     def mark_downloaded( self, lemma ):
         self.c.execute( 'update words set downloaded = 1 where lemma = ?', ( lemma, ) )
-    
+
     def mark_filtered( self, lemma ):
         self.c.execute( 'update words set filtered = 1 where lemma = ?', ( lemma, ) )
-        
+
     def get_tuples_with_lemma_for_download( self ):
         self.c.execute( 'select lemma from words where downloaded = 0' );
         return self.c.fetchall()
@@ -75,19 +75,28 @@ class WordManager:
     def get_tuples_with_lemma_for_filter( self ):
         self.c.execute( 'select lemma from words where filtered = 0 and downloaded = 1' );
         return self.c.fetchall()
-    
-    def get_tuples_with_lemma_for_exporting(self):
+
+    def get_tuples_with_lemma_for_exporting( self ):
         self.c.execute( 'select lemma from words where filtered = 1 and downloaded = 1' );
         return self.c.fetchall()
-        
+
+    def find_existing_words( self, lemmas ):
+        existing_words = {}
+        criteria = u'lemma in ( %s )' % ( ( u'?,'*len( lemmas ) )[:-1] )
+        self.c.execute( u'select lemma from words where ' + criteria, lemmas )
+        for row in self.c.fetchall():
+            existing_words[ row[0] ] = 1
+        return existing_words
+
+
 class Word:
-    def __init__( self, lemma, revision = 0, downloaded = False, filtered = False ):
+    def __init__( self, lemma, revision=0, downloaded=False, filtered=False ):
         self.lemma = lemma
         self.revision = revision
         self.downloaded = downloaded
         self.filtered = filtered
 
-    
+
     def __repr__( self ):
         return u"<Word('%s','%d')>" % ( self.lemma, self.revision )
 
@@ -124,12 +133,12 @@ class Word:
             #traceback.print_exception( *sys.exc_info() )
             return False
 
-    def filter_page( self ):
+    def filter_page( self, word_manager ):
 #        if None != self.definition:
 #            return True
 
         try:
-            filter = WiktionaryFilter()
+            filter = WiktionaryFilter( word_manager )
             contentSoup = filter.findContentSoup( self.page )
             content = filter.executeFilters( contentSoup )
 
