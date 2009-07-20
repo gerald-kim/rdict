@@ -3,10 +3,15 @@ package com.amplio.rdict.review;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
@@ -27,6 +32,8 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	private TextView lookedupTodayLabel = null;
 	private Button lookedupTodayButton = null;
 	
+	private ImageView sparklelineBitmap = null;
+	
 	@Override
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
@@ -45,6 +52,8 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		this.lookedupTodayLabel = (TextView)findViewById(R.id.lookedup_today_label);
 		this.lookedupTodayButton = (Button)findViewById(R.id.lookedup_today_go);
 		this.lookedupTodayButton.setOnClickListener(this);
+		
+		this.sparklelineBitmap = (ImageView)findViewById(R.id.sparkleline_bitmap);
 	}
 	
 	public void onClick(View view){
@@ -64,6 +73,19 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	
 	public void onResume() {
 		System.out.println("Review - Resumed");
+		
+		
+		final Number[] data = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 };
+
+		// width, height, spacing
+		final SizeParams params = new SizeParams(50, 12, 1);
+
+		final Bitmap i = AndroidBarGraph.createGraph(data);
+
+		
+		this.sparklelineBitmap.setImageBitmap(i);
+		this.sparklelineBitmap.setBackgroundColor(Color.BLUE);
+		this.sparklelineBitmap.refreshDrawableState();
 		
 		super.onResume();
 		
