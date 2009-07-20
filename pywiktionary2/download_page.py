@@ -11,16 +11,22 @@ import sys
 import traceback
 
 if __name__ == '__main__':
-    s = create_session()
-    q = s.query(Word).filter_by( downloaded = False )
+    word_manager = WordManager()
+    word_manager.connect()
+    lemma_tuples_iter = iter( word_manager.get_tuples_with_lemma_for_download() )
     WordCount = 0
     
-    while q.count() > 0:
-        for word in q.slice( 0, 100 ).all():
-#            time.sleep( 1 )
-            word.download_page()
-            s.flush()
-            
-            WordCount += 1
-            if WordCount % 100 == 0:
-                print "Downloaded: ", WordCount
+    tuple = lemma_tuples_iter.next()
+    
+    while tuple:
+        lemma = tuple[0]
+        word = Word( lemma )
+        if word.download_page():
+            word_manager.mark_downloaded( lemma )
+        
+        WordCount += 1
+        if WordCount % 100 == 0:
+            print "Downloaded: ", WordCount
+        tuple = lemma_tuples_iter.next()
+        
+    word_manager.close()

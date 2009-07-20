@@ -9,37 +9,75 @@ from models import *
 
 setup_test_env()
 
-class SessionTest( unittest.TestCase ):
-    def test_session_creation( self ):
-        session = create_session()
-        self.assertTrue( None != session )
+class word_managerConnectionTest( unittest.TestCase ):
+    def test_get_connection( self ):
+        word_manager = WordManager()
+        word_manager.connect()
+        word_manager.begin()
+        
+        self.assertTrue( None != word_manager.conn )
+        
+        word_manager.c.execute( "insert into words values ( 'ZZZZ', 0, 0,0)" )
+        
+        word_manager.rollback()
+        word_manager.close()
+        
+class word_managerTest( unittest.TestCase ):
+    def setUp(self):
+        self.word_manager = WordManager()
+        self.word_manager.connect()
+        self.word_manager.begin()
+        
+    def tearDown(self ):
+        self.word_manager.rollback()
+        
+    def test_word_CRU(self):
+        expected = Word( u'lemma', 0 )
+        self.word_manager.save( expected )
+        
+        actual = self.word_manager.get( u'lemma' )
+        self.assertEquals( expected.lemma, actual.lemma )
+        self.assertEquals( expected.revision, actual.revision )
+        self.assertFalse( actual.downloaded )
+        self.assertFalse( actual.filtered )
+        
+        self.word_manager.mark_downloaded( u'lemma' )
+        actual = self.word_manager.get( u'lemma' )
+        self.assertTrue( actual.downloaded )
 
-class WordModelTest( unittest.TestCase ):
-    def setUp( self ):
-        self.session = create_session()
-        self.session.begin()
+        self.word_manager.mark_filtered( u'lemma' )
+        actual = self.word_manager.get( u'lemma' )
+        self.assertTrue( actual.filtered )
+
+        expected = Word( u'lemma', 333 )
+        self.word_manager.save( expected )
+
+        actual = self.word_manager.get( u'lemma' )
+        self.assertEquals( expected.lemma, actual.lemma )
+        self.assertEquals( expected.revision, actual.revision )
+        self.assertFalse( actual.downloaded )
+        self.assertFalse( actual.filtered )
         
-    def tearDown( self ):
-        self.session.flush()
-        self.session.rollback()
-        
-    def test_word_CRUD( self ):
-        word = Word( u'word', 123 )
-        self.session.add( word )
+class WordTest( unittest.TestCase ):
+    def test_get_unicode_filename( self ):
+        word = Word( u'café' )
+        self.assertEquals( 'caf%C3%A9', word.get_file_name() )
+
+    def test_get_slashed_filename( self ):
+        word = Word( u'24/7' )
+        self.assertEquals( '24_SLASH_7', word.get_file_name() )
         
     def test_get_file_prefix(self):
-        word = Word( u'word', 123 )
+        word = Word( u'word' )
         
         file_dir = word.get_file_dir();
         print file_dir
         self.assertTrue( file_dir.endswith( 'tests.db.files/3c/bc' ) )
         
     def longtest_page_retrival(self):
-        word = Word( u'piñata', 123 )
+        word = Word( u'piñata' )
         
-        self.assertFalse( word.downloaded )
-        word.download_page()
-        self.assertTrue( word.downloaded )
+        self.assertTrue( word.download_page() )
         
         page = word.page
         #print page.encode( 'utf-8' )
@@ -49,12 +87,8 @@ class WordModelTest( unittest.TestCase ):
     def longtest_page_filter(self):
         word = Word( u'get', 123 )
         
-        self.assertFalse( word.downloaded )
-        self.assertFalse( word.filtered )
-        word.download_page()
-        word.filter_page()
-        self.assertTrue( word.downloaded )
-        self.assertTrue( word.filtered )
+        self.assertTrue( word.download_page() ) 
+        self.assertTrue( word.filter_page() )
         
         definition = word.definition
         #print definition.encode( 'utf-8' )

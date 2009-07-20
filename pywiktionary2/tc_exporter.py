@@ -10,8 +10,7 @@ import tc
 import os
 
 class TokyoCabinetExporter:
-    def __init__( self, session, db_name ):
-        self.session = session
+    def __init__( self, db_name ):
         self.db_dir = db_name
 
         os.mkdir( self.db_dir )
@@ -29,10 +28,6 @@ class TokyoCabinetExporter:
         self.word_db.close()
         os.system( 'tcbmgr optimize -tb ' + os.path.join( self.db_dir, 'index.db' ) )
         os.system( 'tcbmgr optimize -tb ' + os.path.join( self.db_dir, 'word.db' ) )
-
-    def get_words( self ):
-        q = self.session.query( Word ).filter_by( downloaded = True, filtered = True )
-        return q.all()
 
     def export_word( self, word ):
         index_key = word.lemma.lower().encode( 'utf-8' )
@@ -57,15 +52,18 @@ if __name__ == '__main__':
         sys.exit( 1 )
     WordCount = 0
     
-    session = create_session()
-    exporter = TokyoCabinetExporter( session, sys.argv[1] )
+    word_manager = WordManager()
+    word_manager.connect()
+    exporter = TokyoCabinetExporter( sys.argv[1] )
     exporter.open_tc()
     
-    for word in exporter.get_words():
+    for tuple in word_manager.get_tuples_with_lemma_for_exporting():
+        lemma = tuple[0];
+        word = word_manager.get( lemma )
         exporter.export_word( word )
         WordCount += 1
         if WordCount % 100 == 0:
             print "exported: ", WordCount        
         
     exporter.close_tc()
-
+    word_manager.close()

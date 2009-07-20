@@ -4,10 +4,7 @@
 # All rights reserved.
 # Created at Jul 12, 2009 by evacuee
 
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, BOOLEAN
-from sqlalchemy.orm import sessionmaker
+import sqlite3
 from hashlib import sha1
 import os
 import urllib2
@@ -24,46 +21,78 @@ def setup_test_env():
     WORD_DB = 'tests.db'
     FILE_DIR = 'tests.db.files'
 
-def create_session():
-    engine = create_engine( 'sqlite:///' + WORD_DB, echo = False, encoding = 'utf-=8', convert_unicode = True, assert_unicode = True )
-    if not u'words' in engine.table_names():
-        metadata = MetaData()
-        words_table = Table( 'words', metadata,
-            Column( 'lemma', String, primary_key = True ),
-            Column( 'revision', Integer ),
-            Column( 'downloaded', BOOLEAN ),
-            Column( 'filtered', BOOLEAN )
-        )
-        metadata.create_all( engine )
+class WordManager:
+    def connect( self ):
+        self.conn = sqlite3.connect( WORD_DB )
+        self.conn.isolation_level = None
+    
+        self.c = self.conn.cursor()
+        self.c.execute( 'PRAGMA synchronous = 2')
+        self.c.execute( "select count(*) from sqlite_master where type = 'table' and tbl_name = 'words'" )
+        if self.c.next()[0] == 0:
+            self.c.execute( "CREATE TABLE words ( lemma VARCHAR NOT NULL, revision INTEGER, downloaded BOOLEAN, filtered BOOLEAN, PRIMARY KEY (lemma))" )
 
-        #Index( 'idx_downloaded', word_table.downloaded )
+    def begin( self ):
+        self.c.execute( 'begin' )
+        
 
+    def commit( self ):
+        self.conn.commit()
+        
+    def rollback( self ):
+        self.conn.rollback()
+        
+    def close( self ):
+        self.c.close()
+        self.conn.close()
+        
+    def save( self, word ):
+        self.c.execute( 'select revision from words where lemma = ?', ( word.lemma, ) )
+        r = self.c.fetchone()
+        if not r:
+            self.c.execute( 'insert into words values ( ?, ?, 0, 0 ) ', ( word.lemma, word.revision, ) )
+        elif r[0] < word.revision:
+            self.c.execute( 'update words set revision = ?, downloaded = 0, filtered = 0 where lemma = ?', ( word.revision, word.lemma, ) )
 
-    Session = sessionmaker( bind = engine, autocommit = True  )
-    session = Session()
-    return session
+    def get( self, lemma ):
+        self.c.execute( 'select * from words where lemma = ?', ( lemma, ) )
+        r = self.c.fetchone()
+        if r:
+            return Word( r[0], r[1], 1 == r[2], 1 == r[3] )
+        else:
+            return None
+        
+    def mark_downloaded( self, lemma ):
+        self.c.execute( 'update words set downloaded = 1 where lemma = ?', ( lemma, ) )
+    
+    def mark_filtered( self, lemma ):
+        self.c.execute( 'update words set filtered = 1 where lemma = ?', ( lemma, ) )
+        
+    def get_tuples_with_lemma_for_download( self ):
+        self.c.execute( 'select lemma from words where downloaded = 0' );
+        return self.c.fetchall()
 
-Base = declarative_base()
-
-class Word( Base ):
-    __tablename__ = 'words'
-
-    lemma = Column( String, primary_key = True )
-    revision = Column( Integer )
-    downloaded = Column( BOOLEAN )
-    filtered = Column( BOOLEAN )
-
-    def __init__( self, lemma, revision ):
+    def get_tuples_with_lemma_for_filter( self ):
+        self.c.execute( 'select lemma from words where filtered = 0 and downloaded = 1' );
+        return self.c.fetchall()
+    
+    def get_tuples_with_lemma_for_exporting(self):
+        self.c.execute( 'select lemma from words where filtered = 1 and downloaded = 1' );
+        return self.c.fetchall()
+        
+class Word:
+    def __init__( self, lemma, revision = 0, downloaded = False, filtered = False ):
         self.lemma = lemma
         self.revision = revision
-        self.downloaded = False
-        self.filtered = False
+        self.downloaded = downloaded
+        self.filtered = filtered
 
+    
     def __repr__( self ):
         return u"<Word('%s','%d')>" % ( self.lemma, self.revision )
 
     def get_file_name( self ):
-        return urllib2.quote( self.lemma.encode( 'utf-8' ) )
+        return urllib2.quote( self.lemma.replace( u'/', '_SLASH_' ).encode( 'utf-8' ) )
 
     def get_file_dir( self ):
         hash = sha1( self.get_file_name() ).hexdigest()
@@ -77,8 +106,7 @@ class Word( Base ):
 
     def download_page( self ):
         if None != self.page:
-            self.downloaded = True
-            return
+            return True
 
         try:
             time.sleep( 1 )
@@ -88,17 +116,18 @@ class Word( Base ):
             os.system( 'wget -qc -O - "%s" | bzip2 -c9 > "%s"' % ( url, self.get_page_path() ) )
 
             #os.system( )
-            self.downloaded = True
+            return True
         except KeyboardInterrupt:
             raise
         except:
-            self.downloaded = None
-#            self.session.flush()
-            print "Unexpected error on word(%s):" % ( self.lemma.encode('utf-8'))
+            print "Unexpected error on word(%s):" % ( self.lemma.encode( 'utf-8' ) )
             #traceback.print_exception( *sys.exc_info() )
-            raise
+            return False
 
     def filter_page( self ):
+#        if None != self.definition:
+#            return True
+
         try:
             filter = WiktionaryFilter()
             contentSoup = filter.findContentSoup( self.page )
@@ -108,13 +137,13 @@ class Word( Base ):
             f.write( content )
             f.close()
 
-            self.filtered = True
+            return True
         except KeyboardInterrupt:
             raise
         except:
-            self.filtered = None
             print u"filtering error: %s" % ( self.lemma )
             traceback.print_exception( *sys.exc_info() )
+            return False
 
     def read_bzip_file( self, path ):
         content = None
