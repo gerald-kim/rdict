@@ -1,6 +1,8 @@
 package com.amplio.rdict.more;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,12 +49,27 @@ public class AddCardActivity extends Activity implements OnClickListener{
 		if(this.saveButton == v){
 			Card c = new Card(this.headwordText.getText().toString(), this.definitionText.getText().toString().replace(" ", "%20"));
 
-			//AddCardActivity.cardSetMgr.
+			Card c2 = null;
+			try {
+				c2 = AddCardActivity.cardSetMgr.loadCardByHeadword(c.question);
+			}
+			catch(IllegalStateException e){
+				e.printStackTrace();
+			}
 			
-			
-			AddCardActivity.cardSetMgr.save(c);
-			Toast.makeText(this, "Card added.", Toast.LENGTH_SHORT).show();
-			this.finish();
+			if(null == c2) {
+				AddCardActivity.cardSetMgr.save(c);
+				Toast.makeText(this, "Card added.", Toast.LENGTH_SHORT).show();
+				this.finish();
+			}
+			else {
+				new AlertDialog.Builder(this)
+				.setTitle("Delete")
+				.setMessage("A card for \'" + c.question +  "\' already exists in the database.  Please edit the existing card, or choose a different title.")
+				.setNeutralButton("Ok", new DialogInterface.OnClickListener() { 
+					public void onClick(DialogInterface dialog, int whichButton) {}})
+				.show();
+			}
 		}
 		else if(this.cancelButton == v){
 			this.finish();
