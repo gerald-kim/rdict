@@ -105,7 +105,7 @@ class WordTest( unittest.TestCase ):
         definition = word.definition
         #print definition.encode( 'utf-8' )
         self.assertTrue( len( definition ) > 10 * 1024 )
-        word_manaer.close()
+        word_manager.close()
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
