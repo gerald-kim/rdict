@@ -3,12 +3,15 @@ package com.amplio.rdict.search;
 
 
 
+import android.content.Context;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class DictionaryWebViewClient extends WebViewClient{
 
 	public DictionaryActivity dicActivity = null;
+	public Context context = null;
 	
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		if (url.contains("lookup")) {
@@ -17,9 +20,8 @@ public class DictionaryWebViewClient extends WebViewClient{
 			return true;
 		}
 		else if (url.contains("save")) {
-			System.out.println(url);
+			Toast.makeText(this.context, "Added.", Toast.LENGTH_SHORT).show();
 			String def = url.substring(url.indexOf('=') + 1);
-			
 			this.dicActivity.addCard(def);
 			return true;
 		}

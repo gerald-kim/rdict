@@ -53,5 +53,21 @@ public class CardSetManager {
 			return cards.subList(0, 20).toArray();
 	}
 
+	public ObjectSet loadCardsByPrefix(String prefix) {
+		Query query= db.query();
+		query.constrain(Card.class);
+		
+		if(! "".equals(prefix))
+			query.descend("question").constrain(prefix).startsWith(true);
+		
+		query.descend("question").orderAscending();
+		
+		ObjectSet cards = query.execute();
+		
+		return cards;
+	}
 
+	public void deleteCard(Card card) {
+		db.delete(card);
+	}
 }

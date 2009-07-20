@@ -50,6 +50,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		
 		DictionaryWebViewClient client = new DictionaryWebViewClient();
 		client.dicActivity = this;
+		client.context = this.getApplicationContext();
 		_searchResultsPage.setWebViewClient(client);
     }
     
@@ -92,9 +93,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     }
     
     public void onPause() {
-    	System.out.println("Dic paused;");
-    	super.onPause();
-    	
+    	System.out.println("Dic paused;");    	
     	super.onPause();
     }
     

@@ -6,13 +6,35 @@ android:layout_height="fill_parent"
 android:orientation="vertical"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
-<TextView
-android:id="@+id/widget48"
+
+<LinearLayout
+android:id="@+id/widget57"
 android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="card managing stuff goes here."
+android:layout_height="wrap_content"
+>
+<EditText
+android:id="@+id/filter_text"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text=""
+android:textSize="18sp"
 android:layout_weight="1"
 >
-</TextView>
+</EditText>
+<Button
+android:id="@+id/add_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Button"
+>
+</Button>
+</LinearLayout>
+
+<ListView 
+	android:id="@+id/card_list_view"
+	android:layout_height="fill_parent" android:layout_width="fill_parent"
+	android:visibility="visible"
+	android:layout_weight="0">
+</ListView>
 
 </LinearLayout>
