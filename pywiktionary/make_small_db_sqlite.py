@@ -12,7 +12,7 @@ sys.setdefaultencoding( "utf-8" )
 class SmallCdbMaker:
     def __init__(self, db_dir):
         self.db_dir = db_dir
-        self.small_db_dir = 'enwiktionary-small_cdb'
+        self.small_db_dir = db_dir.replace('/','') + '_cdb'
 
     def create_smalldb_for_cdb( self ):
         try:
@@ -23,8 +23,6 @@ class SmallCdbMaker:
         
         db_word = tc.BDB()
         db_word.open( self._get_db_filepath( self.db_dir, 'word' ), tc.BDBOREADER )
-        
-        word_map = self.get_popular_word_map()
         
         c = db_word.curnew()
         c.first()
@@ -45,9 +43,8 @@ class SmallCdbMaker:
                 c.key()
             except KeyError:
                 break
-            if word_map.has_key( c.key() ):
-                small_db_c.execute('insert into word_db values (null,?,?)', [c.key(), c.val()])
-                insert_count = insert_count + 1
+            small_db_c.execute(u'insert into word_db values (null,?,?)', [unicode(c.key()), unicode(c.val())])
+            insert_count = insert_count + 1
                     
             c.next()
         
@@ -61,14 +58,6 @@ class SmallCdbMaker:
     def _get_db_filepath( self, dir, name ):
         return os.path.join( os.path.dirname( __file__ ), dir, name + '.db' )
     
-    def get_popular_word_map( self ):
-        file = open( 'popular_10000.txt' )
-        word_list = file.readlines()
-        word_map = {}
-        for word in word_list:
-            word_map[word.strip()] = 1
-        return word_map
-
 if __name__ == '__main__':
     if len( sys.argv ) < 2:
         print( "Usage: %s dbdir" % ( sys.argv[0] ) ) 
