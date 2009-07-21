@@ -48,9 +48,15 @@ class TokyoCabinetExporter:
 
 if __name__ == '__main__':
     if len( sys.argv ) < 2:
-        print( "Usage: %s wiktionarydb" % ( sys.argv[0] ) ) 
+        print( "Usage: %s wiktionarydb [wordset]" % ( sys.argv[0] ) ) 
         sys.exit( 1 )
     WordCount = 0
+    
+    word_set = None
+    if len( sys.argv ) == 3:
+        word_set = {}
+        for line in open( sys.argv[2] ).readlines():
+            word_set[ unicode( line.strip() ) ] = 1
     
     word_manager = WordManager()
     word_manager.connect()
@@ -59,6 +65,9 @@ if __name__ == '__main__':
     
     for tuple in word_manager.get_tuples_with_lemma_for_exporting():
         lemma = tuple[0];
+        if word_set and not word_set.has_key( lemma ):
+            continue
+                
         word = word_manager.get( lemma )
         exporter.export_word( word )
         WordCount += 1
