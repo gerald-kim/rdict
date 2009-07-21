@@ -18,7 +18,7 @@ $(document).ready( function() {
 
 function search() {
     //alert( $('input[name="q"]').val() );
-    document.location.href= $('input[name="q"]').val();
+    document.location.href='/dict/' + $('input[name="q"]').val();
     return false;   
 }
 
