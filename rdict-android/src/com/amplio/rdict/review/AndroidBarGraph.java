@@ -104,7 +104,6 @@ public class AndroidBarGraph
     final int w = (size.getWidth() - (size.getSpacing() * data.length)) / data.length;
     
     int x = 0; 
-    final int y = 0;
     
     int c = 0;
     

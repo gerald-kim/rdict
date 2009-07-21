@@ -116,17 +116,48 @@ public class StatisticsManager {
 		return cardCounts;
 	}
 
-	public Number[] fetchGradeData() {
+	public Number[] fetchGradeData(String cutOffDate) {
 		Query query = this.db.query();
 		query.constrain(StatRecord.class);
+		query.descend("record_date").constrain(cutOffDate).greater();
 		query.descend("record_date").orderAscending();
 		ObjectSet records = query.execute();
 		
-		Number[] grades = new Number[records.size()];
+		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow(cutOffDate);
+		Number[] grades = new Number[numDaysBetweenCutOffDateAndNow];
 		
-		for(int i = 0; i < records.size(); i++){
-			StatRecord record = (StatRecord) records.get(i);
-			grades[i] = new Integer(record.gradeInPercent);
+		Calendar startDate = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
+		try {
+			startDate.setTime(sdf.parse(cutOffDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		startDate.add(Calendar.HOUR_OF_DAY, 24);
+		
+		int recordIndex = 0;
+		int prevGrade = 0;
+		
+		for(int i = 0; i < numDaysBetweenCutOffDateAndNow; i++){
+			if(recordIndex < records.size()){
+				StatRecord record = (StatRecord) records.get(recordIndex);
+				
+				if(record.record_date.equals(sdf.format(startDate.getTime()))){
+					grades[i] = new Integer(record.gradeInPercent);
+					recordIndex++;
+				}
+				else {
+					grades[i] = new Integer(prevGrade);
+				}
+			}
+			else {
+				grades[i] = new Integer(prevGrade);
+			}
+			
+			prevGrade = grades[i].intValue();
+			startDate.add(Calendar.HOUR_OF_DAY, 24);
 		}
 		
 		return grades;

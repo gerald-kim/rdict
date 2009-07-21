@@ -178,18 +178,17 @@ public class StatisticsManagerTest extends TestCase {
 		
 		mgr.recordCardStackStatistics();
 		
-		Number[] pastGrades = mgr.fetchGradeData();
-		
-		assertEquals(50, pastGrades[0]);
-		
-		Number[] pastCardCounts = null;
-		
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 
 		c.add(Calendar.HOUR_OF_DAY, -48);
 		String twoDaysAgo = sdf.format(c.getTime());
 		
-		pastCardCounts = mgr.fetchCardCountData(twoDaysAgo);
+		Number[] pastGrades = mgr.fetchGradeData(twoDaysAgo);
+		
+		assertEquals(0, pastGrades[0]);
+		assertEquals(50, pastGrades[1]);
+		
+		Number[] pastCardCounts = mgr.fetchCardCountData(twoDaysAgo);
 
 		assertEquals(0, pastCardCounts[0]);
 		assertEquals(3, pastCardCounts[1]);
@@ -243,24 +242,48 @@ public class StatisticsManagerTest extends TestCase {
 	}
 	
 	public void testFetchGradeData() {
-		int cardCount = 0;
-		int gradeInPercent = 0;
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 
 		
-		StatRecord statRecord1 = new StatRecord(cardCount, gradeInPercent, "19700101");
-		StatRecord statRecord2 = new StatRecord(4, 50, "19700102");
-		StatRecord statRecord3 = new StatRecord(10, 70, "19700103");
+		String todaysDate = sdf.format(c.getTime());
+		
+		c.add(Calendar.HOUR_OF_DAY, -24);
+		String yesterdaysDate = sdf.format(c.getTime());
+		
+		c.add(Calendar.HOUR_OF_DAY, -24 * 9);
+		String tenDaysBeforeDate = sdf.format(c.getTime());
+		
+		c.add(Calendar.HOUR_OF_DAY, -24);
+		String elevenDaysBeforeDate = sdf.format(c.getTime());
+		
+		int cardCount = 50;
+		int gradeInPercent = 70;
+		
+		StatRecord statRecord1 = new StatRecord(cardCount, gradeInPercent, todaysDate);
+		StatRecord statRecord2 = new StatRecord(4, 50, yesterdaysDate);
+		StatRecord statRecord3 = new StatRecord(1, 20, tenDaysBeforeDate);
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 		
-		db.store(statRecord2);
 		db.store(statRecord1);
+		db.store(statRecord2);
 		db.store(statRecord3);
 		
-		Number[] pastGrades = mgr.fetchGradeData();
+		String cutOffDate = elevenDaysBeforeDate;
 		
-		assertEquals(0, pastGrades[0]);
-		assertEquals(50, pastGrades[1]);
-		assertEquals(70, pastGrades[2]);
+		Number[] pastGrades = mgr.fetchGradeData(cutOffDate);
+		
+		assertEquals(20, pastGrades[0]);
+		assertEquals(20, pastGrades[1]);
+		assertEquals(20, pastGrades[2]);
+		assertEquals(20, pastGrades[3]);
+		assertEquals(20, pastGrades[4]);
+		assertEquals(20, pastGrades[5]);
+		assertEquals(20, pastGrades[6]);
+		assertEquals(20, pastGrades[7]);
+		assertEquals(20, pastGrades[8]);
+		assertEquals(50, pastGrades[9]);
+		assertEquals(70, pastGrades[10]);
 	}
 	
 	public void testFetchDataIfNoStatRecords() {
@@ -271,9 +294,12 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 
-		Number[] pastGrades = mgr.fetchGradeData();
+		Number[] pastGrades = mgr.fetchGradeData(tenDaysBeforeDate);
 		
-		assertEquals(0, pastGrades.length);
+		assertEquals(10, pastGrades.length);
+		
+		for(int i = 0 ; i < pastGrades.length; i++)
+			assertEquals(0, pastGrades[i]);
 		
 		Number[] pastCardCounts = mgr.fetchCardCountData(tenDaysBeforeDate);
 		

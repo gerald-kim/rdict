@@ -133,15 +133,7 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		String twoWeeksAgo = sdf.format(c.getTime());
 		
 		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
-		
-		StringBuffer sb = new StringBuffer();
-		
-		for(Number n : cardCountData)
-			sb.append(n.toString() + ",");
-		
-		System.out.println(sb.toString());
-		
-		Number[] gradeData = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 }; //ReviewActivity.statManager.fetchGradeData();
+		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(twoWeeksAgo);
 		
 		// width, height, spacing
 		final SizeParams sizeParams = new SizeParams(50, 20, 1);
