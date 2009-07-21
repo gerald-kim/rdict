@@ -1,3 +1,4 @@
+
 /*<group=General Styles>*/
 
 body {
@@ -684,3 +685,18 @@ a[href^="javascript:HaloScanTB"] {
 /*</group>*/
 
 
+/*<group=rdict>*/
+a.r {
+    background-image:url(images/star_off.png);   
+    background-repeat:no-repeat;   
+    float:right;
+    margin-left:5px;
+    margin-right:15px;   width:16px;height:16px;
+}
+a.r:hover {
+    background-image:url(images/star_on.png);
+}
+a.r:visited {
+    background-image:url(images/star_on.png);
+}
+/*</group>*/

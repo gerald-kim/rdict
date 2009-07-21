@@ -9,25 +9,24 @@
 <script type="text/javascript">
 $(document).ready( function() {
     $("#queryInput").focus()
-    $("ol>li").prepend( '<input class="remember" type="button" value="Remember"/>' );
-    
-    $("a.rdict").attr( 'href', 
-    	function () { 
-          return '{% url rdict-django.dict.views.search %}?q=' + encodeURIComponent( $(this).attr('href') ); 
-    	}
-    ); 
-    $(".remember").click( function() {
-        remember_word(this);
-    });
-	$("#queryInput").suggest("{% url rdict-django.dict.views.suggest %}?q=" + $("#queryInput").val() ,{                                                                                                                         
+	$("#queryInput").suggest("{% url rdict-django.dict.views.suggest %}?q=" + $("#queryInput").val() ,{
 		onSelect: function() {
 			$('form[name="dictForm"]').submit()
 		}
 	});                                                                                                          
 } );
 
+function search() {
+    //alert( $('input[name="q"]').val() );
+    document.location.href= $('input[name="q"]').val();
+    return false;   
+}
+
+function s(obj) {
+    return true;
+}
    
-function remember_word(obj) {
+function r(obj) {
     word = '{{ q }}'
     definition_li = $(obj).parent().clone();
     definition_li.children('ul').empty();
@@ -44,14 +43,13 @@ function remember_word(obj) {
         }
     );
 }
-
 </script>
 {% endblock %}
 
 {% block content %}
 	<h1></h1>
 	<div id="intro">
-	    <form name="dictForm" action="/dict/search">
+	    <form name="dictForm" onsubmit="return search()">
 	        <input type="text" id="queryInput" name="q" value="{{ q }}" autocomplete="off">
 	        <input type="submit">
 	    </form>
