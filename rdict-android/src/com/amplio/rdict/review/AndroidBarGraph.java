@@ -100,6 +100,7 @@ public class AndroidBarGraph
     
     final float d = GraphUtils.getDivisor(data, size.getHeight());
     final int a = getAvg(data);
+    
     final int w = (size.getWidth() - (size.getSpacing() * data.length)) / data.length;
     
     int x = 0; 
@@ -108,8 +109,6 @@ public class AndroidBarGraph
     int c = 0;
     
     for (final Number i : data) {
-      final int h = (int) (i.floatValue() / d);
-      
       if (c == (data.length - 1) && lastColor != -1)
       {
         //g.setPaint(lastColor);
@@ -130,12 +129,12 @@ public class AndroidBarGraph
       Rect r = new Rect();
       r.left = x;
       r.right = x + w;
-      r.bottom = y + size.getHeight();
-      r.top = r.bottom - i.intValue() / (int) d;
+      r.bottom = size.getHeight();
+      r.top = (d == 0) ? r.bottom : r.bottom - new Float((i.floatValue() / d)).intValue(); // 4 / 19
       
       canvas.drawRect(r, paint);
       
-      x+=(w + size.getSpacing());
+      x += (w + size.getSpacing());
       c++;
     }
     

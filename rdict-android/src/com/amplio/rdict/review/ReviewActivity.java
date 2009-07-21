@@ -1,12 +1,13 @@
 package com.amplio.rdict.review;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,7 @@ import com.amplio.rdict.RDictActivity;
 public class ReviewActivity extends Activity implements OnClickListener{
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
 	public static ReviewManager reviewManager = null;
+	public static StatisticsManager statManager = null;
 	
 	private TextView scheduledTodayLabel = null;
 	private Button scheduledTodayButton = null;
@@ -76,21 +78,6 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	public void onResume() {
 		System.out.println("Review - Resumed");
 		
-		final Number[] data = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 };
-
-		// width, height, spacing
-		final SizeParams params = new SizeParams(50, 20, 1);
-
-		final Bitmap i = AndroidBarGraph.createGraph(data, params, Color.CYAN, Color.RED, Color.YELLOW);
-
-		this.cardCountGraph.setImageBitmap(i);
-		this.cardCountGraph.setBackgroundColor(Color.WHITE);
-		this.cardCountGraph.refreshDrawableState();
-		
-		this.gradeGraph.setImageBitmap(i);
-		this.gradeGraph.setBackgroundColor(Color.WHITE);
-		this.gradeGraph.refreshDrawableState();
-		
 		super.onResume();
 		
 		reviewManager = new ReviewManager(RDictActivity.db);
@@ -137,6 +124,38 @@ public class ReviewActivity extends Activity implements OnClickListener{
 			this.lookedupTodayLabel.setVisibility(View.INVISIBLE);
 			this.lookedupTodayButton.setVisibility(View.INVISIBLE);
 		}
+		
+		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
+		
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 
+		c.add(Calendar.HOUR_OF_DAY, -24 * 14);
+		String twoWeeksAgo = sdf.format(c.getTime());
+		
+		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
+		
+		StringBuffer sb = new StringBuffer();
+		
+		for(Number n : cardCountData)
+			sb.append(n.toString() + ",");
+		
+		System.out.println(sb.toString());
+		
+		Number[] gradeData = new Integer[] { 5, 22, 16, 8, 30, 9, 12, 27, 19, 22 }; //ReviewActivity.statManager.fetchGradeData();
+		
+		// width, height, spacing
+		final SizeParams sizeParams = new SizeParams(50, 20, 1);
+
+		final Bitmap cardCountBitmap = AndroidBarGraph.createGraph(cardCountData, sizeParams, Color.CYAN, Color.RED, Color.BLUE);
+		final Bitmap gradeBitmap = AndroidBarGraph.createGraph(gradeData, sizeParams, Color.CYAN, Color.RED, Color.BLUE);
+
+		this.cardCountGraph.setImageBitmap(cardCountBitmap);
+		this.cardCountGraph.setBackgroundColor(Color.WHITE);
+		this.cardCountGraph.refreshDrawableState();
+		
+		this.gradeGraph.setImageBitmap(gradeBitmap);
+		this.gradeGraph.setBackgroundColor(Color.WHITE);
+		this.gradeGraph.refreshDrawableState();
 	}
 	
 	public void onPause(){

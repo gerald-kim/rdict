@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
 
 public class FlashCardActivity extends Activity implements OnClickListener{
 	TextView progress_label = null;
@@ -60,6 +61,9 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 	public void onResume(View v){
 		System.out.println("FlashCard - resumed");
 		this.initializeCardActivity();
+		
+		
+		
 		super.onResume();
 	}
 	
@@ -126,6 +130,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 					this.i_forgot_button.setVisibility(View.INVISIBLE);
 				}
 				else{
+					new StatisticsManager(RDictActivity.db).recordCardStackStatistics();
 					this.finish();
 					System.out.println("Finished reviewing");
 				}

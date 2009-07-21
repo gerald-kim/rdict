@@ -3,6 +3,9 @@ package com.amplio.rdict.search;
 
 
 
+import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.review.StatisticsManager;
+
 import android.content.Context;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,6 +26,9 @@ public class DictionaryWebViewClient extends WebViewClient{
 			Toast.makeText(this.context, "Added.", Toast.LENGTH_SHORT).show();
 			String def = url.substring(url.indexOf('=') + 1);
 			this.dicActivity.addCard(def);
+			
+			new StatisticsManager(RDictActivity.db).recordCardStackStatistics();
+			
 			return true;
 		}
 		else {

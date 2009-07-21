@@ -25,26 +25,22 @@ package com.amplio.rdict.review;
  * @author Larry Ogrodnek <larry@cheesesteak.net>
  * @version $Revision: 1.3 $ $Date: 2007-01-15 04:49:21 $
  */
-final class GraphUtils
-{
+final class GraphUtils {
   private GraphUtils() { }
   
-  static final float getDivisor(final Number[] data, final int height)
-  {
+  static final float getDivisor(final Number[] data, final int height) {
     float max = Float.MIN_VALUE;
     float min = Float.MAX_VALUE;
 
-    for (final Number i : data)
-    {
-        min = Math.min(min,i.floatValue());    
-        max = Math.max(max,i.floatValue());    
+    for (final Number i : data){
+        min = Math.min(min, i.floatValue());    
+        max = Math.max(max, i.floatValue());    
     }
 
-    if (max <= min) {
+    if (max <= min)
         return 1.0f;
-    }
-
-    return (max-min)/(height-1);
+    else
+    	return (max - min) / (height - 1);
   }
 }
 
