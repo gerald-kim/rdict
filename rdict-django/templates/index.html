@@ -11,7 +11,7 @@ $(document).ready( function() {
     $("#queryInput").focus()
 	$("#queryInput").suggest("{% url rdict-django.dict.views.suggest %}?q=" + $("#queryInput").val() ,{
 		onSelect: function() {
-			$('form[name="dictForm"]').submit()
+			search();
 		}
 	});                                                                                                          
 } );
