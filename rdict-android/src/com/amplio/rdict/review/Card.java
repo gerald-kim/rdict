@@ -14,6 +14,8 @@ public class Card {
 	public int interval;
 	public String date_scheduled;
 	public String date_lookedup;
+	
+	public EasinessHistory eh = null;
 
 	public Card(String question, String answer) {
 		this.question = question;
@@ -28,6 +30,9 @@ public class Card {
         this.date_lookedup = dateformatYYYYMMDD.format(now);
         
         this.date_scheduled = null;
+        
+        this.eh = new EasinessHistory(3);
+        this.eh.add(this.easiness);
 	}
 
 	public void calcInterval() {
@@ -52,6 +57,8 @@ public class Card {
 			this.repsSinceLapse = 0;
 			this.schedule();
 		}
+		
+		this.eh.add(this.easiness);
 	}
 	
 	public void schedule() {
@@ -77,6 +84,10 @@ public class Card {
 		newDate.setTime(date.getTime() + this.interval*1000*60*60*24);
 		
 		this.date_scheduled = dateformatYYYYMMDD.format(newDate);
+	}
+
+	public EasinessHistory getEasinessHistory() {
+		return this.eh;
 	}
 
 }

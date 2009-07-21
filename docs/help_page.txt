@@ -14,14 +14,24 @@ Review Mode
 
 To review your flashcards, you visit the Review screen by tapping the 'Review' tab on the tab bar.  On the Review screen, you can choose from a number of options.  If there are cards scheduled to be practiced today, press the "Practice today's cards" button to practice those.  Using the menu, you can also choose different card sets too.  For example, you can choose to practice the 20 cards you have the most trouble remembering.
 
+Also, you can view information about your card stack on this screen.  For example, how many cards are 'Easy' to remember, how many are 'Hard', etc.
+
 Practicing
 
-Practicing with a set of flashcards is pretty straightforward.  RDict will show you the front of a card, on which a practice word appears.  When RDict shows you the card, think and try to remember the definition.  When you remember it (or if you can't remember it), click on 'View Answer'.  RDict will turn the card over, showing you the definition of the word.  Look at the definition.  Is it the one you remembered?  How easy was it to remember?  Tell RDict how easy it was to remember the definition by touching one of the difficulty buttons.  RDict will use this information to schedule the card for later practice.  When you are finished reviewing all the cards, RDict will return you to the Review screen.  Please note that you can quit the review session at any time.
+Practicing with a set of flashcards is pretty straightforward.  RDict will show you the front of a card, on which a practice word appears.  When RDict shows you the card, think and try to remember the definition.  When you remember it (or if you can't remember it), click on 'View Answer'.  RDict will turn the card over, showing you the definition of the word.  Look at the definition.  Is it the one you remembered?  How easy was it to remember?  Tell RDict how easy it was to remember the definition by touching one of the difficulty buttons.  RDict will use this information to schedule the card for later practice.  When you are finished reviewing all the cards, RDict will return you to the Review screen.  Please note that you can quit the review session at any time by using the back button.
 
-Study Preferences
+History
 
-On the study preferences screen, you can make changes to the way RDict schedules cards for your review.  For example, you can adjust the maximum number of cards you wish to practice in a day.  Other properties of the study method can also be adjusted.  Please view the website for full details.
+- explanation here
+
+More
+
+-
 
 Manage Your Cards
 
-From time to time, you may wish to manually edit your card stack.  For example, you may wish to delete a word from your card stack.  You may also wish to add to or edit the definition of the word.  By pressing on the 'Manage Your Cards' button, RDict will bring you to a screen which allows you to add, edit and delete cards in your stack.  Also, you can view information about your card stack on this screen.  For example, how many cards are 'Easy' to remember, how many are 'Hard', etc.
+From time to time, you may wish to manually edit your card stack.  For example, you may wish to delete a word from your card stack.  You may also wish to add to or edit the definition of the word.  By pressing on the 'Manage Your Cards' button, RDict will bring you to a screen which allows you to add, edit and delete cards in your stack.
+
+Settings
+
+On the study preferences screen, you can make changes to the way RDict schedules cards for your review.  For example, you can adjust the maximum number of cards you wish to practice in a day.  Other properties of the study method can also be adjusted.  Please view the website for full details.

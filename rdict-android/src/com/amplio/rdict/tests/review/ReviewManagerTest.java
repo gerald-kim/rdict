@@ -13,7 +13,7 @@ import com.db4o.ObjectSet;
 
 public class ReviewManagerTest extends TestCase {
 	
-public static final String DB_TEST_FILE = "db4o_test.db";
+	public static final String DB_TEST_FILE = "db4o_test.db";
 	
 	ObjectContainer db = null;
 	
