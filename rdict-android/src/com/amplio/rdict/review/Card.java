@@ -7,6 +7,8 @@ import java.util.Date;
 
 public class Card {
 
+	public static final int MAX_GRADE = 4;
+	
 	public String question;
 	public String answer;
 	public double easiness;
@@ -32,6 +34,8 @@ public class Card {
         this.date_scheduled = null;
         
         this.eh = new EasinessHistory(3);
+        this.eh.add(0);
+        this.eh.add(0);
         this.eh.add(this.easiness);
 	}
 
@@ -45,20 +49,18 @@ public class Card {
 	}
 
 	public void adjustEasinessByGrade(int grade) {
-		if (grade > 3){
-			double newEasiness = this.easiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
-		
-			if(newEasiness <= 1.3)
-				this.easiness = 1.3;
-			else
-				this.easiness = newEasiness;
-		}
-		else {
+		if(grade < 3){
 			this.repsSinceLapse = 0;
 			this.schedule();
 		}
+		else {
+			double newEasiness = this.easiness + (0.1 - (MAX_GRADE - grade) * (0.08 + (MAX_GRADE - grade) * 0.02));
+			this.easiness = Math.max(1.3, newEasiness);
+		}
 		
 		this.eh.add(this.easiness);
+		
+		System.out.println(eh.toString());
 	}
 	
 	public void schedule() {

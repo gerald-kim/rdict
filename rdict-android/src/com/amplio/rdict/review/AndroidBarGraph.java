@@ -69,8 +69,7 @@ public class AndroidBarGraph
    * 
    * @return BufferedImage containing a Bargraph of data.
    */
-  public static Bitmap createGraph(final Number[] data, final SizeParams size, final int color, final int highColor, final int lastColor)
-  {
+  public static Bitmap createGraph(final Number[] data, final SizeParams size, final int color, final int highColor, final int lastColor){
     return createGraph(data, size, color, highColor, lastColor, -1);
   }
   

@@ -40,7 +40,8 @@ final class GraphUtils {
     if (max <= min)
         return 1.0f;
     else
-    	return (max - min) / (height - 1);
+    	//return (max - min) / (height - 1);
+    	return 100 / (height - 1);
   }
 }
 

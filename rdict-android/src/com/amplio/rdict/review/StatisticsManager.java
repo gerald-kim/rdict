@@ -23,16 +23,16 @@ public class StatisticsManager {
 	}
 
 	public int calculateStudyGrade() {
-		double grade = 0;
+		double total = 0;
 		
 		ObjectSet cards = this.cardsMgr.loadCardsByPrefix("");
 		
 		for(int i = 0; i < cards.size(); i++){
 			Card c = (Card) cards.get(i);
-			grade += c.getEasinessHistory().calcAvg() / MAX_SCORE;
+			total += c.getEasinessHistory().calcAvg() / MAX_SCORE;
 		}
 		
-		return new Double(100 * (grade/cards.size())).intValue();
+		return new Double(100 * (total / cards.size())).intValue();
 	}
 
 	public int countCards() {
@@ -40,6 +40,13 @@ public class StatisticsManager {
 	}
 	
 	public StatRecord loadStatRecordByDate(String date) {
+//		Query query = this.db.query();
+//		query.constrain(StatRecord.class);
+//		ObjectSet records = query.execute();
+//		
+//		for(int i = 0; i < records.size(); i++)
+//			db.delete(records.get(i));
+		
 		Query query = this.db.query();
 		query.constrain(StatRecord.class);
 		query.descend("record_date").constrain(date);

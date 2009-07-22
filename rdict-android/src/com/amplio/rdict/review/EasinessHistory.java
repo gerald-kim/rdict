@@ -22,11 +22,11 @@ public class EasinessHistory {
 		this.size = size;
 	}
 	
-	public void add(double easinessMonday) {
+	public void add(double ef) {
 		if(efs.size() == size)
 			efs.remove(efs.size() - 1);
 			
-		efs.insertElementAt(new Double(easinessMonday).toString(), 0);
+		efs.insertElementAt(new Double(ef).toString(), 0);
 	}
 	
 	public String toString() {
@@ -47,12 +47,12 @@ public class EasinessHistory {
 	}
 	
 	public double calcAvg() {
-		double avg = 0;
+		double total = 0;
 		
 		for(int i = 0; i < this.efs.size(); i++)
-			avg +=  new Double(this.efs.get(i)).doubleValue();
+			total +=  new Double(this.efs.get(i)).doubleValue();
 		
-		return avg / this.efs.size();
+		return total / this.efs.size();
 	}
 
 	public int size() {

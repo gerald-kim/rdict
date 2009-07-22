@@ -127,13 +127,20 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		
 		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
 		
-		Calendar c = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 
+		Calendar c = Calendar.getInstance(); 
 		c.add(Calendar.HOUR_OF_DAY, -24 * 14);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String twoWeeksAgo = sdf.format(c.getTime());
 		
 		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
 		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(twoWeeksAgo);
+		
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < cardCountData.length; i++){
+			sb.append(cardCountData[i] + ",");
+		}
+		
+		System.out.println(sb.toString());
 		
 		// width, height, spacing
 		final SizeParams sizeParams = new SizeParams(50, 20, 1);

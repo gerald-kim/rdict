@@ -17,7 +17,7 @@ public class AllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite(
-				"Test for com.amplio.rdict.tests.history");
+				"Test for com.amplio.rdict.tests");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(HistoryTest.class);
 		suite.addTestSuite(CardSetManagerTest.class);

@@ -110,6 +110,11 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 			}
 			else {
 				Card c = (Card)cardSet[cardSetIndex];
+				
+				int grade = getGradeByButton(v);
+				
+				System.out.println("Grade: " + grade);
+				
 				c.adjustEasinessByGrade(getGradeByButton(v));
 				c.schedule();
 				ReviewActivity.reviewManager.cardsMgr.save(c);
@@ -139,9 +144,9 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 	}
 
 	private int getGradeByButton(View view) {
-		if(view == this.easy_button) return 4;
-		else if (view == this.not_bad_button) return 3;
-		else if (view == this.hard_button) return 2;
+		if(view.equals(this.easy_button)) return 4;
+		else if (view.equals(this.not_bad_button)) return 3;
+		else if (view.equals(this.hard_button)) return 2;
 		else return 1; // i forgot button
 	}
 	

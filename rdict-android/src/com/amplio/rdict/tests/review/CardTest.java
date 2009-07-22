@@ -25,7 +25,7 @@ public class CardTest extends TestCase {
         assertEquals(dateformatYYYYMMDD.format(now), c.date_lookedup);
         assertEquals(null, c.date_scheduled);
         
-        assertEquals("2.5", c.getEasinessHistory().toString());
+        assertEquals("2.5, 0.0, 0.0", c.getEasinessHistory().toString());
 	}
 	
 	public void testRounding() {
@@ -79,29 +79,18 @@ public class CardTest extends TestCase {
 		assertEquals(expectedScheduled, c.date_scheduled);
 	}
 	
-	public void testCalcEasinessByGrade() {
-		
+	public void testDefaultEasiness() {
 		Card c = new Card("How big?", "Big.");
 		
 		assertEquals(2.5, c.easiness);
+	}
+	
+	public void testCalcEasinessNotAdjustedIfTooLow() {
+		Card c = new Card("How big?", "Big.");
 		
-		// EF':=EF+(0.1-(5-q)*(0.08+(5-q)*0.02))
-		
-		int grade = 4;
-		double prevEasiness = 2.5;
-		double expectedEasiness = prevEasiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
-		
-		assertTrue( 1.3 < expectedEasiness);
-		
-		c.adjustEasinessByGrade(grade);
-		
-		assertEquals(expectedEasiness, c.easiness);
-		
-		// If EF is less than 1.3 then let EF be 1.3.
-		
-		grade = 5;
-		prevEasiness = 0.1;
-		expectedEasiness = prevEasiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+		int grade = 5;
+		double prevEasiness = 0.1;
+		double expectedEasiness = prevEasiness + (0.1 - (Card.MAX_GRADE - grade) * (0.08 + (Card.MAX_GRADE - grade) * 0.02));
 		
 		assertTrue( 1.3 > expectedEasiness);
 		
@@ -109,6 +98,22 @@ public class CardTest extends TestCase {
 		c.adjustEasinessByGrade(grade);
 		
 		assertEquals(1.3, c.easiness);
+	}
+	
+	public void testCalcEasinessByGrade() {
+		Card c = new Card("How big?", "Big.");
+		
+		// EF':= EF + (0.1 - (5 - q) * (0.08 + (5 - q ) * 0.02))
+		
+		int grade = 4;
+		double prevEasiness = 2.5;
+		double expectedEasiness = prevEasiness + (0.1 - (Card.MAX_GRADE - grade) * (0.08 + (Card.MAX_GRADE - grade) * 0.02));
+		
+		assertTrue( 1.3 < expectedEasiness);
+		
+		c.adjustEasinessByGrade(grade);
+		
+		assertEquals(expectedEasiness, c.easiness);
 	}
 	
 	public void testCalcEasinessByGradeLessThanThreeIgnoresEFAndResetsInterval() {
@@ -128,11 +133,11 @@ public class CardTest extends TestCase {
 	public void testAdjustingEasinessUpdatesEasinessHistory() {
 		Card c = new Card("How big?", "Big.");
 		
-		assertEquals("2.5", c.getEasinessHistory().toString());
+		assertEquals("2.5, 0.0, 0.0", c.getEasinessHistory().toString());
 		
 		c.adjustEasinessByGrade(1);
 		
-		assertEquals("2.5, 2.5", c.getEasinessHistory().toString());
+		assertEquals("2.5, 2.5, 0.0", c.getEasinessHistory().toString());
 		
 		c.adjustEasinessByGrade(1);
 		
