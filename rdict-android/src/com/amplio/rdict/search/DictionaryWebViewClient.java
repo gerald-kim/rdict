@@ -27,7 +27,7 @@ public class DictionaryWebViewClient extends WebViewClient{
 			String def = url.substring(url.indexOf('=') + 1);
 			this.dicActivity.addCard(def);
 			
-			new StatisticsManager(RDictActivity.db).recordCardStackStatistics();
+			new StatisticsManager(RDictActivity.db).saveOrUpdateCardStackStatistics();
 			
 			return true;
 		}

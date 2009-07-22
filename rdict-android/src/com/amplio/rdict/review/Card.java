@@ -59,8 +59,6 @@ public class Card {
 		}
 		
 		this.eh.add(this.easiness);
-		
-		System.out.println(eh.toString());
 	}
 	
 	public void schedule() {

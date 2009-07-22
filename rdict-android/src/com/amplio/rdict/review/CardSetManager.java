@@ -2,6 +2,7 @@ package com.amplio.rdict.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -16,44 +17,66 @@ public class CardSetManager {
 	
 	public void save(Card card) {
 		db.store(card);
+		db.commit();
 	}
 	
-	public ObjectSet loadCardsByScheduledDate(String scheduledDate) {
+	public void deleteCard(Card card) {
+		db.delete(card);
+		db.commit();
+	}
+	
+	public Vector<Card> loadCardsByScheduledDate(String scheduledDate) {
+		Vector<Card> v = new Vector<Card>();
+		
 		Query query= db.query();
 		query.constrain(Card.class);
 		query.descend("date_scheduled").constrain(scheduledDate);
 		ObjectSet cards = query.execute();
-		return cards;
+		
+		for(int i = 0; i < cards.size(); i++)
+			v.add((Card)cards.get(i));
+		
+		return v;
 	}
 
-	public ObjectSet loadCardsScheduledForToday() {
+	public Vector<Card> loadCardsScheduledForToday() {
         String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		return this.loadCardsByScheduledDate(todaysDate);
 	}
 
-	public ObjectSet loadCardsLookedupToday() {
+	public Vector<Card> loadCardsLookedupToday() {
+		Vector<Card> v = new Vector<Card>();
+		
 		String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		
-		Query query= db.query();
+		Query query = db.query();
 		query.constrain(Card.class);
 		query.descend("date_lookedup").constrain(todaysDate);
 		ObjectSet cards = query.execute();
-		return cards;
+		
+		for(int i = 0; i < cards.size(); i++)
+			v.add((Card)cards.get(i));
+		
+		return v;
 	}
 
-	public Object[] loadTopNHardestCards(int n) {
+	public Vector<Card> loadTopNHardestCards(int n) {
+		Vector<Card> v = new Vector<Card>();
+		
 		Query query= db.query();
 		query.constrain(Card.class);
 		query.descend("easiness").orderAscending();
 		ObjectSet cards = query.execute();
 		
-		if(cards.size() < 20)
-			return cards.toArray();
-		else
-			return cards.subList(0, 20).toArray();
+		for(int i = 0; i < 20 && i < cards.size(); i++)
+			v.add((Card)cards.get(i));
+		
+		return v;
 	}
 
-	public ObjectSet loadCardsByPrefix(String prefix) {
+	public Vector<Card> loadCardsByPrefix(String prefix) {
+		Vector<Card> v = new Vector<Card>();
+		
 		Query query= db.query();
 		query.constrain(Card.class);
 		
@@ -64,11 +87,10 @@ public class CardSetManager {
 		
 		ObjectSet cards = query.execute();
 		
-		return cards;
-	}
-
-	public void deleteCard(Card card) {
-		db.delete(card);
+		for(int i = 0; i < 20 && i < cards.size(); i++)
+			v.add((Card)cards.get(i));
+		
+		return v;
 	}
 
 	public Card loadCardByHeadword(String headword) {

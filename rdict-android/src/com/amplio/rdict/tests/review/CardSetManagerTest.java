@@ -2,6 +2,7 @@ package com.amplio.rdict.tests.review;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import junit.framework.TestCase;
 
@@ -71,7 +72,7 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(cardFor19700101);
 		mgr.save(cardFor19700102);
 		
-		ObjectSet cards = mgr.loadCardsByScheduledDate("19700101");
+		Vector<Card> cards = mgr.loadCardsByScheduledDate("19700101");
 		
 		assertEquals(1, cards.size());
 		
@@ -95,7 +96,7 @@ public class CardSetManagerTest extends TestCase {
 		
 		mgr.save(cardForToday);
 		
-		ObjectSet cardsScheduled = mgr.loadCardsByScheduledDate("19700101");
+		Vector<Card> cardsScheduled = mgr.loadCardsByScheduledDate("19700101");
 		
 		assertEquals(0, cardsScheduled.size());
 	}
@@ -111,7 +112,7 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(cardLookedupToday);
 		mgr.save(cardScheduledForToday);
 		
-		ObjectSet cards = mgr.loadCardsScheduledForToday();
+		Vector<Card> cards = mgr.loadCardsScheduledForToday();
 		
 		assertEquals(1, cards.size());
 
@@ -128,7 +129,7 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(cardLookedupToday);
 		mgr.save(cardLookedupIn1970);
 		
-		ObjectSet cards = mgr.loadCardsLookedupToday();
+		Vector<Card> cards = mgr.loadCardsLookedupToday();
 		
 		assertEquals(1, cards.size());
 
@@ -157,12 +158,12 @@ public class CardSetManagerTest extends TestCase {
 			mgr.save(hardCards[i]);
 		}
 		
-		Object[] cards = mgr.loadTopNHardestCards(n);
+		Vector<Card> cards = mgr.loadTopNHardestCards(n);
 		
-		assertEquals(n, cards.length);
+		assertEquals(n, cards.size());
 
 		for(int i = 0; i < n; i++){
-			Card card = (Card) cards[i];
+			Card card = cards.elementAt(i);
 			assertEquals(1.0, card.easiness);
 		}
 	}
@@ -178,7 +179,7 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(aCard);
 		mgr.save(cCard);
 		
-		ObjectSet cards = mgr.loadCardsByPrefix("");
+		Vector<Card> cards = mgr.loadCardsByPrefix("");
 		
 		assertEquals(3, cards.size());
 		assertEquals(aCard.question, ((Card) cards.get(0)).question);
@@ -197,10 +198,10 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(bCard);
 		mgr.save(cCard);
 		
-		ObjectSet cards = mgr.loadCardsByPrefix("a");
+		Vector<Card> cards = mgr.loadCardsByPrefix("a");
 		
 		assertEquals(1, cards.size());
-		assertEquals(aCard.question, ((Card) cards.get(0)).question);
+		assertEquals(aCard.question, cards.get(0).question);
 	}
 	
 	public void testDeleteCard() {
@@ -214,7 +215,7 @@ public class CardSetManagerTest extends TestCase {
 		mgr.save(bCard);
 		mgr.save(cCard);
 		
-		ObjectSet cards = mgr.loadCardsByPrefix("a");
+		Vector<Card> cards = mgr.loadCardsByPrefix("a");
 		
 		assertEquals(1, cards.size());
 		

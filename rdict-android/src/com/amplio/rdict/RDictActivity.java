@@ -48,10 +48,7 @@ public class RDictActivity extends TabActivity {
         	tabs.addTab(tab);
         }
         
-        if(RDictActivity.db != null)
-        	RDictActivity.db.close();
-        
-        RDictActivity.db = Db4o.openFile(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
+        RDictActivity.db = DB4oConnectionFactory.getObjectContainer(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
         
         SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_historyMgr = new HistoryManager(con);
@@ -68,10 +65,6 @@ public class RDictActivity extends TabActivity {
 			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
 			tv.setText(label);
 		}
-    }
-    
-    public void onDestory(){
-    	RDictActivity.db.close();
-    	super.onDestroy();
+		
     }
 }

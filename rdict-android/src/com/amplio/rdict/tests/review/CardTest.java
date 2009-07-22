@@ -147,5 +147,4 @@ public class CardTest extends TestCase {
 		
 		assertEquals("2.5, 2.5, 2.5", c.getEasinessHistory().toString());
 	}
-
 }

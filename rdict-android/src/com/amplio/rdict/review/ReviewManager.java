@@ -24,7 +24,7 @@ public class ReviewManager {
 	public void checkAvailableExercises() {
 		this.isAvailableTodaysScheduledExercise = ( 0 != this.cardsMgr.loadCardsScheduledForToday().size());
 		this.isAvailableLookedupTodayExercise = ( 0 != this.cardsMgr.loadCardsLookedupToday().size());
-		this.isAvailableTOPNExercise = ( 0 != this.cardsMgr.loadTopNHardestCards(20).length);
+		this.isAvailableTOPNExercise = ( 0 != this.cardsMgr.loadTopNHardestCards(20).size());
 	}
 
 	public void checkStudyAvailableStudyModes() {

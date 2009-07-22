@@ -1,5 +1,7 @@
 package com.amplio.rdict.review;
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +26,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 	Button i_forgot_button = null;
 	
 	private int cardSetIndex = 0;
-	private Object[] cardSet = null;
+	private Vector<Card> cardSet = null;
 	
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);		
@@ -62,8 +64,6 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		System.out.println("FlashCard - resumed");
 		this.initializeCardActivity();
 		
-		
-		
 		super.onResume();
 	}
 	
@@ -80,10 +80,10 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		
 		switch(ReviewActivity.reviewMode){
 			case ReviewManager.EXERCISES_SCHEDULED_TODAY: 
-				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsScheduledForToday().toArray();
+				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsScheduledForToday();
 				break;
 			case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
-				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsLookedupToday().toArray();
+				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsLookedupToday();
 				break;
 			case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
 				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadTopNHardestCards(20);
@@ -92,14 +92,18 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				System.out.println("Bad argument here in FlashCardActivity");
 		}
 		
-		this.word_label.setText(((Card)cardSet[cardSetIndex]).question);
-		this.def_label.loadData(((Card)cardSet[cardSetIndex]).answer, "text/html", "utf-8");
+		this.progress_label.setText("Card " + (cardSetIndex + 1) + " of "+  (this.cardSet.size()) );
 		
-		this.progress_label.setText("Card " + (cardSetIndex + 1) + " of "+  (this.cardSet.length) );
+		System.out.println("Before: " + cardSet.elementAt(cardSetIndex).eh.toString());
+		
+		Card c = cardSet.elementAt(cardSetIndex);
+		
+		this.word_label.setText(c.question);
+		this.def_label.loadData(c.answer, "text/html", "utf-8");
 	}
 	
 	public void onClick(View v) {
-		if(cardSetIndex < cardSet.length){
+		if(cardSetIndex < cardSet.size()){
 			if(R.id.view_answer_button == v.getId()){
 				this.view_answer_button.setVisibility(View.INVISIBLE);
 				this.def_label.setVisibility(View.VISIBLE);
@@ -109,23 +113,21 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				this.i_forgot_button.setVisibility(View.VISIBLE);
 			}
 			else {
-				Card c = (Card)cardSet[cardSetIndex];
-				
-				int grade = getGradeByButton(v);
-				
-				System.out.println("Grade: " + grade);
-				
+				Card c = cardSet.elementAt(cardSetIndex);
 				c.adjustEasinessByGrade(getGradeByButton(v));
 				c.schedule();
+				
 				ReviewActivity.reviewManager.cardsMgr.save(c);
+				
+				System.out.println("After: " + c.eh.toString());
 				
 				cardSetIndex++;
 				
-				if(cardSetIndex < cardSet.length){
-					this.progress_label.setText("Card " + (cardSetIndex + 1) + " of "+  (this.cardSet.length) );
+				if(cardSetIndex < cardSet.size()){
+					this.progress_label.setText("Card " + (cardSetIndex + 1) + " of "+  (this.cardSet.size()) );
 					
-					this.word_label.setText(((Card)cardSet[cardSetIndex]).question);
-					this.def_label.loadData(((Card)cardSet[cardSetIndex]).answer, "text/html", "utf-8");
+					this.word_label.setText(cardSet.elementAt(cardSetIndex).question);
+					this.def_label.loadData(cardSet.elementAt(cardSetIndex).answer, "text/html", "utf-8");
 					
 					this.view_answer_button.setVisibility(View.VISIBLE);
 					this.def_label.setVisibility(View.INVISIBLE);
@@ -135,7 +137,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 					this.i_forgot_button.setVisibility(View.INVISIBLE);
 				}
 				else{
-					new StatisticsManager(RDictActivity.db).recordCardStackStatistics();
+					new StatisticsManager(RDictActivity.db).saveOrUpdateCardStackStatistics();
 					this.finish();
 					System.out.println("Finished reviewing");
 				}

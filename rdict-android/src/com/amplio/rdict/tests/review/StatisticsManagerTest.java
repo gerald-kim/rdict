@@ -119,7 +119,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.recordCardStackStatistics();
+		mgr.saveOrUpdateCardStackStatistics();
 		
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		StatRecord r = mgr.loadStatRecordByDate(today);
@@ -143,7 +143,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.recordCardStackStatistics();
+		mgr.saveOrUpdateCardStackStatistics();
 		
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		StatRecord r = mgr.loadStatRecordByDate(today);
@@ -153,7 +153,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		db.store(new Card("fish", "the definition for fish"));
 		
-		mgr.recordCardStackStatistics();
+		mgr.saveOrUpdateCardStackStatistics();
 		
 		r = mgr.loadStatRecordByDate(today);
 		
@@ -176,7 +176,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.recordCardStackStatistics();
+		mgr.saveOrUpdateCardStackStatistics();
 		
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 

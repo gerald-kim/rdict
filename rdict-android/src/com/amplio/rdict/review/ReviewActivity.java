@@ -1,6 +1,5 @@
 package com.amplio.rdict.review;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -25,7 +26,7 @@ public class StatisticsManager {
 	public int calculateStudyGrade() {
 		double total = 0;
 		
-		ObjectSet cards = this.cardsMgr.loadCardsByPrefix("");
+		Vector<Card> cards = this.cardsMgr.loadCardsByPrefix("");
 		
 		for(int i = 0; i < cards.size(); i++){
 			Card c = (Card) cards.get(i);
@@ -40,13 +41,6 @@ public class StatisticsManager {
 	}
 	
 	public StatRecord loadStatRecordByDate(String date) {
-//		Query query = this.db.query();
-//		query.constrain(StatRecord.class);
-//		ObjectSet records = query.execute();
-//		
-//		for(int i = 0; i < records.size(); i++)
-//			db.delete(records.get(i));
-		
 		Query query = this.db.query();
 		query.constrain(StatRecord.class);
 		query.descend("record_date").constrain(date);
@@ -60,22 +54,6 @@ public class StatisticsManager {
 			return null;	
 	}
 	
-	public void recordCardStackStatistics() {
-		String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		
-		StatRecord record = this.loadStatRecordByDate(todaysDate);
-		
-		if (record != null){
-			record.cardCount = this.countCards();
-			record.gradeInPercent = this.calculateStudyGrade();
-		}
-		else {
-			record = new StatRecord(this.countCards(), this.calculateStudyGrade(), todaysDate);
-		}
-		
-		this.db.store(record);
-	}
-
 	public Number[] fetchCardCountData(String cutOffDate) {
 		Query query = this.db.query();
 		query.constrain(StatRecord.class);
@@ -181,5 +159,33 @@ public class StatisticsManager {
 		}
 		
 		return new Long((new Date().getTime() - d.getTime()) / ((long) 1000 * 60 * 60 * 24)).intValue();
+	}
+	
+	public void saveOrUpdateCardStackStatistics() {
+		String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		
+		StatRecord record = this.loadStatRecordByDate(todaysDate);
+		
+		if (record != null){
+			record.cardCount = this.countCards();
+			record.gradeInPercent = this.calculateStudyGrade();
+		}
+		else {
+			record = new StatRecord(this.countCards(), this.calculateStudyGrade(), todaysDate);
+		}
+		
+		this.db.store(record);
+		this.db.commit();
+	}
+	
+	public void deleteAllStatRecords() {
+		Query query = this.db.query();
+		query.constrain(StatRecord.class);
+		ObjectSet records = query.execute();
+		
+		for(int i = 0; i < records.size(); i++)
+			db.delete(records.get(i));
+		
+		db.commit();
 	}
 }

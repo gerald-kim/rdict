@@ -1,5 +1,7 @@
 package com.amplio.rdict.more;
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +47,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 		this.cardMgr = new CardSetManager(RDictActivity.db);
 		
 		String prefix = this.filterText.getText().toString();
-		ObjectSet cards = this.cardMgr.loadCardsByPrefix(prefix);
+		Vector<Card> cards = this.cardMgr.loadCardsByPrefix(prefix);
 		
 		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
@@ -73,7 +75,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		ObjectSet cards = this.cardMgr.loadCardsByPrefix(s.toString());
+		Vector<Card> cards = this.cardMgr.loadCardsByPrefix(s.toString());
 		
 		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
