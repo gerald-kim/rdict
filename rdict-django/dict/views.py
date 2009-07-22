@@ -16,8 +16,8 @@ dict = Dictionary( settings.DICT_DB )
 dict.open()
 
 
-def search( request ):
-    q = request.GET['q']
+def search( request, q ):
+    #q = request.GET['q']
     #logging.debug(q.encode('utf-8'))
     word = Word()
     word.lemma = q

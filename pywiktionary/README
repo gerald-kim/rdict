@@ -2,12 +2,18 @@
 RUN SEQUENCE
 ============ 
 
+local
+------------
+* download_db_from_server.sh will download generated wiktionary database file from server
+
+on the server
+-------------
 * update_xml.py
 * update_word_db.py enwiktionary-???.xml
 * download_page.py
 * filter_page.py
-* dump_to_tokyocabinet.py
-
+* tc_exporter.py  
+* make_small_db_sqlite.py
 
 
 HTML HEAD
