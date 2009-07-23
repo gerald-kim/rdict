@@ -10,7 +10,7 @@ public class ScoreHistory {
 		ScoreHistory sh = new ScoreHistory(vals.length);
 		
 		for(int i = vals.length - 1; i >= 0; i--)
-			sh.add(new Integer(vals[i]).intValue());
+			sh.add(new Integer(vals[i].trim()).intValue());
 		
 		return sh;
 	}

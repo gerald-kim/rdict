@@ -96,7 +96,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		
 		Card c = cardSet.elementAt(cardSetIndex);
 		
-		System.out.println("Before: " + c.eh.toString());
+		System.out.println("Before: " + c.sh.toString());
 		
 		this.word_label.setText(c.question);
 		this.def_label.loadData(c.answer, "text/html", "utf-8");
@@ -119,7 +119,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				
 				ReviewActivity.reviewManager.cardsMgr.save(c);
 				
-				System.out.println("After: " + c.eh.toString());
+				System.out.println("After: " + c.sh.toString());
 				
 				cardSetIndex++;
 				

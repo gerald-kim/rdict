@@ -8,6 +8,7 @@ import com.amplio.rdict.tests.review.CardSetManagerTest;
 import com.amplio.rdict.tests.review.CardTest;
 import com.amplio.rdict.tests.review.ScoreHistoryTest;
 import com.amplio.rdict.tests.review.ReviewManagerTest;
+import com.amplio.rdict.tests.review.SparklineTest;
 import com.amplio.rdict.tests.review.StatisticsManagerTest;
 import com.amplio.rdict.tests.search.DictionaryEntryFactoryTest;
 import com.amplio.rdict.tests.search.DictionaryEntryTest;
@@ -22,8 +23,9 @@ public class AllTests {
 		suite.addTestSuite(HistoryTest.class);
 		suite.addTestSuite(CardSetManagerTest.class);
 		suite.addTestSuite(CardTest.class);
-		suite.addTestSuite(ScoreHistoryTest.class);
 		suite.addTestSuite(ReviewManagerTest.class);
+		suite.addTestSuite(ScoreHistoryTest.class);
+		suite.addTestSuite(SparklineTest.class);
 		suite.addTestSuite(StatisticsManagerTest.class);
 		suite.addTestSuite(DictionaryEntryFactoryTest.class);
 		suite.addTestSuite(DictionaryEntryTest.class);

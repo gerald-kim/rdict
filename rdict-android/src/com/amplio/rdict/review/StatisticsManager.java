@@ -30,14 +30,14 @@ public class StatisticsManager {
 		
 		for(int i = 0; i < cards.size(); i++){
 			Card c = (Card) cards.get(i);
-			total += c.getEasinessHistory().calcAvg() / MAX_SCORE;
+			total += c.getScoreHistory().calcAvg() / MAX_SCORE;
 		}
 		
 		return new Double(100 * (total / cards.size())).intValue();
 	}
 
 	public int countCards() {
-		return this.cardsMgr.loadCardsByPrefix("").size();
+		return this.cardsMgr.loadCardsLookedupToday().size();
 	}
 	
 	public StatRecord loadStatRecordByDate(String date) {
@@ -76,7 +76,6 @@ public class StatisticsManager {
 		startDate.add(Calendar.HOUR_OF_DAY, 24);
 		
 		int recordIndex = 0;
-		int prevCount = 0;
 		
 		for(int i = 0; i < numDaysBetweenCutOffDateAndNow; i++){
 			if(recordIndex < records.size()){
@@ -87,14 +86,13 @@ public class StatisticsManager {
 					recordIndex++;
 				}
 				else {
-					cardCounts[i] = new Integer(prevCount);
+					cardCounts[i] = 0;
 				}
 			}
 			else {
-				cardCounts[i] = new Integer(prevCount);
+				cardCounts[i] = 0;
 			}
 			
-			prevCount = cardCounts[i].intValue();
 			startDate.add(Calendar.HOUR_OF_DAY, 24);
 		}
 		

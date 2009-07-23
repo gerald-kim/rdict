@@ -43,9 +43,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
-		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
+		aCard.sh = ScoreHistory.createFromString("4,4,4");
+		bCard.sh = ScoreHistory.createFromString("0,0,0");
+		cCard.sh = ScoreHistory.createFromString("2,2,2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -61,7 +61,9 @@ public class StatisticsManagerTest extends TestCase {
 	public void testCountCards() {
 		Card aCard = new Card("apple" , "the answer");
 		Card bCard = new Card("banana", "the answer");
+		
 		Card cCard= new Card("coconunt", "the answer");
+		cCard.date_lookedup = "19700102";
 		
 		db.store(aCard);
 		db.store(bCard);
@@ -69,7 +71,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatisticsManager mgr = new StatisticsManager(db);
 		
-		assertEquals(3, mgr.countCards());
+		assertEquals(2, mgr.countCards());
 	}
 	
 	public void testLoadStatRecordByDate(){
@@ -109,9 +111,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
-		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
+		aCard.sh = ScoreHistory.createFromString("4,4,4");
+		bCard.sh = ScoreHistory.createFromString("0,0,0");
+		cCard.sh = ScoreHistory.createFromString("2,2,2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -132,10 +134,11 @@ public class StatisticsManagerTest extends TestCase {
 		Card aCard = new Card("apple" , "the answer");
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
+		cCard.date_lookedup = "19700101";
 		
-		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
-		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
+		aCard.sh = ScoreHistory.createFromString("4, 4, 4");
+		bCard.sh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.sh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -149,7 +152,7 @@ public class StatisticsManagerTest extends TestCase {
 		StatRecord r = mgr.loadStatRecordByDate(today);
 		
 		assertEquals(today, r.record_date);
-		assertEquals(3, r.cardCount);
+		assertEquals(2, r.cardCount);
 		
 		db.store(new Card("fish", "the definition for fish"));
 		
@@ -158,7 +161,7 @@ public class StatisticsManagerTest extends TestCase {
 		r = mgr.loadStatRecordByDate(today);
 		
 		assertEquals(today, r.record_date);
-		assertEquals(4, r.cardCount);
+		assertEquals(3, r.cardCount);
 	}
 	
 	public void testRecordCardStackStatistics() {
@@ -166,9 +169,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
-		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
+		aCard.sh = ScoreHistory.createFromString("4, 4, 4");
+		bCard.sh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.sh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -229,14 +232,14 @@ public class StatisticsManagerTest extends TestCase {
 		pastCardCounts = mgr.fetchCardCountData(cutOffDate);
 		
 		assertEquals(1, pastCardCounts[0]);
-		assertEquals(1, pastCardCounts[1]);
-		assertEquals(1, pastCardCounts[2]);
-		assertEquals(1, pastCardCounts[3]);
-		assertEquals(1, pastCardCounts[4]);
-		assertEquals(1, pastCardCounts[5]);
-		assertEquals(1, pastCardCounts[6]);
-		assertEquals(1, pastCardCounts[7]);
-		assertEquals(1, pastCardCounts[8]);
+		assertEquals(0, pastCardCounts[1]);
+		assertEquals(0, pastCardCounts[2]);
+		assertEquals(0, pastCardCounts[3]);
+		assertEquals(0, pastCardCounts[4]);
+		assertEquals(0, pastCardCounts[5]);
+		assertEquals(0, pastCardCounts[6]);
+		assertEquals(0, pastCardCounts[7]);
+		assertEquals(0, pastCardCounts[8]);
 		assertEquals(4, pastCardCounts[9]);
 		assertEquals(50, pastCardCounts[10]);
 	}

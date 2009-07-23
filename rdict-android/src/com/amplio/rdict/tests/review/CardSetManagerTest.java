@@ -278,13 +278,13 @@ public class CardSetManagerTest extends TestCase {
 		Card bCard1 = new Card("banana", "the answer");
 		bCard1.adjustEasinessByGrade(1);
 		
-		assertEquals("2.5, 2.5, 0.0", bCard1.getEasinessHistory().toString());
+		assertEquals("1,0,0", bCard1.getScoreHistory().toString());
 		
 		mgr.save(bCard1);
 		
 		Card c = mgr.loadCardByHeadword("banana");
 
 		assertEquals("banana", c.question);
-		assertEquals("2.5, 2.5, 0.0", c.getEasinessHistory().toString());
+		assertEquals("1,0,0", c.getScoreHistory().toString());
 	}
 }

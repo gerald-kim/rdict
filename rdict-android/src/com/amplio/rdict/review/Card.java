@@ -17,7 +17,7 @@ public class Card {
 	public String date_scheduled;
 	public String date_lookedup;
 	
-	public ScoreHistory eh = null;
+	public ScoreHistory sh = null;
 
 	public Card(String question, String answer) {
 		this.question = question;
@@ -33,10 +33,10 @@ public class Card {
         
         this.date_scheduled = null;
         
-        this.eh = new ScoreHistory(3);
-        this.eh.add(0);
-        this.eh.add(0);
-        this.eh.add(0);
+        this.sh = new ScoreHistory(3);
+        this.sh.add(0);
+        this.sh.add(0);
+        this.sh.add(0);
 	}
 
 	public void calcInterval() {
@@ -58,7 +58,7 @@ public class Card {
 			this.easiness = Math.max(1.3, newEasiness);
 		}
 		
-		this.eh.add(grade);
+		this.sh.add(grade);
 	}
 	
 	public void schedule() {
@@ -86,8 +86,8 @@ public class Card {
 		this.date_scheduled = dateformatYYYYMMDD.format(newDate);
 	}
 
-	public ScoreHistory getEasinessHistory() {
-		return this.eh;
+	public ScoreHistory getScoreHistory() {
+		return this.sh;
 	}
 
 }

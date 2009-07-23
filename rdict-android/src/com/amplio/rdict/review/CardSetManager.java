@@ -59,7 +59,7 @@ public class CardSetManager {
 		
 		return v;
 	}
-
+	
 	public Vector<Card> loadTopNHardestCards(int n) {
 		Vector<Card> v = new Vector<Card>();
 		

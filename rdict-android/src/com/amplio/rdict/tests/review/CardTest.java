@@ -25,7 +25,7 @@ public class CardTest extends TestCase {
         assertEquals(dateformatYYYYMMDD.format(now), c.date_lookedup);
         assertEquals(null, c.date_scheduled);
         
-        assertEquals("2.5, 0.0, 0.0", c.getEasinessHistory().toString());
+        assertEquals("0,0,0", c.getScoreHistory().toString());
 	}
 	
 	public void testRounding() {
@@ -130,21 +130,21 @@ public class CardTest extends TestCase {
 		assertEquals(1, c.interval);
 	}
 	
-	public void testAdjustingEasinessUpdatesEasinessHistory() {
+	public void testAdjustingEasinessUpdatesScoreHistory() {
 		Card c = new Card("How big?", "Big.");
 		
-		assertEquals("2.5, 0.0, 0.0", c.getEasinessHistory().toString());
+		assertEquals("0,0,0", c.getScoreHistory().toString());
 		
 		c.adjustEasinessByGrade(1);
 		
-		assertEquals("2.5, 2.5, 0.0", c.getEasinessHistory().toString());
+		assertEquals("1,0,0", c.getScoreHistory().toString());
 		
-		c.adjustEasinessByGrade(1);
+		c.adjustEasinessByGrade(2);
 		
-		assertEquals("2.5, 2.5, 2.5", c.getEasinessHistory().toString());
+		assertEquals("2,1,0", c.getScoreHistory().toString());
 		
-		c.adjustEasinessByGrade(1);
+		c.adjustEasinessByGrade(3);
 		
-		assertEquals("2.5, 2.5, 2.5", c.getEasinessHistory().toString());
+		assertEquals("3,2,1", c.getScoreHistory().toString());
 	}
 }

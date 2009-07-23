@@ -154,10 +154,10 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		
 		System.out.println(sb.toString());
 		
-	    Bitmap bitmap = Bitmap.createBitmap(50, 20, Bitmap.Config.ARGB_4444);
+	    Bitmap bitmap = Bitmap.createBitmap(50, 40, Bitmap.Config.ARGB_4444);
 	    Canvas canvas = new Canvas(bitmap);
 	    Paint paint = new Paint();
-	    Sparkline sl = new Sparkline(50, 20, data, 1);
+	    Sparkline sl = new Sparkline(50, 40, data, 1);
 	    sl.setupRectangles();
 	    sl.draw(canvas, paint);
 	    
