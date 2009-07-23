@@ -39,11 +39,7 @@ public class Sparkline {
 		Rectangle r = new Rectangle(datum);
 		
 		r.w = this.calcRectangleWidth();
-		
-		int h = new Float(datum.intValue() * this.divisor).intValue();
-		
-		r.h = (h > 0) ? h: new Float(this.divisor).intValue();  
-		
+		r.h = new Float(datum.intValue() * this.divisor).intValue();
 		r.x = 0;
 		r.y = this.h - r.h;
 		

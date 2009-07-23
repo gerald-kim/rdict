@@ -76,7 +76,7 @@ public class SparklineTest extends TestCase{
 		Sparkline.Rectangle r1 = s.rectangles.get(0);
 		
 		assertEquals(s.calcRectangleWidth() , r1.w);
-		assertEquals(new Float(s.divisor).intValue(), r1.h);  // actual value is zero, but the graph looks better if there is a small bar at the bottom
+		assertEquals(new Float(0 * s.divisor).intValue(), r1.h);
 		assertEquals(0, r1.x);
 		assertEquals(h - r1.h, r1.y);
 		
