@@ -139,15 +139,23 @@ public class AndroidBarGraph
     return bi;
   }
   
-  private static final int getAvg(final Number[] data)
-  {
+  public static final int getAvg(final Number[] data){
     int total = 0;
     
     for (final Number i : data)
-    {
-     total += i.intValue(); 
-    }
+    	total += i.intValue(); 
     
-    return (total / data.length);
+    return (total / data.length);    
   }
+
+
+	public static int getDivisor(Number[] data, int height) {
+		
+		int max = 0;
+		
+		for(Number val : data)
+			max = Math.max(max, val.intValue());
+		
+		return height / max;
+	}
 }
