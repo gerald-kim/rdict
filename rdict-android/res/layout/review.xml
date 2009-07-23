@@ -43,18 +43,32 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 	
+	<ImageView android:id="@+id/filler_1"
+	   android:layout_width="wrap_content"
+	   android:layout_height="10px"/>
+   </LinearLayout>
+	
+	<RelativeLayout
+		android:id="@+id/widget31"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="10px">
+	
 	<TextView android:id="@+id/card_count_label"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="Cards Count: "
-		android:layout_weight="0">
+		android:layout_weight="0"
+		android:layout_alignParentLeft="true">
 	</TextView>
 	
 	<ImageView android:id="@+id/card_count_graph"
 	   android:layout_width="wrap_content"
 	   android:layout_height="wrap_content"
-	   android:layout_weight="1"/>
-   </LinearLayout>
+	   android:layout_weight="0"
+	   android:layout_alignParentRight="true"/>
+   </RelativeLayout>
    
    <LinearLayout
 		android:id="@+id/widget31"
@@ -62,29 +76,33 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 	
-	<ImageView android:id="@+id/card_count_graph"
+	<ImageView android:id="@+id/filler_2"
 	   android:layout_width="wrap_content"
 	   android:layout_height="10px"/>
    </LinearLayout>
    
-   <LinearLayout
+   <RelativeLayout
 		android:id="@+id/widget31"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		android:padding="10px">
 	
-	<TextView android:id="@+id/card_count_label"
+	<TextView android:id="@+id/grade_label"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="Grade: "
-		android:layout_weight="0">
+		android:layout_weight="0"
+		android:layout_alignParentLeft="true">
 	</TextView>
 	
 	<ImageView android:id="@+id/grade_graph"
 	   android:layout_width="wrap_content"
 	   android:layout_height="wrap_content"
-	   android:layout_weight="1"/>
-   </LinearLayout>
+	   android:layout_weight="0"
+	   android:layout_alignParentRight="true"
+	   />
+   </RelativeLayout>
 	
 	
 	

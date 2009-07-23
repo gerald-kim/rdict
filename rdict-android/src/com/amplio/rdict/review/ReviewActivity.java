@@ -147,7 +147,7 @@ public class ReviewActivity extends Activity implements OnClickListener{
 	}
 	
 	public Bitmap prepareSparkline(Number[] data, boolean isPercentageGraph) {
-		int width = 100;
+		int width = 200;
 		int height = 60;
 		int spacing = 1;
 		
