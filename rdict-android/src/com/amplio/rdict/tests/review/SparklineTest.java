@@ -57,18 +57,9 @@ public class SparklineTest extends TestCase{
 		Sparkline.Rectangle r = s.createRectangle(data[4]);
 		
 		assertEquals(s.calcRectangleWidth(), r.w);
-		assertEquals(data[4].intValue() * s.divisor , r.h);
+		assertEquals(new Float(data[4].intValue() * s.divisor).intValue(), r.h);
 		assertEquals(0, r.x);
-		assertEquals(h - (data[4].intValue() * s.divisor), r.y);
-		
-//		
-//		g.rectangles.get(0).x
-//		g.rectangles.get(0).y
-//		g.rectangles.get(0).w
-//		g.rectangles.get(0).h
-//		
-//		g.toBitmap();
-	
+		assertEquals(new Float(h - (data[4].intValue() * s.divisor)).intValue(), r.y);
 	}
 	
 	public void testSetupRectangles() {
@@ -85,19 +76,19 @@ public class SparklineTest extends TestCase{
 		Sparkline.Rectangle r1 = s.rectangles.get(0);
 		
 		assertEquals(s.calcRectangleWidth() , r1.w);
-		assertEquals(0 * s.divisor, r1.h);
+		assertEquals(new Float(0 * s.divisor).intValue(), r1.h);
 		assertEquals(0, r1.x);
 		assertEquals(h - r1.h, r1.y);
 		
 		Sparkline.Rectangle r2 = s.rectangles.get(1);
 		
-		assertEquals(1 * s.divisor, r2.h);
+		assertEquals(new Float(1 * s.divisor).intValue(), r2.h);
 		assertEquals(r1.x + r1.w + spacing, r2.x);
 		assertEquals(h - r2.h, r2.y);
 		
 		Sparkline.Rectangle r3 = s.rectangles.get(2);
 		
-		assertEquals(2 * s.divisor, r3.h);
+		assertEquals(new Float(2 * s.divisor).intValue(), r3.h);
 		assertEquals(r1.x + r1.w + spacing + r2.w + spacing, r3.x);
 		assertEquals(h - r3.h, r3.y);
 	}
@@ -108,26 +99,34 @@ public class SparklineTest extends TestCase{
 		assertEquals(5, AndroidBarGraph.getAvg(data));
 	}
 	
-	public void testGetDivisor() {
+	public void testCalcDivisor() {
 		int height = 100;
 		
 		Number[] data = new Number[]{0, 1};
 		
-		int expectedDivisor = 100;
+		float expectedDivisor = 100;
 		
-		assertEquals(expectedDivisor, AndroidBarGraph.getDivisor(data, height));
+		assertEquals(expectedDivisor, Sparkline.calcDivisor(data, height));
 		
 		data = new Number[]{0, 1, 2};
 		
-		assertEquals(50, AndroidBarGraph.getDivisor(data, height));
+		assertEquals((float) 50.0, Sparkline.calcDivisor(data, height));
 		
 		data = new Number[]{0, 1, 2, 3};
 		
-		assertEquals(33, AndroidBarGraph.getDivisor(data, height));
+		assertEquals((float) 33.333332, Sparkline.calcDivisor(data, height));
 		
 		data = new Number[]{0, 1, 2, 3, 4};
 		
-		assertEquals(25, AndroidBarGraph.getDivisor(data, height));
+		assertEquals((float) 25.0, Sparkline.calcDivisor(data, height));
+	}
+	
+	public void testCalcDivisorIfDataValueIsGreaterThanHeight() {
+		int height = 20;
+		
+		Number[] data = new Number[]{0, 70};
+		
+		assertEquals(20 / (float) 70.0, Sparkline.calcDivisor(data, height));
 	}
 	
 }

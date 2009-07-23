@@ -6,7 +6,9 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -124,36 +126,42 @@ public class ReviewActivity extends Activity implements OnClickListener{
 			this.lookedupTodayButton.setVisibility(View.INVISIBLE);
 		}
 		
-		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
-		
 		Calendar c = Calendar.getInstance(); 
 		c.add(Calendar.HOUR_OF_DAY, -24 * 14);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String twoWeeksAgo = sdf.format(c.getTime());
 		
+		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
 		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
 		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(twoWeeksAgo);
 		
+		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData);
+	    this.cardCountGraph.setImageBitmap(cardCountBitmap);
+		this.cardCountGraph.setBackgroundColor(Color.WHITE);
+		this.cardCountGraph.refreshDrawableState();
+		
+		Bitmap gradeBitmap = this.prepareSparkline(gradeData);
+		this.gradeGraph.setImageBitmap(gradeBitmap);
+		this.gradeGraph.setBackgroundColor(Color.WHITE);
+		this.gradeGraph.refreshDrawableState();
+	}
+	
+	public Bitmap prepareSparkline(Number[] data) {
 		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < cardCountData.length; i++){
-			sb.append(cardCountData[i] + ",");
+		for(int i = 0; i < data.length; i++){
+			sb.append(data[i] + ",");
 		}
 		
 		System.out.println(sb.toString());
 		
-		// width, height, spacing
-		final SizeParams sizeParams = new SizeParams(50, 20, 1);
-
-		final Bitmap cardCountBitmap = AndroidBarGraph.createGraph(cardCountData, sizeParams, Color.CYAN, Color.RED, Color.BLUE);
-		final Bitmap gradeBitmap = AndroidBarGraph.createGraph(gradeData, sizeParams, Color.CYAN, Color.RED, Color.BLUE);
-
-		this.cardCountGraph.setImageBitmap(cardCountBitmap);
-		this.cardCountGraph.setBackgroundColor(Color.WHITE);
-		this.cardCountGraph.refreshDrawableState();
-		
-		this.gradeGraph.setImageBitmap(gradeBitmap);
-		this.gradeGraph.setBackgroundColor(Color.WHITE);
-		this.gradeGraph.refreshDrawableState();
+	    Bitmap bitmap = Bitmap.createBitmap(50, 20, Bitmap.Config.ARGB_4444);
+	    Canvas canvas = new Canvas(bitmap);
+	    Paint paint = new Paint();
+	    Sparkline sl = new Sparkline(50, 20, data, 1);
+	    sl.setupRectangles();
+	    sl.draw(canvas, paint);
+	    
+		return bitmap;
 	}
 	
 	public void onPause(){

@@ -2,6 +2,10 @@ package com.amplio.rdict.review;
 
 import java.util.Vector;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+
 public class Sparkline {
 
 	public int w = 0;
@@ -9,7 +13,7 @@ public class Sparkline {
 	public int spacing = 0;
 	public Vector<Rectangle> rectangles = null;
 	
-	public int divisor = 0;
+	public float divisor = 0;
 	
 	public Sparkline(int w, int h, Number[] data, int spacing) {
 		this.w = w;
@@ -21,7 +25,56 @@ public class Sparkline {
 		for(Number n : data)
 			this.rectangles.add(new Rectangle(n));
 		
-		this.divisor = AndroidBarGraph.getDivisor(data, this.h);
+		this.divisor = calcDivisor(data, this.h);
+	}
+	
+	public int calcRectangleWidth() {
+		int rWidth = (this.w - (this.spacing * (this.rectangles.size() - 1))) / this.rectangles.size();
+		
+		return rWidth;
+	}
+
+	public Rectangle createRectangle(Number datum) {
+		Rectangle r = new Rectangle(datum);
+		
+		r.w = this.calcRectangleWidth();
+		r.h = new Float(datum.intValue() * this.divisor).intValue();
+		r.x = 0;
+		r.y = this.h - r.h;
+		
+		return r;
+	}
+
+	public void setupRectangles() {
+		Vector<Rectangle> tmp = new Vector<Rectangle>();
+		
+		int tot_width = 0;
+		
+		for (Rectangle r : this.rectangles){
+			Rectangle r_new = this.createRectangle(r.datum);
+			r_new.x = tot_width;
+
+			tmp.add(r_new);
+			
+			tot_width += this.spacing + r_new.w;
+		}
+		
+		this.rectangles = tmp;
+	}
+	
+	public void draw(Canvas canvas, Paint paint) {
+		for( Sparkline.Rectangle r : this.rectangles) {
+		    canvas.drawRect(r.toAndroidRect(), paint);
+	    }		
+	}
+	
+	public static float calcDivisor(Number[] data, int height) {
+		float max = 0;
+		
+		for(Number val : data)
+			max = Math.max(max, val.intValue());
+		
+		return height / max;
 	}
 	
 	public class Rectangle {
@@ -37,41 +90,18 @@ public class Sparkline {
 			this.datum = n;
 		}
 		
-	}
-
-	public int calcRectangleWidth() {
-		int rWidth = (this.w - (this.spacing * (this.rectangles.size() - 1))) / this.rectangles.size();
-		
-		return rWidth;
-	}
-
-	public Rectangle createRectangle(Number datum) {
-		Rectangle r = new Rectangle(datum);
-		
-		r.w = this.calcRectangleWidth();
-		r.h = datum.intValue() * this.divisor;
-		r.x = 0;
-		r.y = this.h - r.h;
-		
-		return r;
-	}
-
-	public void setupRectangles() {
-		Vector<Rectangle> tmp = new Vector<Rectangle>();
-		
-		int tot_width = 0;
-		
-		for (Rectangle r : this.rectangles){
-			Rectangle r_new = this.createRectangle(r.datum);
-			
-			r_new.x = tot_width;
-			
-			tmp.add(r_new);
-			
-			tot_width += this.spacing + r_new.w;
+		public Rect toAndroidRect(){
+			Rect r = new Rect();
+		    r.left = this.x;
+		    r.right = this.x + this.w;
+		    r.bottom = this.y + this.h;
+		    r.top = this.y;
+		    
+		    return r;
 		}
 		
-		this.rectangles = tmp;
+		public String toString() {
+			return "(" + this.w + ", " + this.h + ", " + this.x + ", " + this.y + ", " + this.datum.intValue() + ")";
+		}
 	}
-
 }
