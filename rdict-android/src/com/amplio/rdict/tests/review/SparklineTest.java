@@ -20,7 +20,7 @@ public class SparklineTest extends TestCase{
 	
 		int spacing = 1;
 		
-		Sparkline s = new Sparkline(w, h, data, spacing);
+		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
 		assertEquals(w, s.w);
 		assertEquals(h, s.h);
@@ -35,7 +35,7 @@ public class SparklineTest extends TestCase{
 		
 		int spacing = 1;
 		
-		Sparkline s = new Sparkline(w, h, data, spacing);
+		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
 		// 100 - (1 * 4) / 5
 		// 100 - 4/5
@@ -52,7 +52,7 @@ public class SparklineTest extends TestCase{
 		
 		int spacing = 1;
 		
-		Sparkline s = new Sparkline(w, h, data, spacing);
+		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
 		Sparkline.Rectangle r = s.createRectangle(data[4]);
 		
@@ -69,7 +69,7 @@ public class SparklineTest extends TestCase{
 		
 		int spacing = 1;
 		
-		Sparkline s = new Sparkline(w, h, data, spacing);
+		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
 		s.setupRectangles();
 		
@@ -101,24 +101,34 @@ public class SparklineTest extends TestCase{
 	
 	public void testCalcDivisor() {
 		int height = 100;
+		boolean isPercentageGraph = false;
 		
 		Number[] data = new Number[]{0, 1};
 		
 		float expectedDivisor = 100;
 		
-		assertEquals(expectedDivisor, Sparkline.calcDivisor(data, height));
+		assertEquals(expectedDivisor, Sparkline.calcDivisor(data, height, isPercentageGraph));
 		
 		data = new Number[]{0, 1, 2};
 		
-		assertEquals((float) 50.0, Sparkline.calcDivisor(data, height));
+		assertEquals((float) 50.0, Sparkline.calcDivisor(data, height, false));
 		
 		data = new Number[]{0, 1, 2, 3};
 		
-		assertEquals((float) 33.333332, Sparkline.calcDivisor(data, height));
+		assertEquals((float) 33.333332, Sparkline.calcDivisor(data, height, false));
 		
 		data = new Number[]{0, 1, 2, 3, 4};
 		
-		assertEquals((float) 25.0, Sparkline.calcDivisor(data, height));
+		assertEquals((float) 25.0, Sparkline.calcDivisor(data, height, false));
+	}
+	
+	public void testCalcDivisorForPercentageGraph() {
+		int height = 20;
+		boolean isPercentageGraph = true;
+		
+		Number[] data = new Number[]{0, 1};
+		
+		assertEquals(20 / (float) 100, Sparkline.calcDivisor(data, height, isPercentageGraph));
 	}
 	
 	public void testCalcDivisorIfDataValueIsGreaterThanHeight() {
@@ -126,7 +136,7 @@ public class SparklineTest extends TestCase{
 		
 		Number[] data = new Number[]{0, 70};
 		
-		assertEquals(20 / (float) 70.0, Sparkline.calcDivisor(data, height));
+		assertEquals(20 / (float) 70.0, Sparkline.calcDivisor(data, height, false));
 	}
 	
 }

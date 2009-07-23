@@ -3,6 +3,7 @@ package com.amplio.rdict.review;
 import java.util.Vector;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -15,7 +16,7 @@ public class Sparkline {
 	
 	public float divisor = 0;
 	
-	public Sparkline(int w, int h, Number[] data, int spacing) {
+	public Sparkline(int w, int h, Number[] data, int spacing, boolean isPercentageGraph) {
 		this.w = w;
 		this.h = h;
 		this.spacing = spacing;
@@ -25,7 +26,7 @@ public class Sparkline {
 		for(Number n : data)
 			this.rectangles.add(new Rectangle(n));
 		
-		this.divisor = calcDivisor(data, this.h);
+		this.divisor = calcDivisor(data, this.h, isPercentageGraph);
 	}
 	
 	public int calcRectangleWidth() {
@@ -63,18 +64,26 @@ public class Sparkline {
 	}
 	
 	public void draw(Canvas canvas, Paint paint) {
+		paint.setColor(Color.BLUE);
+		
 		for( Sparkline.Rectangle r : this.rectangles) {
 		    canvas.drawRect(r.toAndroidRect(), paint);
 	    }		
 	}
 	
-	public static float calcDivisor(Number[] data, int height) {
-		float max = 0;
+	public static float calcDivisor(Number[] data, int height, boolean isPercentageGraph) {
+		if( isPercentageGraph) {
+			float oneHundred = 100;
+			return height / oneHundred;
+		}
+		else {
+			float max = 0;
+			
+			for(Number val : data)
+				max = Math.max(max, val.intValue());
 		
-		for(Number val : data)
-			max = Math.max(max, val.intValue());
-		
-		return height / max;
+			return height / max;
+		}
 	}
 	
 	public class Rectangle {

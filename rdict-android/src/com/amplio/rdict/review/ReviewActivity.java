@@ -135,29 +135,26 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
 		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(twoWeeksAgo);
 		
-		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData);
+		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData, false);
 	    this.cardCountGraph.setImageBitmap(cardCountBitmap);
 		this.cardCountGraph.setBackgroundColor(Color.WHITE);
 		this.cardCountGraph.refreshDrawableState();
 		
-		Bitmap gradeBitmap = this.prepareSparkline(gradeData);
+		Bitmap gradeBitmap = this.prepareSparkline(gradeData, true);
 		this.gradeGraph.setImageBitmap(gradeBitmap);
 		this.gradeGraph.setBackgroundColor(Color.WHITE);
 		this.gradeGraph.refreshDrawableState();
 	}
 	
-	public Bitmap prepareSparkline(Number[] data) {
-		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < data.length; i++){
-			sb.append(data[i] + ",");
-		}
+	public Bitmap prepareSparkline(Number[] data, boolean isPercentageGraph) {
+		int width = 100;
+		int height = 60;
+		int spacing = 1;
 		
-		System.out.println(sb.toString());
-		
-	    Bitmap bitmap = Bitmap.createBitmap(50, 40, Bitmap.Config.ARGB_4444);
+		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
 	    Canvas canvas = new Canvas(bitmap);
 	    Paint paint = new Paint();
-	    Sparkline sl = new Sparkline(50, 40, data, 1);
+	    Sparkline sl = new Sparkline(width, height, data, spacing, isPercentageGraph);
 	    sl.setupRectangles();
 	    sl.draw(canvas, paint);
 	    
