@@ -94,9 +94,9 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		
 		this.progress_label.setText("Card " + (cardSetIndex + 1) + " of "+  (this.cardSet.size()) );
 		
-		System.out.println("Before: " + cardSet.elementAt(cardSetIndex).eh.toString());
-		
 		Card c = cardSet.elementAt(cardSetIndex);
+		
+		System.out.println("Before: " + c.eh.toString());
 		
 		this.word_label.setText(c.question);
 		this.def_label.loadData(c.answer, "text/html", "utf-8");

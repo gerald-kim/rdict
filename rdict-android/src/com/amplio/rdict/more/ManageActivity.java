@@ -17,7 +17,6 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
 import com.amplio.rdict.review.CardSetManager;
-import com.db4o.ObjectSet;
 
 public class ManageActivity extends Activity implements OnClickListener, TextWatcher {
 	

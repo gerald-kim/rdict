@@ -7,7 +7,7 @@ import java.util.Date;
 import junit.framework.TestCase;
 
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.EasinessHistory;
+import com.amplio.rdict.review.ScoreHistory;
 import com.amplio.rdict.review.StatRecord;
 import com.amplio.rdict.review.StatisticsManager;
 import com.db4o.Db4o;
@@ -43,9 +43,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = EasinessHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = EasinessHistory.createFromString("0, 0, 0");
-		cCard.eh = EasinessHistory.createFromString("2, 2, 2");
+		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
+		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -109,9 +109,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = EasinessHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = EasinessHistory.createFromString("0, 0, 0");
-		cCard.eh = EasinessHistory.createFromString("2, 2, 2");
+		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
+		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -133,9 +133,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = EasinessHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = EasinessHistory.createFromString("0, 0, 0");
-		cCard.eh = EasinessHistory.createFromString("2, 2, 2");
+		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
+		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);
@@ -166,9 +166,9 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
 		
-		aCard.eh = EasinessHistory.createFromString("4.0, 4.0, 4.0");
-		bCard.eh = EasinessHistory.createFromString("0, 0, 0");
-		cCard.eh = EasinessHistory.createFromString("2, 2, 2");
+		aCard.eh = ScoreHistory.createFromString("4.0, 4.0, 4.0");
+		bCard.eh = ScoreHistory.createFromString("0, 0, 0");
+		cCard.eh = ScoreHistory.createFromString("2, 2, 2");
 
 		db.store(aCard);
 		db.store(bCard);

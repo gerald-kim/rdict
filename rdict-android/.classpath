@@ -2,8 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="src" path="libraries/sqlite-jdbc-3.6.16 copy"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/Users/sbodnar/programming/tools/db4o-7.4/lib/db4o-7.4.88.12908-java1.2.jar"/>
-	<classpathentry kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/sqlitejdbc-v010-Mac/sqlitejdbc.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/sqlite-jdbc-3.6.16-modded.jar"/>
+	<classpathentry kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/db4o-7.4.88.12908-java1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/sqlite-jdbc-3.6.16 copy"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

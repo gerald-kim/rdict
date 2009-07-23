@@ -12,7 +12,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.amplio.rdict.history.HistoryManager;
-import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 
 public class RDictActivity extends TabActivity {
