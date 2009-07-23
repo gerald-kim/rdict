@@ -15,6 +15,7 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
 import com.amplio.rdict.review.CardSetManager;
+import com.amplio.rdict.review.StatisticsManager;
 
 public class EditCardActivity extends Activity implements OnClickListener{
 
@@ -67,7 +68,9 @@ public class EditCardActivity extends Activity implements OnClickListener{
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int whichButton) {
 														Card c = ManageActivity.targetCard;
-														EditCardActivity.cardSetMgr.deleteCard(c); finish();}})
+														EditCardActivity.cardSetMgr.deleteCard(c);
+														new StatisticsManager(RDictActivity.db).saveOrUpdateCardStackStatistics();
+														finish();}})
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
 				public void onClick(DialogInterface dialog, int whichButton) {}})
 			.show();
