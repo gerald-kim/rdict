@@ -1,93 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-android:id="@+id/widget40"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<LinearLayout
-android:id="@+id/widget41"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<TextView
-android:id="@+id/widget45"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="For Help with using RDict."
-android:layout_weight="1"
->
-</TextView>
-<Button
-android:id="@+id/help_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Help"
->
-</Button>
-</LinearLayout>
-<LinearLayout
-android:id="@+id/widget42"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<TextView
-android:id="@+id/widget46"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="View License and other information"
-android:layout_weight="1"
->
-</TextView>
-<Button
-android:id="@+id/about_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="About"
->
-</Button>
-</LinearLayout>
-<LinearLayout
-android:id="@+id/widget43"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<TextView
-android:id="@+id/widget47"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="Add a card, or Edit and Delete cards in your collection"
-android:layout_weight="1"
->
-</TextView>
-<Button
-android:id="@+id/manage_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Manage"
->
-</Button>
-</LinearLayout>
-<LinearLayout
-android:id="@+id/widget44"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
->
-<TextView
-android:id="@+id/widget48"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="Change RDict's default settings"
-android:layout_weight="1"
->
-</TextView>
-<Button
-android:id="@+id/settings_button"
-android:layout_width="80px"
-android:layout_height="wrap_content"
-android:text="Settings"
->
-</Button>
-</LinearLayout>
-</LinearLayout>
+<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<LinearLayout android:id="@+id/widget60"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<RelativeLayout android:id="@+id/widget83"
+			android:layout_width="fill_parent" android:layout_height="60px"
+			android:layout_marginLeft="10px">
+
+			<TextView android:id="@+id/widget101" android:layout_width="200px"
+				android:layout_height="wrap_content" android:text="For Help with using RDict."
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+			</TextView>
+
+			<Button android:id="@+id/help_button" android:layout_width="80px"
+				android:layout_height="wrap_content" android:text="Help"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true">
+			</Button>
+
+		</RelativeLayout>
+
+		<RelativeLayout android:id="@+id/widget83"
+			android:layout_width="fill_parent" android:layout_height="60px"
+			android:layout_marginLeft="10px">
+
+			<TextView android:id="@+id/ssss" android:layout_width="200px"
+				android:layout_height="wrap_content" android:text="View RDict's License and other information."
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+			</TextView>
+
+			<Button android:id="@+id/about_button" android:layout_width="80px"
+				android:layout_height="wrap_content" android:text="About"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true">
+			</Button>
+
+		</RelativeLayout>
+
+		<RelativeLayout android:id="@+id/widget83"
+			android:layout_width="fill_parent" android:layout_height="60px"
+			android:layout_marginLeft="10px">
+
+			<TextView android:id="@+id/widget101" android:layout_width="200px"
+				android:layout_height="wrap_content"
+				android:text="Add a card, or Edit and Delete cards to your collection."
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+			</TextView>
+
+			<Button android:id="@+id/manage_button" android:layout_width="80px"
+				android:layout_height="wrap_content" android:text="Manage"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true">
+			</Button>
+
+		</RelativeLayout>
+
+		<RelativeLayout android:id="@+id/widget83"
+			android:layout_width="fill_parent" android:layout_height="60px"
+			android:layout_marginLeft="10px">
+
+			<TextView android:id="@+id/widget101" android:layout_width="200px"
+				android:layout_height="wrap_content" android:text="Change RDict's default behaviour."
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+			</TextView>
+
+			<Button android:id="@+id/settings_button"
+				android:layout_width="80px" android:layout_height="wrap_content"
+				android:text="Settings" android:layout_alignParentRight="true"
+				android:layout_centerVertical="true">
+			</Button>
+
+		</RelativeLayout>
+
+	</LinearLayout>
+</ScrollView>

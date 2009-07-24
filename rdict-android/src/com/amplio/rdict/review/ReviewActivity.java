@@ -127,13 +127,13 @@ public class ReviewActivity extends Activity implements OnClickListener{
 		}
 		
 		Calendar c = Calendar.getInstance(); 
-		c.add(Calendar.HOUR_OF_DAY, -24 * 14);
+		c.add(Calendar.MONTH, -1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String twoWeeksAgo = sdf.format(c.getTime());
+		String oneMonthAgo = sdf.format(c.getTime());
 		
 		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
-		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(twoWeeksAgo);
-		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(twoWeeksAgo);
+		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(oneMonthAgo);
+		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(oneMonthAgo);
 		
 		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData, false);
 	    this.cardCountGraph.setImageBitmap(cardCountBitmap);
