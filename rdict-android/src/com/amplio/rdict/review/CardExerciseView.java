@@ -12,26 +12,22 @@ public class CardExerciseView extends View implements OnClickListener {
 	
 	public static CardExerciseView buildTopNCardExercise(Context context){
 		CardExerciseView c = new CardExerciseView(context);
-		c.greeting = "Practice your top 20 Hardest Cards:";
-		c.reviewMode = ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST;
+		c.init("Practice your top 20 Hardest Cards:", ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST);
 		return c;
 	}
 	
 	public static CardExerciseView buildScheduledCardExercise(Context context){
 		CardExerciseView c = new CardExerciseView(context);
-		c.greeting = "You have cards to practice today.";
-		c.reviewMode = ReviewManager.EXERCISES_SCHEDULED_TODAY;
+		c.init("You have cards to practice today.", ReviewManager.EXERCISES_SCHEDULED_TODAY);
 		return c;
 	}
 	
 	public static CardExerciseView buildLookedupTodayCardExercise(Context context){
 		CardExerciseView c = new CardExerciseView(context);
-		c.greeting = "Practice the cards you've looked up today:";
-		c.reviewMode = ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY;
+		c.init("Practice the cards you've looked up today:", ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY);
 		return c;
 	}
 	
-	public String greeting = null;
 	public int reviewMode = -1;
 	
 	public TextView exerciseLabel = null;
@@ -39,13 +35,16 @@ public class CardExerciseView extends View implements OnClickListener {
 	
 	public CardExerciseView(Context context) {
 		super(context);
-		
 		this.exerciseLabel = new TextView(context);
-		this.exerciseLabel.setText(this.greeting);
-		
 		this.exerciseButton = new Button(context);
+	}
+	
+	public void init(String greeting, int reviewMode) {
+		this.exerciseLabel.setText(greeting);
 		this.exerciseButton.setText("Go!");
 		this.exerciseButton.setOnClickListener(this);
+		
+		this.reviewMode = reviewMode;
 	}
 
 	public void addToLayout(LinearLayout layout) {
