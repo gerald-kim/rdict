@@ -15,27 +15,13 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_height="wrap_content" android:text="RDict - Review"
 		android:textSize="28sp">
 	</TextView>
-	<TextView android:id="@+id/welcome_mesg" android:layout_width="230px"
-		android:layout_height="wrap_content" android:text="You have x cards to practice today!">
-	</TextView>
-	<Button android:id="@+id/todays_cards_go" android:layout_width="40px"
-		android:layout_height="36px" android:text="Go!">
-	</Button>
-	<TextView android:id="@+id/practice_another_label" android:layout_width="180px"
-		android:layout_height="wrap_content" android:text="Practice another card set:">
-	</TextView>
-	<TextView android:id="@+id/top_20_label" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Your Top 20 Hardest Cards">
-	</TextView>
-	<Button android:id="@+id/top_20_go" android:layout_width="50px"
-		android:layout_height="45px" android:text="Go!">
-	</Button>
-	<TextView android:id="@+id/lookedup_today_label" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="Cards You've looked up today">
-	</TextView>
-	<Button android:id="@+id/lookedup_today_go" android:layout_width="50px"
-		android:layout_height="45px" android:text="Go!">
-	</Button>
+	
+	<LinearLayout
+		android:id="@+id/exercise_layout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+	</LinearLayout>
 	
 	<LinearLayout
 		android:id="@+id/widget31"
