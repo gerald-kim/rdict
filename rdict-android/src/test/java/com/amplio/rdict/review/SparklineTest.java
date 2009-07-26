@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests.review;
+package com.amplio.rdict.review;
 
 import junit.framework.TestCase;
 

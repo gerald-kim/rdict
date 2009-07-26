@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.amplio.rdict"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-        <activity android:label="@string/app_name" android:name="RDictActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        
-        <activity android:label="Search" android:name=".search.SearchActivity"></activity>
-        <activity android:label="Dictionary" android:name=".search.DictionaryActivity"></activity>
-		  <activity android:label="Review" android:name=".review.ReviewActivity"></activity>
-		  <activity android:label="FlashCards" android:name=".review.FlashCardActivity"></activity>
-		  <activity android:label="History" android:name=".history.HistoryActivity"></activity>
-		  <activity android:label="More" android:name=".more.MoreActivity"></activity>
-    
-<activity android:name=".more.AboutActivity"></activity>
-<activity android:name=".more.HelpActivity"></activity>
-<activity android:name=".more.ManageActivity"></activity>
-<activity android:name=".more.SettingsActivity"></activity>
-<activity android:name=".more.EditCardActivity"></activity>
-<activity android:name=".more.AddCardActivity"></activity>
-</application>
+	package="com.amplio.rdict" android:versionCode="1" android:versionName="1.0">
+	<application android:icon="@drawable/icon" android:label="@string/app_name"
+		android:debuggable="true">
+		<activity android:label="@string/app_name" android:name="RDictActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
 
+		<activity android:label="Search" android:name=".search.SearchActivity"></activity>
+		<activity android:label="Dictionary" android:name=".search.DictionaryActivity"></activity>
+		<activity android:label="Review" android:name=".review.ReviewActivity"></activity>
+		<activity android:label="FlashCards" android:name=".review.FlashCardActivity"></activity>
+		<activity android:label="History" android:name=".history.HistoryActivity"></activity>
+		<activity android:label="More" android:name=".more.MoreActivity"></activity>
+
+		<activity android:name=".more.AboutActivity"></activity>
+		<activity android:name=".more.HelpActivity"></activity>
+		<activity android:name=".more.ManageActivity"></activity>
+		<activity android:name=".more.SettingsActivity"></activity>
+		<activity android:name=".more.EditCardActivity"></activity>
+		<activity android:name=".more.AddCardActivity"></activity>
+	</application>
 </manifest> 

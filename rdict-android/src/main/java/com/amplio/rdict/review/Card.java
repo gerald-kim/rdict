@@ -90,4 +90,15 @@ public class Card {
 		return this.sh;
 	}
 
+	@Override
+	public String toString() {
+		return "Card [question=" + question + ", answer=" + answer
+				+ ", date_lookedup=" + date_lookedup + ", date_scheduled="
+				+ date_scheduled + ", easiness=" + easiness + ", interval="
+				+ interval + ", repsSinceLapse=" + repsSinceLapse + ", sh="
+				+ sh + "]";
+	}
+	
+	
+
 }

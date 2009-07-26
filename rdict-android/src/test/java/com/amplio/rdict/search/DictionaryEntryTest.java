@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests.search;
+package com.amplio.rdict.search;
 
 import com.amplio.rdict.search.DictionaryEntry;
 

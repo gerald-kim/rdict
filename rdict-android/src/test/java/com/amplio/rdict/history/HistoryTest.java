@@ -1,4 +1,4 @@
-package com.amplio.rdict.tests.history;
+package com.amplio.rdict.history;
 
 import com.amplio.rdict.history.History;
 import com.amplio.rdict.search.DictionaryEntry;

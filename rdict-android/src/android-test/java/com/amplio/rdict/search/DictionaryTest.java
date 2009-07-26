@@ -1,18 +1,18 @@
-package com.amplio.rdict.tests.search;
+package com.amplio.rdict.search;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import junit.framework.TestCase;
 import android.database.sqlite.SQLiteDatabase;
+import android.test.AndroidTestCase;
 
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
 import com.amplio.rdict.search.DictionaryEntry;
 
-public class DictionaryTest extends TestCase implements AssetInputStreamProvider{
+public class DictionaryTest extends AndroidTestCase implements AssetInputStreamProvider{
 	
 	private InputStream _htmlStream = null;
 	

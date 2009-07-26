@@ -1,14 +1,5 @@
 The Android version of RDict needs to have the word databases placed in the 'asset' folder.
 
-Because of the ~ 1 megabyte size limit on a file, we have to chop-up a dictionary.  
-Use the script make_small_db_cdb.py to create the dictionary files for Android.  
-The script should output a number of files called 
-word0.db, word1.db, ... in pywiktionary/enwiktionary-small_cdb.  
-Simply copy those files to rdict-android/assets and then RDict should be ready to go.
-** This is a bit of a hack right now.  I'm sure it can be done better**
-
-To run, use Eclipse's Run configuration.  Easy as that!
-
 Note: Android emulator is really slow... It takes a long time to appear 
 and for the app to load (at least on my computer)
 
@@ -21,3 +12,34 @@ Window > Show View > Other > Android > LogCat
 
 Note: Best way to test the app repeatedly is just to leave Emulator running.  Eclipse will start
 the app automatically on the emulator for you.  It's kind of nice.
+
+
+INSTALL  
+=======
+
+* install maven 2.2.0 ( http://maven.apache.org/download.html )
+* setup environment variable to locate android sdk 
+    $ export ANDROID_SDK_15=/Developer/android-sdk-mac_x86-1.5_r2 
+* install jar files to maven repository
+    $ cd libraries
+    $ ./mvn_install.sh
+    
+TESTING
+=======
+
+    $ mvn test
+    or 
+    run junit tests in eclipse
+    
+(I'll make other project for in vm tests)
+
+BUILD
+=====
+
+Android Package Builder in eclipse is disabled ( for fast build )
+To install rdict to android use maven 
+
+    $ mvn install
+    $ mvn android:deploy
+    
+ 
