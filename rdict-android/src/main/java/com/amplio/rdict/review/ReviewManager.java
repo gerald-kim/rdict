@@ -1,6 +1,6 @@
 package com.amplio.rdict.review;
 
-import com.db4o.ObjectContainer;
+import org.neodatis.odb.ODB;
 
 public class ReviewManager {
 	public static final int EXERCISES_SCHEDULED_TODAY = 0;
@@ -17,7 +17,7 @@ public class ReviewManager {
 	public boolean isAvailableLookedupTodayExercise = false;
 	public boolean isAvailableTOPNExercise = false;
 	
-	public ReviewManager(ObjectContainer db){
+	public ReviewManager(ODB db){
 		this.cardsMgr = new CardSetManager(db);
 	}
 	

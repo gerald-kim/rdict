@@ -1,5 +1,8 @@
 package com.amplio.rdict;
 
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.ODBFactory;
+
 import android.app.TabActivity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,7 +15,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.amplio.rdict.history.HistoryManager;
-import com.db4o.ObjectContainer;
 
 public class RDictActivity extends TabActivity {
 	
@@ -23,7 +25,7 @@ public class RDictActivity extends TabActivity {
 													BASE_PACKAGE + ".history.",
 													BASE_PACKAGE + ".more."};
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
-	public static ObjectContainer db = null;
+	public static ODB db = null;
 	//test
 	private HistoryManager _historyMgr = null;
 	
@@ -47,7 +49,8 @@ public class RDictActivity extends TabActivity {
         	tabs.addTab(tab);
         }
         
-        RDictActivity.db = DB4oConnectionFactory.getObjectContainer(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
+		RDictActivity.db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/"
+		        + "rdict_db.odb" );
         
         SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_historyMgr = new HistoryManager(con);
@@ -55,7 +58,14 @@ public class RDictActivity extends TabActivity {
     	_historyMgr.createTableIfNotExists(con);
     }
     
-    public static class MyTabIndicator extends LinearLayout {
+    @Override
+    protected void onDestroy() {
+    	db.commit();
+    	db.close();
+    }
+
+
+	public static class MyTabIndicator extends LinearLayout {
 		public MyTabIndicator(Context context, String label) {
 			super(context);
 			

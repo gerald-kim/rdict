@@ -5,7 +5,6 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="src" path="src/android-test/java"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="libraries/db4o-7.4.88.12908-java1.2.jar"/>
 	<classpathentry kind="lib" path="libraries/neodatis-odb-1.9.3.601.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

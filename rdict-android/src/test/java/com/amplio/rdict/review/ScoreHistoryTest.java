@@ -2,8 +2,6 @@ package com.amplio.rdict.review;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.review.ScoreHistory;
-
 public class ScoreHistoryTest extends TestCase{
 
 	public void testEasinessHistoryTest() {

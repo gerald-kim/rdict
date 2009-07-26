@@ -6,8 +6,6 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.review.Card;
-
 public class CardTest extends TestCase {
 	
 	public void testConstructor() {

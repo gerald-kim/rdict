@@ -4,106 +4,74 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import com.db4o.query.Query;
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.Objects;
+import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.Where;
+import org.neodatis.odb.core.query.nq.SimpleNativeQuery;
+import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
 public class CardSetManager {
-	public ObjectContainer db = null;
-	
-	public CardSetManager (ObjectContainer db) {
-		this.db = db;
+	private ODB db = null;
+
+	public CardSetManager( ODB odb ) {
+		db = odb;
 	}
-	
-	public void save(Card card) {
-		db.store(card);
-		db.commit();
+
+	public void save( Card card ) {
+		db.store( card );
 	}
-	
-	public void deleteCard(Card card) {
-		db.delete(card);
-		db.commit();
+
+	public void deleteCard( Card card ) {
+		db.delete( card );
 	}
-	
-	public Vector<Card> loadCardsByScheduledDate(String scheduledDate) {
-		Vector<Card> v = new Vector<Card>();
-		
-		Query query= db.query();
-		query.constrain(Card.class);
-		query.descend("date_scheduled").constrain(scheduledDate);
-		ObjectSet cards = query.execute();
-		
-		for(int i = 0; i < cards.size(); i++)
-			v.add((Card)cards.get(i));
-		
-		return v;
+
+	public Vector<Card> loadCardsByScheduledDate( String scheduledDate ) {
+		IQuery query = db.criteriaQuery( Card.class, Where.le( "date_scheduled", scheduledDate ) );
+		Objects<Card> cards = db.getObjects( query );
+		return new Vector<Card>( cards );
+
 	}
 
 	public Vector<Card> loadCardsScheduledForToday() {
-        String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		return this.loadCardsByScheduledDate(todaysDate);
+		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
+		return this.loadCardsByScheduledDate( todaysDate );
 	}
 
 	public Vector<Card> loadCardsLookedupToday() {
-		Vector<Card> v = new Vector<Card>();
-		
-		String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		
-		Query query = db.query();
-		query.constrain(Card.class);
-		query.descend("date_lookedup").constrain(todaysDate);
-		ObjectSet cards = query.execute();
-		
-		for(int i = 0; i < cards.size(); i++)
-			v.add((Card)cards.get(i));
-		
-		return v;
-	}
-	
-	public Vector<Card> loadTopNHardestCards(int n) {
-		Vector<Card> v = new Vector<Card>();
-		
-		Query query= db.query();
-		query.constrain(Card.class);
-		query.descend("easiness").orderAscending();
-		ObjectSet cards = query.execute();
-		
-		for(int i = 0; i < 20 && i < cards.size(); i++)
-			v.add((Card)cards.get(i));
-		
-		return v;
+		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
+
+		IQuery query = db.criteriaQuery( Card.class, Where.equal( "date_lookedup", todaysDate ) );
+		Objects<Card> cards = db.getObjects( query );
+		return new Vector<Card>( cards );
 	}
 
-	public Vector<Card> loadCardsByPrefix(String prefix) {
-		Vector<Card> v = new Vector<Card>();
-		
-		Query query= db.query();
-		query.constrain(Card.class);
-		
-		if(! "".equals(prefix))
-			query.descend("question").constrain(prefix).startsWith(true);
-		
-		query.descend("question").orderAscending();
-		
-		ObjectSet cards = query.execute();
-		
-		for(int i = 0; i < 20 && i < cards.size(); i++)
-			v.add((Card)cards.get(i));
-		
-		return v;
+	public Vector<Card> loadTopNHardestCards( int n ) {
+		IQuery query = db.criteriaQuery( Card.class ).orderByAsc( "easiness" );
+		Objects<Card> cards = db.getObjects( query, true, 0, n );
+		return new Vector<Card>( cards );
 	}
 
-	public Card loadCardByHeadword(String headword) {
-		Query query = db.query();
-		query.constrain(Card.class);
-		query.descend("question").constrain(headword);
-		ObjectSet cards = query.execute();
-		
-		if(1 < cards.size())
-			throw new IllegalStateException("Duplicates cards exist in the database.");
-		else if (1 == cards.size())
-			return (Card) cards.get(0);
-		else
+	public Vector<Card> loadCardsByPrefix( final String prefix ) {
+		IQuery query = new SimpleNativeQuery() {
+			public boolean match( Card card ) {
+				return card.question.toLowerCase().startsWith( prefix.toLowerCase() );
+			}
+		};
+		query.orderByAsc( "question" );
+		Objects<Card> objects = db.getObjects( query, true, 0, 20 );
+		return new Vector<Card>( objects );
+	}
+
+	public Card loadCardByHeadword( String headword ) {
+		IQuery query = db.criteriaQuery( Card.class, Where.equal( "question", headword ) );
+		int count = db.count( (CriteriaQuery) query ).intValue();
+		if( 1 < count ) {
+			throw new IllegalStateException( "Duplicates cards exist in the database." );
+		} else if( 1 == count ) {
+			return (Card) db.getObjects( query ).getFirst();
+		} else {
 			return null;
+		}
 	}
 }

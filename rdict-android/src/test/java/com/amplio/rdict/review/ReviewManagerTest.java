@@ -5,28 +5,21 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.ReviewManager;
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.ODBFactory;
 
 public class ReviewManagerTest extends TestCase {
 	
-	public static final String DB_TEST_FILE = "db4o_test.db";
+	public static final String DB_TEST_FILE = "test.db";
 	
-	ObjectContainer db = null;
-	
+	ODB db = null;
+
 	public void setUp() {
-		db = Db4o.openFile(DB_TEST_FILE);
+		db = ODBFactory.open( DB_TEST_FILE );
 	}
-	
+
 	public void tearDown() {
-		ObjectSet set = db.query(Card.class);
-		
-		for(int i = 0; i < set.size(); i++)
-			db.delete(set.get(i));
-		
+		db.rollback();
 		db.close();
 	}
 	
@@ -80,9 +73,9 @@ public class ReviewManagerTest extends TestCase {
 		
 		mgr.checkAvailableExercises();
 		
-		assertTrue(! mgr.isAvailableTodaysScheduledExercise);
-		assertTrue(! mgr.isAvailableLookedupTodayExercise);
-		assertTrue(mgr.isAvailableTOPNExercise);
+		assertTrue( mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !mgr.isAvailableLookedupTodayExercise );
+		assertTrue( mgr.isAvailableTOPNExercise );
 	}
 	
 	

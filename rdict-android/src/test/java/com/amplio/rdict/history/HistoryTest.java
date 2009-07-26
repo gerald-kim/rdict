@@ -1,9 +1,8 @@
 package com.amplio.rdict.history;
 
-import com.amplio.rdict.history.History;
-import com.amplio.rdict.search.DictionaryEntry;
-
 import junit.framework.TestCase;
+
+import com.amplio.rdict.search.DictionaryEntry;
 
 public class HistoryTest extends TestCase {
 

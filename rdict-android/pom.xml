@@ -59,11 +59,6 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>db4o</groupId>
-			<artifactId>db4o</artifactId>
-			<version>7.4.88.12908-java1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.neodatis</groupId>
 			<artifactId>neodatis-odb</artifactId>
 			<version>1.9.3.601</version>

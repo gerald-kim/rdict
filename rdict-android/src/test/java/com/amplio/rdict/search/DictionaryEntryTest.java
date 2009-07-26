@@ -1,7 +1,5 @@
 package com.amplio.rdict.search;
 
-import com.amplio.rdict.search.DictionaryEntry;
-
 import junit.framework.TestCase;
 
 public class DictionaryEntryTest extends TestCase {

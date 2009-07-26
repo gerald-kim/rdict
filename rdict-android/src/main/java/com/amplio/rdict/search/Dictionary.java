@@ -3,7 +3,6 @@ package com.amplio.rdict.search;
 import java.io.InputStream;
 import java.util.Vector;
 
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 

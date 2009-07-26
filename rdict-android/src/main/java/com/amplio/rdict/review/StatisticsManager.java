@@ -6,184 +6,172 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import com.db4o.query.Query;
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.Objects;
+import org.neodatis.odb.core.query.IQuery;
+import org.neodatis.odb.core.query.criteria.Where;
 
 public class StatisticsManager {
 
 	private static final double MAX_SCORE = 4;
-	
-	ObjectContainer db = null;
-	
+
+	ODB db = null;
+
 	public CardSetManager cardsMgr = null;
-	
-	public StatisticsManager(ObjectContainer db) {
+
+	public StatisticsManager( ODB db ) {
 		this.db = db;
-		this.cardsMgr = new CardSetManager(db);
+		this.cardsMgr = new CardSetManager( db );
 	}
 
 	public int calculateStudyGrade() {
 		double total = 0;
-		
-		Vector<Card> cards = this.cardsMgr.loadCardsByPrefix("");
-		
-		for(int i = 0; i < cards.size(); i++){
-			Card c = (Card) cards.get(i);
+
+		Vector<Card> cards = this.cardsMgr.loadCardsByPrefix( "" );
+
+		for( int i = 0; i < cards.size(); i++ ) {
+			Card c = (Card) cards.get( i );
 			total += c.getScoreHistory().calcAvg() / MAX_SCORE;
 		}
-		
-		return new Double(100 * (total / cards.size())).intValue();
+
+		return new Double( 100 * (total / cards.size()) ).intValue();
 	}
 
 	public int countCards() {
 		return this.cardsMgr.loadCardsLookedupToday().size();
 	}
-	
-	public StatRecord loadStatRecordByDate(String date) {
-		Query query = this.db.query();
-		query.constrain(StatRecord.class);
-		query.descend("record_date").constrain(date);
-		ObjectSet records = query.execute();
-		
-		if(1 == records.size())
-			return (StatRecord) records.get(0);
-		else if (1 < records.size())
-			throw new IllegalStateException("Duplicate StatRecords exist for date: " + date);
+
+	public StatRecord loadStatRecordByDate( String date ) {
+		IQuery query = db.criteriaQuery( StatRecord.class, Where.equal( "record_date", date ) );
+		Objects<StatRecord> records = db.getObjects( query );
+
+		if( 1 == records.size() )
+			return records.getFirst();
+		else if( 1 < records.size() )
+			throw new IllegalStateException( "Duplicate StatRecords exist for date: " + date );
 		else
-			return null;	
+			return null;
 	}
-	
-	public Number[] fetchCardCountData(String cutOffDate) {
-		Query query = this.db.query();
-		query.constrain(StatRecord.class);
-		query.descend("record_date").constrain(cutOffDate).greater();
-		query.descend("record_date").orderAscending();
-		ObjectSet records = query.execute();
-		
-		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow(cutOffDate);
+
+	public Number[] fetchCardCountData( String cutOffDate ) {
+		IQuery query = db.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
+		query.orderByAsc( "record_date" );
+		Objects<StatRecord> objects = db.getObjects( query );
+		Vector<StatRecord> records = new Vector<StatRecord>( objects );
+		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutOffDate );
 		Number[] cardCounts = new Number[numDaysBetweenCutOffDateAndNow];
-		
+
 		Calendar startDate = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		
+		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
+
 		try {
-			startDate.setTime(sdf.parse(cutOffDate));
-		} catch (ParseException e) {
+			startDate.setTime( sdf.parse( cutOffDate ) );
+		} catch( ParseException e ) {
 			e.printStackTrace();
 		}
-		
-		startDate.add(Calendar.HOUR_OF_DAY, 24);
-		
+
+		startDate.add( Calendar.HOUR_OF_DAY, 24 );
+
 		int recordIndex = 0;
-		
-		for(int i = 0; i < numDaysBetweenCutOffDateAndNow; i++){
-			if(recordIndex < records.size()){
-				StatRecord record = (StatRecord) records.get(recordIndex);
-				
-				if(record.record_date.equals(sdf.format(startDate.getTime()))){
-					cardCounts[i] = new Integer(record.cardCount);
+
+		for( int i = 0; i < numDaysBetweenCutOffDateAndNow; i++ ) {
+			if( recordIndex < records.size() ) {
+				StatRecord record = (StatRecord) records.get( recordIndex );
+
+				if( record.record_date.equals( sdf.format( startDate.getTime() ) ) ) {
+					cardCounts[i] = new Integer( record.cardCount );
 					recordIndex++;
-				}
-				else {
+				} else {
 					cardCounts[i] = 0;
 				}
-			}
-			else {
+			} else {
 				cardCounts[i] = 0;
 			}
-			
-			startDate.add(Calendar.HOUR_OF_DAY, 24);
+
+			startDate.add( Calendar.HOUR_OF_DAY, 24 );
 		}
-		
+
 		return cardCounts;
 	}
 
-	public Number[] fetchGradeData(String cutOffDate) {
-		Query query = this.db.query();
-		query.constrain(StatRecord.class);
-		query.descend("record_date").constrain(cutOffDate).greater();
-		query.descend("record_date").orderAscending();
-		ObjectSet records = query.execute();
-		
-		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow(cutOffDate);
+	public Number[] fetchGradeData( String cutOffDate ) {
+		IQuery query = db.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
+		query.orderByAsc( "record_date" );
+		Objects<StatRecord> objects = db.getObjects( query );
+		Vector<StatRecord> records = new Vector<StatRecord>( objects );
+
+		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutOffDate );
 		Number[] grades = new Number[numDaysBetweenCutOffDateAndNow];
-		
+
 		Calendar startDate = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		
+		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
+
 		try {
-			startDate.setTime(sdf.parse(cutOffDate));
-		} catch (ParseException e) {
+			startDate.setTime( sdf.parse( cutOffDate ) );
+		} catch( ParseException e ) {
 			e.printStackTrace();
 		}
-		
-		startDate.add(Calendar.HOUR_OF_DAY, 24);
-		
+
+		startDate.add( Calendar.HOUR_OF_DAY, 24 );
+
 		int recordIndex = 0;
 		int prevGrade = 0;
-		
-		for(int i = 0; i < numDaysBetweenCutOffDateAndNow; i++){
-			if(recordIndex < records.size()){
-				StatRecord record = (StatRecord) records.get(recordIndex);
-				
-				if(record.record_date.equals(sdf.format(startDate.getTime()))){
-					grades[i] = new Integer(record.gradeInPercent);
+
+		for( int i = 0; i < numDaysBetweenCutOffDateAndNow; i++ ) {
+			if( recordIndex < records.size() ) {
+				StatRecord record = (StatRecord) records.get( recordIndex );
+
+				if( record.record_date.equals( sdf.format( startDate.getTime() ) ) ) {
+					grades[i] = new Integer( record.gradeInPercent );
 					recordIndex++;
+				} else {
+					grades[i] = new Integer( prevGrade );
 				}
-				else {
-					grades[i] = new Integer(prevGrade);
-				}
+			} else {
+				grades[i] = new Integer( prevGrade );
 			}
-			else {
-				grades[i] = new Integer(prevGrade);
-			}
-			
+
 			prevGrade = grades[i].intValue();
-			startDate.add(Calendar.HOUR_OF_DAY, 24);
+			startDate.add( Calendar.HOUR_OF_DAY, 24 );
 		}
-		
+
 		return grades;
 	}
-	
-	public int calcNumberOfDaysBetweenDateAndNow(String date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+	public int calcNumberOfDaysBetweenDateAndNow( String date ) {
+		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
 		Date d = null;
-		
+
 		try {
-			d = sdf.parse(date);
-		} catch (ParseException e) {
+			d = sdf.parse( date );
+		} catch( ParseException e ) {
 			e.printStackTrace();
 		}
-		
-		return new Long((new Date().getTime() - d.getTime()) / ((long) 1000 * 60 * 60 * 24)).intValue();
+
+		return new Long( (new Date().getTime() - d.getTime()) / ((long) 1000 * 60 * 60 * 24) )
+		        .intValue();
 	}
-	
+
 	public void saveOrUpdateCardStackStatistics() {
-		String todaysDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		
-		StatRecord record = this.loadStatRecordByDate(todaysDate);
-		
-		if (record != null){
+		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
+
+		StatRecord record = this.loadStatRecordByDate( todaysDate );
+
+		if( record != null ) {
 			record.cardCount = this.countCards();
 			record.gradeInPercent = this.calculateStudyGrade();
+		} else {
+			record = new StatRecord( this.countCards(), this.calculateStudyGrade(), todaysDate );
 		}
-		else {
-			record = new StatRecord(this.countCards(), this.calculateStudyGrade(), todaysDate);
-		}
-		
-		this.db.store(record);
+
+		this.db.store( record );
 		this.db.commit();
 	}
-	
+
 	public void deleteAllStatRecords() {
-		Query query = this.db.query();
-		query.constrain(StatRecord.class);
-		ObjectSet records = query.execute();
-		
-		for(int i = 0; i < records.size(); i++)
-			db.delete(records.get(i));
-		
-		db.commit();
+		Objects<StatRecord> objects = db.getObjects( StatRecord.class, false );
+		for( StatRecord record : objects ) {
+			db.delete( record, true );
+		}
 	}
 }

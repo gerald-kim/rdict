@@ -7,9 +7,6 @@ import java.io.InputStream;
 
 import junit.framework.TestCase;
 
-import com.amplio.rdict.search.DictionaryEntry;
-import com.amplio.rdict.search.DictionaryEntryFactory;
-
 public class DictionaryEntryFactoryTest extends TestCase {
 
 	private InputStream _htmlStream = null;

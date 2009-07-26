@@ -4,10 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
-import com.amplio.rdict.search.DictionaryEntry;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.amplio.rdict.search.DictionaryEntry;
 
 public class HistoryManager {
 	private SQLiteDatabase _con = null;

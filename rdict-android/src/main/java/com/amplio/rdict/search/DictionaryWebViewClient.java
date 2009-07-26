@@ -3,13 +3,13 @@ package com.amplio.rdict.search;
 
 
 
-import com.amplio.rdict.RDictActivity;
-import com.amplio.rdict.review.StatisticsManager;
-
 import android.content.Context;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.review.StatisticsManager;
 
 public class DictionaryWebViewClient extends WebViewClient{
 
