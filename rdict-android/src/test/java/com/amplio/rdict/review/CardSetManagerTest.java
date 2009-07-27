@@ -209,12 +209,15 @@ public class CardSetManagerTest extends TestCase {
 		Vector<Card> cards = mgr.loadCardsByPrefix( "a" );
 
 		assertEquals( 1, cards.size() );
-
+		assertEquals( 3, db.getObjects( ScoreHistory.class ).size() );
+		
 		mgr.deleteCard( aCard );
 
 		cards = mgr.loadCardsByPrefix( "a" );
 
 		assertEquals( 0, cards.size() );
+		assertEquals( 2, db.getObjects( ScoreHistory.class ).size() );
+		
 	}
 
 	public void testLoadCardByHeadword() {

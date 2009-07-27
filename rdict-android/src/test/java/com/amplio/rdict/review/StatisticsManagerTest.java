@@ -11,7 +11,7 @@ import org.neodatis.odb.ODBFactory;
 
 public class StatisticsManagerTest extends TestCase {
 	
-	public static final String DB_TEST_FILE = "db4o_test.db";
+	public static final String DB_TEST_FILE = "test.db";
 
 	ODB db = null;
 

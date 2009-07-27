@@ -3,7 +3,6 @@ package com.amplio.rdict.review;
 import java.util.Vector;
 
 public class ScoreHistory {
-
 	public static ScoreHistory createFromString(String string) {
 		String[] vals = string.split(",");
 		

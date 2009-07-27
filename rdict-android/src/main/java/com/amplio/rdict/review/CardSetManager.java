@@ -23,7 +23,8 @@ public class CardSetManager {
 	}
 
 	public void deleteCard( Card card ) {
-		db.delete( card );
+		db.delete( card.getScoreHistory(), false );
+		db.delete( card, false );
 	}
 
 	public Vector<Card> loadCardsByScheduledDate( String scheduledDate ) {
@@ -52,9 +53,11 @@ public class CardSetManager {
 		return new Vector<Card>( cards );
 	}
 
-	public Vector<Card> loadCardsByPrefix( final String prefix ) {
+	@SuppressWarnings( "serial" )
+    public Vector<Card> loadCardsByPrefix( final String prefix ) {
 		IQuery query = new SimpleNativeQuery() {
-			public boolean match( Card card ) {
+			@SuppressWarnings( "unused" )
+            public boolean match( Card card ) {
 				return card.question.toLowerCase().startsWith( prefix.toLowerCase() );
 			}
 		};

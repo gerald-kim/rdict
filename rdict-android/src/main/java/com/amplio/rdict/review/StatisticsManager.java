@@ -165,7 +165,6 @@ public class StatisticsManager {
 		}
 
 		this.db.store( record );
-		this.db.commit();
 	}
 
 	public void deleteAllStatRecords() {

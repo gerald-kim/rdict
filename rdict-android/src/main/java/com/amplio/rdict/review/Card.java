@@ -17,7 +17,7 @@ public class Card {
 	public String date_scheduled;
 	public String date_lookedup;
 	
-	public ScoreHistory sh = null;
+	public ScoreHistory sh;
 
 	public Card(String question, String answer) {
 		this.question = question;
