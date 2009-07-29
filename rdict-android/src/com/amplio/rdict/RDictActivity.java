@@ -22,8 +22,10 @@ public class RDictActivity extends TabActivity {
 													BASE_PACKAGE + ".review.",
 													BASE_PACKAGE + ".history.",
 													BASE_PACKAGE + ".more."};
+	
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
 	public static ObjectContainer db = null;
+
 	//test
 	private HistoryManager _historyMgr = null;
 	
@@ -63,7 +65,6 @@ public class RDictActivity extends TabActivity {
 
 			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
 			tv.setText(label);
-		}
-		
+		}	
     }
 }

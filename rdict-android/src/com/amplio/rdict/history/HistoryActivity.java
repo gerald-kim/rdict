@@ -81,7 +81,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		
 		String word = parent.getAdapter().getItem(position).toString();
 		
 		SearchActivity.searchWord = new DictionaryEntry(word, "something");

@@ -6,13 +6,15 @@ import junit.framework.TestSuite;
 import com.amplio.rdict.tests.history.HistoryTest;
 import com.amplio.rdict.tests.review.CardSetManagerTest;
 import com.amplio.rdict.tests.review.CardTest;
-import com.amplio.rdict.tests.review.ScoreHistoryTest;
 import com.amplio.rdict.tests.review.ReviewManagerTest;
+import com.amplio.rdict.tests.review.ScoreHistoryTest;
 import com.amplio.rdict.tests.review.SparklineTest;
 import com.amplio.rdict.tests.review.StatisticsManagerTest;
 import com.amplio.rdict.tests.search.DictionaryEntryFactoryTest;
 import com.amplio.rdict.tests.search.DictionaryEntryTest;
 import com.amplio.rdict.tests.search.DictionaryTest;
+import com.amplio.rdict.tests.setup.DownloadManagerTest;
+import com.amplio.rdict.tests.setup.SetupManagerTest;
 
 public class AllTests {
 
@@ -30,6 +32,8 @@ public class AllTests {
 		suite.addTestSuite(DictionaryEntryFactoryTest.class);
 		suite.addTestSuite(DictionaryEntryTest.class);
 		suite.addTestSuite(DictionaryTest.class);
+		suite.addTestSuite(SetupManagerTest.class);
+		suite.addTestSuite(DownloadManagerTest.class);
 		//$JUnit-END$
 		return suite;
 	}

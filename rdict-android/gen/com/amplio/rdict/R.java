@@ -46,8 +46,9 @@ public final class R {
         public static final int progress_label=0x7f050012;
         public static final int save_button=0x7f050007;
         public static final int settings_button=0x7f050029;
+        public static final int setup_layout=0x7f050035;
         public static final int ssss=0x7f050026;
-        public static final int tab_label=0x7f050035;
+        public static final int tab_label=0x7f050036;
         public static final int title=0x7f05000b;
         public static final int today_label=0x7f05002b;
         public static final int view_answer_button=0x7f050019;
@@ -84,7 +85,8 @@ public final class R {
         public static final int review=0x7f03000b;
         public static final int search=0x7f03000c;
         public static final int settings=0x7f03000d;
-        public static final int tab_indicator=0x7f03000e;
+        public static final int setup=0x7f03000e;
+        public static final int tab_indicator=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
