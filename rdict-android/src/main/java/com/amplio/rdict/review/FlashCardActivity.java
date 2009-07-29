@@ -80,13 +80,13 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 		
 		switch(ReviewActivity.reviewMode){
 			case ReviewManager.EXERCISES_SCHEDULED_TODAY: 
-				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsScheduledForToday();
+				this.cardSet = RDictActivity.c_cardSetManager.loadCardsScheduledForToday();
 				break;
 			case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
-				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadCardsLookedupToday();
+				this.cardSet = RDictActivity.c_cardSetManager.loadCardsLookedupToday();
 				break;
 			case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
-				this.cardSet = ReviewActivity.reviewManager.cardsMgr.loadTopNHardestCards(20);
+				this.cardSet = RDictActivity.c_cardSetManager.loadTopNHardestCards(20);
 				break;
 			default:
 				System.out.println("Bad argument here in FlashCardActivity");
@@ -117,7 +117,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				c.adjustEasinessByGrade(getGradeByButton(v));
 				c.schedule();
 				
-				ReviewActivity.reviewManager.cardsMgr.save(c);
+				RDictActivity.c_cardSetManager.save(c);
 				
 				System.out.println("After: " + c.sh.toString());
 				
@@ -137,7 +137,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 					this.i_forgot_button.setVisibility(View.INVISIBLE);
 				}
 				else{
-					new StatisticsManager(RDictActivity.db).saveOrUpdateCardStackStatistics();
+					RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
 					this.finish();
 					System.out.println("Finished reviewing");
 				}

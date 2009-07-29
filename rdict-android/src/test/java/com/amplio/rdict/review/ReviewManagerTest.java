@@ -9,127 +9,118 @@ import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
 public class ReviewManagerTest extends TestCase {
-	
+
 	public static final String DB_TEST_FILE = "test.db";
-	
-	ODB db = null;
+
+	private ODB m_db;
+	private CardSetManager m_cardSetManager;
+
+	private ReviewManager m_mgr;
 
 	public void setUp() {
-		db = ODBFactory.open( DB_TEST_FILE );
+		m_db = ODBFactory.open( DB_TEST_FILE );
+		m_cardSetManager = new CardSetManager( m_db );
+		m_mgr = new ReviewManager( m_db, m_cardSetManager );
 	}
 
 	public void tearDown() {
-		db.rollback();
-		db.close();
+		m_db.rollback();
+		m_db.close();
 	}
-	
+
 	public void testDetermineStudyModeIfNoCards() {
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkAvailableExercises();
-		
-		assertTrue(! mgr.isAvailableTodaysScheduledExercise);
-		assertTrue(! mgr.isAvailableLookedupTodayExercise);
-		assertTrue(! mgr.isAvailableTOPNExercise);
+
+		m_mgr.checkAvailableExercises();
+
+		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( !m_mgr.isAvailableTOPNExercise );
 	}
-	
+
 	public void testCheckExercisesIfCardsScheduledForToday() {
-        Card cardScheduledForToday = new Card("today", "the answer");
-        cardScheduledForToday.date_lookedup = "19700101";
-        cardScheduledForToday.date_scheduled = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		
-		db.store(cardScheduledForToday);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkAvailableExercises();
-		
-		assertTrue(mgr.isAvailableTodaysScheduledExercise);
-		assertTrue(! mgr.isAvailableLookedupTodayExercise);
-		assertTrue(mgr.isAvailableTOPNExercise);
+		Card cardScheduledForToday = new Card( "today", "the answer" );
+		cardScheduledForToday.date_lookedup = "19700101";
+		cardScheduledForToday.date_scheduled = new SimpleDateFormat( "yyyyMMdd" )
+		        .format( new Date() );
+
+		m_db.store( cardScheduledForToday );
+
+		m_mgr.checkAvailableExercises();
+
+		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
-	
+
 	public void testCheckExercisesIfCardsLookedUpToday() {
-        Card c = new Card("today", "the answer");
-        db.store(c);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkAvailableExercises();
-		
-		assertTrue(! mgr.isAvailableTodaysScheduledExercise);
-		assertTrue(mgr.isAvailableLookedupTodayExercise);
-		assertTrue(mgr.isAvailableTOPNExercise);
+		Card c = new Card( "today", "the answer" );
+		m_db.store( c );
+
+		m_mgr.checkAvailableExercises();
+
+		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
-	
+
 	public void testCheckExercisesIfNotLookedUpTodayAndNotScheduledForToday() {
-        Card c = new Card("today", "the answer");
-        c.date_lookedup = "19700101";
-        c.date_scheduled = "19700101";
-        
-        db.store(c);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkAvailableExercises();
-		
-		assertTrue( mgr.isAvailableTodaysScheduledExercise );
-		assertTrue( !mgr.isAvailableLookedupTodayExercise );
-		assertTrue( mgr.isAvailableTOPNExercise );
+		Card c = new Card( "today", "the answer" );
+		c.date_lookedup = "19700101";
+		c.date_scheduled = "19700101";
+
+		m_db.store( c );
+
+		m_mgr.checkAvailableExercises();
+
+		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
-	
-	
-	public void testDetermineAvailableExercises(){
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkStudyAvailableStudyModes();
-		
-		assertEquals(ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, mgr.availableExercises);
+
+	public void testDetermineAvailableExercises() {
+
+		m_mgr.checkStudyAvailableStudyModes();
+
+		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, m_mgr.availableExercises );
 	}
-	
-	
+
 	public void testCheckStudyModeIfCardsScheduledForToday() {
-		Card cardLookedupToday = new Card("lookeduptoday","an answer");
-        cardLookedupToday.schedule();
-        
-        Card cardScheduledForToday = new Card("today", "the answer");
-        cardScheduledForToday.date_scheduled = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		
-		db.store(cardScheduledForToday);
-		db.store(cardLookedupToday);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkStudyAvailableStudyModes();
-		
-		assertEquals(ReviewManager.EXERCISES_SCHEDULED_TODAY, mgr.availableExercises);
+		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
+		cardLookedupToday.schedule();
+
+		Card cardScheduledForToday = new Card( "today", "the answer" );
+		cardScheduledForToday.date_scheduled = new SimpleDateFormat( "yyyyMMdd" )
+		        .format( new Date() );
+
+		m_db.store( cardScheduledForToday );
+		m_db.store( cardLookedupToday );
+
+		m_mgr.checkStudyAvailableStudyModes();
+
+		assertEquals( ReviewManager.EXERCISES_SCHEDULED_TODAY, m_mgr.availableExercises );
 	}
-	
+
 	public void testCheckStudyModeIfCardLookedupToday() {
-		Card cardLookedupToday = new Card("lookeduptoday","an answer");
-        cardLookedupToday.schedule();
-       
-		db.store(cardLookedupToday);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkStudyAvailableStudyModes();
-		
-		assertEquals(ReviewManager.EXERCISES_OTHER, mgr.availableExercises);
+		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
+		cardLookedupToday.schedule();
+
+		m_db.store( cardLookedupToday );
+
+		m_mgr.checkStudyAvailableStudyModes();
+
+		assertEquals( ReviewManager.EXERCISES_OTHER, m_mgr.availableExercises );
 	}
-	
+
 	public void testCheckStudyModeIfNoScheduledCardAndNoLookedupCardButCardsExist() {
-		Card cardLookedupIn1970AndNotScheduledForToday = new Card("question","an answer");
+		Card cardLookedupIn1970AndNotScheduledForToday = new Card( "question", "an answer" );
 		cardLookedupIn1970AndNotScheduledForToday.date_lookedup = "19700101";
 		cardLookedupIn1970AndNotScheduledForToday.schedule();
-       
-		db.store(cardLookedupIn1970AndNotScheduledForToday);
-		
-		ReviewManager mgr = new ReviewManager(db);
-		
-		mgr.checkStudyAvailableStudyModes();
-		
-		assertEquals(ReviewManager.EXERCISES_OTHER, mgr.availableExercises);
+
+		m_db.store( cardLookedupIn1970AndNotScheduledForToday );
+
+		m_mgr.checkStudyAvailableStudyModes();
+
+		assertEquals( ReviewManager.EXERCISES_OTHER, m_mgr.availableExercises );
 	}
 
 }

@@ -15,6 +15,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.amplio.rdict.history.HistoryManager;
+import com.amplio.rdict.review.CardSetManager;
+import com.amplio.rdict.review.ReviewManager;
+import com.amplio.rdict.review.StatisticsManager;
 
 public class RDictActivity extends TabActivity {
 	
@@ -25,9 +28,14 @@ public class RDictActivity extends TabActivity {
 													BASE_PACKAGE + ".history.",
 													BASE_PACKAGE + ".more."};
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
-	public static ODB db = null;
+	private ODB m_db = null;
 	//test
 	private HistoryManager _historyMgr = null;
+
+	public static CardSetManager c_cardSetManager = null;
+	public static StatisticsManager c_statisticsManager = null;
+	public static ReviewManager c_reviewManager = null;
+
 	
     /** Called when the activity is first created. */
     @Override
@@ -49,8 +57,16 @@ public class RDictActivity extends TabActivity {
         	tabs.addTab(tab);
         }
         
-		RDictActivity.db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/"
+		initDatabaseManagers();
+    }
+
+	private void initDatabaseManagers() {
+	    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/"
 		        + "rdict_db.odb" );
+	    
+	    c_cardSetManager = new CardSetManager( m_db );
+	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );
+	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
         
         SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_historyMgr = new HistoryManager(con);
@@ -60,8 +76,8 @@ public class RDictActivity extends TabActivity {
     
     @Override
     protected void onDestroy() {
-    	db.commit();
-    	db.close();
+    	m_db.commit();
+    	m_db.close();
     }
 
 

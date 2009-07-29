@@ -16,11 +16,8 @@ import android.widget.ListView;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.CardSetManager;
 
 public class ManageActivity extends Activity implements OnClickListener, TextWatcher {
-	
-	CardSetManager cardMgr = null;
 	
 	ListView cardList = null;
 	
@@ -43,10 +40,9 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	
 	public void onResume() {
 		super.onResume();
-		this.cardMgr = new CardSetManager(RDictActivity.db);
 		
 		String prefix = this.filterText.getText().toString();
-		Vector<Card> cards = this.cardMgr.loadCardsByPrefix(prefix);
+		Vector<Card> cards = RDictActivity.c_cardSetManager.loadCardsByPrefix(prefix);
 		
 		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
@@ -74,7 +70,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		Vector<Card> cards = this.cardMgr.loadCardsByPrefix(s.toString());
+		Vector<Card> cards = RDictActivity.c_cardSetManager.loadCardsByPrefix(s.toString());
 		
 		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
 		

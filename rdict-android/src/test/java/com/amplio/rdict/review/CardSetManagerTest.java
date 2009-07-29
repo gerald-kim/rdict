@@ -16,8 +16,11 @@ public class CardSetManagerTest extends TestCase {
 
 	ODB db = null;
 
+	private CardSetManager m_cardSetManager;
+
 	public void setUp() {
 		db = ODBFactory.open( DB_TEST_FILE );
+		m_cardSetManager = new CardSetManager( db );
 	}
 
 	public void tearDown() {
@@ -25,27 +28,11 @@ public class CardSetManagerTest extends TestCase {
 		db.close();
 	}
 
-	public void testSaveCardsWithDb4o() {
-		// Card c1 = new Card("Q", "A");
-		//		
-		// db.store(c1);
-		//		
-		// db.close();
-		//		
-		// db = Db4o.openFile(DB_TEST_FILE);
-		//		
-		// ObjectSet cards = db.query(Card.class);
-		//		
-		// assertEquals(1, cards.size());
-		// assertEquals("Q", ((Card)cards.get(0)).question);
-	}
-
 	public void testSaveCard() {
-		CardSetManager mgr = new CardSetManager( db );
-
+		
 		Card cardForToday = new Card( "today", "the answer" );
 
-		mgr.save( cardForToday );
+		m_cardSetManager.save( cardForToday );
 
 		Objects<Card> cards = db.getObjects( Card.class );
 
@@ -54,7 +41,6 @@ public class CardSetManagerTest extends TestCase {
 	}
 
 	public void testLoadScheduledCards() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card cardForToday = new Card( "today", "the answer" );
 		Card cardFor19700101 = new Card( "1970 baby yeah!", "the answer" );
@@ -62,11 +48,11 @@ public class CardSetManagerTest extends TestCase {
 		Card cardFor19700102 = new Card( "1970 second day", "the answer" );
 		cardFor19700102.date_scheduled = "19700102";
 
-		mgr.save( cardForToday );
-		mgr.save( cardFor19700101 );
-		mgr.save( cardFor19700102 );
+		m_cardSetManager.save( cardForToday );
+		m_cardSetManager.save( cardFor19700101 );
+		m_cardSetManager.save( cardFor19700102 );
 
-		Vector<Card> cards = mgr.loadCardsByScheduledDate( "19700101" );
+		Vector<Card> cards = m_cardSetManager.loadCardsByScheduledDate( "19700101" );
 
 		assertEquals( 1, cards.size() );
 
@@ -74,7 +60,7 @@ public class CardSetManagerTest extends TestCase {
 
 		assertEquals( "1970 baby yeah!", card.question );
 
-		cards = mgr.loadCardsByScheduledDate( "19700102" );
+		cards = m_cardSetManager.loadCardsByScheduledDate( "19700102" );
 
 		assertEquals( 2, cards.size() );
 	}
@@ -82,11 +68,10 @@ public class CardSetManagerTest extends TestCase {
 	public void testLoadScheduledCardsButNoneScheduled() {
 		Card cardForToday = new Card( "today", "the answer" );
 
-		CardSetManager mgr = new CardSetManager( db );
 
-		mgr.save( cardForToday );
+		m_cardSetManager.save( cardForToday );
 
-		Vector<Card> cardsScheduled = mgr.loadCardsByScheduledDate( "19700101" );
+		Vector<Card> cardsScheduled = m_cardSetManager.loadCardsByScheduledDate( "19700101" );
 
 		assertEquals( 0, cardsScheduled.size() );
 	}
@@ -99,11 +84,10 @@ public class CardSetManagerTest extends TestCase {
 		cardScheduledForToday.date_scheduled = new SimpleDateFormat( "yyyyMMdd" )
 		        .format( new Date() );
 
-		CardSetManager mgr = new CardSetManager( db );
-		mgr.save( cardLookedupToday );
-		mgr.save( cardScheduledForToday );
+		m_cardSetManager.save( cardLookedupToday );
+		m_cardSetManager.save( cardScheduledForToday );
 
-		Vector<Card> cards = mgr.loadCardsScheduledForToday();
+		Vector<Card> cards = m_cardSetManager.loadCardsScheduledForToday();
 
 		assertEquals( 1, cards.size() );
 
@@ -116,11 +100,10 @@ public class CardSetManagerTest extends TestCase {
 		Card cardLookedupIn1970 = new Card( "today", "the answer" );
 		cardLookedupIn1970.date_lookedup = "19700101";
 
-		CardSetManager mgr = new CardSetManager( db );
-		mgr.save( cardLookedupToday );
-		mgr.save( cardLookedupIn1970 );
+		m_cardSetManager.save( cardLookedupToday );
+		m_cardSetManager.save( cardLookedupIn1970 );
 
-		Vector<Card> cards = mgr.loadCardsLookedupToday();
+		Vector<Card> cards = m_cardSetManager.loadCardsLookedupToday();
 
 		assertEquals( 1, cards.size() );
 
@@ -144,12 +127,11 @@ public class CardSetManagerTest extends TestCase {
 		easyCard.easiness = 4;
 		hardCards[totalNumCards - 1] = easyCard;
 
-		CardSetManager mgr = new CardSetManager( db );
 		for( int i = 0; i < totalNumCards; i++ ) {
-			mgr.save( hardCards[i] );
+			m_cardSetManager.save( hardCards[i] );
 		}
 
-		Vector<Card> cards = mgr.loadTopNHardestCards( n );
+		Vector<Card> cards = m_cardSetManager.loadTopNHardestCards( n );
 
 		assertEquals( n, cards.size() );
 
@@ -160,17 +142,16 @@ public class CardSetManagerTest extends TestCase {
 	}
 
 	public void testLoadByPrefixIfNoneGiven() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card aCard = new Card( "apple", "the answer" );
 		Card bCard = new Card( "banana", "the answer" );
 		Card cCard = new Card( "coconunt", "the answer" );
 
-		mgr.save( bCard );
-		mgr.save( aCard );
-		mgr.save( cCard );
+		m_cardSetManager.save( bCard );
+		m_cardSetManager.save( aCard );
+		m_cardSetManager.save( cCard );
 
-		Vector<Card> cards = mgr.loadCardsByPrefix( "" );
+		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "" );
 
 		assertEquals( 3, cards.size() );
 		assertEquals( aCard.question, ((Card) cards.get( 0 )).question );
@@ -179,41 +160,39 @@ public class CardSetManagerTest extends TestCase {
 	}
 
 	public void testLoadByPrefix() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card aCard = new Card( "apple", "the answer" );
 		Card bCard = new Card( "banana", "the answer" );
 		Card cCard = new Card( "coconunta", "the answer" );
 
-		mgr.save( aCard );
-		mgr.save( bCard );
-		mgr.save( cCard );
+		m_cardSetManager.save( aCard );
+		m_cardSetManager.save( bCard );
+		m_cardSetManager.save( cCard );
 
-		Vector<Card> cards = mgr.loadCardsByPrefix( "a" );
+		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "a" );
 
 		assertEquals( 1, cards.size() );
 		assertEquals( aCard.question, cards.get( 0 ).question );
 	}
 
 	public void testDeleteCard() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card aCard = new Card( "apple", "the answer" );
 		Card bCard = new Card( "banana", "the answer" );
 		Card cCard = new Card( "coconunt", "the answer" );
 
-		mgr.save( aCard );
-		mgr.save( bCard );
-		mgr.save( cCard );
+		m_cardSetManager.save( aCard );
+		m_cardSetManager.save( bCard );
+		m_cardSetManager.save( cCard );
 
-		Vector<Card> cards = mgr.loadCardsByPrefix( "a" );
+		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "a" );
 
 		assertEquals( 1, cards.size() );
 		assertEquals( 3, db.getObjects( ScoreHistory.class ).size() );
 		
-		mgr.deleteCard( aCard );
+		m_cardSetManager.deleteCard( aCard );
 
-		cards = mgr.loadCardsByPrefix( "a" );
+		cards = m_cardSetManager.loadCardsByPrefix( "a" );
 
 		assertEquals( 0, cards.size() );
 		assertEquals( 2, db.getObjects( ScoreHistory.class ).size() );
@@ -221,62 +200,58 @@ public class CardSetManagerTest extends TestCase {
 	}
 
 	public void testLoadCardByHeadword() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card aCard = new Card( "apple", "the answer" );
 		Card bCard = new Card( "banana", "the answer" );
 		Card cCard = new Card( "coconunt", "the answer" );
 
-		mgr.save( aCard );
-		mgr.save( bCard );
-		mgr.save( cCard );
+		m_cardSetManager.save( aCard );
+		m_cardSetManager.save( bCard );
+		m_cardSetManager.save( cCard );
 
-		Card c = mgr.loadCardByHeadword( "banana" );
+		Card c = m_cardSetManager.loadCardByHeadword( "banana" );
 
 		assertEquals( "banana", c.question );
 	}
 
 	public void testLoadCardByHeadwordIfDuplicateExists() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card bCard1 = new Card( "banana", "the answer" );
 		Card bCard2 = new Card( "banana", "the answer2" );
 		Card cCard = new Card( "coconunt", "the answer" );
 
-		mgr.save( bCard1 );
-		mgr.save( bCard2 );
-		mgr.save( cCard );
+		m_cardSetManager.save( bCard1 );
+		m_cardSetManager.save( bCard2 );
+		m_cardSetManager.save( cCard );
 
 		try {
-			mgr.loadCardByHeadword( "banana" );
+			m_cardSetManager.loadCardByHeadword( "banana" );
 			fail();
 		} catch( IllegalStateException ignore ) {
 		}
 	}
 
 	public void testLoadCardByHeadwordIfNoSuchCardExists() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card bCard1 = new Card( "banana", "the answer" );
 
-		mgr.save( bCard1 );
+		m_cardSetManager.save( bCard1 );
 
-		Card c = mgr.loadCardByHeadword( "fish" );
+		Card c = m_cardSetManager.loadCardByHeadword( "fish" );
 
 		assertEquals( null, c );
 	}
 
 	public void testLoadingCardPreservesEasinessHistory() {
-		CardSetManager mgr = new CardSetManager( db );
 
 		Card bCard1 = new Card( "banana", "the answer" );
 		bCard1.adjustEasinessByGrade( 1 );
 
 		assertEquals( "1,0,0", bCard1.getScoreHistory().toString() );
 
-		mgr.save( bCard1 );
+		m_cardSetManager.save( bCard1 );
 
-		Card c = mgr.loadCardByHeadword( "banana" );
+		Card c = m_cardSetManager.loadCardByHeadword( "banana" );
 
 		assertEquals( "banana", c.question );
 		assertEquals( "1,0,0", c.getScoreHistory().toString() );

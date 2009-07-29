@@ -15,19 +15,19 @@ public class StatisticsManager {
 
 	private static final double MAX_SCORE = 4;
 
-	ODB db = null;
+	private ODB m_odb = null;
 
-	public CardSetManager cardsMgr = null;
+	private CardSetManager m_cardSetManager;
 
-	public StatisticsManager( ODB db ) {
-		this.db = db;
-		this.cardsMgr = new CardSetManager( db );
+	public StatisticsManager( ODB db, CardSetManager cardSetManager ) {
+		this.m_odb = db;
+		m_cardSetManager = cardSetManager;
 	}
 
 	public int calculateStudyGrade() {
 		double total = 0;
 
-		Vector<Card> cards = this.cardsMgr.loadCardsByPrefix( "" );
+		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "" );
 
 		for( int i = 0; i < cards.size(); i++ ) {
 			Card c = (Card) cards.get( i );
@@ -38,12 +38,12 @@ public class StatisticsManager {
 	}
 
 	public int countCards() {
-		return this.cardsMgr.loadCardsLookedupToday().size();
+		return m_cardSetManager.loadCardsLookedupToday().size();
 	}
 
 	public StatRecord loadStatRecordByDate( String date ) {
-		IQuery query = db.criteriaQuery( StatRecord.class, Where.equal( "record_date", date ) );
-		Objects<StatRecord> records = db.getObjects( query );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.equal( "record_date", date ) );
+		Objects<StatRecord> records = m_odb.getObjects( query );
 
 		if( 1 == records.size() )
 			return records.getFirst();
@@ -54,9 +54,9 @@ public class StatisticsManager {
 	}
 
 	public Number[] fetchCardCountData( String cutOffDate ) {
-		IQuery query = db.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
 		query.orderByAsc( "record_date" );
-		Objects<StatRecord> objects = db.getObjects( query );
+		Objects<StatRecord> objects = m_odb.getObjects( query );
 		Vector<StatRecord> records = new Vector<StatRecord>( objects );
 		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutOffDate );
 		Number[] cardCounts = new Number[numDaysBetweenCutOffDateAndNow];
@@ -95,9 +95,9 @@ public class StatisticsManager {
 	}
 
 	public Number[] fetchGradeData( String cutOffDate ) {
-		IQuery query = db.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
 		query.orderByAsc( "record_date" );
-		Objects<StatRecord> objects = db.getObjects( query );
+		Objects<StatRecord> objects = m_odb.getObjects( query );
 		Vector<StatRecord> records = new Vector<StatRecord>( objects );
 
 		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutOffDate );
@@ -164,13 +164,13 @@ public class StatisticsManager {
 			record = new StatRecord( this.countCards(), this.calculateStudyGrade(), todaysDate );
 		}
 
-		this.db.store( record );
+		m_odb.store( record );
 	}
 
 	public void deleteAllStatRecords() {
-		Objects<StatRecord> objects = db.getObjects( StatRecord.class, false );
+		Objects<StatRecord> objects = m_odb.getObjects( StatRecord.class, false );
 		for( StatRecord record : objects ) {
-			db.delete( record, true );
+			m_odb.delete( record, true );
 		}
 	}
 }

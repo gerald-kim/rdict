@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.CardSetManager;
 
 public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener {
 	private TextView title = null;
@@ -24,7 +23,6 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 	private WebView _searchResultsPage = null;
 
     private Dictionary _dictionary = null;
-    private CardSetManager _cardSetMgr = null;
     
     /** Called when the activity is first created. */
     @Override
@@ -34,8 +32,6 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	
     	SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
     	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
-    	
-    	_cardSetMgr = new CardSetManager(RDictActivity.db);
     	
 		this.title = (TextView)findViewById(R.id.title);
 		
@@ -66,8 +62,6 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	super.onResume();
     	
     	this.refreshDicPage(SearchActivity.searchWord.headword, true);
-    	    	
-		_cardSetMgr = new CardSetManager(RDictActivity.db);
     }
     
     public void refreshDicPage(String word, boolean recordHistory) {
@@ -89,7 +83,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     public void addCard(String def){
     	Card card = new Card(title.getText().toString(), def);
 		card.schedule();
-		_cardSetMgr.save(card);
+		RDictActivity.c_cardSetManager.save(card);
     }
     
     public void onPause() {

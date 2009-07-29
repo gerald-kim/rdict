@@ -19,9 +19,6 @@ import com.amplio.rdict.RDictActivity;
 
 public class ReviewActivity extends Activity {
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
-	public static ReviewManager reviewManager = null;
-	public static StatisticsManager statManager = null;
-	
 	private TextView noCardsScheduledTodayLabel = null;
 	private TextView finishedScheduledTodayLabel = null;
 	private TextView practiceAnotherSetLabel = null;
@@ -66,27 +63,26 @@ public class ReviewActivity extends Activity {
 		
 		this.exerciseLayout.removeAllViews();
 		
-		reviewManager = new ReviewManager(RDictActivity.db);
-		reviewManager.checkAvailableExercises();
+		RDictActivity.c_reviewManager.checkAvailableExercises();
 		
-		if(reviewManager.isAvailableTodaysScheduledExercise){
+		if(RDictActivity.c_reviewManager.isAvailableTodaysScheduledExercise){
 			this.exerciseLayout.addView(this.scheduledView);
 		}
-		else if (reviewManager.isAvailableLookedupTodayExercise || reviewManager.isAvailableTOPNExercise) {
+		else if (RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise || RDictActivity.c_reviewManager.isAvailableTOPNExercise) {
 			
 			String todaysDate = new SimpleDateFormat().format(new Date());
 			
-			if(null == new StatisticsManager(RDictActivity.db).loadStatRecordByDate(todaysDate))
+			if(null == RDictActivity.c_statisticsManager.loadStatRecordByDate(todaysDate))
 				this.exerciseLayout.addView(this.noCardsScheduledTodayLabel);
 			else
 				this.exerciseLayout.addView(this.finishedScheduledTodayLabel);
 			
 			this.exerciseLayout.addView(this.practiceAnotherSetLabel);
 			
-			if(reviewManager.isAvailableLookedupTodayExercise)
+			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
 				this.todayView.addToLayout(this.exerciseLayout);
 
-			if(reviewManager.isAvailableTOPNExercise)
+			if(RDictActivity.c_reviewManager.isAvailableTOPNExercise)
 				this.topNView.addToLayout(this.exerciseLayout);
 		}
 		else {
@@ -98,9 +94,8 @@ public class ReviewActivity extends Activity {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String oneMonthAgo = sdf.format(c.getTime());
 		
-		ReviewActivity.statManager = new StatisticsManager(RDictActivity.db);
-		Number[] cardCountData = ReviewActivity.statManager.fetchCardCountData(oneMonthAgo);
-		Number[] gradeData = ReviewActivity.statManager.fetchGradeData(oneMonthAgo);
+		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
+		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
 		
 		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData, false);
 	    this.cardCountGraph.setImageBitmap(cardCountBitmap);

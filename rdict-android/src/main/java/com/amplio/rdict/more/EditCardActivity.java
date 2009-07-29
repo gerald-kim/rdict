@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.CardSetManager;
-import com.amplio.rdict.review.StatisticsManager;
 
 public class EditCardActivity extends Activity implements OnClickListener{
 
@@ -24,8 +22,6 @@ public class EditCardActivity extends Activity implements OnClickListener{
 	Button cancelButton = null;
 	Button saveButton = null;
 	Button deleteButton = null;
-	
-	public static CardSetManager cardSetMgr = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -41,13 +37,11 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		this.deleteButton = (Button) findViewById(R.id.delete_button);
 		this.deleteButton.setOnClickListener(this);
 		
-		EditCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		EditCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 		
 		this.headwordLabel.setText(ManageActivity.targetCard.question);
 		this.definitionText.setText(ManageActivity.targetCard.answer.replace("%20", " "));
@@ -57,7 +51,7 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		if(this.saveButton == v){
 			Card c = ManageActivity.targetCard;
 			c.answer = this.definitionText.getText().toString().replace(" ", "%20");
-			EditCardActivity.cardSetMgr.save(c);
+			RDictActivity.c_cardSetManager.save(c);
 			Toast.makeText(this, "Changes saved.", Toast.LENGTH_SHORT).show();
 			this.finish();
 		}
@@ -66,13 +60,15 @@ public class EditCardActivity extends Activity implements OnClickListener{
 			.setTitle("Delete")
 			.setMessage("Delete this card?")
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-														Card c = ManageActivity.targetCard;
-														EditCardActivity.cardSetMgr.deleteCard(c);
-														new StatisticsManager(RDictActivity.db).saveOrUpdateCardStackStatistics();
-														finish();}})
+				        public void onClick( DialogInterface dialog, int whichButton ) {
+					        Card c = ManageActivity.targetCard;
+					        RDictActivity.c_cardSetManager.deleteCard( c );
+					        RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
+					        finish();
+				        }
+			        } )
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
-				public void onClick(DialogInterface dialog, int whichButton) {}})
+						public void onClick(DialogInterface dialog, int whichButton) {}})
 			.show();
 		}
 		else if(this.cancelButton == v){

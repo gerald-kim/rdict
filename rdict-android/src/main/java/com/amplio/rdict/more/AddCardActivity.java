@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.CardSetManager;
 
 public class AddCardActivity extends Activity implements OnClickListener{
 
@@ -21,8 +20,6 @@ public class AddCardActivity extends Activity implements OnClickListener{
 	EditText definitionText = null;
 	Button cancelButton = null;
 	Button saveButton = null;
-	
-	public static CardSetManager cardSetMgr = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -36,13 +33,11 @@ public class AddCardActivity extends Activity implements OnClickListener{
 		this.saveButton = (Button) findViewById(R.id.save_button);
 		this.saveButton.setOnClickListener(this);
 		
-		AddCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		AddCardActivity.cardSetMgr = new CardSetManager(RDictActivity.db);
 	}
 
 	public void onClick(View v) {
@@ -51,14 +46,14 @@ public class AddCardActivity extends Activity implements OnClickListener{
 
 			Card c2 = null;
 			try {
-				c2 = AddCardActivity.cardSetMgr.loadCardByHeadword(c.question);
+				c2 = RDictActivity.c_cardSetManager.loadCardByHeadword(c.question);
 			}
 			catch(IllegalStateException e){
 				e.printStackTrace();
 			}
 			
 			if(null == c2) {
-				AddCardActivity.cardSetMgr.save(c);
+				RDictActivity.c_cardSetManager.save(c);
 				Toast.makeText(this, "Card added.", Toast.LENGTH_SHORT).show();
 				this.finish();
 			}

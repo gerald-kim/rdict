@@ -13,10 +13,14 @@ public class StatisticsManagerTest extends TestCase {
 	
 	public static final String DB_TEST_FILE = "test.db";
 
-	ODB db = null;
+	private ODB db = null;
+	private CardSetManager m_cardSetManager;
+	private StatisticsManager m_statisticsManager;
 
 	public void setUp() {
 		db = ODBFactory.open( DB_TEST_FILE );
+		m_cardSetManager = new CardSetManager( db );
+		m_statisticsManager = new StatisticsManager(db, m_cardSetManager);
 	}
 
 	public void tearDown() {
@@ -37,9 +41,8 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(bCard);
 		db.store(cCard);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
-		int grade = mgr.calculateStudyGrade();
+		int grade = m_statisticsManager.calculateStudyGrade();
 		
 		assertEquals(50, grade);
 	}
@@ -55,23 +58,21 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(bCard);
 		db.store(cCard);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
-		assertEquals(2, mgr.countCards());
+		assertEquals(2, m_statisticsManager.countCards());
 	}
 	
 	public void testLoadStatRecordByDate(){
 		StatRecord statRecord = new StatRecord(1, 30, "19700101");
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
 		db.store(statRecord);
 		
-		StatRecord record = mgr.loadStatRecordByDate("19700101");
+		StatRecord record = m_statisticsManager.loadStatRecordByDate("19700101");
 		
 		assertEquals("19700101", record.record_date);
 		
-		record = mgr.loadStatRecordByDate("20120101");
+		record = m_statisticsManager.loadStatRecordByDate("20120101");
 		
 		assertEquals(null, record);
 	}
@@ -80,13 +81,12 @@ public class StatisticsManagerTest extends TestCase {
 		StatRecord statRecord = new StatRecord(1, 30, "19700101");
 		StatRecord statRecord2 = new StatRecord(1, 30, "19700101");
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
 		db.store(statRecord);
 		db.store(statRecord2);
 		
 		try{
-			mgr.loadStatRecordByDate("19700101");
+			m_statisticsManager.loadStatRecordByDate("19700101");
 			fail();
 		}
 		catch(IllegalStateException ignore){}
@@ -105,12 +105,11 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(bCard);
 		db.store(cCard);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.saveOrUpdateCardStackStatistics();
+		m_statisticsManager.saveOrUpdateCardStackStatistics();
 		
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		StatRecord r = mgr.loadStatRecordByDate(today);
+		StatRecord r = m_statisticsManager.loadStatRecordByDate(today);
 		
 		assertEquals(today, r.record_date);
 		assertEquals(3, r.cardCount);
@@ -130,21 +129,20 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(bCard);
 		db.store(cCard);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.saveOrUpdateCardStackStatistics();
+		m_statisticsManager.saveOrUpdateCardStackStatistics();
 		
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		StatRecord r = mgr.loadStatRecordByDate(today);
+		StatRecord r = m_statisticsManager.loadStatRecordByDate(today);
 		
 		assertEquals(today, r.record_date);
 		assertEquals(2, r.cardCount);
 		
 		db.store(new Card("fish", "the definition for fish"));
 		
-		mgr.saveOrUpdateCardStackStatistics();
+		m_statisticsManager.saveOrUpdateCardStackStatistics();
 		
-		r = mgr.loadStatRecordByDate(today);
+		r = m_statisticsManager.loadStatRecordByDate(today);
 		
 		assertEquals(today, r.record_date);
 		assertEquals(3, r.cardCount);
@@ -163,21 +161,20 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(bCard);
 		db.store(cCard);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
-		mgr.saveOrUpdateCardStackStatistics();
+		m_statisticsManager.saveOrUpdateCardStackStatistics();
 		
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd"); 
 		c.add(Calendar.HOUR_OF_DAY, -48);
 		String twoDaysAgo = sdf.format(c.getTime());
 		
-		Number[] pastGrades = mgr.fetchGradeData(twoDaysAgo);
+		Number[] pastGrades = m_statisticsManager.fetchGradeData(twoDaysAgo);
 		
 		assertEquals(0, pastGrades[0]);
 		assertEquals(50, pastGrades[1]);
 		
-		Number[] pastCardCounts = mgr.fetchCardCountData(twoDaysAgo);
+		Number[] pastCardCounts = m_statisticsManager.fetchCardCountData(twoDaysAgo);
 
 		assertEquals(0, pastCardCounts[0]);
 		assertEquals(3, pastCardCounts[1]);
@@ -205,7 +202,6 @@ public class StatisticsManagerTest extends TestCase {
 		StatRecord statRecord2 = new StatRecord(4, 50, yesterdaysDate);
 		StatRecord statRecord3 = new StatRecord(1, 20, tenDaysBeforeDate);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
 		db.store(statRecord1);
 		db.store(statRecord2);
@@ -215,7 +211,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		Number[] pastCardCounts = null;
 		
-		pastCardCounts = mgr.fetchCardCountData(cutOffDate);
+		pastCardCounts = m_statisticsManager.fetchCardCountData(cutOffDate);
 		
 		assertEquals(1, pastCardCounts[0]);
 		assertEquals(0, pastCardCounts[1]);
@@ -252,7 +248,6 @@ public class StatisticsManagerTest extends TestCase {
 		StatRecord statRecord2 = new StatRecord(4, 50, yesterdaysDate);
 		StatRecord statRecord3 = new StatRecord(1, 20, tenDaysBeforeDate);
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 		
 		db.store(statRecord1);
 		db.store(statRecord2);
@@ -260,7 +255,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		String cutOffDate = elevenDaysBeforeDate;
 		
-		Number[] pastGrades = mgr.fetchGradeData(cutOffDate);
+		Number[] pastGrades = m_statisticsManager.fetchGradeData(cutOffDate);
 		
 		assertEquals(20, pastGrades[0]);
 		assertEquals(20, pastGrades[1]);
@@ -281,16 +276,15 @@ public class StatisticsManagerTest extends TestCase {
 		c.add(Calendar.HOUR_OF_DAY, -24 * 10);
 		String tenDaysBeforeDate = sdf.format(c.getTime());
 		
-		StatisticsManager mgr = new StatisticsManager(db);
 
-		Number[] pastGrades = mgr.fetchGradeData(tenDaysBeforeDate);
+		Number[] pastGrades = m_statisticsManager.fetchGradeData(tenDaysBeforeDate);
 		
 		assertEquals(10, pastGrades.length);
 		
 		for(int i = 0 ; i < pastGrades.length; i++)
 			assertEquals(0, pastGrades[i]);
 		
-		Number[] pastCardCounts = mgr.fetchCardCountData(tenDaysBeforeDate);
+		Number[] pastCardCounts = m_statisticsManager.fetchCardCountData(tenDaysBeforeDate);
 		
 		assertEquals(10, pastCardCounts.length);
 		
@@ -313,11 +307,10 @@ public class StatisticsManagerTest extends TestCase {
 		c.add(Calendar.HOUR_OF_DAY, -24 * 20);
 		String thirtyDaysBeforeDate = sdf.format(c.getTime());
 		
-		StatisticsManager sMgr = new StatisticsManager(db);
 		
-		assertEquals(0, sMgr.calcNumberOfDaysBetweenDateAndNow(todaysDate));
-		assertEquals(1, sMgr.calcNumberOfDaysBetweenDateAndNow(yesterdaysDate));
-		assertEquals(10, sMgr.calcNumberOfDaysBetweenDateAndNow(tenDaysBeforeDate));
-		assertEquals(30, sMgr.calcNumberOfDaysBetweenDateAndNow(thirtyDaysBeforeDate));
+		assertEquals(0, m_statisticsManager.calcNumberOfDaysBetweenDateAndNow(todaysDate));
+		assertEquals(1, m_statisticsManager.calcNumberOfDaysBetweenDateAndNow(yesterdaysDate));
+		assertEquals(10, m_statisticsManager.calcNumberOfDaysBetweenDateAndNow(tenDaysBeforeDate));
+		assertEquals(30, m_statisticsManager.calcNumberOfDaysBetweenDateAndNow(thirtyDaysBeforeDate));
 	}
 }
