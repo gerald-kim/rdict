@@ -8,7 +8,6 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +16,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.search.DictionaryActivity;
 import com.amplio.rdict.search.DictionaryEntry;
 import com.amplio.rdict.search.SearchActivity;
@@ -24,8 +24,6 @@ import com.amplio.rdict.search.SearchActivity;
 public class HistoryActivity extends Activity implements OnItemClickListener {
 	
 	private ListView _historyList = null;
-	
-	private HistoryManager _historyMgr = null;
 	
 	private Vector<DictionaryEntry> words = null;
 	
@@ -42,9 +40,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		
 		_historyList = (ListView) findViewById(R.id.history_list);
 		_historyList.setOnItemClickListener(this);
-		
-		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
-    	_historyMgr = new HistoryManager(con);
 	}
 	
 	public void onResume() {
@@ -59,7 +54,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		String[] strings;
 		
 		for(int i = 0; i < 5; i++) {
-			words = _historyMgr.loadHistoryRecordsByDate(sdf2.format(cal.getTime()));
+			words = RDictActivity.c_historyMgr.loadHistoryRecordsByDate(sdf2.format(cal.getTime()));
 			
 			if(words.size() > 0 ) {
 				strings = new String[words.size()];

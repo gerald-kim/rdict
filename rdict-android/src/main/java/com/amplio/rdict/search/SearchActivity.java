@@ -18,15 +18,13 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.R;
+import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.history.History;
-import com.amplio.rdict.history.HistoryManager;
 
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
 	private Dictionary _dictionary = null;
-	private HistoryManager _historyMgr = null;
-	
 	public static DictionaryEntry searchWord = null;
 	public Vector<DictionaryEntry> words = null;
 	
@@ -46,7 +44,6 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
-    	_historyMgr = new HistoryManager(con);
     }
     
     public void onStart(){
@@ -106,7 +103,7 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		SearchActivity.searchWord = words.elementAt(index);
 		
-		_historyMgr.addHistoryRecord(SearchActivity.searchWord.headword);
+		RDictActivity.c_historyMgr.addHistoryRecord(SearchActivity.searchWord.headword);
 		System.out.println("Saved " + SearchActivity.searchWord.headword);
 		
 		SearchActivity.searchHistory.clear();

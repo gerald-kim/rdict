@@ -30,12 +30,13 @@ public class RDictActivity extends TabActivity {
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
 	private ODB m_db = null;
 	//test
-	private HistoryManager _historyMgr = null;
 
+	public static HistoryManager c_historyMgr = null;
 	public static CardSetManager c_cardSetManager = null;
 	public static StatisticsManager c_statisticsManager = null;
 	public static ReviewManager c_reviewManager = null;
 
+	private SQLiteDatabase m_con;
 	
     /** Called when the activity is first created. */
     @Override
@@ -68,18 +69,18 @@ public class RDictActivity extends TabActivity {
 	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );
 	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
         
-        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
-    	_historyMgr = new HistoryManager(con);
+        m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+    	c_historyMgr = new HistoryManager(m_con);
     	
-    	_historyMgr.createTableIfNotExists(con);
+    	c_historyMgr.createTableIfNotExists(m_con);
     }
     
     @Override
     protected void onDestroy() {
     	m_db.commit();
     	m_db.close();
+    	m_con.close();
     }
-
 
 	public static class MyTabIndicator extends LinearLayout {
 		public MyTabIndicator(Context context, String label) {
