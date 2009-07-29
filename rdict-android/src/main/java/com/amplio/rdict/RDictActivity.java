@@ -1,5 +1,6 @@
 package com.amplio.rdict;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,6 +24,9 @@ import com.amplio.rdict.review.ReviewManager;
 import com.amplio.rdict.review.StatisticsManager;
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
+import com.amplio.rdict.setup.DownloadManager;
+import com.amplio.rdict.setup.SetupActivity;
+import com.amplio.rdict.setup.SetupManager;
 
 public class RDictActivity extends TabActivity implements  AssetInputStreamProvider {
 	
@@ -44,6 +48,11 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	public static StatisticsManager c_statisticsManager = null;
 	public static ReviewManager c_reviewManager = null;
 
+	Intent setupActivityIntent = null;
+	
+	File db_file = null;
+	
+	boolean isInittedDatabaseManagers = false;
 	
     /** Called when the activity is first created. */
     @Override
@@ -65,8 +74,39 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         	tabs.addTab(tab);
         }
         
-		initDatabaseManagers();
+        this.db_file = new File(DownloadManager.WRITE_PATH);
+        
+        SetupActivity.setupMgr = new SetupManager();
+		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
+        
+		if(! this.db_file.exists() ){
+			this.startActivity(this.setupActivityIntent);
+		}
+		else {
+			initDatabaseManagers();
+			this.isInittedDatabaseManagers = true;
+		}
     }
+    
+    public void onResume() {
+		super.onResume();
+		
+		if(! this.db_file.exists() ){
+			if (this.userChoseToDelaySetup())
+				this.finish();
+			else
+				this.startActivity(this.setupActivityIntent);
+		}
+		
+		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
+			initDatabaseManagers();
+			this.isInittedDatabaseManagers = true;
+		}
+	}
+	
+	public boolean userChoseToDelaySetup() {
+		return SetupManager.STATE_SETUP_DELAYED == SetupActivity.setupMgr.getState();
+	}   
 
 	private void initDatabaseManagers() {
 	    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/"
@@ -85,8 +125,10 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     @Override
     protected void onDestroy() {
 //    	m_db.commit();
-    	m_db.close();
-    	m_con.close();
+    	if(m_db != null)
+    		m_db.close();
+    	if(m_con != null)
+    		m_con.close();
     	super.onDestroy();
     }
 

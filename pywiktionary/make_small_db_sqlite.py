@@ -12,7 +12,7 @@ sys.setdefaultencoding( "utf-8" )
 class SmallCdbMaker:
     def __init__(self, db_dir):
         self.db_dir = db_dir
-        self.small_db_dir = db_dir.replace('/','') + '_cdb'
+        self.small_db_dir = db_dir.replace('/','') + '_sqlite'
 
     def create_smalldb_for_cdb( self ):
         try:
@@ -38,7 +38,7 @@ class SmallCdbMaker:
         small_db_c.execute('''CREATE TABLE "android_metadata" ("locale" TEXT DEFAULT 'en_US')''');
         small_db_c.execute('''INSERT INTO "android_metadata" VALUES ('en_US')''');
         
-        while 1:
+        while insert_count < 1000:
             try:
                 c.key()
             except KeyError:

@@ -10,18 +10,13 @@ import android.widget.TextView;
 
 public class DBDownloadingView extends SetupView {
 	TextView downloadingLabel = null;
-	ProgressBar downloadBar = null;
 	Button okButton = null;
+	ProgressBar downloadBar = null;
 	
-	Handler progresBarUpdateHandler = new Handler();	
+	Handler progresBarUpdateHandler = null;
 	int mProgressStatus = 0;
 	
 	DownloadManager dMgr = null;
-	
-	String sourceURL =  "http://www.killer-rabbits.net/word.db"; //"http://www.google.ca/intl/en_ca/images/logo.gif";
-	String writePath = "/sdcard/rdict/word.db";
-	
-	Handler mHandler = new Handler();
 	
 	public DBDownloadingView(Context context) {
 		super(context);
@@ -31,11 +26,12 @@ public class DBDownloadingView extends SetupView {
 		
 		this.okButton = new Button(context);
 		this.okButton.setText("Ok");
-		this.setOnClickListener(this);
 		this.okButton.setVisibility(View.INVISIBLE);
 		
-		downloadBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
-		downloadBar.setProgress(0);
+		this.downloadBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
+		this.downloadBar.setProgress(0);
+		
+		this.progresBarUpdateHandler = new Handler();
 		
     	dMgr = new DownloadManager();
 	}
@@ -46,12 +42,9 @@ public class DBDownloadingView extends SetupView {
 		l.addView(this.downloadBar);
 		l.addView(this.okButton);
 	}
-
-	public void onClick(View v) {
-	}
 	
 	public void startDownload() {
-		dMgr.startDownload(this.sourceURL, this.writePath, mHandler, this.getRunnable());
+		dMgr.startDownload(DownloadManager.SOURCE_URL, DownloadManager.WRITE_PATH, progresBarUpdateHandler, this.getRunnable());
 	}
 
 	private Runnable getRunnable() {
@@ -69,5 +62,8 @@ public class DBDownloadingView extends SetupView {
 		};
 		
 		return updateRunner;
+	}
+	
+	public void onClick(View v) {
 	}
 }

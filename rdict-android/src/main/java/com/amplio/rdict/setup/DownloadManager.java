@@ -11,16 +11,19 @@ import java.net.URL;
 
 import android.os.Handler;
 
-public class DownloadManager implements Runnable{
-
-	String sourceURL = null;
-	String writePath = null;
+public class DownloadManager implements Runnable {
+	//"http://www.google.ca/intl/en_ca/images/logo.gif";
+	public final static String SOURCE_URL = "http://www.killer-rabbits.net/word.db"; 
+	public final static String WRITE_PATH = "/sdcard/rdict/word.db";
 	
 	public long download_file_length = 0;
 	public long tot_bytes_downloaded = 0;
 	
 	Handler handler = null;
 	Runnable runnable = null;
+	
+	String sourceURL = null;
+	String writePath = null;
 	
 	public void startDownload(String sourceURL, String writePath, Handler handler, Runnable runnable) {
 		this.sourceURL = sourceURL;
