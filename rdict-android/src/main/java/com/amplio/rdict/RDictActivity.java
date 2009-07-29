@@ -77,9 +77,10 @@ public class RDictActivity extends TabActivity {
     
     @Override
     protected void onDestroy() {
-    	m_db.commit();
+//    	m_db.commit();
     	m_db.close();
     	m_con.close();
+    	super.onDestroy();
     }
 
 	public static class MyTabIndicator extends LinearLayout {
