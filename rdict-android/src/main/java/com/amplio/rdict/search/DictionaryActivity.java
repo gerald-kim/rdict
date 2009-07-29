@@ -1,10 +1,6 @@
 package com.amplio.rdict.search;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,22 +12,17 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.review.Card;
 
-public class DictionaryActivity extends Activity implements AssetInputStreamProvider, OnClickListener {
+public class DictionaryActivity extends Activity implements OnClickListener {
 	private TextView title = null;
 	private Button _backButton = null;
 	private Button _forwardButton = null;
 	private WebView _searchResultsPage = null;
 
-    private Dictionary _dictionary = null;
-    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
 		setContentView(R.layout.dictionary);
-    	
-    	SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READONLY);
-    	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
     	
 		this.title = (TextView)findViewById(R.id.title);
 		
@@ -65,7 +56,7 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     }
     
     public void refreshDicPage(String word, boolean recordHistory) {
-    	DictionaryEntry dicEntry = _dictionary.searchByWord(word);
+    	DictionaryEntry dicEntry = RDictActivity.c_dictionary.searchByWord(word);
     	this.title.setText(word);
     	
     	if(recordHistory)
@@ -96,19 +87,8 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
     	
     	super.onStop();
     }
-    
-	public InputStream getAssetInputStream(String path) {
-		InputStream stream = null;
-		try {
-			stream = this.getAssets().open(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return stream;
-	}
 
-	public void onClick(View v) {
+    public void onClick(View v) {
 		if(this._backButton == v)
 			SearchActivity.searchHistory.goBack();
 		else
@@ -116,4 +96,5 @@ public class DictionaryActivity extends Activity implements AssetInputStreamProv
 		
 		this.refreshDicPage(SearchActivity.searchHistory.getWord().headword, false);
 	}
+
 }

@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +23,6 @@ import com.amplio.rdict.history.History;
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
-	private Dictionary _dictionary = null;
 	public static DictionaryEntry searchWord = null;
 	public Vector<DictionaryEntry> words = null;
 	
@@ -41,9 +39,6 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		_wordList = (ListView) findViewById(R.id.listview);
 		_wordList.setOnItemClickListener(this);
-		
-		SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
-    	_dictionary = new Dictionary(con, getAssetInputStream("dictionary_js.html"));
     }
     
     public void onStart(){
@@ -87,7 +82,7 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		words = this._dictionary.findMatchingWords(s.toString());
+		words = RDictActivity.c_dictionary.findMatchingWords(s.toString());
 		
 		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
 		

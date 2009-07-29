@@ -1,5 +1,8 @@
 package com.amplio.rdict;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
@@ -18,8 +21,10 @@ import com.amplio.rdict.history.HistoryManager;
 import com.amplio.rdict.review.CardSetManager;
 import com.amplio.rdict.review.ReviewManager;
 import com.amplio.rdict.review.StatisticsManager;
+import com.amplio.rdict.search.AssetInputStreamProvider;
+import com.amplio.rdict.search.Dictionary;
 
-public class RDictActivity extends TabActivity {
+public class RDictActivity extends TabActivity implements  AssetInputStreamProvider {
 	
 	private static final String BASE_PACKAGE = "com.amplio.rdict";
 	
@@ -28,15 +33,17 @@ public class RDictActivity extends TabActivity {
 													BASE_PACKAGE + ".history.",
 													BASE_PACKAGE + ".more."};
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
+
 	private ODB m_db = null;
+	private SQLiteDatabase m_con;
 	//test
 
+	public static Dictionary c_dictionary = null;
 	public static HistoryManager c_historyMgr = null;
 	public static CardSetManager c_cardSetManager = null;
 	public static StatisticsManager c_statisticsManager = null;
 	public static ReviewManager c_reviewManager = null;
 
-	private SQLiteDatabase m_con;
 	
     /** Called when the activity is first created. */
     @Override
@@ -71,8 +78,8 @@ public class RDictActivity extends TabActivity {
         
         m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	c_historyMgr = new HistoryManager(m_con);
-    	
     	c_historyMgr.createTableIfNotExists(m_con);
+    	c_dictionary = new Dictionary( m_con, getAssetInputStream("dictionary_js.html") );
     }
     
     @Override
@@ -92,6 +99,17 @@ public class RDictActivity extends TabActivity {
 			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
 			tv.setText(label);
 		}
-		
     }
+	
+	public InputStream getAssetInputStream(String path) {
+		InputStream stream = null;
+		try {
+			stream = this.getAssets().open(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return stream;
+	}
+
 }
