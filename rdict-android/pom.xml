@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ampliostudios</groupId>
+	<artifactId>rdict</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>apk</packaging>
+	<name>rdict app</name>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+	</properties>
+	
+	<build>
+		<!--<finalName>${artifactId}</finalName>-->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Build-Source-Version>1.5</Build-Source-Version>
+							<Build-Target-Version>1.5</Build-Target-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>maven-android-plugin</artifactId>
+				<version>2.0.0</version>
+				<configuration>
+					<jvmArguments>
+						<jvmArgument>-Xmx512m</jvmArgument>
+					</jvmArguments>
+					<sdk>
+						<path>${env.ANDROID_SDK_15}</path>
+						<platform>1.5</platform>
+					</sdk>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.neodatis</groupId>
+			<artifactId>neodatis-odb</artifactId>
+			<version>1.9.3.601</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>android</groupId>
+			<artifactId>android</artifactId>
+			<version>1.5_r2</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+
+</project>

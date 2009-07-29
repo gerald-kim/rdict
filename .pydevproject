@@ -7,6 +7,5 @@
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/rdict/pywiktionary</path>
 <path>/rdict/rdict-django</path>
-<path>/rdict/pywiktionary2</path>
 </pydev_pathproperty>
 </pydev_project>

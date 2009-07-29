@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="src" path="libraries/sqlite-jdbc-3.6.16 copy"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/android-test/java"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry exported="true" kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/sqlite-jdbc-3.6.16-modded.jar"/>
-	<classpathentry kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/db4o-7.4.88.12908-java1.2.jar"/>
-	<classpathentry kind="lib" path="/Users/sbodnar/programming/projects/rdict/rdict-android/libraries/sqlite-jdbc-3.6.16 copy"/>
+	<classpathentry kind="lib" path="libraries/neodatis-odb-1.9.3.601.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
