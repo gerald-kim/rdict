@@ -16,27 +16,29 @@ public class Dictionary {
 	}
 	
 	public DictionaryEntry searchByWord(String word) {
+		DictionaryEntry dicEntry = null;
 		Cursor c = _con.rawQuery("select def from word_db where word = ? limit 1", new String[]{word});
 		
 		if(0 < c.getCount()){
 			c.moveToNext();
-			return _factory.makeHTMLifiedEntry(word, c.getString(0));
+			dicEntry =  _factory.makeHTMLifiedEntry(word, c.getString(0));
 		}
-  		else {
-  			return null;
-  		}
+  		
+		c.close();
+		return dicEntry;
 	}
 	
 	public DictionaryEntry getWordByID(long id) {
+		DictionaryEntry dicEntry = null;
 		Cursor c = _con.rawQuery("select word, def from word_db where _id = " + id, null);
 		
 		if(0 < c.getCount()){
 			c.moveToNext();
-			return _factory.makeHTMLifiedEntry(c.getString(0), c.getString(1));
+			dicEntry = _factory.makeHTMLifiedEntry(c.getString(0), c.getString(1));
 		}
-  		else {
-  			return null;
-  		}
+		
+		c.close();
+		return dicEntry;
 	}
 	
 	public Vector<DictionaryEntry> findMatchingWords(String str) {
@@ -48,6 +50,7 @@ public class Dictionary {
 			matches.add(new DictionaryEntry(c.getLong(0), c.getString(1), c.getString(2)));
 		}
   		
+		c.close();
 		return matches;
 	}
 }

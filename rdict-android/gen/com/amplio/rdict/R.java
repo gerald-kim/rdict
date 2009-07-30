@@ -50,7 +50,7 @@ public final class R {
         public static final int settings_button=0x7f05002a;
         public static final int setup_layout=0x7f050037;
         public static final int ssss=0x7f050027;
-        public static final int tab_label=0x7f050038;
+        public static final int tab_label=0x7f05003c;
         public static final int title=0x7f05000b;
         public static final int today_label=0x7f05002c;
         public static final int view_answer_button=0x7f050019;
@@ -58,8 +58,12 @@ public final class R {
         public static final int widget0=0x7f050008;
         public static final int widget101=0x7f050025;
         public static final int widget28=0x7f050002;
+        public static final int widget29=0x7f050038;
         public static final int widget30=0x7f05001b;
         public static final int widget31=0x7f050005;
+        public static final int widget32=0x7f050039;
+        public static final int widget33=0x7f05003a;
+        public static final int widget34=0x7f05003b;
         public static final int widget40=0x7f050000;
         public static final int widget41=0x7f050009;
         public static final int widget42=0x7f05000d;
@@ -88,7 +92,8 @@ public final class R {
         public static final int search=0x7f03000c;
         public static final int settings=0x7f03000d;
         public static final int setup=0x7f03000e;
-        public static final int tab_indicator=0x7f03000f;
+        public static final int setup_welcome=0x7f03000f;
+        public static final int tab_indicator=0x7f030010;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

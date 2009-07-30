@@ -33,6 +33,7 @@ public class HistoryManager {
 			words.add(new DictionaryEntry(c.getLong(0), c.getString(1), null));
 		}
 		
+		c.close();
 		return words;
 	}
 

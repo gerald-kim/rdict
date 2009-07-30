@@ -46,7 +46,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private Intent setupActivityIntent = null;
 	
 	private boolean isInittedDatabaseManagers = false;
-
+	
 	public static Dictionary c_dictionary = null;
 	public static HistoryManager c_historyMgr = null;
 	public static CardSetManager c_cardSetManager = null;
@@ -55,64 +55,90 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	System.out.println("RDict - On Create");
+    	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        setDefaultTab(0);
-    	
-        TabHost tabs = getTabHost();
-    	
-        for (int i = 0; i < TABS.length; i++) {
-        	TabHost.TabSpec tab = tabs.newTabSpec(TABS[i]);
-        	
-        	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[i] + TABS[i] + "Activity");
-
-        	tab.setContent(new Intent().setComponent(activity));
-        	tab.setIndicator(TABS[i]);
-        	tabs.addTab(tab);
-        }
         
         SetupActivity.setupMgr = new SetupManager();
 		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
         
         this.db_file = new File(DownloadManager.WRITE_PATH);
         
-		if(! this.db_file.exists() ){
-			this.startActivity(this.setupActivityIntent);
-		}
-		else {
-			initDatabaseManagers();
-		}
+        if(this.db_file.exists())
+        	initDatabaseManagers();
+        
+        setupTabs();
+    }
+    
+    public void onStart() {
+    	super.onStart();
+    	
+    	System.out.println("RDict - onStart");
+    }
+    
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        
+        System.out.println("RDict - onRestoreInstanceState");   
     }
     
     public void onResume() {
 		super.onResume();
 		
-		if(! this.db_file.exists() ){
-			if (this.userChoseToDelaySetup())
-				this.finish();
-			else
-				this.startActivity(this.setupActivityIntent);
-		}
+		System.out.println("RDict - On Resume");
 		
+		if(! this.db_file.exists() ){
+			if (! this.userChoseToDelaySetup())
+				this.startActivity(this.setupActivityIntent);
+			else
+				this.finish();
+		}
 		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
 		}
 	}
-	
-	public boolean userChoseToDelaySetup() {
+    
+    @Override 
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        
+        System.out.println("RDict - onSaveInstanceState");
+    }
+    
+    public void onStop(){
+    	super.onStop();
+    	
+    	System.out.println("RDict - onStop");
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	System.out.println("RDict - On Destroy");
+    	
+    	if(m_db != null)
+    		m_db.close();    	
+    	
+    	if(m_con != null)
+    		m_con.close();
+    	
+    	super.onDestroy();
+    }
+    
+    public boolean userChoseToDelaySetup() {
 		return SetupManager.STATE_SETUP_DELAYED == SetupActivity.setupMgr.getState();
 	}   
 
 	private void initDatabaseManagers() {
-		if(m_db == null)
+		if(m_db == null || m_db.isClosed())
 		    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
 	    c_cardSetManager = new CardSetManager( m_db );
 	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );
 	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
         
-	    if(m_con == null)
+	    if(m_con == null || ! m_con.isOpen())
 	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	
 	    c_historyMgr = new HistoryManager(m_con);
@@ -120,28 +146,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	c_dictionary = new Dictionary( m_con, getAssetInputStream("dictionary_js.html") );
     	
     	this.isInittedDatabaseManagers = true;
-    }
-    
-    @Override
-    protected void onDestroy() {
-    	m_db.commit();
-//    	if(m_db != null)
-//    		m_db.close();
-//    	if(m_con != null)
-//    		m_con.close();
-    	
-    	super.onDestroy();
-    }
-
-	public static class MyTabIndicator extends LinearLayout {
-		public MyTabIndicator(Context context, String label) {
-			super(context);
-			
-			View tab = View.inflate(this.getContext(), R.layout.tab_indicator, null);
-
-			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
-			tv.setText(label);
-		}
     }
 	
 	public InputStream getAssetInputStream(String path) {
@@ -158,5 +162,32 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		
 		return stream;
 	}
+	
+	private void setupTabs() {
+	    setDefaultTab(0);
+    	
+        TabHost tabs = getTabHost();
+    	
+        for (int i = 0; i < TABS.length; i++) {
+        	TabHost.TabSpec tab = tabs.newTabSpec(TABS[i]);
+        	
+        	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[i] + TABS[i] + "Activity");
+
+        	tab.setContent(new Intent().setComponent(activity));
+        	tab.setIndicator(TABS[i]);
+        	tabs.addTab(tab);
+        }
+    }
+	
+	public static class MyTabIndicator extends LinearLayout {
+		public MyTabIndicator(Context context, String label) {
+			super(context);
+			
+			View tab = View.inflate(this.getContext(), R.layout.tab_indicator, null);
+
+			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
+			tv.setText(label);
+		}
+    }
 
 }
