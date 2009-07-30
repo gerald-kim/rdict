@@ -8,12 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class WelcomeView extends SetupView implements OnClickListener {
-
 	TextView mesg = null;
 	Button okButton = null;
 	
-	public WelcomeView(Context context) {
-		super(context);
+	public WelcomeView(Context context, SetupActivity setupActivity) {
+		super(context, setupActivity);
 		
 		this.mesg = new TextView(context);
 		this.mesg.setText("Thank you for downloading RDict.");
@@ -29,7 +28,7 @@ public class WelcomeView extends SetupView implements OnClickListener {
 	}
 	
 	public void onClick(View v) {
-		this.setupMgr.userAcknowledgedWelcomeScreen();
-		this.sa.updateLayout();
+		SetupActivity.setupMgr.userAcknowledgedWelcomeScreen();
+		this.setupActivity.updateLayout();
 	}
 }

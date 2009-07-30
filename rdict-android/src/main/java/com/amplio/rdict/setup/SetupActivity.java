@@ -22,32 +22,28 @@ public class SetupActivity extends Activity {
 		setContentView(R.layout.setup);
 		this.layout = (LinearLayout) findViewById(R.id.setup_layout);
 		
-		this.welcomeScreenView = new WelcomeView(this.getApplicationContext());
-		this.promptForDBDownloadView = new PromptForDBDownloadView(this.getApplicationContext());
+		this.welcomeScreenView = new WelcomeView(this.getApplicationContext(), this);
+		this.promptForDBDownloadView = new PromptForDBDownloadView(this.getApplicationContext(), this);
 
-		this.downloadingDBView = new DBDownloadingView(this.getApplicationContext());
-		this.downloadFinishedView = new DBDownloadFinishedView(this.getApplicationContext());
+		this.downloadingDBView = new DBDownloadingView(this.getApplicationContext(), this);
+		this.downloadFinishedView = new DBDownloadFinishedView(this.getApplicationContext(), this);
 		
-		this.downloadLaterView = new DownloadDBLaterView(this.getApplicationContext());
+		this.downloadLaterView = new DownloadDBLaterView(this.getApplicationContext(), this);
 	}
 	
 	public void onResume() {
 		super.onResume();
-		
 		this.updateLayout();
 	}
 	
 	public void updateLayout() {
-		SetupView view = this.getViewByState(setupMgr.getState());
+		SetupView view = this.getViewByState(SetupActivity.setupMgr.getState());
 		
 		if(null != view) {
-			view.setSetupManager(SetupActivity.setupMgr);
-			view.setSetupActivity(this);
-			
 			this.layout.removeAllViews();			
 			view.addToLayout(this.layout);
-			
-			if(view instanceof DBDownloadingView) {
+		
+			if(SetupManager.STATE_DOWNLOADING == SetupActivity.setupMgr.getState()) {
 				((DBDownloadingView) view).startDownload();
 			}
 		}

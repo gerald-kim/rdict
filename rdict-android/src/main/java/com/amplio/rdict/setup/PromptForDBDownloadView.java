@@ -13,8 +13,8 @@ public class PromptForDBDownloadView extends SetupView implements OnClickListene
 	Button laterButton = null;
 	Button nowButton = null;
 	
-	public PromptForDBDownloadView(Context context) {
-		super(context);
+	public PromptForDBDownloadView(Context context, SetupActivity setupActivity) {
+		super(context, setupActivity);
 		
 		this.mesg = new TextView(context);
 		this.mesg.setText("Do you want to download the db now?");
@@ -37,10 +37,10 @@ public class PromptForDBDownloadView extends SetupView implements OnClickListene
 
 	public void onClick(View v) {
 		if(v == this.nowButton)
-			this.setupMgr.userChoseDownloadOption();
+			SetupActivity.setupMgr.userChoseDownloadOption();
 		else
-			this.setupMgr.userChoseToDelayDownlaod();
+			SetupActivity.setupMgr.userChoseToDelayDownlaod();
 		
-		this.sa.updateLayout();
+		this.setupActivity.updateLayout();
 	}
 }

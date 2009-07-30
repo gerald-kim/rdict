@@ -38,23 +38,20 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 													BASE_PACKAGE + ".more."};
 	private static final String[] TABS = { "Search", "Review", "History", "More"};
 
+	private File db_file = null;
 	private ODB m_db = null;
-	private SQLiteDatabase m_con;
-	//test
+	private SQLiteDatabase m_con = null;
+	
+	private Intent setupActivityIntent = null;
+	
+	private boolean isInittedDatabaseManagers = false;
 
 	public static Dictionary c_dictionary = null;
 	public static HistoryManager c_historyMgr = null;
 	public static CardSetManager c_cardSetManager = null;
 	public static StatisticsManager c_statisticsManager = null;
 	public static ReviewManager c_reviewManager = null;
-
-	Intent setupActivityIntent = null;
 	
-	File db_file = null;
-	
-	boolean isInittedDatabaseManagers = false;
-	
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -64,7 +61,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	
         TabHost tabs = getTabHost();
     	
-        for (int i = 0; i < TABS.length; i++){
+        for (int i = 0; i < TABS.length; i++) {
         	TabHost.TabSpec tab = tabs.newTabSpec(TABS[i]);
         	
         	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[i] + TABS[i] + "Activity");
@@ -74,17 +71,16 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         	tabs.addTab(tab);
         }
         
-        this.db_file = new File(DownloadManager.WRITE_PATH);
-        
         SetupActivity.setupMgr = new SetupManager();
 		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
+        
+        this.db_file = new File(DownloadManager.WRITE_PATH);
         
 		if(! this.db_file.exists() ){
 			this.startActivity(this.setupActivityIntent);
 		}
 		else {
 			initDatabaseManagers();
-			this.isInittedDatabaseManagers = true;
 		}
     }
     
@@ -100,7 +96,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		
 		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
-			this.isInittedDatabaseManagers = true;
 		}
 	}
 	
@@ -109,26 +104,31 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	}   
 
 	private void initDatabaseManagers() {
-	    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/"
-		        + "rdict_db.odb" );
+		if(m_db == null)
+		    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
 	    c_cardSetManager = new CardSetManager( m_db );
 	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );
 	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
         
-        m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
-    	c_historyMgr = new HistoryManager(m_con);
+	    if(m_con == null)
+	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+    	
+	    c_historyMgr = new HistoryManager(m_con);
     	c_historyMgr.createTableIfNotExists(m_con);
     	c_dictionary = new Dictionary( m_con, getAssetInputStream("dictionary_js.html") );
+    	
+    	this.isInittedDatabaseManagers = true;
     }
     
     @Override
     protected void onDestroy() {
-//    	m_db.commit();
-    	if(m_db != null)
-    		m_db.close();
-    	if(m_con != null)
-    		m_con.close();
+    	m_db.commit();
+//    	if(m_db != null)
+//    		m_db.close();
+//    	if(m_con != null)
+//    		m_con.close();
+    	
     	super.onDestroy();
     }
 

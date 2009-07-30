@@ -2,17 +2,18 @@ package com.amplio.rdict.setup;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class DBDownloadFinishedView extends SetupView {
+public class DBDownloadFinishedView extends SetupView implements OnClickListener {
 
 	TextView finishedMesg = null;
 	Button finishedButton = null;
 	
-	public DBDownloadFinishedView(Context context) {
-		super(context);
+	public DBDownloadFinishedView(Context context, SetupActivity setupActivity) {
+		super(context, setupActivity);
 		
 		this.finishedMesg = new TextView(context);
 		this.finishedMesg.setText("The dictionary has been downloaded and installed.");
@@ -29,8 +30,8 @@ public class DBDownloadFinishedView extends SetupView {
 	}
 
 	public void onClick(View v) {
-		this.setupMgr.userClickedFinish();
-		this.sa.updateLayout();
+		SetupActivity.setupMgr.userClickedFinish();
+		this.setupActivity.updateLayout();
 	}
 
 }

@@ -9,17 +9,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class DBDownloadingView extends SetupView {
-	TextView downloadingLabel = null;
-	Button okButton = null;
-	ProgressBar downloadBar = null;
+	private TextView downloadingLabel = null;
+	private Button okButton = null;
+	private ProgressBar downloadBar = null;
 	
-	Handler progresBarUpdateHandler = null;
-	int mProgressStatus = 0;
+	private Handler progresBarUpdateHandler = null;
 	
 	DownloadManager dMgr = null;
 	
-	public DBDownloadingView(Context context) {
-		super(context);
+	public DBDownloadingView(Context context, SetupActivity setupActivity) {
+		super(context, setupActivity);
 		
 		this.downloadingLabel = new TextView(context);
 		this.downloadingLabel.setText("Downloading...");
@@ -55,15 +54,12 @@ public class DBDownloadingView extends SetupView {
                 if(! dMgr.isDownloading()){
                 	okButton.setVisibility(View.VISIBLE);
                 	
-                	setupMgr.downloadCompleted();
-            		sa.updateLayout();
+                	SetupActivity.setupMgr.downloadCompleted();
+            		setupActivity.updateLayout();
                 }
             }
 		};
 		
 		return updateRunner;
-	}
-	
-	public void onClick(View v) {
 	}
 }
