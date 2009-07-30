@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ff004488"
-    >
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
 
-	<ListView 
-	android:id="@+id/history_list"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-	android:visibility="visible">
+	<ListView android:id="@+id/history_list"
+		android:layout_height="fill_parent" android:layout_width="fill_parent"
+		android:visibility="visible">
 	</ListView>
 
 </RelativeLayout>
