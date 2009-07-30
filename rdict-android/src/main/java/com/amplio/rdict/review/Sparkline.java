@@ -9,6 +9,11 @@ import android.graphics.Rect;
 
 public class Sparkline {
 
+	public final static int LEFT_MARGIN = 5;
+	public final static int RIGHT_MARGIN = 5;
+	public final static int BOTTOM_MARGIN = 5;
+	public final static int TOP_MARGIN = 5;
+	
 	public int w = 0;
 	public int h = 0;
 	public int spacing = 0;
@@ -26,11 +31,11 @@ public class Sparkline {
 		for(Number n : data)
 			this.rectangles.add(new Rectangle(n));
 		
-		this.divisor = calcDivisor(data, this.h, isPercentageGraph);
+		this.divisor = calcDivisor(data, this.h - BOTTOM_MARGIN - TOP_MARGIN, isPercentageGraph);
 	}
 	
 	public int calcRectangleWidth() {
-		int rWidth = (this.w - (this.spacing * (this.rectangles.size() - 1))) / this.rectangles.size();
+		int rWidth = ((this.w - LEFT_MARGIN - RIGHT_MARGIN) - (this.spacing * (this.rectangles.size() - 1))) / this.rectangles.size();
 		
 		return rWidth;
 	}
@@ -41,7 +46,7 @@ public class Sparkline {
 		r.w = this.calcRectangleWidth();
 		r.h = new Float(datum.intValue() * this.divisor).intValue();
 		r.x = 0;
-		r.y = this.h - r.h;
+		r.y = this.h - r.h - BOTTOM_MARGIN;
 		
 		return r;
 	}
@@ -64,11 +69,16 @@ public class Sparkline {
 	}
 	
 	public void draw(Canvas canvas, Paint paint) {
+		paint.setColor( Color.RED );
+		
+		canvas.drawLine(LEFT_MARGIN, TOP_MARGIN, LEFT_MARGIN, this.h - BOTTOM_MARGIN, paint);
+		canvas.drawLine(LEFT_MARGIN, this.h - BOTTOM_MARGIN, this.w - RIGHT_MARGIN, this.h - BOTTOM_MARGIN, paint);
+		
 		paint.setColor(Color.BLUE);
 		
 		for( Sparkline.Rectangle r : this.rectangles) {
 		    canvas.drawRect(r.toAndroidRect(), paint);
-	    }		
+	    }
 	}
 	
 	public static float calcDivisor(Number[] data, int height, boolean isPercentageGraph) {

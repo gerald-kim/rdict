@@ -110,7 +110,7 @@ public class ReviewActivity extends Activity {
 	
 	public Bitmap prepareSparkline(Number[] data, boolean isPercentageGraph) {
 		int width = 200;
-		int height = 60;
+		int height = 80;
 		int spacing = 1;
 		
 		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);

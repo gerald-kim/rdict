@@ -39,7 +39,9 @@ public class SparklineTest extends TestCase{
 		
 		int totalWidthForSpacing = spacing * (s.rectangles.size() - 1); 
 		
-		assertEquals((w - totalWidthForSpacing) / s.rectangles.size(), s.calcRectangleWidth());
+		int expectedWidth = (w - Sparkline.LEFT_MARGIN - Sparkline.RIGHT_MARGIN - totalWidthForSpacing) / s.rectangles.size();
+		
+		assertEquals(expectedWidth, s.calcRectangleWidth());
 	}
 	
 	public void testCreateRectangle() {
@@ -56,7 +58,7 @@ public class SparklineTest extends TestCase{
 		assertEquals(s.calcRectangleWidth(), r.w);
 		assertEquals(new Float(data[4].intValue() * s.divisor).intValue(), r.h);
 		assertEquals(0, r.x);
-		assertEquals(new Float(h - (data[4].intValue() * s.divisor)).intValue(), r.y);
+		assertEquals(new Float(h - Sparkline.BOTTOM_MARGIN - (data[4].intValue() * s.divisor)).intValue(), r.y);
 	}
 	
 	public void testSetupRectangles() {
@@ -75,19 +77,19 @@ public class SparklineTest extends TestCase{
 		assertEquals(s.calcRectangleWidth() , r1.w);
 		assertEquals(new Float(0 * s.divisor).intValue(), r1.h);
 		assertEquals(0, r1.x);
-		assertEquals(h - r1.h, r1.y);
+		assertEquals(h - Sparkline.BOTTOM_MARGIN - r1.h, r1.y);
 		
 		Sparkline.Rectangle r2 = s.rectangles.get(1);
 		
 		assertEquals(new Float(1 * s.divisor).intValue(), r2.h);
 		assertEquals(r1.x + r1.w + spacing, r2.x);
-		assertEquals(h - r2.h, r2.y);
+		assertEquals(h - Sparkline.BOTTOM_MARGIN - r2.h, r2.y);
 		
 		Sparkline.Rectangle r3 = s.rectangles.get(2);
 		
 		assertEquals(new Float(2 * s.divisor).intValue(), r3.h);
 		assertEquals(r1.x + r1.w + spacing + r2.w + spacing, r3.x);
-		assertEquals(h - r3.h, r3.y);
+		assertEquals(h - Sparkline.BOTTOM_MARGIN - r3.h, r3.y);
 	}
 	
 	public void testCalcAverage() {
