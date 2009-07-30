@@ -20,6 +20,7 @@ public class SetupActivity extends Activity {
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
 		setContentView(R.layout.setup);
+		
 		this.layout = (LinearLayout) findViewById(R.id.setup_layout);
 		
 		this.welcomeScreenView = new WelcomeView(this.getApplicationContext(), this);

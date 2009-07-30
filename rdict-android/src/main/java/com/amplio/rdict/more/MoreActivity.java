@@ -10,7 +10,6 @@ import android.widget.Button;
 import com.amplio.rdict.R;
 
 public class MoreActivity extends Activity implements OnClickListener {
-	
 	Button helpButton = null;
 	Button aboutButton = null;
 	Button manageButton = null;

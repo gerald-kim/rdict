@@ -7,6 +7,7 @@ import java.io.InputStream;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -144,9 +145,13 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
 	
 	public InputStream getAssetInputStream(String path) {
+		return RDictActivity.getAssetInputStream(this, path );
+	}
+	
+	public static InputStream getAssetInputStream(Activity activity, String path) {
 		InputStream stream = null;
 		try {
-			stream = this.getAssets().open(path);
+			stream = activity.getAssets().open(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

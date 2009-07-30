@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-android:id="@+id/widget40"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<TextView
-android:id="@+id/widget48"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:text="Help page goes here."
-android:layout_weight="1"
->
-</TextView>
+<LinearLayout android:id="@+id/widget40"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<WebView android:id="@+id/help_webview" android:layout_height="fill_parent"
+		android:layout_width="fill_parent">
+	</WebView>
 
 </LinearLayout>

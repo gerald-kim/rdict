@@ -28,7 +28,6 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	
 	public static History searchHistory = new History();
     
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);		

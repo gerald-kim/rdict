@@ -23,7 +23,7 @@ public class DictionaryEntryFactory {
 		return new DictionaryEntry(word, sb.toString());
 	}
 	
-	private String loadHTMLFileContents(InputStream htmlStream) {
+	public static String loadHTMLFileContents(InputStream htmlStream) {
 		byte[] buffer = null;
 		try {
 			int size = htmlStream.available();
