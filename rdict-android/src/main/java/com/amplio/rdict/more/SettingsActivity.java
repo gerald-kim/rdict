@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.amplio.rdict.R;
-import com.amplio.rdict.setup.DBDownloadingView;
+import com.amplio.rdict.setup.DBDownloadingViewWrapper;
 
 public class SettingsActivity extends Activity{
 	
-	DBDownloadingView downloadView = null;
+	DBDownloadingViewWrapper downloadView = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {

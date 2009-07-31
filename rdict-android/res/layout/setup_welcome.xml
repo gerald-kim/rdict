@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget28"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+	<RelativeLayout android:id="@+id/widget29"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<TextView android:id="@+id/widget32" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Thank you for downloading RDict."
+			android:layout_centerInParent="true"
+			android:layout_marginLeft="50px"
+			android:layout_marginRight="50px">
+		</TextView>
+	</RelativeLayout>
+	<RelativeLayout android:id="@+id/widget30"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<TextView android:id="@+id/welcome_view_msg" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="In the next two steps, we'll help you to download a dictionary database and show you how to get help using RDict."
+			android:layout_centerInParent="true"
+			android:layout_marginLeft="50px"
+			android:layout_marginRight="50px">
+		</TextView>
+	</RelativeLayout>
+	<RelativeLayout android:id="@+id/widget31"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<Button android:id="@+id/welcome_view_ok_button" android:layout_width="80px"
+			android:layout_height="wrap_content" android:text="Ok"
+			android:layout_centerInParent="true"
+			android:layout_marginLeft="50px"
+			android:layout_marginRight="50px">
+		</Button>
+	</RelativeLayout>
+</LinearLayout>

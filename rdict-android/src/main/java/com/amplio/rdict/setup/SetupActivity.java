@@ -9,11 +9,11 @@ import com.amplio.rdict.R;
 public class SetupActivity extends Activity {
 	LinearLayout layout = null;
 	
-	SetupView welcomeScreenView;
-	SetupView promptForDBDownloadView;
-	SetupView downloadingDBView;
-	SetupView downloadFinishedView;
-	SetupView downloadLaterView;
+	SetupViewWrapper welcomeScreenViewWrapper;
+	SetupViewWrapper promptForDBDownloadViewWrapper;
+	SetupViewWrapper downloadingDBViewWrapper;
+	SetupViewWrapper downloadFinishedViewWrapper;
+	SetupViewWrapper downloadLaterViewWrapper;
 	
 	public static SetupManager setupMgr = null;
 	
@@ -23,13 +23,14 @@ public class SetupActivity extends Activity {
 		
 		this.layout = (LinearLayout) findViewById(R.id.setup_layout);
 		
-		this.welcomeScreenView = new WelcomeView(this.getApplicationContext(), this);
-		this.promptForDBDownloadView = new PromptForDBDownloadView(this.getApplicationContext(), this);
-
-		this.downloadingDBView = new DBDownloadingView(this.getApplicationContext(), this);
-		this.downloadFinishedView = new DBDownloadFinishedView(this.getApplicationContext(), this);
+		this.welcomeScreenViewWrapper = new WelcomeViewWrapper(this.getApplicationContext(), this);
 		
-		this.downloadLaterView = new DownloadDBLaterView(this.getApplicationContext(), this);
+		this.promptForDBDownloadViewWrapper = new PromptForDBDownloadViewWrapper(this.getApplicationContext(), this);
+
+		this.downloadingDBViewWrapper = new DBDownloadingViewWrapper(this.getApplicationContext(), this);
+		this.downloadFinishedViewWrapper = new DBDownloadFinishedViewWrapper(this.getApplicationContext(), this);
+		
+		this.downloadLaterViewWrapper = new DownloadDBLaterViewWrapper(this.getApplicationContext(), this);
 	}
 	
 	public void onResume() {
@@ -38,33 +39,33 @@ public class SetupActivity extends Activity {
 	}
 	
 	public void updateLayout() {
-		SetupView view = this.getViewByState(SetupActivity.setupMgr.getState());
+		SetupViewWrapper wrapper = this.getViewByState(SetupActivity.setupMgr.getState());
 		
-		if(null != view) {
+		if(null != wrapper) {
 			this.layout.removeAllViews();			
-			view.addToLayout(this.layout);
+			this.layout.addView(wrapper.getView());
 		
 			if(SetupManager.STATE_DOWNLOADING == SetupActivity.setupMgr.getState()) {
-				((DBDownloadingView) view).startDownload();
+				((DBDownloadingViewWrapper) wrapper).startDownload();			
 			}
 		}
 	}
 	
-	private SetupView getViewByState(int state) {
+	private SetupViewWrapper getViewByState(int state) {
 		switch(state){
 			case SetupManager.STATE_WELCOME:
-				return this.welcomeScreenView;
+				return this.welcomeScreenViewWrapper;
 			case SetupManager.STATE_PROMPT_DOWNLOAD:
-				return this.promptForDBDownloadView;
+				return this.promptForDBDownloadViewWrapper;
 			case SetupManager.STATE_DOWNLOADING:
-				return this.downloadingDBView;
+				return this.downloadingDBViewWrapper;
 			case SetupManager.STATE_DOWNLOAD_FINSHED:
-				return this.downloadFinishedView;
+				return this.downloadFinishedViewWrapper;
 			case SetupManager.STATE_SETUP_COMPLETED:
 				this.finish();
 				return null;
 			case SetupManager.STATE_DOWNLOAD_LATER:
-				return this.downloadLaterView;
+				return this.downloadLaterViewWrapper;
 			case SetupManager.STATE_SETUP_DELAYED:
 				this.finish();
 				return null;

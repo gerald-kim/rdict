@@ -4,44 +4,35 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-public class DBDownloadingView extends SetupView {
-	private TextView downloadingLabel = null;
-	private Button okButton = null;
+import com.amplio.rdict.R;
+
+public class DBDownloadingViewWrapper extends SetupViewWrapper {
 	private ProgressBar downloadBar = null;
+	private Button okButton = null;
 	
 	private Handler progresBarUpdateHandler = null;
 	
 	DownloadManager dMgr = null;
 	
-	public DBDownloadingView(Context context, SetupActivity setupActivity) {
+	public DBDownloadingViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
 		
-		this.downloadingLabel = new TextView(context);
-		this.downloadingLabel.setText("Downloading...");
+		this.v = View.inflate( context, R.layout.setup_downloading, null);
 		
-		this.okButton = new Button(context);
-		this.okButton.setText("Ok");
-		this.okButton.setVisibility(View.INVISIBLE);
-		
-		this.downloadBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
+		//new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
+		this.downloadBar = (ProgressBar) this.v.findViewById(R.id.setup_progress_bar );
 		this.downloadBar.setProgress(0);
+		
+		this.okButton = (Button) this.v.findViewById(R.id.setup_download_finished_button );
+		this.okButton.setVisibility(View.INVISIBLE);
 		
 		this.progresBarUpdateHandler = new Handler();
 		
     	dMgr = new DownloadManager();
 	}
 
-	@Override
-	public void addToLayout(LinearLayout l) {
-		l.addView(this.downloadingLabel);
-		l.addView(this.downloadBar);
-		l.addView(this.okButton);
-	}
-	
 	public void startDownload() {
 		dMgr.startDownload(DownloadManager.SOURCE_URL, DownloadManager.WRITE_PATH, progresBarUpdateHandler, this.getRunnable());
 	}

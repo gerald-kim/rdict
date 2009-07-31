@@ -65,10 +65,10 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         
         this.db_file = new File(DownloadManager.WRITE_PATH);
         
-        if(this.db_file.exists())
+        if(this.db_file.exists()) {
         	initDatabaseManagers();
-        
-        setupTabs();
+        	setupTabs();
+        }
     }
     
     public void onStart() {
@@ -97,6 +97,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		}
 		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
+			setupTabs();
 		}
 	}
     
