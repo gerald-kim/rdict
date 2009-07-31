@@ -1,49 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout
-android:id="@+id/widget0"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-          
-<TableRow
-android:id="@+id/widget41"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_x="0px"
-android:layout_y="3px"
->
-<Button
-android:id="@+id/back_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content" android:text="Back" android:soundEffectsEnabled="true">
-</Button>
-<TextView
-android:id="@+id/title"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text=""
-android:width="210px" android:textSize="14sp">
-</TextView>
-<Button
-android:id="@+id/forward_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content" android:text="Forw" android:soundEffectsEnabled="true">
-</Button>
-</TableRow>
+<LinearLayout android:id="@+id/widget0"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-<TableRow
-android:id="@+id/widget42"
-android:layout_width="fill_parent"
-android:orientation="horizontal"
-android:layout_x="0px" android:layout_y="50px" android:layout_height="fill_parent">
+	<RelativeLayout android:id="@+id/widget83"
+		android:layout_width="fill_parent" android:layout_height="50px">
 
-<WebView 
-	android:id="@+id/webview"
-	android:layout_height="fill_parent" android:layout_width="fill_parent">
-</WebView>
+		<Button android:id="@+id/back_button" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Back"
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+		</Button>
+		<TextView android:id="@+id/title" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="test"
+			android:textSize="14sp"
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true">
+		</TextView>
+		<Button android:id="@+id/forward_button" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Forw"
+			android:layout_alignParentRight="true" android:layout_centerVertical="true">
+		</Button>
+	</RelativeLayout>
 
-</TableRow>
+	<LinearLayout android:id="@+id/widget83"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
 
-</AbsoluteLayout>
+		<WebView android:id="@+id/webview" android:layout_height="fill_parent"
+			android:layout_width="fill_parent">
+		</WebView>
+
+	</LinearLayout>
+
+</LinearLayout>
