@@ -27,17 +27,6 @@ public class HistoryTest extends TestCase {
 		
 		assertTrue(! h.canGoForward());
 	}
-
-	public void testGoForward() {
-		History h = new History();
-		h.addWord(new DictionaryEntry(1, "word", "def"));
-		h.addWord(new DictionaryEntry(2, "word2", "def2"));
-		
-		h.goForward();
-		
-		assertTrue(! h.canGoForward());
-		assertTrue( h.canGoBack());
-	}
 	
 	public void testGoBack() {
 		History h = new History();
@@ -54,6 +43,17 @@ public class HistoryTest extends TestCase {
 		
 		assertTrue(h.canGoBack());
 		assertTrue(! h.canGoForward());
+	}
+
+	public void testGoForward() {
+		History h = new History();
+		h.addWord(new DictionaryEntry(1, "word", "def"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
+		
+		h.goForward();
+		
+		assertTrue(! h.canGoForward());
+		assertTrue( h.canGoBack());
 	}
 	
 	public void testGetWord() {
@@ -103,6 +103,19 @@ public class HistoryTest extends TestCase {
 		assertTrue(h.canGoBack());
 		assertTrue(! h.canGoForward());
 		assertEquals(2, h.size());
+	}
+	
+	public void testGoBackFromNullErasesNullEntry() {
+		History h = new History();
+		
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));
+		h.addWord(null);		
+		
+		h.goBack();
+		
+		assertEquals(2, h.getWord().id);
+		assertTrue(! h.canGoForward());
+		assertEquals(1, h.size());
 	}
 	
 }

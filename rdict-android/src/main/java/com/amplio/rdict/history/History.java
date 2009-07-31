@@ -10,7 +10,6 @@ public class History {
 	Vector<DictionaryEntry> words = new Vector<DictionaryEntry>();
 	
 	public void addWord(DictionaryEntry word) {
-		
 		if(_index < words.size()) {
 			words.setSize(_index + 1);
 		}
@@ -32,6 +31,11 @@ public class History {
 	}
 
 	public void goBack() {
+		int prevIndex = _index;
+		
+		if(null == this.words.get(prevIndex))
+			this.words.remove(prevIndex);
+		
 		_index--;
 	}
 
