@@ -27,6 +27,9 @@ public class ReviewActivity extends Activity {
 	private CardExerciseView topNView = null;
 	private CardExerciseView todayView = null;
 	
+	private TextView cardCount = null;
+	private TextView grade = null;
+	
 	private ImageView cardCountGraph = null;
 	private ImageView gradeGraph = null;
 	
@@ -51,6 +54,9 @@ public class ReviewActivity extends Activity {
 		this.scheduledView = CardExerciseView.buildScheduledCardExercise(this.getApplicationContext());
 		this.topNView = CardExerciseView.buildTopNCardExercise(this.getApplicationContext());
 		this.todayView = CardExerciseView.buildLookedupTodayCardExercise(this.getApplicationContext());
+		
+		this.cardCount = (TextView)findViewById(R.id.card_count);
+		this.grade = (TextView)findViewById(R.id.grade);
 		
 		this.cardCountGraph = (ImageView)findViewById(R.id.card_count_graph);
 		this.gradeGraph = (ImageView)findViewById(R.id.grade_graph);
@@ -96,6 +102,9 @@ public class ReviewActivity extends Activity {
 		
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
 		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
+		
+		this.cardCount.setText(cardCountData[cardCountData.length - 1].toString());
+		this.grade.setText(gradeData[gradeData.length - 1].toString() + " %");
 		
 		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData, false);
 	    this.cardCountGraph.setImageBitmap(cardCountBitmap);
