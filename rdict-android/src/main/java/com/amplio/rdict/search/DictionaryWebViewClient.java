@@ -1,8 +1,5 @@
 package com.amplio.rdict.search;
 
-
-
-
 import android.content.Context;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,7 +15,12 @@ public class DictionaryWebViewClient extends WebViewClient{
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		if (url.contains("lookup")) {
 			String word = url.substring(url.indexOf('=') + 1);
-			this.dicActivity.refreshDicPage(word, true);
+			
+			SearchActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(word);
+			
+			DictionaryActivity.sessionHistory.addWord(SearchActivity.dicEntry);
+			
+			this.dicActivity.refreshDicPage();
 			return true;
 		}
 		else if (url.contains("save")) {

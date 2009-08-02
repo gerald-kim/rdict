@@ -14,12 +14,12 @@ import com.amplio.rdict.history.History;
 import com.amplio.rdict.review.Card;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
+	public static History sessionHistory = new History();
+	
 	private TextView title = null;
 	private Button _backButton = null;
 	private Button _forwardButton = null;
 	private WebView _searchResultsPage = null;
-
-	History searchHistory = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -42,38 +42,28 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		client.dicActivity = this;
 		client.context = this.getApplicationContext();
 		_searchResultsPage.setWebViewClient(client);
-		
-		this.searchHistory = new History();
     }
-    
-    public void onStart(){
-    	super.onStart();
-    	
-    	System.out.println("Dic started ");
-    }
-    
+        
     public void onResume(){
     	System.out.println("Dic resumed.");
     	
     	super.onResume();
     	
-    	this.refreshDicPage(SearchActivity.searchWord.headword, true);
+    	this.refreshDicPage();
     }
     
-    public void refreshDicPage(String word, boolean recordHistory) {
-    	DictionaryEntry dicEntry = RDictActivity.c_dictionary.searchByWord(word);
-    	this.title.setText(word);
-    	
-    	if(recordHistory)
-			this.searchHistory.addWord(dicEntry);
-    	
-    	if(dicEntry != null)
-    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.contents, "text/html", "utf-8", null);
-		else
+    public void refreshDicPage() {
+    	if(SearchActivity.dicEntry != null) {
+    		this.title.setText(SearchActivity.dicEntry.headword);
+    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", SearchActivity.dicEntry.contents, "text/html", "utf-8", null);
+    	}
+		else {
+			this.title.setText("No Results");
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+		}
     	
-    	this._backButton.setEnabled(this.searchHistory.canGoBack());
-    	this._forwardButton.setEnabled(this.searchHistory.canGoForward());	
+    	this._backButton.setEnabled(DictionaryActivity.sessionHistory.canGoBack());
+    	this._forwardButton.setEnabled(DictionaryActivity.sessionHistory.canGoForward());	
     }
     
     public void addCard(String def){
@@ -95,11 +85,11 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 
     public void onClick(View v) {
 		if(this._backButton == v)
-			this.searchHistory.goBack();
+			DictionaryActivity.sessionHistory.goBack();
 		else
-			this.searchHistory.goForward();
+			DictionaryActivity.sessionHistory.goForward();
 		
-		this.refreshDicPage(this.searchHistory.getWord().headword, false);
+		SearchActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
+		this.refreshDicPage();
 	}
-
 }

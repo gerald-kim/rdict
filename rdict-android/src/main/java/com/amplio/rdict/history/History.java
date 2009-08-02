@@ -54,4 +54,12 @@ public class History {
 	public int size() {
 		return words.size();
 	}
+
+	public boolean containsEntryWithHeadword( String headword ) {
+		for(DictionaryEntry e : words)
+			if(headword.equals(e.headword))
+				return true;
+	    
+		return false;
+    }
 }

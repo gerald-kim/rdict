@@ -118,4 +118,15 @@ public class HistoryTest extends TestCase {
 		assertEquals(1, h.size());
 	}
 	
+	public void testContainsEntryWithHeadword() {
+		History h = new History();
+		
+		h.addWord(new DictionaryEntry(2, "word", "def2"));
+		h.addWord(new DictionaryEntry(2, "word2", "def2"));		
+		
+		assertTrue(h.containsEntryWithHeadword("word"));
+		assertTrue(h.containsEntryWithHeadword("word2"));
+		assertTrue(! h.containsEntryWithHeadword("word9"));
+	}
+	
 }

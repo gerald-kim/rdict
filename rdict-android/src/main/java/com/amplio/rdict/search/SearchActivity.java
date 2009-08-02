@@ -18,11 +18,11 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
-
+// this should only deal with headwords
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
-	public static DictionaryEntry searchWord = null;
+	public static DictionaryEntry dicEntry = null;
 	public Vector<DictionaryEntry> words = null;
 	
     @Override
@@ -92,11 +92,14 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		int index = parent.getPositionForView(view);
 		
-		SearchActivity.searchWord = words.elementAt(index);
+		String headword = words.elementAt(index).headword;
+		SearchActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(headword);
 		
-		RDictActivity.c_historyMgr.addHistoryRecord(SearchActivity.searchWord.headword);
-		System.out.println("Saved " + SearchActivity.searchWord.headword);
-					
+		RDictActivity.c_historyMgr.addHistoryRecord(SearchActivity.dicEntry.headword);
+		
+		DictionaryActivity.sessionHistory.clear();
+		DictionaryActivity.sessionHistory.addWord(SearchActivity.dicEntry);
+		
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
 		this.startActivity(i);
 	}
