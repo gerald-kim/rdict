@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.amplio.rdict.search.DictionaryEntry;
 
 public class HistoryManager {
-	public final static int HISTORY_LENGTH_IN_WORDS = 2;
+	public final static int HISTORY_LENGTH_IN_WORDS = 50;
 	
 	private SQLiteDatabase _con = null;
 	
