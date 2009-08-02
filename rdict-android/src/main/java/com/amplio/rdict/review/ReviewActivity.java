@@ -46,7 +46,7 @@ public class ReviewActivity extends Activity {
 		
 		this.graphLayout = (LinearLayout) findViewById(R.id.graph_layout);
 		
-		this.cardCountGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Card Count: ");
+		this.cardCountGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Cards Added Today: ");
 		this.graphLayout.addView( this.cardCountGraph.getView());
 		
 		this.gradeGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Grade: ");
@@ -126,14 +126,14 @@ public class ReviewActivity extends Activity {
 		String oneMonthAgo = sdf.format(c.getTime());
 		
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
-		String todaysCardCount = cardCountData[cardCountData.length - 1].toString();
+		String numCardsAddedToday = cardCountData[cardCountData.length - 1].toString();
 		
-		cardCountData = new Number[18];
+//		cardCountData = new Number[18];
+//		
+//		for(int i = 0; i < cardCountData.length; i++)
+//			cardCountData[i] = 4;
 		
-		for(int i = 0; i < cardCountData.length; i++)
-			cardCountData[i] = 4;
-		
-		this.cardCountGraph.setValueAndData( todaysCardCount, cardCountData);
+		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData);
 		this.cardCountGraph.getView().refreshDrawableState();
 		
 		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
