@@ -18,7 +18,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
-import com.amplio.rdict.history.History;
 
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
@@ -26,8 +25,6 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	public static DictionaryEntry searchWord = null;
 	public Vector<DictionaryEntry> words = null;
 	
-	public static History searchHistory = new History();
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);		
@@ -99,8 +96,6 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		RDictActivity.c_historyMgr.addHistoryRecord(SearchActivity.searchWord.headword);
 		System.out.println("Saved " + SearchActivity.searchWord.headword);
-		
-		SearchActivity.searchHistory.clear();
 					
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
 		this.startActivity(i);

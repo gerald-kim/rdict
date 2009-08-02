@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.history.History;
 import com.amplio.rdict.review.Card;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
@@ -18,6 +19,8 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 	private Button _forwardButton = null;
 	private WebView _searchResultsPage = null;
 
+	History searchHistory = null;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		client.dicActivity = this;
 		client.context = this.getApplicationContext();
 		_searchResultsPage.setWebViewClient(client);
+		
+		this.searchHistory = new History();
     }
     
     public void onStart(){
@@ -60,15 +65,15 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     	this.title.setText(word);
     	
     	if(recordHistory)
-			SearchActivity.searchHistory.addWord(dicEntry);
+			this.searchHistory.addWord(dicEntry);
     	
     	if(dicEntry != null)
     		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", dicEntry.contents, "text/html", "utf-8", null);
 		else
 			_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
     	
-    	this._backButton.setEnabled(SearchActivity.searchHistory.canGoBack());
-    	this._forwardButton.setEnabled(SearchActivity.searchHistory.canGoForward());	
+    	this._backButton.setEnabled(this.searchHistory.canGoBack());
+    	this._forwardButton.setEnabled(this.searchHistory.canGoForward());	
     }
     
     public void addCard(String def){
@@ -90,11 +95,11 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 
     public void onClick(View v) {
 		if(this._backButton == v)
-			SearchActivity.searchHistory.goBack();
+			this.searchHistory.goBack();
 		else
-			SearchActivity.searchHistory.goForward();
+			this.searchHistory.goForward();
 		
-		this.refreshDicPage(SearchActivity.searchHistory.getWord().headword, false);
+		this.refreshDicPage(this.searchHistory.getWord().headword, false);
 	}
 
 }

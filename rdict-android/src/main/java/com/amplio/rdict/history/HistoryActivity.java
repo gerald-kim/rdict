@@ -79,7 +79,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		String word = parent.getAdapter().getItem(position).toString();
 		
 		SearchActivity.searchWord = new DictionaryEntry(word, "something");
-		SearchActivity.searchHistory.clear();
 					
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
 		this.startActivity(i);
