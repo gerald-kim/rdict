@@ -14,6 +14,8 @@ import com.amplio.rdict.review.Card;
 
 public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListener {
 
+	public static final int ABBREVIATED_DEF_LENGTH = 50;
+	
 	Context context = null;
 	
 	public FlashcardAdapter(Context context, int viewResourceId) {
@@ -31,7 +33,8 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 		editButton.setTag(new Integer(position).toString());
 		editButton.setOnClickListener(this);
 		
-		((TextView) fcView.findViewById(R.id.definition_label)).setText(c.answer.replace("%20", " "));
+		String answerBlurb = Card.getAbbreviatedAnswer(c.answer.replace("%20", " "), ABBREVIATED_DEF_LENGTH);
+		((TextView) fcView.findViewById(R.id.definition_label)).setText(answerBlurb);
 		
 		return fcView;
 	}

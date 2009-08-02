@@ -98,7 +98,37 @@ public class Card {
 				+ interval + ", repsSinceLapse=" + repsSinceLapse + ", sh="
 				+ sh + "]";
 	}
-	
-	
+
+	public static String getAbbreviatedAnswer(String answer, int maxLength) {
+		String abbrv = null;
+		
+		if(answer.length() <= maxLength) {
+			abbrv = answer;
+		}
+		else {
+			int lastValidChar = answer.charAt( maxLength - 1);
+			int firstInvalidChar = answer.charAt( maxLength );
+			 
+			//space, letter
+			if(' ' == lastValidChar && ' ' != firstInvalidChar)
+				abbrv = answer.substring(0, maxLength).trim() + "...";
+			// if letter, space
+			else if(' ' != lastValidChar && ' ' == firstInvalidChar)
+				abbrv = answer.substring(0, maxLength) + "...";
+			// if letter, letter
+			else if(' ' != lastValidChar && ' ' != firstInvalidChar) {
+				int lastSpaceBeforeBreak = answer.lastIndexOf(' ', maxLength);
+				if(-1 != lastSpaceBeforeBreak)
+					abbrv = answer.substring(0, lastSpaceBeforeBreak) + "...";
+				else
+					abbrv = answer.substring(0, maxLength) + "...";
+			}
+			// if space, space
+			else if(' ' == lastValidChar && ' ' == firstInvalidChar)
+				abbrv = answer.substring(0, maxLength).trim() + "...";
+		}
+		
+		return abbrv;
+    }
 
 }

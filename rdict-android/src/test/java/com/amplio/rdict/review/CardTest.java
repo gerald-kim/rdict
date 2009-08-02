@@ -145,4 +145,34 @@ public class CardTest extends TestCase {
 		
 		assertEquals("3,2,1", c.getScoreHistory().toString());
 	}
+	
+	public void testGetAbbreviatedAnswerForShortAnswer() {
+		int maxLength = 40;
+		assertEquals("A short answer.",  Card.getAbbreviatedAnswer("A short answer.", maxLength));
+	}
+	
+	public void testGetAbbreviatedAnswerForLongAnswer() {
+		String longAnswer = "A really really really really really really really really "
+							+ "really really really really really really really really "
+							+ "really really really really really really really really "
+							+ "really really really really really really really really "
+							+ "really really really really really really really really "
+							+ "really long answer.";
+		
+		int maxLength = 40;
+		assertTrue(maxLength + "...".length() >= Card.getAbbreviatedAnswer(longAnswer, maxLength).length());
+	}
+	
+	public void testGetAbbreviatedAnswerDoesntSplitLastWord() {
+		String answer = "A really big nice cow.";
+		
+		int maxLength = 15;
+		
+		assertEquals("A really big ni", answer.substring( 0, 15 ));
+		
+		assertEquals("A really big...", Card.getAbbreviatedAnswer(answer, maxLength));
+		
+		assertEquals("A really...", Card.getAbbreviatedAnswer(answer, 8));
+		assertEquals("A really...", Card.getAbbreviatedAnswer(answer, 9));
+	}
 }
