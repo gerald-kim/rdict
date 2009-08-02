@@ -14,7 +14,8 @@
 			<EditText android:id="@+id/filter_text"
 				android:layout_width="230px" android:layout_height="wrap_content"
 				android:text="" android:textSize="18sp" android:layout_weight="0"
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:lines="1" android:scrollHorizontally="true">
 			</EditText>
 			
 			<Button android:id="@+id/add_button" android:layout_width="wrap_content"
