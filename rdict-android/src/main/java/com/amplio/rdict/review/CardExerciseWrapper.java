@@ -11,6 +11,8 @@ import com.amplio.rdict.R;
 
 public class CardExerciseWrapper implements OnClickListener {
 	
+	public static final int N = 10;
+
 	public static CardExerciseWrapper buildScheduledCardExercise(Context context){
 		CardExerciseWrapper c = new CardExerciseWrapper(context);
 		c.init("There are Cards scheduled for practice Today.", ReviewManager.EXERCISES_SCHEDULED_TODAY);
@@ -25,7 +27,7 @@ public class CardExerciseWrapper implements OnClickListener {
 	
 	public static CardExerciseWrapper buildTopNCardExercise(Context context){
 		CardExerciseWrapper c = new CardExerciseWrapper(context);
-		c.init("Practice your Top 20 Hardest Cards.", ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST);
+		c.init("Practice your Top 10 Hardest Cards.", ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST);
 		return c;
 	}
 	

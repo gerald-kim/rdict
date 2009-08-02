@@ -86,7 +86,7 @@ public class FlashCardActivity extends Activity implements OnClickListener{
 				this.cardSet = RDictActivity.c_cardSetManager.loadCardsLookedupToday();
 				break;
 			case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
-				this.cardSet = RDictActivity.c_cardSetManager.loadTopNHardestCards(20);
+				this.cardSet = RDictActivity.c_cardSetManager.loadTopNHardestCards(CardExerciseWrapper.N);
 				break;
 			default:
 				System.out.println("Bad argument here in FlashCardActivity");
