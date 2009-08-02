@@ -41,16 +41,16 @@ public class Dictionary {
 		return dicEntry;
 	}
 	
-	public Vector<DictionaryEntry> findMatchingWords(String str) {
-		Vector<DictionaryEntry> matches = new Vector<DictionaryEntry>();
-		Cursor c = _con.rawQuery("select * from word_db where word GLOB ? limit 50", new String[]{str + "*"});
+	public Vector<String> findMatchingHeadwords(String str) {
+		Vector<String> headwords = new Vector<String>();
+		Cursor c = _con.rawQuery("select word from word_db where word GLOB ? limit 50", new String[]{str + "*"});
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
-			matches.add(new DictionaryEntry(c.getLong(0), c.getString(1), c.getString(2)));
+			headwords.add(c.getString(0));
 		}
   		
 		c.close();
-		return matches;
+		return headwords;
 	}
 }

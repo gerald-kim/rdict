@@ -22,8 +22,7 @@ import com.amplio.rdict.RDictActivity;
 public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
-	public static DictionaryEntry dicEntry = null;
-	public Vector<DictionaryEntry> words = null;
+	public Vector<String> headwords = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,16 +36,47 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		_wordList.setOnItemClickListener(this);
     }
     
-    public void onStart(){
-    	super.onStart();
-    	
-    	System.out.println("Dic started ");
-    }
-    
     public void onResume(){
     	System.out.println("Dic resumed.");
     	
     	super.onResume();
+    }
+    
+   	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		headwords = RDictActivity.c_dictionary.findMatchingHeadwords(s.toString());
+		
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
+		
+		for(int i = 0; i < headwords.size(); i++)
+			aa.add(headwords.get(i));
+
+		_wordList.setAdapter(aa);
+		aa.notifyDataSetChanged();
+	}
+   	
+   	public void afterTextChanged(Editable s) {
+	}
+
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	}
+
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		String headword = headwords.elementAt(parent.getPositionForView(view));
+		
+		RDictActivity.c_historyMgr.addHistoryRecord(headword);
+		
+		DictionaryActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(headword);
+		DictionaryActivity.sessionHistory.clear();
+		DictionaryActivity.sessionHistory.addWord(DictionaryActivity.dicEntry);
+		
+		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
+		this.startActivity(i);
+	}
+	
+	public void onStart(){
+    	super.onStart();
+    	
+    	System.out.println("Dic started ");
     }
     
     public void onPause() {
@@ -69,38 +99,5 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		}
 		
 		return stream;
-	}
-	
-	public void afterTextChanged(Editable s) {
-	}
-
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
-
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		words = RDictActivity.c_dictionary.findMatchingWords(s.toString());
-		
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
-		
-		for(int i = 0; i < words.size(); i++)
-			aa.add(words.get(i).headword);
-
-		_wordList.setAdapter(aa);
-		aa.notifyDataSetChanged();
-	}
-
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		int index = parent.getPositionForView(view);
-		
-		String headword = words.elementAt(index).headword;
-		SearchActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(headword);
-		
-		RDictActivity.c_historyMgr.addHistoryRecord(SearchActivity.dicEntry.headword);
-		
-		DictionaryActivity.sessionHistory.clear();
-		DictionaryActivity.sessionHistory.addWord(SearchActivity.dicEntry);
-		
-		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
-		this.startActivity(i);
 	}
 }

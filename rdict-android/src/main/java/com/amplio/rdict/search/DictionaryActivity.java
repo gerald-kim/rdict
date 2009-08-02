@@ -14,6 +14,7 @@ import com.amplio.rdict.history.History;
 import com.amplio.rdict.review.Card;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
+	public static DictionaryEntry dicEntry = null;
 	public static History sessionHistory = new History();
 	
 	private TextView title = null;
@@ -53,9 +54,9 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     }
     
     public void refreshDicPage() {
-    	if(SearchActivity.dicEntry != null) {
-    		this.title.setText(SearchActivity.dicEntry.headword);
-    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", SearchActivity.dicEntry.contents, "text/html", "utf-8", null);
+    	if(DictionaryActivity.dicEntry != null) {
+    		this.title.setText(DictionaryActivity.dicEntry.headword);
+    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", DictionaryActivity.dicEntry.contents, "text/html", "utf-8", null);
     	}
 		else {
 			this.title.setText("No Results");
@@ -89,7 +90,7 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		else
 			DictionaryActivity.sessionHistory.goForward();
 		
-		SearchActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
+		DictionaryActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
 		this.refreshDicPage();
 	}
 }
