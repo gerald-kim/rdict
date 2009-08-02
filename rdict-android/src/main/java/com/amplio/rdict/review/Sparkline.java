@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Sparkline {
-
 	public final static int LEFT_MARGIN = 5;
 	public final static int RIGHT_MARGIN = 5;
 	public final static int BOTTOM_MARGIN = 5;
@@ -17,69 +16,48 @@ public class Sparkline {
 	public int w = 0;
 	public int h = 0;
 	public int spacing = 0;
+	public Number[] data = null;
 	public Vector<Rectangle> rectangles = null;
 	
+	public int rectangleWidth = 0;
 	public float divisor = 0;
 	
 	public Sparkline(int w, int h, Number[] data, int spacing, boolean isPercentageGraph) {
 		this.w = w;
 		this.h = h;
 		this.spacing = spacing;
+		this.data = data;
 		
-		this.rectangles = new Vector<Rectangle>(data.length);
-		
-		for(Number n : data)
-			this.rectangles.add(new Rectangle(n));
-		
-		this.divisor = calcDivisor(data, this.h - BOTTOM_MARGIN - TOP_MARGIN, isPercentageGraph);
+		this.rectangleWidth = this.getWidthAvailableToRectangles() / data.length;
+		this.divisor = calcDivisor(data, this.getHeightAvailableToRectangles(), isPercentageGraph);
 	}
 	
-	public int calcRectangleWidth() {
-		int rWidth = ((this.w - LEFT_MARGIN - RIGHT_MARGIN) - (this.spacing * (this.rectangles.size() - 1))) / this.rectangles.size();
-		
-		return rWidth;
-	}
-
-	public Rectangle createRectangle(Number datum) {
-		Rectangle r = new Rectangle(datum);
-		
-		r.w = this.calcRectangleWidth();
-		r.h = new Float(datum.intValue() * this.divisor).intValue();
-		r.x = 0;
-		r.y = this.h - r.h - BOTTOM_MARGIN;
-		
-		return r;
-	}
-
 	public void setupRectangles() {
 		Vector<Rectangle> tmp = new Vector<Rectangle>();
 		
-		int tot_width = 0;
+		int x_to_draw = 2*RIGHT_MARGIN;
 		
-		for (Rectangle r : this.rectangles){
-			Rectangle r_new = this.createRectangle(r.datum);
-			r_new.x = tot_width;
-
-			tmp.add(r_new);
+		for (Number n : this.data){
+			int w = this.rectangleWidth;
+			int h = new Float(n.intValue() * this.divisor).intValue();
+			int x = x_to_draw;
+			int y = this.h - h - BOTTOM_MARGIN;
 			
-			tot_width += this.spacing + r_new.w;
+			tmp.add(new Rectangle(w, h, x, y));
+			
+			x_to_draw += this.rectangleWidth + this.spacing;
 		}
 		
 		this.rectangles = tmp;
 	}
 	
-	public void draw(Canvas canvas, Paint paint) {
-		paint.setColor( Color.RED );
-		
-		canvas.drawLine(LEFT_MARGIN, TOP_MARGIN, LEFT_MARGIN, this.h - BOTTOM_MARGIN, paint);
-		canvas.drawLine(LEFT_MARGIN, this.h - BOTTOM_MARGIN, this.w - RIGHT_MARGIN, this.h - BOTTOM_MARGIN, paint);
-		
-		paint.setColor(Color.BLUE);
-		
-		for( Sparkline.Rectangle r : this.rectangles) {
-		    canvas.drawRect(r.toAndroidRect(), paint);
-	    }
-	}
+	public int getWidthAvailableToRectangles() {
+	    return this.w - 2*Sparkline.LEFT_MARGIN - 2*Sparkline.RIGHT_MARGIN - (this.data.length - 1) * this.spacing;
+    }
+
+	public int getHeightAvailableToRectangles() {
+		return this.h - Sparkline.TOP_MARGIN - Sparkline.BOTTOM_MARGIN;
+    }
 	
 	public static float calcDivisor(Number[] data, int height, boolean isPercentageGraph) {
 		if( isPercentageGraph) {
@@ -96,19 +74,35 @@ public class Sparkline {
 		}
 	}
 	
+	public void draw(Canvas canvas, Paint paint) {
+		paint.setColor( Color.WHITE );
+		canvas.drawRect(0, 0, this.w, this.h, paint);
+		
+		paint.setColor( Color.RED );
+		canvas.drawLine(LEFT_MARGIN, TOP_MARGIN, LEFT_MARGIN, this.h - BOTTOM_MARGIN, paint);
+		canvas.drawLine(LEFT_MARGIN, this.h - BOTTOM_MARGIN, this.w - RIGHT_MARGIN, this.h - BOTTOM_MARGIN, paint);
+		
+		paint.setColor(Color.BLUE);
+		
+		for( Sparkline.Rectangle r : this.rectangles) {
+		    canvas.drawRect(r.toAndroidRect(), paint);
+	    }
+	}
+	
 	public class Rectangle {
-
 		public int w = 0;
 		public int h = 0;
 		public int x = 0;
 		public int y = 0;
 		
-		public Number datum = 0;
 		
-		public Rectangle(Number n) {
-			this.datum = n;
-		}
-		
+		public Rectangle( int w, int h, int x, int y ) {
+			this.w = w;
+			this.h = h;
+			this.x = x;
+			this.y = y;
+        }
+
 		public Rect toAndroidRect(){
 			Rect r = new Rect();
 		    r.left = this.x;
@@ -120,7 +114,7 @@ public class Sparkline {
 		}
 		
 		public String toString() {
-			return "(" + this.w + ", " + this.h + ", " + this.x + ", " + this.y + ", " + this.datum.intValue() + ")";
+			return "(" + this.w + ", " + this.h + ", " + this.x + ", " + this.y + ")";
 		}
 	}
 }

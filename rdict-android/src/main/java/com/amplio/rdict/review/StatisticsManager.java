@@ -18,6 +18,8 @@ public class StatisticsManager {
 	private ODB m_odb = null;
 
 	private CardSetManager m_cardSetManager;
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
 
 	public StatisticsManager( ODB db, CardSetManager cardSetManager ) {
 		this.m_odb = db;
@@ -53,45 +55,53 @@ public class StatisticsManager {
 			return null;
 	}
 
-	public Number[] fetchCardCountData( String cutOffDate ) {
-		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
+	public Number[] fetchCardCountData( String cutoffDate ) {
+		int numDaysBetweenCutoffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutoffDate );
+		Number[] cardCounts = new Number[numDaysBetweenCutoffDateAndNow];
+		
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutoffDate ) );
 		query.orderByAsc( "record_date" );
+		
 		Objects<StatRecord> objects = m_odb.getObjects( query );
 		Vector<StatRecord> records = new Vector<StatRecord>( objects );
-		int numDaysBetweenCutOffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutOffDate );
-		Number[] cardCounts = new Number[numDaysBetweenCutOffDateAndNow];
-
-		Calendar startDate = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
-
-		try {
-			startDate.setTime( sdf.parse( cutOffDate ) );
-		} catch( ParseException e ) {
-			e.printStackTrace();
-		}
-
-		startDate.add( Calendar.HOUR_OF_DAY, 24 );
+		
+		Calendar startDate = this.getStartDate(cutoffDate);
 
 		int recordIndex = 0;
 
-		for( int i = 0; i < numDaysBetweenCutOffDateAndNow; i++ ) {
+		for( int i = 0; i < numDaysBetweenCutoffDateAndNow; i++ ) {
 			if( recordIndex < records.size() ) {
-				StatRecord record = (StatRecord) records.get( recordIndex );
+				StatRecord record = (StatRecord) records.get(recordIndex);
 
-				if( record.record_date.equals( sdf.format( startDate.getTime() ) ) ) {
+				if( record.record_date.equals( this.sdf.format( startDate.getTime() ) ) ) {
 					cardCounts[i] = new Integer( record.cardCount );
 					recordIndex++;
 				} else {
-					cardCounts[i] = 0;
+					cardCounts[i] = new Integer(0);
 				}
-			} else {
-				cardCounts[i] = 0;
+			}
+			else {
+				cardCounts[i] = new Integer(0);
 			}
 
 			startDate.add( Calendar.HOUR_OF_DAY, 24 );
 		}
 
 		return cardCounts;
+	}
+	
+	public Calendar getStartDate(String cutoffDate) {
+		Calendar cal = Calendar.getInstance();
+
+		try {
+			cal.setTime(this.sdf.parse( cutoffDate ) );
+		} catch( ParseException e ) {
+			e.printStackTrace();
+		}
+
+		cal.add( Calendar.HOUR, 24);
+		
+		return cal;
 	}
 
 	public Number[] fetchGradeData( String cutOffDate ) {

@@ -4,13 +4,7 @@ import junit.framework.TestCase;
 
 public class SparklineTest extends TestCase{
 
-	public void testSparklineFactory () {		
-//		SparklineFactory f = new SparklineFactory(width, height);
-//		
-//		assertEquals(width, f.getWidth(), f.getHeight());
-//		
-//		Sparkline g = f.create(data);
-
+	public void testSparkline () {		
 		int w = 100;
 		int h = 30;
 		Number[] data = new Number[]{0, 1, 2, 3, 4};
@@ -22,43 +16,35 @@ public class SparklineTest extends TestCase{
 		assertEquals(w, s.w);
 		assertEquals(h, s.h);
 
-		assertEquals(data.length, s.rectangles.size());		
+		assertEquals(data.length, s.data.length);		
 	}
 	
-	public void testCalcRectangleWidth () {
+	public void testGetAvailableSpace () {		
 		int w = 100;
 		int h = 30;
 		Number[] data = new Number[]{0, 1, 2, 3, 4};
-		
+	
 		int spacing = 1;
 		
 		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
-		// 100 - (1 * 4) / 5
-		// 100 - 4/5
-		
-		int totalWidthForSpacing = spacing * (s.rectangles.size() - 1); 
-		
-		int expectedWidth = (w - Sparkline.LEFT_MARGIN - Sparkline.RIGHT_MARGIN - totalWidthForSpacing) / s.rectangles.size();
-		
-		assertEquals(expectedWidth, s.calcRectangleWidth());
+		assertEquals(w - 2*Sparkline.LEFT_MARGIN - 2*Sparkline.RIGHT_MARGIN - (data.length - 1) * spacing, s.getWidthAvailableToRectangles());
+		assertEquals(h - Sparkline.TOP_MARGIN - Sparkline.BOTTOM_MARGIN, s.getHeightAvailableToRectangles());
 	}
 	
-	public void testCreateRectangle() {
+	public void testCalcWidthForRectangles() {
 		int w = 100;
 		int h = 30;
-		Number[] data = new Number[]{0, 1, 2, 3, 4};
-		
 		int spacing = 1;
+		Number[] data = new Number[]{0, 1, 2, 3, 4};
 		
 		Sparkline s = new Sparkline(w, h, data, spacing, false);
 		
-		Sparkline.Rectangle r = s.createRectangle(data[4]);
+		int totalWidthForSpacing = spacing * (data.length - 1); 
 		
-		assertEquals(s.calcRectangleWidth(), r.w);
-		assertEquals(new Float(data[4].intValue() * s.divisor).intValue(), r.h);
-		assertEquals(0, r.x);
-		assertEquals(new Float(h - Sparkline.BOTTOM_MARGIN - (data[4].intValue() * s.divisor)).intValue(), r.y);
+		int expectedWidth = (w - 2*Sparkline.LEFT_MARGIN - 2*Sparkline.RIGHT_MARGIN - totalWidthForSpacing) / data.length;
+		
+		assertEquals(expectedWidth, s.rectangleWidth);
 	}
 	
 	public void testSetupRectangles() {
@@ -74,9 +60,9 @@ public class SparklineTest extends TestCase{
 		
 		Sparkline.Rectangle r1 = s.rectangles.get(0);
 		
-		assertEquals(s.calcRectangleWidth() , r1.w);
+		assertEquals(s.rectangleWidth , r1.w);
 		assertEquals(new Float(0 * s.divisor).intValue(), r1.h);
-		assertEquals(0, r1.x);
+		assertEquals(Sparkline.LEFT_MARGIN*2, r1.x);
 		assertEquals(h - Sparkline.BOTTOM_MARGIN - r1.h, r1.y);
 		
 		Sparkline.Rectangle r2 = s.rectangles.get(1);
@@ -90,12 +76,8 @@ public class SparklineTest extends TestCase{
 		assertEquals(new Float(2 * s.divisor).intValue(), r3.h);
 		assertEquals(r1.x + r1.w + spacing + r2.w + spacing, r3.x);
 		assertEquals(h - Sparkline.BOTTOM_MARGIN - r3.h, r3.y);
-	}
-	
-	public void testCalcAverage() {
-		Number[] data = new Number[]{0,0,0,0, 10, 10, 10, 10};
 		
-		assertEquals(5, AndroidBarGraph.getAvg(data));
+		assertEquals(w, 2*Sparkline.LEFT_MARGIN + r1.w + spacing + r2.w + spacing + r3.w + 2*Sparkline.RIGHT_MARGIN);
 	}
 	
 	public void testCalcDivisor() {
@@ -136,6 +118,31 @@ public class SparklineTest extends TestCase{
 		Number[] data = new Number[]{0, 70};
 		
 		assertEquals(20 / (float) 70.0, Sparkline.calcDivisor(data, height, false));
+	}
+	
+	public void testForBug() {
+		int w = 230;
+		int h = 110;
+		int spacing = 2;
+		
+		int dataCount = 8;
+		Number[] data = new Number[dataCount];
+		
+		for(int i = 0; i < data.length; i++)
+			data[i] = 4;
+		
+		Sparkline s = new Sparkline(w, h, data, spacing, false);
+		
+		int widthAvailable = w - 2*Sparkline.LEFT_MARGIN - 2*Sparkline.RIGHT_MARGIN - ((dataCount - 1) * spacing);
+		
+		assertEquals(widthAvailable / dataCount, s.rectangleWidth);
+		
+		s.setupRectangles();
+		
+		Sparkline.Rectangle r = s.rectangles.get(s.rectangles.size() - 1);
+	
+		// spacing shouldn't be needed below
+		assertEquals(w - 2*Sparkline.RIGHT_MARGIN - spacing, r.x + r.w);
 	}
 	
 }

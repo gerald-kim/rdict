@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget999"
+	android:layout_width="fill_parent" android:layout_height="70px"
+	android:orientation="horizontal"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<RelativeLayout android:id="@+id/widget998"
+		android:layout_width="fill_parent" android:layout_height="70px"
+		android:orientation="horizontal" android:padding="10px">
+
+		<TextView android:id="@+id/exercise_label"
+			android:layout_width="200px" android:layout_height="wrap_content"
+			android:text="For Help with using RDict."
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+		</TextView>
+
+		<Button android:id="@+id/start_exercise_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="Go!" android:layout_alignParentRight="true"
+			android:layout_centerVertical="true">
+		</Button>
+
+	</RelativeLayout>
+</LinearLayout>

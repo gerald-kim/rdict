@@ -3,14 +3,10 @@ package com.amplio.rdict.review;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,47 +15,42 @@ import com.amplio.rdict.RDictActivity;
 
 public class ReviewActivity extends Activity {
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
-	private TextView noCardsScheduledTodayLabel = null;
-	private TextView finishedScheduledTodayLabel = null;
-	private TextView practiceAnotherSetLabel = null;
+	public static final String MESG_CARDS_SCHEDULED_FOR_TODAY = "You have cards scheduled for today.";
+	public static final String MESG_NO_CARDS_SCHEDULED_FOR_TODAY = "There are no cards scheduled for today.";
+	public static final String MESG_GOOD_JOB_YOURE_FINISHED = "Good Job! You've finished studying the cards that were scheduled for today.";
+	public static final String MESG_PRACTICE_ANOTHER_SET = "The following card sets are available for extra practice:";
 	
-	private CardExerciseView scheduledView = null;
-	private CardExerciseView topNView = null;
-	private CardExerciseView todayView = null;
-	
-	private TextView cardCount = null;
-	private TextView grade = null;
-	
-	private ImageView cardCountGraph = null;
-	private ImageView gradeGraph = null;
+	private TextView reviewMesg = null;
 	
 	private LinearLayout exerciseLayout = null;
+	private CardExerciseWrapper scheduledViewWrapper = null;
+	private CardExerciseWrapper topNViewWrapper = null;
+	private CardExerciseWrapper todayViewWrapper = null;
+	
+	private LinearLayout graphLayout = null;
+	private ReviewGraphViewWrapper cardCountGraph = null;
+	private ReviewGraphViewWrapper gradeGraph = null;
 	
 	@Override
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
 		setContentView(R.layout.review);
 		
-		this.noCardsScheduledTodayLabel = new TextView(this.getApplicationContext());
-		this.noCardsScheduledTodayLabel.setText("There are no cards scheduled for today.");
-		
-		this.finishedScheduledTodayLabel = new TextView(this.getApplicationContext());
-		this.finishedScheduledTodayLabel.setText("Good Job! You've finished studying the cards that were scheduled for today.");
-		
-		this.practiceAnotherSetLabel = new TextView(this.getApplicationContext());
-		this.practiceAnotherSetLabel.setText("Practice another card set:");
+		this.reviewMesg = (TextView) findViewById(R.id.review_mesg);
 		
 		this.exerciseLayout = (LinearLayout) findViewById(R.id.exercise_layout);
 		
-		this.scheduledView = CardExerciseView.buildScheduledCardExercise(this.getApplicationContext());
-		this.topNView = CardExerciseView.buildTopNCardExercise(this.getApplicationContext());
-		this.todayView = CardExerciseView.buildLookedupTodayCardExercise(this.getApplicationContext());
+		this.scheduledViewWrapper = CardExerciseWrapper.buildScheduledCardExercise(this.getApplicationContext());
+		this.topNViewWrapper = CardExerciseWrapper.buildTopNCardExercise(this.getApplicationContext());
+		this.todayViewWrapper = CardExerciseWrapper.buildLookedupTodayCardExercise(this.getApplicationContext());
 		
-		this.cardCount = (TextView)findViewById(R.id.card_count);
-		this.grade = (TextView)findViewById(R.id.grade);
+		this.graphLayout = (LinearLayout) findViewById(R.id.graph_layout);
 		
-		this.cardCountGraph = (ImageView)findViewById(R.id.card_count_graph);
-		this.gradeGraph = (ImageView)findViewById(R.id.grade_graph);
+		this.cardCountGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Card Count: ");
+		this.graphLayout.addView( this.cardCountGraph.getView());
+		
+		this.gradeGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Grade: ");
+		this.graphLayout.addView( this.gradeGraph.getView());
 	}
 	
 	public void onResume() {
@@ -67,71 +58,91 @@ public class ReviewActivity extends Activity {
 		
 		System.out.println("Review - Resumed");
 		
-		this.exerciseLayout.removeAllViews();
-		
 		RDictActivity.c_reviewManager.checkAvailableExercises();
 		
+		this.reviewMesg.setText(this.getGreetingMessage());
+		
+		this.setupExerciseViews();
+		this.setupGraphViews();
+	}
+	
+	public String getGreetingMessage() {
 		if(RDictActivity.c_reviewManager.isAvailableTodaysScheduledExercise){
-			this.exerciseLayout.addView(this.scheduledView);
-		}
-		else if (RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise || RDictActivity.c_reviewManager.isAvailableTOPNExercise) {
-			
-			String todaysDate = new SimpleDateFormat().format(new Date());
-			
-			if(null == RDictActivity.c_statisticsManager.loadStatRecordByDate(todaysDate))
-				this.exerciseLayout.addView(this.noCardsScheduledTodayLabel);
-			else
-				this.exerciseLayout.addView(this.finishedScheduledTodayLabel);
-			
-			this.exerciseLayout.addView(this.practiceAnotherSetLabel);
-			
-			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
-				this.todayView.addToLayout(this.exerciseLayout);
-
-			if(RDictActivity.c_reviewManager.isAvailableTOPNExercise)
-				this.topNView.addToLayout(this.exerciseLayout);
+			return MESG_CARDS_SCHEDULED_FOR_TODAY;
 		}
 		else {
-			this.exerciseLayout.addView(this.noCardsScheduledTodayLabel);
+			StringBuffer sb = new StringBuffer();
+
+			String todaysDate = new SimpleDateFormat().format(new Date());
+			
+			if(! existsStatRecordForDate( todaysDate ))
+				sb.append(MESG_NO_CARDS_SCHEDULED_FOR_TODAY);
+			else
+				sb.append(MESG_GOOD_JOB_YOURE_FINISHED);
+			
+			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise
+					|| RDictActivity.c_reviewManager.isAvailableTOPNExercise)
+				sb.append("  " + MESG_PRACTICE_ANOTHER_SET);
+			
+			return sb.toString();
 		}
+	}
+	
+	private boolean existsStatRecordForDate( String todaysDate ) {
+	    return null != RDictActivity.c_statisticsManager.loadStatRecordByDate(todaysDate);
+    }
+	
+	private void setupExerciseViews() {
+		this.exerciseLayout.removeAllViews();		
 		
+		Vector<CardExerciseWrapper> exercises = this.getExercises();
+		
+		for( CardExerciseWrapper e : exercises){
+			this.exerciseLayout.addView(e.getView());
+		}	
+    }
+	
+	public Vector<CardExerciseWrapper> getExercises() {
+		Vector<CardExerciseWrapper> exercises = new Vector<CardExerciseWrapper>();
+		if(RDictActivity.c_reviewManager.isAvailableTodaysScheduledExercise){
+			exercises.add(this.scheduledViewWrapper);
+			return exercises;
+		}
+		else {
+			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
+				exercises.add(this.todayViewWrapper);
+
+			if(RDictActivity.c_reviewManager.isAvailableTOPNExercise)
+				exercises.add(this.topNViewWrapper);
+			
+			return exercises;
+		}
+	}
+	
+	public void setupGraphViews() {
 		Calendar c = Calendar.getInstance(); 
-		c.add(Calendar.MONTH, -1);
+		c.add(Calendar.HOUR, -24 * 30);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String oneMonthAgo = sdf.format(c.getTime());
 		
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
+		String todaysCardCount = cardCountData[cardCountData.length - 1].toString();
+		
+		cardCountData = new Number[18];
+		
+		for(int i = 0; i < cardCountData.length; i++)
+			cardCountData[i] = 4;
+		
+		this.cardCountGraph.setValueAndData( todaysCardCount, cardCountData);
+		this.cardCountGraph.getView().refreshDrawableState();
+		
 		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
-		
-		this.cardCount.setText(cardCountData[cardCountData.length - 1].toString());
-		this.grade.setText(gradeData[gradeData.length - 1].toString() + " %");
-		
-		Bitmap cardCountBitmap = this.prepareSparkline(cardCountData, false);
-	    this.cardCountGraph.setImageBitmap(cardCountBitmap);
-		this.cardCountGraph.setBackgroundColor(Color.WHITE);
-		this.cardCountGraph.refreshDrawableState();
-		
-		Bitmap gradeBitmap = this.prepareSparkline(gradeData, true);
-		this.gradeGraph.setImageBitmap(gradeBitmap);
-		this.gradeGraph.setBackgroundColor(Color.WHITE);
-		this.gradeGraph.refreshDrawableState();
-	}
+		String todaysGrade = gradeData[gradeData.length - 1].toString() + " %";
 	
-	public Bitmap prepareSparkline(Number[] data, boolean isPercentageGraph) {
-		int width = 200;
-		int height = 80;
-		int spacing = 1;
-		
-		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
-	    Canvas canvas = new Canvas(bitmap);
-	    Paint paint = new Paint();
-	    Sparkline sl = new Sparkline(width, height, data, spacing, isPercentageGraph);
-	    sl.setupRectangles();
-	    sl.draw(canvas, paint);
-	    
-		return bitmap;
+		this.gradeGraph.setValueAndData( todaysGrade, gradeData);
+		this.gradeGraph.getView().refreshDrawableState();
 	}
-	
+
 	public void onPause(){
 		System.out.println("Review - paused");
 		super.onPause();
