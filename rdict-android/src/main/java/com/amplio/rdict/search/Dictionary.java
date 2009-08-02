@@ -30,7 +30,7 @@ public class Dictionary {
 	
 	public DictionaryEntry getWordByID(long id) {
 		DictionaryEntry dicEntry = null;
-		Cursor c = _con.rawQuery("select word, def from word_db where _id = " + id, null);
+		Cursor c = _con.rawQuery("select word, def from word_db where _id = ? ", new String[]{new Long(id).toString()});
 		
 		if(0 < c.getCount()){
 			c.moveToNext();
@@ -43,7 +43,7 @@ public class Dictionary {
 	
 	public Vector<DictionaryEntry> findMatchingWords(String str) {
 		Vector<DictionaryEntry> matches = new Vector<DictionaryEntry>();
-		Cursor c = _con.rawQuery("select * from word_db where word GLOB '" + str + "*' limit 50", null);
+		Cursor c = _con.rawQuery("select * from word_db where word GLOB ? limit 50", new String[]{str + "*"});
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
