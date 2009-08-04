@@ -1,9 +1,10 @@
 package com.amplio.rdict.review;
 
+import java.io.IOException;
+import java.net.URL;
+
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,23 +33,19 @@ public class ReviewGraphViewWrapper {
 	public void setValueAndData(String todaysValue, Number[] data) {
 		this.todaysValue.setText( todaysValue );
 		
-		Bitmap graphBitmap = this.buildBitmap(data, false);
-		this.graphBitmap.setImageBitmap( graphBitmap);
+		StringBuilder strBuilder = new StringBuilder();
+		for( Number n : data ) {
+			strBuilder.append( n ).append( "," );
+		}
+		//strBuilder.append( "10,20,30,300" );
+		try {
+			URL img = new URL("http://chart.apis.google.com/chart?chs=200x30&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
+	        this.graphBitmap.setImageBitmap( BitmapFactory.decodeStream( img.openStream() ) );
+        } catch( IOException e ) {
+	        e.printStackTrace();
+        }
 	}
-	
-	public Bitmap buildBitmap(Number[] data, boolean isPercentageGraph) {
-		Bitmap bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_4444);
-	    Canvas canvas = new Canvas(bitmap);
-	    
-	    Sparkline sl = new Sparkline(WIDTH, HEIGHT, data, SPACING, isPercentageGraph);
-	    sl.setupRectangles();
-	    
-	    Paint paint = new Paint();
-	    sl.draw(canvas, paint);
-	    
-		return bitmap;
-	}
-	
+		
 	public View getView() {
 		return this.v;
 	}

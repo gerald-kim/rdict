@@ -47,9 +47,9 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
 		
-		for(int i = 0; i < headwords.size(); i++)
+		for(int i = 0; i < headwords.size(); i++) {
 			aa.add(headwords.get(i));
-
+		}	
 		_wordList.setAdapter(aa);
 		aa.notifyDataSetChanged();
 	}

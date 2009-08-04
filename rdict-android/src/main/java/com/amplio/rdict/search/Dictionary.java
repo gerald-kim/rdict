@@ -43,7 +43,7 @@ public class Dictionary {
 	
 	public Vector<String> findMatchingHeadwords(String str) {
 		Vector<String> headwords = new Vector<String>();
-		Cursor c = _con.rawQuery("select word from word_db where word GLOB ? limit 50", new String[]{str + "*"});
+		Cursor c = _con.rawQuery("select word from word_db where word LIKE ? || '%' limit 50", new String[]{str});
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();

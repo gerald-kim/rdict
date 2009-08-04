@@ -130,7 +130,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     public boolean userChoseToDelaySetup() {
 		return SetupManager.STATE_SETUP_DELAYED == SetupActivity.setupMgr.getState();
 	}   
-
+    
 	private void initDatabaseManagers() {
 		if(m_db == null || m_db.isClosed())
 		    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
