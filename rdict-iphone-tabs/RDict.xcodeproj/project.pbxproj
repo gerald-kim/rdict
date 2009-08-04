@@ -108,7 +108,6 @@
 		EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
 		EF54C5860FFF372100BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5830FFF372100BFDCB6 /* index.db */; };
-		EF54C5870FFF372100BFDCB6 /* redirect.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5840FFF372100BFDCB6 /* redirect.db */; };
 		EF54C5880FFF372100BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5850FFF372100BFDCB6 /* word.db */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
 		EF770FCC0FF7B86800889749 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
@@ -246,7 +245,6 @@
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
-		EF54C5840FFF372100BFDCB6 /* redirect.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = redirect.db; sourceTree = "<group>"; };
 		EF54C5850FFF372100BFDCB6 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
 		EF770E830FF754D900889749 /* jquery-1.3.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.js"; path = "Resources/jquery-1.3.2.js"; sourceTree = "<group>"; };
 		EF770FC40FF7B86800889749 /* CardBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBackViewController.h; path = Classes/CardBackViewController.h; sourceTree = "<group>"; };
@@ -473,7 +471,6 @@
 			isa = PBXGroup;
 			children = (
 				EF54C5830FFF372100BFDCB6 /* index.db */,
-				EF54C5840FFF372100BFDCB6 /* redirect.db */,
 				EF54C5850FFF372100BFDCB6 /* word.db */,
 			);
 			path = enwiktionary.db;
@@ -711,7 +708,6 @@
 				EF770FD10FF7B88F00889749 /* ReviewUnfinishedView.xib in Resources */,
 				EF770FD30FF7B8A000889749 /* ReviewFinishedView.xib in Resources */,
 				EF54C5860FFF372100BFDCB6 /* index.db in Resources */,
-				EF54C5870FFF372100BFDCB6 /* redirect.db in Resources */,
 				EF54C5880FFF372100BFDCB6 /* word.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
