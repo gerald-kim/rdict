@@ -1,28 +1,45 @@
+<style>
+/*<group=rdict>*/
+a.r {
+    background-image:url(file:///android_asset/star_off.png);
+    background-repeat:no-repeat;
+    float:right;
+    margin-left:5px;
+    margin-right:15px;   width:16px;height:16px;
+}
+a.r:hover {
+    background-image:url(file:///android_asset/star_on.png);
+}
+a.r:visited {
+    background-image:url(file:///android_asset/star_on.png);
+}
+/*</group>*/
+</style>
+
 <script type="text/javascript" src="file:///android_asset/jquery-1.3.2.min.js"></script>
-  
 <script type="text/javascript">
 $(document).ready( function() {
-    $("#queryInput").focus()
-    $("ol>li").prepend( '<input class="remember" type="button" value="Remember"/>' );
-    
     $("a.rdict").attr( 'href', 
     	function () { 
           return '/lookup?q=' + encodeURIComponent( $(this).attr('href') ); 
     	}
     ); 
-    $(".remember").click( function() {
-        remember_word(this);
-    });
 } );
 
-function remember_word(obj) {
+function s( obj ) {
+//	alert( $(obj).attr('href') );
+//	window.location.href = '/lookup?q=' + encodeURIComponent( $(obj).attr('href') ); 
+	return false;
+}
+
+function r(obj) {
     definition_li = $(obj).parent().clone();
     definition_li.children('ul').empty();
     definition_li.children('ol').empty();
     definition_li.children('dl').empty();
     definition = definition_li.text();
-
+    
+//	alert( definition );
 	window.location = '/save?def=' + decodeURIComponent(definition);
 }
-
 </script>
