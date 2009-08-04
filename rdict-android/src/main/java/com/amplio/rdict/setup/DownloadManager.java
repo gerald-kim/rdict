@@ -13,7 +13,7 @@ import android.os.Handler;
 
 public class DownloadManager implements Runnable {
 	//"http://www.google.ca/intl/en_ca/images/logo.gif";
-	public final static String SOURCE_URL = "http://www.killer-rabbits.net/word.db"; 
+	public final static String SOURCE_URL = "http://s3.amazonaws.com/word.db"; 
 	public final static String WRITE_PATH = "/sdcard/rdict/word.db";
 	
 	public long download_file_length = 0;
