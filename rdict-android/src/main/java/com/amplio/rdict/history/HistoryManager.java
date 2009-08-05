@@ -59,7 +59,7 @@ public class HistoryManager {
 		
 		for(int i = 0; i < c.getCount(); i++){
 			c.moveToNext();
-			words.add(new DictionaryEntry(c.getLong(0), c.getString(1), null));
+			words.add(new DictionaryEntry(c.getString(1), null));
 		}
 		
 		c.close();

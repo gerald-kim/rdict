@@ -143,9 +143,10 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	
 	    c_historyMgr = new HistoryManager(m_con);
-    	c_historyMgr.createTableIfNotExists(m_con);
-    	c_dictionary = new Dictionary( m_con, getAssetInputStream("dictionary_js.html") );
-    	
+		c_historyMgr.createTableIfNotExists( m_con );
+		c_dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
+		        getAssetInputStream( "dictionary_js.html" ) );
+	
     	this.isInittedDatabaseManagers = true;
     }
 	

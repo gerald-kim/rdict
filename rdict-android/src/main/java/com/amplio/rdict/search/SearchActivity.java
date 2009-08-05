@@ -1,7 +1,5 @@
 package com.amplio.rdict.search;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -19,10 +17,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 // this should only deal with headwords
-public class SearchActivity extends Activity implements AssetInputStreamProvider, TextWatcher, OnItemClickListener {
+public class SearchActivity extends Activity implements TextWatcher, OnItemClickListener {
 	private EditText searchText;
 	private ListView _wordList;
-	public Vector<String> headwords = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +31,12 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 		
 		_wordList = (ListView) findViewById(R.id.listview);
 		_wordList.setOnItemClickListener(this);
+
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, RDictActivity.c_dictionary.words);
+		_wordList.setAdapter(aa);
+		aa.notifyDataSetChanged();
+		
+		_wordList.setSelectionFromTop( RDictActivity.c_dictionary.findWordIndex( "a" ), 0 );
     }
     
     public void onResume(){
@@ -43,15 +46,8 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
     }
     
    	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		headwords = RDictActivity.c_dictionary.findMatchingHeadwords(s.toString());
-		
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1);
-		
-		for(int i = 0; i < headwords.size(); i++) {
-			aa.add(headwords.get(i));
-		}	
-		_wordList.setAdapter(aa);
-		aa.notifyDataSetChanged();
+   		
+   		_wordList.setSelectionFromTop( RDictActivity.c_dictionary.findWordIndex( s.toString() ), 0 );
 	}
    	
    	public void afterTextChanged(Editable s) {
@@ -60,8 +56,8 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
 	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 	}
 
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		String headword = headwords.elementAt(parent.getPositionForView(view));
+	public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
+		String headword = RDictActivity.c_dictionary.words[parent.getPositionForView( view )];
 		
 		RDictActivity.c_historyMgr.addHistoryRecord(headword);
 		
@@ -89,15 +85,4 @@ public class SearchActivity extends Activity implements AssetInputStreamProvider
     	
     	super.onStop();
     }
-    
-	public InputStream getAssetInputStream(String path) {
-		InputStream stream = null;
-		try {
-			stream = this.getAssets().open(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return stream;
-	}
 }

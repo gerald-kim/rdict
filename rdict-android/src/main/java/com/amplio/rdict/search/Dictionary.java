@@ -1,56 +1,92 @@
 package com.amplio.rdict.search;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.Vector;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
-	private DictionaryEntryFactory _factory = null;
-	private SQLiteDatabase _con = null;
-	
-	public Dictionary(SQLiteDatabase con, InputStream htmlStream) {
-		_con = con;
-		_factory = new DictionaryEntryFactory(htmlStream);
-	}
-	
-	public DictionaryEntry searchByWord(String word) {
-		DictionaryEntry dicEntry = null;
-		Cursor c = _con.rawQuery("select def from word_db where word = ? limit 1", new String[]{word});
-		
-		if(0 < c.getCount()){
-			c.moveToNext();
-			dicEntry =  _factory.makeHTMLifiedEntry(word, c.getString(0));
+	private Comparator<String> c = new Comparator<String>() {
+		public int compare( String str1, String str2 ) {
+			int compareTo = str1.toLowerCase().compareTo( str2.toLowerCase() );
+			// System.out.println( "comparing :" + str1 + ", " + str2 + " = " +
+			// compareTo);
+			return compareTo;
 		}
-  		
-		c.close();
+	};
+
+	private DictionaryEntryFactory m_factory = null;
+	private Cdb m_wordCdb;
+	public String[] words;
+
+	public Dictionary( String wordDbPath, String wordIndexPath, InputStream htmlStream ) {
+		m_factory = new DictionaryEntryFactory( htmlStream );
+		try {
+			m_wordCdb = new Cdb( wordDbPath );
+
+			BufferedReader reader = new BufferedReader( new InputStreamReader( new FileInputStream(
+			        wordIndexPath ) ) );
+			int wordCount = Integer.parseInt( reader.readLine().trim() );
+			words = new String[wordCount];
+			for( int i = 0; i < wordCount; i++ ) {
+				words[i] = reader.readLine().trim();
+			}
+			reader.close();
+		} catch( IOException e ) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public DictionaryEntry searchByWord( String word ) {
+		DictionaryEntry dicEntry = m_factory.makeHTMLifiedEntry( word, new String( m_wordCdb
+		        .find( word.getBytes() ) ) );
+
 		return dicEntry;
 	}
-	
-	public DictionaryEntry getWordByID(long id) {
-		DictionaryEntry dicEntry = null;
-		Cursor c = _con.rawQuery("select word, def from word_db where _id = ? ", new String[]{new Long(id).toString()});
-		
-		if(0 < c.getCount()){
-			c.moveToNext();
-			dicEntry = _factory.makeHTMLifiedEntry(c.getString(0), c.getString(1));
+
+	public int findWordIndex( String word ) {
+		int i = _find( word );
+		int wordIdx = word.length();
+
+		while( i < 0 && wordIdx > 1) {
+			wordIdx--;
+			i = _find( word.substring( 0, wordIdx ) );
+			System.out.println( "research i" + i );
 		}
-		
-		c.close();
-		return dicEntry;
+		if( i < 0 ) {
+			i = 0;	
+		}
+
+		return i;
 	}
-	
-	public Vector<String> findMatchingHeadwords(String str) {
-		Vector<String> headwords = new Vector<String>();
-		Cursor c = _con.rawQuery("select word from word_db where word LIKE ? || '%' limit 50", new String[]{str});
-		
-		for(int i = 0; i < c.getCount(); i++){
-			c.moveToNext();
-			headwords.add(c.getString(0));
+
+	private int _find( String word ) {
+		int i = Arrays.binarySearch( words, word, c );
+
+		if( i < 0 || words[i].equals( word ) ) {
+			return i;
 		}
-  		
-		c.close();
-		return headwords;
+
+		while( true) {
+			if( i == 0 )
+				break;
+
+			System.out.println( "idx: " + i );
+			System.out.println( "comparing :" + words[i - 1] + ", " + word + ": "
+			        + c.compare( words[i - 1], word ) );
+			if( c.compare( words[i - 1], word ) < 0 ) {
+				i++;
+				break;
+			}
+
+			i--;
+		}
+		return i;
 	}
 }
