@@ -2,58 +2,41 @@
 
 <LinearLayout android:id="@+id/widget60"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	android:orientation="horizontal" android:padding="10px" xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="fill_parent" android:layout_height="90px"
-		android:orientation="horizontal" android:layout_marginLeft="10px"
-		android:layout_marginRight="10px" android:layout_marginTop="10px"
-		android:layout_marginBottom="10px">
+		android:layout_width="240px" android:layout_height="90px"
+		android:orientation="horizontal" 
+		android:layout_gravity="center_vertical" android:background="@drawable/manage_flashcard">
 
 		<TextView android:id="@+id/headword_label"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:text="TextView" android:layout_weight="1"
-			android:layout_alignParentLeft="true" android:layout_alignParentTop="true">
+			android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+			android:textColor="#000000" android:textSize="20sp">
 		</TextView>
-
-		<Button android:id="@+id/edit_button" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text=">"
-			android:layout_weight="0" android:layout_alignParentRight="true"
-			android:layout_alignParentTop="true">
-		</Button>
 
 		<TextView android:id="@+id/definition_label"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:text="TextView" android:layout_alignParentLeft="true"
-			android:layout_alignParentBottom="true">
+			android:layout_alignParentBottom="true" android:textColor="#000000"
+			android:textSize="20sp">
 		</TextView>
 
 	</RelativeLayout>
-	
-	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="fill_parent" android:layout_height="90px"
-		android:orientation="horizontal" android:layout_marginLeft="10px"
-		android:layout_marginRight="10px" android:layout_marginTop="10px"
-		android:layout_marginBottom="10px">
 
-		<TextView android:id="@+id/headword_label"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="TextView" android:layout_weight="1"
-			android:layout_alignParentLeft="true" android:layout_alignParentTop="true">
-		</TextView>
+	<LinearLayout android:id="@+id/widget60"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_gravity="center_vertical">
 
-		<Button android:id="@+id/edit_button" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text=">"
-			android:layout_weight="0" android:layout_alignParentRight="true"
-			android:layout_alignParentTop="true">
-		</Button>
+		<ImageButton android:id="@+id/edit_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text=">" android:layout_weight="0"
+			android:layout_gravity="center"
+			android:src="@drawable/green_button">
+		</ImageButton>
 
-		<TextView android:id="@+id/definition_label"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="TextView" android:layout_alignParentLeft="true"
-			android:layout_alignParentBottom="true">
-		</TextView>
+	</LinearLayout>
 
-	</RelativeLayout>
 </LinearLayout>

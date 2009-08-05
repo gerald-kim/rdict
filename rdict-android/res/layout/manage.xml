@@ -3,37 +3,35 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 
-		<RelativeLayout android:id="@+id/widget57"
-			android:layout_width="wrap_content" android:layout_height="45px"
-			android:layout_marginLeft="2px"
-			android:layout_marginRight="2px"
-			android:layout_marginTop="4px"
-			android:layout_marginBottom="2px"
-			android:background="#000000">
+	<RelativeLayout android:id="@+id/widget57"
+		android:layout_width="wrap_content" android:layout_height="45px"
+		android:layout_marginLeft="2px" android:layout_marginRight="2px"
+		android:layout_marginTop="4px" android:layout_marginBottom="2px"
+		android:background="#000000">
 
-			<EditText android:id="@+id/filter_text"
-				android:layout_width="230px" android:layout_height="wrap_content"
-				android:text="" android:textSize="18sp" android:layout_weight="0"
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
-				android:lines="1" android:scrollHorizontally="true">
-			</EditText>
-			
-			<Button android:id="@+id/add_button" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="New Card"
+		<EditText android:id="@+id/filter_text" android:layout_width="230px"
+			android:layout_height="wrap_content" android:text=""
+			android:textSize="18sp" android:layout_weight="0"
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+			android:lines="1" android:scrollHorizontally="true">
+		</EditText>
 
-				android:layout_weight="1" android:layout_alignParentRight="true"
-				android:layout_centerVertical="true">
-			</Button>
-		
-		</RelativeLayout>
-	
+		<Button android:id="@+id/add_button" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="New Card"
+			android:layout_weight="1" android:layout_alignParentRight="true"
+			android:layout_centerVertical="true">
+		</Button>
+
+	</RelativeLayout>
+
 	<LinearLayout android:id="@+id/widget40"
-	android:layout_width="fill_parent" android:layout_height="1px"
-	android:orientation="vertical" android:background="#FFFFFF" />
+		android:layout_width="fill_parent" android:layout_height="1px"
+		android:orientation="vertical" android:background="#FFFFFF" />
 
 	<ListView android:id="@+id/card_list_view"
 		android:layout_height="fill_parent" android:layout_width="fill_parent"
-		android:visibility="visible" android:layout_weight="0">
+		android:visibility="visible" android:layout_weight="0"
+		android:divider="#000000">
 	</ListView>
 
 </LinearLayout>

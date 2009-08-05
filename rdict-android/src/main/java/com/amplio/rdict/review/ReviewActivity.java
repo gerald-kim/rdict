@@ -128,10 +128,10 @@ public class ReviewActivity extends Activity {
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
 		String numCardsAddedToday = cardCountData[cardCountData.length - 1].toString();
 		
-//		cardCountData = new Number[18];
-//		
-//		for(int i = 0; i < cardCountData.length; i++)
-//			cardCountData[i] = 4;
+		cardCountData = new Number[18];
+		
+		for(int i = 0; i < cardCountData.length; i++)
+			cardCountData[i] = 4;
 		
 		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData);
 		this.cardCountGraph.getView().refreshDrawableState();

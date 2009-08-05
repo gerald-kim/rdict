@@ -2,11 +2,12 @@ package com.amplio.rdict.more;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
@@ -29,8 +30,9 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 		View fcView = View.inflate(this.context, R.layout.flashcard_ui_for_manage, null);
 		((TextView) fcView.findViewById(R.id.headword_label)).setText(c.question);
 		
-		Button editButton = (Button) fcView.findViewById(R.id.edit_button);
+		ImageButton editButton = (ImageButton) fcView.findViewById(R.id.edit_button);
 		editButton.setTag(new Integer(position).toString());
+		editButton.setBackgroundColor( Color.BLACK);
 		editButton.setOnClickListener(this);
 		
 		String answerBlurb = Card.getAbbreviatedAnswer(c.answer.replace("%20", " "), ABBREVIATED_DEF_LENGTH);

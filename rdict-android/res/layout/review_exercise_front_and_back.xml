@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget51"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" 
+	android:padding="15px" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Progress Indicator"
+		android:layout_x="5px" android:layout_y="9px" android:id="@+id/progress_label">
+	</TextView>
+
+	<LinearLayout android:id="@+id/flashcard_layout"
+		android:layout_width="fill_parent" android:layout_height="110px"
+		android:orientation="horizontal">
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/button_layout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical">
+		
+		<Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="Easy" android:id="@+id/easy_button">
+		</Button>
+		<Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="Not Bad" android:id="@+id/not_bad_button">
+		</Button>
+		<Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="Hard" android:id="@+id/hard_button">
+		</Button>
+		<Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="I forgot" android:id="@+id/i_forgot_button">
+		</Button>
+		<Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="View Answer" android:id="@+id/view_answer_button">
+		</Button>
+	</LinearLayout>
+
+</LinearLayout>

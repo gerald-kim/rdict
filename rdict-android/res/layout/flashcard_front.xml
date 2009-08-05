@@ -1,0 +1,13 @@
+<RelativeLayout android:id="@+id/widget31"
+	android:layout_width="240px" android:layout_height="140px"
+	android:orientation="horizontal" android:layout_gravity="center_vertical"
+	android:background="@drawable/manage_flashcard" 
+	android:padding="30px" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TextView android:id="@+id/front_headword_label"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="TextView"
+		android:layout_centerInParent="true"
+		android:textColor="#000000" android:textSize="44sp">
+	</TextView>
+</RelativeLayout>
