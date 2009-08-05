@@ -9,6 +9,9 @@ from models import *
 import tc
 import os
 
+reload( sys )
+sys.setdefaultencoding( "utf-8" )
+
 class TokyoCabinetExporter:
     def __init__( self, db_name ):
         self.db_dir = db_name
