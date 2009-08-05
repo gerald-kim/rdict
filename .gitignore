@@ -2,6 +2,7 @@
 
 *.pyc
 *.db
+*.cdb
 *.err
 *.bz2
 *.log

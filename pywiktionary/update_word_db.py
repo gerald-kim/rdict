@@ -7,6 +7,10 @@ import codecs
 import xml.sax
 import sys
 
+reload( sys )
+sys.setdefaultencoding( "utf-8" )
+
+
 from models import *
 
 WordCount = 0

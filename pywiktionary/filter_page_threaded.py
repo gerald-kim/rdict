@@ -12,6 +12,9 @@ import traceback
 import multiprocessing
 from Queue import Empty
 
+reload( sys )
+sys.setdefaultencoding( "utf-8" )
+
 THREAD_COUNT = 4
 STOP = '##STOP##'
 

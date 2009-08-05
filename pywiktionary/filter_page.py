@@ -11,6 +11,9 @@ import sys
 import traceback
 import multiprocessing
 
+reload( sys )
+sys.setdefaultencoding( "utf-8" )
+
 if __name__ == '__main__':
     word_manager = WordManager()
     word_manager.connect()
