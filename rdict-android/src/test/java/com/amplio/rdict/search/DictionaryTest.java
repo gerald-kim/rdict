@@ -4,10 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.Collator;
-import java.text.RuleBasedCollator;
 import java.util.Arrays;
-import java.util.Locale;
 
 import junit.framework.TestCase;
 
