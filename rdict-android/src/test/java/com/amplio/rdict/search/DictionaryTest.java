@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import junit.framework.TestCase;
 
@@ -32,18 +33,39 @@ public class DictionaryTest extends TestCase {
 		assertEquals( 1522, m_dictionary.words.length );
 	}
 
-	public void testFindWordIndex() {
-		assertEquals( 6, m_dictionary.findWordIndex( "aaaa" ) );
+	public void atestFindExistingWordIndex() {
+		assertEquals( 8, m_dictionary.findWordIndex( "abacus" ) );
+		assertEquals( 21, m_dictionary.findWordIndex( "ABC" ) );
+
 		assertEquals( 0, m_dictionary.findWordIndex( "a" ) );
 		assertEquals( 1, m_dictionary.findWordIndex( "A" ) );
 		assertEquals( 2, m_dictionary.findWordIndex( "a-" ) );
-		assertEquals( 6, m_dictionary.findWordIndex( "aaa" ) );
-		assertEquals( 0, m_dictionary.findWordIndex( "" ) );
+		assertEquals( 27, m_dictionary.findWordIndex( "abet" ) );
+	}
+
+	public void testFindNonExistingWordIndex() {
+		assertEquals( 7, m_dictionary.findWordIndex( "ab" ) );
+		assertEquals( 7, m_dictionary.findWordIndex( "aback" ) );
+//		assertEquals( 7, m_dictionary.findWordIndex( "abackt" ) );
 	}
 
 	public void testGetDefinition() {
 		DictionaryEntry e = m_dictionary.searchByWord( "a" );
 		assertNotNull( e );
-//		System.out.println( e.contents );
+		// System.out.println( e.contents );
+	}
+
+	public void testComparator() {
+		String[] strs = { "A", "a", "b", "bc", "a-", "ABC", "a.m." };
+		Arrays.sort( strs, Dictionary.COLLATOR );
+		for( int i = 0; i < strs.length; i++ ) {
+			System.out.print( strs[i] );
+			System.out.print( ", " );
+		}
+
+		assertTrue( Dictionary.COLLATOR.compare( "a", "a" ) == 0 );
+		assertTrue( Dictionary.COLLATOR.compare( "a", "A" ) < 0 );
+		assertTrue( Dictionary.COLLATOR.compare( "A", "a" ) > 0 );
+		assertTrue( Dictionary.COLLATOR.compare( "A", "a-" ) < 0 );
 	}
 }

@@ -1,7 +1,5 @@
 package com.amplio.rdict.search;
 
-import java.util.Vector;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
