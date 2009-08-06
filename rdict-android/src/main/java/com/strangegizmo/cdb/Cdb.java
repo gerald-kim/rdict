@@ -33,9 +33,9 @@
 package com.strangegizmo.cdb;
 
 /* Java imports. */
-import java.io.*;
-import java.util.*;
-
+import java.io.IOException;
+import java.io.RandomAccessFile;
+	
 /**
  * Cdb implements a Java interface to D.&nbsp;J.&nbsp;Bernstein's CDB
  * database.
@@ -283,100 +283,5 @@ public class Cdb {
 
 		/* No more data values for this key. */
 		return null;
-	}
-
-
-	/**
-	 * Returns an Enumeration containing a CdbElement for each entry in
-	 * the constant database.
-	 *
-	 * @param filepath The CDB file to read.
-	 * @return An Enumeration containing a CdbElement for each entry in
-	 *  the constant database.
-	 * @exception java.io.IOException if an error occurs reading the
-	 *  constant database.
-	 */
-	public static Enumeration elements(final String filepath)
-		throws IOException
-	{
-		/* Open the data file. */
-		final InputStream in
-			= new BufferedInputStream(
-				new FileInputStream(
-					filepath));
-
-		/* Read the end-of-data value. */
-		final int eod = (in.read() & 0xff)
-				| ((in.read() & 0xff) <<  8)
-				| ((in.read() & 0xff) << 16)
-				| ((in.read() & 0xff) << 24);
-
-		/* Skip the rest of the hashtable. */
-		in.skip(2048 - 4);
-
-		/* Return the Enumeration. */
-		return new Enumeration() {
-			/* Current data pointer. */
-			int pos = 2048;
-
-			/* Finalizer. */
-			protected void finalize() {
-				try { in.close(); } catch (Exception ignored) {}
-			}
-
-
-			/* Returns <code>true</code> if there are more elements in
-			 * the constant database (pos < eod); <code>false</code>
-			 * otherwise. */
-			public boolean hasMoreElements() {
-				return pos < eod;
-			}
-
-			/* Returns the next data element in the CDB file. */
-			public synchronized Object nextElement() {
-				try {
-					/* Read the key and value lengths. */
-					int klen = readLeInt(); pos += 4;
-					int dlen = readLeInt(); pos += 4;
-
-					/* Read the key. */
-					byte[] key = new byte[klen];
-					for (int off = 0; off < klen; /* below */) {
-						int count = in.read(key, off, klen - off);
-						if (count == -1)
-							throw new IllegalArgumentException(
-								"invalid cdb format");
-						off += count;
-					}
-					pos += klen;
-
-					/* Read the data. */
-					byte[] data = new byte[dlen];
-					for (int off = 0; off < dlen; /* below */) {
-						int count = in.read(data, off, dlen - off);
-						if (count == -1)
-							throw new IllegalArgumentException(
-								"invalid cdb format");
-						off += count;
-					}
-					pos += dlen;
-
-					/* Return a CdbElement with the key and data. */
-					return new CdbElement(key, data);
-				} catch (IOException ioException) {
-					throw new IllegalArgumentException(
-						"invalid cdb format");
-				}
-			}
-
-
-			/* Reads a little-endian integer from <code>in</code>. */
-			private int readLeInt() throws IOException {
-				return (in.read() & 0xff)
-					| ((in.read() & 0xff) <<  8)
-					| ((in.read() & 0xff) << 16)
-					| ((in.read() & 0xff) << 24);
-			}
-		};
 	}
 }

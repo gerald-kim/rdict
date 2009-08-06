@@ -5,20 +5,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.Collator;
+import java.text.RuleBasedCollator;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Locale;
 
 import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
-	private Comparator<String> c = new Comparator<String>() {
-		public int compare( String str1, String str2 ) {
-			int compareTo = str1.toLowerCase().compareTo( str2.toLowerCase() );
-			// System.out.println( "comparing :" + str1 + ", " + str2 + " = " +
-			// compareTo);
-			return compareTo;
-		}
-	};
+	public static final RuleBasedCollator COLLATOR = (RuleBasedCollator) Collator.getInstance( new Locale(
+	        "en", "US", "" ) );
 
 	private DictionaryEntryFactory m_factory = null;
 	private Cdb m_wordCdb;
@@ -46,47 +42,25 @@ public class Dictionary {
 	public DictionaryEntry searchByWord( String word ) {
 		DictionaryEntry dicEntry = m_factory.makeHTMLifiedEntry( word, new String( m_wordCdb
 		        .find( word.getBytes() ) ) );
-
+		
 		return dicEntry;
 	}
 
 	public int findWordIndex( String word ) {
-		int i = _find( word );
-		int wordIdx = word.length();
-
-		while( i < 0 && wordIdx > 1) {
-			wordIdx--;
-			i = _find( word.substring( 0, wordIdx ) );
-			System.out.println( "research i" + i );
-		}
-		if( i < 0 ) {
-			i = 0;	
-		}
-
-		return i;
-	}
-
-	private int _find( String word ) {
-		int i = Arrays.binarySearch( words, word, c );
-
-		if( i < 0 || words[i].equals( word ) ) {
-			return i;
-		}
-
-		while( true) {
-			if( i == 0 )
-				break;
-
-			System.out.println( "idx: " + i );
-			System.out.println( "comparing :" + words[i - 1] + ", " + word + ": "
-			        + c.compare( words[i - 1], word ) );
-			if( c.compare( words[i - 1], word ) < 0 ) {
-				i++;
-				break;
+		int wordIndex = 0; 
+		int idx = 0;
+		while( wordIndex < word.length() ) {
+			wordIndex++;
+			idx = Arrays.binarySearch( words, word.substring( 0, wordIndex  ), Dictionary.COLLATOR );
+			if ( idx < 0  ) {
+			 	if ( ! words[-idx].toLowerCase().startsWith( word.substring( 0, wordIndex ).toLowerCase() ) )
+			 		break;
 			}
-
-			i--;
+ 			System.out.println( "wordIndex: " + wordIndex + ", idx: " + idx );
 		}
-		return i;
+		
+		if( idx < 0 ) 
+			idx = -idx - 1;
+		return idx;
 	}
 }
