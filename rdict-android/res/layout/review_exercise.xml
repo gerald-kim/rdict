@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget51"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" 
+	android:padding="15px" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TextView android:id="@+id/progress_label" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Progress Indicator" android:textSize="18sp"
+		android:layout_marginBottom="15px">
+	</TextView>
+
+	<LinearLayout android:id="@+id/flashcard_layout"
+		android:layout_width="fill_parent" android:layout_height="110px"
+		android:orientation="horizontal">
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/button_layout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical">
+	</LinearLayout>
+
+</LinearLayout>
