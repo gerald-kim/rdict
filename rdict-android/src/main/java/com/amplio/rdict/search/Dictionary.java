@@ -13,8 +13,8 @@ import java.util.Locale;
 import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
-	public static final RuleBasedCollator COLLATOR = (RuleBasedCollator) Collator.getInstance( new Locale(
-	        "en", "US", "" ) );
+	public static RuleBasedCollator COLLATOR  = (RuleBasedCollator)
+    Collator.getInstance(new Locale("en", "US", ""));
 
 	private DictionaryEntryFactory m_factory = null;
 	private Cdb m_wordCdb;
@@ -32,6 +32,7 @@ public class Dictionary {
 			for( int i = 0; i < wordCount; i++ ) {
 				words[i] = reader.readLine().trim();
 			}
+			Arrays.sort( words, COLLATOR );
 			reader.close();
 		} catch( IOException e ) {
 			e.printStackTrace();
@@ -42,24 +43,26 @@ public class Dictionary {
 	public DictionaryEntry searchByWord( String word ) {
 		DictionaryEntry dicEntry = m_factory.makeHTMLifiedEntry( word, new String( m_wordCdb
 		        .find( word.getBytes() ) ) );
-		
+
 		return dicEntry;
 	}
 
 	public int findWordIndex( String word ) {
-		int wordIndex = 0; 
+		int wordIndex = 0;
 		int idx = 0;
-		while( wordIndex < word.length() ) {
+		while( wordIndex < word.length()) {
 			wordIndex++;
-			idx = Arrays.binarySearch( words, word.substring( 0, wordIndex  ), Dictionary.COLLATOR );
-			if ( idx < 0  ) {
-			 	if ( ! words[-idx].toLowerCase().startsWith( word.substring( 0, wordIndex ).toLowerCase() ) )
-			 		break;
+			idx = Arrays.binarySearch( words, word.substring( 0, wordIndex ), Dictionary.COLLATOR );
+			if( idx < 0 ) {
+				if( !words[-idx].toLowerCase().startsWith(
+				        word.substring( 0, wordIndex ).toLowerCase() ) )
+					break;
 			}
- 			System.out.println( "wordIndex: " + wordIndex + ", idx: " + idx );
+			// System.out.println( "wordIndex: " + wordIndex + ", idx: " + idx
+			// );
 		}
-		
-		if( idx < 0 ) 
+
+		if( idx < 0 )
 			idx = -idx - 1;
 		return idx;
 	}
