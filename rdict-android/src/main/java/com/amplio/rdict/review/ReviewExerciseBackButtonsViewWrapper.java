@@ -33,9 +33,11 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-	    FlashCardActivity.m_exerciseMgr.userPressedAnEasinessButton(this.getGradeByButton(v));
+		FlashCardActivity.m_exerciseMgr.userPressedAnEasinessButton(this.getGradeByButton(v));
 	    RDictActivity.c_cardSetManager.save(FlashCardActivity.m_exerciseMgr.getCard());
 	    FlashCardActivity.m_exerciseMgr.next();
+	    
+	    v.setPressed(false);
 	    
 	    if(ReviewExerciseManager.STATE_EXERCISE_FINISHED != FlashCardActivity.m_exerciseMgr.getState()) {
 	    	this.m_a.drawDisplay();

@@ -21,7 +21,9 @@ public class ReviewExerciseFrontButtonsViewWrapper implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-	    FlashCardActivity.m_exerciseMgr.userPressedViewAnswerButton();
+		FlashCardActivity.m_exerciseMgr.userPressedViewAnswerButton();
+		
+		v.setPressed(false);
 	    m_a.drawDisplay();
     }
 
