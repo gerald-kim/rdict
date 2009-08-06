@@ -110,16 +110,18 @@ public final class R {
         public static final int manage=0x7f03000c;
         public static final int more=0x7f03000d;
         public static final int review=0x7f03000e;
-        public static final int review_exercise_front_and_back=0x7f03000f;
-        public static final int search=0x7f030010;
-        public static final int settings=0x7f030011;
-        public static final int setup=0x7f030012;
-        public static final int setup_delayed=0x7f030013;
-        public static final int setup_downloading=0x7f030014;
-        public static final int setup_finished=0x7f030015;
-        public static final int setup_prompt_for_db_download=0x7f030016;
-        public static final int setup_welcome=0x7f030017;
-        public static final int tab_indicator=0x7f030018;
+        public static final int review_exercise=0x7f03000f;
+        public static final int review_exercise_buttons_back=0x7f030010;
+        public static final int review_exercise_buttons_front=0x7f030011;
+        public static final int search=0x7f030012;
+        public static final int settings=0x7f030013;
+        public static final int setup=0x7f030014;
+        public static final int setup_delayed=0x7f030015;
+        public static final int setup_downloading=0x7f030016;
+        public static final int setup_finished=0x7f030017;
+        public static final int setup_prompt_for_db_download=0x7f030018;
+        public static final int setup_welcome=0x7f030019;
+        public static final int tab_indicator=0x7f03001a;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

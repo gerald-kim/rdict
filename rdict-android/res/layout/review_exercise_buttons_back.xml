@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget51"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:padding="15px"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<Button android:id="@+id/easy_button" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="Easy">
+	</Button>
+	<Button android:id="@+id/not_bad_button" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="Not Bad">
+	</Button>
+	<Button android:id="@+id/hard_button" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="Hard">
+	</Button>
+	<Button android:id="@+id/i_forgot_button" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="I forgot">
+	</Button>
+</LinearLayout>
