@@ -8,4 +8,4 @@
 -->
 
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-       fromDegrees="0.0" toDegrees="180.0" android:pivotX="55" android:pivotY="55" />
+       fromDegrees="0" toDegrees="180" android:pivotX="50%" android:pivotY="50%" android:fillAfter="true"/>       

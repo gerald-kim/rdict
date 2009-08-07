@@ -14,7 +14,7 @@ public class ReviewExerciseManagerTest extends TestCase {
 		
 		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
 		
-		assertEquals(ReviewExerciseManager.STATE_EXERCISE_STARTED, mgr.getState());
+		assertEquals(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE, mgr.getState());
 		
 		mgr.userPressedViewAnswerButton();
 		
@@ -23,6 +23,10 @@ public class ReviewExerciseManagerTest extends TestCase {
 		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
 		
 		assertEquals(ReviewExerciseManager.STATE_USER_PRESSED_EASINESS_BUTTON, mgr.getState());
+		
+		mgr.next();
+		
+		assertEquals(ReviewExerciseManager.STATE_LOADED_NEXT_CARD, mgr.getState());
 	}
 	
 	public void testIsFinished() {
@@ -32,21 +36,21 @@ public class ReviewExerciseManagerTest extends TestCase {
 		
 		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
 		
-		assertTrue(ReviewExerciseManager.STATE_EXERCISE_FINISHED != mgr.getState());
+		assertTrue(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE != mgr.getState());
 		
 		mgr.userPressedViewAnswerButton();
 		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
 		
 		mgr.next();
 		
-		assertTrue(ReviewExerciseManager.STATE_EXERCISE_FINISHED != mgr.getState());
+		assertTrue(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE != mgr.getState());
 		
 		mgr.userPressedViewAnswerButton();
 		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
 		
 		mgr.next();
 		
-		assertTrue(ReviewExerciseManager.STATE_EXERCISE_FINISHED == mgr.getState());
+		assertTrue(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE == mgr.getState());
 	}
 	
 	public void testTravellingStateIncreasesCardIndex() {

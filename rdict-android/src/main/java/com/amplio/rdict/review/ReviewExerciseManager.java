@@ -8,17 +8,18 @@ public class ReviewExerciseManager {
 	public static final int GRADE_HARD = 2;
 	public static final int GRADE_I_FORGOT = 1;
 
-	public static final int STATE_EXERCISE_STARTED = 0;
+	public static final int STATE_USER_STARTED_EXERCISE = 0;
 	public static final int STATE_USER_PRESSED_VIEW_ANSWER = 1;
 	public static final int STATE_USER_PRESSED_EASINESS_BUTTON = 2;
-	public static final int STATE_EXERCISE_FINISHED = 3;
+	public static final int STATE_USER_FINISHED_EXERCISE = 3;
+	public static final int STATE_LOADED_NEXT_CARD = 4;
 	
 	private int m_state = -1;
 	private Vector<Card> m_cards = null;
 	private int m_cardIndex = 0;
 	
 	public ReviewExerciseManager(Vector<Card> cards) {
-		this.m_state = STATE_EXERCISE_STARTED;
+		this.m_state = STATE_USER_STARTED_EXERCISE;
 		this.m_cards = cards;
 	}
 	
@@ -36,9 +37,11 @@ public class ReviewExerciseManager {
 	
 	public void next() {
 		this.m_cardIndex++;
-		
-		if(this.m_cardIndex >= this.m_cards.size())
-			this.m_state = STATE_EXERCISE_FINISHED;
+			
+		if(this.m_cardIndex < this.m_cards.size())
+			this.m_state = STATE_LOADED_NEXT_CARD;
+		else
+			this.m_state = STATE_USER_FINISHED_EXERCISE;
 	}
 	
 	public int getState() {

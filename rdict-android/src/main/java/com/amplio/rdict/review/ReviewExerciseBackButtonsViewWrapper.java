@@ -3,14 +3,12 @@ package com.amplio.rdict.review;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 
 public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
-	private Context m_context = null;
 	private FlashCardActivity m_a = null;
 	private View m_view = null;
 	
@@ -20,7 +18,6 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 	Button m_iForgotButton = null;
 	
 	public ReviewExerciseBackButtonsViewWrapper(Context context, FlashCardActivity a) {		
-		this.m_context = context;
 		this.m_view = View.inflate(context, R.layout.review_exercise_buttons_back, null);
 		
 		this.m_easyButton = (Button) this.m_view.findViewById(R.id.easy_button);
@@ -36,13 +33,14 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 	}
 
 	public void onClick(View v) {
+		v.setPressed(false);
+	    
 		FlashCardActivity.m_exerciseMgr.userPressedAnEasinessButton(this.getGradeByButton(v));
 	    RDictActivity.c_cardSetManager.save(FlashCardActivity.m_exerciseMgr.getCard());
+	    
 	    FlashCardActivity.m_exerciseMgr.next();
-	    
-	    v.setPressed(false);
-	    
-	    if(ReviewExerciseManager.STATE_EXERCISE_FINISHED != FlashCardActivity.m_exerciseMgr.getState()) {
+		
+	    if(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE != FlashCardActivity.m_exerciseMgr.getState()) {
 	    	this.m_a.drawDisplay();
 		}
 		else{
