@@ -14,35 +14,15 @@ public class ReviewExerciseManagerTest extends TestCase {
 		
 		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
 		
-		assertEquals(ReviewExerciseManager.STATE_IS_SHOWING_CARD_FRONT, mgr.getState());
+		assertEquals(ReviewExerciseManager.STATE_EXERCISE_STARTED, mgr.getState());
 		
 		mgr.userPressedViewAnswerButton();
 		
-		assertEquals(ReviewExerciseManager.STATE_IS_SHOWING_CARD_BACK, mgr.getState());
+		assertEquals(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER, mgr.getState());
 		
 		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
 		
-		mgr.next();
-		
-		assertEquals(ReviewExerciseManager.STATE_IS_SHOWING_CARD_FRONT, mgr.getState());
-	}
-	
-	public void testTravellingStateIncreasesCardIndex() {
-		Vector<Card> cards = new Vector<Card>();
-		cards.add(new Card("word1", "def1"));
-		cards.add(new Card("word2", "def2"));
-		cards.add(new Card("word3", "def3"));
-		
-		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
-		
-		assertEquals(0, mgr.getCardIndex());
-		
-		mgr.userPressedViewAnswerButton();
-		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
-		
-		mgr.next();
-		
-		assertEquals(1, mgr.getCardIndex());
+		assertEquals(ReviewExerciseManager.STATE_USER_PRESSED_EASINESS_BUTTON, mgr.getState());
 	}
 	
 	public void testIsFinished() {
@@ -67,5 +47,23 @@ public class ReviewExerciseManagerTest extends TestCase {
 		mgr.next();
 		
 		assertTrue(ReviewExerciseManager.STATE_EXERCISE_FINISHED == mgr.getState());
+	}
+	
+	public void testTravellingStateIncreasesCardIndex() {
+		Vector<Card> cards = new Vector<Card>();
+		cards.add(new Card("word1", "def1"));
+		cards.add(new Card("word2", "def2"));
+		cards.add(new Card("word3", "def3"));
+		
+		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
+		
+		assertEquals(0, mgr.getCardIndex());
+		
+		mgr.userPressedViewAnswerButton();
+		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
+		
+		mgr.next();
+		
+		assertEquals(1, mgr.getCardIndex());
 	}
 }

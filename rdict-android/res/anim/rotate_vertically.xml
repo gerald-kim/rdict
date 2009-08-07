@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+    *   fromDegrees - Starting rotation, in degrees.
+    * toDegrees - Ending rotation, in degrees.
+    * pivotX - The X coordinate of the center of rotation, in pixels, where (0,0) is the top left corner.
+    * pivotY - The Y coordinate of the center of rotation, in pixels, where (0,0) is the top left corner.
+-->
+
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+       fromDegrees="0.0" toDegrees="180.0" android:pivotX="55" android:pivotY="55" />
