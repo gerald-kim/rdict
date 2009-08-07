@@ -34,10 +34,15 @@ public class ReviewGraphViewWrapper {
 		this.todaysValue.setText( todaysValue );
 		
 		StringBuilder strBuilder = new StringBuilder();
+		boolean isFirst = true;
 		for( Number n : data ) {
-			strBuilder.append( n ).append( "," );
+			if ( isFirst ) {
+				isFirst = false;
+			} else {
+				strBuilder.append( "," );
+			}
+			strBuilder.append( n );
 		}
-		//strBuilder.append( "10,20,30,300" );
 		try {
 			URL img = new URL("http://chart.apis.google.com/chart?chs=200x30&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
 	        this.graphBitmap.setImageBitmap( BitmapFactory.decodeStream( img.openStream() ) );
