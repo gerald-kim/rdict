@@ -138,8 +138,7 @@ public class FlashCardActivity extends Activity {
 			this.m_flashcardFrontViewWrapper.setWord(c.question);
 		}
 		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.m_exerciseMgr.getState()) {
-			
-			this.m_flashcardBackViewWrapper.setWordAndDef(c.question, c.answer.replace("%20", " "));
+			this.m_flashcardBackViewWrapper.setWordAndDef(c.question, c.answer);
 		}
 	}
 	

@@ -25,7 +25,7 @@ public class FlashcardBackViewWrapper {
 
 	public void setWordAndDef( String question, String answer) {
 		this.m_backWordLabel.setText(question);
-		this.m_defLabel.setText(answer.replace("%20", " "));
+		this.m_defLabel.setText(answer);
     }
 
 }

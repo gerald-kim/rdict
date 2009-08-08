@@ -44,13 +44,13 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		super.onResume();
 		
 		this.headwordLabel.setText(ManageActivity.targetCard.question);
-		this.definitionText.setText(ManageActivity.targetCard.answer.replace("%20", " "));
+		this.definitionText.setText(ManageActivity.targetCard.answer);
 	}
 
 	public void onClick(View v) {
 		if(this.saveButton == v){
 			Card c = ManageActivity.targetCard;
-			c.answer = this.definitionText.getText().toString().replace(" ", "%20");
+			c.answer = this.definitionText.getText().toString();
 			RDictActivity.c_cardSetManager.save(c);
 			Toast.makeText(this, "Changes saved.", Toast.LENGTH_SHORT).show();
 			this.finish();
