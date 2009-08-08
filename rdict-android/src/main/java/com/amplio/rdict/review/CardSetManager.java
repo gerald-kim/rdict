@@ -18,6 +18,21 @@ public class CardSetManager {
 		db = odb;
 	}
 
+	public Card create( String question, String answer ) {
+		Card card = loadCardByHeadword( question );
+		if ( null == card ) {
+			card = new Card( question, answer );
+		} else {
+			card.answer = card.answer + "\n-------\n" + answer;
+			//reset card schedule
+//			card.
+//			card.getAbbreviatedAnswer( answer, maxLength )
+		}
+		card.schedule();		
+		save( card );
+		return card;
+	}
+	
 	public void save( Card card ) {
 		db.store( card );
 	}

@@ -68,9 +68,7 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     }
     
     public void addCard(String def){
-    	Card card = new Card(title.getText().toString(), def);
-		card.schedule();
-		RDictActivity.c_cardSetManager.save(card);
+		RDictActivity.c_cardSetManager.create( title.getText().toString(), def );
     }
     
     public void onPause() {

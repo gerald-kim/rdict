@@ -28,8 +28,8 @@ public class CardSetManagerTest extends TestCase {
 		db.close();
 	}
 
+	
 	public void testSaveCard() {
-		
 		Card cardForToday = new Card( "today", "the answer" );
 
 		m_cardSetManager.save( cardForToday );
@@ -38,6 +38,17 @@ public class CardSetManagerTest extends TestCase {
 
 		assertEquals( 1, cards.size() );
 		assertEquals( "today", (cards.getFirst()).question );
+	}
+
+	public void testSaveDuplicatedCard() {
+		Card card1 = new Card( "question", "answer1" );
+		m_cardSetManager.save( card1 );
+		
+		Card card2 = new Card( "question", "answer2" );
+		m_cardSetManager.save( card2 );
+		
+		Card actual = m_cardSetManager.loadCardByHeadword( "question" );
+		assertEquals( "answer1\n-------\nanswer2", actual.answer );
 	}
 
 	public void testLoadScheduledCards() {
