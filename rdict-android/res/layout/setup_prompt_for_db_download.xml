@@ -2,27 +2,35 @@
 <LinearLayout android:id="@+id/widget28"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+	
 	<RelativeLayout android:id="@+id/widget30"
-		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		android:layout_width="wrap_content" android:layout_height="70px">
 		<TextView android:id="@+id/welcome_view_msg"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="Do you want to download the db now or later?"
-			android:layout_centerInParent="true" android:layout_marginLeft="50px"
-			android:layout_marginRight="50px">
+			android:layout_centerVertical="true"
+			android:textSize="20sp"
+			android:layout_marginLeft="30px"
+			android:layout_marginRight="30px">
 		</TextView>
 	</RelativeLayout>
-	<LinearLayout android:id="@+id/widget28"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:orientation="horizontal">
+	
+	<RelativeLayout android:id="@+id/widget28"
+		android:layout_width="fill_parent" android:layout_height="60px">
+		
 		<Button android:id="@+id/download_later_button"
+			android:text="Later"
 			android:layout_width="80px" android:layout_height="wrap_content"
-			android:text="Later" android:layout_centerInParent="true"
-			android:layout_marginLeft="50px" android:layout_marginRight="50px">
+			android:layout_marginLeft="30px" android:layout_marginRight="30px"
+			android:layout_centerVertical="true">
 		</Button>
+		
 		<Button android:id="@+id/download_now_button"
 			android:layout_width="80px" android:layout_height="wrap_content"
-			android:text="Now" android:layout_centerInParent="true"
-			android:layout_marginLeft="50px" android:layout_marginRight="50px">
+			android:text="Now" android:layout_centerVertical="true"
+			android:layout_toRightOf="@+id/download_later_button"
+			android:layout_marginLeft="30px" android:layout_marginRight="30px">
 		</Button>
-	</LinearLayout>
+	</RelativeLayout>
+	
 </LinearLayout>

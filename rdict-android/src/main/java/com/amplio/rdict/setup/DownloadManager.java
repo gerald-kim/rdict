@@ -13,8 +13,10 @@ import android.os.Handler;
 
 public class DownloadManager implements Runnable {
 	//"http://www.google.ca/intl/en_ca/images/logo.gif";
-	public final static String SOURCE_URL = "http://s3.amazonaws.com/word.db"; 
-	public final static String WRITE_PATH = "/sdcard/rdict/word.db";
+	public final static String SOURCE_URL_DB = "http://s3.amazonaws.com/word.db";
+	public final static String SOURCE_URL_INDEX = "http://s3.amazonaws.com/index.db";
+	public final static String WRITE_PATH_DB = "/sdcard/rdict/word.db";
+	public final static String WRITE_PATH_INDEX = "/sdcard/rdict/index.db";
 	
 	public long download_file_length = 0;
 	public long tot_bytes_downloaded = 0;
@@ -22,12 +24,12 @@ public class DownloadManager implements Runnable {
 	Handler handler = null;
 	Runnable runnable = null;
 	
-	String sourceURL = null;
-	String writePath = null;
+	String[] sourceURLs = null;
+	String[] writePaths = null;
 	
-	public void startDownload(String sourceURL, String writePath, Handler handler, Runnable runnable) {
-		this.sourceURL = sourceURL;
-		this.writePath = writePath;
+	public void startDownload(String[] sourceURLs, String[] writePaths, Handler handler, Runnable runnable) {
+		this.sourceURLs = sourceURLs;
+		this.writePaths = writePaths;
 		
 		this.handler = handler;
 		this.runnable = runnable;
@@ -37,13 +39,17 @@ public class DownloadManager implements Runnable {
 			file.mkdir();
 		}
 		
-		this.download_file_length = this.getRemoteFilesize(sourceURL);
-		
 		new Thread(this).start();
 	}
 	
 	public void run() {
-		this.downloadFile(this.sourceURL, this.writePath);
+		this.download_file_length = this.getRemoteFilesize(sourceURLs[0]);
+		
+		this.downloadFile(this.sourceURLs[0], this.writePaths[0]);
+		
+		this.download_file_length = this.getRemoteFilesize(sourceURLs[1]);
+		
+		this.downloadFile(this.sourceURLs[1], this.writePaths[1]);
 	}
 	
 	public boolean isDownloading() {

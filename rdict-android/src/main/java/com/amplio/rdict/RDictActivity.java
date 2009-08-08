@@ -63,7 +63,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         SetupActivity.setupMgr = new SetupManager();
 		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
         
-        this.db_file = new File(DownloadManager.WRITE_PATH);
+        this.db_file = new File(DownloadManager.SOURCE_URL_DB);
         
         if(this.db_file.exists()) {
         	initDatabaseManagers();

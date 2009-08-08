@@ -2,6 +2,7 @@ package com.amplio.rdict.setup;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.amplio.rdict.R;
@@ -42,7 +43,8 @@ public class SetupActivity extends Activity {
 		SetupViewWrapper wrapper = this.getViewByState(SetupActivity.setupMgr.getState());
 		
 		if(null != wrapper) {
-			this.layout.removeAllViews();			
+			this.layout.removeAllViews();
+			wrapper.getView().setAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.fade));
 			this.layout.addView(wrapper.getView());
 		
 			if(SetupManager.STATE_DOWNLOADING == SetupActivity.setupMgr.getState()) {

@@ -34,7 +34,10 @@ public class DBDownloadingViewWrapper extends SetupViewWrapper {
 	}
 
 	public void startDownload() {
-		dMgr.startDownload(DownloadManager.SOURCE_URL, DownloadManager.WRITE_PATH, progresBarUpdateHandler, this.getRunnable());
+		String[] sourceURLs = new String[]{DownloadManager.SOURCE_URL_DB, DownloadManager.SOURCE_URL_INDEX};
+		String[] writePaths = new String[]{DownloadManager.WRITE_PATH_DB, DownloadManager.WRITE_PATH_INDEX};
+
+		dMgr.startDownload(sourceURLs, writePaths, progresBarUpdateHandler, this.getRunnable());
 	}
 
 	private Runnable getRunnable() {

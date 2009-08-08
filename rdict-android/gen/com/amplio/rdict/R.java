@@ -75,6 +75,7 @@ public final class R {
         public static final int headword_text=0x7f060003;
         public static final int help_button=0x7f060023;
         public static final int help_webview=0x7f06001c;
+        public static final int hint_mesg=0x7f06004b;
         public static final int history_list=0x7f06001d;
         public static final int i_forgot_button=0x7f060037;
         public static final int info_layout=0x7f060028;
@@ -94,13 +95,13 @@ public final class R {
         public static final int setup_progress_bar=0x7f060044;
         public static final int ssss=0x7f060024;
         public static final int start_exercise_button=0x7f06000b;
-        public static final int tab_label=0x7f06004c;
+        public static final int tab_label=0x7f06004d;
         public static final int title=0x7f06000f;
         public static final int title_label=0x7f06002a;
         public static final int view_answer_button=0x7f060038;
         public static final int webview=0x7f060011;
         public static final int welcome_view_msg=0x7f060047;
-        public static final int welcome_view_ok_button=0x7f06004b;
+        public static final int welcome_view_ok_button=0x7f06004c;
         public static final int widget0=0x7f06000c;
         public static final int widget101=0x7f060022;
         public static final int widget28=0x7f060002;

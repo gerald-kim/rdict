@@ -5,7 +5,6 @@ import java.io.File;
 import junit.framework.TestCase;
 
 public class DownloadManagerTest extends TestCase {
-
 	private static final String TARGET_PATH = "tmp.db";
 	private static final String FILE_URL = "http://www.google.ca/intl/en_ca/images/logo.gif";
 
@@ -58,8 +57,8 @@ public class DownloadManagerTest extends TestCase {
 	}
 
 	public void aTestStartDownload() {
-		String sourceURL = "http://www.google.ca/intl/en_ca/images/logo.gif";
-		String targetPath = "src/com/amplio/rdict/tests/setup/word.db";
+		String[] sourceURL = new String[]{"http://www.google.ca/intl/en_ca/images/logo.gif"};
+		String[] targetPath = new String[] {"src/com/amplio/rdict/tests/setup/word.db"};
 
 		DownloadManager downloadMgr = new DownloadManager();
 		downloadMgr.startDownload( sourceURL, targetPath, null, null );
@@ -67,7 +66,7 @@ public class DownloadManagerTest extends TestCase {
 		while( downloadMgr.isDownloading())
 			;
 
-		File downloadedFile = new File( targetPath );
+		File downloadedFile = new File( targetPath[0] );
 
 		assertTrue( downloadedFile.exists() );
 		assertEquals( 8914, downloadedFile.length() );
