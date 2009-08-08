@@ -3,7 +3,6 @@ package com.amplio.rdict.search;
 import java.net.URLDecoder;
 
 import android.content.Context;
-import android.text.Html;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
