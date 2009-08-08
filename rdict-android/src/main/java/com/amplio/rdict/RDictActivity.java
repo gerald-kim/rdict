@@ -10,14 +10,10 @@ import org.neodatis.odb.ODBFactory;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TabHost;
-import android.widget.TextView;
 
 import com.amplio.rdict.history.HistoryManager;
 import com.amplio.rdict.review.CardSetManager;
@@ -31,14 +27,24 @@ import com.amplio.rdict.setup.SetupManager;
 
 public class RDictActivity extends TabActivity implements  AssetInputStreamProvider {
 	
+	private static final int TAB_INDEX_SEARCH = 0;
+	private static final int TAB_INDEX_REVIEW = 1;
+	private static final int TAB_INDEX_HISTORY = 2;
+	private static final int TAB_INDEX_MORE = 3;
+	
 	private static final String BASE_PACKAGE = "com.amplio.rdict";
 	
 	private static final String[] ACTIVITY_PATHS = {BASE_PACKAGE + ".search.",
 													BASE_PACKAGE + ".review.",
 													BASE_PACKAGE + ".history.",
 													BASE_PACKAGE + ".more."};
-	private static final String[] TABS = { "Search", "Review", "History", "More"};
+	private static final String[] TAB_NAMES = { "Search", "Review", "History", "More"};
 
+	TabHost.TabSpec searchTab = null;
+	TabHost.TabSpec reviewTab = null;
+	TabHost.TabSpec historyTab = null;
+	TabHost.TabSpec moreTab = null;
+	
 	private File db_file = null;
 	private ODB m_db = null;
 	private SQLiteDatabase m_con = null;
@@ -55,33 +61,59 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	System.out.println("RDict - On Create");
-    	
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        SetupActivity.setupMgr = new SetupManager();
-		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
-        
-        this.db_file = new File(DownloadManager.SOURCE_URL_DB);
+    	
+    	this.db_file = new File(DownloadManager.WRITE_PATH_DB);
         
         if(this.db_file.exists()) {
+        	setContentView(R.layout.main);
         	initDatabaseManagers();
-        	setupTabs();
+        	setupTabs(this.getTabHost());
+        }
+        else {
+        	SetupActivity.setupMgr = new SetupManager();
+    		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
         }
     }
     
-    public void onStart() {
-    	super.onStart();
+    private void setupTabs(TabHost tabHost) {
+    	this.searchTab = this.createTab(tabHost, TAB_INDEX_SEARCH);
+    	tabHost.addTab(this.searchTab);
     	
-    	System.out.println("RDict - onStart");
+    	this.reviewTab = this.createTab(tabHost, TAB_INDEX_REVIEW);
+    	tabHost.addTab(this.reviewTab);
+    	
+    	this.historyTab = this.createTab(tabHost, TAB_INDEX_HISTORY);
+    	tabHost.addTab(this.historyTab);
+    	
+    	this.moreTab = this.createTab(tabHost, TAB_INDEX_MORE);
+    	tabHost.addTab(this.moreTab);
+        
+        this.setDefaultTab(TAB_INDEX_SEARCH);
     }
     
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        
-        System.out.println("RDict - onRestoreInstanceState");   
+    public TabHost.TabSpec createTab(TabHost tabHost, int index) {
+    	TabHost.TabSpec tab = tabHost.newTabSpec(TAB_NAMES[index]);
+    	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
+    	tab.setContent(new Intent().setComponent(activity));
+    	
+    	if(index == TAB_INDEX_REVIEW){
+    		StringBuilder sb = new StringBuilder(TAB_NAMES[index]);
+    		
+    		int cardsScheduledForToday = c_cardSetManager.loadCardsScheduledForToday().size();
+    		if(0 < cardsScheduledForToday) {
+	    		sb.append("(");
+	    		sb.append(cardsScheduledForToday);
+	    		sb.append(")");
+    		}
+    		
+    		tab.setIndicator(sb.toString());
+    	}
+    	else {
+    		tab.setIndicator(TAB_NAMES[index]);
+    	}
+    	
+    	return tab;
     }
     
     public void onResume() {
@@ -97,22 +129,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		}
 		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
-			setupTabs();
+			setupTabs(this.getTabHost());
 		}
 	}
-    
-    @Override 
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        
-        System.out.println("RDict - onSaveInstanceState");
-    }
-    
-    public void onStop(){
-    	super.onStop();
-    	
-    	System.out.println("RDict - onStop");
-    }
     
     @Override
     protected void onDestroy() {
@@ -140,7 +159,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
         
 	    if(m_con == null || ! m_con.isOpen())
-	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
     	
 	    c_historyMgr = new HistoryManager(m_con);
 		c_historyMgr.createTableIfNotExists( m_con );
@@ -164,32 +183,4 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		
 		return stream;
 	}
-	
-	private void setupTabs() {
-	    setDefaultTab(0);
-    	
-        TabHost tabs = getTabHost();
-    	
-        for (int i = 0; i < TABS.length; i++) {
-        	TabHost.TabSpec tab = tabs.newTabSpec(TABS[i]);
-        	
-        	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[i] + TABS[i] + "Activity");
-
-        	tab.setContent(new Intent().setComponent(activity));
-        	tab.setIndicator(TABS[i]);
-        	tabs.addTab(tab);
-        }
-    }
-	
-	public static class MyTabIndicator extends LinearLayout {
-		public MyTabIndicator(Context context, String label) {
-			super(context);
-			
-			View tab = View.inflate(this.getContext(), R.layout.tab_indicator, null);
-
-			TextView tv = (TextView)tab.findViewById(R.id.tab_label);
-			tv.setText(label);
-		}
-    }
-
 }

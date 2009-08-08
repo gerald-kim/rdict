@@ -95,7 +95,6 @@ public final class R {
         public static final int setup_progress_bar=0x7f060044;
         public static final int ssss=0x7f060024;
         public static final int start_exercise_button=0x7f06000b;
-        public static final int tab_label=0x7f06004d;
         public static final int title=0x7f06000f;
         public static final int title_label=0x7f06002a;
         public static final int view_answer_button=0x7f060038;
@@ -148,7 +147,6 @@ public final class R {
         public static final int setup_finished=0x7f030017;
         public static final int setup_prompt_for_db_download=0x7f030018;
         public static final int setup_welcome=0x7f030019;
-        public static final int tab_indicator=0x7f03001a;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

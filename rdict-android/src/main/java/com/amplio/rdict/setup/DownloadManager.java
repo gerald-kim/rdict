@@ -13,10 +13,10 @@ import android.os.Handler;
 
 public class DownloadManager implements Runnable {
 	//"http://www.google.ca/intl/en_ca/images/logo.gif";
-	public final static String SOURCE_URL_DB = "http://s3.amazonaws.com/word.db";
-	public final static String SOURCE_URL_INDEX = "http://s3.amazonaws.com/index.db";
-	public final static String WRITE_PATH_DB = "/sdcard/rdict/word.db";
-	public final static String WRITE_PATH_INDEX = "/sdcard/rdict/index.db";
+	public final static String SOURCE_URL_DB = "http://s3.amazonaws.com/rdict/word.cdb";
+	public final static String SOURCE_URL_INDEX = "http://s3.amazonaws.com/rdict/word.index";
+	public final static String WRITE_PATH_DB = "/sdcard/rdict/word.cdb";
+	public final static String WRITE_PATH_INDEX = "/sdcard/rdict/word.index";
 	
 	public long download_file_length = 0;
 	public long tot_bytes_downloaded = 0;
@@ -44,11 +44,9 @@ public class DownloadManager implements Runnable {
 	
 	public void run() {
 		this.download_file_length = this.getRemoteFilesize(sourceURLs[0]);
+		this.download_file_length += this.getRemoteFilesize(sourceURLs[1]);
 		
 		this.downloadFile(this.sourceURLs[0], this.writePaths[0]);
-		
-		this.download_file_length = this.getRemoteFilesize(sourceURLs[1]);
-		
 		this.downloadFile(this.sourceURLs[1], this.writePaths[1]);
 	}
 	
