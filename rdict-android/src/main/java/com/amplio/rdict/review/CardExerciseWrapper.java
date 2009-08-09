@@ -24,13 +24,7 @@ public class CardExerciseWrapper implements OnClickListener {
 		c.init("Practice the cards you've looked up today.", ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY);
 		return c;
 	}
-	
-	public static CardExerciseWrapper buildTopNCardExercise(Context context){
-		CardExerciseWrapper c = new CardExerciseWrapper(context);
-		c.init("Practice your Top 10 Hardest Cards.", ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST);
-		return c;
-	}
-	
+		
 	View v = null;
 	public TextView exerciseLabel = null;
 	public Button exerciseButton = null;

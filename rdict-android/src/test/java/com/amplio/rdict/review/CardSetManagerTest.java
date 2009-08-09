@@ -41,11 +41,8 @@ public class CardSetManagerTest extends TestCase {
 	}
 
 	public void testSaveDuplicatedCard() {
-		Card card1 = new Card( "question", "answer1" );
-		m_cardSetManager.save( card1 );
-		
-		Card card2 = new Card( "question", "answer2" );
-		m_cardSetManager.save( card2 );
+		m_cardSetManager.create( "question", "answer1" );
+		m_cardSetManager.create( "question", "answer2" );
 		
 		Card actual = m_cardSetManager.loadCardByHeadword( "question" );
 		assertEquals( "answer1\n-------\nanswer2", actual.answer );

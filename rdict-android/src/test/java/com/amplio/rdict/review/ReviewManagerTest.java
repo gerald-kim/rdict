@@ -34,7 +34,6 @@ public class ReviewManagerTest extends TestCase {
 
 		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
 		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
-		assertTrue( !m_mgr.isAvailableTOPNExercise );
 	}
 
 	public void testCheckExercisesIfCardsScheduledForToday() {
@@ -49,7 +48,6 @@ public class ReviewManagerTest extends TestCase {
 
 		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
 		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
-		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
 
 	public void testCheckExercisesIfCardsLookedUpToday() {
@@ -60,7 +58,6 @@ public class ReviewManagerTest extends TestCase {
 
 		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
 		assertTrue( m_mgr.isAvailableLookedupTodayExercise );
-		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
 
 	public void testCheckExercisesIfNotLookedUpTodayAndNotScheduledForToday() {
@@ -74,7 +71,6 @@ public class ReviewManagerTest extends TestCase {
 
 		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
 		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
-		assertTrue( m_mgr.isAvailableTOPNExercise );
 	}
 
 	public void testDetermineAvailableExercises() {
@@ -105,18 +101,6 @@ public class ReviewManagerTest extends TestCase {
 		cardLookedupToday.schedule();
 
 		m_db.store( cardLookedupToday );
-
-		m_mgr.checkStudyAvailableStudyModes();
-
-		assertEquals( ReviewManager.EXERCISES_OTHER, m_mgr.availableExercises );
-	}
-
-	public void testCheckStudyModeIfNoScheduledCardAndNoLookedupCardButCardsExist() {
-		Card cardLookedupIn1970AndNotScheduledForToday = new Card( "question", "an answer" );
-		cardLookedupIn1970AndNotScheduledForToday.date_lookedup = "19700101";
-		cardLookedupIn1970AndNotScheduledForToday.schedule();
-
-		m_db.store( cardLookedupIn1970AndNotScheduledForToday );
 
 		m_mgr.checkStudyAvailableStudyModes();
 

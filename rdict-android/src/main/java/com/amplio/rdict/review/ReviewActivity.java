@@ -24,7 +24,6 @@ public class ReviewActivity extends Activity {
 	
 	private LinearLayout exerciseLayout = null;
 	private CardExerciseWrapper scheduledViewWrapper = null;
-	private CardExerciseWrapper topNViewWrapper = null;
 	private CardExerciseWrapper todayViewWrapper = null;
 	
 	private LinearLayout graphLayout = null;
@@ -41,7 +40,6 @@ public class ReviewActivity extends Activity {
 		this.exerciseLayout = (LinearLayout) findViewById(R.id.exercise_layout);
 		
 		this.scheduledViewWrapper = CardExerciseWrapper.buildScheduledCardExercise(this.getApplicationContext());
-		this.topNViewWrapper = CardExerciseWrapper.buildTopNCardExercise(this.getApplicationContext());
 		this.todayViewWrapper = CardExerciseWrapper.buildLookedupTodayCardExercise(this.getApplicationContext());
 		
 		this.graphLayout = (LinearLayout) findViewById(R.id.graph_layout);
@@ -81,7 +79,7 @@ public class ReviewActivity extends Activity {
 				sb.append(MESG_GOOD_JOB_YOURE_FINISHED);
 			
 			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise
-					|| RDictActivity.c_reviewManager.isAvailableTOPNExercise)
+					)
 				sb.append("  " + MESG_PRACTICE_ANOTHER_SET);
 			
 			return sb.toString();
@@ -112,8 +110,6 @@ public class ReviewActivity extends Activity {
 			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
 				exercises.add(this.todayViewWrapper);
 
-			if(RDictActivity.c_reviewManager.isAvailableTOPNExercise)
-				exercises.add(this.topNViewWrapper);
 			
 			return exercises;
 		}
