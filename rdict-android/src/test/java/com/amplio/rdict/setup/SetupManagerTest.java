@@ -21,7 +21,11 @@ public class SetupManagerTest extends TestCase {
 		
 		setupMgr.downloadCompleted();
 		
-		while(SetupManager.STATE_DOWNLOAD_FINSHED != setupMgr.getState());
+		assertEquals(SetupManager.STATE_VERIFYING, setupMgr.getState());
+		
+		setupMgr.verificationWasSuccessful();
+	
+		assertEquals(SetupManager.STATE_VERIFICATION_COMPLETED, setupMgr.getState());
 		
 		setupMgr.userClickedFinish();
 		
@@ -44,6 +48,32 @@ public class SetupManagerTest extends TestCase {
 		setupMgr.userAcknowledgedNeedToDownloadLater();
 		
 		assertEquals(SetupManager.STATE_SETUP_DELAYED, setupMgr.getState());
+	}
+	
+	public void testCycleForCorruptedDownload() {
+		SetupManager setupMgr = new SetupManager();
+		
+		setupMgr.userAcknowledgedWelcomeScreen();
+		setupMgr.userChoseDownloadOption();
+		setupMgr.downloadCompleted();
+		
+		assertEquals(SetupManager.STATE_VERIFYING, setupMgr.getState());
+		
+		setupMgr.verificationFailed();
+	
+		assertEquals(SetupManager.STATE_PROMPT_DOWNLOAD_FOR_V_FAILURE, setupMgr.getState());
+		
+		// reuse the download dialogs from here.
+		
+		setupMgr.userChoseDownloadOption();
+		
+		assertEquals(SetupManager.STATE_DOWNLOADING, setupMgr.getState());
+		
+		setupMgr.downloadCompleted();
+		
+		assertEquals(SetupManager.STATE_VERIFYING, setupMgr.getState());
+		
+		//... this time the download works.
 	}
 
 }
