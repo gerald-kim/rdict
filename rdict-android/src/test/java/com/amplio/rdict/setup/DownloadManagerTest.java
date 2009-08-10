@@ -72,5 +72,17 @@ public class DownloadManagerTest extends TestCase {
 		assertEquals( 8914, downloadedFile.length() );
 		assertEquals( 8914, downloadMgr.tot_bytes_downloaded );
 	}
+	
+	public void testCalculateMd5Checksum() {
+		String md5checksumFromPython = "44571ebaee6c4953be207219e7010c97";
+		
+		File f = new File("src/test/java/com/amplio/rdict/setup/word.md5test.index");
+		
+		DownloadManager dMgr = new DownloadManager();
+		
+		String md5CheckSum = dMgr.calcMd5(f);
+		
+		assertEquals(md5checksumFromPython, md5CheckSum);
+	}
 
 }

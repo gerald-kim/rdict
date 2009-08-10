@@ -1,6 +1,7 @@
 package com.amplio.rdict.setup;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,6 +9,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import android.os.Handler;
 
@@ -138,5 +141,41 @@ public class DownloadManager implements Runnable {
 		}
 		
 		return c;
+	}
+
+	public String calcMd5(File f) {
+		try {  
+			MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+			
+			InputStream is = new FileInputStream(f);
+			
+			byte[] buf = new byte[1024];
+			
+			while (true) {
+				int byteCount = is.read(buf);
+				if(byteCount == -1) break;
+				digest.update( buf, 0, byteCount);
+			}
+			  
+			byte messageDigest[] = digest.digest();
+			
+			return getHexString(messageDigest).toString();
+		} catch (NoSuchAlgorithmException e) {  
+			e.printStackTrace();  
+		} catch( FileNotFoundException e ) {
+	        e.printStackTrace();
+        } catch( IOException e ) {
+	        e.printStackTrace();
+        }  
+		
+		return null;  
+    }
+	
+	public static String getHexString(byte[] b) {
+		StringBuffer sb = new StringBuffer();
+		for (int i=0; i < b.length; i++) {
+			sb.append(Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 ));
+		}
+		return sb.toString();
 	}
 }
