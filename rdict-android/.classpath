@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/android-test/java"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="libraries/neodatis-odb-1.9.3.601.jar"/>
 	<classpathentry kind="lib" path="libraries/joda-time-1.6.jar"/>
