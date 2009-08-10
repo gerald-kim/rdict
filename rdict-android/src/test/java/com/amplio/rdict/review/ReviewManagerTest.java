@@ -1,10 +1,10 @@
 package com.amplio.rdict.review;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import junit.framework.TestCase;
 
+import org.joda.time.DateTime;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
@@ -38,9 +38,8 @@ public class ReviewManagerTest extends TestCase {
 
 	public void testCheckExercisesIfCardsScheduledForToday() {
 		Card cardScheduledForToday = new Card( "today", "the answer" );
-		cardScheduledForToday.date_lookedup = "19700101";
-		cardScheduledForToday.date_scheduled = new SimpleDateFormat( "yyyyMMdd" )
-		        .format( new Date() );
+		cardScheduledForToday.lookedup = new DateTime().minusDays( 1 ).toDate();
+		cardScheduledForToday.scheduled = new Date();
 
 		m_db.store( cardScheduledForToday );
 
@@ -62,14 +61,14 @@ public class ReviewManagerTest extends TestCase {
 
 	public void testCheckExercisesIfNotLookedUpTodayAndNotScheduledForToday() {
 		Card c = new Card( "today", "the answer" );
-		c.date_lookedup = "19700101";
-		c.date_scheduled = "19700101";
+		c.lookedup = new DateTime().minusDays( 10).toDate();
+		c.scheduled = new DateTime().plusDays( 10).toDate();
 
 		m_db.store( c );
 
 		m_mgr.checkAvailableExercises();
 
-		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
 		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
 	}
 
@@ -82,12 +81,11 @@ public class ReviewManagerTest extends TestCase {
 
 	public void testCheckStudyModeIfCardsScheduledForToday() {
 		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
-		cardLookedupToday.schedule();
+//		cardLookedupToday.s();
 
 		Card cardScheduledForToday = new Card( "today", "the answer" );
-		cardScheduledForToday.date_scheduled = new SimpleDateFormat( "yyyyMMdd" )
-		        .format( new Date() );
-
+		cardScheduledForToday.scheduled = new Date();
+		
 		m_db.store( cardScheduledForToday );
 		m_db.store( cardLookedupToday );
 
@@ -98,7 +96,7 @@ public class ReviewManagerTest extends TestCase {
 
 	public void testCheckStudyModeIfCardLookedupToday() {
 		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
-		cardLookedupToday.schedule();
+		cardLookedupToday.study( 3 );
 
 		m_db.store( cardLookedupToday );
 

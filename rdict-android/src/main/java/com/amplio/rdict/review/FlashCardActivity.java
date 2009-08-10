@@ -115,8 +115,6 @@ public class FlashCardActivity extends Activity {
 				return RDictActivity.c_cardSetManager.loadCardsScheduledForToday();
 			case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
 				return RDictActivity.c_cardSetManager.loadCardsLookedupToday();
-			case ReviewManager.EXERCISES_CARDS_TOP_N_HARDEST:
-				return RDictActivity.c_cardSetManager.loadTopNHardestCards(CardExerciseWrapper.N);
 			default:
 				throw new IllegalArgumentException("Bad argument in FlashCardActivity");
 		}

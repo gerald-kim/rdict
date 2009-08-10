@@ -31,8 +31,7 @@ public class ReviewExerciseManager {
 		this.m_state = STATE_USER_PRESSED_EASINESS_BUTTON;
 		
 		Card c = this.m_cards.elementAt(this.m_cardIndex);
-		c.adjustEasinessByGrade(grade);
-		c.schedule();
+		c.study( grade );
     }
 	
 	public void next() {

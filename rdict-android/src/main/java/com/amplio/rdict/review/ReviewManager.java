@@ -7,7 +7,6 @@ public class ReviewManager {
 	public static final int EXERCISES_OTHER = 1;
 	public static final int EXERCISES_CARD_DB_IS_EMPTY = 2;
 	public static final int EXERCISES_CARDS_LOOKEDUP_TODAY = 3;
-	public static final int EXERCISES_CARDS_TOP_N_HARDEST = 4;
 
 	public int availableExercises = 0;
 

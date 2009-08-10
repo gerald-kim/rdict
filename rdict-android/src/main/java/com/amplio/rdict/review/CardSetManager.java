@@ -1,9 +1,8 @@
 package com.amplio.rdict.review;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 
+import org.joda.time.DateMidnight;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.Objects;
 import org.neodatis.odb.core.query.IQuery;
@@ -24,11 +23,11 @@ public class CardSetManager {
 			card = new Card( question, answer );
 		} else {
 			card.answer = card.answer + "\n-------\n" + answer;
+			card.study( 0 );
 			//reset card schedule
 //			card.
 //			card.getAbbreviatedAnswer( answer, maxLength )
 		}
-		card.schedule();		
 		save( card );
 		return card;
 	}
@@ -42,29 +41,18 @@ public class CardSetManager {
 		db.delete( card, false );
 	}
 
-	public Vector<Card> loadCardsByScheduledDate( String scheduledDate ) {
-		IQuery query = db.criteriaQuery( Card.class, Where.le( "date_scheduled", scheduledDate ) );
-		Objects<Card> cards = db.getObjects( query );
-		return new Vector<Card>( cards );
-
-	}
-
 	public Vector<Card> loadCardsScheduledForToday() {
-		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
-		return this.loadCardsByScheduledDate( todaysDate );
+		DateMidnight todayMidnight = new DateMidnight().plusDays( 1 );
+		IQuery query = this.db.criteriaQuery( Card.class, Where.lt( "scheduled", todayMidnight.toDate() ) );
+        Objects<Card> cards = this.db.getObjects( query );
+        return new Vector<Card>( cards );
 	}
 
 	public Vector<Card> loadCardsLookedupToday() {
-		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
-
-		IQuery query = db.criteriaQuery( Card.class, Where.equal( "date_lookedup", todaysDate ) );
-		Objects<Card> cards = db.getObjects( query );
-		return new Vector<Card>( cards );
-	}
-
-	public Vector<Card> loadTopNHardestCards( int n ) {
-		IQuery query = db.criteriaQuery( Card.class ).orderByAsc( "easiness" );
-		Objects<Card> cards = db.getObjects( query, true, 0, n );
+		DateMidnight today = new DateMidnight();
+		
+		IQuery query = this.db.criteriaQuery( Card.class, Where.gt( "lookedup", today.toDate() ) );
+        Objects<Card> cards = this.db.getObjects( query );
 		return new Vector<Card>( cards );
 	}
 

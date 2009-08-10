@@ -6,6 +6,7 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
+import org.joda.time.DateTime;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
@@ -52,7 +53,7 @@ public class StatisticsManagerTest extends TestCase {
 		Card bCard = new Card("banana", "the answer");
 		
 		Card cCard= new Card("coconunt", "the answer");
-		cCard.date_lookedup = "19700102";
+		cCard.lookedup = new DateTime().minusDays( 10 ).toDate();
 		
 		db.store(aCard);
 		db.store(bCard);
@@ -119,7 +120,7 @@ public class StatisticsManagerTest extends TestCase {
 		Card aCard = new Card("apple" , "the answer");
 		Card bCard = new Card("banana", "the answer");
 		Card cCard= new Card("coconunt", "the answer");
-		cCard.date_lookedup = "19700101";
+		cCard.lookedup = new DateTime().minusDays( 10 ).toDate();
 		
 		aCard.sh = ScoreHistory.createFromString("4, 4, 4");
 		bCard.sh = ScoreHistory.createFromString("0, 0, 0");
