@@ -90,6 +90,23 @@ public class CardSetManagerTest extends TestCase {
 		Card card = (Card) cards.get( 0 );
 		assertEquals( "lookeduptoday", card.question );
 	}
+
+	public void testLoadCardsLookedupTodaySkipStudied() {
+		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
+		cardLookedupToday.study( 5 );
+		Card cardLookedupIn1970 = new Card( "today", "the answer" );
+		DateTime dateTime = new DateTime();
+		cardLookedupIn1970.lookedup = dateTime.minusDays( 100 ).toDate();
+		
+		m_cardSetManager.save( cardLookedupToday );
+		m_cardSetManager.save( cardLookedupIn1970 );
+		
+		
+		Vector<Card> cards = m_cardSetManager.loadCardsLookedupToday();
+		
+		assertEquals( 0, cards.size() );
+	}
+	
 	public void testLoadByPrefixIfNoneGiven() {
 
 		Card aCard = new Card( "apple", "the answer" );

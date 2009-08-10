@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.history.History;
-import com.amplio.rdict.review.Card;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
 	public static DictionaryEntry dicEntry = null;

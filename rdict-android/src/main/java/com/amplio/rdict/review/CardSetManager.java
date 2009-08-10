@@ -48,10 +48,17 @@ public class CardSetManager {
         return new Vector<Card>( cards );
 	}
 
-	public Vector<Card> loadCardsLookedupToday() {
-		DateMidnight today = new DateMidnight();
+	@SuppressWarnings( "serial" )
+    public Vector<Card> loadCardsLookedupToday() {
+		final DateMidnight today = new DateMidnight();
 		
-		IQuery query = this.db.criteriaQuery( Card.class, Where.gt( "lookedup", today.toDate() ) );
+        IQuery query = new SimpleNativeQuery() {
+            public boolean match(Card card) {
+                return card.lookedup.after( today.toDate() ) && ( null == card.studied || card.studied.before( card.lookedup ) );  
+            }
+        };
+
+//		IQuery query = this.db.criteriaQuery( Card.class, Where.gt( "lookedup", today.toDate() ) );
         Objects<Card> cards = this.db.getObjects( query );
 		return new Vector<Card>( cards );
 	}
