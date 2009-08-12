@@ -48,6 +48,10 @@ public class CardSetManager {
         return new Vector<Card>( cards );
 	}
 
+	public int count() {
+		return db.getObjects( Card.class ).size();
+	}
+	
 	@SuppressWarnings( "serial" )
     public Vector<Card> loadCardsLookedupToday() {
 		final DateMidnight today = new DateMidnight();

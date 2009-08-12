@@ -12,6 +12,7 @@ import org.neodatis.odb.core.query.IQuery;
 import org.neodatis.odb.core.query.criteria.Where;
 
 public class StatisticsManager {
+	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat( "yyyyMMdd" );
 
 	private static final double MAX_SCORE = 4;
 
@@ -19,7 +20,6 @@ public class StatisticsManager {
 
 	private CardSetManager m_cardSetManager;
 	
-	private SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
 
 	public StatisticsManager( ODB db, CardSetManager cardSetManager ) {
 		this.m_odb = db;
@@ -39,12 +39,8 @@ public class StatisticsManager {
 		return new Double( 100 * (total / cards.size()) ).intValue();
 	}
 
-	public int countCards() {
-		return m_cardSetManager.loadCardsLookedupToday().size();
-	}
-
 	public StatRecord loadStatRecordByDate( String date ) {
-		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.equal( "record_date", date ) );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.equal( "recorded", date ) );
 		Objects<StatRecord> records = m_odb.getObjects( query );
 
 		if( 1 == records.size() )
@@ -59,8 +55,8 @@ public class StatisticsManager {
 		int numDaysBetweenCutoffDateAndNow = calcNumberOfDaysBetweenDateAndNow( cutoffDate );
 		Number[] cardCounts = new Number[numDaysBetweenCutoffDateAndNow];
 		
-		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutoffDate ) );
-		query.orderByAsc( "record_date" );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "recorded", cutoffDate ) );
+		query.orderByAsc( "recorded" );
 		
 		Objects<StatRecord> objects = m_odb.getObjects( query );
 		Vector<StatRecord> records = new Vector<StatRecord>( objects );
@@ -73,7 +69,7 @@ public class StatisticsManager {
 			if( recordIndex < records.size() ) {
 				StatRecord record = (StatRecord) records.get(recordIndex);
 
-				if( record.record_date.equals( this.sdf.format( startDate.getTime() ) ) ) {
+				if( record.recorded.equals( SIMPLE_DATE_FORMAT.format( startDate.getTime() ) ) ) {
 					cardCounts[i] = new Integer( record.cardCount );
 					recordIndex++;
 				} else {
@@ -94,7 +90,7 @@ public class StatisticsManager {
 		Calendar cal = Calendar.getInstance();
 
 		try {
-			cal.setTime(this.sdf.parse( cutoffDate ) );
+			cal.setTime( SIMPLE_DATE_FORMAT.parse( cutoffDate ) );
 		} catch( ParseException e ) {
 			e.printStackTrace();
 		}
@@ -105,8 +101,8 @@ public class StatisticsManager {
 	}
 
 	public Number[] fetchGradeData( String cutOffDate ) {
-		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "record_date", cutOffDate ) );
-		query.orderByAsc( "record_date" );
+		IQuery query = m_odb.criteriaQuery( StatRecord.class, Where.gt( "recorded", cutOffDate ) );
+		query.orderByAsc( "recorded" );
 		Objects<StatRecord> objects = m_odb.getObjects( query );
 		Vector<StatRecord> records = new Vector<StatRecord>( objects );
 
@@ -114,7 +110,7 @@ public class StatisticsManager {
 		Number[] grades = new Number[numDaysBetweenCutOffDateAndNow];
 
 		Calendar startDate = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
+		SimpleDateFormat sdf = SIMPLE_DATE_FORMAT;
 
 		try {
 			startDate.setTime( sdf.parse( cutOffDate ) );
@@ -131,7 +127,7 @@ public class StatisticsManager {
 			if( recordIndex < records.size() ) {
 				StatRecord record = (StatRecord) records.get( recordIndex );
 
-				if( record.record_date.equals( sdf.format( startDate.getTime() ) ) ) {
+				if( record.recorded.equals( sdf.format( startDate.getTime() ) ) ) {
 					grades[i] = new Integer( record.gradeInPercent );
 					recordIndex++;
 				} else {
@@ -149,7 +145,7 @@ public class StatisticsManager {
 	}
 
 	public int calcNumberOfDaysBetweenDateAndNow( String date ) {
-		SimpleDateFormat sdf = new SimpleDateFormat( "yyyyMMdd" );
+		SimpleDateFormat sdf = SIMPLE_DATE_FORMAT;
 		Date d = null;
 
 		try {
@@ -163,15 +159,15 @@ public class StatisticsManager {
 	}
 
 	public void saveOrUpdateCardStackStatistics() {
-		String todaysDate = new SimpleDateFormat( "yyyyMMdd" ).format( new Date() );
+		String todaysDate = SIMPLE_DATE_FORMAT.format( new Date() );
 
 		StatRecord record = this.loadStatRecordByDate( todaysDate );
 
 		if( record != null ) {
-			record.cardCount = this.countCards();
+			record.cardCount = this.m_cardSetManager.count();
 			record.gradeInPercent = this.calculateStudyGrade();
 		} else {
-			record = new StatRecord( this.countCards(), this.calculateStudyGrade(), todaysDate );
+			record = new StatRecord( this.m_cardSetManager.count(), this.calculateStudyGrade(), todaysDate );
 		}
 
 		m_odb.store( record );

@@ -44,7 +44,7 @@ public class ReviewActivity extends Activity {
 		
 		this.graphLayout = (LinearLayout) findViewById(R.id.graph_layout);
 		
-		this.cardCountGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Cards Added Today: ");
+		this.cardCountGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Total Cards: ");
 		this.graphLayout.addView( this.cardCountGraph.getView());
 		
 		this.gradeGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Grade: ");
