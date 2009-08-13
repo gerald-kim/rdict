@@ -1,5 +1,7 @@
 package com.amplio.rdict.more;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,6 +26,13 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 		this.context = context;
 	}
 	
+	public FlashcardAdapter( Context context, int textViewResourceId, List<Card> objects ) {
+	    super( context, textViewResourceId, objects );
+	    this.context = context;
+    }
+
+
+
 	public View getView(int position, View view, ViewGroup parent) {
 		Card c = this.getItem(position);
 		
