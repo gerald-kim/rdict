@@ -4,7 +4,7 @@
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 	<RelativeLayout android:id="@+id/widget29"
 		android:layout_width="wrap_content" android:layout_height="wrap_content">
-		<TextView android:id="@+id/downloading_label"
+		<TextView android:id="@+id/setup_downloading_status_label"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="Downloading..." android:layout_centerInParent="true"
 			android:layout_marginLeft="50px" android:layout_marginRight="50px">

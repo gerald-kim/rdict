@@ -15,6 +15,7 @@ public class SetupActivity extends Activity {
 	SetupViewWrapper downloadingDBViewWrapper;
 	SetupViewWrapper downloadFinishedViewWrapper;
 	SetupViewWrapper downloadLaterViewWrapper;
+	SetupViewWrapper downloadIsCorruptedViewWrapper;
 	
 	public static SetupManager setupMgr = null;
 	
@@ -32,6 +33,7 @@ public class SetupActivity extends Activity {
 		this.downloadFinishedViewWrapper = new DBDownloadFinishedViewWrapper(this.getApplicationContext(), this);
 		
 		this.downloadLaterViewWrapper = new DownloadDBLaterViewWrapper(this.getApplicationContext(), this);
+		this.downloadIsCorruptedViewWrapper = new DownloadIsCorruptedViewWrapper(this.getApplicationContext(), this);
 	}
 	
 	public void onResume() {
@@ -48,7 +50,7 @@ public class SetupActivity extends Activity {
 			this.layout.addView(wrapper.getView());
 		
 			if(SetupManager.STATE_DOWNLOADING == SetupActivity.setupMgr.getState()) {
-				((DBDownloadingViewWrapper) wrapper).startDownload();			
+				((DBDownloadingViewWrapper) wrapper).downloadAndCheckIndexAndDB();			
 			}
 		}
 	}
@@ -61,13 +63,17 @@ public class SetupActivity extends Activity {
 				return this.promptForDBDownloadViewWrapper;
 			case SetupManager.STATE_DOWNLOADING:
 				return this.downloadingDBViewWrapper;
-			case SetupManager.STATE_DOWNLOAD_FINSHED:
+			case SetupManager.STATE_VERIFYING:
+				return this.downloadingDBViewWrapper;
+			case SetupManager.STATE_VERIFICATION_COMPLETED:
 				return this.downloadFinishedViewWrapper;
 			case SetupManager.STATE_SETUP_COMPLETED:
 				this.finish();
 				return null;
 			case SetupManager.STATE_DOWNLOAD_LATER:
 				return this.downloadLaterViewWrapper;
+			case SetupManager.STATE_PROMPT_DOWNLOAD_FOR_V_FAILURE:
+				return this.downloadIsCorruptedViewWrapper;
 			case SetupManager.STATE_SETUP_DELAYED:
 				this.finish();
 				return null;

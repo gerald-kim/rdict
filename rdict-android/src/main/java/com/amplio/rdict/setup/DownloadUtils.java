@@ -1,9 +1,11 @@
 package com.amplio.rdict.setup;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -12,57 +14,9 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import android.os.Handler;
-
-public class DownloadManager implements Runnable {
-	//"http://www.google.ca/intl/en_ca/images/logo.gif";
-	public final static String SOURCE_URL_DB = "http://s3.amazonaws.com/rdict/word.cdb";
-	public final static String SOURCE_URL_INDEX = "http://s3.amazonaws.com/rdict/word.index";
-	public final static String WRITE_PATH_DB = "/sdcard/rdict/word.cdb";
-	public final static String WRITE_PATH_INDEX = "/sdcard/rdict/word.index";
-	
-	public long download_file_length = 0;
-	public long tot_bytes_downloaded = 0;
-	
-	Handler handler = null;
-	Runnable runnable = null;
-	
-	String[] sourceURLs = null;
-	String[] writePaths = null;
-	
-	public void startDownload(String[] sourceURLs, String[] writePaths, Handler handler, Runnable runnable) {
-		this.sourceURLs = sourceURLs;
-		this.writePaths = writePaths;
-		
-		this.handler = handler;
-		this.runnable = runnable;
-		
-		if(handler != null && runnable != null){
-			File file = new File("sdcard/rdict");
-			file.mkdir();
-		}
-		
-		new Thread(this).start();
-	}
-	
-	public void run() {
-		this.download_file_length = this.getRemoteFilesize(sourceURLs[0]);
-		this.download_file_length += this.getRemoteFilesize(sourceURLs[1]);
-		
-		this.downloadFile(this.sourceURLs[0], this.writePaths[0]);
-		this.downloadFile(this.sourceURLs[1], this.writePaths[1]);
-	}
-	
-	public boolean isDownloading() {
-		return this.tot_bytes_downloaded < this.download_file_length;
-	}
-	
-	public int getProgress() {
-		return new Double((new Long(this.tot_bytes_downloaded).doubleValue() / this.download_file_length) * 100).intValue();
-	}
-
-	public boolean downloadFile(String sourceURL, String targetPath) {
-		HttpURLConnection c = this.getHttpConnection(sourceURL);
+public class DownloadUtils {	
+	public static boolean downloadFile(String sourceURL, String targetPath, DownloadMonitor downloadMonitor) {
+		HttpURLConnection c = getHttpConnection(sourceURL);
 		
 		FileOutputStream f = null;
 		try {
@@ -86,10 +40,12 @@ public class DownloadManager implements Runnable {
 			while ( (len1 = in.read(buffer)) > 0 ) {
 				f.write(buffer,0, len1);
 				
-				this.tot_bytes_downloaded += new Integer(len1).longValue();
+				if(downloadMonitor != null) {
+					downloadMonitor.m_bytesDownloaded += new Integer(len1).longValue();
 				
-				if(this.handler != null && this.runnable!= null)
-					this.handler.post(this.runnable);
+					if(downloadMonitor.m_handler != null && downloadMonitor.m_runnable!= null)
+						downloadMonitor.m_handler.post(downloadMonitor.m_runnable);
+				}
 			}
 			f.close();
 			return true;
@@ -99,7 +55,7 @@ public class DownloadManager implements Runnable {
 		}
 	}
 	
-	public int getRemoteFilesize(String fileURL) {
+	public static int getRemoteFilesize(String fileURL) {
 		URL u = null;
 		try {
 			u = new URL(fileURL);
@@ -120,7 +76,7 @@ public class DownloadManager implements Runnable {
 		return c.getContentLength(); 
 	}
 	
-	public HttpURLConnection getHttpConnection(String sourceURL) {
+	public static HttpURLConnection getHttpConnection(String sourceURL) {
 		URL u = null;
     	
 		try {
@@ -143,7 +99,7 @@ public class DownloadManager implements Runnable {
 		return c;
 	}
 
-	public String calcMd5(File f) {
+	public static byte[] calcMd5Hash(File f) {
 		try {  
 			MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
 			
@@ -157,9 +113,7 @@ public class DownloadManager implements Runnable {
 				digest.update( buf, 0, byteCount);
 			}
 			  
-			byte messageDigest[] = digest.digest();
-			
-			return getHexString(messageDigest).toString();
+			return digest.digest();
 		} catch (NoSuchAlgorithmException e) {  
 			e.printStackTrace();  
 		} catch( FileNotFoundException e ) {
@@ -178,4 +132,33 @@ public class DownloadManager implements Runnable {
 		}
 		return sb.toString();
 	}
+
+	public static boolean checkFileIntegrity(File downloadedFile, File serversideMd5File) {
+		String localMd5 = getHexString(calcMd5Hash(downloadedFile));
+		String serversideMd5 = readMd5File(serversideMd5File);
+		return localMd5.equals(serversideMd5);
+    }
+	
+	public static String readMd5File(File f) {
+		StringBuffer sb = new StringBuffer();
+        BufferedReader reader;
+        try {
+	        reader = new BufferedReader(new FileReader(f));
+	        
+	        char[] buf = new char[1024];
+	        int numRead = 0;
+	        
+	        while((numRead = reader.read(buf)) != -1){
+	            sb.append(buf, 0, numRead);
+	        }
+	        reader.close();
+	        
+        } catch( FileNotFoundException e ) {
+	        e.printStackTrace();
+        } catch( IOException e ) {
+	        e.printStackTrace();
+        }
+        
+        return sb.toString();
+    }
 }

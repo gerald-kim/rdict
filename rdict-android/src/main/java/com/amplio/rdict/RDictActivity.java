@@ -21,7 +21,7 @@ import com.amplio.rdict.review.ReviewManager;
 import com.amplio.rdict.review.StatisticsManager;
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
-import com.amplio.rdict.setup.DownloadManager;
+import com.amplio.rdict.setup.DictionaryDownloader;
 import com.amplio.rdict.setup.SetupActivity;
 import com.amplio.rdict.setup.SetupManager;
 
@@ -63,8 +63,11 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	
-    	this.db_file = new File(DownloadManager.WRITE_PATH_DB);
+    	this.db_file = new File(DictionaryDownloader.WRITE_PATH_DB);
         
+    	SetupActivity.setupMgr = new SetupManager();
+		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
+    	
         if(this.db_file.exists()) {
         	setContentView(R.layout.main);
         	initDatabaseManagers();
