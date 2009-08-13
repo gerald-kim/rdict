@@ -16,12 +16,4 @@
 			style="?android:attr/progressBarStyleHorizontal"
 			android:layout_width="fill_parent" android:layout_height="40px" />
 	</RelativeLayout>
-	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="wrap_content" android:layout_height="wrap_content">
-		<Button android:id="@+id/setup_download_finished_button"
-			android:layout_width="80px" android:layout_height="wrap_content"
-			android:text="Ok" android:layout_centerInParent="true"
-			android:layout_marginLeft="50px" android:layout_marginRight="50px">
-		</Button>
-	</RelativeLayout>
 </LinearLayout>

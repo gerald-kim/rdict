@@ -53,8 +53,8 @@ public final class R {
         public static final int definition_label=0x7f060015;
         public static final int definition_text=0x7f060004;
         public static final int delete_button=0x7f060013;
-        public static final int download_later_button=0x7f06004a;
-        public static final int download_now_button=0x7f06004b;
+        public static final int download_later_button=0x7f060049;
+        public static final int download_now_button=0x7f06004a;
         public static final int easy_button=0x7f060034;
         public static final int edit_button=0x7f060018;
         public static final int exercise_label=0x7f06000a;
@@ -74,7 +74,7 @@ public final class R {
         public static final int headword_text=0x7f060003;
         public static final int help_button=0x7f060023;
         public static final int help_webview=0x7f06001c;
-        public static final int hint_mesg=0x7f06004d;
+        public static final int hint_mesg=0x7f06004c;
         public static final int history_list=0x7f06001d;
         public static final int i_forgot_button=0x7f060037;
         public static final int info_layout=0x7f060028;
@@ -87,9 +87,8 @@ public final class R {
         public static final int save_button=0x7f060007;
         public static final int settings_button=0x7f060027;
         public static final int setup_delayed_button=0x7f060041;
-        public static final int setup_download_finished_button=0x7f060048;
         public static final int setup_downloading_status_label=0x7f060046;
-        public static final int setup_finished_button=0x7f060049;
+        public static final int setup_finished_button=0x7f060048;
         public static final int setup_finished_mesg=0x7f060040;
         public static final int setup_layout=0x7f06003e;
         public static final int setup_progress_bar=0x7f060047;
@@ -102,14 +101,14 @@ public final class R {
         public static final int view_answer_button=0x7f060038;
         public static final int webview=0x7f060011;
         public static final int welcome_view_msg=0x7f060043;
-        public static final int welcome_view_ok_button=0x7f06004e;
+        public static final int welcome_view_ok_button=0x7f06004d;
         public static final int widget0=0x7f06000c;
         public static final int widget101=0x7f060022;
         public static final int widget28=0x7f060002;
         public static final int widget29=0x7f06003f;
         public static final int widget30=0x7f060042;
         public static final int widget31=0x7f060005;
-        public static final int widget32=0x7f06004c;
+        public static final int widget32=0x7f06004b;
         public static final int widget40=0x7f060000;
         public static final int widget41=0x7f060039;
         public static final int widget42=0x7f06003b;

@@ -12,7 +12,7 @@ public class SetupActivity extends Activity {
 	
 	SetupViewWrapper welcomeScreenViewWrapper;
 	SetupViewWrapper promptForDBDownloadViewWrapper;
-	SetupViewWrapper downloadingDBViewWrapper;
+	DBDownloadingViewWrapper downloadingDBViewWrapper;
 	SetupViewWrapper downloadFinishedViewWrapper;
 	SetupViewWrapper downloadLaterViewWrapper;
 	SetupViewWrapper downloadIsCorruptedViewWrapper;
@@ -48,10 +48,6 @@ public class SetupActivity extends Activity {
 			this.layout.removeAllViews();
 			wrapper.getView().setAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.fade));
 			this.layout.addView(wrapper.getView());
-		
-			if(SetupManager.STATE_DOWNLOADING == SetupActivity.setupMgr.getState()) {
-				((DBDownloadingViewWrapper) wrapper).downloadAndCheckIndexAndDB();			
-			}
 		}
 	}
 	

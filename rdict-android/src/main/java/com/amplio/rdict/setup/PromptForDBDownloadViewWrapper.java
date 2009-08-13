@@ -1,6 +1,7 @@
 package com.amplio.rdict.setup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,10 +25,17 @@ public class PromptForDBDownloadViewWrapper extends SetupViewWrapper implements 
 	}
 	
 	public void onClick(View v) {
-		if(v == this.nowButton)
+		if(v == this.nowButton) {
 			SetupActivity.setupMgr.userChoseDownloadOption();
-		else
+			
+			DownloadService.dm = new DownloadMonitor(	this.setupActivity.downloadingDBViewWrapper.downloadingViewHandler,
+														this.setupActivity.downloadingDBViewWrapper.getDownloadRunnable());
+			
+			this.setupActivity.startService(new Intent(this.setupActivity, DownloadService.class));
+		}
+		else {
 			SetupActivity.setupMgr.userChoseToDelayDownlaod();
+		}
 		
 		this.setupActivity.updateLayout();
 	}

@@ -22,6 +22,7 @@ import com.amplio.rdict.review.StatisticsManager;
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
 import com.amplio.rdict.setup.DictionaryDownloader;
+import com.amplio.rdict.setup.DownloadService;
 import com.amplio.rdict.setup.SetupActivity;
 import com.amplio.rdict.setup.SetupManager;
 
@@ -45,7 +46,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	TabHost.TabSpec historyTab = null;
 	TabHost.TabSpec moreTab = null;
 	
-	private File db_file = null;
+	private File index_file = null;
 	private ODB m_db = null;
 	private SQLiteDatabase m_con = null;
 	
@@ -63,18 +64,19 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	
-    	this.db_file = new File(DictionaryDownloader.WRITE_PATH_DB);
+    	this.index_file = new File(DictionaryDownloader.WRITE_PATH_INDEX);
         
-    	SetupActivity.setupMgr = new SetupManager();
-		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
-    	
-        if(this.db_file.exists()) {
+        if(this.index_file.exists() && ! DownloadService.isRunning) {
         	setContentView(R.layout.main);
         	initDatabaseManagers();
         	setupTabs(this.getTabHost());
         }
         else {
         	SetupActivity.setupMgr = new SetupManager();
+        	
+        	if(DownloadService.isRunning)
+        		SetupActivity.setupMgr.userChoseDownloadOption();
+        	
     		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
         }
     }
@@ -124,13 +126,13 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		
 		System.out.println("RDict - On Resume");
 		
-		if(! this.db_file.exists() ){
+		if(! this.index_file.exists() ){
 			if (! this.userChoseToDelaySetup())
 				this.startActivity(this.setupActivityIntent);
 			else
 				this.finish();
 		}
-		else if(this.db_file.exists() && ! this.isInittedDatabaseManagers){
+		else if(this.index_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
 			setupTabs(this.getTabHost());
 		}

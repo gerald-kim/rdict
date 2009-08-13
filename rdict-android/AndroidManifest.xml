@@ -25,7 +25,8 @@
 		<activity android:name=".more.SettingsActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:name=".more.EditCardActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:name=".more.AddCardActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-	</application>
+	<service android:name=".setup.DownloadService"></service>
+</application>
 
 
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
