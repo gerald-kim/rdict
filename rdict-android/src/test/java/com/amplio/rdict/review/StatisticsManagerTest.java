@@ -60,7 +60,7 @@ public class StatisticsManagerTest extends TestCase {
 		db.store(cCard);
 		
 		
-		assertEquals(2, m_statisticsManager.countCards());
+		assertEquals(3, m_cardSetManager.count());
 	}
 	
 	public void testLoadStatRecordByDate(){
@@ -71,7 +71,7 @@ public class StatisticsManagerTest extends TestCase {
 		
 		StatRecord record = m_statisticsManager.loadStatRecordByDate("19700101");
 		
-		assertEquals("19700101", record.record_date);
+		assertEquals("19700101", record.recorded);
 		
 		record = m_statisticsManager.loadStatRecordByDate("20120101");
 		
@@ -112,7 +112,7 @@ public class StatisticsManagerTest extends TestCase {
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		StatRecord r = m_statisticsManager.loadStatRecordByDate(today);
 		
-		assertEquals(today, r.record_date);
+		assertEquals(today, r.recorded);
 		assertEquals(3, r.cardCount);
 	}
 	
@@ -136,8 +136,8 @@ public class StatisticsManagerTest extends TestCase {
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		StatRecord r = m_statisticsManager.loadStatRecordByDate(today);
 		
-		assertEquals(today, r.record_date);
-		assertEquals(2, r.cardCount);
+		assertEquals(today, r.recorded);
+		assertEquals(3, r.cardCount);
 		
 		db.store(new Card("fish", "the definition for fish"));
 		
@@ -145,8 +145,8 @@ public class StatisticsManagerTest extends TestCase {
 		
 		r = m_statisticsManager.loadStatRecordByDate(today);
 		
-		assertEquals(today, r.record_date);
-		assertEquals(3, r.cardCount);
+		assertEquals(today, r.recorded);
+		assertEquals(4, r.cardCount);
 	}
 	
 	public void testRecordCardStackStatistics() {

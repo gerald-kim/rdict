@@ -1,6 +1,6 @@
 package com.amplio.rdict.more;
 
-import java.util.Vector;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -41,15 +41,8 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	public void onResume() {
 		super.onResume();
 		
-		String prefix = this.filterText.getText().toString();
-		Vector<Card> cards = RDictActivity.c_cardSetManager.loadCardsByPrefix(prefix);
-		
-		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
-		
-		for(int i = 0; i < cards.size(); i++) {
-			aa.add((Card) cards.get(i));
-		}
-
+		List<Card> cards = RDictActivity.c_cardSetManager.allCards();
+		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, cards);
 		this.cardList.setAdapter(aa);
 		aa.notifyDataSetChanged();
 	}
@@ -66,19 +59,10 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 
 	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		Vector<Card> cards = RDictActivity.c_cardSetManager.loadCardsByPrefix(s.toString());
-		
-		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1);
-		
-		for(int i = 0; i < cards.size(); i++) {
-			aa.add((Card) cards.get(i));
-		}
-
-		this.cardList.setAdapter(aa);
-		aa.notifyDataSetChanged();
+//		aa.notifyDataSetChanged();
+		cardList.setSelectionFromTop( RDictActivity.c_cardSetManager.findCardIndex( s.toString() ), 0 );
 	}
 }

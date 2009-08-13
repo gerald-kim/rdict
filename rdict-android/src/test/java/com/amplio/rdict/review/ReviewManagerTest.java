@@ -102,7 +102,7 @@ public class ReviewManagerTest extends TestCase {
 
 		m_mgr.checkStudyAvailableStudyModes();
 
-		assertEquals( ReviewManager.EXERCISES_OTHER, m_mgr.availableExercises );
+		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, m_mgr.availableExercises );
 	}
 
 }

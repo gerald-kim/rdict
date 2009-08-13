@@ -1,5 +1,9 @@
 package com.amplio.rdict.review;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Vector;
 
 import org.joda.time.DateMidnight;
@@ -10,8 +14,11 @@ import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.core.query.nq.SimpleNativeQuery;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 
+import com.amplio.rdict.search.Dictionary;
+
 public class CardSetManager {
 	private ODB db = null;
+	private List<Card> allCards;
 
 	public CardSetManager( ODB odb ) {
 		db = odb;
@@ -48,11 +55,59 @@ public class CardSetManager {
         return new Vector<Card>( cards );
 	}
 
+	public int count() {
+		return db.getObjects( Card.class ).size();
+	}
+
+	public List<Card> allCards() {
+		allCards = new ArrayList( db.getObjects( Card.class ) );
+		Collections.sort( allCards, new Comparator<Card>() {
+			public int compare( Card object1, Card object2 ) {
+	            return Dictionary.COLLATOR.compare( object1.question, object2.question );
+            }
+		});
+
+		return allCards;
+	} 
+	
+	class MockCard extends Card {
+		public MockCard( String question ) {
+			super( question, null );
+		}
+		public MockCard( String question, String answer ) {
+	        super( question, answer );
+        }
+	}
+
+	public int findCardIndex( String word ) {
+		int wordIndex = 0;
+		int idx = 0;
+		while( wordIndex < word.length()) {
+			wordIndex++;
+			idx = Collections.binarySearch( allCards, new MockCard( word.substring( 0, wordIndex ) ), new Comparator<Card>() {
+				public int compare( Card object1, Card object2 ) {
+	                return Dictionary.COLLATOR.compare( object1.question, object2.question );
+                }
+			});
+			if( idx < 0 ) {
+				if( !allCards.get( -idx ).question.toLowerCase().startsWith(
+				        word.substring( 0, wordIndex ).toLowerCase() ) )
+					break;
+			}
+		}
+
+		if( idx < 0 )
+			idx = -idx - 1;
+		return idx;
+	}
+
+
 	@SuppressWarnings( "serial" )
     public Vector<Card> loadCardsLookedupToday() {
 		final DateMidnight today = new DateMidnight();
 		
         IQuery query = new SimpleNativeQuery() {
+            @SuppressWarnings( "unused" )
             public boolean match(Card card) {
                 return card.lookedup.after( today.toDate() ) && ( null == card.studied || card.studied.before( card.lookedup ) );  
             }
@@ -63,6 +118,7 @@ public class CardSetManager {
 		return new Vector<Card>( cards );
 	}
 
+	
 	@SuppressWarnings( "serial" )
     public Vector<Card> loadCardsByPrefix( final String prefix ) {
 		IQuery query = new SimpleNativeQuery() {
