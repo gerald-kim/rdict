@@ -46,8 +46,8 @@ public class DictionaryDownloaderTest extends TestCase {
 
 		assertTrue( downloadedFile.exists() );
 		assertEquals( 242789, downloadedFile.length() );
-		assertEquals( 242789, downloadMonitor.m_numBytesToDownload);
-		assertEquals( 242847, downloadMonitor.m_bytesDownloaded);
+		assertEquals( 242821, downloadMonitor.m_numBytesToDownload);
+		assertEquals( 242821, downloadMonitor.m_bytesDownloaded);
 	}
 
 }
