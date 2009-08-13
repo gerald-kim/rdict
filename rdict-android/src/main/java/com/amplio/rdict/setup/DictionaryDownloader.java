@@ -27,7 +27,7 @@ public class DictionaryDownloader implements Runnable {
     }
 	
 	public void run() {
-		if(runningInAndroidContext()){
+		if(isRunningInAndroidContext()){
 			File file = new File("sdcard/rdict");
 			file.mkdir();
 		}
@@ -36,31 +36,31 @@ public class DictionaryDownloader implements Runnable {
 		
 		fetchFileSizes();
 		
-		if(runningInAndroidContext())
+		if(isRunningInAndroidContext())
 			this.m_monitor.postChange();
 			
 		this.m_monitor.setState(DownloadMonitor.STATE_DOWNLOADING_FILES);
 		
 		downloadFiles();
 		
-		if(runningInAndroidContext())
+		if(isRunningInAndroidContext())
 			this.m_monitor.postChange();
 		
 		if(this.m_doMd5Check) {
 			this.m_monitor.setState(DownloadMonitor.STATE_VERIFYING_FILES);
 			
-			if(runningInAndroidContext())
+			if(isRunningInAndroidContext())
 				this.m_monitor.postChange();
 			
 			doMd5Check();
 			
-			if(runningInAndroidContext())
+			if(isRunningInAndroidContext())
 				this.m_monitor.postChange();
 		}
 		else {
 			this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_DOWNLOAD_ONLY);
 			
-			if(runningInAndroidContext())
+			if(isRunningInAndroidContext())
 				this.m_monitor.postChange();
 		}
 	}
@@ -92,6 +92,7 @@ public class DictionaryDownloader implements Runnable {
 	    	
 	    	if (! DownloadUtils.checkFileIntegrity(downloadedFile, md5File)) {
 	    		this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_FAILED);
+	    		this.deleteAllFiles();
 	    		return;
 	    	}
 	    }
@@ -99,7 +100,17 @@ public class DictionaryDownloader implements Runnable {
 	    this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_SUCCESS);
     }
 	
-	private boolean runningInAndroidContext() {
+	private void deleteAllFiles() {
+	    for(int i = 0; i < this.m_downloadList.size(); i++) {
+			new File(m_downloadList.get(i).m_writePath).delete();
+			
+			if(this.m_doMd5Check) {
+				new File(m_downloadList.get(i).m_md5FileWritePath).delete();
+			}
+		}
+    }
+	
+	private boolean isRunningInAndroidContext() {
 	    return this.m_monitor.m_handler != null && this.m_monitor.m_runnable != null;
     }
 }

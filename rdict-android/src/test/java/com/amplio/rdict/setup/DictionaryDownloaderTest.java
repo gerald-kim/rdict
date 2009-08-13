@@ -8,7 +8,7 @@ public class DictionaryDownloaderTest extends TestCase {
 	
 	public void testStartDownload() {
 		DownloadList downloadList = new DownloadList();
-		downloadList.add("http://www.google.ca/intl/en_ca/images/logo.gif", "src/com/amplio/rdict/tests/setup/word.db");
+		downloadList.add("http://www.google.ca/intl/en_ca/images/logo.gif", "src/test/java/com/amplio/rdict/setup/word.db");
 		
 		DownloadMonitor downloadMonitor = new DownloadMonitor(null, null);
 		
@@ -28,9 +28,10 @@ public class DictionaryDownloaderTest extends TestCase {
 		assertEquals( 8914, downloadMonitor.m_bytesDownloaded );
 	}
 	
-	public void testDownloadIndexWithAuthentication() {
+	public void testDownloadFileWithBadMd5DeletesDownloadedFiles() {
 		DownloadList downloadList = new DownloadList();
-		downloadList.add(DictionaryDownloader.SOURCE_URL_INDEX, "src/com/amplio/rdict/tests/setup/word.index");
+		//the md5 file is bad on purpose for testing.
+		downloadList.add("http://s3.amazonaws.com/rdict/test_for_bad_md5.gif", "src/test/java/com/amplio/rdict/setup/test_for_bad_md5.gif");
 		
 		DownloadMonitor downloadMonitor = new DownloadMonitor(null, null);
 
@@ -42,12 +43,8 @@ public class DictionaryDownloaderTest extends TestCase {
 		while(! downloadMonitor.isFinished())
 			;
 
-		File downloadedFile = new File(downloadList.get(0).m_writePath);
-
-		assertTrue( downloadedFile.exists() );
-		assertEquals( 242789, downloadedFile.length() );
-		assertEquals( 242821, downloadMonitor.m_numBytesToDownload);
-		assertEquals( 242821, downloadMonitor.m_bytesDownloaded);
+		assertTrue(! new File(downloadList.get(0).m_writePath).exists());
+		assertTrue(! new File(downloadList.get(0).m_md5FileWritePath).exists());
 	}
 
 }
