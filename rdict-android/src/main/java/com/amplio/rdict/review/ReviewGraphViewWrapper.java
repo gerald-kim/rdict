@@ -12,6 +12,20 @@ import android.widget.TextView;
 import com.amplio.rdict.R;
 
 public class ReviewGraphViewWrapper {
+	public static final Number[] DEMO_DATA_CARD_COUNT = new Number[]{0, 3, 5, 12, 12, 
+																	12, 13, 16, 16, 16,
+																	22, 25, 26, 29, 37,
+																	37, 37, 38, 42, 43,
+																	43, 45, 47, 51, 52,
+																	55, 57, 59, 64, 66};
+	
+	public static final Number[] DEMO_DATA_GRADE = new Number[]{20, 25, 20, 30, 40, 
+																50, 55, 60, 60, 60,
+																75, 65, 70, 70, 75,
+																80, 70, 72, 89, 90,
+																85, 85, 80, 85, 85,
+																75, 80, 85, 85, 90};
+	
 	public static final int WIDTH = 230;
 	public static final int HEIGHT = 110;
 	public static final int SPACING = 2;

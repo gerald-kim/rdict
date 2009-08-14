@@ -78,8 +78,7 @@ public class ReviewActivity extends Activity {
 			else
 				sb.append(MESG_GOOD_JOB_YOURE_FINISHED);
 			
-			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise
-					)
+			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
 				sb.append("  " + MESG_PRACTICE_ANOTHER_SET);
 			
 			return sb.toString();
