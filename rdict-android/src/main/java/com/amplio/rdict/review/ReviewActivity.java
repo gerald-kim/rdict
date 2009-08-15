@@ -59,8 +59,6 @@ public class ReviewActivity extends Activity implements Runnable{
 	public void onResume() {
 		super.onResume();
 		
-		RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
-		
 		RDictActivity.c_reviewManager.checkAvailableExercises();
 		
 		this.reviewMesg.setText(this.getGreetingMessage());

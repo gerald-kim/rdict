@@ -13,7 +13,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.amplio.rdict.history.HistoryManager;
 import com.amplio.rdict.review.CardSetManager;
@@ -43,6 +45,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 
 	public static RDictActivity RDICT_ACTIVITY = null;
 	
+	private TabHost m_tabHost = null;
 	TabHost.TabSpec searchTab = null;
 	TabHost.TabSpec reviewTab = null;
 	TabHost.TabSpec historyTab = null;
@@ -71,7 +74,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         if(this.index_file.exists() && ! DownloadService.isRunning) {
         	setContentView(R.layout.main);
         	initDatabaseManagers();
-        	setupTabs(this.getTabHost());
+        	
+        	this.m_tabHost = this.getTabHost();
+        	setupTabs(this.m_tabHost);
         }
         else {
         	SetupActivity.setupMgr = new SetupManager();
@@ -115,7 +120,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
 
 	public void updateReviewTabIndicator() {
-	    this.reviewTab.setIndicator(buildReviewTabIndicator());
+	    RelativeLayout r = (RelativeLayout) this.m_tabHost.getTabWidget().getChildAt(1);
+	    TextView reviewTabTextView = (TextView) r.getChildAt(1);  // hackmaster Steve -_-;;;
+	    reviewTabTextView.setText(this.buildReviewTabIndicator());
     }
 
 	private String buildReviewTabIndicator() {
@@ -133,8 +140,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     public void onResume() {
 		super.onResume();
 		
-		System.out.println("RDict - On Resume");
-		
 		if(! this.index_file.exists() ){
 			if (! this.userChoseToDelaySetup())
 				this.startActivity(this.setupActivityIntent);
@@ -144,6 +149,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		else if(this.index_file.exists() && ! this.isInittedDatabaseManagers){
 			initDatabaseManagers();
 			setupTabs(this.getTabHost());
+		}
+		else {
+			RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
 		}
 	}
     
