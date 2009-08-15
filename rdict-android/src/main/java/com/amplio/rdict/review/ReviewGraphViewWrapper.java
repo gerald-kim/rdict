@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class ReviewGraphViewWrapper {
 	public static final int HEIGHT = 110;
 	public static final int SPACING = 2;
 	
+	private Context m_context = null;
 	private View v = null;
 	private TextView graphLabel = null;
 	private TextView todaysValueTextView = null;
@@ -41,6 +43,7 @@ public class ReviewGraphViewWrapper {
 	private Bitmap m_graphBitmap = null;
 	
 	public ReviewGraphViewWrapper(Context context, String label) {
+		this.m_context = context;
 		this.v = View.inflate( context, R.layout.graph, null);
 		
 		this.graphLabel = (TextView) this.v.findViewById(R.id.graph_label ); 
@@ -76,6 +79,7 @@ public class ReviewGraphViewWrapper {
 		return new Runnable() {
 			public void run() {
 				todaysValueTextView.setText(m_todaysValStr);
+				graphBitmapView.setAnimation(AnimationUtils.loadAnimation(m_context, R.anim.fade));
 				graphBitmapView.setImageBitmap(m_graphBitmap);
             }
 		};
