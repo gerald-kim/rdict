@@ -42,7 +42,7 @@ public class AddCardActivity extends Activity implements OnClickListener{
 
 	public void onClick(View v) {
 		if(this.saveButton == v){
-			Card c = new Card(this.headwordText.getText().toString(), this.definitionText.getText().toString().replace(" ", "%20"));
+			Card c = new Card(this.headwordText.getText().toString(), this.definitionText.getText().toString());
 
 			Card c2 = null;
 			try {

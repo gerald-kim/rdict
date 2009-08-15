@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-android:id="@+id/widget28"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<TextView
-android:id="@+id/headword_label"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="TextView"
->
-</TextView>
-<EditText
-android:id="@+id/definition_text"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:text="EditText"
-android:textSize="18sp"
->
-</EditText>
-<LinearLayout
-android:id="@+id/widget31"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
->
-<Button
-android:id="@+id/cancel_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Cancel"
->
-</Button>
-<Button
-android:id="@+id/save_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Save"
->
-</Button>
-<Button
-android:id="@+id/delete_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Delete"
->
-</Button>
-</LinearLayout>
+<LinearLayout android:id="@+id/widget28"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:padding="10px"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<TextView android:id="@+id/title_label" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="Edit or Delete a Card"
+		android:textSize="28sp" android:layout_marginBottom="10px">
+	</TextView>
+	
+	<TextView android:id="@+id/headword_label"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="TextView"
+		android:textSize="22sp"
+		android:layout_marginBottom="10px">
+	</TextView>
+	
+	<EditText android:id="@+id/definition_text"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:lines="5" android:scrollHorizontally="false" android:text=""
+		android:hint="Type the definition here." android:textSize="18sp"
+		android:gravity="top">
+	</EditText>
+	
+	<RelativeLayout android:id="@+id/widget31"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		
+		<Button android:id="@+id/delete_button" android:layout_width="80px"
+			android:layout_height="wrap_content" android:text="Delete"
+			android:layout_alignParentRight="true">
+		</Button>
+		
+		<Button android:id="@+id/save_button" android:layout_width="80px"
+			android:layout_height="wrap_content" android:text="Save"
+			android:layout_toLeftOf="@+id/delete_button">
+		</Button>
+		
+		<Button android:id="@+id/cancel_button" android:layout_width="80px"
+			android:layout_height="wrap_content" android:text="Cancel"
+			android:layout_toLeftOf="@+id/save_button">
+		</Button>
+		
+		
+		
+		
+	</RelativeLayout>
+	
 </LinearLayout>
