@@ -15,13 +15,13 @@ public class CardExerciseWrapper implements OnClickListener {
 
 	public static CardExerciseWrapper buildScheduledCardExercise(Context context){
 		CardExerciseWrapper c = new CardExerciseWrapper(context);
-		c.init("There are Cards scheduled for practice Today.", ReviewManager.EXERCISES_SCHEDULED_TODAY);
+		c.init("There are cards scheduled for practice today.", ReviewManager.EXERCISES_SCHEDULED_TODAY);
 		return c;
 	}
 	
 	public static CardExerciseWrapper buildLookedupTodayCardExercise(Context context){
 		CardExerciseWrapper c = new CardExerciseWrapper(context);
-		c.init("Practice the cards you've looked up today.", ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY);
+		c.init("Practice cards you created today.", ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY);
 		return c;
 	}
 		

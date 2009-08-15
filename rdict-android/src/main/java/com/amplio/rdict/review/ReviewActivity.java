@@ -17,7 +17,7 @@ import com.amplio.rdict.RDictActivity;
 public class ReviewActivity extends Activity implements Runnable{
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
 	public static final String MESG_CARDS_SCHEDULED_FOR_TODAY = "You have cards scheduled for today.";
-	public static final String MESG_NO_CARDS_SCHEDULED_FOR_TODAY = "There are no cards scheduled for today.";
+	public static final String MESG_NO_CARDS_SCHEDULED_FOR_TODAY = "No cards are scheduled for today.";
 	public static final String MESG_GOOD_JOB_YOURE_FINISHED = "Good Job! You've finished studying the cards that were scheduled for today.";
 	public static final String MESG_PRACTICE_ANOTHER_SET = "The following card sets are available for extra practice:";
 	

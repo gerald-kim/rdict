@@ -66,7 +66,7 @@ public class ReviewGraphViewWrapper {
 			strBuilder.append( n );
 		}
 		try {
-			URL img = new URL("http://chart.apis.google.com/chart?chs=200x30&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
+			URL img = new URL("http://chart.apis.google.com/chart?chs=180x50&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
 	        this.m_graphBitmap = BitmapFactory.decodeStream( img.openStream());
         } catch( IOException e ) {
 	        e.printStackTrace();

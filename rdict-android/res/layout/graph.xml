@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout android:id="@+id/widget31"
-	android:layout_width="fill_parent" android:layout_height="110px"
-	android:orientation="horizontal"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	android:layout_width="fill_parent" android:layout_height="90px"
+	android:orientation="horizontal" xmlns:android="http://schemas.android.com/apk/res/android">
 	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="fill_parent" android:layout_height="110px"
+		android:layout_width="fill_parent" android:layout_height="90px"
 		android:orientation="horizontal" android:padding="10px">
 
 		<TextView android:id="@+id/graph_label" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="Name here: "
-			android:textSize="20sp"
-			android:layout_alignParentLeft="true">
+			android:textSize="20sp" android:layout_alignParentLeft="true">
 		</TextView>
 
 		<TextView android:id="@+id/graph_value_label"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:text="Loading... " android:layout_alignParentLeft="true"
-			android:textSize="20sp"
-			android:layout_below="@+id/graph_label">
+			android:textSize="20sp" android:layout_below="@+id/graph_label">
 		</TextView>
 
-		<ImageView android:id="@+id/graph_bitmap"
+		<RelativeLayout android:id="@+id/widget31"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:textSize="20sp"
-			android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+			android:orientation="vertical" 
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true">
+
+			<ImageView android:id="@+id/graph_bitmap"
+				android:layout_width="180px" android:layout_height="50px"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentTop="true"/>
+
+			<TextView android:id="@+id/graph_value_label"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="Past 30 Days" android:layout_alignParentRight="true"
+				android:textSize="14sp"
+				android:layout_marginTop='2px'
+				android:layout_below="@+id/graph_bitmap">
+			</TextView>
+
+		</RelativeLayout>
+
 	</RelativeLayout>
 </LinearLayout>
