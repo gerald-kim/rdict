@@ -74,7 +74,7 @@ public final class R {
         public static final int headword_text=0x7f060004;
         public static final int help_button=0x7f060024;
         public static final int help_webview=0x7f06001d;
-        public static final int hint_mesg=0x7f06004c;
+        public static final int hint_mesg=0x7f06004d;
         public static final int history_list=0x7f06001e;
         public static final int i_forgot_button=0x7f060037;
         public static final int info_layout=0x7f060029;
@@ -92,6 +92,7 @@ public final class R {
         public static final int setup_finished_mesg=0x7f060040;
         public static final int setup_layout=0x7f06003e;
         public static final int setup_progress_bar=0x7f060047;
+        public static final int setup_title_label=0x7f06004b;
         public static final int ssss=0x7f060025;
         public static final int start_exercise_button=0x7f06000c;
         public static final int title=0x7f060010;
@@ -101,14 +102,14 @@ public final class R {
         public static final int view_answer_button=0x7f060038;
         public static final int webview=0x7f060012;
         public static final int welcome_view_msg=0x7f060043;
-        public static final int welcome_view_ok_button=0x7f06004d;
+        public static final int welcome_view_ok_button=0x7f06004e;
         public static final int widget0=0x7f06000d;
         public static final int widget101=0x7f060023;
         public static final int widget28=0x7f060002;
         public static final int widget29=0x7f06003f;
         public static final int widget30=0x7f060042;
         public static final int widget31=0x7f060006;
-        public static final int widget32=0x7f06004b;
+        public static final int widget32=0x7f06004c;
         public static final int widget40=0x7f060000;
         public static final int widget41=0x7f060039;
         public static final int widget42=0x7f06003b;

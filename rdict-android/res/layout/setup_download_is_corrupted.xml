@@ -3,23 +3,35 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 	
-	<RelativeLayout android:id="@+id/widget30"
-		android:layout_width="wrap_content" android:layout_height="70px">
+	<LinearLayout android:id="@+id/widget30"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
 		<TextView android:id="@+id/welcome_view_msg"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="The db file was corrupted.  Would you like to try downloading again now?"
+			android:text="Unfortunately, there is a problem with the dictionary file that was downloaded."
 			android:layout_centerVertical="true"
 			android:textSize="20sp"
 			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px">
+			android:layout_marginRight="30px"
+			android:layout_marginTop="20px">
 		</TextView>
-	</RelativeLayout>
+		
+		<TextView android:id="@+id/welcome_view_msg"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="Would you like to try downloading the file again now?"
+			android:layout_centerVertical="true"
+			android:textSize="20sp"
+			android:layout_marginLeft="30px"
+			android:layout_marginRight="30px"
+			android:layout_marginTop="20px">
+		</TextView>
+		
+	</LinearLayout>
 	
 	<RelativeLayout android:id="@+id/widget28"
 		android:layout_width="fill_parent" android:layout_height="90px">
 		
 		<Button android:id="@+id/try_again_later_button"
-			android:text="Try again later"
+			android:text="Later"
 			android:layout_width="80px" android:layout_height="wrap_content"
 			android:layout_marginLeft="30px" android:layout_marginRight="30px"
 			android:layout_centerVertical="true">
@@ -27,9 +39,9 @@
 		
 		<Button android:id="@+id/try_again_now_button"
 			android:layout_width="80px" android:layout_height="wrap_content"
-			android:text="Try again now" android:layout_centerVertical="true"
+			android:text="Now" android:layout_centerVertical="true"
 			android:layout_toRightOf="@+id/try_again_later_button"
-			android:layout_marginLeft="30px" android:layout_marginRight="30px">
+			android:layout_marginLeft="30px" android:layout_marginRight="20px">
 		</Button>
 	</RelativeLayout>
 	

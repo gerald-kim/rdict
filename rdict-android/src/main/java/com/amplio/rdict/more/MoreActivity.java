@@ -59,7 +59,7 @@ public class MoreActivity extends Activity implements OnClickListener {
 			view.getContext().startActivity(i);
 		}
 		else if (this.deleteButton == view) {
-			new File(DictionaryDownloader.WRITE_PATH_DB).delete();
+			//new File(DictionaryDownloader.WRITE_PATH_DB).delete();
 			new File(DictionaryDownloader.WRITE_PATH_INDEX).delete();
 			RDictActivity.RDICT_ACTIVITY.finish();
 		}
