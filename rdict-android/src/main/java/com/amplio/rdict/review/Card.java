@@ -36,7 +36,7 @@ public class Card {
 
         Calendar c = Calendar.getInstance();
         c.add( Calendar.DAY_OF_MONTH, 1 );
-        scheduled = new Date();//c.getTime();
+        scheduled = c.getTime();
         
         sh = new ScoreHistory( 3 );
         sh.add( 0 ); sh.add(0); sh.add(0);
