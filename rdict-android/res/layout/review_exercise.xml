@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/widget51"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical" android:padding="15px"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<RelativeLayout android:id="@+id/progress_layout"
-		android:layout_width="fill_parent" android:layout_height="wrap_content">
-]		<TextView android:id="@+id/progress_label"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Progress Indicator" android:textSize="18sp"
-			android:gravity="right" android:layout_marginBottom="15px" android:layout_alignParentRight = "true">
-		</TextView>
-	</RelativeLayout>
+	<LinearLayout android:id="@+id/widget51"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical" android:padding="15px">
 
-	<LinearLayout android:id="@+id/flashcard_layout"
-		android:layout_width="fill_parent" android:layout_height="110px"
-		android:orientation="horizontal">
+		<RelativeLayout android:id="@+id/progress_layout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			]
+			<TextView android:id="@+id/progress_label"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="Progress Indicator" android:textSize="18sp"
+				android:gravity="right" android:layout_marginBottom="15px"
+				android:layout_alignParentRight="true">
+			</TextView>
+		</RelativeLayout>
 
-		<ViewFlipper android:id="@+id/flashcard_mover"
-			android:layout_width="fill_parent" android:layout_height="fill_parent">
-		</ViewFlipper>
+		<LinearLayout android:id="@+id/flashcard_layout"
+			android:layout_width="fill_parent" android:layout_height="110px"
+			android:orientation="horizontal">
+
+			<ViewFlipper android:id="@+id/flashcard_mover"
+				android:layout_width="fill_parent" android:layout_height="fill_parent">
+			</ViewFlipper>
+
+		</LinearLayout>
+
+		<LinearLayout android:id="@+id/button_layout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="vertical">
+		</LinearLayout>
 
 	</LinearLayout>
 
-	<LinearLayout android:id="@+id/button_layout"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical">
-	</LinearLayout>
-
-</LinearLayout>
+</ScrollView>
