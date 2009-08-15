@@ -77,7 +77,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         	
         	this.m_tabHost = this.getTabHost();
         	setupTabs(this.m_tabHost);
-        	setDefaultTab(TAB_INDEX_SEARCH);
         }
         else {
         	SetupActivity.setupMgr = new SetupManager();
@@ -104,7 +103,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	this.moreTab = this.createTab(tabHost, TAB_INDEX_MORE);
     	tabHost.addTab(this.moreTab);
         
-        //this.setDefaultTab(TAB_INDEX_SEARCH);
+        this.setDefaultTab(TAB_INDEX_SEARCH);
     }
     
     public TabHost.TabSpec createTab(TabHost tabHost, int index) {
@@ -148,9 +147,11 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 				this.finish();
 		}
 		else if(this.index_file.exists() && ! this.isInittedDatabaseManagers){
-			initDatabaseManagers();
-			setupTabs(this.getTabHost());
-			setDefaultTab(TAB_INDEX_SEARCH);
+			setContentView(R.layout.main);
+        	initDatabaseManagers();
+        	
+        	this.m_tabHost = this.getTabHost();
+        	setupTabs(this.m_tabHost);
 		}
 		else {
 			RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
