@@ -9,8 +9,9 @@
 
 		<TextView android:id="@+id/exercise_label"
 			android:layout_width="200px" android:layout_height="wrap_content"
-			android:text="For Help with using RDict."
-			android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+			android:text="Checking for available exercises..."
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+			android:textSize="20sp">
 		</TextView>
 
 		<Button android:id="@+id/start_exercise_button"

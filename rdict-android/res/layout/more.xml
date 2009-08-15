@@ -12,7 +12,8 @@
 
 			<TextView android:id="@+id/widget101" android:layout_width="200px"
 				android:layout_height="wrap_content" android:text="For Help with using RDict."
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp">
 			</TextView>
 
 			<Button android:id="@+id/help_button" android:layout_width="80px"
@@ -29,7 +30,8 @@
 
 			<TextView android:id="@+id/ssss" android:layout_width="200px"
 				android:layout_height="wrap_content" android:text="View RDict's License and other information."
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp">
 			</TextView>
 
 			<Button android:id="@+id/about_button" android:layout_width="80px"
@@ -47,7 +49,8 @@
 			<TextView android:id="@+id/widget101" android:layout_width="200px"
 				android:layout_height="wrap_content"
 				android:text="Add a card, or Edit and Delete cards to your collection."
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp">
 			</TextView>
 
 			<Button android:id="@+id/manage_button" android:layout_width="80px"
@@ -64,7 +67,8 @@
 
 			<TextView android:id="@+id/widget101" android:layout_width="200px"
 				android:layout_height="wrap_content" android:text="Change RDict's default behaviour."
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp">
 			</TextView>
 
 			<Button android:id="@+id/settings_button"
@@ -81,7 +85,8 @@
 
 			<TextView android:id="@+id/widget101" android:layout_width="200px"
 				android:layout_height="wrap_content" android:text="Delete your Dictionary and Index file (temp feature)"
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp">
 			</TextView>
 
 			<Button android:id="@+id/delete_button"
