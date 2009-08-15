@@ -55,7 +55,12 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     public void refreshDicPage() {
     	if(DictionaryActivity.dicEntry != null) {
     		this.title.setText(DictionaryActivity.dicEntry.headword);
-    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", DictionaryActivity.dicEntry.contents, "text/html", "utf-8", null);
+    		
+    		StringBuilder sb = new StringBuilder(DictionaryActivity.dicEntry.contents);
+    		
+    		sb.append(getCCBySALicenseString(dicEntry.headword));
+    		
+    		_searchResultsPage.loadDataWithBaseURL("fake://dagnabbit", sb.toString(), "text/html", "utf-8", null);
     	}
 		else {
 			this.title.setText("No Results");
@@ -66,7 +71,11 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     	this._forwardButton.setEnabled(DictionaryActivity.sessionHistory.canGoForward());	
     }
     
-    public void addCard(String def){
+    private String getCCBySALicenseString( String headword ) {
+	    return "<br>View the original Wiktionary page <a href=\"http://en.wiktionary.org/wiki/" + headword + "\">here</a>.";
+    }
+
+	public void addCard(String def){
 		RDictActivity.c_cardSetManager.create( title.getText().toString(), def );
     }
     
