@@ -1,5 +1,6 @@
 package com.amplio.rdict.review;
 
+import java.util.Date;
 import java.util.Vector;
 
 import junit.framework.TestCase;
@@ -69,5 +70,21 @@ public class ReviewExerciseManagerTest extends TestCase {
 		mgr.next();
 		
 		assertEquals(1, mgr.getCardIndex());
+	}
+	
+	public void testUserPressedANEasinessButtonSchedulesCard() {
+		Vector<Card> cards = new Vector<Card>();
+		cards.add(new Card("word1", "def1"));
+		
+		Date oldDate = cards.get( 0 ).scheduled;
+		
+		ReviewExerciseManager mgr = new ReviewExerciseManager(cards);
+		
+		mgr.userPressedViewAnswerButton();
+		mgr.userPressedAnEasinessButton(ReviewExerciseManager.GRADE_EASY);
+		
+		Date newScheduledDate = cards.get(0).scheduled;
+		
+		assertTrue(oldDate.getTime() < newScheduledDate.getTime());
 	}
 }

@@ -1,5 +1,6 @@
 package com.amplio.rdict.review;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import junit.framework.TestCase;
@@ -29,6 +30,22 @@ public class CardTest extends TestCase {
 		assertEquals( "0,0,0", c.getScoreHistory().toString() );
 	}
 
+	public void testScheduleByGrade() {
+		Card c = new Card( "How big is it?", "Very big." );
+		
+		Calendar cal = Calendar.getInstance();
+        cal.add( Calendar.DAY_OF_MONTH, 1 );
+        Date expectedScheduled = cal.getTime();
+		
+		assertEquals(expectedScheduled, c.scheduled);
+		
+		Date oldDate = c.scheduled;
+		
+		c.scheduleByGrade(Card.MAX_GRADE);
+		
+		assertTrue(oldDate.getTime() < c.scheduled.getTime());
+	}
+	
 	public void testRounding() {
 
 		double twoPointTwo = 2.2;
@@ -77,5 +94,4 @@ public class CardTest extends TestCase {
 		assertEquals( "A really...", Card.getAbbreviatedAnswer( answer, 8 ) );
 		assertEquals( "A really...", Card.getAbbreviatedAnswer( answer, 9 ) );
 	}
-
 }

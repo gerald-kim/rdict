@@ -59,7 +59,7 @@ public class ReviewActivity extends Activity implements Runnable{
 	public void onResume() {
 		super.onResume();
 		
-		System.out.println("Review - Resumed");
+		RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
 		
 		RDictActivity.c_reviewManager.checkAvailableExercises();
 		

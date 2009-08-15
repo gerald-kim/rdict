@@ -31,7 +31,7 @@ public class ReviewExerciseManager {
 		this.m_state = STATE_USER_PRESSED_EASINESS_BUTTON;
 		
 		Card c = this.m_cards.elementAt(this.m_cardIndex);
-		c.study( grade );
+		c.scheduleByGrade(grade);
     }
 	
 	public void next() {

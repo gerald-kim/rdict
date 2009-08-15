@@ -42,7 +42,7 @@ public class Card {
         sh.add( 0 ); sh.add(0); sh.add(0);
 	}
 
-	public void study( int grade ) {
+	public void scheduleByGrade( int grade ) {
 		this.grade = grade;
 		if ( grade < 3 ) {
 			repsSinceLapse = 0;

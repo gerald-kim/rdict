@@ -30,7 +30,7 @@ public class CardSetManager {
 			card = new Card( question, answer );
 		} else {
 			card.answer = card.answer + "\n-------\n" + answer;
-			card.study( 0 );
+			card.scheduleByGrade( 0 );
 			//reset card schedule
 //			card.
 //			card.getAbbreviatedAnswer( answer, maxLength )

@@ -96,7 +96,7 @@ public class ReviewManagerTest extends TestCase {
 
 	public void testCheckStudyModeIfCardLookedupToday() {
 		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
-		cardLookedupToday.study( 3 );
+		cardLookedupToday.scheduleByGrade( 3 );
 
 		m_db.store( cardLookedupToday );
 

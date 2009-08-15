@@ -28,10 +28,10 @@ import com.amplio.rdict.setup.SetupManager;
 
 public class RDictActivity extends TabActivity implements  AssetInputStreamProvider {
 	
-	private static final int TAB_INDEX_SEARCH = 0;
-	private static final int TAB_INDEX_REVIEW = 1;
-	private static final int TAB_INDEX_HISTORY = 2;
-	private static final int TAB_INDEX_MORE = 3;
+	public static final int TAB_INDEX_SEARCH = 0;
+	public static final int TAB_INDEX_REVIEW = 1;
+	public static final int TAB_INDEX_HISTORY = 2;
+	public static final int TAB_INDEX_MORE = 3;
 	
 	private static final String BASE_PACKAGE = "com.amplio.rdict";
 	
@@ -41,6 +41,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 													BASE_PACKAGE + ".more."};
 	private static final String[] TAB_NAMES = { "Search", "Review", "History", "More"};
 
+	public static RDictActivity RDICT_ACTIVITY = null;
+	
 	TabHost.TabSpec searchTab = null;
 	TabHost.TabSpec reviewTab = null;
 	TabHost.TabSpec historyTab = null;
@@ -79,6 +81,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
         	
     		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
         }
+        
+        RDICT_ACTIVITY = this;
     }
     
     private void setupTabs(TabHost tabHost) {
@@ -102,23 +106,28 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
     	tab.setContent(new Intent().setComponent(activity));
     	
-    	if(index == TAB_INDEX_REVIEW){
-    		StringBuilder sb = new StringBuilder(TAB_NAMES[index]);
-    		
-    		int cardsScheduledForToday = c_cardSetManager.loadCardsScheduledForToday().size();
-    		if(0 < cardsScheduledForToday) {
-	    		sb.append("(");
-	    		sb.append(cardsScheduledForToday);
-	    		sb.append(")");
-    		}
-    		
-    		tab.setIndicator(sb.toString());
-    	}
-    	else {
+    	if(index == TAB_INDEX_REVIEW)
+		    tab.setIndicator(buildReviewTabIndicator());
+    	else
     		tab.setIndicator(TAB_NAMES[index]);
-    	}
     	
     	return tab;
+    }
+
+	public void updateReviewTabIndicator() {
+	    this.reviewTab.setIndicator(buildReviewTabIndicator());
+    }
+
+	private String buildReviewTabIndicator() {
+	    StringBuilder sb = new StringBuilder(TAB_NAMES[TAB_INDEX_REVIEW]);
+	    
+	    int cardsScheduledForToday = c_cardSetManager.loadCardsScheduledForToday().size();
+	    if(0 < cardsScheduledForToday) {
+	    	sb.append("(");
+	    	sb.append(cardsScheduledForToday);
+	    	sb.append(")");
+	    }
+	    return sb.toString();
     }
     
     public void onResume() {

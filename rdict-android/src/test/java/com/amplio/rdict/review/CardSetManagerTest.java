@@ -93,7 +93,7 @@ public class CardSetManagerTest extends TestCase {
 
 	public void testLoadCardsLookedupTodaySkipStudied() {
 		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
-		cardLookedupToday.study( 5 );
+		cardLookedupToday.scheduleByGrade( 5 );
 		Card cardLookedupIn1970 = new Card( "today", "the answer" );
 		DateTime dateTime = new DateTime();
 		cardLookedupIn1970.lookedup = dateTime.minusDays( 100 ).toDate();
@@ -211,7 +211,7 @@ public class CardSetManagerTest extends TestCase {
 	public void testLoadingCardPreservesEasinessHistory() {
 
 		Card bCard1 = new Card( "banana", "the answer" );
-		bCard1.study( 1 );
+		bCard1.scheduleByGrade( 1 );
 
 		assertEquals( "1,0,0", bCard1.getScoreHistory().toString() );
 
