@@ -7,13 +7,14 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 
-public class ReviewActivity extends Activity {
+public class ReviewActivity extends Activity implements Runnable{
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
 	public static final String MESG_CARDS_SCHEDULED_FOR_TODAY = "You have cards scheduled for today.";
 	public static final String MESG_NO_CARDS_SCHEDULED_FOR_TODAY = "There are no cards scheduled for today.";
@@ -29,6 +30,8 @@ public class ReviewActivity extends Activity {
 	private LinearLayout graphLayout = null;
 	private ReviewGraphViewWrapper cardCountGraph = null;
 	private ReviewGraphViewWrapper gradeGraph = null;
+	
+	private Handler m_graphViewHandler = null;
 	
 	@Override
 	public void onCreate(Bundle icicle){
@@ -49,6 +52,8 @@ public class ReviewActivity extends Activity {
 		
 		this.gradeGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Grade: ");
 		this.graphLayout.addView( this.gradeGraph.getView());
+		
+		this.m_graphViewHandler = new Handler();
 	}
 	
 	public void onResume() {
@@ -115,6 +120,10 @@ public class ReviewActivity extends Activity {
 	}
 	
 	public void setupGraphViews() {
+		new Thread(this).start();
+	}
+	
+	public void run() {
 		Calendar c = Calendar.getInstance(); 
 		c.add(Calendar.HOUR, -24 * 30);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -123,27 +132,13 @@ public class ReviewActivity extends Activity {
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
 		String numCardsAddedToday = cardCountData[cardCountData.length - 1].toString();
 		
-		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData);
+		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData, this.m_graphViewHandler, this.cardCountGraph.getDrawGraphRunnable());
 		this.cardCountGraph.getView().refreshDrawableState();
 		
 		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
 		String todaysGrade = gradeData[gradeData.length - 1].toString() + " %";
 	
-		this.gradeGraph.setValueAndData( todaysGrade, gradeData);
-		this.gradeGraph.getView().refreshDrawableState();
+		this.gradeGraph.setValueAndData( todaysGrade, gradeData, this.m_graphViewHandler, this.gradeGraph.getDrawGraphRunnable());
+		this.gradeGraph.getView().refreshDrawableState();		
 	}
-
-	public void onPause(){
-		System.out.println("Review - paused");
-		super.onPause();
-	}
-	
-	public void onStart(){
-		System.out.println("Review - Started");
-		super.onStart();
-	}
-	
-	 public void onStop(){
-    	super.onStop();
-    }
 }

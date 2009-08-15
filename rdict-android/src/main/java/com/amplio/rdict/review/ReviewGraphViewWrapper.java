@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,20 +34,23 @@ public class ReviewGraphViewWrapper {
 	
 	private View v = null;
 	private TextView graphLabel = null;
-	private TextView todaysValue = null;
-	private ImageView graphBitmap = null;
+	private TextView todaysValueTextView = null;
+	private ImageView graphBitmapView = null;
+	
+	private String m_todaysValStr = null;
+	private Bitmap m_graphBitmap = null;
 	
 	public ReviewGraphViewWrapper(Context context, String label) {
 		this.v = View.inflate( context, R.layout.graph, null);
 		
 		this.graphLabel = (TextView) this.v.findViewById(R.id.graph_label ); 
 		this.graphLabel.setText(label);
-		this.todaysValue = (TextView) this.v.findViewById(R.id.graph_value_label);
-		this.graphBitmap = (ImageView) this.v.findViewById(R.id.graph_bitmap);
+		this.todaysValueTextView = (TextView) this.v.findViewById(R.id.graph_value_label);
+		this.graphBitmapView = (ImageView) this.v.findViewById(R.id.graph_bitmap);
 	}
 	
-	public void setValueAndData(String todaysValue, Number[] data) {
-		this.todaysValue.setText( todaysValue );
+	public void setValueAndData(String todaysValue, Number[] data, Handler handler, Runnable graphUpdateRunnable) {
+		this.m_todaysValStr = todaysValue;
 		
 		StringBuilder strBuilder = new StringBuilder();
 		boolean isFirst = true;
@@ -59,10 +64,21 @@ public class ReviewGraphViewWrapper {
 		}
 		try {
 			URL img = new URL("http://chart.apis.google.com/chart?chs=200x30&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
-	        this.graphBitmap.setImageBitmap( BitmapFactory.decodeStream( img.openStream() ) );
+	        this.m_graphBitmap = BitmapFactory.decodeStream( img.openStream());
         } catch( IOException e ) {
 	        e.printStackTrace();
         }
+        
+        handler.post(graphUpdateRunnable);
+	}
+	
+	public Runnable getDrawGraphRunnable() {
+		return new Runnable() {
+			public void run() {
+				todaysValueTextView.setText(m_todaysValStr);
+				graphBitmapView.setImageBitmap(m_graphBitmap);
+            }
+		};
 	}
 		
 	public View getView() {
