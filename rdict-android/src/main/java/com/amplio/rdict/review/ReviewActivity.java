@@ -16,10 +16,10 @@ import com.amplio.rdict.RDictActivity;
 
 public class ReviewActivity extends Activity implements Runnable{
 	public static int reviewMode = ReviewManager.EXERCISES_CARD_DB_IS_EMPTY;
+	public static final String MESG_NO_EXERCISES_AVAILABLE = "No Review Exercises are available.";
 	public static final String MESG_CARDS_SCHEDULED_FOR_TODAY = "You have cards scheduled for today.";
 	public static final String MESG_NO_CARDS_SCHEDULED_FOR_TODAY = "No cards are scheduled for today.";
-	public static final String MESG_GOOD_JOB_YOURE_FINISHED = "Good Job! You've finished studying the cards that were scheduled for today.";
-	public static final String MESG_PRACTICE_ANOTHER_SET = "The following card sets are available for extra practice:";
+	public static final String MESG_GOOD_JOB_YOURE_FINISHED = "Good Job! You finished today's review session.";
 	
 	private TextView reviewMesg = null;
 	
@@ -76,14 +76,15 @@ public class ReviewActivity extends Activity implements Runnable{
 
 			String todaysDate = new SimpleDateFormat().format(new Date());
 			
-			if(! existsStatRecordForDate( todaysDate ))
-				sb.append(MESG_NO_CARDS_SCHEDULED_FOR_TODAY);
+			if(! existsStatRecordForDate(todaysDate)) {
+				if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
+					sb.append(MESG_NO_CARDS_SCHEDULED_FOR_TODAY);
+				else
+					sb.append(MESG_NO_EXERCISES_AVAILABLE);
+			}
 			else
 				sb.append(MESG_GOOD_JOB_YOURE_FINISHED);
-			
-			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
-				sb.append("  " + MESG_PRACTICE_ANOTHER_SET);
-			
+						
 			return sb.toString();
 		}
 	}
@@ -111,8 +112,6 @@ public class ReviewActivity extends Activity implements Runnable{
 		else {
 			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
 				exercises.add(this.todayViewWrapper);
-
-			
 			return exercises;
 		}
 	}
