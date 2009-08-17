@@ -11,17 +11,14 @@
 				android:text="Progress Indicator" android:textSize="18sp"
 				android:layout_marginLeft="10px"
 				android:layout_marginRight="10px"
-				android:layout_marginBottom="5px" android:layout_gravity="right"
-				android:background="#F03FF4">
+				android:layout_marginBottom="5px" android:layout_gravity="right">
 			</TextView>
 
 			<ViewFlipper android:id="@+id/flashcard_mover"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:background="#0000FF"
 				android:layout_marginLeft="10px" android:layout_marginRight="10px">
 			</ViewFlipper>
-
 
 		<LinearLayout android:id="@+id/button_layout"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
