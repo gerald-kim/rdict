@@ -18,7 +18,8 @@
 		<TextView android:id="@+id/definition_label"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:text="The definition of the card goes here."
-			android:textColor="#000000" android:textSize="16sp">
+			android:textColor="#000000" android:textSize="16sp"
+			android:lines="5">
 		</TextView>
 	
 	</ScrollView>

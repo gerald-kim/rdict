@@ -18,7 +18,6 @@ import com.amplio.rdict.RDictActivity;
 public class FlashCardActivity extends Activity {
 	TextView progress_label = null;
 	
-	LinearLayout m_flashcardLayout = null;
 	LinearLayout m_buttonLayout = null;
 	
 	FlashcardFrontViewWrapper m_flashcardFrontViewWrapper = null;
@@ -39,11 +38,10 @@ public class FlashCardActivity extends Activity {
     	setContentView(R.layout.review_exercise);
     	
     	this.progress_label = (TextView) findViewById(R.id.progress_label);
+    
+    	this.m_flashcardMover = (ViewFlipper)findViewById(R.id.flashcard_mover);
     	
-		this.m_flashcardLayout = (LinearLayout)findViewById(R.id.flashcard_layout);
 		this.m_buttonLayout = (LinearLayout)findViewById(R.id.button_layout);
-		
-		this.m_flashcardMover = (ViewFlipper)findViewById(R.id.flashcard_mover);
 		
 		this.m_flashcardFrontViewWrapper = new FlashcardFrontViewWrapper(this.getApplicationContext());
 		this.m_flashcardBackViewWrapper = new FlashcardBackViewWrapper(this.getApplicationContext());
@@ -132,7 +130,6 @@ public class FlashCardActivity extends Activity {
 	public void setFlashcardTextViews(Card c) {
 		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.m_exerciseMgr.getState()
 				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.m_exerciseMgr.getState()) {
-			
 			this.m_flashcardFrontViewWrapper.setWord(c.question);
 		}
 		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.m_exerciseMgr.getState()) {

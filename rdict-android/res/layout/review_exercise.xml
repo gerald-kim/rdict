@@ -4,28 +4,24 @@
 
 	<LinearLayout android:id="@+id/widget51"
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:orientation="vertical" android:padding="15px">
+		android:orientation="vertical">
 
-		<RelativeLayout android:id="@+id/progress_layout"
-			android:layout_width="fill_parent" android:layout_height="wrap_content">
-			]
 			<TextView android:id="@+id/progress_label"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:text="Progress Indicator" android:textSize="18sp"
-				android:gravity="right" android:layout_marginBottom="15px"
-				android:layout_alignParentRight="true">
+				android:layout_marginLeft="10px"
+				android:layout_marginRight="10px"
+				android:layout_marginBottom="5px" android:layout_gravity="right"
+				android:background="#F03FF4">
 			</TextView>
-		</RelativeLayout>
-
-		<LinearLayout android:id="@+id/flashcard_layout"
-			android:layout_width="fill_parent" android:layout_height="110px"
-			android:orientation="horizontal">
 
 			<ViewFlipper android:id="@+id/flashcard_mover"
-				android:layout_width="fill_parent" android:layout_height="fill_parent">
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:background="#0000FF"
+				android:layout_marginLeft="10px" android:layout_marginRight="10px">
 			</ViewFlipper>
 
-		</LinearLayout>
 
 		<LinearLayout android:id="@+id/button_layout"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
