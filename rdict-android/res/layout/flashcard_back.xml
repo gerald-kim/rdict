@@ -1,5 +1,5 @@
 <LinearLayout android:id="@+id/widget31"
-	android:layout_width="fill_parent" android:layout_height="200px"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
 	android:orientation="vertical" android:layout_gravity="center_vertical"
 	android:background="@drawable/manage_flashcard"
 	xmlns:android="http://schemas.android.com/apk/res/android">
@@ -13,17 +13,20 @@
 		android:paddingBottom="5px"/>
 
 	<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="30px" android:layout_marginTop="12px"
-		android:layout_marginRight="10px">
+		android:layout_height="70px"
+		android:layout_marginLeft="30px" 
+		android:layout_marginRight="10px"
+		android:layout_marginTop="5px"
+		android:layout_marginBottom="5px">
 
 		<TextView android:id="@+id/definition_label"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:text="The definition of the card goes here."
-			android:textColor="#000000" android:textSize="16sp"
-			android:lines="4">
+			android:scrollHorizontally="false"
+			android:textSize="16sp"
+			android:textColor="#000000">
 		</TextView>
-	
+		
 	</ScrollView>
 	
 </LinearLayout>
