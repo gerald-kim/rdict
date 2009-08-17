@@ -6,16 +6,12 @@ import android.view.View;
 import com.amplio.rdict.R;
 
 public class FlashcardFrontViewWrapper {
-	
 	private View m_view = null;
 	
 	ScalableTextView m_frontWordLabel = null;
 	
-	//LinearLayout m_layout = null;
-	
 	public FlashcardFrontViewWrapper(Context context) {
 		this.m_view = View.inflate(context, R.layout.flashcard_front, null);
-		//this.m_layout = (LinearLayout) this.m_view.findViewById(R.id.flashcard_front_layout);
 		this.m_frontWordLabel = (ScalableTextView) this.m_view.findViewById(R.id.front_headword_label);
 	}
 

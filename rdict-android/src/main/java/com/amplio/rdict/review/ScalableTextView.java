@@ -19,22 +19,11 @@ public class ScalableTextView extends TextView {
         super( context, attrs );
     }		
 
-	public ScalableTextView( Context context, AttributeSet attrs, int defStyle ) {
-        super( context, attrs, defStyle );
-    }
-	
 	@Override
 	public void onDraw(Canvas canvas) {
-		//drawFullViewRectangle(canvas);
-		//System.out.println("Width: " + this.getWidth());
-		
-		//System.out.println("Height: " + this.getHeight());
 		this.textBounds = this.growText(this.getWidth(), this.getHeight());
 		
 		positionTextBounds(this.textBounds);
-		
-		//this.getPaint().setColor(Color.GREEN);
-		//canvas.drawRect(this.textBounds, this.getPaint());
 		
 		this.getPaint().setColor(Color.BLACK);
 		canvas.drawText(this.getText().toString(), 
@@ -43,17 +32,6 @@ public class ScalableTextView extends TextView {
 				this.getPaint());
 	}
 
-	private void drawFullViewRectangle( Canvas canvas ) {
-	    Rect r = new Rect();
-		r.top = 0;
-		r.bottom = this.getHeight();
-		r.left = 0;
-		r.right = this.getRight();
-		
-		this.getPaint().setColor( Color.YELLOW );
-		canvas.drawRect(r, this.getPaint());
-    }
-	
 	public Rect growText(int w, int h) {
 		int textSize = 1;
         
@@ -67,11 +45,9 @@ public class ScalableTextView extends TextView {
 	    	tempW = this.calcWidth(tempBounds);
 	    	tempH = this.calcHeight(tempBounds);
 	    	
-	    	System.out.println("Baseline shift: " + this.getPaint().baselineShift);
-	    	
-	    	System.out.println("Ascent: " + this.getPaint().ascent());
-	    	
-	    	System.out.println("Descent: " + this.getPaint().descent());
+//	    	System.out.println("Baseline shift: " + this.getPaint().baselineShift);
+//	    	System.out.println("Ascent: " + this.getPaint().ascent());
+//	    	System.out.println("Descent: " + this.getPaint().descent());
 	    }
 		
 		return textBounds = setTextSizeAndGetBounds(textSize - 1);

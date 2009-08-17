@@ -5,8 +5,6 @@ import java.util.Vector;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,9 +21,6 @@ public class FlashCardActivity extends Activity {
 	FlashcardFrontViewWrapper m_flashcardFrontViewWrapper = null;
 	FlashcardBackViewWrapper m_flashcardBackViewWrapper = null;
 	
-	Animation m_flipFromFrontToBackAnim = null;
-	Animation m_flipFromBackToFrontAnim = null;
-	
 	ReviewExerciseFrontButtonsViewWrapper m_reviewExerciseButtonsFront = null;
 	ReviewExerciseBackButtonsViewWrapper m_reviewExerciseButtonsBack = null;
 	
@@ -38,21 +33,14 @@ public class FlashCardActivity extends Activity {
     	setContentView(R.layout.review_exercise);
     	
     	this.progress_label = (TextView) findViewById(R.id.progress_label);
-    
     	this.m_flashcardMover = (ViewFlipper)findViewById(R.id.flashcard_mover);
-    	
 		this.m_buttonLayout = (LinearLayout)findViewById(R.id.button_layout);
 		
 		this.m_flashcardFrontViewWrapper = new FlashcardFrontViewWrapper(this.getApplicationContext());
 		this.m_flashcardBackViewWrapper = new FlashcardBackViewWrapper(this.getApplicationContext());
 		
-		this.m_flipFromFrontToBackAnim = this.getFlashcardFlipAnimation(true);
-		this.m_flipFromBackToFrontAnim = this.getFlashcardFlipAnimation(false);
-		
 		this.m_reviewExerciseButtonsFront = new ReviewExerciseFrontButtonsViewWrapper(this.getApplicationContext(), this);
 		this.m_reviewExerciseButtonsBack = new ReviewExerciseBackButtonsViewWrapper(this.getApplicationContext(), this);
-		
-		System.out.println("FlashCard - created");
 		
 		FlashCardActivity.m_exerciseMgr = new ReviewExerciseManager(this.loadCardSet());
 				
@@ -80,14 +68,14 @@ public class FlashCardActivity extends Activity {
 		
 		this.m_flashcardMover.setInAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_in));
 		this.m_flashcardMover.setOutAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_out));
-		this.m_flashcardMover.addView(getFlashcardSide());
+		this.m_flashcardMover.addView(getAFlashcardSide());
 		this.m_flashcardMover.showNext();
 		
 		if(1 < this.m_flashcardMover.getChildCount())
 			this.m_flashcardMover.removeViewAt(0);
 	}
 
-	private View getFlashcardSide() {
+	private View getAFlashcardSide() {
 		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.m_exerciseMgr.getState()
 				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.m_exerciseMgr.getState()) {
 			return this.m_flashcardFrontViewWrapper.getView();
@@ -135,17 +123,5 @@ public class FlashCardActivity extends Activity {
 		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.m_exerciseMgr.getState()) {
 			this.m_flashcardBackViewWrapper.setWordAndDef(c.question, c.answer);
 		}
-	}
-	
-	public Animation getFlashcardFlipAnimation(boolean forward) {
-		float centerX = 80;//this.m_flashcardLayout.getWidth() / 2.0f;
-		float centerY = 100;//this.m_flashcardLayout.getHeight() / 2.0f;
-		
-		Rotate3dAnimation rotation = new Rotate3dAnimation(0, 180, centerX, centerY, 0, forward);
-		rotation.setDuration(500);
-		rotation.setFillAfter(true);
-		rotation.setInterpolator(new AccelerateInterpolator());
-		
-		return rotation;
 	}
 }

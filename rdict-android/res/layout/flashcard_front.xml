@@ -3,10 +3,10 @@
 	android:layout_width="fill_parent"
 	android:layout_height="110px"
 	android:height="110px"
-	android:text="TextView"
+	android:text="word goes here"
 	android:background="@drawable/manage_flashcard"
-	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:paddingTop = "20px"
 	android:paddingBottom = "20px"
 	android:paddingLeft = "20px"
-	android:paddingRight = "20px"/>
+	android:paddingRight = "20px"
+	xmlns:android="http://schemas.android.com/apk/res/android"/>
