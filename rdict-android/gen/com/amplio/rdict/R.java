@@ -51,6 +51,7 @@ public final class R {
         public static final int button_layout=0x7f060030;
         public static final int cancel_button=0x7f060008;
         public static final int card_list_view=0x7f060021;
+        public static final int clear_button=0x7f06003c;
         public static final int definition_label=0x7f060015;
         public static final int definition_text=0x7f060005;
         public static final int delete_button=0x7f060013;
@@ -114,7 +115,6 @@ public final class R {
         public static final int widget41=0x7f060038;
         public static final int widget42=0x7f06003a;
         public static final int widget43=0x7f060039;
-        public static final int widget48=0x7f06003c;
         public static final int widget51=0x7f06002d;
         public static final int widget57=0x7f060009;
         public static final int widget60=0x7f060017;
