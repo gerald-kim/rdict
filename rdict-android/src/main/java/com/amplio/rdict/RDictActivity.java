@@ -128,7 +128,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private String buildReviewTabIndicator() {
 	    StringBuilder sb = new StringBuilder(TAB_NAMES[TAB_INDEX_REVIEW]);
 	    
-	    int cardsScheduledForToday = c_cardSetManager.loadCardsScheduledForToday().size();
+	    int cardsScheduledForToday = c_cardSetManager.countCardsScheduledForToday();
 	    if(0 < cardsScheduledForToday) {
 	    	sb.append("(");
 	    	sb.append(cardsScheduledForToday);

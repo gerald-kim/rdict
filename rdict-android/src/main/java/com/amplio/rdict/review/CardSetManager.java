@@ -52,8 +52,14 @@ public class CardSetManager {
 	public Vector<Card> loadCardsScheduledForToday() {
 		DateMidnight todayMidnight = new DateMidnight().plusDays( 1 );
 		IQuery query = this.db.criteriaQuery( Card.class, Where.lt( "scheduled", todayMidnight.toDate() ) );
-        Objects<Card> cards = this.db.getObjects( query );
+        Objects<Card> cards = this.db.getObjects(query);
         return new Vector<Card>( cards );
+	}
+	
+	public int countCardsScheduledForToday() {
+		DateMidnight todayMidnight = new DateMidnight().plusDays( 1 );
+		CriteriaQuery query = this.db.criteriaQuery( Card.class, Where.lt( "scheduled", todayMidnight.toDate() ) );
+        return this.db.count(query).intValue();
 	}
 
 	public int count() {
