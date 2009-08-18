@@ -42,8 +42,7 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 		editButton.setTag(new Integer(position).toString());
 		editButton.setOnClickListener(this);
 		
-		String answerBlurb = Card.getAbbreviatedAnswer(c.answer, ABBREVIATED_DEF_LENGTH);
-		((TextView) fcView.findViewById(R.id.definition_label)).setText(answerBlurb);
+		((TextView) fcView.findViewById(R.id.definition_label)).setText(c.answer);
 		
 		return fcView;
 	}
