@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.review.Card;
+import com.amplio.rdict.review.ScalableTextView;
 
 public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListener {
 
@@ -31,20 +32,17 @@ public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListe
 	    this.context = context;
     }
 
-
-
 	public View getView(int position, View view, ViewGroup parent) {
 		Card c = this.getItem(position);
 		
 		View fcView = View.inflate(this.context, R.layout.flashcard_ui_for_manage, null);
 		((TextView) fcView.findViewById(R.id.headword_label)).setText(c.question);
 		
-		ImageButton editButton = (ImageButton) fcView.findViewById(R.id.edit_button);
+		Button editButton = (Button) fcView.findViewById(R.id.edit_button);
 		editButton.setTag(new Integer(position).toString());
-		editButton.setBackgroundColor( Color.BLACK);
 		editButton.setOnClickListener(this);
 		
-		String answerBlurb = Card.getAbbreviatedAnswer(c.answer.replace("%20", " "), ABBREVIATED_DEF_LENGTH);
+		String answerBlurb = Card.getAbbreviatedAnswer(c.answer, ABBREVIATED_DEF_LENGTH);
 		((TextView) fcView.findViewById(R.id.definition_label)).setText(answerBlurb);
 		
 		return fcView;
