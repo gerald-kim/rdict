@@ -12,25 +12,6 @@
 			android:layout_marginLeft="10px">
 
 			<TextView android:id="@+id/widget101" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:text="Delete your Dictionary and Index file (temp feature)"
-				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
-				android:textSize="20sp"
-				android:layout_marginRight="90px">
-			</TextView>
-
-			<Button android:id="@+id/delete_button"
-				android:layout_width="80px" android:layout_height="wrap_content"
-				android:text="Delete" android:layout_alignParentRight="true"
-				android:layout_centerVertical="true">
-			</Button>
-
-		</RelativeLayout>
-		
-		<RelativeLayout android:id="@+id/widget83"
-			android:layout_width="fill_parent" android:layout_height="70px"
-			android:layout_marginLeft="10px">
-
-			<TextView android:id="@+id/widget101" android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:text="Clear your Search History"
 				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
 				android:textSize="20sp"
@@ -44,6 +25,25 @@
 			</Button>
 
 		</RelativeLayout>
+		
+		<RelativeLayout android:id="@+id/widget83"
+			android:layout_width="fill_parent" android:layout_height="70px"
+			android:layout_marginLeft="10px">
 
+			<TextView android:id="@+id/widget101" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="Delete your Dictionary files"
+				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+				android:textSize="20sp"
+				android:layout_marginRight="90px">
+			</TextView>
+
+			<Button android:id="@+id/delete_button"
+				android:layout_width="80px" android:layout_height="wrap_content"
+				android:text="Delete" android:layout_alignParentRight="true"
+				android:layout_centerVertical="true">
+			</Button>
+
+		</RelativeLayout>
+		
 	</LinearLayout>
 </ScrollView>
