@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget51"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:padding="5px" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<Button android:id="@+id/view_answer_button"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="View Answer"
+		android:layout_marginLeft="20px"
+		android:layout_marginRight="20px"
+		android:layout_marginTop="10px">
+	</Button>
+	
+	<RelativeLayout android:id="@+id/widget57"
+		android:layout_width="wrap_content" android:layout_height="fill_parent"
+		android:layout_marginTop="10px">
+		
+		<Button android:id="@+id/front_help_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="Need help?" android:layout_alignParentRight="true" android:layout_below="@+id/view_answer_button">
+		</Button>
+
+	</RelativeLayout>
+
+</LinearLayout>

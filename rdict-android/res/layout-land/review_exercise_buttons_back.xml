@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/widget51"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:paddingLeft="5px"
+	android:paddingRight="5px"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<LinearLayout android:id="@+id/widget51"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_marginTop="10px">
+
+		<Button android:id="@+id/easy_button" android:layout_width="fill_parent"
+			android:layout_marginTop="5px" android:layout_height="wrap_content"
+			android:text="Easy"
+			android:layout_weight="0.5">
+		</Button>
+		
+		<Button android:id="@+id/not_bad_button" android:layout_width="fill_parent"
+			android:layout_marginTop="5px" android:layout_height="wrap_content"
+			android:text="Not Bad"
+			android:layout_weight="0.5">
+		</Button>
+		
+		<Button android:id="@+id/hard_button" android:layout_width="fill_parent"
+			android:layout_marginTop="5px" android:layout_height="wrap_content"
+			android:text="Hard"
+			android:layout_weight="0.5">
+		</Button>
+		<Button android:id="@+id/i_forgot_button" android:layout_width="fill_parent"
+			android:layout_marginTop="5px" android:layout_height="wrap_content"
+			android:text="I forgot"
+			android:layout_weight="0.5">
+		</Button>
+
+	</LinearLayout>
+
+	<RelativeLayout android:id="@+id/widget57"
+		android:layout_width="wrap_content" android:layout_height="fill_parent">
+
+		<Button android:id="@+id/back_help_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="Need help?" android:layout_alignParentRight="true"
+			android:layout_alignParentBottom="true">
+		</Button>
+
+	</RelativeLayout>
+
+</LinearLayout>
