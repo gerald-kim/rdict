@@ -10,6 +10,8 @@ import java.text.RuleBasedCollator;
 import java.util.Arrays;
 import java.util.Locale;
 
+import android.os.Handler;
+
 import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
@@ -18,26 +20,44 @@ public class Dictionary {
 
 	private DictionaryEntryFactory m_factory = null;
 	private Cdb m_wordCdb;
-	public String[] words;
+	public static String[] words;
 
-	public Dictionary( String wordDbPath, String wordIndexPath, InputStream htmlStream ) {
+	public static int m_wordsLoaded = 0;
+	
+	public Dictionary( String wordDbPath, 
+						String wordIndexPath, 
+						InputStream htmlStream, 
+						Handler loadProgressHandler,
+						Runnable updateRunnable) {
+		
+		m_wordsLoaded = 0;
+		
 		m_factory = new DictionaryEntryFactory( htmlStream );
 		try {
 			m_wordCdb = new Cdb( wordDbPath );
 
 			BufferedReader reader = new BufferedReader( new InputStreamReader( new FileInputStream(
-			        wordIndexPath ) ) );
-			int wordCount = Integer.parseInt( reader.readLine().trim() );
+			        									wordIndexPath ) ) );
+			
+			int wordCount = Integer.parseInt(reader.readLine());
+			
 			words = new String[wordCount];
+			
 			for( int i = 0; i < wordCount; i++ ) {
-				words[i] = reader.readLine().trim();
+				words[i] = reader.readLine();
+				
+				this.m_wordsLoaded++;
+				
+				if(this.m_wordsLoaded % 5 == 0)
+					loadProgressHandler.post(updateRunnable);
 			}
-			Arrays.sort( words, COLLATOR );
+
 			reader.close();
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}
 
+		loadProgressHandler.post(updateRunnable);
 	}
 
 	public DictionaryEntry searchByWord( String word ) {
@@ -66,4 +86,8 @@ public class Dictionary {
 			idx = -idx - 1;
 		return idx;
 	}
+
+	public static int getProgress() {
+	    return (Dictionary.m_wordsLoaded*100) / words.length;
+    }
 }

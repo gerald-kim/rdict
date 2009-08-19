@@ -29,15 +29,24 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
 		
 		_wordList = (ListView) findViewById(R.id.listview);
 		_wordList.setOnItemClickListener(this);
-
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, RDictActivity.c_dictionary.words);
+		
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, new String[]{});
 		_wordList.setAdapter(aa);
 		aa.notifyDataSetChanged();
-		
-		_wordList.setSelectionFromTop( RDictActivity.c_dictionary.findWordIndex( "a" ), 0 );
     }
     
+	public void updateWordList(){
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Dictionary.words);
+		_wordList.setAdapter(aa);
+		aa.notifyDataSetChanged();
+	}
+    
     public void onResume(){
+    	if(Dictionary.words != null) {
+    		this.updateWordList();
+    		_wordList.setSelectionFromTop( RDictActivity.c_dictionary.findWordIndex( "a" ), 0 );
+    	}
+    		
     	System.out.println("Dic resumed.");
     	
     	super.onResume();
@@ -56,7 +65,7 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
 	}
 
 	public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
-		String headword = RDictActivity.c_dictionary.words[parent.getPositionForView( view )];
+		String headword = Dictionary.words[parent.getPositionForView( view )];
 		
 		RDictActivity.c_historyMgr.addHistoryRecord(headword);
 		

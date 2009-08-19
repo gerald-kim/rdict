@@ -11,6 +11,7 @@
 			</intent-filter>
 		</activity>
 
+		<activity android:label="Splash" android:name="SplashActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:label="Setup" android:name=".setup.SetupActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:label="Search" android:name=".search.SearchActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:label="Dictionary" android:name=".search.DictionaryActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
@@ -25,7 +26,9 @@
 		<activity android:name=".more.SettingsActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:name=".more.EditCardActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 		<activity android:name=".more.AddCardActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-	<service android:name=".setup.DownloadService"></service>
+	
+		<service android:name=".setup.DownloadService"></service>
+		<service android:name="LoadDictionaryService"></service>
 </application>
 
 

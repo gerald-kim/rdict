@@ -80,6 +80,7 @@ public final class R {
         public static final int history_list=0x7f06001e;
         public static final int i_forgot_button=0x7f060034;
         public static final int info_layout=0x7f060028;
+        public static final int init_managers_bar=0x7f06004e;
         public static final int listview=0x7f06003b;
         public static final int manage_button=0x7f060026;
         public static final int not_bad_button=0x7f060032;
@@ -150,6 +151,7 @@ public final class R {
         public static final int setup_finished=0x7f030019;
         public static final int setup_prompt_for_db_download=0x7f03001a;
         public static final int setup_welcome=0x7f03001b;
+        public static final int splash_screen=0x7f03001c;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

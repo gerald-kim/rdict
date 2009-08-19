@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 
 import com.amplio.rdict.R;
-import com.amplio.rdict.RDictActivity;
+import com.amplio.rdict.SplashActivity;
 import com.amplio.rdict.search.DictionaryEntryFactory;
 
 public class AboutActivity extends Activity{
@@ -27,7 +27,7 @@ public class AboutActivity extends Activity{
 	public void onResume() {
 		super.onResume();
 		
-		InputStream in = RDictActivity.getAssetInputStream(this, FILE_PATH_ABOUT);
+		InputStream in = SplashActivity.getAssetInputStream(this, FILE_PATH_ABOUT);
 		String aboutContents = DictionaryEntryFactory.loadHTMLFileContents(in);
 		m_aboutWebview.loadDataWithBaseURL("fake://dagnabbit", aboutContents, "text/html", "utf-8", null);
 	}

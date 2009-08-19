@@ -24,7 +24,6 @@ import com.amplio.rdict.review.StatisticsManager;
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
 import com.amplio.rdict.setup.DictionaryDownloader;
-import com.amplio.rdict.setup.DownloadService;
 import com.amplio.rdict.setup.SetupActivity;
 import com.amplio.rdict.setup.SetupManager;
 
@@ -45,7 +44,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 
 	public static RDictActivity RDICT_ACTIVITY = null;
 	
-	private TabHost m_tabHost = null;
+	TabHost m_tabHost = null;
 	TabHost.TabSpec searchTab = null;
 	TabHost.TabSpec reviewTab = null;
 	TabHost.TabSpec historyTab = null;
@@ -55,9 +54,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private ODB m_db = null;
 	private SQLiteDatabase m_con = null;
 	
-	private Intent setupActivityIntent = null;
-	
-	private boolean isInittedDatabaseManagers = false;
+	public static StartupManager c_startupMgr = null;
 	
 	public static Dictionary c_dictionary = null;
 	public static HistoryManager c_historyMgr = null;
@@ -65,29 +62,67 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	public static StatisticsManager c_statisticsManager = null;
 	public static ReviewManager c_reviewManager = null;
 	
+	boolean didRunSetup = false;
+	public static boolean didLoadDict = false;
+	boolean didInitMgrs = false;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	
+    	setContentView(R.layout.main);
+    	this.m_tabHost = this.getTabHost();
+		setupTabs(this.m_tabHost);
+    	
+    	SetupActivity.setupMgr = new SetupManager();
+    	c_startupMgr = new StartupManager();
+    	
+    	RDICT_ACTIVITY = this;
+    }
+    
+    public void onResume() {
+    	doAction(getAction());
+    	
+    	super.onResume();
+	}
+    
+    public int getAction() {
+    	return StartupManager.getAction(this.existNecessaryDataFiles(), this.didRunSetup, RDictActivity.didLoadDict, this.didInitMgrs);
+    }
+    
+    private boolean existNecessaryDataFiles() {
     	this.index_file = new File(DictionaryDownloader.WRITE_PATH_INDEX);
-        
-        if(this.index_file.exists() && ! DownloadService.isRunning) {
-        	setContentView(R.layout.main);
-        	initDatabaseManagers();
-        	
-        	this.m_tabHost = this.getTabHost();
-        	setupTabs(this.m_tabHost);
-        }
-        else {
-        	SetupActivity.setupMgr = new SetupManager();
-        	
-        	if(DownloadService.isRunning)
-        		SetupActivity.setupMgr.userChoseDownloadOption();
-        	
-    		this.setupActivityIntent = new Intent(this.getApplicationContext(), SetupActivity.class);
-        }
-        
-        RDICT_ACTIVITY = this;
+    	return this.index_file.exists();
+    }
+    
+    public void doAction(int action) {
+    	System.out.println("do action: " + action);
+    	
+    	switch (action) {
+    	
+    	case StartupManager.ACTION_DO_SETUP_ACTIVITY:
+    		this.startActivity(new Intent(this.getApplicationContext(), SetupActivity.class));
+    		this.didRunSetup = true;
+    		break;
+    	
+    	case StartupManager.ACTION_FINISH_USER_DELAYED_SETUP:
+    		this.finish();
+    		break;
+    		
+    	case StartupManager.ACTION_DO_LOAD_DICT_SERVICE:
+    		startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+    		break;
+    		
+    	case StartupManager.ACTION_DO_INIT_MANAGERS:
+    		this.initDatabaseManagers();
+    		
+    		this.didInitMgrs = true;
+    		break;
+    		
+    	case StartupManager.ACTION_DO_RDICT_ACTIVITY:
+    		RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
+    		break;
+    	}
     }
     
     private void setupTabs(TabHost tabHost) {
@@ -111,7 +146,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
     	tab.setContent(new Intent().setComponent(activity));
     	
-    	if(index == TAB_INDEX_REVIEW)
+    	if(index == TAB_INDEX_REVIEW && c_cardSetManager != null && m_db != null && ! m_db.isClosed())
 		    tab.setIndicator(buildReviewTabIndicator());
     	else
     		tab.setIndicator(TAB_NAMES[index]);
@@ -137,43 +172,20 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    return sb.toString();
     }
     
-    public void onResume() {
-		super.onResume();
-		
-		if(! this.index_file.exists() ){
-			if (! this.userChoseToDelaySetup())
-				this.startActivity(this.setupActivityIntent);
-			else
-				this.finish();
-		}
-		else if(this.index_file.exists() && ! this.isInittedDatabaseManagers){
-			setContentView(R.layout.main);
-        	initDatabaseManagers();
-        	
-        	this.m_tabHost = this.getTabHost();
-        	setupTabs(this.m_tabHost);
-		}
-		else {
-			RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
-		}
-	}
-    
     @Override
     protected void onDestroy() {
     	System.out.println("RDict - On Destroy");
     	
-    	if(m_db != null)
-    		m_db.close();    	
+    	didLoadDict = false;
     	
-    	if(m_con != null)
+    	if(m_db != null && ! m_db.isClosed())
+    		m_db.close();
+    	
+    	if(m_con != null && m_con.isOpen())
     		m_con.close();
     	
     	super.onDestroy();
     }
-    
-    public boolean userChoseToDelaySetup() {
-		return SetupManager.STATE_SETUP_DELAYED == SetupActivity.setupMgr.getState();
-	}   
     
 	private void initDatabaseManagers() {
 		if(m_db == null || m_db.isClosed())
@@ -188,10 +200,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	
 	    c_historyMgr = new HistoryManager(m_con);
 		c_historyMgr.createTableIfNotExists( m_con );
-		c_dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
-		        getAssetInputStream( "dictionary_js.html" ) );
-	
-    	this.isInittedDatabaseManagers = true;
     }
 	
 	public InputStream getAssetInputStream(String path) {

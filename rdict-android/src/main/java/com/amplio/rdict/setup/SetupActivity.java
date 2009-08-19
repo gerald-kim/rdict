@@ -34,6 +34,8 @@ public class SetupActivity extends Activity {
 		
 		this.downloadLaterViewWrapper = new DownloadDBLaterViewWrapper(this.getApplicationContext(), this);
 		this.downloadIsCorruptedViewWrapper = new DownloadIsCorruptedViewWrapper(this.getApplicationContext(), this);
+		
+		setupMgr = new SetupManager();
 	}
 	
 	public void onResume() {
