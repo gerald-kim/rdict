@@ -96,32 +96,29 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
     
     public void doAction(int action) {
-    	System.out.println("do action: " + action);
-    	
     	switch (action) {
-    	
-    	case StartupManager.ACTION_DO_SETUP_ACTIVITY:
-    		this.startActivity(new Intent(this.getApplicationContext(), SetupActivity.class));
-    		this.didRunSetup = true;
-    		break;
-    	
-    	case StartupManager.ACTION_FINISH_USER_DELAYED_SETUP:
-    		this.finish();
-    		break;
-    		
-    	case StartupManager.ACTION_DO_LOAD_DICT_SERVICE:
-    		startActivity(new Intent(getApplicationContext(), SplashActivity.class));
-    		break;
-    		
-    	case StartupManager.ACTION_DO_INIT_MANAGERS:
-    		this.initDatabaseManagers();
-    		
-    		this.didInitMgrs = true;
-    		break;
-    		
-    	case StartupManager.ACTION_DO_RDICT_ACTIVITY:
-    		RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
-    		break;
+	    	case StartupManager.ACTION_DO_SETUP_ACTIVITY:
+	    		this.startActivity(new Intent(this.getApplicationContext(), SetupActivity.class));
+	    		this.didRunSetup = true;
+	    		break;
+	    	
+	    	case StartupManager.ACTION_FINISH_USER_DELAYED_SETUP:
+	    		this.finish();
+	    		break;
+	    		
+	    	case StartupManager.ACTION_DO_LOAD_DICT_SERVICE:
+	    		startActivity(new Intent(getApplicationContext(), SplashActivity.class));
+	    		break;
+	    		
+	    	case StartupManager.ACTION_DO_INIT_MANAGERS:
+	    		this.initDatabaseManagers();
+	    		
+	    		this.didInitMgrs = true;
+	    		break;
+	    		
+	    	case StartupManager.ACTION_DO_RDICT_ACTIVITY:
+	    		RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
+	    		break;
     	}
     }
     

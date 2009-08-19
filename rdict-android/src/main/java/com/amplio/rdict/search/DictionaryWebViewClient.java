@@ -13,6 +13,7 @@ public class DictionaryWebViewClient extends WebViewClient{
 
 	public DictionaryActivity dicActivity = null;
 	public Context context = null;
+	private String m_url;
 	
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		if (url.contains("lookup")) {
@@ -38,5 +39,19 @@ public class DictionaryWebViewClient extends WebViewClient{
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void onLoadResource(WebView view, String url) {
+		dicActivity.showLoadingTitle();
+		
+		super.onLoadResource(view, url);
+	}
+	
+	@Override
+	public void onPageFinished(WebView view, String url) {
+		dicActivity.showDictionaryTitle();
+		
+		super.onPageFinished(view, url);
 	}
 }
