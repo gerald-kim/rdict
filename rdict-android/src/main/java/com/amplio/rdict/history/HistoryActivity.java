@@ -19,6 +19,7 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.search.DictionaryActivity;
 import com.amplio.rdict.search.DictionaryEntry;
+import com.amplio.rdict.search.SearchActivity;
 
 public class HistoryActivity extends Activity implements OnItemClickListener {
 	
@@ -77,12 +78,15 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		String word = parent.getAdapter().getItem(position).toString();
 		
-		DictionaryActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(word);
+		DictionaryEntry entry = RDictActivity.c_dictionary.searchByWord(word);
 		
 		DictionaryActivity.sessionHistory.clear();
-		DictionaryActivity.sessionHistory.addWord(DictionaryActivity.dicEntry);
-					
+		DictionaryActivity.sessionHistory.addWord(entry);
+		
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
+		i.putExtra(SearchActivity.INTENT_PARAM_HEADWORD, entry.headword);
+		i.putExtra(SearchActivity.INTENT_PARAM_CONTENTS, entry.contents);
+		
 		this.startActivity(i);
 	}
 }

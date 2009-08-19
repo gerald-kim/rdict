@@ -18,9 +18,9 @@ public class DictionaryWebViewClient extends WebViewClient{
 		if (url.contains("lookup")) {
 			String word = url.substring(url.indexOf('=') + 1);
 			
-			DictionaryActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(word);
+			dicActivity.m_dicEntry = RDictActivity.c_dictionary.searchByWord(word);
 			
-			DictionaryActivity.sessionHistory.addWord(DictionaryActivity.dicEntry);
+			DictionaryActivity.sessionHistory.addWord(dicActivity.m_dicEntry);
 			
 			this.dicActivity.refreshDicPage();
 			return true;
@@ -38,6 +38,5 @@ public class DictionaryWebViewClient extends WebViewClient{
 		else {
 			return false;
 		}
-
 	}
 }

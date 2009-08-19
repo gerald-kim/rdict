@@ -16,6 +16,9 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 // this should only deal with headwords
 public class SearchActivity extends Activity implements TextWatcher, OnItemClickListener {
+	public static final String INTENT_PARAM_HEADWORD = "headword";
+	public static final String INTENT_PARAM_CONTENTS = "contents";
+	
 	private EditText searchText;
 	private ListView _wordList;
 	
@@ -54,43 +57,27 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
     
    	public void onTextChanged(CharSequence s, int start, int before, int count) {
    		int wordIndex = RDictActivity.c_dictionary.findWordIndex( s.toString() );
-   		System.out.println( "WordIndex: " + wordIndex );
 		_wordList.setSelectionFromTop( wordIndex, 0 );
 	}
    	
-   	public void afterTextChanged(Editable s) {
-	}
+   	public void afterTextChanged(Editable s) {}
 
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
 	public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
-		String headword = Dictionary.words[parent.getPositionForView( view )];
+		String headword = Dictionary.words[parent.getPositionForView(view)];
 		
 		RDictActivity.c_historyMgr.addHistoryRecord(headword);
 		
-		DictionaryActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(headword);
+		DictionaryEntry entry = RDictActivity.c_dictionary.searchByWord(headword);
+		
 		DictionaryActivity.sessionHistory.clear();
-		DictionaryActivity.sessionHistory.addWord(DictionaryActivity.dicEntry);
+		DictionaryActivity.sessionHistory.addWord(entry);
 		
 		Intent i = new Intent(this.getApplicationContext(), DictionaryActivity.class);
+		i.putExtra(INTENT_PARAM_HEADWORD, entry.headword);
+		i.putExtra(INTENT_PARAM_CONTENTS, entry.contents);
+		
 		this.startActivity(i);
 	}
-	
-	public void onStart(){
-    	super.onStart();
-    	
-    	System.out.println("Dic started ");
-    }
-    
-    public void onPause() {
-    	System.out.println("Dic paused;");
-    	super.onPause();
-    }
-    
-    public void onStop(){
-    	System.out.println("Dic stopped;");
-    	
-    	super.onStop();
-    }
 }
