@@ -14,6 +14,8 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 
 public class FlashCardActivity extends Activity {
+	private static final String SAVE_TAG_STATE = "EX_MGR_STATE";
+
 	TextView progress_label = null;
 	
 	LinearLayout m_buttonLayout = null;
@@ -43,6 +45,10 @@ public class FlashCardActivity extends Activity {
 		this.m_reviewExerciseButtonsBack = new ReviewExerciseBackButtonsViewWrapper(this.getApplicationContext(), this);
 		
 		FlashCardActivity.m_exerciseMgr = new ReviewExerciseManager(this.loadCardSet());
+		
+		if(null != savedInstanceState && savedInstanceState.containsKey(SAVE_TAG_STATE)) {
+			FlashCardActivity.m_exerciseMgr.setState(savedInstanceState.getInt(SAVE_TAG_STATE));
+		}
 				
 		this.drawDisplay();
 	}
@@ -57,6 +63,12 @@ public class FlashCardActivity extends Activity {
 			RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
 			this.finish();
 		}
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putInt(SAVE_TAG_STATE, FlashCardActivity.m_exerciseMgr.getState());
+		super.onSaveInstanceState(outState);
 	}
 	
 	public void drawDisplay() {

@@ -59,4 +59,8 @@ public class ReviewExerciseManager {
 		return this.m_cards.size();
     }
 
+	public void setState(int state) {
+	    this.m_state = state;
+    }
+
 }
