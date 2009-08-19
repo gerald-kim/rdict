@@ -88,6 +88,6 @@ public class Dictionary {
 	}
 
 	public static int getProgress() {
-	    return (Dictionary.m_wordsLoaded*100) / words.length;
-    }
+		return (Dictionary.m_wordsLoaded*100) / words.length;
+	}
 }

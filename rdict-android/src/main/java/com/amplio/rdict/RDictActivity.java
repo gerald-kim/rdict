@@ -176,8 +176,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     protected void onDestroy() {
     	System.out.println("RDict - On Destroy");
     	
-    	didLoadDict = false;
-    	
     	if(m_db != null && ! m_db.isClosed())
     		m_db.close();
     	
