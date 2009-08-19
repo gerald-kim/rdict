@@ -113,6 +113,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    	case StartupManager.ACTION_DO_INIT_MANAGERS:
 	    		this.initDatabaseManagers();
 	    		
+	    		updateReviewTabIndicator();
+	    		
 	    		this.didInitMgrs = true;
 	    		break;
 	    		
