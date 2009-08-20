@@ -41,8 +41,8 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	public void onResume() {
 		super.onResume();
 		
-		List<Card> cards = RDictActivity.c_cardSetManager.allCards();
-		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), R.layout.flashcard_ui_for_manage, cards);
+		List<Card> cards = RDictActivity.c_cardSetManager.loadAllCards();
+		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, cards);
 		this.cardList.setAdapter(aa);
 		aa.notifyDataSetChanged();
 	}
@@ -52,17 +52,13 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 		this.startActivity(i);
 	}
 
-	public void afterTextChanged(Editable arg0) {
-		// TODO Auto-generated method stub
+	public void afterTextChanged(Editable arg0) {}
+
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+	public void onTextChanged(CharSequence prefix, int start, int before, int count) {
+		int cardIndex = RDictActivity.c_cardSetManager.findCardIndexByWordPrefix(prefix.toString());
 		
-	}
-
-	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
-	}
-
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-//		aa.notifyDataSetChanged();
-		cardList.setSelectionFromTop( RDictActivity.c_cardSetManager.findCardIndex( s.toString() ), 0 );
+		cardList.setSelectionFromTop(cardIndex, 0);
 	}
 }

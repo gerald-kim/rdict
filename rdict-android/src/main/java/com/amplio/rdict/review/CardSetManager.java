@@ -18,7 +18,7 @@ import com.amplio.rdict.search.Dictionary;
 
 public class CardSetManager {
 	private ODB db = null;
-	private List<Card> allCards;
+	List<Card> allCards;
 
 	public CardSetManager( ODB odb ) {
 		db = odb;
@@ -66,8 +66,9 @@ public class CardSetManager {
 		return db.getObjects( Card.class ).size();
 	}
 
-	public List<Card> allCards() {
+	public List<Card> loadAllCards() {
 		allCards = new ArrayList( db.getObjects( Card.class ) );
+		
 		Collections.sort( allCards, new Comparator<Card>() {
 			public int compare( Card object1, Card object2 ) {
 	            return Dictionary.COLLATOR.compare( object1.question, object2.question );
@@ -86,20 +87,21 @@ public class CardSetManager {
         }
 	}
 
-	public int findCardIndex( String word ) {
+	public int findCardIndexByWordPrefix( String word ) {
 		int wordIndex = 0;
 		int idx = 0;
 		while( wordIndex < word.length()) {
 			wordIndex++;
-			idx = Collections.binarySearch( allCards, new MockCard( word.substring( 0, wordIndex ) ), new Comparator<Card>() {
-				public int compare( Card object1, Card object2 ) {
-	                return Dictionary.COLLATOR.compare( object1.question, object2.question );
-                }
-			});
-			if( idx < 0 ) {
-				if( !allCards.get( -idx ).question.toLowerCase().startsWith(
-				        word.substring( 0, wordIndex ).toLowerCase() ) )
-					break;
+			idx = Collections.binarySearch(allCards,
+											new MockCard(word.substring( 0, wordIndex ) ), 
+											new Comparator<Card>() {
+												public int compare( Card object1, Card object2 ) {
+													return Dictionary.COLLATOR.compare(object1.question, object2.question );
+												}
+											});
+			if(idx < 0) {
+				if ( -idx - 1 >= allCards.size() - 1) return allCards.size() - 1;
+				else if( ! reachedCardStartingWithPrefix(word, wordIndex, idx )) return -idx - 1;
 			}
 		}
 
@@ -107,6 +109,17 @@ public class CardSetManager {
 			idx = -idx - 1;
 		return idx;
 	}
+	
+	private boolean reachedCardStartingWithPrefix(String prefix, int wordIndex, int idx) {
+	    if((-idx - 1)  < allCards.size()) {
+			String temp_prefix = prefix.substring(0, wordIndex ).toLowerCase();
+			String question = allCards.get(-idx).question.toLowerCase();
+			return question.startsWith(temp_prefix);
+	    }
+	    else {
+	    	return false;
+	    }
+    }
 
 
 	@SuppressWarnings( "serial" )
