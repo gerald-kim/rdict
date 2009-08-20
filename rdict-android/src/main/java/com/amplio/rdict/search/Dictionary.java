@@ -48,7 +48,7 @@ public class Dictionary {
 				
 				this.m_wordsLoaded++;
 				
-				if(this.m_wordsLoaded % 5 == 0)
+				if(this.m_wordsLoaded % 5 == 0 && loadProgressHandler != null)
 					loadProgressHandler.post(updateRunnable);
 			}
 
@@ -57,7 +57,8 @@ public class Dictionary {
 			e.printStackTrace();
 		}
 
-		loadProgressHandler.post(updateRunnable);
+		if(loadProgressHandler != null)
+			loadProgressHandler.post(updateRunnable);
 	}
 
 	public DictionaryEntry searchByWord( String word ) {
@@ -73,8 +74,10 @@ public class Dictionary {
 		while( wordIndex < word.length()) {
 			wordIndex++;
 			idx = Arrays.binarySearch( words, word.substring( 0, wordIndex ), Dictionary.COLLATOR );
+			
 			if( idx < 0 ) {
-				if( !words[-idx].toLowerCase().startsWith(
+				if ( -idx - 1 >= words.length - 1) return words.length - 1;
+				else if( !words[-idx].toLowerCase().startsWith(
 				        word.substring( 0, wordIndex ).toLowerCase() ) )
 					break;
 			}

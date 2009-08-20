@@ -17,7 +17,7 @@ public class DictionaryTest extends TestCase {
 		try {
 			is = new FileInputStream( "assets/dictionary_js.html" );
 			m_dictionary = new Dictionary( "src/test/resources/word.cdb",
-			        "src/test/resources/word.index", is, null, null );
+			        					   "src/test/resources/word.index", is, null, null );
 			is.close();
 		} catch( FileNotFoundException e ) {
 			e.printStackTrace();
@@ -43,6 +43,10 @@ public class DictionaryTest extends TestCase {
 		assertEquals( 8048, m_dictionary.findWordIndex( "er" ) );
 		assertEquals( 8049, m_dictionary.findWordIndex( "ER" ) );
 		assertEquals( 8050, m_dictionary.findWordIndex( "-er" ) );
+	}
+	
+	public void atestFindExistingWordIndexIfWordWouldAppearAfterLastInList() {
+		assertEquals(m_dictionary.m_wordsLoaded - 1, m_dictionary.findWordIndex("zzzzzzzzzzzz") );
 	}
 
 	public void testFindNonExistingWordIndex() {
