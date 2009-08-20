@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout android:id="@+id/widget40"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<LinearLayout android:id="@+id/widget57"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_marginLeft="2px" android:layout_marginRight="2px"
+		android:layout_marginTop="4px" android:layout_marginBottom="2px">
+
+		<EditText android:id="@+id/filter_text" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text=""
+			android:hint="Search for a card..."
+			android:textSize="20sp" android:layout_weight="1"
+			android:lines="1" android:scrollHorizontally="true" android:singleLine="true">
+		</EditText>
+
+	<RelativeLayout android:id="@+id/widget57"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+		<Button android:id="@+id/add_button" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="New Card"
+			
+			android:gravity="center_vertical">
+		</Button>
+	</RelativeLayout>
+
+	</LinearLayout>
+
+	<ListView android:id="@+id/card_list_view"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:divider="#00000000">
+	</ListView>
+
+</TableLayout>
