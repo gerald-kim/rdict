@@ -3,15 +3,25 @@
 	android:layout_width="250px" android:layout_height="200px"
 	android:layout_gravity="center"
 	android:orientation="vertical"
-	android:background="#FF00FF"
+	background="FF000000"
 	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<TextView android:id="@+id/splash_title"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="RDict" 
+		android:layout_marginLeft="10px" android:layout_marginRight="10px"
+		android:layout_marginTop="20px"
+		android:textSize="40sp"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center">
+	</TextView>
 		
 	<TextView android:id="@+id/setup_downloading_status_label"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:text="Loading Dictionary Data..." 
 		android:layout_marginLeft="10px" android:layout_marginRight="10px"
 		android:layout_marginTop="20px"
-		android:textSize="18sp"
+		android:textSize="14sp"
 		android:layout_gravity="center_horizontal"
 		android:gravity="center">
 	</TextView>
@@ -22,7 +32,6 @@
 		android:layout_marginTop="10px"
 		android:layout_marginLeft="10px"
 		android:layout_marginRight="10px"
-		android:background="#FF0F0F"
 		android:layout_gravity="bottom"
 		android:gravity="center"/>
 	

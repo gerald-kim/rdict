@@ -80,7 +80,7 @@ public final class R {
         public static final int history_list=0x7f060023;
         public static final int i_forgot_button=0x7f06003a;
         public static final int info_layout=0x7f06002e;
-        public static final int init_managers_bar=0x7f060054;
+        public static final int init_managers_bar=0x7f060055;
         public static final int listview=0x7f060041;
         public static final int loading_title=0x7f060011;
         public static final int manage_button=0x7f06002c;
@@ -98,6 +98,7 @@ public final class R {
         public static final int setup_layout=0x7f060043;
         public static final int setup_progress_bar=0x7f06004c;
         public static final int setup_title_label=0x7f060050;
+        public static final int splash_title=0x7f060054;
         public static final int ssss=0x7f06002a;
         public static final int start_exercise_button=0x7f06000b;
         public static final int title=0x7f060013;
