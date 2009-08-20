@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import com.amplio.rdict.R;
 import com.amplio.rdict.review.Card;
-import com.amplio.rdict.review.ScalableTextView;
 
 public class FlashcardAdapter extends ArrayAdapter<Card> implements OnClickListener {
 

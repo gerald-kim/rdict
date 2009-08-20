@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/widget60"
-	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:orientation="horizontal" xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:id="@+id/widget39393"
+	android:layout_width = "fill_parent"
+	android:layout_height = "120px"
+	android:gravity="center_horizontal"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<LinearLayout android:id="@+id/widget31"
-		android:layout_width="240px" android:layout_height="90px"
-		android:orientation="vertical"
-		android:layout_marginLeft="10px"
-		android:layout_marginTop = "10px"
-		android:background="@drawable/manage_flashcard">
+	<RelativeLayout android:id="@+id/widget323"
+		android:layout_width = "wrap_content"
+		android:layout_height = "120px"
+		android:layout_centerInParent="true">
 
-		<TextView android:id="@+id/headword_label"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="TextView"
-			android:textColor="#000000" android:textSize="20sp"
-			android:gravity="center_horizontal"
+		<LinearLayout android:id="@+id/widget31"
+			android:layout_width="240px"
+			android:layout_height="90px"
+			android:orientation="vertical"
 			android:layout_marginLeft="10px"
-			android:layout_marginRight="10px"
-			android:singleLine="true"
-			android:ellipsize="end">
-		</TextView>
-
-		<TextView android:id="@+id/definition_label"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:text="TextView" android:textColor="#000000"
-			android:textSize="20sp"
+			android:layout_marginTop = "10px"
+			android:layout_centerVertical="true"
+			android:background="@drawable/manage_flashcard">
+	
+			<TextView android:id="@+id/headword_label"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:text="TextView"
+				android:textColor="#000000" android:textSize="20sp"
+				android:gravity="center_horizontal"
+				android:layout_marginLeft="10px"
+				android:layout_marginRight="10px"
+				android:singleLine="true"
+				android:ellipsize="end">
+			</TextView>
+	
+			<TextView android:id="@+id/definition_label"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:text="TextView" android:textColor="#000000"
+				android:textSize="20sp"
+				android:layout_marginLeft="10px"
+				android:layout_marginRight="10px"
+				android:lines="2"
+				android:ellipsize="end">
+			</TextView>
+		</LinearLayout>
+	
+		<RelativeLayout android:id="@+id/xxx_button_layout"
+			android:layout_width="wrap_content"
+			android:layout_height="90px"
+			android:layout_marginTop = "10px"
 			android:layout_marginLeft="10px"
-			android:layout_marginRight="10px"
-			android:lines="2"
-			android:ellipsize="end">
-		</TextView>
-
-	</LinearLayout>
-
-	<RelativeLayout android:id="@+id/xxx_button_layout"
-		android:layout_width="wrap_content"
-		android:layout_height="90px"
-		android:layout_marginTop = "10px">
-		
-		<Button android:id="@+id/edit_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Edit"
-			android:layout_centerInParent="true"
-			android:gravity="center">
-		</Button>
+			android:layout_centerVertical="true"
+			android:layout_toRightOf="@+id/widget31">
+			
+			<Button android:id="@+id/edit_button"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="Edit"
+				android:layout_centerVertical="true">
+			</Button>
+			
+		</RelativeLayout>
 		
 	</RelativeLayout>
-
+			
 </LinearLayout>

@@ -42,7 +42,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 		super.onResume();
 		
 		List<Card> cards = RDictActivity.c_cardSetManager.allCards();
-		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, cards);
+		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), R.layout.flashcard_ui_for_manage, cards);
 		this.cardList.setAdapter(aa);
 		aa.notifyDataSetChanged();
 	}
