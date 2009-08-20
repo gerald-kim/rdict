@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/widget40"
+<TableLayout android:id="@+id/widget40"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -23,14 +23,14 @@
 			
 			android:gravity="center_vertical">
 		</Button>
-		</RelativeLayout>
+	</RelativeLayout>
 
 	</LinearLayout>
 
 	<ListView android:id="@+id/card_list_view"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:visibility="visible" android:divider="#000000">
+		android:divider="#00000000">
 	</ListView>
 
-</LinearLayout>
+</TableLayout>
