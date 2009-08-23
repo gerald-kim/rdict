@@ -49,4 +49,8 @@ public class SetupManager {
 	public int getState() {
 		return this.m_state;
 	}
+
+	public void setState(int state ) {
+		m_state = state;
+	}
 }

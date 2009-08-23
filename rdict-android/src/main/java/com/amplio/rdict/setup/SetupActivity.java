@@ -6,6 +6,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.amplio.rdict.R;
+import com.amplio.rdict.review.FlashCardActivity;
 
 public class SetupActivity extends Activity {
 	LinearLayout layout = null;
@@ -19,8 +20,8 @@ public class SetupActivity extends Activity {
 	
 	public static SetupManager setupMgr = null;
 	
-	public void onCreate(Bundle icicle){
-		super.onCreate(icicle);
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setup);
 		
 		this.layout = (LinearLayout) findViewById(R.id.setup_layout);
@@ -36,6 +37,16 @@ public class SetupActivity extends Activity {
 		this.downloadIsCorruptedViewWrapper = new DownloadIsCorruptedViewWrapper(this.getApplicationContext(), this);
 		
 		setupMgr = new SetupManager();
+		
+		if(null != savedInstanceState && savedInstanceState.containsKey(FlashCardActivity.SAVE_TAG_STATE)) {
+			setupMgr.setState(savedInstanceState.getInt(FlashCardActivity.SAVE_TAG_STATE));
+		}
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		outState.putInt(FlashCardActivity.SAVE_TAG_STATE, setupMgr.getState());
+		super.onSaveInstanceState(outState);
 	}
 	
 	public void onResume() {

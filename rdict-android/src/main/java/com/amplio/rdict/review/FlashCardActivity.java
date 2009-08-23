@@ -14,7 +14,7 @@ import com.amplio.rdict.R;
 import com.amplio.rdict.RDictActivity;
 
 public class FlashCardActivity extends Activity {
-	private static final String SAVE_TAG_STATE = "EX_MGR_STATE";
+	public static final String SAVE_TAG_STATE = "EX_MGR_STATE";
 
 	TextView progress_label = null;
 	
