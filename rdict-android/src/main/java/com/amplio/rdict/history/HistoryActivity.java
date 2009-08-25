@@ -59,9 +59,14 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 			
 			if(words.size() > 0 ) {
 				strings = new String[words.size()];
+				for(int j = 0; j < words.size(); j++) {
+					strings[j] = words.get(j).headword;
+				}
+				
 				adapter.addSection(sdf.format(cal.getTime()), new ArrayAdapter<String>(this,
 																					  android.R.layout.simple_list_item_1,
-																					  strings));				
+																					  strings));
+				
 				didAddHistoryRecord = true;
 			}
 			
@@ -70,8 +75,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		
 		if(! didAddHistoryRecord) {
 			adapter.addSection("No history records.", new ArrayAdapter<String>(this,
-																							android.R.layout.simple_list_item_1,
-																							new String[]{}));
+																				android.R.layout.simple_list_item_1,
+																				new String[]{}));
 		}
 		
 		_historyList.setAdapter(adapter);
