@@ -66,7 +66,8 @@ public class CardSetManager {
 		return db.getObjects( Card.class ).size();
 	}
 
-	public List<Card> loadAllCards() {
+	@SuppressWarnings( "unchecked" )
+    public List<Card> loadAllCards() {
 		allCards = new ArrayList( db.getObjects( Card.class ) );
 		
 		Collections.sort( allCards, new Comparator<Card>() {

@@ -21,13 +21,13 @@ public class SplashActivity extends Activity {
 		
 		setContentView(R.layout.splash_screen);
 		
-		this.m_downloadBar = (ProgressBar) this.findViewById(R.id.init_managers_bar);
-		this.m_handler = new Handler();
+		m_downloadBar = (ProgressBar) findViewById(R.id.init_managers_bar);
+		m_handler = new Handler();
 		
-		LoadDictionaryService.m_a = this;
+		LoadDictionaryService.m_splashActivity = this;
 		
 		if(! LoadDictionaryService.isRunning)
-			this.startService(new Intent(this, LoadDictionaryService.class));
+			startService(new Intent(this, LoadDictionaryService.class));
 	}
 	
 	public Handler getHandler() {

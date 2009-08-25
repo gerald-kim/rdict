@@ -70,8 +70,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	super.onCreate(savedInstanceState);
     	
     	setContentView(R.layout.main);
-    	this.m_tabHost = this.getTabHost();
-		setupTabs(this.m_tabHost);
+    	m_tabHost = getTabHost();
+		setupTabs(m_tabHost);
     	
     	SetupActivity.setupMgr = new SetupManager();
     	c_startupMgr = new StartupManager();
@@ -86,7 +86,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	}
     
     public int getAction() {
-    	return StartupManager.getAction(this.existNecessaryDataFiles(), this.didRunSetup, RDictActivity.didLoadDict, this.didInitMgrs);
+    	return StartupManager.getAction(existNecessaryDataFiles(), didRunSetup, RDictActivity.didLoadDict, didInitMgrs);
     }
     
     private boolean existNecessaryDataFiles() {
@@ -98,12 +98,12 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     public void doAction(int action) {
     	switch (action) {
 	    	case StartupManager.ACTION_DO_SETUP_ACTIVITY:
-	    		this.startActivity(new Intent(this.getApplicationContext(), SetupActivity.class));
-	    		this.didRunSetup = true;
+	    		startActivity(new Intent(getApplicationContext(), SetupActivity.class));
+	    		didRunSetup = true;
 	    		break;
 	    	
 	    	case StartupManager.ACTION_FINISH_USER_DELAYED_SETUP:
-	    		this.finish();
+	    		finish();
 	    		break;
 	    		
 	    	case StartupManager.ACTION_DO_LOAD_DICT_SERVICE:
@@ -111,11 +111,11 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    		break;
 	    		
 	    	case StartupManager.ACTION_DO_INIT_MANAGERS:
-	    		this.initDatabaseManagers();
+	    		initDatabaseManagers();
 	    		
 	    		updateReviewTabIndicator();
 	    		
-	    		this.didInitMgrs = true;
+	    		didInitMgrs = true;
 	    		break;
 	    		
 	    	case StartupManager.ACTION_DO_RDICT_ACTIVITY:
@@ -125,19 +125,19 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
     
     private void setupTabs(TabHost tabHost) {
-    	this.searchTab = this.createTab(tabHost, TAB_INDEX_SEARCH);
-    	tabHost.addTab(this.searchTab);
+    	searchTab = createTab(tabHost, TAB_INDEX_SEARCH);
+    	tabHost.addTab(searchTab);
     	
-    	this.reviewTab = this.createTab(tabHost, TAB_INDEX_REVIEW);
-    	tabHost.addTab(this.reviewTab);
+    	reviewTab = createTab(tabHost, TAB_INDEX_REVIEW);
+    	tabHost.addTab(reviewTab);
     	
-    	this.historyTab = this.createTab(tabHost, TAB_INDEX_HISTORY);
-    	tabHost.addTab(this.historyTab);
+    	historyTab = createTab(tabHost, TAB_INDEX_HISTORY);
+    	tabHost.addTab(historyTab);
     	
-    	this.moreTab = this.createTab(tabHost, TAB_INDEX_MORE);
-    	tabHost.addTab(this.moreTab);
+    	moreTab = createTab(tabHost, TAB_INDEX_MORE);
+    	tabHost.addTab(moreTab);
         
-        this.setDefaultTab(TAB_INDEX_SEARCH);
+        setDefaultTab(TAB_INDEX_SEARCH);
     }
     
     public TabHost.TabSpec createTab(TabHost tabHost, int index) {
@@ -154,9 +154,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
 
 	public void updateReviewTabIndicator() {
-	    RelativeLayout r = (RelativeLayout) this.m_tabHost.getTabWidget().getChildAt(1);
+	    RelativeLayout r = (RelativeLayout) m_tabHost.getTabWidget().getChildAt(1);
 	    TextView reviewTabTextView = (TextView) r.getChildAt(1);  // hackmaster Steve -_-;;;
-	    reviewTabTextView.setText(this.buildReviewTabIndicator());
+	    reviewTabTextView.setText(buildReviewTabIndicator());
     }
 
 	private String buildReviewTabIndicator() {
@@ -186,7 +186,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     
 	private void initDatabaseManagers() {
 		if(m_db == null || m_db.isClosed())
-		    m_db = ODBFactory.open( this.getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
+		    m_db = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
 	    c_cardSetManager = new CardSetManager( m_db );
 	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );

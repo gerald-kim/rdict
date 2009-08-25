@@ -37,7 +37,7 @@ public class CardTest extends TestCase {
         cal.add( Calendar.DAY_OF_MONTH, 1 );
         Date expectedScheduled = cal.getTime();
 		
-		assertEquals(expectedScheduled, c.scheduled);
+		assertDateEquals(expectedScheduled, c.scheduled, DateTimeFieldType.minuteOfHour());
 		
 		Date oldDate = c.scheduled;
 		

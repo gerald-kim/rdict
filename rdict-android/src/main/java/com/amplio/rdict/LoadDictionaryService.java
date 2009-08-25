@@ -9,7 +9,7 @@ import com.amplio.rdict.search.Dictionary;
 public class LoadDictionaryService extends Service implements Runnable {
 	public static boolean isRunning = false;
 	
-	public static SplashActivity m_a = null;
+	public static SplashActivity m_splashActivity = null;
 
 	@Override
 	public void onCreate() {
@@ -21,15 +21,15 @@ public class LoadDictionaryService extends Service implements Runnable {
 		isRunning = true;
 		
 		RDictActivity.c_dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
-					        						m_a.getAssetInputStream( "dictionary_js.html"), 
-					        						m_a.getHandler(), 
-					        						m_a.getRunnableForDBInit());
+					        						m_splashActivity.getAssetInputStream( "dictionary_js.html"), 
+					        						m_splashActivity.getHandler(), 
+					        						m_splashActivity.getRunnableForDBInit());
 		
-		this.stopSelf();
+		stopSelf();
 		
 		isRunning = false;
 		
-		m_a.getHandler().post(m_a.getRunnableForDBInit());
+		m_splashActivity.getHandler().post(m_splashActivity.getRunnableForDBInit());
     }
 	
 	@Override

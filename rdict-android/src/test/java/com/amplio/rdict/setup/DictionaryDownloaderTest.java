@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 public class DictionaryDownloaderTest extends TestCase {
 	
-	public void testStartDownload() {
+	public void testStartDownload() throws InterruptedException {
 		DownloadList downloadList = new DownloadList();
 		downloadList.add("http://www.google.ca/intl/en_ca/images/logo.gif", "src/test/java/com/amplio/rdict/setup/word.db");
 		
@@ -18,8 +18,8 @@ public class DictionaryDownloaderTest extends TestCase {
 		downloader.start();
 
 		while(! downloadMonitor.isFinished())
-			;
-
+			Thread.sleep( 100 );
+		
 		File downloadedFile = new File(downloadList.get(0).m_writePath);
 
 		assertTrue( downloadedFile.exists() );
@@ -28,7 +28,7 @@ public class DictionaryDownloaderTest extends TestCase {
 		assertEquals( 8914, downloadMonitor.m_bytesDownloaded );
 	}
 	
-	public void testDownloadFileWithBadMd5DeletesDownloadedFiles() {
+	public void testDownloadFileWithBadMd5DeletesDownloadedFiles() throws InterruptedException {
 		DownloadList downloadList = new DownloadList();
 		//the md5 file is bad on purpose for testing.
 		downloadList.add("http://s3.amazonaws.com/rdict/test_for_bad_md5.gif", "src/test/java/com/amplio/rdict/setup/test_for_bad_md5.gif");
@@ -40,8 +40,8 @@ public class DictionaryDownloaderTest extends TestCase {
 		
 		downloader.start();
 
-		while(! downloadMonitor.isFinished())
-			;
+		while(! downloadMonitor.isFinished()) 
+			Thread.sleep( 100 );
 
 		assertTrue(! new File(downloadList.get(0).m_writePath).exists());
 		assertTrue(! new File(downloadList.get(0).m_md5FileWritePath).exists());
