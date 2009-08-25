@@ -10,13 +10,12 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
-/*
+/**
  * This class is borrowed from Jeff Sharkey.
  * 
  * See http://jsharkey.org/blog/2008/08/18/separating-lists-with-headers-in-android-09/
  * 
  */
-
 public class SeparatedListAdapter extends BaseAdapter {
 
 	public final Map<String,Adapter> sections = new LinkedHashMap<String,Adapter>();
@@ -28,12 +27,12 @@ public class SeparatedListAdapter extends BaseAdapter {
 	}
 
 	public void addSection(String section, Adapter adapter) {
-		this.headers.add(section);
-		this.sections.put(section, adapter);
+		headers.add(section);
+		sections.put(section, adapter);
 	}
 
 	public Object getItem(int position) {
-		for(Object section : this.sections.keySet()) {
+		for(Object section : sections.keySet()) {
 			Adapter adapter = sections.get(section);
 			int size = adapter.getCount() + 1;
 
@@ -50,7 +49,7 @@ public class SeparatedListAdapter extends BaseAdapter {
 	public int getCount() {
 		// total together all sections, plus one for each section header
 		int total = 0;
-		for(Adapter adapter : this.sections.values())
+		for(Adapter adapter : sections.values())
 			total += adapter.getCount() + 1;
 		return total;
 	}
@@ -58,14 +57,14 @@ public class SeparatedListAdapter extends BaseAdapter {
 	public int getViewTypeCount() {
 		// assume that headers count as one, then total all sections
 		int total = 1;
-		for(Adapter adapter : this.sections.values())
+		for(Adapter adapter : sections.values())
 			total += adapter.getViewTypeCount();
 		return total;
 	}
 
 	public int getItemViewType(int position) {
 		int type = 1;
-		for(Object section : this.sections.keySet()) {
+		for(Object section : sections.keySet()) {
 			Adapter adapter = sections.get(section);
 			int size = adapter.getCount() + 1;
 
@@ -90,7 +89,7 @@ public class SeparatedListAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		int sectionnum = 0;
-		for(Object section : this.sections.keySet()) {
+		for(Object section : sections.keySet()) {
 			Adapter adapter = sections.get(section);
 			int size = adapter.getCount() + 1;
 

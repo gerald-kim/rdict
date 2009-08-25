@@ -23,11 +23,11 @@ import com.amplio.rdict.search.SearchActivity;
 
 public class HistoryActivity extends Activity implements OnItemClickListener {
 	
-	private ListView _historyList = null;
+	private ListView m_historyListView = null;
 	
 	private Vector<DictionaryEntry> words = null;
 	
-	public Map<String,?> createItem(String title, String caption) {
+	public Map<String,String> createItem(String title, String caption) {
 		Map<String,String> item = new HashMap<String,String>();
 		item.put("title", title);
 		item.put("caption", caption);
@@ -38,8 +38,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		super.onCreate(icicle);
 		setContentView(R.layout.history);
 		
-		_historyList = (ListView) findViewById(R.id.history_list);
-		_historyList.setOnItemClickListener(this);
+		m_historyListView = (ListView) findViewById(R.id.history_list);
+		m_historyListView.setOnItemClickListener(this);
 	}
 	
 	public void onResume() {
@@ -79,7 +79,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 																				new String[]{}));
 		}
 		
-		_historyList.setAdapter(adapter);
+		m_historyListView.setAdapter(adapter);
 	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
