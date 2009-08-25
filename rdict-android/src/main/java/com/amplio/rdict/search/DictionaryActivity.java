@@ -1,5 +1,8 @@
 package com.amplio.rdict.search;
 
+import java.io.File;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +19,9 @@ import com.amplio.rdict.RDictActivity;
 import com.amplio.rdict.history.History;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
+	
+	public final static String NEW_FILE_PATH = "/sdcard/rdict/.cardAddedOnce";
+	
 	public static History sessionHistory = new History();
 	
 	private TextView m_title = null;
@@ -119,4 +125,16 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		this.m_dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
 		this.refreshDicPage();
 	}
+
+	public boolean isFirstTime() {
+		return ! new File(NEW_FILE_PATH).exists();
+    }
+
+	public void writeFirstTimeFile() {
+		try {
+	        new File(NEW_FILE_PATH).createNewFile();
+        } catch( IOException e ) {
+	        e.printStackTrace();
+        }
+    }
 }
