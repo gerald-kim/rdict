@@ -37,7 +37,7 @@ public class ReviewExerciseFrontButtonsViewWrapper implements OnClickListener {
 		else {
 			new AlertDialog.Builder(this.m_a)
 			.setTitle("Help")
-			.setMessage("Can you remember this word?  Think about the definition.\n\nWhen you remember, of if you decide you can't remember, push the 'View Answer' button.")
+			.setMessage("Can you remember this word?  Think about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'View Answer' button.")
 			.setNeutralButton("Ok", null)
 			.show();
 		}
