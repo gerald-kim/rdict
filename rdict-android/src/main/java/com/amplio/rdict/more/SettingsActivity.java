@@ -38,10 +38,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			.setMessage("Are you sure you want to clear your Search History?")
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				        public void onClick( DialogInterface dialog, int whichButton ) {
-//					        Card c = ManageActivity.targetCard;
-//					        RDictActivity.c_cardSetManager.deleteCard( c );
-//					        RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
-//					        finish();
+				        	RDictActivity.c_historyMgr.clearHistory();
 				        }
 			        } )
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 

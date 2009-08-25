@@ -52,6 +52,10 @@ public class HistoryManager {
 		}		
 	}
 	
+	public void clearHistory() {
+		_con.execSQL("delete from history", new String[]{});
+	}
+	
 	public Vector<DictionaryEntry> loadHistoryRecordsByDate(String yyyyMMdd) {
 		Vector<DictionaryEntry> words = new Vector<DictionaryEntry>();
 		
