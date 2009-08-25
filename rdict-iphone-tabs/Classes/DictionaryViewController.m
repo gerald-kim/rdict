@@ -27,7 +27,7 @@
 	[super viewWillAppear:animated];
 	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
-	activityIndicatorView.hidden = NO;
+	activityIndicatorView .hidden = NO;
 	[activityIndicatorView startAnimating];
 	
 	[self showWordDefinition: lemma];

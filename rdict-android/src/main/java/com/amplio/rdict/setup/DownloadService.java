@@ -19,7 +19,7 @@ public class DownloadService extends Service implements Runnable{
 		super.onCreate();
 		
 		DownloadList downloadList = new DownloadList();
-		//downloadList.add(DictionaryDownloader.SOURCE_URL_DB, DictionaryDownloader.WRITE_PATH_DB);
+		downloadList.add(DictionaryDownloader.SOURCE_URL_DB, DictionaryDownloader.WRITE_PATH_DB);
 		downloadList.add(DictionaryDownloader.SOURCE_URL_INDEX, DictionaryDownloader.WRITE_PATH_INDEX);
 		
 		m_downloader = new DictionaryDownloader(downloadList, dm, DictionaryDownloader.DO_MD5_CHECK);

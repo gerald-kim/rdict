@@ -50,7 +50,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	TabHost.TabSpec historyTab = null;
 	TabHost.TabSpec moreTab = null;
 	
-	private File index_file = null;
 	private ODB m_db = null;
 	private SQLiteDatabase m_con = null;
 	
@@ -91,8 +90,9 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
     
     private boolean existNecessaryDataFiles() {
-    	this.index_file = new File(DictionaryDownloader.WRITE_PATH_INDEX);
-    	return this.index_file.exists();
+    	File dbFile = new File(DictionaryDownloader.WRITE_PATH_DB);
+    	File indexFile = new File(DictionaryDownloader.WRITE_PATH_INDEX);
+    	return dbFile.exists() && indexFile.exists();
     }
     
     public void doAction(int action) {
