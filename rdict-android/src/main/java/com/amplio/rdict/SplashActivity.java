@@ -3,19 +3,18 @@ package com.amplio.rdict;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.amplio.rdict.search.Dictionary;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 
+import com.amplio.rdict.search.Dictionary;
+
 public class SplashActivity extends Activity {
-	
 	private ProgressBar m_downloadBar = null;
 	
-	protected Handler m_handler = null;
+	private Handler m_handler = null;
 	
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
@@ -26,8 +25,14 @@ public class SplashActivity extends Activity {
 		this.m_handler = new Handler();
 		
 		LoadDictionaryService.m_a = this;
-		this.startService(new Intent(this, LoadDictionaryService.class));
+		
+		if(! LoadDictionaryService.isRunning)
+			this.startService(new Intent(this, LoadDictionaryService.class));
 	}
+	
+	public Handler getHandler() {
+	    return m_handler;
+    }
 	
 	public Runnable getRunnableForDBInit() {
 		return new Runnable() {

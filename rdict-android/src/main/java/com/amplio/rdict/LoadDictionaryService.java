@@ -7,7 +7,6 @@ import android.os.IBinder;
 import com.amplio.rdict.search.Dictionary;
 
 public class LoadDictionaryService extends Service implements Runnable {
-	
 	public static boolean isRunning = false;
 	
 	public static SplashActivity m_a = null;
@@ -22,13 +21,15 @@ public class LoadDictionaryService extends Service implements Runnable {
 		isRunning = true;
 		
 		RDictActivity.c_dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
-		        						m_a.getAssetInputStream( "dictionary_js.html"), m_a.m_handler, m_a.getRunnableForDBInit());
+					        						m_a.getAssetInputStream( "dictionary_js.html"), 
+					        						m_a.getHandler(), 
+					        						m_a.getRunnableForDBInit());
 		
 		this.stopSelf();
 		
 		isRunning = false;
 		
-		m_a.m_handler.post(m_a.getRunnableForDBInit());
+		m_a.getHandler().post(m_a.getRunnableForDBInit());
     }
 	
 	@Override
