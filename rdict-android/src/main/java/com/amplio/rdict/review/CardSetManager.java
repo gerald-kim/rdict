@@ -41,7 +41,6 @@ public class CardSetManager {
 	
 	public void save( Card card ) {
 		db.store(card);
-		db.commit();
 	}
 
 	public void deleteCard( Card card ) {

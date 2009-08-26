@@ -56,6 +56,13 @@ public class ReviewActivity extends Activity implements Runnable{
 		this.graphViewHandler = new Handler();
 	}
 	
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	
+    	RDictActivity.odb.commit();
+    }
+
 	public void onResume() {
 		super.onResume();
 		

@@ -53,6 +53,13 @@ public class FlashCardActivity extends Activity {
 		this.drawDisplay();
 	}
 	
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	
+    	RDictActivity.odb.commit();
+    }
+
 	public void onResume(View v){
 		super.onResume();
 		

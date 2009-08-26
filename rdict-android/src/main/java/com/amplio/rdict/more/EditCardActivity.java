@@ -39,6 +39,14 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		
 	}
 	
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	
+    	RDictActivity.odb.commit();
+    }
+
+	
 	@Override
 	public void onResume() {
 		super.onResume();

@@ -50,8 +50,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	TabHost.TabSpec historyTab = null;
 	TabHost.TabSpec moreTab = null;
 	
-	private ODB db = null;
-	private SQLiteDatabase con = null;
+	public static ODB odb = null;
+	public static SQLiteDatabase con = null;
 	
 	public static StartupManager startupMgr = null;
 	
@@ -145,7 +145,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
     	tab.setContent(new Intent().setComponent(activity));
     	
-    	if(index == TAB_INDEX_REVIEW && cardSetManager != null && db != null && ! db.isClosed())
+    	if(index == TAB_INDEX_REVIEW && cardSetManager != null && odb != null && ! odb.isClosed())
 		    tab.setIndicator(buildReviewTabIndicator());
     	else
     		tab.setIndicator(TAB_NAMES[index]);
@@ -171,12 +171,13 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    return sb.toString();
     }
     
+	
     @Override
     protected void onDestroy() {
     	System.out.println("RDict - On Destroy");
     	
-    	if(db != null && ! db.isClosed())
-    		db.close();
+    	if(odb != null && ! odb.isClosed())
+    		odb.close();
     	
     	if(con != null && con.isOpen())
     		con.close();
@@ -185,12 +186,12 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
     
 	private void initDatabaseManagers() {
-		if(db == null || db.isClosed())
-		    db = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
+		if(odb == null || odb.isClosed())
+		    odb = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
-	    cardSetManager = new CardSetManager( db );
-	    reviewManager = new ReviewManager( db, cardSetManager );
-	    statisticsManager = new StatisticsManager( db, cardSetManager );
+	    cardSetManager = new CardSetManager( odb );
+	    reviewManager = new ReviewManager( odb, cardSetManager );
+	    statisticsManager = new StatisticsManager( odb, cardSetManager );
         
 	    if(con == null || ! con.isOpen())
 	    	con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);

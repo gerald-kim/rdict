@@ -68,7 +68,17 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		dicPageWebView.setWebViewClient(client);
     }
         
-    public void onResume(){
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	
+    	RDictActivity.odb.commit();
+    }
+
+
+    @Override
+	public void onResume(){
     	super.onResume();
     	
     	this.refreshDicPage();
