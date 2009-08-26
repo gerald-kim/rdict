@@ -59,7 +59,7 @@ public class ReviewActivity extends Activity implements Runnable{
 	public void onResume() {
 		super.onResume();
 		
-		RDictActivity.c_reviewManager.checkAvailableExercises();
+		RDictActivity.reviewManager.checkAvailableExercises();
 		
 		this.reviewMesg.setText(this.getGreetingMessage());
 		
@@ -68,7 +68,7 @@ public class ReviewActivity extends Activity implements Runnable{
 	}
 	
 	public String getGreetingMessage() {
-		if(RDictActivity.c_reviewManager.isAvailableTodaysScheduledExercise){
+		if(RDictActivity.reviewManager.isAvailableTodaysScheduledExercise){
 			return MESG_CARDS_SCHEDULED_FOR_TODAY;
 		}
 		else {
@@ -77,7 +77,7 @@ public class ReviewActivity extends Activity implements Runnable{
 			String todaysDate = new SimpleDateFormat().format(new Date());
 			
 			if(! existsStatRecordForDate(todaysDate)) {
-				if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
+				if(RDictActivity.reviewManager.isAvailableLookedupTodayExercise)
 					sb.append(MESG_NO_CARDS_SCHEDULED_FOR_TODAY);
 				else
 					sb.append(MESG_NO_EXERCISES_AVAILABLE);
@@ -90,7 +90,7 @@ public class ReviewActivity extends Activity implements Runnable{
 	}
 	
 	private boolean existsStatRecordForDate( String todaysDate ) {
-	    return null != RDictActivity.c_statisticsManager.loadStatRecordByDate(todaysDate);
+	    return null != RDictActivity.statisticsManager.loadStatRecordByDate(todaysDate);
     }
 	
 	private void setupExerciseViews() {
@@ -105,12 +105,12 @@ public class ReviewActivity extends Activity implements Runnable{
 	
 	public Vector<CardExerciseWrapper> getExercises() {
 		Vector<CardExerciseWrapper> exercises = new Vector<CardExerciseWrapper>();
-		if(RDictActivity.c_reviewManager.isAvailableTodaysScheduledExercise){
+		if(RDictActivity.reviewManager.isAvailableTodaysScheduledExercise){
 			exercises.add(this.scheduledViewWrapper);
 			return exercises;
 		}
 		else {
-			if(RDictActivity.c_reviewManager.isAvailableLookedupTodayExercise)
+			if(RDictActivity.reviewManager.isAvailableLookedupTodayExercise)
 				exercises.add(this.todayViewWrapper);
 			return exercises;
 		}
@@ -126,13 +126,13 @@ public class ReviewActivity extends Activity implements Runnable{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String oneMonthAgo = sdf.format(c.getTime());
 		
-		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
+		Number[] cardCountData = RDictActivity.statisticsManager.fetchCardCountData(oneMonthAgo);
 		String numCardsAddedToday = cardCountData[cardCountData.length - 1].toString();
 		
 		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData, this.graphViewHandler, this.cardCountGraph.getDrawGraphRunnable());
 		this.cardCountGraph.getView().refreshDrawableState();
 		
-		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
+		Number[] gradeData = RDictActivity.statisticsManager.fetchGradeData(oneMonthAgo);
 		String todaysGrade = gradeData[gradeData.length - 1].toString() + " %";
 	
 		this.gradeGraph.setValueAndData( todaysGrade, gradeData, this.graphViewHandler, this.gradeGraph.getDrawGraphRunnable());

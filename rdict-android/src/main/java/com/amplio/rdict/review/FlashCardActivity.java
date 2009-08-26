@@ -60,7 +60,7 @@ public class FlashCardActivity extends Activity {
 			this.drawDisplay();
 		}
 		else{
-			RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
+			RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
 			this.finish();
 		}
 	}
@@ -110,9 +110,9 @@ public class FlashCardActivity extends Activity {
 	private Vector<Card> loadCardSet() {
 	    switch(ReviewActivity.reviewMode){
 			case ReviewManager.EXERCISES_SCHEDULED_TODAY: 
-				return RDictActivity.c_cardSetManager.loadCardsScheduledForToday();
+				return RDictActivity.cardSetManager.loadCardsScheduledForToday();
 			case ReviewManager.EXERCISES_CARDS_LOOKEDUP_TODAY:
-				return RDictActivity.c_cardSetManager.loadCardsLookedupToday();
+				return RDictActivity.cardSetManager.loadCardsLookedupToday();
 			default:
 				throw new IllegalArgumentException("Bad argument in FlashCardActivity");
 		}

@@ -41,7 +41,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	public void onResume() {
 		super.onResume();
 		
-		List<Card> cards = RDictActivity.c_cardSetManager.loadAllCards();
+		List<Card> cards = RDictActivity.cardSetManager.loadAllCards();
 		FlashcardAdapter aa = new FlashcardAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, cards);
 		this.cardList.setAdapter(aa);
 		aa.notifyDataSetChanged();
@@ -57,7 +57,7 @@ public class ManageActivity extends Activity implements OnClickListener, TextWat
 	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
 
 	public void onTextChanged(CharSequence prefix, int start, int before, int count) {
-		int cardIndex = RDictActivity.c_cardSetManager.findCardIndexByWordPrefix(prefix.toString());
+		int cardIndex = RDictActivity.cardSetManager.findCardIndexByWordPrefix(prefix.toString());
 		
 		cardList.setSelectionFromTop(cardIndex, 0);
 	}

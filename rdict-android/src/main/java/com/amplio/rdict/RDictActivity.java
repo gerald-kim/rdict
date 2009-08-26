@@ -53,13 +53,13 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private ODB db = null;
 	private SQLiteDatabase con = null;
 	
-	public static StartupManager c_startupMgr = null;
+	public static StartupManager startupMgr = null;
 	
-	public static Dictionary c_dictionary = null;
-	public static HistoryManager c_historyMgr = null;
-	public static CardSetManager c_cardSetManager = null;
-	public static StatisticsManager c_statisticsManager = null;
-	public static ReviewManager c_reviewManager = null;
+	public static Dictionary dictionary = null;
+	public static HistoryManager historyMgr = null;
+	public static CardSetManager cardSetManager = null;
+	public static StatisticsManager statisticsManager = null;
+	public static ReviewManager reviewManager = null;
 	
 	boolean didRunSetup = false;
 	public static boolean didLoadDict = false;
@@ -74,7 +74,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		setupTabs(tabHost);
     	
     	SetupActivity.setupMgr = new SetupManager();
-    	c_startupMgr = new StartupManager();
+    	startupMgr = new StartupManager();
     	
     	RDICT_ACTIVITY = this;
     }
@@ -145,7 +145,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
     	tab.setContent(new Intent().setComponent(activity));
     	
-    	if(index == TAB_INDEX_REVIEW && c_cardSetManager != null && db != null && ! db.isClosed())
+    	if(index == TAB_INDEX_REVIEW && cardSetManager != null && db != null && ! db.isClosed())
 		    tab.setIndicator(buildReviewTabIndicator());
     	else
     		tab.setIndicator(TAB_NAMES[index]);
@@ -162,7 +162,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private String buildReviewTabIndicator() {
 	    StringBuilder sb = new StringBuilder(TAB_NAMES[TAB_INDEX_REVIEW]);
 	    
-	    int cardsScheduledForToday = c_cardSetManager.countCardsScheduledForToday();
+	    int cardsScheduledForToday = cardSetManager.countCardsScheduledForToday();
 	    if(0 < cardsScheduledForToday) {
 	    	sb.append("(");
 	    	sb.append(cardsScheduledForToday);
@@ -188,15 +188,15 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		if(db == null || db.isClosed())
 		    db = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
-	    c_cardSetManager = new CardSetManager( db );
-	    c_reviewManager = new ReviewManager( db, c_cardSetManager );
-	    c_statisticsManager = new StatisticsManager( db, c_cardSetManager );
+	    cardSetManager = new CardSetManager( db );
+	    reviewManager = new ReviewManager( db, cardSetManager );
+	    statisticsManager = new StatisticsManager( db, cardSetManager );
         
 	    if(con == null || ! con.isOpen())
 	    	con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
     	
-	    c_historyMgr = new HistoryManager(con);
-		c_historyMgr.createTableIfNotExists( con );
+	    historyMgr = new HistoryManager(con);
+		historyMgr.createTableIfNotExists( con );
     }
 	
 	public InputStream getAssetInputStream(String path) {

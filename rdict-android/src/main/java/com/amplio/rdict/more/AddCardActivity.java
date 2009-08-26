@@ -46,14 +46,14 @@ public class AddCardActivity extends Activity implements OnClickListener{
 
 			Card c2 = null;
 			try {
-				c2 = RDictActivity.c_cardSetManager.loadCardByHeadword(c.question);
+				c2 = RDictActivity.cardSetManager.loadCardByHeadword(c.question);
 			}
 			catch(IllegalStateException e){
 				e.printStackTrace();
 			}
 			
 			if(null == c2) {
-				RDictActivity.c_cardSetManager.save(c);
+				RDictActivity.cardSetManager.save(c);
 				Toast.makeText(this, "Card added.", Toast.LENGTH_SHORT).show();
 				this.finish();
 			}

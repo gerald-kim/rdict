@@ -47,7 +47,7 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
     public void onResume(){
     	if(Dictionary.words != null) {
     		this.updateWordList();
-    		_wordList.setSelectionFromTop( RDictActivity.c_dictionary.findWordIndex( "a" ), 0 );
+    		_wordList.setSelectionFromTop( RDictActivity.dictionary.findWordIndex( "a" ), 0 );
     	}
     		
     	System.out.println("Dic resumed.");
@@ -56,7 +56,7 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
     }
     
    	public void onTextChanged(CharSequence s, int start, int before, int count) {
-   		int wordIndex = RDictActivity.c_dictionary.findWordIndex( s.toString() );
+   		int wordIndex = RDictActivity.dictionary.findWordIndex( s.toString() );
 		_wordList.setSelectionFromTop( wordIndex, 0 );
 	}
    	
@@ -67,9 +67,9 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
 	public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
 		String headword = Dictionary.words[parent.getPositionForView(view)];
 		
-		RDictActivity.c_historyMgr.addHistoryRecord(headword);
+		RDictActivity.historyMgr.addHistoryRecord(headword);
 		
-		DictionaryEntry entry = RDictActivity.c_dictionary.searchByWord(headword);
+		DictionaryEntry entry = RDictActivity.dictionary.searchByWord(headword);
 		
 		DictionaryActivity.sessionHistory.clear();
 		DictionaryActivity.sessionHistory.addWord(entry);

@@ -51,7 +51,7 @@ public class EditCardActivity extends Activity implements OnClickListener{
 		if(this.saveButton == v){
 			Card c = ManageActivity.targetCard;
 			c.answer = this.definitionText.getText().toString();
-			RDictActivity.c_cardSetManager.save(c);
+			RDictActivity.cardSetManager.save(c);
 			Toast.makeText(this, "Changes saved.", Toast.LENGTH_SHORT).show();
 			this.finish();
 		}
@@ -62,8 +62,8 @@ public class EditCardActivity extends Activity implements OnClickListener{
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				        public void onClick( DialogInterface dialog, int whichButton ) {
 					        Card c = ManageActivity.targetCard;
-					        RDictActivity.c_cardSetManager.deleteCard( c );
-					        RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
+					        RDictActivity.cardSetManager.deleteCard( c );
+					        RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
 					        finish();
 				        }
 			        } )

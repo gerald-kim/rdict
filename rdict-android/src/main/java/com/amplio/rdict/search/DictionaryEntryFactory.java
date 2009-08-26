@@ -19,6 +19,7 @@ public class DictionaryEntryFactory {
 		StringBuffer sb = new StringBuffer();
 		sb.append(_htmlFileContents);
 		sb.append(def);
+		sb.append( "</body></html>" );
 		
 		return new DictionaryEntry(word, sb.toString());
 	}

@@ -55,7 +55,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 		
 		boolean didAddHistoryRecord = false;
 		for(int i = 0; i < 5; i++) {
-			words = RDictActivity.c_historyMgr.loadHistoryRecordsByDate(sdf2.format(cal.getTime()));
+			words = RDictActivity.historyMgr.loadHistoryRecordsByDate(sdf2.format(cal.getTime()));
 			
 			if(words.size() > 0 ) {
 				strings = new String[words.size()];
@@ -85,7 +85,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		String word = parent.getAdapter().getItem(position).toString();
 		
-		DictionaryEntry entry = RDictActivity.c_dictionary.searchByWord(word);
+		DictionaryEntry entry = RDictActivity.dictionary.searchByWord(word);
 		
 		DictionaryActivity.sessionHistory.clear();
 		DictionaryActivity.sessionHistory.addWord(entry);

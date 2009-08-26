@@ -29,7 +29,7 @@ public class DictionaryWebViewClient extends WebViewClient{
 		if (url.contains("lookup")) {
 			String word = url.substring(url.indexOf('=') + 1);
 			
-			dicActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(word);
+			dicActivity.dicEntry = RDictActivity.dictionary.searchByWord(word);
 			
 			DictionaryActivity.sessionHistory.addWord(dicActivity.dicEntry);
 			
@@ -53,7 +53,7 @@ public class DictionaryWebViewClient extends WebViewClient{
 			String def = url.substring(url.indexOf('=') + 1);
 			this.dicActivity.addCard(URLDecoder.decode(def));
 			
-			RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
+			RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
 			
 			return true;
 		}

@@ -112,7 +112,7 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     }
 
 	public void addCard(String def){
-		RDictActivity.c_cardSetManager.create( title.getText().toString(), def );
+		RDictActivity.cardSetManager.create( title.getText().toString(), def );
     }
     
     public void onClick(View v) {
@@ -121,7 +121,7 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 		else
 			DictionaryActivity.sessionHistory.goForward();
 		
-		this.dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
+		this.dicEntry = RDictActivity.dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
 		this.refreshDicPage();
 	}
 

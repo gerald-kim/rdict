@@ -20,7 +20,7 @@ public class LoadDictionaryService extends Service implements Runnable {
 	public void run() {
 		isRunning = true;
 		
-		RDictActivity.c_dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
+		RDictActivity.dictionary = new Dictionary( "/sdcard/rdict/word.cdb", "/sdcard/rdict/word.index",
 					        						splashActivity.getAssetInputStream( "dictionary_js.html"), 
 					        						splashActivity.getHandler(), 
 					        						splashActivity.getRunnableForDBInit());

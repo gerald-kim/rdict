@@ -43,7 +43,7 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 	    
 		if(v != this.helpButton) {
 			FlashCardActivity.exerciseMgr.userPressedAnEasinessButton(this.getGradeByButton(v));
-		    RDictActivity.c_cardSetManager.save(FlashCardActivity.exerciseMgr.getCard());
+		    RDictActivity.cardSetManager.save(FlashCardActivity.exerciseMgr.getCard());
 		    
 		    RDictActivity.RDICT_ACTIVITY.updateReviewTabIndicator();
 		    
@@ -53,7 +53,7 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 		    	this.a.drawDisplay();
 			}
 			else{
-				RDictActivity.c_statisticsManager.saveOrUpdateCardStackStatistics();
+				RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
 				this.a.finish();
 			}
 	    }
