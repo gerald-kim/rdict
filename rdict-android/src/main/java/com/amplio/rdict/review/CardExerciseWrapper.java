@@ -25,17 +25,17 @@ public class CardExerciseWrapper implements OnClickListener {
 		return c;
 	}
 		
-	View v = null;
+	View view = null;
 	public TextView exerciseLabel = null;
 	public Button exerciseButton = null;
 	
 	public int reviewMode = -1;
 	
 	public CardExerciseWrapper(Context context) {
-		this.v = View.inflate( context, R.layout.card_exercise, null);
+		this.view = View.inflate( context, R.layout.card_exercise, null);
 		
-		this.exerciseLabel = (TextView) this.v.findViewById(R.id.exercise_label ); 
-		this.exerciseButton = (Button) this.v.findViewById(R.id.start_exercise_button); 
+		this.exerciseLabel = (TextView) this.view.findViewById(R.id.exercise_label ); 
+		this.exerciseButton = (Button) this.view.findViewById(R.id.start_exercise_button); 
 		this.exerciseButton.setOnClickListener(this);
 	}
 	
@@ -45,7 +45,7 @@ public class CardExerciseWrapper implements OnClickListener {
 	}
 
 	public View getView() {
-		return this.v;
+		return this.view;
 	}
 	
 	public void onClick(View v) {
