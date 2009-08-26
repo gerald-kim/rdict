@@ -14,26 +14,26 @@ import com.amplio.rdict.review.Card;
 
 public class NeoDatisTest extends TestCase {
 
-	private ODB m_odb;
+	private ODB odb;
 
 	@Override
 	protected void setUp() throws Exception {
-		m_odb = ODBFactory.open( "/tmp/test.odb" );
+		odb = ODBFactory.open( "/tmp/test.odb" );
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		m_odb.rollback();
-		m_odb.close();
+		odb.rollback();
+		odb.close();
 	}
 
 	public void testSaveObject() {
 		Card card = new Card( "question", "answer" );
 
-		m_odb.store( card );
+		odb.store( card );
 
 		IQuery query = new CriteriaQuery( Card.class, Where.equal( "question", "question" ) );
-		Objects<Card> players = m_odb.getObjects( query );
+		Objects<Card> players = odb.getObjects( query );
 
 		int i = 1;
 		// display each object
@@ -44,18 +44,18 @@ public class NeoDatisTest extends TestCase {
 
 	public void testCommitAndRepoen() {
 		Card card = new Card( "question", "answer" );
-		OID cardId = m_odb.store( card );
+		OID cardId = odb.store( card );
 		
-		m_odb.commit();
-		m_odb.close();
+		odb.commit();
+		odb.close();
 		
-		m_odb = ODBFactory.open( "/tmp/test.odb" );
+		odb = ODBFactory.open( "/tmp/test.odb" );
 
-		Card actual = (Card) m_odb.getObjectFromId( cardId );
+		Card actual = (Card) odb.getObjectFromId( cardId );
 		assertEquals( "question", actual.question );
 		
-		m_odb.delete( actual.sh, false );
-		m_odb.delete( actual, false );
-		m_odb.commit();
+		odb.delete( actual.sh, false );
+		odb.delete( actual, false );
+		odb.commit();
 	}
 }

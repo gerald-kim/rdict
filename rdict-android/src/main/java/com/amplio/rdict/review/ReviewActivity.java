@@ -31,7 +31,7 @@ public class ReviewActivity extends Activity implements Runnable{
 	private ReviewGraphViewWrapper cardCountGraph = null;
 	private ReviewGraphViewWrapper gradeGraph = null;
 	
-	private Handler m_graphViewHandler = null;
+	private Handler graphViewHandler = null;
 	
 	@Override
 	public void onCreate(Bundle icicle){
@@ -53,7 +53,7 @@ public class ReviewActivity extends Activity implements Runnable{
 		this.gradeGraph = new ReviewGraphViewWrapper(this.getApplicationContext(), "Grade: ");
 		this.graphLayout.addView( this.gradeGraph.getView());
 		
-		this.m_graphViewHandler = new Handler();
+		this.graphViewHandler = new Handler();
 	}
 	
 	public void onResume() {
@@ -129,13 +129,13 @@ public class ReviewActivity extends Activity implements Runnable{
 		Number[] cardCountData = RDictActivity.c_statisticsManager.fetchCardCountData(oneMonthAgo);
 		String numCardsAddedToday = cardCountData[cardCountData.length - 1].toString();
 		
-		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData, this.m_graphViewHandler, this.cardCountGraph.getDrawGraphRunnable());
+		this.cardCountGraph.setValueAndData( numCardsAddedToday, cardCountData, this.graphViewHandler, this.cardCountGraph.getDrawGraphRunnable());
 		this.cardCountGraph.getView().refreshDrawableState();
 		
 		Number[] gradeData = RDictActivity.c_statisticsManager.fetchGradeData(oneMonthAgo);
 		String todaysGrade = gradeData[gradeData.length - 1].toString() + " %";
 	
-		this.gradeGraph.setValueAndData( todaysGrade, gradeData, this.m_graphViewHandler, this.gradeGraph.getDrawGraphRunnable());
+		this.gradeGraph.setValueAndData( todaysGrade, gradeData, this.graphViewHandler, this.gradeGraph.getDrawGraphRunnable());
 		this.gradeGraph.getView().refreshDrawableState();		
 	}
 }

@@ -10,13 +10,13 @@ import java.text.RuleBasedCollator;
 import junit.framework.TestCase;
 
 public class DictionaryTest extends TestCase {
-	private Dictionary m_dictionary;
+	private Dictionary dictionary;
 
 	public void setUp() {
 		InputStream is = null;
 		try {
 			is = new FileInputStream( "assets/dictionary_js.html" );
-			m_dictionary = new Dictionary( "src/test/resources/word.cdb",
+			dictionary = new Dictionary( "src/test/resources/word.cdb",
 			        					   "src/test/resources/word.index", is, null, null );
 			is.close();
 		} catch( FileNotFoundException e ) {
@@ -27,36 +27,36 @@ public class DictionaryTest extends TestCase {
 	}
 
 	public void tearDown() {
-		// m_dictionary.
+		// dictionary.
 	}
 
 	public void testInit() {
-		assertEquals( 28134, m_dictionary.words.length );
+		assertEquals( 28134, Dictionary.words.length );
 	}
 
 	public void atestFindExistingWordIndex() {
-		assertEquals( 0, m_dictionary.findWordIndex( "'em" ) );
-		assertEquals( 3, m_dictionary.findWordIndex( "a" ) );
-		assertEquals( 4, m_dictionary.findWordIndex( "A" ) );
-		assertEquals( 5, m_dictionary.findWordIndex( "a-" ) );
-		assertEquals( 31, m_dictionary.findWordIndex( "abet" ) );
-		assertEquals( 8048, m_dictionary.findWordIndex( "er" ) );
-		assertEquals( 8049, m_dictionary.findWordIndex( "ER" ) );
-		assertEquals( 8050, m_dictionary.findWordIndex( "-er" ) );
+		assertEquals( 0, dictionary.findWordIndex( "'em" ) );
+		assertEquals( 3, dictionary.findWordIndex( "a" ) );
+		assertEquals( 4, dictionary.findWordIndex( "A" ) );
+		assertEquals( 5, dictionary.findWordIndex( "a-" ) );
+		assertEquals( 31, dictionary.findWordIndex( "abet" ) );
+		assertEquals( 8048, dictionary.findWordIndex( "er" ) );
+		assertEquals( 8049, dictionary.findWordIndex( "ER" ) );
+		assertEquals( 8050, dictionary.findWordIndex( "-er" ) );
 	}
 	
 	public void atestFindExistingWordIndexIfWordWouldAppearAfterLastInList() {
-		assertEquals(m_dictionary.m_wordsLoaded - 1, m_dictionary.findWordIndex("zzzzzzzzzzzz") );
+		assertEquals(Dictionary.wordsLoaded - 1, dictionary.findWordIndex("zzzzzzzzzzzz") );
 	}
 
 	public void testFindNonExistingWordIndex() {
-		assertEquals( 10, m_dictionary.findWordIndex( "ab" ) );
-		assertEquals( 10, m_dictionary.findWordIndex( "aback" ) );
-		assertEquals( 11, m_dictionary.findWordIndex( "abackt" ) );
+		assertEquals( 10, dictionary.findWordIndex( "ab" ) );
+		assertEquals( 10, dictionary.findWordIndex( "aback" ) );
+		assertEquals( 11, dictionary.findWordIndex( "abackt" ) );
 	}
 
 	public void testGetDefinition() {
-		DictionaryEntry e = m_dictionary.searchByWord( "a" );
+		DictionaryEntry e = dictionary.searchByWord( "a" );
 		assertNotNull( e );
 		// System.out.println( e.contents );
 	}

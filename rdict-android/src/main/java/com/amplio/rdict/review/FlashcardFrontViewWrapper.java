@@ -6,20 +6,20 @@ import android.view.View;
 import com.amplio.rdict.R;
 
 public class FlashcardFrontViewWrapper {
-	private View m_view = null;
+	private View view = null;
 	
-	ScalableTextView m_frontWordLabel = null;
+	ScalableTextView frontWordLabel = null;
 	
 	public FlashcardFrontViewWrapper(Context context) {
-		this.m_view = View.inflate(context, R.layout.flashcard_front, null);
-		this.m_frontWordLabel = (ScalableTextView) this.m_view.findViewById(R.id.front_headword_label);
+		this.view = View.inflate(context, R.layout.flashcard_front, null);
+		this.frontWordLabel = (ScalableTextView) this.view.findViewById(R.id.front_headword_label);
 	}
 
 	public void setWord( String question ) {
-		this.m_frontWordLabel.setText(question);
+		this.frontWordLabel.setText(question);
     }
 
 	public View getView() {
-	    return this.m_view;
+	    return this.view;
     }
 }

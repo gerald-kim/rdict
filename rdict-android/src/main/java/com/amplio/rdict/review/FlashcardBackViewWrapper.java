@@ -8,24 +8,24 @@ import com.amplio.rdict.R;
 
 public class FlashcardBackViewWrapper {
 	
-	private View m_view = null;
+	private View view = null;
 	
-	ScalableTextView m_backWordLabel = null;
-	TextView m_defLabel = null;
+	ScalableTextView backWordLabel = null;
+	TextView defLabel = null;
 	
 	public FlashcardBackViewWrapper(Context context) {
-		this.m_view = View.inflate(context, R.layout.flashcard_back, null);
-		this.m_backWordLabel = (ScalableTextView) this.m_view.findViewById(R.id.back_headword_label);
-		this.m_defLabel = (TextView) this.m_view.findViewById(R.id.definition_label);
+		this.view = View.inflate(context, R.layout.flashcard_back, null);
+		this.backWordLabel = (ScalableTextView) this.view.findViewById(R.id.back_headword_label);
+		this.defLabel = (TextView) this.view.findViewById(R.id.definition_label);
 	}
 
 	public View getView() {
-	    return m_view;
+	    return view;
     }
 
 	public void setWordAndDef( String question, String answer) {
-		this.m_backWordLabel.setText(question);
-		this.m_defLabel.setText(answer);
+		this.backWordLabel.setText(question);
+		this.defLabel.setText(answer);
     }
 
 }

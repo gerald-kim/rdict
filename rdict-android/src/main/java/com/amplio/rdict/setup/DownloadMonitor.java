@@ -11,46 +11,46 @@ public class DownloadMonitor {
 	public static final int STATE_FINISHED_CHECKING_SUCCESS = 5;
 	public static final int STATE_FINISHED_CHECKING_FAILED = 6;
 	
-	private int m_state = STATE_NOT_STARTED;
+	private int state = STATE_NOT_STARTED;
 	
-	Handler m_handler = null;
-	Runnable m_runnable = null;
+	Handler handler = null;
+	Runnable runnable = null;
 	
-	public long m_numBytesToDownload = 0;
-	public long m_bytesDownloaded = 0;
+	public long numBytesToDownload = 0;
+	public long bytesDownloaded = 0;
 	
 	public DownloadMonitor(Handler handler, Runnable runnable) {
-		this.m_handler = handler;
-		this.m_runnable = runnable;					
+		this.handler = handler;
+		this.runnable = runnable;					
 	}
 	
 	public void postChange() {
-		this.m_handler.post(this.m_runnable);
+		this.handler.post(this.runnable);
 	}
 	
 	public void setState(int state) {
-		this.m_state = state;
+		this.state = state;
 	}
 	
 	public boolean isDownloading() {
-		return this.m_state == STATE_DOWNLOADING_FILE_SIZES || this.m_state == STATE_DOWNLOADING_FILES;
+		return this.state == STATE_DOWNLOADING_FILE_SIZES || this.state == STATE_DOWNLOADING_FILES;
 	}
 	
 	public boolean isVerifying() {
-		return this.m_state == STATE_VERIFYING_FILES;
+		return this.state == STATE_VERIFYING_FILES;
     }
 	
 	public int getProgress() {
-		return new Double((new Long(this.m_bytesDownloaded).doubleValue() / this.m_numBytesToDownload) * 100).intValue();
+		return new Double((new Long(this.bytesDownloaded).doubleValue() / this.numBytesToDownload) * 100).intValue();
 	}
 
 	public boolean isFinished() {
-		return this.m_state == STATE_FINISHED_DOWNLOAD_ONLY
-				|| this.m_state == STATE_FINISHED_CHECKING_FAILED
-				|| this.m_state == STATE_FINISHED_CHECKING_SUCCESS;
+		return this.state == STATE_FINISHED_DOWNLOAD_ONLY
+				|| this.state == STATE_FINISHED_CHECKING_FAILED
+				|| this.state == STATE_FINISHED_CHECKING_SUCCESS;
     }
 	
 	public int getState() {
-		return this.m_state;
+		return this.state;
 	}
 }

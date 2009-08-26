@@ -33,17 +33,17 @@ public class ReviewGraphViewWrapper {
 	public static final int HEIGHT = 110;
 	public static final int SPACING = 2;
 	
-	private Context m_context = null;
+	private Context context = null;
 	private View v = null;
 	private TextView graphLabel = null;
 	private TextView todaysValueTextView = null;
 	private ImageView graphBitmapView = null;
 	
-	private String m_todaysValStr = null;
-	private Bitmap m_graphBitmap = null;
+	private String todaysValStr = null;
+	private Bitmap graphBitmap = null;
 	
 	public ReviewGraphViewWrapper(Context context, String label) {
-		this.m_context = context;
+		this.context = context;
 		this.v = View.inflate( context, R.layout.graph, null);
 		
 		this.graphLabel = (TextView) this.v.findViewById(R.id.graph_label ); 
@@ -53,7 +53,7 @@ public class ReviewGraphViewWrapper {
 	}
 	
 	public void setValueAndData(String todaysValue, Number[] data, Handler handler, Runnable graphUpdateRunnable) {
-		this.m_todaysValStr = todaysValue;
+		this.todaysValStr = todaysValue;
 		
 		StringBuilder strBuilder = new StringBuilder();
 		boolean isFirst = true;
@@ -67,7 +67,7 @@ public class ReviewGraphViewWrapper {
 		}
 		try {
 			URL img = new URL("http://chart.apis.google.com/chart?chs=180x50&cht=ls&chco=0077CC&chm=B,E6F2FA,0,0,0&chls=1,0,0&chd=t:" + strBuilder.toString() ); 
-	        this.m_graphBitmap = BitmapFactory.decodeStream( img.openStream());
+	        this.graphBitmap = BitmapFactory.decodeStream( img.openStream());
         } catch( IOException e ) {
 	        e.printStackTrace();
         }
@@ -78,9 +78,9 @@ public class ReviewGraphViewWrapper {
 	public Runnable getDrawGraphRunnable() {
 		return new Runnable() {
 			public void run() {
-				todaysValueTextView.setText(m_todaysValStr);
-				graphBitmapView.setAnimation(AnimationUtils.loadAnimation(m_context, R.anim.fade));
-				graphBitmapView.setImageBitmap(m_graphBitmap);
+				todaysValueTextView.setText(todaysValStr);
+				graphBitmapView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade));
+				graphBitmapView.setImageBitmap(graphBitmap);
             }
 		};
 	}

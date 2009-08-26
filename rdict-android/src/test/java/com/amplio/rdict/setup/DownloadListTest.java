@@ -14,8 +14,8 @@ public class DownloadListTest extends TestCase {
 		list.add("another file", "another writepath");
 		
 		assertEquals(2, list.size());
-		assertEquals(srcFileUrl, list.get(0).m_srcFileUrl);
-		assertEquals(writePath, list.get(0).m_writePath);
+		assertEquals(srcFileUrl, list.get(0).srcFileUrl);
+		assertEquals(writePath, list.get(0).writePath);
 	}
 
 }

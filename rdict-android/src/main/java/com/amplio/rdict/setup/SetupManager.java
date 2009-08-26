@@ -12,45 +12,45 @@ public class SetupManager {
 	public static final int STATE_VERIFICATION_COMPLETED = 7;
 	public static final int STATE_PROMPT_DOWNLOAD_FOR_V_FAILURE = 8;
 
-	private int m_state = STATE_WELCOME;
+	private int state = STATE_WELCOME;
 	
 	public void userAcknowledgedWelcomeScreen() {
-		this.m_state = STATE_PROMPT_DOWNLOAD;
+		this.state = STATE_PROMPT_DOWNLOAD;
 	}
 
 	public void userChoseDownloadOption() {
-		this.m_state = STATE_DOWNLOADING;
+		this.state = STATE_DOWNLOADING;
 	}
 
 	public void userClickedFinish() {
-		this.m_state = STATE_SETUP_COMPLETED;
+		this.state = STATE_SETUP_COMPLETED;
 	}
 
 	public void userChoseToDelayDownlaod() {
-		this.m_state = STATE_DOWNLOAD_LATER;
+		this.state = STATE_DOWNLOAD_LATER;
 	}
 
 	public void userAcknowledgedNeedToDownloadLater() {
-		this.m_state = STATE_SETUP_DELAYED;
+		this.state = STATE_SETUP_DELAYED;
 	}
 
 	public void downloadCompleted() {
-		this.m_state = SetupManager.STATE_VERIFYING;
+		this.state = SetupManager.STATE_VERIFYING;
 	}
 
 	public void verificationWasSuccessful() {
-	    this.m_state = STATE_VERIFICATION_COMPLETED;
+	    this.state = STATE_VERIFICATION_COMPLETED;
     }
 
 	public void verificationFailed() {
-		this.m_state = STATE_PROMPT_DOWNLOAD_FOR_V_FAILURE;
+		this.state = STATE_PROMPT_DOWNLOAD_FOR_V_FAILURE;
     }
 	
 	public int getState() {
-		return this.m_state;
+		return this.state;
 	}
 
 	public void setState(int state ) {
-		m_state = state;
+		state = state;
 	}
 }

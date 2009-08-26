@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -24,17 +23,17 @@ public class DictionaryActivity extends Activity implements OnClickListener {
 	
 	public static History sessionHistory = new History();
 	
-	private TextView m_title = null;
-	private Button m_backButton = null;
-	private Button m_forwardButton = null;
+	private TextView title = null;
+	private Button backButton = null;
+	private Button forwardButton = null;
 	
-	private ViewFlipper m_flipper = null;
-	private TextView m_loadingTitle = null;
-	private LinearLayout m_progressBarLayout = null;
+	private ViewFlipper flipper = null;
+	private TextView loadingTitle = null;
+	private LinearLayout progressBarLayout = null;
 	
-	private WebView m_dicPageWebView = null;
+	private WebView dicPageWebView = null;
 
-	public DictionaryEntry m_dicEntry = null;
+	public DictionaryEntry dicEntry = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -42,31 +41,31 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     	super.onCreate(savedInstanceState);
     	
     	Bundle extras = getIntent().getExtras();
-    	this.m_dicEntry = new DictionaryEntry(extras.getString(SearchActivity.INTENT_PARAM_HEADWORD),
+    	this.dicEntry = new DictionaryEntry(extras.getString(SearchActivity.INTENT_PARAM_HEADWORD),
     										extras.getString(SearchActivity.INTENT_PARAM_CONTENTS));
     	
 		setContentView(R.layout.dictionary);
 
-		m_title = (TextView)findViewById(R.id.title);
-		m_loadingTitle = (TextView)findViewById(R.id.loading_title);
+		title = (TextView)findViewById(R.id.title);
+		loadingTitle = (TextView)findViewById(R.id.loading_title);
 		
-		m_progressBarLayout = (LinearLayout) findViewById(R.id.progressbar_layout);
+		progressBarLayout = (LinearLayout) findViewById(R.id.progressbar_layout);
 
-		m_flipper = (ViewFlipper)findViewById(R.id.webview_flipper);
+		flipper = (ViewFlipper)findViewById(R.id.webview_flipper);
 		
-		m_backButton = (Button)findViewById(R.id.back_button);
-		m_backButton.setOnClickListener(this);
+		backButton = (Button)findViewById(R.id.back_button);
+		backButton.setOnClickListener(this);
 		
-		m_forwardButton = (Button)findViewById(R.id.forward_button);
-		m_forwardButton.setOnClickListener(this);
+		forwardButton = (Button)findViewById(R.id.forward_button);
+		forwardButton.setOnClickListener(this);
 		
-		m_dicPageWebView = (WebView)findViewById(R.id.webview);
-		m_dicPageWebView.getSettings().setJavaScriptEnabled(true);
+		dicPageWebView = (WebView)findViewById(R.id.webview);
+		dicPageWebView.getSettings().setJavaScriptEnabled(true);
 		
 		DictionaryWebViewClient client = new DictionaryWebViewClient();
 		client.dicActivity = this;
 		client.context = this.getApplicationContext();
-		m_dicPageWebView.setWebViewClient(client);
+		dicPageWebView.setWebViewClient(client);
     }
         
     public void onResume(){
@@ -76,36 +75,36 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     }
     
     public void refreshDicPage() {
-    	if(this.m_dicEntry != null) {
-    		m_loadingTitle.setText(m_dicEntry.headword);
-    		m_title.setText(m_dicEntry.headword);
+    	if(this.dicEntry != null) {
+    		loadingTitle.setText(dicEntry.headword);
+    		title.setText(dicEntry.headword);
     		
-    		StringBuilder sb = new StringBuilder(m_dicEntry.contents);
-    		sb.append(getCCBySALicenseString(m_dicEntry.headword));
+    		StringBuilder sb = new StringBuilder(dicEntry.contents);
+    		sb.append(getCCBySALicenseString(dicEntry.headword));
     		
-    		m_dicPageWebView.loadDataWithBaseURL("fake://dagnabbit", sb.toString(), "text/html", "utf-8", null);
+    		dicPageWebView.loadDataWithBaseURL("fake://dagnabbit", sb.toString(), "text/html", "utf-8", null);
     	}
 		else {
-			this.m_title.setText("No Results");
-			m_dicPageWebView.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
+			this.title.setText("No Results");
+			dicPageWebView.loadDataWithBaseURL("fake://dagnabbit","Sorry, no results.", "text/html", "utf-8", null);
 		}
     	
-    	this.m_backButton.setEnabled(DictionaryActivity.sessionHistory.canGoBack());
-    	this.m_forwardButton.setEnabled(DictionaryActivity.sessionHistory.canGoForward());	
+    	this.backButton.setEnabled(DictionaryActivity.sessionHistory.canGoBack());
+    	this.forwardButton.setEnabled(DictionaryActivity.sessionHistory.canGoForward());	
     }
     
     public void showLoadingTitle() {
 	    if(! isShowingLoadingTitle())
-	    	m_flipper.showPrevious();  
+	    	flipper.showPrevious();  
     }
     
     public void showDictionaryTitle() {
     	if(isShowingLoadingTitle())
-    		m_flipper.showNext();
+    		flipper.showNext();
     }
 
 	private boolean isShowingLoadingTitle() {
-		return m_progressBarLayout ==  m_flipper.getCurrentView();
+		return progressBarLayout ==  flipper.getCurrentView();
     }
     
     private String getCCBySALicenseString( String headword ) {
@@ -113,16 +112,16 @@ public class DictionaryActivity extends Activity implements OnClickListener {
     }
 
 	public void addCard(String def){
-		RDictActivity.c_cardSetManager.create( m_title.getText().toString(), def );
+		RDictActivity.c_cardSetManager.create( title.getText().toString(), def );
     }
     
     public void onClick(View v) {
-		if(this.m_backButton == v)
+		if(this.backButton == v)
 			DictionaryActivity.sessionHistory.goBack();
 		else
 			DictionaryActivity.sessionHistory.goForward();
 		
-		this.m_dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
+		this.dicEntry = RDictActivity.c_dictionary.searchByWord(DictionaryActivity.sessionHistory.getWord().headword);
 		this.refreshDicPage();
 	}
 

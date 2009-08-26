@@ -9,33 +9,31 @@ import android.widget.Button;
 import com.amplio.rdict.R;
 
 public class ReviewExerciseFrontButtonsViewWrapper implements OnClickListener {
-	private Context m_context = null;
-	private FlashCardActivity m_a = null;
-	private View m_view = null;
-	Button m_viewAnswerButton = null;
-	Button m_helpButton = null;
+	private FlashCardActivity a = null;
+	private View view = null;
+	Button viewAnswerButton = null;
+	Button helpButton = null;
 	
 	public ReviewExerciseFrontButtonsViewWrapper(Context context, FlashCardActivity a) {		
-		this.m_context = context;
-		this.m_view = View.inflate(m_context, R.layout.review_exercise_buttons_front, null);
-		this.m_viewAnswerButton = (Button) this.m_view.findViewById(R.id.view_answer_button);
-		this.m_viewAnswerButton.setOnClickListener(this);
-		this.m_helpButton = (Button) this.m_view.findViewById(R.id.front_help_button);
-		this.m_helpButton.setOnClickListener(this);
+		this.view = View.inflate(context, R.layout.review_exercise_buttons_front, null);
+		this.viewAnswerButton = (Button) this.view.findViewById(R.id.view_answer_button);
+		this.viewAnswerButton.setOnClickListener(this);
+		this.helpButton = (Button) this.view.findViewById(R.id.front_help_button);
+		this.helpButton.setOnClickListener(this);
 		
-		this.m_a = a;
+		this.a = a;
 	}
 
 	public void onClick(View v) {
-		if(v == this.m_viewAnswerButton) {
-			FlashCardActivity.m_exerciseMgr.userPressedViewAnswerButton();
+		if(v == this.viewAnswerButton) {
+			FlashCardActivity.exerciseMgr.userPressedViewAnswerButton();
 			
 			v.setPressed(false);
 			
-		    m_a.drawDisplay();
+		    a.drawDisplay();
 		}
 		else {
-			new AlertDialog.Builder(this.m_a)
+			new AlertDialog.Builder(this.a)
 			.setTitle("Help")
 			.setMessage("Can you remember this word?  Think about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'View Answer' button.")
 			.setNeutralButton("Ok", null)
@@ -44,7 +42,7 @@ public class ReviewExerciseFrontButtonsViewWrapper implements OnClickListener {
     }
 
 	public View getView() {
-	    return this.m_view;
+	    return this.view;
     }
 
 }

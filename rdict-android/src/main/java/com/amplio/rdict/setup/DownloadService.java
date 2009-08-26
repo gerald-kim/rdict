@@ -12,7 +12,7 @@ public class DownloadService extends Service implements Runnable{
 
 	public static boolean isRunning = false;
 	
-	public DictionaryDownloader m_downloader = null;
+	public DictionaryDownloader downloader = null;
 	
 	@Override
 	public void onCreate() {
@@ -22,14 +22,14 @@ public class DownloadService extends Service implements Runnable{
 		downloadList.add(DictionaryDownloader.SOURCE_URL_DB, DictionaryDownloader.WRITE_PATH_DB);
 		downloadList.add(DictionaryDownloader.SOURCE_URL_INDEX, DictionaryDownloader.WRITE_PATH_INDEX);
 		
-		m_downloader = new DictionaryDownloader(downloadList, dm, DictionaryDownloader.DO_MD5_CHECK);
+		downloader = new DictionaryDownloader(downloadList, dm, DictionaryDownloader.DO_MD5_CHECK);
 		
 		new Thread(this).start();
 	}
 	
 	public void run() {
 		isRunning = true;
-		m_downloader.run();
+		downloader.run();
 		
 		this.stopSelf();
 		

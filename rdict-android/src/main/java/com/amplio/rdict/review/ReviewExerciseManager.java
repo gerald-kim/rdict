@@ -14,53 +14,53 @@ public class ReviewExerciseManager {
 	public static final int STATE_USER_FINISHED_EXERCISE = 3;
 	public static final int STATE_LOADED_NEXT_CARD = 4;
 	
-	private int m_state = -1;
-	private Vector<Card> m_cards = null;
-	private int m_cardIndex = 0;
+	private int state = -1;
+	private Vector<Card> cards = null;
+	private int cardIndex = 0;
 	
 	public ReviewExerciseManager(Vector<Card> cards) {
-		this.m_state = STATE_USER_STARTED_EXERCISE;
-		this.m_cards = cards;
+		this.state = STATE_USER_STARTED_EXERCISE;
+		this.cards = cards;
 	}
 	
 	public void userPressedViewAnswerButton() {
-		this.m_state = STATE_USER_PRESSED_VIEW_ANSWER;    
+		this.state = STATE_USER_PRESSED_VIEW_ANSWER;    
     }
 
 	public void userPressedAnEasinessButton(int grade) {
-		this.m_state = STATE_USER_PRESSED_EASINESS_BUTTON;
+		this.state = STATE_USER_PRESSED_EASINESS_BUTTON;
 		
-		Card c = this.m_cards.elementAt(this.m_cardIndex);
+		Card c = this.cards.elementAt(this.cardIndex);
 		c.scheduleByGrade(grade);
     }
 	
 	public void next() {
-		this.m_cardIndex++;
+		this.cardIndex++;
 			
-		if(this.m_cardIndex < this.m_cards.size())
-			this.m_state = STATE_LOADED_NEXT_CARD;
+		if(this.cardIndex < this.cards.size())
+			this.state = STATE_LOADED_NEXT_CARD;
 		else
-			this.m_state = STATE_USER_FINISHED_EXERCISE;
+			this.state = STATE_USER_FINISHED_EXERCISE;
 	}
 	
 	public int getState() {
-	    return m_state;
+	    return state;
     }
 
 	public int getCardIndex() {
-	    return m_cardIndex ;
+	    return cardIndex ;
     }
 
 	public Card getCard() {
-	    return this.m_cards.get(this.m_cardIndex);
+	    return this.cards.get(this.cardIndex);
     }
 
 	public int getCardCount() {
-		return this.m_cards.size();
+		return this.cards.size();
     }
 
 	public void setState(int state) {
-	    this.m_state = state;
+	    this.state = state;
     }
 
 }

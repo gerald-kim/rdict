@@ -44,14 +44,14 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 
 	public static RDictActivity RDICT_ACTIVITY = null;
 	
-	TabHost m_tabHost = null;
+	TabHost tabHost = null;
 	TabHost.TabSpec searchTab = null;
 	TabHost.TabSpec reviewTab = null;
 	TabHost.TabSpec historyTab = null;
 	TabHost.TabSpec moreTab = null;
 	
-	private ODB m_db = null;
-	private SQLiteDatabase m_con = null;
+	private ODB db = null;
+	private SQLiteDatabase con = null;
 	
 	public static StartupManager c_startupMgr = null;
 	
@@ -70,8 +70,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	super.onCreate(savedInstanceState);
     	
     	setContentView(R.layout.main);
-    	m_tabHost = getTabHost();
-		setupTabs(m_tabHost);
+    	tabHost = getTabHost();
+		setupTabs(tabHost);
     	
     	SetupActivity.setupMgr = new SetupManager();
     	c_startupMgr = new StartupManager();
@@ -145,7 +145,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	ComponentName activity = new ComponentName(BASE_PACKAGE, ACTIVITY_PATHS[index] + TAB_NAMES[index] + "Activity");
     	tab.setContent(new Intent().setComponent(activity));
     	
-    	if(index == TAB_INDEX_REVIEW && c_cardSetManager != null && m_db != null && ! m_db.isClosed())
+    	if(index == TAB_INDEX_REVIEW && c_cardSetManager != null && db != null && ! db.isClosed())
 		    tab.setIndicator(buildReviewTabIndicator());
     	else
     		tab.setIndicator(TAB_NAMES[index]);
@@ -154,7 +154,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
 
 	public void updateReviewTabIndicator() {
-	    RelativeLayout r = (RelativeLayout) m_tabHost.getTabWidget().getChildAt(1);
+	    RelativeLayout r = (RelativeLayout) tabHost.getTabWidget().getChildAt(1);
 	    TextView reviewTabTextView = (TextView) r.getChildAt(1);  // hackmaster Steve -_-;;;
 	    reviewTabTextView.setText(buildReviewTabIndicator());
     }
@@ -175,28 +175,28 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     protected void onDestroy() {
     	System.out.println("RDict - On Destroy");
     	
-    	if(m_db != null && ! m_db.isClosed())
-    		m_db.close();
+    	if(db != null && ! db.isClosed())
+    		db.close();
     	
-    	if(m_con != null && m_con.isOpen())
-    		m_con.close();
+    	if(con != null && con.isOpen())
+    		con.close();
     	
     	super.onDestroy();
     }
     
 	private void initDatabaseManagers() {
-		if(m_db == null || m_db.isClosed())
-		    m_db = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
+		if(db == null || db.isClosed())
+		    db = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
 	    
-	    c_cardSetManager = new CardSetManager( m_db );
-	    c_reviewManager = new ReviewManager( m_db, c_cardSetManager );
-	    c_statisticsManager = new StatisticsManager( m_db, c_cardSetManager );
+	    c_cardSetManager = new CardSetManager( db );
+	    c_reviewManager = new ReviewManager( db, c_cardSetManager );
+	    c_statisticsManager = new StatisticsManager( db, c_cardSetManager );
         
-	    if(m_con == null || ! m_con.isOpen())
-	    	m_con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
+	    if(con == null || ! con.isOpen())
+	    	con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
     	
-	    c_historyMgr = new HistoryManager(m_con);
-		c_historyMgr.createTableIfNotExists( m_con );
+	    c_historyMgr = new HistoryManager(con);
+		c_historyMgr.createTableIfNotExists( con );
     }
 	
 	public InputStream getAssetInputStream(String path) {

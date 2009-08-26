@@ -41,10 +41,10 @@ public class DownloadUtils {
 				f.write(buffer,0, len1);
 				
 				if(downloadMonitor != null) {
-					downloadMonitor.m_bytesDownloaded += new Integer(len1).longValue();
+					downloadMonitor.bytesDownloaded += new Integer(len1).longValue();
 				
-					if(downloadMonitor.m_handler != null && downloadMonitor.m_runnable!= null)
-						downloadMonitor.m_handler.post(downloadMonitor.m_runnable);
+					if(downloadMonitor.handler != null && downloadMonitor.runnable!= null)
+						downloadMonitor.handler.post(downloadMonitor.runnable);
 				}
 			}
 			f.close();

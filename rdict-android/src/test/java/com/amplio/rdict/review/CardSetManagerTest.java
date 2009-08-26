@@ -1,15 +1,11 @@
 package com.amplio.rdict.review;
 
 import java.io.File;
-import java.util.Vector;
 
 import junit.framework.TestCase;
 
-import org.joda.time.DateTime;
-import org.joda.time.MutableDateTime;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
-import org.neodatis.odb.Objects;
 
 public class CardSetManagerTest extends TestCase {
 
@@ -17,11 +13,11 @@ public class CardSetManagerTest extends TestCase {
 
 	ODB db = null;
 
-	private CardSetManager m_cardSetManager;
+	private CardSetManager cardSetManager;
 
 	public void setUp() {
 		db = ODBFactory.open( DB_TEST_FILE );
-		m_cardSetManager = new CardSetManager( db );
+		cardSetManager = new CardSetManager( db );
 	}
 
 	public void tearDown() {
@@ -31,7 +27,7 @@ public class CardSetManagerTest extends TestCase {
 //	public void testSaveCard() {
 //		Card cardForToday = new Card( "today", "the answer" );
 //
-//		m_cardSetManager.save( cardForToday );
+//		cardSetManager.save( cardForToday );
 //
 //		Objects<Card> cards = db.getObjects( Card.class );
 //
@@ -40,10 +36,10 @@ public class CardSetManagerTest extends TestCase {
 //	}
 //
 //	public void testSaveDuplicatedCard() {
-//		m_cardSetManager.create( "question", "answer1" );
-//		m_cardSetManager.create( "question", "answer2" );
+//		cardSetManager.create( "question", "answer1" );
+//		cardSetManager.create( "question", "answer2" );
 //		
-//		Card actual = m_cardSetManager.loadCardByHeadword( "question" );
+//		Card actual = cardSetManager.loadCardByHeadword( "question" );
 //		assertEquals( "answer1\n-------\nanswer2", actual.answer );
 //	}
 //
@@ -60,11 +56,11 @@ public class CardSetManagerTest extends TestCase {
 //		dateTime.addDays( 1 );
 //		cardForTomorrowAfter.scheduled = dateTime.toDate(); 
 //		
-//		m_cardSetManager.save( cardForToday );
-//		m_cardSetManager.save( cardForTomorrow  );
-//		m_cardSetManager.save( cardForTomorrowAfter );
+//		cardSetManager.save( cardForToday );
+//		cardSetManager.save( cardForTomorrow  );
+//		cardSetManager.save( cardForTomorrowAfter );
 //
-//		Vector<Card> cards = m_cardSetManager.loadCardsScheduledForToday();
+//		Vector<Card> cards = cardSetManager.loadCardsScheduledForToday();
 //
 //		assertEquals( 1, cards.size() );
 //
@@ -79,10 +75,10 @@ public class CardSetManagerTest extends TestCase {
 //		DateTime dateTime = new DateTime();
 //		cardLookedupIn1970.lookedup = dateTime.minusDays( 100 ).toDate();
 //
-//		m_cardSetManager.save( cardLookedupToday );
-//		m_cardSetManager.save( cardLookedupIn1970 );
+//		cardSetManager.save( cardLookedupToday );
+//		cardSetManager.save( cardLookedupIn1970 );
 //
-//		Vector<Card> cards = m_cardSetManager.loadCardsLookedupToday();
+//		Vector<Card> cards = cardSetManager.loadCardsLookedupToday();
 //
 //		assertEquals( 1, cards.size() );
 //
@@ -97,11 +93,11 @@ public class CardSetManagerTest extends TestCase {
 //		DateTime dateTime = new DateTime();
 //		cardLookedupIn1970.lookedup = dateTime.minusDays( 100 ).toDate();
 //		
-//		m_cardSetManager.save( cardLookedupToday );
-//		m_cardSetManager.save( cardLookedupIn1970 );
+//		cardSetManager.save( cardLookedupToday );
+//		cardSetManager.save( cardLookedupIn1970 );
 //		
 //		
-//		Vector<Card> cards = m_cardSetManager.loadCardsLookedupToday();
+//		Vector<Card> cards = cardSetManager.loadCardsLookedupToday();
 //		
 //		assertEquals( 0, cards.size() );
 //	}
@@ -112,11 +108,11 @@ public class CardSetManagerTest extends TestCase {
 //		Card bCard = new Card( "banana", "the answer" );
 //		Card cCard = new Card( "coconunt", "the answer" );
 //
-//		m_cardSetManager.save( bCard );
-//		m_cardSetManager.save( aCard );
-//		m_cardSetManager.save( cCard );
+//		cardSetManager.save( bCard );
+//		cardSetManager.save( aCard );
+//		cardSetManager.save( cCard );
 //
-//		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "" );
+//		Vector<Card> cards = cardSetManager.loadCardsByPrefix( "" );
 //
 //		assertEquals( 3, cards.size() );
 //		assertEquals( aCard.question, ((Card) cards.get( 0 )).question );
@@ -130,11 +126,11 @@ public class CardSetManagerTest extends TestCase {
 //		Card bCard = new Card( "banana", "the answer" );
 //		Card cCard = new Card( "coconunta", "the answer" );
 //
-//		m_cardSetManager.save( aCard );
-//		m_cardSetManager.save( bCard );
-//		m_cardSetManager.save( cCard );
+//		cardSetManager.save( aCard );
+//		cardSetManager.save( bCard );
+//		cardSetManager.save( cCard );
 //
-//		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "a" );
+//		Vector<Card> cards = cardSetManager.loadCardsByPrefix( "a" );
 //
 //		assertEquals( 1, cards.size() );
 //		assertEquals( aCard.question, cards.get( 0 ).question );
@@ -145,18 +141,18 @@ public class CardSetManagerTest extends TestCase {
 //		Card bCard = new Card( "banana", "the answer" );
 //		Card cCard = new Card( "coconunt", "the answer" );
 //
-//		m_cardSetManager.save( aCard );
-//		m_cardSetManager.save( bCard );
-//		m_cardSetManager.save( cCard );
+//		cardSetManager.save( aCard );
+//		cardSetManager.save( bCard );
+//		cardSetManager.save( cCard );
 //
-//		Vector<Card> cards = m_cardSetManager.loadCardsByPrefix( "a" );
+//		Vector<Card> cards = cardSetManager.loadCardsByPrefix( "a" );
 //
 //		assertEquals( 1, cards.size() );
 //		assertEquals( 3, db.getObjects( ScoreHistory.class ).size() );
 //		
-//		m_cardSetManager.deleteCard( aCard );
+//		cardSetManager.deleteCard( aCard );
 //
-//		cards = m_cardSetManager.loadCardsByPrefix( "a" );
+//		cards = cardSetManager.loadCardsByPrefix( "a" );
 //
 //		assertEquals( 0, cards.size() );
 //		assertEquals( 2, db.getObjects( ScoreHistory.class ).size() );
@@ -169,11 +165,11 @@ public class CardSetManagerTest extends TestCase {
 //		Card bCard = new Card( "banana", "the answer" );
 //		Card cCard = new Card( "coconunt", "the answer" );
 //
-//		m_cardSetManager.save( aCard );
-//		m_cardSetManager.save( bCard );
-//		m_cardSetManager.save( cCard );
+//		cardSetManager.save( aCard );
+//		cardSetManager.save( bCard );
+//		cardSetManager.save( cCard );
 //
-//		Card c = m_cardSetManager.loadCardByHeadword( "banana" );
+//		Card c = cardSetManager.loadCardByHeadword( "banana" );
 //
 //		assertEquals( "banana", c.question );
 //	}
@@ -184,12 +180,12 @@ public class CardSetManagerTest extends TestCase {
 //		Card bCard2 = new Card( "banana", "the answer2" );
 //		Card cCard = new Card( "coconunt", "the answer" );
 //
-//		m_cardSetManager.save( bCard1 );
-//		m_cardSetManager.save( bCard2 );
-//		m_cardSetManager.save( cCard );
+//		cardSetManager.save( bCard1 );
+//		cardSetManager.save( bCard2 );
+//		cardSetManager.save( cCard );
 //
 //		try {
-//			m_cardSetManager.loadCardByHeadword( "banana" );
+//			cardSetManager.loadCardByHeadword( "banana" );
 //			fail();
 //		} catch( IllegalStateException ignore ) {
 //		}
@@ -199,9 +195,9 @@ public class CardSetManagerTest extends TestCase {
 //
 //		Card bCard1 = new Card( "banana", "the answer" );
 //
-//		m_cardSetManager.save( bCard1 );
+//		cardSetManager.save( bCard1 );
 //
-//		Card c = m_cardSetManager.loadCardByHeadword( "fish" );
+//		Card c = cardSetManager.loadCardByHeadword( "fish" );
 //
 //		assertEquals( null, c );
 //	}
@@ -213,9 +209,9 @@ public class CardSetManagerTest extends TestCase {
 //
 //		assertEquals( "1,0,0", bCard1.getScoreHistory().toString() );
 //
-//		m_cardSetManager.save( bCard1 );
+//		cardSetManager.save( bCard1 );
 //
-//		Card c = m_cardSetManager.loadCardByHeadword( "banana" );
+//		Card c = cardSetManager.loadCardByHeadword( "banana" );
 //
 //		assertEquals( "banana", c.question );
 //		assertEquals( "1,0,0", c.getScoreHistory().toString() );
@@ -226,21 +222,21 @@ public class CardSetManagerTest extends TestCase {
 		Card card2 = new Card( "application", "the answer" );
 		Card card3 = new Card( "apply", "the answer" );
 		
-		m_cardSetManager.save(card1);
-		m_cardSetManager.save(card2);
-		m_cardSetManager.save(card3);
+		cardSetManager.save(card1);
+		cardSetManager.save(card2);
+		cardSetManager.save(card3);
 		
-		m_cardSetManager.loadAllCards();
+		cardSetManager.loadAllCards();
 		
-		assertEquals(3, m_cardSetManager.allCards.size());
+		assertEquals(3, cardSetManager.allCards.size());
 		
-		assertEquals(0, m_cardSetManager.findCardIndexByWordPrefix("appl"));
-		assertEquals(0, m_cardSetManager.findCardIndexByWordPrefix("apple"));
+		assertEquals(0, cardSetManager.findCardIndexByWordPrefix("appl"));
+		assertEquals(0, cardSetManager.findCardIndexByWordPrefix("apple"));
 		
-		assertEquals(1, m_cardSetManager.findCardIndexByWordPrefix("appli"));
+		assertEquals(1, cardSetManager.findCardIndexByWordPrefix("appli"));
 		
-		assertEquals(2, m_cardSetManager.findCardIndexByWordPrefix("apply"));
+		assertEquals(2, cardSetManager.findCardIndexByWordPrefix("apply"));
 		
-		assertEquals(2, m_cardSetManager.findCardIndexByWordPrefix("jungle"));
+		assertEquals(2, cardSetManager.findCardIndexByWordPrefix("jungle"));
 	}
 }

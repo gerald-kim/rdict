@@ -20,12 +20,12 @@ public class DictionaryDownloaderTest extends TestCase {
 		while(! downloadMonitor.isFinished())
 			Thread.sleep( 100 );
 		
-		File downloadedFile = new File(downloadList.get(0).m_writePath);
+		File downloadedFile = new File(downloadList.get(0).writePath);
 
 		assertTrue( downloadedFile.exists() );
 		assertEquals( 8914, downloadedFile.length() );
-		assertEquals( 8914, downloadMonitor.m_numBytesToDownload);
-		assertEquals( 8914, downloadMonitor.m_bytesDownloaded );
+		assertEquals( 8914, downloadMonitor.numBytesToDownload);
+		assertEquals( 8914, downloadMonitor.bytesDownloaded );
 	}
 	
 	public void testDownloadFileWithBadMd5DeletesDownloadedFiles() throws InterruptedException {
@@ -43,8 +43,8 @@ public class DictionaryDownloaderTest extends TestCase {
 		while(! downloadMonitor.isFinished()) 
 			Thread.sleep( 100 );
 
-		assertTrue(! new File(downloadList.get(0).m_writePath).exists());
-		assertTrue(! new File(downloadList.get(0).m_md5FileWritePath).exists());
+		assertTrue(! new File(downloadList.get(0).writePath).exists());
+		assertTrue(! new File(downloadList.get(0).md5FileWritePath).exists());
 	}
 
 }

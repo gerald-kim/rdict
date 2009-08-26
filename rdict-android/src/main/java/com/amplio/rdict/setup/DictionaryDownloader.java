@@ -11,15 +11,15 @@ public class DictionaryDownloader implements Runnable {
     
 	public static final boolean DO_MD5_CHECK = true;
 	
-	DownloadList m_downloadList = null;
-	DownloadMonitor m_monitor = null;
+	DownloadList downloadList = null;
+	DownloadMonitor monitor = null;
 	
-	boolean m_doMd5Check = false;
+	boolean doMd5Check = false;
 	
 	public DictionaryDownloader(DownloadList downloadList, DownloadMonitor downloadMonitor, boolean doMd5Check) {
-		this.m_downloadList = downloadList;
-		this.m_monitor = downloadMonitor;
-		this.m_doMd5Check = doMd5Check;
+		this.downloadList = downloadList;
+		this.monitor = downloadMonitor;
+		this.doMd5Check = doMd5Check;
     }
 	
 	public void start() {
@@ -32,85 +32,85 @@ public class DictionaryDownloader implements Runnable {
 			file.mkdir();
 		}
 		
-		this.m_monitor.setState(DownloadMonitor.STATE_DOWNLOADING_FILE_SIZES);		
+		this.monitor.setState(DownloadMonitor.STATE_DOWNLOADING_FILE_SIZES);		
 		
 		fetchFileSizes();
 		
 		if(isRunningInAndroidContext())
-			this.m_monitor.postChange();
+			this.monitor.postChange();
 			
-		this.m_monitor.setState(DownloadMonitor.STATE_DOWNLOADING_FILES);
+		this.monitor.setState(DownloadMonitor.STATE_DOWNLOADING_FILES);
 		
 		downloadFiles();
 		
 		if(isRunningInAndroidContext())
-			this.m_monitor.postChange();
+			this.monitor.postChange();
 		
-		if(this.m_doMd5Check) {
-			this.m_monitor.setState(DownloadMonitor.STATE_VERIFYING_FILES);
+		if(this.doMd5Check) {
+			this.monitor.setState(DownloadMonitor.STATE_VERIFYING_FILES);
 			
 			if(isRunningInAndroidContext())
-				this.m_monitor.postChange();
+				this.monitor.postChange();
 			
 			doMd5Check();
 			
 			if(isRunningInAndroidContext())
-				this.m_monitor.postChange();
+				this.monitor.postChange();
 		}
 		else {
-			this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_DOWNLOAD_ONLY);
+			this.monitor.setState(DownloadMonitor.STATE_FINISHED_DOWNLOAD_ONLY);
 			
 			if(isRunningInAndroidContext())
-				this.m_monitor.postChange();
+				this.monitor.postChange();
 		}
 	}
 
 	private void fetchFileSizes() {
-	    for(int i = 0; i < m_downloadList.size(); i++) {
-			this.m_monitor.m_numBytesToDownload += DownloadUtils.getRemoteFilesize(m_downloadList.get(i).m_srcFileUrl);
+	    for(int i = 0; i < downloadList.size(); i++) {
+			this.monitor.numBytesToDownload += DownloadUtils.getRemoteFilesize(downloadList.get(i).srcFileUrl);
 		
-			if(this.m_doMd5Check) {
-				this.m_monitor.m_numBytesToDownload += DownloadUtils.getRemoteFilesize(m_downloadList.get(i).m_md5FileUrl);
+			if(this.doMd5Check) {
+				this.monitor.numBytesToDownload += DownloadUtils.getRemoteFilesize(downloadList.get(i).md5FileUrl);
 			}
 		}
     }
 	
 	private void downloadFiles() {
-	    for(int i = 0; i < this.m_downloadList.size(); i++) {
-			DownloadUtils.downloadFile(m_downloadList.get(i).m_srcFileUrl, m_downloadList.get(i).m_writePath, this.m_monitor);
+	    for(int i = 0; i < this.downloadList.size(); i++) {
+			DownloadUtils.downloadFile(downloadList.get(i).srcFileUrl, downloadList.get(i).writePath, this.monitor);
 			
-			if(this.m_doMd5Check) {
-				DownloadUtils.downloadFile(m_downloadList.get(i).m_md5FileUrl, m_downloadList.get(i).m_md5FileWritePath, this.m_monitor);
+			if(this.doMd5Check) {
+				DownloadUtils.downloadFile(downloadList.get(i).md5FileUrl, downloadList.get(i).md5FileWritePath, this.monitor);
 			}
 		}
     }
 	
 	private void doMd5Check() {
-	    for(int i = 0; i < m_downloadList.size(); i++) {	
-	    	File downloadedFile = new File(this.m_downloadList.get(i).m_writePath);
-	    	File md5File = new File(this.m_downloadList.get(i).m_md5FileWritePath);
+	    for(int i = 0; i < downloadList.size(); i++) {	
+	    	File downloadedFile = new File(this.downloadList.get(i).writePath);
+	    	File md5File = new File(this.downloadList.get(i).md5FileWritePath);
 	    	
 	    	if (! DownloadUtils.checkFileIntegrity(downloadedFile, md5File)) {
-	    		this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_FAILED);
+	    		this.monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_FAILED);
 	    		this.deleteAllFiles();
 	    		return;
 	    	}
 	    }
 	    
-	    this.m_monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_SUCCESS);
+	    this.monitor.setState(DownloadMonitor.STATE_FINISHED_CHECKING_SUCCESS);
     }
 	
 	private void deleteAllFiles() {
-	    for(int i = 0; i < this.m_downloadList.size(); i++) {
-			new File(m_downloadList.get(i).m_writePath).delete();
+	    for(int i = 0; i < this.downloadList.size(); i++) {
+			new File(downloadList.get(i).writePath).delete();
 			
-			if(this.m_doMd5Check) {
-				new File(m_downloadList.get(i).m_md5FileWritePath).delete();
+			if(this.doMd5Check) {
+				new File(downloadList.get(i).md5FileWritePath).delete();
 			}
 		}
     }
 	
 	private boolean isRunningInAndroidContext() {
-	    return this.m_monitor.m_handler != null && this.m_monitor.m_runnable != null;
+	    return this.monitor.handler != null && this.monitor.runnable != null;
     }
 }

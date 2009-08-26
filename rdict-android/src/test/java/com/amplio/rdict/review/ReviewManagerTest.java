@@ -12,28 +12,28 @@ public class ReviewManagerTest extends TestCase {
 
 	public static final String DB_TEST_FILE = "test.db";
 
-	private ODB m_db;
-	private CardSetManager m_cardSetManager;
+	private ODB db;
+	private CardSetManager cardSetManager;
 
-	private ReviewManager m_mgr;
+	private ReviewManager mgr;
 
 	public void setUp() {
-		m_db = ODBFactory.open( DB_TEST_FILE );
-		m_cardSetManager = new CardSetManager( m_db );
-		m_mgr = new ReviewManager( m_db, m_cardSetManager );
+		db = ODBFactory.open( DB_TEST_FILE );
+		cardSetManager = new CardSetManager( db );
+		mgr = new ReviewManager( db, cardSetManager );
 	}
 
 	public void tearDown() {
-		m_db.rollback();
-		m_db.close();
+		db.rollback();
+		db.close();
 	}
 
 	public void testDetermineStudyModeIfNoCards() {
 
-		m_mgr.checkAvailableExercises();
+		mgr.checkAvailableExercises();
 
-		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
-		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( !mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !mgr.isAvailableLookedupTodayExercise );
 	}
 
 	public void testCheckExercisesIfCardsScheduledForToday() {
@@ -41,22 +41,22 @@ public class ReviewManagerTest extends TestCase {
 		cardScheduledForToday.lookedup = new DateTime().minusDays( 1 ).toDate();
 		cardScheduledForToday.scheduled = new Date();
 
-		m_db.store( cardScheduledForToday );
+		db.store( cardScheduledForToday );
 
-		m_mgr.checkAvailableExercises();
+		mgr.checkAvailableExercises();
 
-		assertTrue( m_mgr.isAvailableTodaysScheduledExercise );
-		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !mgr.isAvailableLookedupTodayExercise );
 	}
 
 	public void testCheckExercisesIfCardsLookedUpToday() {
 		Card c = new Card( "today", "the answer" );
-		m_db.store( c );
+		db.store( c );
 
-		m_mgr.checkAvailableExercises();
+		mgr.checkAvailableExercises();
 
-		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
-		assertTrue( m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( !mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( mgr.isAvailableLookedupTodayExercise );
 	}
 
 	public void testCheckExercisesIfNotLookedUpTodayAndNotScheduledForToday() {
@@ -64,19 +64,19 @@ public class ReviewManagerTest extends TestCase {
 		c.lookedup = new DateTime().minusDays( 10).toDate();
 		c.scheduled = new DateTime().plusDays( 10).toDate();
 
-		m_db.store( c );
+		db.store( c );
 
-		m_mgr.checkAvailableExercises();
+		mgr.checkAvailableExercises();
 
-		assertTrue( !m_mgr.isAvailableTodaysScheduledExercise );
-		assertTrue( !m_mgr.isAvailableLookedupTodayExercise );
+		assertTrue( !mgr.isAvailableTodaysScheduledExercise );
+		assertTrue( !mgr.isAvailableLookedupTodayExercise );
 	}
 
 	public void testDetermineAvailableExercises() {
 
-		m_mgr.checkStudyAvailableStudyModes();
+		mgr.checkStudyAvailableStudyModes();
 
-		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, m_mgr.availableExercises );
+		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, mgr.availableExercises );
 	}
 
 	public void testCheckStudyModeIfCardsScheduledForToday() {
@@ -86,23 +86,23 @@ public class ReviewManagerTest extends TestCase {
 		Card cardScheduledForToday = new Card( "today", "the answer" );
 		cardScheduledForToday.scheduled = new Date();
 		
-		m_db.store( cardScheduledForToday );
-		m_db.store( cardLookedupToday );
+		db.store( cardScheduledForToday );
+		db.store( cardLookedupToday );
 
-		m_mgr.checkStudyAvailableStudyModes();
+		mgr.checkStudyAvailableStudyModes();
 
-		assertEquals( ReviewManager.EXERCISES_SCHEDULED_TODAY, m_mgr.availableExercises );
+		assertEquals( ReviewManager.EXERCISES_SCHEDULED_TODAY, mgr.availableExercises );
 	}
 
 	public void testCheckStudyModeIfCardLookedupToday() {
 		Card cardLookedupToday = new Card( "lookeduptoday", "an answer" );
 		cardLookedupToday.scheduleByGrade( 3 );
 
-		m_db.store( cardLookedupToday );
+		db.store( cardLookedupToday );
 
-		m_mgr.checkStudyAvailableStudyModes();
+		mgr.checkStudyAvailableStudyModes();
 
-		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, m_mgr.availableExercises );
+		assertEquals( ReviewManager.EXERCISES_CARD_DB_IS_EMPTY, mgr.availableExercises );
 	}
 
 }

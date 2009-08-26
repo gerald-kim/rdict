@@ -12,33 +12,33 @@ import android.widget.ProgressBar;
 import com.amplio.rdict.search.Dictionary;
 
 public class SplashActivity extends Activity {
-	private ProgressBar m_downloadBar = null;
+	private ProgressBar downloadBar = null;
 	
-	private Handler m_handler = null;
+	private Handler handler = null;
 	
 	public void onCreate(Bundle icicle){
 		super.onCreate(icicle);
 		
 		setContentView(R.layout.splash_screen);
 		
-		m_downloadBar = (ProgressBar) findViewById(R.id.init_managers_bar);
-		m_handler = new Handler();
+		downloadBar = (ProgressBar) findViewById(R.id.init_managers_bar);
+		handler = new Handler();
 		
-		LoadDictionaryService.m_splashActivity = this;
+		LoadDictionaryService.splashActivity = this;
 		
 		if(! LoadDictionaryService.isRunning)
 			startService(new Intent(this, LoadDictionaryService.class));
 	}
 	
 	public Handler getHandler() {
-	    return m_handler;
+	    return handler;
     }
 	
 	public Runnable getRunnableForDBInit() {
 		return new Runnable() {
 			public void run() {
 				if(LoadDictionaryService.isRunning) {
-					m_downloadBar.setProgress(Dictionary.getProgress());
+					downloadBar.setProgress(Dictionary.getProgress());
 				}
 				else {
 					RDictActivity.didLoadDict = true;

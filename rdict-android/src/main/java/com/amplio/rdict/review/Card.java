@@ -33,6 +33,7 @@ public class Card {
 
         lookedup = new Date();
         studied = null;
+        searched = new Date();
 
         Calendar c = Calendar.getInstance();
         c.add( Calendar.DAY_OF_MONTH, 1 );

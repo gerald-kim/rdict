@@ -6,57 +6,57 @@ import com.amplio.rdict.search.DictionaryEntry;
 
 public class History {
 
-	int m_index = 0;
-	Vector<DictionaryEntry> m_words = new Vector<DictionaryEntry>();
+	int index = 0;
+	Vector<DictionaryEntry> words = new Vector<DictionaryEntry>();
 	
 	public void addWord(DictionaryEntry word) {
-		if(m_index < m_words.size()) {
-			m_words.setSize(m_index + 1);
+		if(index < words.size()) {
+			words.setSize(index + 1);
 		}
 		
-		m_words.add(word);
-		m_index = m_words.size() - 1;
+		words.add(word);
+		index = words.size() - 1;
 	}
 	
 	public boolean canGoBack() {
-		return m_index > 0;
+		return index > 0;
 	}
 
 	public boolean canGoForward() {
-		return m_index < m_words.size() - 1;
+		return index < words.size() - 1;
 	}
 
 	public void goForward() {
-		m_index++;
+		index++;
 	}
 
 	public void goBack() {
-		int prevIndex = m_index;
+		int prevIndex = index;
 		
-		if(null == this.m_words.get(prevIndex))
-			this.m_words.remove(prevIndex);
+		if(null == this.words.get(prevIndex))
+			this.words.remove(prevIndex);
 		
-		m_index--;
+		index--;
 	}
 
 	public DictionaryEntry getWord() {
-		return m_words.elementAt(m_index);
+		return words.elementAt(index);
 	}
 
 	public boolean isEmpty() {
-		return 0 == m_words.size();
+		return 0 == words.size();
 	}
 
 	public void clear() {
-		m_words.removeAllElements();
+		words.removeAllElements();
 	}
 
 	public int size() {
-		return m_words.size();
+		return words.size();
 	}
 
 	public boolean containsEntryWithHeadword( String headword ) {
-		for(DictionaryEntry e : m_words)
+		for(DictionaryEntry e : words)
 			if(headword.equals(e.headword))
 				return true;
 	    

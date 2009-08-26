@@ -13,15 +13,15 @@ import com.amplio.rdict.search.DictionaryEntryFactory;
 public class AboutActivity extends Activity{
 	private static final String FILE_PATH_ABOUT = "rdict_about.html";
 	
-	private WebView m_aboutWebview = null;
+	private WebView aboutWebview = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.about);
 		
-		m_aboutWebview = (WebView) findViewById(R.id.about_webview);
-		m_aboutWebview.getSettings().setJavaScriptEnabled(false);
+		aboutWebview = (WebView) findViewById(R.id.about_webview);
+		aboutWebview.getSettings().setJavaScriptEnabled(false);
 	}
 	
 	public void onResume() {
@@ -29,7 +29,7 @@ public class AboutActivity extends Activity{
 		
 		InputStream in = SplashActivity.getAssetInputStream(this, FILE_PATH_ABOUT);
 		String aboutContents = DictionaryEntryFactory.loadHTMLFileContents(in);
-		m_aboutWebview.loadDataWithBaseURL("fake://dagnabbit", aboutContents, "text/html", "utf-8", null);
+		aboutWebview.loadDataWithBaseURL("fake://dagnabbit", aboutContents, "text/html", "utf-8", null);
 	}
 
 }

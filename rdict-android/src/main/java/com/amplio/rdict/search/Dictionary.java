@@ -18,11 +18,11 @@ public class Dictionary {
 	public static RuleBasedCollator COLLATOR  = (RuleBasedCollator)
     Collator.getInstance(new Locale("en", "US", ""));
 
-	private DictionaryEntryFactory m_factory = null;
-	private Cdb m_wordCdb;
+	private DictionaryEntryFactory factory = null;
+	private Cdb wordCdb;
 	public static String[] words;
 
-	public static int m_wordsLoaded = 0;
+	public static int wordsLoaded = 0;
 	
 	public Dictionary( String wordDbPath, 
 						String wordIndexPath, 
@@ -30,11 +30,11 @@ public class Dictionary {
 						Handler loadProgressHandler,
 						Runnable updateRunnable) {
 		
-		m_wordsLoaded = 0;
+		Dictionary.wordsLoaded = 0;
 		
-		m_factory = new DictionaryEntryFactory( htmlStream );
+		factory = new DictionaryEntryFactory( htmlStream );
 		try {
-			m_wordCdb = new Cdb( wordDbPath );
+			wordCdb = new Cdb( wordDbPath );
 
 			BufferedReader reader = new BufferedReader( new InputStreamReader( new FileInputStream(
 			        									wordIndexPath ) ) );
@@ -46,9 +46,9 @@ public class Dictionary {
 			for( int i = 0; i < wordCount; i++ ) {
 				words[i] = reader.readLine();
 				
-				this.m_wordsLoaded++;
+				Dictionary.wordsLoaded++;
 				
-				if(this.m_wordsLoaded % 5 == 0 && loadProgressHandler != null)
+				if(Dictionary.wordsLoaded % 5 == 0 && loadProgressHandler != null)
 					loadProgressHandler.post(updateRunnable);
 			}
 
@@ -62,7 +62,7 @@ public class Dictionary {
 	}
 
 	public DictionaryEntry searchByWord( String word ) {
-		DictionaryEntry dicEntry = m_factory.makeHTMLifiedEntry( word, new String( m_wordCdb
+		DictionaryEntry dicEntry = factory.makeHTMLifiedEntry( word, new String( wordCdb
 		        .find( word.getBytes() ) ) );
 
 		return dicEntry;
@@ -91,6 +91,6 @@ public class Dictionary {
 	}
 
 	public static int getProgress() {
-		return (Dictionary.m_wordsLoaded*100) / words.length;
+		return (Dictionary.wordsLoaded*100) / words.length;
 	}
 }

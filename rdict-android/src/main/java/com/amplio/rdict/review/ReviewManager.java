@@ -10,22 +10,22 @@ public class ReviewManager {
 
 	public int availableExercises = 0;
 
-	private CardSetManager m_cardSetManager = null;
+	private CardSetManager cardSetManager = null;
 
 	public boolean isAvailableTodaysScheduledExercise = false;
 	public boolean isAvailableLookedupTodayExercise = false;
 	@SuppressWarnings( "unused" )
-	private ODB m_odb;
+	private ODB odb;
 
 	public ReviewManager( ODB db, CardSetManager cardSetManager ) {
-		m_odb = db;
-		m_cardSetManager = cardSetManager;
+		this.odb = db;
+		this.cardSetManager = cardSetManager;
 	}
 
 	public void checkAvailableExercises() {
-		this.isAvailableTodaysScheduledExercise = (0 != m_cardSetManager
+		this.isAvailableTodaysScheduledExercise = (0 != cardSetManager
 		        .loadCardsScheduledForToday().size());
-		this.isAvailableLookedupTodayExercise = (0 != m_cardSetManager.loadCardsLookedupToday()
+		this.isAvailableLookedupTodayExercise = (0 != cardSetManager.loadCardsLookedupToday()
 		        .size());
 	}
 

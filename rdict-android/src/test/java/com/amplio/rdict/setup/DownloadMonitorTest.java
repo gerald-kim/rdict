@@ -81,16 +81,16 @@ public class DownloadMonitorTest extends TestCase {
 	public void testGetProgress() {
 		DownloadMonitor downloadMgr = new DownloadMonitor(null, null);
 
-		downloadMgr.m_numBytesToDownload = 500;
-		downloadMgr.m_bytesDownloaded = 0;
+		downloadMgr.numBytesToDownload = 500;
+		downloadMgr.bytesDownloaded = 0;
 
 		assertEquals( 0, downloadMgr.getProgress() );
 
-		downloadMgr.m_bytesDownloaded = 50;
+		downloadMgr.bytesDownloaded = 50;
 
 		assertEquals( 10, downloadMgr.getProgress() );
 
-		downloadMgr.m_bytesDownloaded = 500;
+		downloadMgr.bytesDownloaded = 500;
 
 		assertEquals( 100, downloadMgr.getProgress() );
 	}

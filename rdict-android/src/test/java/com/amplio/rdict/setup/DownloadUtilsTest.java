@@ -51,7 +51,7 @@ public class DownloadUtilsTest extends TestCase {
 		assertTrue( downloadResult );
 		assertTrue( downloadedFile.exists() );
 		assertEquals( 8914, downloadedFile.length() );
-		assertEquals( 8914, downloadMonitor.m_bytesDownloaded );
+		assertEquals( 8914, downloadMonitor.bytesDownloaded );
 	}
 	
 	public void testCalculateMd5Hash() {

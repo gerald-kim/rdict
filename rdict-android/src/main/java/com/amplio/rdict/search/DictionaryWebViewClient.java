@@ -23,15 +23,15 @@ public class DictionaryWebViewClient extends WebViewClient{
 	
 	public DictionaryActivity dicActivity = null;
 	public Context context = null;
-	private String m_url;
+	private String url;
 	
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
 		if (url.contains("lookup")) {
 			String word = url.substring(url.indexOf('=') + 1);
 			
-			dicActivity.m_dicEntry = RDictActivity.c_dictionary.searchByWord(word);
+			dicActivity.dicEntry = RDictActivity.c_dictionary.searchByWord(word);
 			
-			DictionaryActivity.sessionHistory.addWord(dicActivity.m_dicEntry);
+			DictionaryActivity.sessionHistory.addWord(dicActivity.dicEntry);
 			
 			this.dicActivity.refreshDicPage();
 			return true;

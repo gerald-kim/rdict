@@ -18,36 +18,36 @@ public class FlashCardActivity extends Activity {
 
 	TextView progress_label = null;
 	
-	LinearLayout m_buttonLayout = null;
+	LinearLayout buttonLayout = null;
 	
-	FlashcardFrontViewWrapper m_flashcardFrontViewWrapper = null;
-	FlashcardBackViewWrapper m_flashcardBackViewWrapper = null;
+	FlashcardFrontViewWrapper flashcardFrontViewWrapper = null;
+	FlashcardBackViewWrapper flashcardBackViewWrapper = null;
 	
-	ReviewExerciseFrontButtonsViewWrapper m_reviewExerciseButtonsFront = null;
-	ReviewExerciseBackButtonsViewWrapper m_reviewExerciseButtonsBack = null;
+	ReviewExerciseFrontButtonsViewWrapper reviewExerciseButtonsFront = null;
+	ReviewExerciseBackButtonsViewWrapper reviewExerciseButtonsBack = null;
 	
-	public static ReviewExerciseManager m_exerciseMgr = null;
+	public static ReviewExerciseManager exerciseMgr = null;
 	
-	public ViewFlipper m_flashcardMover = null;
+	public ViewFlipper flashcardMover = null;
 	
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.review_exercise);
     	
     	this.progress_label = (TextView) findViewById(R.id.progress_label);
-    	this.m_flashcardMover = (ViewFlipper)findViewById(R.id.flashcard_mover);
-		this.m_buttonLayout = (LinearLayout)findViewById(R.id.button_layout);
+    	this.flashcardMover = (ViewFlipper)findViewById(R.id.flashcard_mover);
+		this.buttonLayout = (LinearLayout)findViewById(R.id.button_layout);
 		
-		this.m_flashcardFrontViewWrapper = new FlashcardFrontViewWrapper(this.getApplicationContext());
-		this.m_flashcardBackViewWrapper = new FlashcardBackViewWrapper(this.getApplicationContext());
+		this.flashcardFrontViewWrapper = new FlashcardFrontViewWrapper(this.getApplicationContext());
+		this.flashcardBackViewWrapper = new FlashcardBackViewWrapper(this.getApplicationContext());
 		
-		this.m_reviewExerciseButtonsFront = new ReviewExerciseFrontButtonsViewWrapper(this.getApplicationContext(), this);
-		this.m_reviewExerciseButtonsBack = new ReviewExerciseBackButtonsViewWrapper(this.getApplicationContext(), this);
+		this.reviewExerciseButtonsFront = new ReviewExerciseFrontButtonsViewWrapper(this.getApplicationContext(), this);
+		this.reviewExerciseButtonsBack = new ReviewExerciseBackButtonsViewWrapper(this.getApplicationContext(), this);
 		
-		FlashCardActivity.m_exerciseMgr = new ReviewExerciseManager(this.loadCardSet());
+		FlashCardActivity.exerciseMgr = new ReviewExerciseManager(this.loadCardSet());
 		
 		if(null != savedInstanceState && savedInstanceState.containsKey(SAVE_TAG_STATE)) {
-			FlashCardActivity.m_exerciseMgr.setState(savedInstanceState.getInt(SAVE_TAG_STATE));
+			FlashCardActivity.exerciseMgr.setState(savedInstanceState.getInt(SAVE_TAG_STATE));
 		}
 				
 		this.drawDisplay();
@@ -56,7 +56,7 @@ public class FlashCardActivity extends Activity {
 	public void onResume(View v){
 		super.onResume();
 		
-		if(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE != FlashCardActivity.m_exerciseMgr.getState()) {
+		if(ReviewExerciseManager.STATE_USER_FINISHED_EXERCISE != FlashCardActivity.exerciseMgr.getState()) {
 			this.drawDisplay();
 		}
 		else{
@@ -67,44 +67,44 @@ public class FlashCardActivity extends Activity {
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putInt(SAVE_TAG_STATE, FlashCardActivity.m_exerciseMgr.getState());
+		outState.putInt(SAVE_TAG_STATE, FlashCardActivity.exerciseMgr.getState());
 		super.onSaveInstanceState(outState);
 	}
 	
 	public void drawDisplay() {
 		this.setProgressText();
-		this.setFlashcardTextViews(FlashCardActivity.m_exerciseMgr.getCard());
+		this.setFlashcardTextViews(FlashCardActivity.exerciseMgr.getCard());
 		
-		this.m_buttonLayout.removeAllViews();
-		this.m_buttonLayout.addView(getButtonsView());
+		this.buttonLayout.removeAllViews();
+		this.buttonLayout.addView(getButtonsView());
 		
-		this.m_flashcardMover.setInAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_in));
-		this.m_flashcardMover.setOutAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_out));
-		this.m_flashcardMover.addView(getAFlashcardSide());
-		this.m_flashcardMover.showNext();
+		this.flashcardMover.setInAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_in));
+		this.flashcardMover.setOutAnimation(AnimationUtils.loadAnimation(this.getApplicationContext(), R.anim.push_left_out));
+		this.flashcardMover.addView(getAFlashcardSide());
+		this.flashcardMover.showNext();
 		
-		if(1 < this.m_flashcardMover.getChildCount())
-			this.m_flashcardMover.removeViewAt(0);
+		if(1 < this.flashcardMover.getChildCount())
+			this.flashcardMover.removeViewAt(0);
 	}
 
 	private View getAFlashcardSide() {
-		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.m_exerciseMgr.getState()
-				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.m_exerciseMgr.getState()) {
-			return this.m_flashcardFrontViewWrapper.getView();
+		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.exerciseMgr.getState()
+				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.exerciseMgr.getState()) {
+			return this.flashcardFrontViewWrapper.getView();
 		}
-		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.m_exerciseMgr.getState()) {
-			return this.m_flashcardBackViewWrapper.getView();
+		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.exerciseMgr.getState()) {
+			return this.flashcardBackViewWrapper.getView();
 		}
 		else
 			return null;
     }
 	
 	private View getButtonsView() {
-		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.m_exerciseMgr.getState()
-				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.m_exerciseMgr.getState())
-			return this.m_reviewExerciseButtonsFront.getView();
+		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.exerciseMgr.getState()
+				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.exerciseMgr.getState())
+			return this.reviewExerciseButtonsFront.getView();
 		else
-			return this.m_reviewExerciseButtonsBack.getView();
+			return this.reviewExerciseButtonsBack.getView();
     }
 	
 	private Vector<Card> loadCardSet() {
@@ -119,8 +119,8 @@ public class FlashCardActivity extends Activity {
 	}
 	
 	private void setProgressText() {
-	    int cardsLeft = FlashCardActivity.m_exerciseMgr.getCardCount() 
-						- (FlashCardActivity.m_exerciseMgr.getCardIndex() + 1);
+	    int cardsLeft = FlashCardActivity.exerciseMgr.getCardCount() 
+						- (FlashCardActivity.exerciseMgr.getCardIndex() + 1);
 		if (cardsLeft > 0)
 			this.progress_label.setText(cardsLeft   + " more " + ">");
 		else
@@ -128,12 +128,12 @@ public class FlashCardActivity extends Activity {
     }
 	
 	public void setFlashcardTextViews(Card c) {
-		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.m_exerciseMgr.getState()
-				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.m_exerciseMgr.getState()) {
-			this.m_flashcardFrontViewWrapper.setWord(c.question);
+		if(ReviewExerciseManager.STATE_USER_STARTED_EXERCISE == FlashCardActivity.exerciseMgr.getState()
+				|| ReviewExerciseManager.STATE_LOADED_NEXT_CARD == FlashCardActivity.exerciseMgr.getState()) {
+			this.flashcardFrontViewWrapper.setWord(c.question);
 		}
-		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.m_exerciseMgr.getState()) {
-			this.m_flashcardBackViewWrapper.setWordAndDef(c.question, c.answer);
+		else if(ReviewExerciseManager.STATE_USER_PRESSED_VIEW_ANSWER == FlashCardActivity.exerciseMgr.getState()) {
+			this.flashcardBackViewWrapper.setWordAndDef(c.question, c.answer);
 		}
 	}
 }
