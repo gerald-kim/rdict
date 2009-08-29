@@ -26,6 +26,8 @@ public class PromptForDBDownloadViewWrapper extends SetupViewWrapper implements 
 	
 	public void onClick(View v) {
 		if(v == this.nowButton) {
+			this.nowButton.setPressed(false);
+			
 			SetupActivity.setupMgr.userChoseDownloadOption();
 			
 			DownloadService.dm = new DownloadMonitor(	this.setupActivity.downloadingDBViewWrapper.downloadingViewHandler,
@@ -34,6 +36,7 @@ public class PromptForDBDownloadViewWrapper extends SetupViewWrapper implements 
 			this.setupActivity.startService(new Intent(this.setupActivity, DownloadService.class));
 		}
 		else {
+			this.laterButton.setPressed(false);
 			SetupActivity.setupMgr.userChoseToDelayDownlaod();
 		}
 		

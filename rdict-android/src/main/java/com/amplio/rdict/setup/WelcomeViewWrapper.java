@@ -21,6 +21,7 @@ public class WelcomeViewWrapper extends SetupViewWrapper implements OnClickListe
 	
 	public void onClick(View v) {
 		SetupActivity.setupMgr.userAcknowledgedWelcomeScreen();
+		this.okButton.setPressed(false);
 		this.setupActivity.updateLayout();
 	}
 }

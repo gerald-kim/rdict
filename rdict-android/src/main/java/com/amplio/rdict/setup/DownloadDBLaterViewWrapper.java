@@ -20,6 +20,7 @@ public class DownloadDBLaterViewWrapper extends SetupViewWrapper implements OnCl
 	}
 
 	public void onClick(View v) {
+		this.okButton.setPressed(false);
 		SetupActivity.setupMgr.userAcknowledgedNeedToDownloadLater();
 		this.setupActivity.updateLayout();
 	}

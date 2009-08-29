@@ -26,10 +26,12 @@ public class DownloadIsCorruptedViewWrapper extends SetupViewWrapper implements 
 
 	public void onClick( View v ) {
 		if(v == this.nowButton) {
+			this.nowButton.setPressed(false);
 			SetupActivity.setupMgr.userChoseDownloadOption();
 			setupActivity.downloadingDBViewWrapper = new DBDownloadingViewWrapper(context, setupActivity);
 		}
 		else {
+			this.laterButton.setPressed(false);
 			SetupActivity.setupMgr.userChoseToDelayDownlaod();
 		}
 		

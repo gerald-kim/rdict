@@ -20,6 +20,7 @@ public class DBDownloadFinishedViewWrapper extends SetupViewWrapper implements O
 	}
 
 	public void onClick(View v) {
+		this.finishedButton.setPressed(false);
 		SetupActivity.setupMgr.userClickedFinish();
 		this.setupActivity.updateLayout();
 	}
