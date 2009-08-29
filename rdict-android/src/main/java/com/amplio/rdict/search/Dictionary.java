@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import android.os.Handler;
 
+import com.amplio.rdict.LoadDictionaryService;
 import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
@@ -49,7 +50,7 @@ public class Dictionary {
 				Dictionary.wordsLoaded++;
 				
 				if(Dictionary.wordsLoaded % 5 == 0 && loadProgressHandler != null)
-					loadProgressHandler.post(updateRunnable);
+					this.postProgress();
 			}
 
 			reader.close();
@@ -57,9 +58,24 @@ public class Dictionary {
 			e.printStackTrace();
 		}
 
-		if(loadProgressHandler != null)
-			loadProgressHandler.post(updateRunnable);
+		this.postProgress();
 	}
+	
+	public void postProgress() {
+		if(LoadDictionaryService.splashActivity != null) {
+			Runnable runnable = LoadDictionaryService.splashActivity.getRunnableForDBInit();
+			LoadDictionaryService.splashActivity.getHandler().post(runnable);
+		}
+	}
+	
+	public Handler getHandler() {
+		return LoadDictionaryService.splashActivity.getHandler();
+	}
+	
+	public Runnable getRunnable() {
+		return LoadDictionaryService.splashActivity.getRunnableForDBInit();
+	}
+	
 
 	public DictionaryEntry searchByWord( String word ) {
 		DictionaryEntry dicEntry = factory.makeHTMLifiedEntry( word, new String( wordCdb
