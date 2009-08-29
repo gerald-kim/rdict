@@ -17,7 +17,6 @@ import com.amplio.rdict.setup.DictionaryDownloader;
 public class SettingsActivity extends Activity implements OnClickListener{
 	
 	Button clearButton = null;
-	Button deleteButton = null;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -26,9 +25,6 @@ public class SettingsActivity extends Activity implements OnClickListener{
 		
 		this.clearButton = (Button)findViewById(R.id.clear_button);
 		this.clearButton.setOnClickListener(this);
-		
-		this.deleteButton = (Button)findViewById(R.id.delete_button);
-		this.deleteButton.setOnClickListener(this);
 	}
 
 	public void onClick( View view ) {
@@ -39,21 +35,6 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				        public void onClick( DialogInterface dialog, int whichButton ) {
 				        	RDictActivity.historyMgr.clearHistory();
-				        }
-			        } )
-			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
-						public void onClick(DialogInterface dialog, int whichButton) {}})
-			.show();
-		}
-		else if (this.deleteButton == view) {
-			new AlertDialog.Builder(this)
-			.setTitle("Delete Dictionary")
-			.setMessage("Are you sure you want to delete your Dictionary Files?")
-			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				        public void onClick( DialogInterface dialog, int whichButton ) {
-				        	new File(DictionaryDownloader.WRITE_PATH_DB).delete();
-							new File(DictionaryDownloader.WRITE_PATH_INDEX).delete();
-							RDictActivity.RDICT_ACTIVITY.finish();
 				        }
 			        } )
 			.setNegativeButton("No", new DialogInterface.OnClickListener() { 
