@@ -27,7 +27,11 @@ public class DBDownloadingViewWrapper extends SetupViewWrapper {
 		if(DownloadService.isRunning) {		
 			DownloadService.dm.handler = this.downloadingViewHandler;
 			DownloadService.dm.runnable = this.getDownloadRunnable();
-			this.downloadBar.setProgress(DownloadService.dm.getProgress());	
+			this.downloadBar.setProgress(DownloadService.dm.getProgress());
+			
+			if(DownloadService.dm.isVerifying()) {		
+				this.statusLabel.setText("Verifying...");
+			}
 		}
 		else {
 			this.downloadBar.setProgress(0);
