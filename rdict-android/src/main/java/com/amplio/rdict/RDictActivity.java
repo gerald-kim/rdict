@@ -42,6 +42,12 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 													BASE_PACKAGE + ".more."};
 	private static final String[] TAB_NAMES = { "Search", "Review", "History", "More"};
 
+	private static final int[] TAB_ICONS = { R.drawable.ic_menu_search, 
+												R.drawable.ic_menu_slideshow,
+												R.drawable.ic_menu_recent_history,
+												R.drawable.ic_menu_more };
+	
+	
 	public static RDictActivity RDICT_ACTIVITY = null;
 	
 	TabHost tabHost = null;
@@ -146,9 +152,10 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	tab.setContent(new Intent().setComponent(activity));
     	
     	if(index == TAB_INDEX_REVIEW && cardSetManager != null && odb != null && ! odb.isClosed())
-		    tab.setIndicator(buildReviewTabIndicator());
-    	else
-    		tab.setIndicator(TAB_NAMES[index]);
+		    tab.setIndicator(buildReviewTabIndicator(), getResources().getDrawable(TAB_ICONS[index]));
+    	else {
+    		tab.setIndicator(TAB_NAMES[index], getResources().getDrawable(TAB_ICONS[index]));
+    	}
     	
     	return tab;
     }
