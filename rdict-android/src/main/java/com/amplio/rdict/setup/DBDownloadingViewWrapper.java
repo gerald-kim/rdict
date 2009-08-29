@@ -12,13 +12,15 @@ public class DBDownloadingViewWrapper extends SetupViewWrapper {
 	private TextView statusLabel = null;
 	private ProgressBar downloadBar = null;
 	
-	public Handler downloadingViewHandler = new Handler();
+	public Handler downloadingViewHandler = null;
 	
 	public DBDownloadingViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
 		this.v = View.inflate(context, R.layout.setup_downloading, null);
 		
 		this.statusLabel = (TextView) this.v.findViewById(R.id.setup_downloading_status_label );
+		
+		this.downloadingViewHandler = new Handler();
 		
 		this.downloadBar = (ProgressBar) this.v.findViewById(R.id.setup_progress_bar );
 		

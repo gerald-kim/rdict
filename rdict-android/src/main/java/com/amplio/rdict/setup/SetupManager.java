@@ -51,6 +51,6 @@ public class SetupManager {
 	}
 
 	public void setState(int state ) {
-		state = state;
+		this.state = state;
 	}
 }

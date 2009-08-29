@@ -51,7 +51,7 @@ public class SettingsActivity extends Activity implements OnClickListener{
 			.setMessage("Are you sure you want to delete your Dictionary Files?")
 			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				        public void onClick( DialogInterface dialog, int whichButton ) {
-				        	//new File(DictionaryDownloader.WRITE_PATH_DB).delete();
+				        	new File(DictionaryDownloader.WRITE_PATH_DB).delete();
 							new File(DictionaryDownloader.WRITE_PATH_INDEX).delete();
 							RDictActivity.RDICT_ACTIVITY.finish();
 				        }

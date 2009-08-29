@@ -39,12 +39,17 @@ public class SetupActivity extends Activity {
 		setupMgr = new SetupManager();
 		
 		if(null != savedInstanceState && savedInstanceState.containsKey(FlashCardActivity.SAVE_TAG_STATE)) {
+			System.out.println("Here it is: " + savedInstanceState.getInt(FlashCardActivity.SAVE_TAG_STATE));
+			
 			setupMgr.setState(savedInstanceState.getInt(FlashCardActivity.SAVE_TAG_STATE));
+			System.out.println("reloaded state" + setupMgr.getState());
 		}
 	}
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
+		System.out.println("saved state: " + setupMgr.getState());
+		
 		outState.putInt(FlashCardActivity.SAVE_TAG_STATE, setupMgr.getState());
 		super.onSaveInstanceState(outState);
 	}
