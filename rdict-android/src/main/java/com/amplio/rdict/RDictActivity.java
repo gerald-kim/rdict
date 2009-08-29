@@ -45,7 +45,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	private static final int[] TAB_ICONS = { R.drawable.ic_menu_search, 
 												R.drawable.ic_menu_slideshow,
 												R.drawable.ic_menu_recent_history,
-												R.drawable.ic_menu_more };
+												R.drawable.ic_menu_manage };
 	
 	
 	public static RDictActivity RDICT_ACTIVITY = null;
