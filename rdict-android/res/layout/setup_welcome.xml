@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout android:id="@+id/widget28"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+	android:orientation="vertical">
 	
 	<LinearLayout android:id="@+id/widget29"
 		android:layout_width="wrap_content" android:layout_height="130px" android:orientation="vertical">
@@ -11,48 +13,69 @@
 				android:text="RDict - Setup" android:textSize="28sp"
 				android:layout_centerVertical="true"
 				android:layout_marginTop="20px"
-				android:layout_marginLeft="30px"
-				android:layout_marginRight="30px"
+				android:layout_marginLeft="20px"
+				android:layout_marginRight="20px"
 				android:layout_marginBottom="10px">
 			</TextView>
 		
 		<TextView android:id="@+id/widget32" android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:text="Thank you for downloading RDict."
 			android:layout_marginTop="16px"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
+			android:layout_marginLeft="20px"
+			android:layout_marginRight="20px"
 			android:textSize="20sp"
 			android:layout_below="@+id/setup_title_label">
+		</TextView>
+	
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/widget30"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginTop="15px"
+		android:layout_marginBottom="5px"
+		android:orientation="vertical">
+		
+		<TextView android:id="@+id/mesg1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="In the next few pages, RDict will"
+			android:layout_centerHorizontal="true"
+			android:layout_marginLeft="20px"
+			android:layout_marginRight="20px"
+			android:textSize="20sp">
+		</TextView>
+		
+		<TextView android:id="@+id/mesg2" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="1) help you to download a dictionary file, and"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="10px"
+			android:layout_marginLeft="40px"
+			android:layout_marginRight="40px"
+			android:textSize="20sp">
+		</TextView>
+		
+		<TextView android:id="@+id/mesg3" android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="2) show you where you can get help with using the system."
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="10px"
+			android:layout_marginLeft="40px"
+			android:layout_marginRight="40px"
+			android:textSize="20sp">
 		</TextView>
 		
 	</LinearLayout>
 	
-	<RelativeLayout android:id="@+id/widget30"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_marginTop="20px"
-		android:layout_marginBottom="16px">
-		
-		<TextView android:id="@+id/welcome_view_msg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="In the next two steps, we will help you to download a dictionary database and show you how to get help using RDict."
-			android:layout_centerHorizontal="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
-			android:textSize="20sp">
-		</TextView>
-		
-	</RelativeLayout>
-	
 	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="wrap_content" android:layout_height="60px">
+		android:layout_width="wrap_content" android:layout_height="50px">
 		
 		<TextView android:id="@+id/hint_mesg" android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="To begin, press "
 			android:layout_centerVertical="true"
 			android:layout_alignParentLeft="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="5px"
+			android:layout_marginLeft="20px"
+			android:layout_marginRight="2px"
 			android:textSize="20sp">
 		</TextView>
 		
@@ -66,3 +89,4 @@
 	</RelativeLayout>
 	
 </LinearLayout>
+</ScrollView>

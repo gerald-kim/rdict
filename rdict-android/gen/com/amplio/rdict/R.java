@@ -39,12 +39,12 @@ public final class R {
         public static final int green_arrow_pressed=0x7f020001;
         public static final int green_button=0x7f020002;
         public static final int ic_menu_manage=0x7f020003;
-        public static final int ic_menu_more=0x7f020004;
-        public static final int ic_menu_recent_history=0x7f020005;
-        public static final int ic_menu_search=0x7f020006;
-        public static final int ic_menu_slideshow=0x7f020007;
-        public static final int icon=0x7f020008;
-        public static final int manage_flashcard=0x7f020009;
+        public static final int ic_menu_recent_history=0x7f020004;
+        public static final int ic_menu_search=0x7f020005;
+        public static final int ic_menu_slideshow=0x7f020006;
+        public static final int icon=0x7f020007;
+        public static final int manage_flashcard=0x7f020008;
+        public static final int tabs_with_arrow=0x7f020009;
     }
     public static final class id {
         public static final int about_button=0x7f06002b;
@@ -60,8 +60,8 @@ public final class R {
         public static final int definition_label=0x7f060019;
         public static final int definition_text=0x7f060005;
         public static final int delete_button=0x7f060017;
-        public static final int download_later_button=0x7f06004e;
-        public static final int download_now_button=0x7f06004f;
+        public static final int download_later_button=0x7f060050;
+        public static final int download_now_button=0x7f060051;
         public static final int easy_button=0x7f060037;
         public static final int edit_button=0x7f06001e;
         public static final int exercise_label=0x7f06000a;
@@ -81,14 +81,17 @@ public final class R {
         public static final int headword_text=0x7f060004;
         public static final int help_button=0x7f060029;
         public static final int help_webview=0x7f060022;
-        public static final int hint_mesg=0x7f060052;
+        public static final int hint_mesg=0x7f060056;
         public static final int history_list=0x7f060023;
         public static final int i_forgot_button=0x7f06003a;
         public static final int info_layout=0x7f06002e;
-        public static final int init_managers_bar=0x7f060055;
+        public static final int init_managers_bar=0x7f060059;
         public static final int listview=0x7f060041;
         public static final int loading_title=0x7f060011;
         public static final int manage_button=0x7f06002c;
+        public static final int mesg1=0x7f060053;
+        public static final int mesg2=0x7f060054;
+        public static final int mesg3=0x7f060055;
         public static final int not_bad_button=0x7f060038;
         public static final int progress_bar=0x7f060012;
         public static final int progress_label=0x7f060034;
@@ -98,14 +101,15 @@ public final class R {
         public static final int settings_button=0x7f06002d;
         public static final int setup_delayed_button=0x7f060046;
         public static final int setup_downloading_status_label=0x7f06004b;
-        public static final int setup_finished_button=0x7f06004d;
+        public static final int setup_finished_button=0x7f06004e;
         public static final int setup_finished_mesg=0x7f060045;
         public static final int setup_layout=0x7f060043;
         public static final int setup_progress_bar=0x7f06004c;
-        public static final int setup_title_label=0x7f060050;
-        public static final int splash_title=0x7f060054;
+        public static final int setup_title_label=0x7f06004f;
+        public static final int splash_title=0x7f060058;
         public static final int ssss=0x7f06002a;
         public static final int start_exercise_button=0x7f06000b;
+        public static final int tabs_with_arrow=0x7f06004d;
         public static final int title=0x7f060013;
         public static final int title_label=0x7f060003;
         public static final int try_again_later_button=0x7f060049;
@@ -114,14 +118,14 @@ public final class R {
         public static final int webview=0x7f060015;
         public static final int webview_flipper=0x7f06000f;
         public static final int welcome_view_msg=0x7f060048;
-        public static final int welcome_view_ok_button=0x7f060053;
+        public static final int welcome_view_ok_button=0x7f060057;
         public static final int widget0=0x7f06000c;
         public static final int widget101=0x7f060028;
         public static final int widget28=0x7f060002;
         public static final int widget29=0x7f060044;
         public static final int widget30=0x7f060047;
         public static final int widget31=0x7f060006;
-        public static final int widget32=0x7f060051;
+        public static final int widget32=0x7f060052;
         public static final int widget323=0x7f06001c;
         public static final int widget39393=0x7f06001b;
         public static final int widget40=0x7f060000;
@@ -166,7 +170,6 @@ public final class R {
         public static final int splash_screen=0x7f03001c;
     }
     public static final class string {
-        public static final int app_name=0x7f050001;
-        public static final int hello=0x7f050000;
+        public static final int app_name=0x7f050000;
     }
 }

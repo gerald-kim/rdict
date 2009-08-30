@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout android:id="@+id/widget28"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+	android:orientation="vertical">
 	
 	<RelativeLayout android:id="@+id/widget29"
 		android:layout_width="wrap_content" android:layout_height="120px" 
@@ -30,3 +32,4 @@
 	
 	</RelativeLayout>
 </LinearLayout>
+</ScrollView>

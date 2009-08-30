@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/widget28"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
-	
-		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="The dictionary has been downloaded and installed."
-			android:layout_centerInParent="true"
-			android:layout_marginTop="20px"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
-			android:layout_marginBottom="15px"
-			android:textSize="20sp">
-		</TextView>
+<ScrollView android:id="@+id/widget28" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<LinearLayout android:id="@+id/widget28"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical">
 		
-		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="RDict is now ready for you to use."
-			android:layout_centerInParent="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
-			android:layout_marginBottom="15px"
-			android:textSize="20sp">
-		</TextView>
+			<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="The dictionary has been downloaded and installed.  RDict is ready for you to use."
+				android:layout_centerInParent="true"
+				android:layout_marginTop="20px"
+				android:layout_marginLeft="20px"
+				android:layout_marginRight="20px"
+				android:layout_marginBottom="15px"
+				android:textSize="20sp">
+			</TextView>
+			
+			<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="If you need help when using RDict, use the 'More' tab at the bottom of the screen."
+				android:layout_centerInParent="true"
+				android:layout_marginLeft="20px"
+				android:layout_marginRight="20px"
+				android:layout_marginBottom="0px"
+				android:textSize="20sp">
+			</TextView>
+			
+			<ImageView android:id="@+id/tabs_with_arrow"
+				android:src="@drawable/tabs_with_arrow"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="-15px"/>
+			
+			<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="Please feel free to send questions and comments to support@ampliostudios.com."
+				android:layout_centerInParent="true"
+				android:layout_marginTop="15px"
+				android:layout_marginLeft="20px"
+				android:layout_marginRight="20px"
+				android:layout_marginBottom="5px"
+				android:textSize="20sp">
+			</TextView>
 		
-		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="If you need help when using RDict, use the 'More' tab at the bottom of the screen.  From the More menu, you can press the 'Help' button to get help."
-			android:layout_centerInParent="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
-			android:layout_marginBottom="15px"
-			android:textSize="20sp">
-		</TextView>
+		<RelativeLayout android:id="@+id/widget31"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<Button android:id="@+id/setup_finished_button" android:layout_width="120px"
+				android:layout_height="wrap_content" android:text="Finish"
+				android:layout_gravity="center_horizontal"
+				android:layout_alignParentRight="true"
+				android:layout_marginTop="10px"
+				android:layout_marginLeft="20px"
+				android:layout_marginRight="25px"/>
+		</RelativeLayout>
 		
-		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Thank you for downloading and installing RDict.  We hope you find it useful!"
-			android:layout_centerInParent="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px"
-			android:layout_marginBottom="5px"
-			android:textSize="20sp">
-		</TextView>
-	
-	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="wrap_content" android:layout_height="wrap_content">
-		<Button android:id="@+id/setup_finished_button" android:layout_width="80px"
-			android:layout_height="wrap_content" android:text="Finish"
-			android:layout_alignParentRight="true"
-			android:layout_marginLeft="30px"
-			android:layout_marginRight="30px">
-		</Button>
-	</RelativeLayout>
-	
-</LinearLayout>
+	</LinearLayout>
+</ScrollView>
