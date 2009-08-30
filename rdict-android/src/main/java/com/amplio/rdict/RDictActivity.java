@@ -67,6 +67,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	public static ReviewManager reviewManager = null;
 	
 	boolean didRunSetup = false;
+	boolean didTryToLoadDict = false;
 	public static boolean didLoadDict = false;
 	boolean didInitMgrs = false;
 	
@@ -91,7 +92,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	}
     
     public int getAction() {
-    	return StartupManager.getAction(existNecessaryDataFiles(), didRunSetup, RDictActivity.didLoadDict, didInitMgrs);
+    	return StartupManager.getAction(existNecessaryDataFiles(), didRunSetup, didTryToLoadDict, RDictActivity.didLoadDict, didInitMgrs);
     }
     
     private boolean existNecessaryDataFiles() {
@@ -111,7 +112,12 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    		finish();
 	    		break;
 	    		
+	    	case StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON:
+	    		finish();
+	    		break;
+	    		
 	    	case StartupManager.ACTION_DO_LOAD_DICT_SERVICE:
+	    		this.didTryToLoadDict = true;
 	    		startActivity(new Intent(getApplicationContext(), SplashActivity.class));
 	    		break;
 	    		
