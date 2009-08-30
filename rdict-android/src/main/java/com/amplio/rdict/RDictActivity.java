@@ -199,13 +199,15 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	
     @Override
     protected void onDestroy() {
-    	didLoadDict = false;
+    	if(isFinishing()) {
+    		didLoadDict = false;
     	
-    	if(odb != null && ! odb.isClosed())
-    		odb.close();
-    	
-    	if(con != null && con.isOpen())
-    		con.close();
+	    	if(odb != null && ! odb.isClosed())
+	    		odb.close();
+	    	
+	    	if(con != null && con.isOpen())
+	    		con.close();
+	    }
     	
     	super.onDestroy();
     }
