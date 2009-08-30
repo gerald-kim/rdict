@@ -1,7 +1,5 @@
 package com.amplio.rdict.setup;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
@@ -91,23 +89,5 @@ public class SetupActivity extends Activity {
 			default:
 				throw new IllegalArgumentException("No matching view for state: " + state);
 		}
-	}
-	
-	@Override
-	public void onDestroy(){
-		System.out.println("SetupActivity - OnDestroy");
-		
-		DownloadService.stop();
-		
-		File dicFile = new File(DictionaryDownloader.WRITE_PATH_DB);
-		File indexFile = new File(DictionaryDownloader.WRITE_PATH_INDEX);
-		
-		if(dicFile.exists())
-			dicFile.delete();
-		
-		if(indexFile.exists())
-			indexFile.delete();
-		
-		super.onDestroy();
 	}
 }

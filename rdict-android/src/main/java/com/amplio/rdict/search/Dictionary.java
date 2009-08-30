@@ -25,12 +25,14 @@ public class Dictionary {
 
 	public static int wordsLoaded = 0;
 	
-	public Dictionary( String wordDbPath, 
+	public Dictionary(){
+	}
+	
+	public void load(String wordDbPath, 
 						String wordIndexPath, 
 						InputStream htmlStream, 
 						Handler loadProgressHandler,
 						Runnable updateRunnable) {
-		
 		Dictionary.wordsLoaded = 0;
 		
 		factory = new DictionaryEntryFactory( htmlStream );
@@ -49,8 +51,13 @@ public class Dictionary {
 				
 				Dictionary.wordsLoaded++;
 				
-				if(Dictionary.wordsLoaded % 5 == 0 && loadProgressHandler != null)
+				if(Dictionary.wordsLoaded % 5 == 0 && loadProgressHandler != null) {
 					this.postProgress();
+					
+					if(shouldQuitLoad()) {
+						return;
+					}
+				}
 			}
 
 			reader.close();
@@ -60,6 +67,10 @@ public class Dictionary {
 
 		this.postProgress();
 	}
+
+	private boolean shouldQuitLoad() {
+	    return ! LoadDictionaryService.isRunning;
+    }
 	
 	public void postProgress() {
 		if(LoadDictionaryService.splashActivity != null) {

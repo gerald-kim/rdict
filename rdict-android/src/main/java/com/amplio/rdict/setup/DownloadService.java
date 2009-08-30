@@ -41,8 +41,10 @@ public class DownloadService extends Service implements Runnable{
 	}
 	
 	public static void stop(){
-		if(THIS != null)
+		if(THIS != null) {
 			THIS.stopSelf();
+			isRunning = false;
+		}
 	}
 	
 	@Override

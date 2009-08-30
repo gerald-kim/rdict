@@ -16,8 +16,9 @@ public class DictionaryTest extends TestCase {
 		InputStream is = null;
 		try {
 			is = new FileInputStream( "assets/dictionary_js.html" );
-			dictionary = new Dictionary( "src/test/resources/word.cdb",
-			        					   "src/test/resources/word.index", is, null, null );
+			dictionary = new Dictionary();
+			dictionary.load("src/test/resources/word.cdb",
+			        		"src/test/resources/word.index", is, null, null );
 			is.close();
 		} catch( FileNotFoundException e ) {
 			e.printStackTrace();

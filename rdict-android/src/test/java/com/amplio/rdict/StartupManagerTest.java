@@ -53,7 +53,7 @@ public class StartupManagerTest extends TestCase {
 		existsNecessaryFiles = true;
 		didTryToLoadDict = true;
 		
-		assertEquals(StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON,
+		assertEquals(StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON_DURING_DICT_LOAD,
 					 StartupManager.getAction(existsNecessaryFiles, didSetupRun, didTryToLoadDict, didLoadDict, didInitMgrs));
 	}
 }

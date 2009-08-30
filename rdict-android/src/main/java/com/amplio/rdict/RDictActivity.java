@@ -24,6 +24,7 @@ import com.amplio.rdict.review.StatisticsManager;
 import com.amplio.rdict.search.AssetInputStreamProvider;
 import com.amplio.rdict.search.Dictionary;
 import com.amplio.rdict.setup.DictionaryDownloader;
+import com.amplio.rdict.setup.DownloadService;
 import com.amplio.rdict.setup.SetupActivity;
 import com.amplio.rdict.setup.SetupManager;
 
@@ -109,15 +110,22 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    		break;
 	    	
 	    	case StartupManager.ACTION_FINISH_USER_DELAYED_OR_CANCELLED_SETUP:
+	    		DownloadService.stop();
+				File dicFile = new File(DictionaryDownloader.WRITE_PATH_DB);
+				File indexFile = new File(DictionaryDownloader.WRITE_PATH_INDEX);
+				
+				if(dicFile.exists())
+					dicFile.delete();
+				
+				if(indexFile.exists())
+					indexFile.delete();
+	    		
 	    		finish();
 	    		break;
 	    		
-	    	case StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON:
-	    		
-//	    		stop service
-//	    		
-//	    		delete files
-	    		
+	    	case StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON_DURING_DICT_LOAD:
+	    		LoadDictionaryService.stop();
+	    		RDictActivity.dictionary = null;
 	    		finish();
 	    		break;
 	    		
@@ -191,7 +199,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	
     @Override
     protected void onDestroy() {
-    	System.out.println("RDict - On Destroy");
+    	didLoadDict = false;
     	
     	if(odb != null && ! odb.isClosed())
     		odb.close();
