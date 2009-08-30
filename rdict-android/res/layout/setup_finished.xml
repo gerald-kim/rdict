@@ -7,7 +7,7 @@
 		android:orientation="vertical">
 		
 			<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="The dictionary has been downloaded and installed.  RDict is ready for you to use."
+				android:layout_height="wrap_content" android:text="The dictionary has finished downloading and RDict is ready for you to use."
 				android:layout_centerInParent="true"
 				android:layout_marginTop="20px"
 				android:layout_marginLeft="20px"
@@ -17,7 +17,7 @@
 			</TextView>
 			
 			<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="If you need help when using RDict, use the 'More' tab at the bottom of the screen."
+				android:layout_height="wrap_content" android:text="Before using RDict, we recommend reading our help file, which can be accessed from the 'More' tab."
 				android:layout_centerInParent="true"
 				android:layout_marginLeft="20px"
 				android:layout_marginRight="20px"

@@ -63,30 +63,26 @@
 			android:layout_marginRight="40px"
 			android:textSize="20sp">
 		</TextView>
-		
-	</LinearLayout>
 	
-	<RelativeLayout android:id="@+id/widget31"
-		android:layout_width="wrap_content" android:layout_height="50px">
-		
 		<TextView android:id="@+id/hint_mesg" android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="To begin, press "
-			android:layout_centerVertical="true"
-			android:layout_alignParentLeft="true"
+			android:text="To begin, press 'Next'."
+			android:layout_marginTop="10px"
 			android:layout_marginLeft="20px"
-			android:layout_marginRight="2px"
+			android:layout_marginRight="20px"
 			android:textSize="20sp">
 		</TextView>
 		
-		<Button android:id="@+id/welcome_view_ok_button" android:layout_width="80px"
+		<Button android:id="@+id/welcome_view_ok_button" android:layout_width="100px"
 			android:layout_height="wrap_content" android:text="Next"
-			android:layout_centerVertical="true"
+			android:layout_gravity="right"
 			android:textSize="20sp"
-			android:layout_toRightOf="@+id/hint_mesg">
+			android:layout_marginTop="10px"
+			android:layout_marginLeft="20px"
+			android:layout_marginRight="20px">
 		</Button>
 		
-	</RelativeLayout>
+	</LinearLayout>
 	
 </LinearLayout>
 </ScrollView>

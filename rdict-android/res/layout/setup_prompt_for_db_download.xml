@@ -21,7 +21,7 @@
 		
 		<TextView android:id="@+id/welcome_view_msg"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Before using RDict, you have to download a dictionary database file from our server.  This requires an internet connection."
+			android:text="Before you can start using RDict, Setup must download a dictionary file from the internet."
 			android:layout_centerVertical="true"
 			android:textSize="20sp"
 			android:layout_marginTop="20px"
@@ -31,7 +31,7 @@
 		
 		<TextView android:id="@+id/welcome_view_msg"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Because the dictionary file can be big (approximately 60MB), we recommend downloading the file using a Wifi connection."
+			android:text="The file can be big (approx. 60MB), so we recommend downloading via a wifi connection."
 			android:layout_centerVertical="true"
 			android:textSize="20sp"
 			android:layout_marginTop="20px"
@@ -41,7 +41,7 @@
 		
 		<TextView android:id="@+id/welcome_view_msg"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="Do you want to download the dictionary file now?"
+			android:text="Would you like to download the dictionary file now?"
 			android:layout_centerVertical="true"
 			android:textSize="20sp"
 			android:layout_marginTop="20px"
