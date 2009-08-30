@@ -108,11 +108,16 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    		didRunSetup = true;
 	    		break;
 	    	
-	    	case StartupManager.ACTION_FINISH_USER_DELAYED_SETUP:
+	    	case StartupManager.ACTION_FINISH_USER_DELAYED_OR_CANCELLED_SETUP:
 	    		finish();
 	    		break;
 	    		
 	    	case StartupManager.ACTION_FINISH_USER_PRESSED_BACK_BUTTON:
+	    		
+//	    		stop service
+//	    		
+//	    		delete files
+	    		
 	    		finish();
 	    		break;
 	    		

@@ -14,6 +14,8 @@ public class DownloadService extends Service implements Runnable{
 	
 	public DictionaryDownloader downloader = null;
 	
+	private static DownloadService THIS = null;
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -23,6 +25,8 @@ public class DownloadService extends Service implements Runnable{
 		downloadList.add(DictionaryDownloader.SOURCE_URL_INDEX, DictionaryDownloader.WRITE_PATH_INDEX);
 		
 		downloader = new DictionaryDownloader(downloadList, dm, DictionaryDownloader.DO_MD5_CHECK);
+		
+		THIS = this;
 		
 		new Thread(this).start();
 	}
@@ -34,6 +38,11 @@ public class DownloadService extends Service implements Runnable{
 		this.stopSelf();
 		
 		isRunning = false;
+	}
+	
+	public static void stop(){
+		if(THIS != null)
+			THIS.stopSelf();
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ public class StartupManagerTest extends TestCase {
 		existsNecessaryFiles = false;
 		didSetupRun = true;
 		
-		assertEquals(StartupManager.ACTION_FINISH_USER_DELAYED_SETUP, StartupManager.getAction(existsNecessaryFiles, didSetupRun, didTryToLoadDict, didLoadDict, false));
+		assertEquals(StartupManager.ACTION_FINISH_USER_DELAYED_OR_CANCELLED_SETUP, StartupManager.getAction(existsNecessaryFiles, didSetupRun, didTryToLoadDict, didLoadDict, false));
 		
 		existsNecessaryFiles = true;
 		didSetupRun = false;
