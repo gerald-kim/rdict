@@ -47,7 +47,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 												R.drawable.ic_menu_recent_history,
 												R.drawable.ic_menu_manage };
 	
-	
 	public static RDictActivity RDICT_ACTIVITY = null;
 	
 	TabHost tabHost = null;
