@@ -8,6 +8,7 @@ import sys
 import os
 import tc
 import cdb
+import gzip
 
 reload( sys )
 sys.setdefaultencoding( "utf-8" )
@@ -26,8 +27,6 @@ class WordDbToCdbConverter:
     def open( self ):
         self.word_db = tc.BDB()
         self.word_db.open( self._get_db_filepath( 'word' ), tc.BDBOREADER )
-        self.index_db = tc.BDB()
-        self.index_db.open( self._get_db_filepath( 'index' ), tc.BDBOREADER )
 
         try:
             os.system( 'rm -rf ' + self.cdb_dir )
@@ -37,14 +36,12 @@ class WordDbToCdbConverter:
         
         word_cdb_name = self._get_cdb_filepath( 'word' )
         self.word_cdb = cdb.cdbmake( word_cdb_name, word_cdb_name + ".tmp" )
-        index_cdb_name = self._get_cdb_filepath( 'index' )
-        self.index_cdb = cdb.cdbmake( index_cdb_name, index_cdb_name + ".tmp" )
+        self.index_file = open( word_cdb_name.replace( 'word.cdb', 'word.index'), 'w' )
         
     def close( self ):
         self.word_db.close()
-        self.index_db.close()
         self.word_cdb.finish()
-        self.index_cdb.finish()
+        self.index_file.close()
 
     def convert( self, db, cdb ):
         c = db.curnew()
@@ -54,6 +51,8 @@ class WordDbToCdbConverter:
             try:
                 #print c.key(), c.val()
                 cdb.add( c.key(), c.val() )
+                self.index_file.write( c.key() )
+                self.index_file.write( '\n' )
                 c.next()
             except KeyError:
                 break
@@ -66,6 +65,5 @@ if __name__ == '__main__':
     
     cdb_converter = WordDbToCdbConverter( sys.argv[1] )
     cdb_converter.open()
-    cdb_converter.convert( cdb_converter.index_db, cdb_converter.index_cdb )
     cdb_converter.convert( cdb_converter.word_db, cdb_converter.word_cdb )
     cdb_converter.close()
