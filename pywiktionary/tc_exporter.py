@@ -59,7 +59,10 @@ if __name__ == '__main__':
     if len( sys.argv ) == 3:
         word_set = {}
         for line in open( sys.argv[2] ).readlines():
-            word_set[ unicode( line.strip() ) ] = 1
+            word = unicode( line.strip() )
+            word_set[ word ] = 1
+            if word.find( '-' ) > 0:
+                word_set[ word.replace( '-', ' ' ) ] = 1
     
     word_manager = WordManager()
     word_manager.connect()
