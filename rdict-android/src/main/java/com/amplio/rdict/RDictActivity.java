@@ -3,16 +3,23 @@ package com.amplio.rdict;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -28,7 +35,7 @@ import com.amplio.rdict.setup.DownloadService;
 import com.amplio.rdict.setup.SetupActivity;
 import com.amplio.rdict.setup.SetupManager;
 
-public class RDictActivity extends TabActivity implements  AssetInputStreamProvider {
+public class RDictActivity extends TabActivity implements  AssetInputStreamProvider, OnClickListener {
 	
 	public static final int TAB_INDEX_SEARCH = 0;
 	public static final int TAB_INDEX_REVIEW = 1;
@@ -84,6 +91,16 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	startupMgr = new StartupManager();
     	
     	RDICT_ACTIVITY = this;
+    	
+    	try {
+	        if (new Date().getTime() > new SimpleDateFormat("yyyyMMdd").parse("20091214").getTime()){
+	        	new AlertDialog.Builder(this)
+	        	.setTitle("Notice")
+	        	.setMessage("This version of RDict was developed for the Google ADC2 contest and expired December 14th, 2009.\nYou may be interested to know that RDict is available for purchase from the Android Market.")
+	        	.setNeutralButton("Ok", this)
+	        	.show();
+	        }
+        } catch( ParseException ignore) {}
     }
     
     public void onResume() {
@@ -241,4 +258,8 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 		
 		return stream;
 	}
+
+	public void onClick( DialogInterface dialog, int which ) {
+	    this.finish();	    
+    }
 }

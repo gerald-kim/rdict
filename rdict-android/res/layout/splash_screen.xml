@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:id="@+id/widget28"
-	android:layout_width="250px" android:layout_height="200px"
+	android:layout_width="250px" android:layout_height="270px"
 	android:layout_gravity="center"
 	android:orientation="vertical"
 	background="FF000000"
@@ -34,5 +34,15 @@
 		android:layout_marginRight="10px"
 		android:layout_gravity="bottom"
 		android:gravity="center"/>
+		
+	<TextView android:id="@+id/setup_downloading_status_label"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="This version of RDict has been developed for the Google Android Developer Challenge ADC2.  It is fully functional, but will expire after December 14th, 2009." 
+		android:layout_marginLeft="10px" android:layout_marginRight="10px"
+		android:layout_marginTop="20px"
+		android:textSize="14sp"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center">
+	</TextView>
 	
 </LinearLayout>
