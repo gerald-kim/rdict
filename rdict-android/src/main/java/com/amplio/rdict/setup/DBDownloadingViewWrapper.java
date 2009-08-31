@@ -16,13 +16,13 @@ public class DBDownloadingViewWrapper extends SetupViewWrapper {
 	
 	public DBDownloadingViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
-		this.v = View.inflate(context, R.layout.setup_downloading, null);
+		this.view = View.inflate(context, R.layout.setup_downloading, null);
 		
-		this.statusLabel = (TextView) this.v.findViewById(R.id.setup_downloading_status_label );
+		this.statusLabel = (TextView) this.view.findViewById(R.id.setup_downloading_status_label );
 		
 		this.downloadingViewHandler = new Handler();
 		
-		this.downloadBar = (ProgressBar) this.v.findViewById(R.id.setup_progress_bar );
+		this.downloadBar = (ProgressBar) this.view.findViewById(R.id.setup_progress_bar );
 		
 		if(DownloadService.isRunning) {		
 			DownloadService.dm.handler = this.downloadingViewHandler;

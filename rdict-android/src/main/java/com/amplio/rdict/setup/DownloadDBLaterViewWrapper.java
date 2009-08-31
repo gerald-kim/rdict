@@ -13,9 +13,9 @@ public class DownloadDBLaterViewWrapper extends SetupViewWrapper implements OnCl
 	public DownloadDBLaterViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
 		
-		this.v = View.inflate( context, R.layout.setup_delayed, null);
+		this.view = View.inflate( context, R.layout.setup_delayed, null);
 		
-		this.okButton = (Button) this.v.findViewById(R.id.setup_delayed_button );
+		this.okButton = (Button) this.view.findViewById(R.id.setup_delayed_button );
 		this.okButton.setOnClickListener(this);
 	}
 

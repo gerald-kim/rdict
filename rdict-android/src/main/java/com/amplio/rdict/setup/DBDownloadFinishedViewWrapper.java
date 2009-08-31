@@ -13,9 +13,9 @@ public class DBDownloadFinishedViewWrapper extends SetupViewWrapper implements O
 	public DBDownloadFinishedViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
 		
-		this.v = View.inflate( context, R.layout.setup_finished, null);
+		this.view = View.inflate( context, R.layout.setup_finished, null);
 		
-		this.finishedButton = (Button) this.v.findViewById(R.id.setup_finished_button);
+		this.finishedButton = (Button) this.view.findViewById(R.id.setup_finished_button);
 		this.finishedButton.setOnClickListener(this);
 	}
 

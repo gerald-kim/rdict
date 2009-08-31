@@ -1,6 +1,9 @@
 package com.amplio.rdict.setup;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -28,7 +31,8 @@ public class SetupActivity extends Activity {
 		
 		this.welcomeScreenViewWrapper = new WelcomeViewWrapper(this.getApplicationContext(), this);
 		
-		this.promptForDBDownloadViewWrapper = new PromptForDBDownloadViewWrapper(this.getApplicationContext(), this);
+		boolean isConnected = isConnected();
+		this.promptForDBDownloadViewWrapper = new PromptForDBDownloadViewWrapper(this.getApplicationContext(), this, isConnected);
 
 		this.downloadingDBViewWrapper = new DBDownloadingViewWrapper(this.getApplicationContext(), this);
 		this.downloadFinishedViewWrapper = new DBDownloadFinishedViewWrapper(this.getApplicationContext(), this);
@@ -42,7 +46,20 @@ public class SetupActivity extends Activity {
 			setupMgr.setState(savedInstanceState.getInt(FlashCardActivity.SAVE_TAG_STATE));
 		}
 	}
-	
+
+	private boolean isConnected() {
+		ConnectivityManager connec = (ConnectivityManager) getSystemService( Context.CONNECTIVITY_SERVICE );
+
+		if( connec.getNetworkInfo( 0 ).getState() == NetworkInfo.State.CONNECTED
+		        || connec.getNetworkInfo( 1 ).getState() == NetworkInfo.State.CONNECTING ) {
+			return true;
+		} else if( connec.getNetworkInfo( 0 ).getState() == NetworkInfo.State.DISCONNECTED
+		        || connec.getNetworkInfo( 1 ).getState() == NetworkInfo.State.DISCONNECTED ) {
+			return false;
+		}
+		return false;
+	}
+
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putInt(FlashCardActivity.SAVE_TAG_STATE, setupMgr.getState());

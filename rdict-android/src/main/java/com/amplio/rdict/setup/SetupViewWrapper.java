@@ -5,7 +5,7 @@ import android.view.View;
 
 public abstract class SetupViewWrapper {
 
-	View v = null;
+	View view = null;
 	SetupActivity setupActivity = null;
 	Context context = null;
 	
@@ -15,7 +15,7 @@ public abstract class SetupViewWrapper {
 	}
 	
 	public View getView() {
-		return this.v;
+		return this.view;
 	}
 	
 }

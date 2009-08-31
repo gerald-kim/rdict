@@ -13,9 +13,9 @@ public class WelcomeViewWrapper extends SetupViewWrapper implements OnClickListe
 	public WelcomeViewWrapper(Context context, SetupActivity setupActivity) {
 		super(context, setupActivity);
 		
-		this.v = View.inflate( context, R.layout.setup_welcome, null);
+		this.view = View.inflate( context, R.layout.setup_welcome, null);
 		
-		this.okButton = (Button) this.v.findViewById(R.id.welcome_view_ok_button );
+		this.okButton = (Button) this.view.findViewById(R.id.welcome_view_ok_button );
 		this.okButton.setOnClickListener(this);
 	}
 	
