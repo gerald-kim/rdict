@@ -1,6 +1,8 @@
 package com.amplio.rdict.setup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +32,14 @@ public class PromptForDBDownloadViewWrapper extends SetupViewWrapper implements 
 		if( v == this.nowButton && this.isConnected ) {
 			nowButtonClicked();
 		} else if (v == this.nowButton && !this.isConnected ) {
-			//XXX: change activity when no wireless connection
-			laterButtonClicked();
+			new AlertDialog.Builder(this.setupActivity)
+        	.setTitle("Notice")
+        	.setMessage("RDict has detected that your phone is not currently connected to the internet and will now exit.  Please restart RDict when you have an internet connection.")
+        	.setNeutralButton("Ok", new DialogInterface.OnClickListener(){
+				public void onClick( DialogInterface dialog, int which ) {
+					setupActivity.finish();	                
+                }})
+        	.show();
 		} else {
 			laterButtonClicked();
 		}

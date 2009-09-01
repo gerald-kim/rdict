@@ -49,15 +49,7 @@ public class SetupActivity extends Activity {
 
 	private boolean isConnected() {
 		ConnectivityManager connec = (ConnectivityManager) getSystemService( Context.CONNECTIVITY_SERVICE );
-
-		if( connec.getNetworkInfo( 0 ).getState() == NetworkInfo.State.CONNECTED
-		        || connec.getNetworkInfo( 1 ).getState() == NetworkInfo.State.CONNECTING ) {
-			return true;
-		} else if( connec.getNetworkInfo( 0 ).getState() == NetworkInfo.State.DISCONNECTED
-		        || connec.getNetworkInfo( 1 ).getState() == NetworkInfo.State.DISCONNECTED ) {
-			return false;
-		}
-		return false;
+		return null != connec.getActiveNetworkInfo();
 	}
 
 	@Override
