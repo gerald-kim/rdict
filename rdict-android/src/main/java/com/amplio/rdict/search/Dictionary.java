@@ -16,8 +16,7 @@ import com.amplio.rdict.LoadDictionaryService;
 import com.strangegizmo.cdb.Cdb;
 
 public class Dictionary {
-	public static RuleBasedCollator COLLATOR  = (RuleBasedCollator)
-    Collator.getInstance(new Locale("en", "US", ""));
+	public static RuleBasedCollator COLLATOR  = (RuleBasedCollator) Collator.getInstance(new Locale("en", "US", ""));
 
 	private DictionaryEntryFactory factory = null;
 	private Cdb wordCdb;
@@ -51,11 +50,13 @@ public class Dictionary {
 				
 				Dictionary.wordsLoaded++;
 				
-				if(Dictionary.wordsLoaded % 5 == 0 && loadProgressHandler != null) {
-					this.postProgress();
-					
-					if(shouldQuitLoad()) {
-						return;
+				if(loadProgressHandler != null) {
+					if(Dictionary.wordsLoaded % 5 == 0) {
+						this.postProgress();
+						
+						if(shouldQuitLoad()) {
+							return;
+						}
 					}
 				}
 			}
@@ -64,8 +65,10 @@ public class Dictionary {
 		} catch( IOException e ) {
 			e.printStackTrace();
 		}
-
-		this.postProgress();
+		
+		if(loadProgressHandler != null) {
+			this.postProgress();
+		}
 	}
 
 	private boolean shouldQuitLoad() {
@@ -89,8 +92,8 @@ public class Dictionary {
 	
 
 	public DictionaryEntry searchByWord( String word ) {
-		DictionaryEntry dicEntry = factory.makeHTMLifiedEntry( word, new String( wordCdb
-		        .find( word.getBytes() ) ) );
+		DictionaryEntry dicEntry = factory.makeHTMLifiedEntry( word, 
+															new String( wordCdb.find( word.getBytes() ) ) );
 
 		return dicEntry;
 	}
