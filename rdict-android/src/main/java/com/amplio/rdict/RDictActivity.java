@@ -236,6 +236,7 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
 	    cardSetManager = new CardSetManager( odb );
 	    reviewManager = new ReviewManager( odb, cardSetManager );
 	    statisticsManager = new StatisticsManager( odb, cardSetManager );
+	    RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
         
 	    if(con == null || ! con.isOpen())
 	    	con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
