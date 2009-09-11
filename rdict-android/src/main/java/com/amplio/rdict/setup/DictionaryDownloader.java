@@ -3,10 +3,10 @@ package com.amplio.rdict.setup;
 import java.io.File;
 
 public class DictionaryDownloader implements Runnable {
-    public static final String SOURCE_URL_DB = "http://s3.amazonaws.com/rdict-small/word.cdb";
+    public static final String SOURCE_URL_DB = "http://s3.amazonaws.com/rdict/word.cdb";
     public static final String WRITE_PATH_DB = "/sdcard/rdict/word.cdb";
 	
-    public static final String SOURCE_URL_INDEX = "http://s3.amazonaws.com/rdict-small/word.index";
+    public static final String SOURCE_URL_INDEX = "http://s3.amazonaws.com/rdict/word.index";
     public static final String WRITE_PATH_INDEX = "/sdcard/rdict/word.index";
     
 	public static final boolean DO_MD5_CHECK = true;
