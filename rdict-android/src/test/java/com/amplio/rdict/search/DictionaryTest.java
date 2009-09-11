@@ -35,25 +35,27 @@ public class DictionaryTest extends TestCase {
 		assertEquals( 28134, Dictionary.words.length );
 	}
 
-	public void atestFindExistingWordIndex() {
+	public void testFindExistingWordIndex() {
 		assertEquals( 0, dictionary.findWordIndex( "'em" ) );
 		assertEquals( 3, dictionary.findWordIndex( "a" ) );
 		assertEquals( 4, dictionary.findWordIndex( "A" ) );
 		assertEquals( 5, dictionary.findWordIndex( "a-" ) );
 		assertEquals( 31, dictionary.findWordIndex( "abet" ) );
+		assertEquals( 456, dictionary.findWordIndex( "age" ) );
+		assertEquals( 457, dictionary.findWordIndex( "-age" ) );
 		assertEquals( 8048, dictionary.findWordIndex( "er" ) );
 		assertEquals( 8049, dictionary.findWordIndex( "ER" ) );
 		assertEquals( 8050, dictionary.findWordIndex( "-er" ) );
 	}
 	
-	public void atestFindExistingWordIndexIfWordWouldAppearAfterLastInList() {
+	public void testFindExistingWordIndexIfWordWouldAppearAfterLastInList() {
 		assertEquals(Dictionary.wordsLoaded - 1, dictionary.findWordIndex("zzzzzzzzzzzz") );
 	}
 
 	public void testFindNonExistingWordIndex() {
 		assertEquals( 10, dictionary.findWordIndex( "ab" ) );
 		assertEquals( 10, dictionary.findWordIndex( "aback" ) );
-		assertEquals( 11, dictionary.findWordIndex( "abackt" ) );
+		assertEquals( 10, dictionary.findWordIndex( "abackt" ) );
 	}
 
 	public void testGetDefinition() {
