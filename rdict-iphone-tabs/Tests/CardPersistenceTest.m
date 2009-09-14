@@ -30,6 +30,7 @@
 	[[SQLiteInstanceManager sharedManager] deleteDatabase];
 }
 
+//@encode
 -(void) assertCardEquals:(Card*) expected actual:(Card*) actual {
 	STAssertEqualStrings( expected.question, actual.question, nil );
 	STAssertEqualStrings( expected.answer, actual.answer, nil );

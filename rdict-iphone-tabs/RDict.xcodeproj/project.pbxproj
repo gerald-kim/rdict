@@ -154,7 +154,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EFBF4A160FE001900092357C /* UnitTests */;
+			remoteGlobalIDString = EFBF4A160FE001900092357C;
 			remoteInfo = UnitTests;
 		};
 		EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */ = {
@@ -626,8 +626,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */,
 				EF1C7512105E9D8D002207AA /* PBXTargetDependency */,
+				EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */,
 			);
 			name = "RDict Test";
 			productName = RDict;
@@ -959,14 +959,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2A2A7AD9-3D6F-443E-B10F-936228975655";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
 		};
@@ -977,14 +977,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2A2A7AD9-3D6F-443E-B10F-936228975655";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
 		};
