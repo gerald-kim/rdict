@@ -3922,7 +3922,7 @@ double tcndbadddouble(TCNDB *ndb, const void *kbuf, int ksiz, double num){
 /* Clear an on-memory tree database object. */
 void tcndbvanish(TCNDB *ndb){
   assert(ndb);
-  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0);
+  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0) return;
   tctreeclear(ndb->tree);
   pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
 }
@@ -3931,7 +3931,7 @@ void tcndbvanish(TCNDB *ndb){
 /* Remove fringe records of an on-memory tree database object. */
 void tcndbcutfringe(TCNDB *ndb, int num){
   assert(ndb && num >= 0);
-  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0);
+  if(pthread_mutex_lock((pthread_mutex_t *)ndb->mmtx) != 0) return;
   tctreecutfringe(ndb->tree, num);
   pthread_mutex_unlock((pthread_mutex_t *)ndb->mmtx);
 }

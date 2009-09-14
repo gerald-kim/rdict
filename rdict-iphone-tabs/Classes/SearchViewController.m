@@ -9,7 +9,7 @@
 #import "SearchViewController.h"
 #import "DictionaryViewController.h"
 #import "RDictAppDelegate.h"
-#import "Wiktionary.h";
+#import "Wiktionary.h"
 
 @implementation SearchViewController
 
