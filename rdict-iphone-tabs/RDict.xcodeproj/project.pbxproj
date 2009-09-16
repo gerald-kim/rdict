@@ -58,11 +58,21 @@
 		EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
 		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
+		EF2F33B910610CE200ADFFD5 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
+		EF2F33BA10610CE200ADFFD5 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
+		EF2F33BB10610CE200ADFFD5 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
+		EF2F33BC10610CE200ADFFD5 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
+		EF2F33DD10610EB200ADFFD5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
+		EF2F33DE10610EB200ADFFD5 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
+		EF2F33DF10610EB200ADFFD5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
+		EF2F33E010610EB200ADFFD5 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
+		EF2F33E110610EB200ADFFD5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
+		EF2F33E210610EB200ADFFD5 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
+		EF2F33E310610EB200ADFFD5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
+		EF2F33E410610EB200ADFFD5 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
 		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
-		EF54C54B0FFF36D000BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
-		EF54C54C0FFF36D000BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
 		EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
 		EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
 		EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
@@ -130,8 +140,6 @@
 		EFBF4A2B0FE001DA0092357C /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
 		EFBF4A2C0FE001DA0092357C /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
 		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
-		EFBF4A3C0FE002500092357C /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07F90FDFF53D00490192 /* index.db */; };
-		EFBF4A3D0FE002500092357C /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EFEA07FA0FDFF53D00490192 /* word.db */; };
 		EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
@@ -242,6 +250,12 @@
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
 		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardBackView.xib; path = Resources/CardBackView.xib; sourceTree = "<group>"; };
+		EF2F33B710610CE200ADFFD5 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
+		EF2F33B810610CE200ADFFD5 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
+		EF2F33D910610EB200ADFFD5 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "Resources/tab-icons/gear.png"; sourceTree = "<group>"; };
+		EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying-glass.png"; path = "Resources/tab-icons/magnifying-glass.png"; sourceTree = "<group>"; };
+		EF2F33DB10610EB200ADFFD5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = "Resources/tab-icons/star.png"; sourceTree = "<group>"; };
+		EF2F33DC10610EB200ADFFD5 /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tag.png; path = "Resources/tab-icons/tag.png"; sourceTree = "<group>"; };
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
@@ -294,8 +308,6 @@
 		EFEA07E00FDFF4F900490192 /* tcutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcutil.c; sourceTree = "<group>"; };
 		EFEA07E10FDFF4F900490192 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
 		EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFEA07F90FDFF53D00490192 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
-		EFEA07FA0FDFF53D00490192 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -403,8 +415,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EF2F339110610B4C00ADFFD5 /* tab-icons */,
 				EF54C5820FFF372100BFDCB6 /* enwiktionary.db */,
-				EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */,
+				EF2F33B610610CE200ADFFD5 /* enwiktionary-oald.db */,
 				EF770E830FF754D900889749 /* jquery-1.3.2.js */,
 				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
@@ -465,6 +478,26 @@
 				EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */,
 			);
 			path = sqlitepersistentobjects;
+			sourceTree = "<group>";
+		};
+		EF2F339110610B4C00ADFFD5 /* tab-icons */ = {
+			isa = PBXGroup;
+			children = (
+				EF2F33D910610EB200ADFFD5 /* gear.png */,
+				EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */,
+				EF2F33DB10610EB200ADFFD5 /* star.png */,
+				EF2F33DC10610EB200ADFFD5 /* tag.png */,
+			);
+			name = "tab-icons";
+			sourceTree = "<group>";
+		};
+		EF2F33B610610CE200ADFFD5 /* enwiktionary-oald.db */ = {
+			isa = PBXGroup;
+			children = (
+				EF2F33B710610CE200ADFFD5 /* index.db */,
+				EF2F33B810610CE200ADFFD5 /* word.db */,
+			);
+			path = "enwiktionary-oald.db";
 			sourceTree = "<group>";
 		};
 		EF54C5820FFF372100BFDCB6 /* enwiktionary.db */ = {
@@ -562,15 +595,6 @@
 				EFEA07E10FDFF4F900490192 /* tcutil.h */,
 			);
 			path = tokyocabinet;
-			sourceTree = "<group>";
-		};
-		EFEA07F80FDFF53D00490192 /* enwiktionary-small.db */ = {
-			isa = PBXGroup;
-			children = (
-				EFEA07F90FDFF53D00490192 /* index.db */,
-				EFEA07FA0FDFF53D00490192 /* word.db */,
-			);
-			path = "enwiktionary-small.db";
 			sourceTree = "<group>";
 		};
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
@@ -712,6 +736,10 @@
 				EF770FD30FF7B8A000889749 /* ReviewFinishedView.xib in Resources */,
 				EF54C5860FFF372100BFDCB6 /* index.db in Resources */,
 				EF54C5880FFF372100BFDCB6 /* word.db in Resources */,
+				EF2F33E110610EB200ADFFD5 /* gear.png in Resources */,
+				EF2F33E210610EB200ADFFD5 /* magnifying-glass.png in Resources */,
+				EF2F33E310610EB200ADFFD5 /* star.png in Resources */,
+				EF2F33E410610EB200ADFFD5 /* tag.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,8 +750,6 @@
 				EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */,
 				EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */,
 				EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */,
-				EF54C54B0FFF36D000BFDCB6 /* index.db in Resources */,
-				EF54C54C0FFF36D000BFDCB6 /* word.db in Resources */,
 				EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */,
 				EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */,
 				EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */,
@@ -733,6 +759,12 @@
 				EF54C5530FFF36D000BFDCB6 /* ReviewSessionView.xib in Resources */,
 				EF54C5540FFF36D000BFDCB6 /* ReviewUnfinishedView.xib in Resources */,
 				EF54C5550FFF36D000BFDCB6 /* ReviewFinishedView.xib in Resources */,
+				EF2F33B910610CE200ADFFD5 /* index.db in Resources */,
+				EF2F33BA10610CE200ADFFD5 /* word.db in Resources */,
+				EF2F33DD10610EB200ADFFD5 /* gear.png in Resources */,
+				EF2F33DE10610EB200ADFFD5 /* magnifying-glass.png in Resources */,
+				EF2F33DF10610EB200ADFFD5 /* star.png in Resources */,
+				EF2F33E010610EB200ADFFD5 /* tag.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,9 +772,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFBF4A3C0FE002500092357C /* index.db in Resources */,
-				EFBF4A3D0FE002500092357C /* word.db in Resources */,
 				EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */,
+				EF2F33BB10610CE200ADFFD5 /* index.db in Resources */,
+				EF2F33BC10610CE200ADFFD5 /* word.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
