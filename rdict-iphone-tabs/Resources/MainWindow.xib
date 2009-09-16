@@ -53,42 +53,73 @@
 			<object class="IBUITabBarController" id="684464778">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="360564780">
-					<string key="IBUITitle">Search</string>
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="384103285">
-						<string key="IBUITitle">Search</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="782806199">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="924225331">
+						<string key="IBUITitle">History</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">magnifying-glass.png</string>
+							<string key="NSResourceName">tag.png</string>
 						</object>
 						<reference key="IBUITabBar"/>
 					</object>
+					<reference key="IBUIToolbarItems" ref="0"/>
 					<reference key="IBUIParentViewController" ref="684464778"/>
-					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="920163595">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="974414129">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrameSize">{0, 0}</string>
+						<string key="NSFrameSize">{320, 44}</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="282972051">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="522333520">
+						<object class="IBUIViewController" id="442899290">
+							<string key="IBUITitle">History</string>
+							<reference key="IBUIToolbarItems" ref="0"/>
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="380446837">
 								<reference key="IBUINavigationBar"/>
-								<string key="IBUITitle">Title</string>
+								<string key="IBUITitle">Item</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="360564780"/>
-							<string key="IBUINibName">SearchView</string>
+							<reference key="IBUIParentViewController" ref="782806199"/>
+							<string key="IBUINibName">HistoryView</string>
 						</object>
 					</object>
-					<bool key="IBUINavigationBarHidden">YES</bool>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="360564780"/>
+					<object class="IBUINavigationController" id="360564780">
+						<string key="IBUITitle">Search</string>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="384103285">
+							<string key="IBUITitle">Search</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">magnifying-glass.png</string>
+							</object>
+							<reference key="IBUITabBar"/>
+						</object>
+						<reference key="IBUIParentViewController" ref="684464778"/>
+						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="920163595">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrameSize">{0, 0}</string>
+							<bool key="IBUIOpaque">NO</bool>
+							<bool key="IBUIClipsSubviews">YES</bool>
+							<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="IBUIViewControllers">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIViewController" id="282972051">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="522333520">
+									<string key="IBUITitle">Title</string>
+								</object>
+								<reference key="IBUIParentViewController" ref="360564780"/>
+								<string key="IBUINibName">SearchView</string>
+							</object>
+						</object>
+						<bool key="IBUINavigationBarHidden">YES</bool>
+					</object>
 					<object class="IBUINavigationController" id="116715008">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="129336761">
 							<string key="IBUITitle">Review</string>
@@ -119,36 +150,7 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUINavigationController" id="782806199">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="924225331">
-							<string key="IBUITitle">History</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">tag.png</string>
-							</object>
-							<reference key="IBUITabBar"/>
-						</object>
-						<reference key="IBUIToolbarItems" ref="0"/>
-						<reference key="IBUIParentViewController" ref="684464778"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="974414129">
-							<nil key="NSNextResponder"/>
-							<int key="NSvFlags">256</int>
-							<string key="NSFrameSize">{320, 44}</string>
-							<bool key="IBUIOpaque">NO</bool>
-							<bool key="IBUIClipsSubviews">YES</bool>
-							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						</object>
-						<object class="NSArray" key="IBUIViewControllers">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="442899290">
-								<reference key="IBUIToolbarItems" ref="0"/>
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="380446837">
-									<string key="IBUITitle">Item</string>
-								</object>
-								<reference key="IBUIParentViewController" ref="782806199"/>
-							</object>
-						</object>
-					</object>
+					<reference ref="782806199"/>
 					<object class="IBUINavigationController" id="927107682">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="636249828">
 							<string key="IBUITitle">Misc</string>
@@ -168,7 +170,7 @@
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						</object>
-						<object class="NSArray" key="IBUIViewControllers">
+						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="395614002">
 								<reference key="IBUIToolbarItems" ref="0"/>
@@ -444,6 +446,7 @@
 					<string>149.IBPluginDependency</string>
 					<string>150.IBPluginDependency</string>
 					<string>151.IBPluginDependency</string>
+					<string>157.CustomClassName</string>
 					<string>2.IBAttributePlaceholdersKey</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -468,6 +471,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>HistoryViewControler</string>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference key="dict.sortedKeys" ref="0"/>
@@ -521,6 +525,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/DictionaryViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HistoryViewControler</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/HistoryViewControler.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

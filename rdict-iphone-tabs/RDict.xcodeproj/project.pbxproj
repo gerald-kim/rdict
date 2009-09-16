@@ -70,6 +70,10 @@
 		EF2F33E210610EB200ADFFD5 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
 		EF2F33E310610EB200ADFFD5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
 		EF2F33E410610EB200ADFFD5 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
+		EF2F33F41061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
+		EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
+		EF2F34031061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
+		EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
 		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
@@ -256,6 +260,9 @@
 		EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying-glass.png"; path = "Resources/tab-icons/magnifying-glass.png"; sourceTree = "<group>"; };
 		EF2F33DB10610EB200ADFFD5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = "Resources/tab-icons/star.png"; sourceTree = "<group>"; };
 		EF2F33DC10610EB200ADFFD5 /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tag.png; path = "Resources/tab-icons/tag.png"; sourceTree = "<group>"; };
+		EF2F33F31061132C00ADFFD5 /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HistoryView.xib; path = Resources/HistoryView.xib; sourceTree = "<group>"; };
+		EF2F34011061146100ADFFD5 /* HistoryViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryViewControler.h; path = Classes/HistoryViewControler.h; sourceTree = "<group>"; };
+		EF2F34021061146100ADFFD5 /* HistoryViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewControler.m; path = Classes/HistoryViewControler.m; sourceTree = "<group>"; };
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
@@ -500,6 +507,23 @@
 			path = "enwiktionary-oald.db";
 			sourceTree = "<group>";
 		};
+		EF2F33E91061104200ADFFD5 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				EF2F33F31061132C00ADFFD5 /* HistoryView.xib */,
+				EF2F34011061146100ADFFD5 /* HistoryViewControler.h */,
+				EF2F34021061146100ADFFD5 /* HistoryViewControler.m */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		EF2F33EA1061104A00ADFFD5 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
 		EF54C5820FFF372100BFDCB6 /* enwiktionary.db */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +600,8 @@
 				EF7CB7E20FF11C53005B7FCD /* Review */,
 				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
+				EF2F33E91061104200ADFFD5 /* History */,
+				EF2F33EA1061104A00ADFFD5 /* Misc */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -740,6 +766,7 @@
 				EF2F33E210610EB200ADFFD5 /* magnifying-glass.png in Resources */,
 				EF2F33E310610EB200ADFFD5 /* star.png in Resources */,
 				EF2F33E410610EB200ADFFD5 /* tag.png in Resources */,
+				EF2F33F41061132C00ADFFD5 /* HistoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +792,7 @@
 				EF2F33DE10610EB200ADFFD5 /* magnifying-glass.png in Resources */,
 				EF2F33DF10610EB200ADFFD5 /* star.png in Resources */,
 				EF2F33E010610EB200ADFFD5 /* tag.png in Resources */,
+				EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +860,7 @@
 				EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */,
 				EF770FCF0FF7B86800889749 /* ReviewUnfinishedViewController.m in Sources */,
 				EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */,
+				EF2F34031061146100ADFFD5 /* HistoryViewControler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +899,7 @@
 				EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */,
 				EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */,
 				EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */,
+				EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,7 +1018,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = 4.2;
@@ -997,7 +1027,7 @@
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2A2A7AD9-3D6F-443E-B10F-936228975655";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -1006,7 +1036,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jaewoo Kim (Z7LT8K8Q6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = 4.2;
@@ -1015,7 +1045,7 @@
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2A2A7AD9-3D6F-443E-B10F-936228975655";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
