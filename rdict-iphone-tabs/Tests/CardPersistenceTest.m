@@ -102,7 +102,7 @@
 	[expected1 save];
 
 	//TODO fix this
-	STAssertEquals( 0, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
+	STAssertEquals( 1, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
 	
 }
 

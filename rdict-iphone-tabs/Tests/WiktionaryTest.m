@@ -56,9 +56,9 @@
 
 - (void) testJumpToWord {
 	STAssertEqualStrings( [wiktionary findIndexByQuery:@"a"].key, @"a", nil );	
-	STAssertEqualStrings( [wiktionary findIndexByQuery:@"-"].key, @"-'d", nil );
-	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aah"].key, @"aah", nil );
-	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aaha"].key, @"aah", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"-"].key, @"-age", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aah"].key, @"aaa", nil );
+	STAssertEqualStrings( [wiktionary findIndexByQuery:@"aaha"].key, @"aaa", nil );
 	STAssertEqualStrings( [wiktionary findIndexByQuery:@"zoo"].key, @"zoo", nil );
 	STAssertEqualStrings( [wiktionary findIndexByQuery:@"zooh"].key, @"zoo", nil );
 }
@@ -66,31 +66,31 @@
 - (void) testFillWordList {
 	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"zoo"];
 	NSLog( @"target Index %d", targetIndex );
-	STAssertEquals( targetIndex, (NSUInteger) 82, nil );
+	STAssertEquals( targetIndex, (NSUInteger) 90, nil );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
-	STAssertEqualStrings( wiktionaryIndex.key, @"z", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"yesterday", nil );
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"zzz", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"zydeco", nil );
 }
 
 - (void) testJumpToCloseToFirst {
-	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"able"];
+	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"-an"];
 	
 	NSLog( @"target Index %d", targetIndex );
-	STAssertEquals( targetIndex, (NSUInteger) 33, nil );
+	STAssertEquals( targetIndex, (NSUInteger) 6, nil );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
-	STAssertEqualStrings( wiktionaryIndex.key, @"abbreviation", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"'em", nil );
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"absolut", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"abandoned", nil );
 }
 
 - (void) testJumpToMiddle {
 	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"adolescent"];
 	STAssertEquals( targetIndex, (NSUInteger) 33, @"a" );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
-	STAssertEqualStrings( wiktionaryIndex.key, @"administered", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"adjective", nil );
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"advertiser", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"aeronautics", nil );
 }
 
 @end
