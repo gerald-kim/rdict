@@ -18,8 +18,6 @@
 
 @implementation HistoryPersistenceTest
 
-
-//@encode
 -(void) assertHistoryEquals:(History*) expected actual:(History*) actual {
 	STAssertEqualStrings( expected.lemma, actual.lemma, nil );
 	STAssertEquals( expected.created, actual.created, nil );
@@ -35,6 +33,15 @@
 	[self assertHistoryEquals:expected actual:actual];
 }
 
+-(void) testFindRecents {
+	for (int i = 0; i<10; i++) {
+		History* history = [[History alloc] initWithLemma:[NSString stringWithFormat:@"lemma %d", i]];
+		[history save];
+	}
+	
+	NSArray* list = [History findRecents];
+	STAssertEquals( [list count], (NSUInteger) 10, nil );
+}
 
 @end
 

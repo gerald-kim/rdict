@@ -18,6 +18,8 @@
 @property (nonatomic, retain) NSString* lemma;
 @property (nonatomic, retain) NSDate* created;
 
++ (NSArray*) findRecents;
+
 - (id) initWithLemma:(NSString *) lemma;
 
 @end

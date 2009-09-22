@@ -19,6 +19,11 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
 )
 
++ (NSArray*) findRecents
+{
+	NSString* recentCriteria = @"where created > date('now', '-30 day') order by created desc";
+	return [History findByCriteria:recentCriteria];
+}
 
 - (id) initWithLemma:(NSString *) aLemma
 {

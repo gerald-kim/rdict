@@ -10,6 +10,7 @@
 #import "DictionaryViewController.h"
 #import "RDictAppDelegate.h"
 #import "Wiktionary.h"
+#import "History.h"
 
 @implementation SearchViewController
 
@@ -58,6 +59,10 @@
 	if( self.dictionaryViewController == nil ) {
 		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
 	}
+		
+	History* history = [[History alloc] initWithLemma: lemma];
+	[history save];
+	[history release];
 	
 	dictionaryViewController.lemma = lemma;
 	[self.navigationController pushViewController:dictionaryViewController animated:YES];
@@ -75,7 +80,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
 	WordIndex* index = [[wiktionary findIndexByQuery:searchBar.text] autorelease];
-	[self showDictionaryView: index.lemma];	
+	[self showDictionaryView: index.lemma];		
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) aSearchBar {

@@ -608,10 +608,10 @@
 		EFBF4A780FE003650092357C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EF7CB7E10FF11C3F005B7FCD /* Dictionary */,
-				EF7CB7E20FF11C53005B7FCD /* Review */,
 				1D3623240D0F684500981E51 /* RDictAppDelegate.h */,
 				1D3623250D0F684500981E51 /* RDictAppDelegate.m */,
+				EF7CB7E10FF11C3F005B7FCD /* Dictionary */,
+				EF7CB7E20FF11C53005B7FCD /* Review */,
 				EF2F33E91061104200ADFFD5 /* History */,
 				EF2F33EA1061104A00ADFFD5 /* Misc */,
 			);
