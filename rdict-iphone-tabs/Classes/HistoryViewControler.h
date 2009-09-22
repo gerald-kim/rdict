@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface HistoryViewControler : UIViewController {
+@interface HistoryViewControler : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	NSArray* histories;
+	IBOutlet UITableView *tableView;
 
 }
+
+@property (nonatomic, retain) NSArray* histories;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end

@@ -7,37 +7,24 @@
 //
 
 #import "HistoryViewControler.h"
+#import "History.h"
 
 
 @implementation HistoryViewControler
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize histories;
+@synthesize tableView;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	self.histories = [History findRecents];
 }
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -53,7 +40,39 @@
 
 
 - (void)dealloc {
+	[histories dealloc];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Table View Data Source Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [histories count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *CellIdentifier = @"Cell";
+	//	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+	}
+	
+	History* history = [histories objectAtIndex:indexPath.row];
+	cell.textLabel.text = history.lemma;
+	
+	//	if( [listData count] - 1 == indexPath.row ) {
+	//		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
+	//		[self.listData removeObjectAtIndex:(NSUInteger)0];
+	//		[tableView reloadData];
+	//	}
+	
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 
