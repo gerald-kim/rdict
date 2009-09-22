@@ -6,12 +6,10 @@
 //  Copyright 2009 ampliostudios. All rights reserved.
 //
 
-#import <TargetConditionals.h>
-#import "GTMSenTestCase.h"
+#import "ObjectPersistenceTest.h"
 #import "History.h"
-#import "SQLiteInstanceManager.h"
 
-@interface HistoryPersistenceTest : SenTestCase {
+@interface HistoryPersistenceTest : ObjectPersistenceTest {
 	
 }
 @end
@@ -20,13 +18,6 @@
 
 @implementation HistoryPersistenceTest
 
--(void) setUp {
-	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"test.db"];	
-}
-
--(void) tearDown {
-	[[SQLiteInstanceManager sharedManager] deleteDatabase];
-}
 
 //@encode
 -(void) assertHistoryEquals:(History*) expected actual:(History*) actual {

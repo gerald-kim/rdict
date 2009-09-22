@@ -6,12 +6,10 @@
 //  Copyright 2009 Amplio Studios. All rights reserved.
 //
 
-#import <TargetConditionals.h>
-#import "GTMSenTestCase.h"
+#import "ObjectPersistenceTest.h"
 #import "Card.h"
 #import <unistd.h>
 #import <stdlib.h>
-#import "SQLiteInstanceManager.h"
 
 @interface CardPersistenceTest : SenTestCase {
 	
@@ -21,14 +19,6 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 @implementation CardPersistenceTest
-
--(void) setUp {
-	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"test.db"];	
-}
-
--(void) tearDown {
-	[[SQLiteInstanceManager sharedManager] deleteDatabase];
-}
 
 //@encode
 -(void) assertCardEquals:(Card*) expected actual:(Card*) actual {
@@ -81,7 +71,7 @@
 	Card* expected3 = [[Card alloc] initWithQuestion:@"question 3" andAnswer:@"answer"];
 	expected3.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) + (SECONDS_IN_ONE_DAY)];
 	[expected3 save];
-	
+
 	NSArray* scheduled = (NSArray*) [Card findByScheduled];
 	STAssertEquals( (NSUInteger) 2, [scheduled count], nil );
 	STAssertEqualStrings( @"question 1", ((Card*) [scheduled objectAtIndex:(NSUInteger)0]).question, nil );

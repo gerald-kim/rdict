@@ -127,6 +127,7 @@
 		EF5C7DD9106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDA106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDB106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
+		EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
 		EF770FCC0FF7B86800889749 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
 		EF770FCD0FF7B86800889749 /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC70FF7B86800889749 /* CardFrontViewController.m */; };
@@ -274,6 +275,8 @@
 		EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryPersistenceTest.m; path = Tests/HistoryPersistenceTest.m; sourceTree = "<group>"; };
 		EF5C7DD7106851F50017E0E6 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		EF5C7DD8106851F50017E0E6 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPersistenceTest.h; sourceTree = "<group>"; };
+		EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectPersistenceTest.m; sourceTree = "<group>"; };
 		EF770E830FF754D900889749 /* jquery-1.3.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.js"; path = "Resources/jquery-1.3.2.js"; sourceTree = "<group>"; };
 		EF770FC40FF7B86800889749 /* CardBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBackViewController.h; path = Classes/CardBackViewController.h; sourceTree = "<group>"; };
 		EF770FC50FF7B86800889749 /* CardBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBackViewController.m; path = Classes/CardBackViewController.m; sourceTree = "<group>"; };
@@ -639,6 +642,8 @@
 				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 				EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */,
+				EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */,
+				EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */,
 				EF5C7DD6106851E90017E0E6 /* HistoryPersistenceTest.m in Sources */,
 				EF5C7DD9106851F50017E0E6 /* History.m in Sources */,
+				EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
