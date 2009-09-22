@@ -18,6 +18,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+	self.title = @"History";
 	self.histories = [History findRecents];
 }
 
@@ -62,13 +63,7 @@
 	
 	History* history = [histories objectAtIndex:indexPath.row];
 	cell.textLabel.text = history.lemma;
-	
-	//	if( [listData count] - 1 == indexPath.row ) {
-	//		[self.listData addObjectsFromArray:[wiktionary listForward:nil withLimit:10]];
-	//		[self.listData removeObjectAtIndex:(NSUInteger)0];
-	//		[tableView reloadData];
-	//	}
-	
+		
 	return cell;
 }
 

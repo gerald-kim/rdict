@@ -69,6 +69,9 @@
 					<bool key="IBUIPrompted">NO</bool>
 				</object>
 				<object class="IBUISimulatedToolbarMetrics" key="IBUISimulatedBottomBarMetrics"/>
+				<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
+					<string key="IBUIAccessibilityLabel">History</string>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -157,7 +160,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>HistoryViewControler</string>
 					<string>UIResponder</string>
-					<string>{{456, 274}, {320, 480}}</string>
+					<string>{{368, 188}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
