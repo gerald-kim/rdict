@@ -61,6 +61,21 @@
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
+- (NSInteger)numberOfSections {
+	return 1;
+}
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)section {
+	return [histories count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if(section == 0)
+		return @"Countries to visit";
+	else
+		return @"Countries visited";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [histories count];
 }
