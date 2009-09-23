@@ -15,10 +15,11 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 -(void) setUp {
-	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"test.db"];	
+//	NSLog( @"setUp" );
 }
 
 -(void) tearDown {
+//	NSLog( @"tearDown" );
 	[[SQLiteInstanceManager sharedManager] deleteDatabase];
 }
 

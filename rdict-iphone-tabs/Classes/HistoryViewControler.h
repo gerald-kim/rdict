@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DictionaryViewController.h"
 
 @interface HistoryViewControler : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	NSArray* histories;
 	IBOutlet UITableView *tableView;
+	DictionaryViewController *dictionaryViewController;
 
+	NSArray* histories;
 }
 
-@property (nonatomic, retain) NSArray* histories;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
+@property (nonatomic, retain) NSArray* histories;
 
 @end

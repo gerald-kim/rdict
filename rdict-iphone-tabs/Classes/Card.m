@@ -58,8 +58,7 @@ DECLARE_PROPERTIES (
 	}
 	[stmt close];
 	
-	return scheduleArray;
-	
+	return scheduleArray;	
 }
 
 /*

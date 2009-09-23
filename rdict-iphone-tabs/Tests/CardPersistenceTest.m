@@ -11,7 +11,7 @@
 #import <unistd.h>
 #import <stdlib.h>
 
-@interface CardPersistenceTest : SenTestCase {
+@interface CardPersistenceTest : ObjectPersistenceTest {
 	
 }
 @end
@@ -58,6 +58,8 @@
 }
 
 -(void) testFindScheduledCards {
+	STAssertEquals( 0, [Card count], @"Card count should be 0" );
+	
 	Card* expected1 = [[Card alloc] initWithQuestion:@"question 1" andAnswer:@"answer"];
 	//TODO Check timeinterval calc
 	expected1.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) - (SECONDS_IN_ONE_DAY)];
@@ -80,8 +82,7 @@
 	STAssertEquals( 2, scheduledCount, nil );
 	
 	NSArray* schedule = [Card reviewSchedulesWithLimit:2];
-	//TODO fix this
-	STAssertEquals( (NSUInteger) 2, [schedule count], nil );
+	STAssertEquals( (NSUInteger) 1, [schedule count], nil );
 	NSArray* row = [schedule objectAtIndex:0];
 	STAssertEqualStrings( @"1", [row objectAtIndex:1], nil );
 //	NSLog( @"%@ : %@", [row objectAtIndex:0], [row objectAtIndex:1] );	
@@ -91,8 +92,7 @@
 	Card* expected1 = [[Card alloc] initWithQuestion:@"question 1" andAnswer:@"answer"];
 	[expected1 save];
 
-	//TODO fix this
-	STAssertEquals( 0, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
+	STAssertEquals( 1, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
 	
 }
 

@@ -14,4 +14,7 @@
 
 }
 
+-(void) setUp;
+-(void) tearDown;
+
 @end

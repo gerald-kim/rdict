@@ -12,8 +12,9 @@
 
 @implementation HistoryViewControler
 
-@synthesize histories;
 @synthesize tableView;
+@synthesize dictionaryViewController;
+@synthesize histories;
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,9 +42,21 @@
 
 
 - (void)dealloc {
-	[histories dealloc];
+	[histories release];
+	[dictionaryViewController release];	
+	
     [super dealloc];
 }
+
+- (void)showDictionaryView:(NSString*) lemma {
+	if( self.dictionaryViewController == nil ) {
+		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
+	}
+	
+	dictionaryViewController.lemma = lemma;
+	[self.navigationController pushViewController:dictionaryViewController animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark Table View Data Source Methods
@@ -68,6 +81,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	History* history = [histories objectAtIndex:indexPath.row];
+	[self showDictionaryView:history.lemma];
 }
 
 
