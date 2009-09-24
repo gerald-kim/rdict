@@ -37,11 +37,11 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) scheduledCardCriteria {
-	return [NSString stringWithString:@"where scheduled < date('now', '+1 day')"];	
+	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day')"];	
 }
 
 + (NSString*) searchedTodayCriteria {
-	return [NSString stringWithString:@"where created < date('now', '+1 day')"];	
+	return [NSString stringWithString:@"where created < date('now', 'localtime', '+1 day')"];	
 }
 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {
