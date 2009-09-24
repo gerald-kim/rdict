@@ -19,7 +19,6 @@
 @synthesize tableView;
 @synthesize wiktionary;
 
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"Search";
@@ -36,7 +35,13 @@
 
 
 - (void)viewWillAppear:(BOOL) animated {
+	NSLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
+}
+
+- (void) resetSearchBar {
+	searchBar.text = @"";
+	[searchBar becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

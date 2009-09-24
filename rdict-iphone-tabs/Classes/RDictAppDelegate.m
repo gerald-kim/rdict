@@ -16,7 +16,6 @@
 
 @synthesize window;
 @synthesize tabBarController;
-@synthesize navigationController;
 @synthesize wiktionary;
 
 
@@ -32,11 +31,15 @@
 }
 
 
-/*
 // Optional UITabBarControllerDelegate method
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+- (void)tabBarController:(UITabBarController *) aTabBarController didSelectViewController:(UIViewController *) aViewController {
+	if( 0 == aTabBarController.selectedIndex ) {
+		UINavigationController* navigationController = (UINavigationController*) aViewController;
+		[navigationController popViewControllerAnimated:TRUE];
+		SearchViewController* searchViewController = [navigationController.viewControllers objectAtIndex:0];
+		[searchViewController resetSearchBar];
+	}
 }
-*/
 
 /*
 // Optional UITabBarControllerDelegate method

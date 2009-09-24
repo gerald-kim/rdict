@@ -17,8 +17,7 @@
 
 @interface RDictAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
-    UITabBarController *tabBarController;
-	UINavigationController *navigationController;
+    IBOutlet UITabBarController *tabBarController;
 //    SearchViewController *searchViewController;
 //    ReviewViewController *reviewViewController;	
 	
@@ -27,7 +26,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) Wiktionary *wiktionary;
 
 //@property (nonatomic, retain) IBOutlet SearchViewController *searchViewController;
