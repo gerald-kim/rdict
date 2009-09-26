@@ -15,12 +15,13 @@
 @synthesize tableView;
 @synthesize dictionaryViewController;
 @synthesize histories;
-
+@synthesize sectionInfo;
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	self.title = @"History";
 	self.histories = [History findRecents];
+	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
 }
 
 - (void)viewDidLoad {
@@ -38,9 +39,9 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	[histories release];
+	[sectionInfo release];
 	[dictionaryViewController release];	
 }
-
 
 - (void)dealloc {
     [super dealloc];
@@ -59,23 +60,26 @@
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
-- (NSInteger)numberOfSections {
-	return 1;
-}
-
-- (NSInteger)numberOfRowsInSection:(NSInteger)section {
-	return [histories count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	NSNumber *number = [sectionInfo valueForKey:@"sectionCount"];
+	NSLog( @"numberOfSections: %@", number );
+	return [number intValue];	
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if(section == 0)
-		return @"Countries to visit";
-	else
-		return @"Countries visited";
+	NSString* title = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
+
+	NSLog( @"titleForHeaderInSection: %@", title );
+	return title;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [histories count];
+	NSString *sectionTitle = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
+	NSNumber *number = [sectionInfo valueForKey:sectionTitle];
+	
+	NSLog( @"numberOfRowsInSection: %@", number );
+
+	return [number intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

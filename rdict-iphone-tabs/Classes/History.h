@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate* created;
 
 + (NSArray*) findRecents;
++ (NSMutableDictionary*) buildHistorySectionInfo:(NSArray*) histories;
 
 - (id) initWithLemma:(NSString *) lemma;
 

@@ -14,10 +14,12 @@
 	DictionaryViewController *dictionaryViewController;
 
 	NSArray* histories;
+	NSMutableDictionary* sectionInfo;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet DictionaryViewController *dictionaryViewController;
 @property (nonatomic, retain) NSArray* histories;
+@property (nonatomic, retain) NSMutableDictionary* sectionInfo;
 
 @end
