@@ -47,7 +47,13 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
     public void onResume(){
     	if(RDictActivity.dictionary != null && Dictionary.words != null) {
     		this.updateWordList();
-    		_wordList.setSelectionFromTop( RDictActivity.dictionary.findWordIndex( "a" ), 0 );
+    		
+    		int wordIndex = RDictActivity.dictionary.findWordIndex( "a" );
+    		
+    		if (! "".equals(searchText.toString().trim()))
+    			wordIndex = RDictActivity.dictionary.findWordIndex(searchText.getText().toString());
+    		
+    		_wordList.setSelectionFromTop(wordIndex, 0 );
     	}
     	
     	super.onResume();
