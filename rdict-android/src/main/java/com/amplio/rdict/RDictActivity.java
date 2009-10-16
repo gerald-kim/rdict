@@ -230,8 +230,10 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     }
     
 	private void initDatabaseManagers() {
-		if(odb == null || odb.isClosed())
-		    odb = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
+		if(odb == null || odb.isClosed()) {
+		    //odb = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
+		    odb = ODBFactory.open("/sdcard/rdict/" + "rdict_db.odb" );
+		}
 	    
 	    cardSetManager = new CardSetManager( odb );
 	    reviewManager = new ReviewManager( odb, cardSetManager );

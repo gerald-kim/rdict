@@ -54,8 +54,10 @@ public class SearchActivity extends Activity implements TextWatcher, OnItemClick
     }
     
    	public void onTextChanged(CharSequence s, int start, int before, int count) {
-   		int wordIndex = RDictActivity.dictionary.findWordIndex( s.toString() );
-		_wordList.setSelectionFromTop( wordIndex, 0 );
+   		if(s != null && RDictActivity.dictionary != null){  // bad hack... why is this happening?
+	   		int wordIndex = RDictActivity.dictionary.findWordIndex( s.toString() );
+			_wordList.setSelectionFromTop( wordIndex, 0 );
+   		}
 	}
    	
    	public void afterTextChanged(Editable s) {}

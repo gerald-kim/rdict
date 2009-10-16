@@ -21,7 +21,7 @@ public class StatisticsManager {
 	private CardSetManager cardSetManager;
 	
 
-	public StatisticsManager( ODB db, CardSetManager cardSetManager ) {
+	public StatisticsManager(ODB db, CardSetManager cardSetManager ) {
 		this.odb = db;
 		this.cardSetManager = cardSetManager;
 	}
