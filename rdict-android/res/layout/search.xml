@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout android:id="@+id/widget0"
+<LinearLayout android:id="@+id/widget28"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<TableRow android:id="@+id/widget41" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
@@ -22,4 +22,4 @@
 
 	</TableRow>
 
-</AbsoluteLayout>
+</LinearLayout>
