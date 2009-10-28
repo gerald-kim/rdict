@@ -91,16 +91,6 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     	startupMgr = new StartupManager();
     	
     	RDICT_ACTIVITY = this;
-    	
-    	try {
-	        if (new Date().getTime() > new SimpleDateFormat("yyyyMMdd").parse("20091214").getTime()){
-	        	new AlertDialog.Builder(this)
-	        	.setTitle("Notice")
-	        	.setMessage("This version of RDict was developed for the Google ADC2 contest and expired December 14th, 2009.\nYou may be interested to know that RDict is available for purchase from the Android Market.")
-	        	.setNeutralButton("Ok", this)
-	        	.show();
-	        }
-        } catch( ParseException ignore) {}
     }
     
     public void onResume() {
@@ -231,20 +221,20 @@ public class RDictActivity extends TabActivity implements  AssetInputStreamProvi
     
 	private void initDatabaseManagers() {
 		if(odb == null || odb.isClosed()) {
-		    //odb = ODBFactory.open( getApplicationContext().getFilesDir() + "/" + "rdict_db.odb" );
-		    odb = ODBFactory.open("/sdcard/rdict/" + "rdict_db.odb" );
+		    odb = ODBFactory.open("/sdcard/vocabulator/" + "vocabulator_db.odb" );
+		    
+		    cardSetManager = new CardSetManager( odb );
+		    reviewManager = new ReviewManager( odb, cardSetManager );
+		    statisticsManager = new StatisticsManager( odb, cardSetManager );
+		    RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
 		}
-	    
-	    cardSetManager = new CardSetManager( odb );
-	    reviewManager = new ReviewManager( odb, cardSetManager );
-	    statisticsManager = new StatisticsManager( odb, cardSetManager );
-	    RDictActivity.statisticsManager.saveOrUpdateCardStackStatistics();
         
-	    if(con == null || ! con.isOpen())
-	    	con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
-    	
-	    historyMgr = new HistoryManager(con);
-		historyMgr.createTableIfNotExists( con );
+	    if(con == null || ! con.isOpen()) {
+	    	con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE | SQLiteDatabase.CREATE_IF_NECESSARY);
+	    
+	    	historyMgr = new HistoryManager(con);
+			historyMgr.createTableIfNotExists( con );
+	    }
     }
 	
 	public InputStream getAssetInputStream(String path) {

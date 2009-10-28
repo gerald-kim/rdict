@@ -10,7 +10,7 @@
 		
 		<TextView android:id="@+id/setup_title_label"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:text="RDict - Setup" android:textSize="28sp"
+				android:text="Vocabulator - Setup" android:textSize="28sp"
 				android:layout_centerVertical="true"
 				android:layout_marginTop="20px"
 				android:layout_marginLeft="20px"
@@ -19,7 +19,7 @@
 			</TextView>
 		
 		<TextView android:id="@+id/widget32" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Thank you for downloading RDict."
+			android:layout_height="wrap_content" android:text="Thank you for downloading Vocabulator."
 			android:layout_marginTop="16px"
 			android:layout_marginLeft="20px"
 			android:layout_marginRight="20px"
@@ -37,7 +37,7 @@
 		
 		<TextView android:id="@+id/mesg1" android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="In the next few pages, RDict will"
+			android:text="In the next few pages, Vocabulator will"
 			android:layout_centerHorizontal="true"
 			android:layout_marginLeft="20px"
 			android:layout_marginRight="20px"

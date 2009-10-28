@@ -51,7 +51,7 @@ public class RDictActivity extends TabActivity {
         
         RDictActivity.db = DB4oConnectionFactory.getObjectContainer(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
         
-        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_historyMgr = new HistoryManager(con);
     	
     	_historyMgr.createTableIfNotExists(con);

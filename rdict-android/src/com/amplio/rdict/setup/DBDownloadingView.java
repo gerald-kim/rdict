@@ -19,7 +19,7 @@ public class DBDownloadingView extends SetupView {
 	DownloadManager dMgr = null;
 	
 	String sourceURL =  "http://www.killer-rabbits.net/word.db"; //"http://www.google.ca/intl/en_ca/images/logo.gif";
-	String writePath = "/sdcard/rdict/word.db";
+	String writePath = "/sdcard/vocabulator/word.db";
 	
 	Handler mHandler = new Handler();
 	

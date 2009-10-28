@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     	SetupActivity.hasBeenRun = false;
     	
     	try {
-			this.con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+			this.con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
 			Intent i = new Intent(this.getApplicationContext(), RDictActivity.class);	
 			this.startActivity(i);
 		}
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 			}
 			
 			try {
-				this.con = SQLiteDatabase.openDatabase("/sdcard/rdict/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+				this.con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
 				Intent i = new Intent(this.getApplicationContext(), RDictActivity.class);	
 				this.startActivity(i);
 			}

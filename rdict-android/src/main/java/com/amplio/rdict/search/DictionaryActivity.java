@@ -19,7 +19,7 @@ import com.amplio.rdict.history.History;
 
 public class DictionaryActivity extends Activity implements OnClickListener {
 	
-	public final static String NEW_FILE_PATH = "/sdcard/rdict/.cardAddedOnce";
+	public final static String NEW_FILE_PATH = "/sdcard/vocabulary/.cardAddedOnce";
 	
 	public static History sessionHistory = new History();
 	

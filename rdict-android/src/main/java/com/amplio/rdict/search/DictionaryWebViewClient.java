@@ -13,10 +13,10 @@ import com.amplio.rdict.RDictActivity;
 public class DictionaryWebViewClient extends WebViewClient{
 
 	private static final CharSequence HELP_MESG = "When you pressed the Star Button, "
-												+ "RDict created a new flashcard for you and "
+												+ "Vocabulator created a new flashcard for you and "
 												+ "added it to your collection.\n\n" 
 												+ "When it's time to practice the card, " 
-												+ "RDict will notify you using the Review tab.  " 
+												+ "Vocabulator will notify you using the Review tab.  " 
 												+ "See More > Help for more information.\n\n"
 												+ "To practice the card now, " 
 												+ "select the Review tab and try an Early Practice quiz.";

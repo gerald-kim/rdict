@@ -13,7 +13,7 @@
 			<TextView android:id="@+id/widget101"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="For Help with using RDict."
+				android:text="For Help with using Vocabulator."
 				android:layout_alignParentLeft="true"
 				android:layout_centerVertical="true"
 				android:textSize="20sp"
@@ -35,7 +35,7 @@
 			<TextView android:id="@+id/ssss"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="View RDict's License and other information."
+				android:text="View Vocabulator's License and other information."
 				android:layout_alignParentLeft="true" 
 				android:layout_centerVertical="true"
 				android:textSize="20sp"
@@ -75,7 +75,7 @@
 			android:layout_marginLeft="10px">
 
 			<TextView android:id="@+id/widget101" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="Change RDict's default behaviour."
+				android:layout_height="wrap_content" android:text="Change Vocabulator's default behaviour."
 				android:layout_alignParentLeft="true" android:layout_centerVertical="true"
 				android:textSize="20sp"
 				android:layout_marginRight="80px">

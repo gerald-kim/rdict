@@ -60,7 +60,7 @@ public class ReviewExerciseBackButtonsViewWrapper implements OnClickListener {
 	    else {
 			new AlertDialog.Builder(this.a)
 			.setTitle("Help")
-			.setMessage("How easy was it to remember the word?\n\nTell RDict by pressing one of the buttons.")
+			.setMessage("How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons.")
 			.setNeutralButton("Ok", null)
 			.show();
 		}

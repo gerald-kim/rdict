@@ -34,7 +34,7 @@ public class PromptForDBDownloadViewWrapper extends SetupViewWrapper implements 
 		} else if (v == this.nowButton && !this.isConnected ) {
 			new AlertDialog.Builder(this.setupActivity)
         	.setTitle("Notice")
-        	.setMessage("RDict has detected that your phone is not currently connected to the internet and will now exit.  Please restart RDict when you have an internet connection.")
+        	.setMessage("Vocabulator has detected that your phone is not currently connected to the internet and will now exit.  Please restart Vocabulator when you have an internet connection.")
         	.setNeutralButton("Ok", new DialogInterface.OnClickListener(){
 				public void onClick( DialogInterface dialog, int which ) {
 					setupActivity.finish();	                

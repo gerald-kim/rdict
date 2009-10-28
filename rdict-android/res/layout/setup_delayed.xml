@@ -7,7 +7,7 @@
 		android:orientation="vertical">
 		
 		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="You've chosen to download the dictionary file later.  RDict will now exit."
+			android:layout_height="wrap_content" android:text="You've chosen to download the dictionary file later.  Vocabulator will now exit."
 			android:layout_centerHorizontal="true"
 			android:layout_marginLeft="20px"
 			android:layout_marginRight="20px"
@@ -17,7 +17,7 @@
 		</TextView>
 		
 		<TextView android:id="@+id/setup_finished_mesg" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="When you are ready to download the file, restart RDict.  At that time, Setup will ask you to download again."
+			android:layout_height="wrap_content" android:text="When you are ready to download the file, restart Vocabulator.  After you restart, Setup will ask you to download again."
 			android:layout_centerHorizontal="true"
 			android:layout_marginLeft="20px"
 			android:layout_marginRight="20px"
