@@ -43,8 +43,10 @@ public final class R {
         public static final int ic_menu_search=0x7f020005;
         public static final int ic_menu_slideshow=0x7f020006;
         public static final int icon=0x7f020007;
-        public static final int manage_flashcard=0x7f020008;
-        public static final int tabs_with_arrow=0x7f020009;
+        public static final int icon2=0x7f020008;
+        public static final int icon5=0x7f020009;
+        public static final int manage_flashcard=0x7f02000a;
+        public static final int tabs_with_arrow=0x7f02000b;
     }
     public static final class id {
         public static final int about_button=0x7f06002b;
