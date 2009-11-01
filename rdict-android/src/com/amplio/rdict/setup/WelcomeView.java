@@ -1,4 +1,4 @@
-package com.amplio.rdict.setup;
+package com.amplio.vcbl8r.setup;
 
 import android.content.Context;
 import android.view.View;
@@ -16,7 +16,7 @@ public class WelcomeView extends SetupView implements OnClickListener {
 		super(context);
 		
 		this.mesg = new TextView(context);
-		this.mesg.setText("Thank you for downloading RDict.");
+		this.mesg.setText("Thank you for downloading Vocabulator.");
 		
 		this.okButton = new Button(context);
 		this.okButton.setText("Ok");

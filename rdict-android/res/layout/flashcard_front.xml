@@ -1,4 +1,4 @@
-<com.amplio.rdict.review.ScalableTextView
+<com.amplio.vcbl8r.review.ScalableTextView
 	android:id="@+id/front_headword_label"
 	android:layout_width="fill_parent"
 	android:layout_height="110px"

@@ -1,4 +1,4 @@
-package com.amplio.rdict.setup;
+package com.amplio.vcbl8r.setup;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class DownloadManager implements Runnable{
 		this.runnable = runnable;
 		
 		if(handler != null && runnable != null){
-			File file = new File("sdcard/rdict");
+			File file = new File("sdcard/vcbl8r");
 			file.mkdir();
 		}
 		

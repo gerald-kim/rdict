@@ -1,10 +1,10 @@
-package com.amplio.rdict.setup;
+package com.amplio.vcbl8r.setup;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-import com.amplio.rdict.R;
+import com.amplio.vcbl8r.R;
 
 public class SetupActivity extends Activity {
 	

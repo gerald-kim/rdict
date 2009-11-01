@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.vcbl8r;
 
 import android.app.TabActivity;
 import android.content.ComponentName;
@@ -11,12 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.amplio.rdict.history.HistoryManager;
+import com.amplio.vcbl8r.history.HistoryManager;
 import com.db4o.ObjectContainer;
 
 public class RDictActivity extends TabActivity {
 	
-	private static final String BASE_PACKAGE = "com.amplio.rdict";
+	private static final String BASE_PACKAGE = "com.amplio.vcbl8r";
 	
 	private static final String[] ACTIVITY_PATHS = {BASE_PACKAGE + ".search.",
 													BASE_PACKAGE + ".review.",
@@ -49,9 +49,9 @@ public class RDictActivity extends TabActivity {
         	tabs.addTab(tab);
         }
         
-        RDictActivity.db = DB4oConnectionFactory.getObjectContainer(this.getApplicationContext().getFilesDir() + "/" + "rdict_db.db4o");
+        RDictActivity.db = DB4oConnectionFactory.getObjectContainer(this.getApplicationContext().getFilesDir() + "/" + "vcbl8r_db.db4o");
         
-        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+        SQLiteDatabase con = SQLiteDatabase.openDatabase("/sdcard/vcbl8r/word.db", null, SQLiteDatabase.OPEN_READWRITE);
     	_historyMgr = new HistoryManager(con);
     	
     	_historyMgr.createTableIfNotExists(con);

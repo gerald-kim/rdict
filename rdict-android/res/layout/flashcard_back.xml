@@ -4,7 +4,7 @@
 	android:background="@drawable/manage_flashcard"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<com.amplio.rdict.review.ScalableTextView android:id="@+id/back_headword_label"
+	<com.amplio.vcbl8r.review.ScalableTextView android:id="@+id/back_headword_label"
 		android:layout_width="fill_parent" android:layout_height="40px"
 		android:height="40px"
 		android:text="TextView"
