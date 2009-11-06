@@ -1,4 +1,4 @@
-package com.amplio.vcbl8r.setup;
+package com.amplio.vkbl8r.setup;
 
 import android.content.Context;
 import android.os.Handler;
@@ -19,7 +19,7 @@ public class DBDownloadingView extends SetupView {
 	DownloadManager dMgr = null;
 	
 	String sourceURL =  "http://www.killer-rabbits.net/word.db"; //"http://www.google.ca/intl/en_ca/images/logo.gif";
-	String writePath = "/sdcard/vcbl8r/word.db";
+	String writePath = "/sdcard/vkbl8r/word.db";
 	
 	Handler mHandler = new Handler();
 	

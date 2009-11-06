@@ -1,10 +1,10 @@
-package com.amplio.vcbl8r.setup;
+package com.amplio.vkbl8r.setup;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-import com.amplio.vcbl8r.R;
+import com.amplio.vkbl8r.R;
 
 public class SetupActivity extends Activity {
 	

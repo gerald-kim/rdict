@@ -1,4 +1,4 @@
-package com.amplio.vcbl8r.setup;
+package com.amplio.vkbl8r.setup;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class DownloadManager implements Runnable{
 		this.runnable = runnable;
 		
 		if(handler != null && runnable != null){
-			File file = new File("sdcard/vcbl8r");
+			File file = new File("sdcard/vkbl8r");
 			file.mkdir();
 		}
 		

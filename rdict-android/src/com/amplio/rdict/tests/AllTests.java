@@ -1,26 +1,26 @@
-package com.amplio.vcbl8r.tests;
+package com.amplio.vkbl8r.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import com.amplio.vcbl8r.tests.history.HistoryTest;
-import com.amplio.vcbl8r.tests.review.CardSetManagerTest;
-import com.amplio.vcbl8r.tests.review.CardTest;
-import com.amplio.vcbl8r.tests.review.ReviewManagerTest;
-import com.amplio.vcbl8r.tests.review.ScoreHistoryTest;
-import com.amplio.vcbl8r.tests.review.SparklineTest;
-import com.amplio.vcbl8r.tests.review.StatisticsManagerTest;
-import com.amplio.vcbl8r.tests.search.DictionaryEntryFactoryTest;
-import com.amplio.vcbl8r.tests.search.DictionaryEntryTest;
-import com.amplio.vcbl8r.tests.search.DictionaryTest;
-import com.amplio.vcbl8r.tests.setup.DownloadManagerTest;
-import com.amplio.vcbl8r.tests.setup.SetupManagerTest;
+import com.amplio.vkbl8r.tests.history.HistoryTest;
+import com.amplio.vkbl8r.tests.review.CardSetManagerTest;
+import com.amplio.vkbl8r.tests.review.CardTest;
+import com.amplio.vkbl8r.tests.review.ReviewManagerTest;
+import com.amplio.vkbl8r.tests.review.ScoreHistoryTest;
+import com.amplio.vkbl8r.tests.review.SparklineTest;
+import com.amplio.vkbl8r.tests.review.StatisticsManagerTest;
+import com.amplio.vkbl8r.tests.search.DictionaryEntryFactoryTest;
+import com.amplio.vkbl8r.tests.search.DictionaryEntryTest;
+import com.amplio.vkbl8r.tests.search.DictionaryTest;
+import com.amplio.vkbl8r.tests.setup.DownloadManagerTest;
+import com.amplio.vkbl8r.tests.setup.SetupManagerTest;
 
 public class AllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite(
-				"Test for com.amplio.vcbl8r.tests");
+				"Test for com.amplio.vkbl8r.tests");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(HistoryTest.class);
 		suite.addTestSuite(CardSetManagerTest.class);
