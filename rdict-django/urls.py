@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^about/$', 'views.about'),
     (r'^help/$', 'views.help'),
     (r'^dict/', include('dict.urls')),
+    (r'^api/', include('api.urls')),
     (r'^review/', include('review.urls')),
     (r'^bookmarklet/', include('bookmarklet.urls')),
 

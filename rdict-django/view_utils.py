@@ -50,6 +50,9 @@ def respond_json(request, json):
 def respond_text(request, text):
     return render_to_response('text.html', {'text':text}, context_instance=RequestContext(request))
 
+def respond_html(request, html):
+    return render_to_response('html.html', {'html':html}, context_instance=RequestContext(request))
+
 
 def login_required(func):
     """Decorator that redirects to the login page if you're not logged in."""
