@@ -3,29 +3,29 @@
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import com.amplio.rdict.NeoDatisTest;
-import com.amplio.rdict.StartupManagerTest;
-import com.amplio.rdict.history.HistoryTest;
-import com.amplio.rdict.review.CardSetManagerTest;
-import com.amplio.rdict.review.CardTest;
-import com.amplio.rdict.review.ReviewExerciseManagerTest;
-import com.amplio.rdict.review.ReviewManagerTest;
-import com.amplio.rdict.review.ScoreHistoryTest;
-import com.amplio.rdict.review.StatisticsManagerTest;
-import com.amplio.rdict.search.DictionaryEntryFactoryTest;
-import com.amplio.rdict.search.DictionaryEntryTest;
-import com.amplio.rdict.search.DictionaryTest;
-import com.amplio.rdict.setup.DictionaryDownloaderTest;
-import com.amplio.rdict.setup.DownloadFileTest;
-import com.amplio.rdict.setup.DownloadListTest;
-import com.amplio.rdict.setup.DownloadMonitorTest;
-import com.amplio.rdict.setup.DownloadUtilsTest;
-import com.amplio.rdict.setup.SetupManagerTest;
+import com.amplio.vkbl8r.NeoDatisTest;
+import com.amplio.vkbl8r.StartupManagerTest;
+import com.amplio.vkbl8r.history.HistoryTest;
+import com.amplio.vkbl8r.review.CardSetManagerTest;
+import com.amplio.vkbl8r.review.CardTest;
+import com.amplio.vkbl8r.review.ReviewExerciseManagerTest;
+import com.amplio.vkbl8r.review.ReviewManagerTest;
+import com.amplio.vkbl8r.review.ScoreHistoryTest;
+import com.amplio.vkbl8r.review.StatisticsManagerTest;
+import com.amplio.vkbl8r.search.DictionaryEntryFactoryTest;
+import com.amplio.vkbl8r.search.DictionaryEntryTest;
+import com.amplio.vkbl8r.search.DictionaryTest;
+import com.amplio.vkbl8r.setup.DictionaryDownloaderTest;
+import com.amplio.vkbl8r.setup.DownloadFileTest;
+import com.amplio.vkbl8r.setup.DownloadListTest;
+import com.amplio.vkbl8r.setup.DownloadMonitorTest;
+import com.amplio.vkbl8r.setup.DownloadUtilsTest;
+import com.amplio.vkbl8r.setup.SetupManagerTest;
 
 public class AllTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite( "Test for com.amplio.rdict" );
+		TestSuite suite = new TestSuite( "Test for com.amplio.vkbl8r" );
 		//$JUnit-BEGIN$
 		suite.addTestSuite( NeoDatisTest.class );
 		suite.addTestSuite( SetupManagerTest.class );

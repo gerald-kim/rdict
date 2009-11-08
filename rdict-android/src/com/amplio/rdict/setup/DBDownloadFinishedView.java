@@ -1,4 +1,4 @@
-package com.amplio.rdict.setup;
+package com.amplio.vkbl8r.setup;
 
 import android.content.Context;
 import android.view.View;
@@ -18,7 +18,7 @@ public class DBDownloadFinishedView extends SetupView {
 		this.finishedMesg.setText("The dictionary has been downloaded and installed.");
 		
 		this.finishedButton = new Button(context);
-		this.finishedButton.setText("Use RDict");
+		this.finishedButton.setText("Use Vocabulator");
 		this.finishedButton.setOnClickListener(this);
 	}
 

@@ -1,4 +1,4 @@
-package com.amplio.rdict;
+package com.amplio.vkbl8r;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 
-import com.amplio.rdict.setup.SetupActivity;
+import com.amplio.vkbl8r.setup.SetupActivity;
 
 public class MainActivity extends Activity {
 	SQLiteDatabase con = null;
@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     	SetupActivity.hasBeenRun = false;
     	
     	try {
-			this.con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+			this.con = SQLiteDatabase.openDatabase("/sdcard/vkbl8r/word.db", null, SQLiteDatabase.OPEN_READWRITE);
 			Intent i = new Intent(this.getApplicationContext(), RDictActivity.class);	
 			this.startActivity(i);
 		}
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 			}
 			
 			try {
-				this.con = SQLiteDatabase.openDatabase("/sdcard/vocabulator/word.db", null, SQLiteDatabase.OPEN_READWRITE);
+				this.con = SQLiteDatabase.openDatabase("/sdcard/vkbl8r/word.db", null, SQLiteDatabase.OPEN_READWRITE);
 				Intent i = new Intent(this.getApplicationContext(), RDictActivity.class);	
 				this.startActivity(i);
 			}

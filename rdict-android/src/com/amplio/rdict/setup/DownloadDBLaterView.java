@@ -1,4 +1,4 @@
-package com.amplio.rdict.setup;
+package com.amplio.vkbl8r.setup;
 
 import android.content.Context;
 import android.view.View;
@@ -14,7 +14,7 @@ public class DownloadDBLaterView extends SetupView {
 		super(context);
 		
 		this.mesg = new TextView(context);
-		this.mesg.setText("You have chosen to download the db later.  RDict will ask you to download again next time you start.");
+		this.mesg.setText("You have chosen to download the db later.  Vocabulator will ask you to download again next time you start.");
 		
 		this.okButton = new Button(context);
 		this.okButton.setText("Ok");

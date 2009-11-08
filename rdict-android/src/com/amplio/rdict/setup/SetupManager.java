@@ -1,4 +1,4 @@
-package com.amplio.rdict.setup;
+package com.amplio.vkbl8r.setup;
 
 
 public class SetupManager {
