@@ -52,6 +52,16 @@
 	STAssertEquals( [list count], (NSUInteger) 10, nil );
 }
 
+-(void) testBuildCountPerDateDictionaryWithEmptyData {
+//	[self loadData];
+	
+	NSArray* list = [History findRecents];	
+	NSMutableDictionary* d = [History buildHistorySectionInfo:list];
+	
+	STAssertEquals( [d count], (NSUInteger) 1, nil );
+	STAssertEquals( [d valueForKey:@"sectionCount"], [NSNumber numberWithInt:0], nil );
+}
+
 -(void) testBuildCountPerDateDictionary {
 	[self loadData];
 	

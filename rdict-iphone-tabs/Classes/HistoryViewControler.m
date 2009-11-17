@@ -19,9 +19,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+	NSLog(@"HVC.viewWillAppear");
 	self.title = @"History";
 	self.histories = [History findRecents];
 	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidLoad {

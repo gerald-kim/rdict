@@ -46,7 +46,9 @@ DECLARE_PROPERTIES (
 		[d setValue:[NSNumber numberWithInt:count] forKey:dateString];
 		previousDateString = dateString;
 	}
-	[d setValue:[NSNumber numberWithInt:count] forKey:previousDateString];
+	if ( count != 0 ) {
+		[d setValue:[NSNumber numberWithInt:count] forKey:previousDateString];
+	}
 	[d setValue:[NSNumber numberWithInt:sectionIndex] forKey:@"sectionCount"];
 	 
 	NSLog( @"Dictionary %@", d );
