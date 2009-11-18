@@ -17,19 +17,27 @@
 @synthesize histories;
 @synthesize sectionInfo;
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	NSLog(@"HVC.viewDidLoad");
+	self.title = @"History";
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
+	[super viewWillAppear:animated];
 	NSLog(@"HVC.viewWillAppear");
-	self.title = @"History";
 	self.histories = [History findRecents];
 	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
 	[self.tableView reloadData];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	[histories release];
+	[sectionInfo release];
 }
-
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -40,9 +48,8 @@
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	[histories release];
-	[sectionInfo release];
-	[dictionaryViewController release];	
+	if(self.dictionaryViewController != nil)
+		[dictionaryViewController release];
 }
 
 - (void)dealloc {

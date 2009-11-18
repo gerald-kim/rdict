@@ -52,6 +52,7 @@ DECLARE_PROPERTIES (
 	[d setValue:[NSNumber numberWithInt:sectionIndex] forKey:@"sectionCount"];
 	 
 	NSLog( @"Dictionary %@", d );
+	[dateFormatter release];
 	return d;
 }
 
