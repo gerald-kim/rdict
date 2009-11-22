@@ -1,33 +1,51 @@
 //
-//  MiscViewController.m
+//  CardListViewController.m
 //  RDict
 //
-//  Created by Jaewoo Kim on 11/18/09.
+//  Created by Jaewoo Kim on 11/21/09.
 //  Copyright 2009 ampliostudios. All rights reserved.
 //
 
-#import "MiscViewController.h"
+#import "CardListViewController.h"
 
 
-@implementation MiscViewController
+@implementation CardListViewController
 
-@synthesize listData;
-//@synthesize aboutViewController;
+@synthesize cards;
 @synthesize tableView;
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	self.title = @"Cards";
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	listData = [[NSArray alloc] initWithObjects:@"About", @"Help", @"Card Management", nil];
 	
+	self.cards = [Card allObjects];
+	[self.tableView reloadData];
 }
+
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+*/
+
+/*
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+}
+*/
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-	[listData release];
-	listData = nil;
+	
+	[cards release];
+	cards = nil;
 }
-
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -59,47 +77,50 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [cards count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Set up the cell...
-	cell.textLabel.text = [listData objectAtIndex:indexPath.row];
-
+	Card *card = [cards objectAtIndex:indexPath.row];
+	cell.textLabel.text = card.question;
+    	
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);
+	Card *card = [cards objectAtIndex:indexPath.row];
+
+	CardEditViewController *anotherViewController = [[CardEditViewController alloc] initWithNibName:@"CardEditView" bundle:nil];
+	anotherViewController.card = card;
 	
-	UIViewController *childViewController;
-	
-	if( 0 == indexPath.row ) {
-		childViewController = [[AboutViewController alloc] initWithNibName:@"AboutView" bundle:nil];
-	} else if( 1 == indexPath.row ) {
-		childViewController = [[HelpViewController alloc] initWithNibName:@"HelpView" bundle:nil];
-	} else if( 2 == indexPath.row ) {
-		childViewController = [[CardListViewController alloc] initWithNibName:@"CardListView" bundle:nil];
-	} 
-	[self.navigationController pushViewController:childViewController animated:TRUE];
-	[childViewController release];
+	[self.navigationController pushViewController:anotherViewController animated:TRUE];
+	[anotherViewController release];
 }
+
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
 
 - (void)dealloc {
     [super dealloc];
-}		
+}
 
 
 @end

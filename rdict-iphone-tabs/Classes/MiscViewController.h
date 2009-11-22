@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AboutViewController.h"
 #import "HelpViewController.h"
+#import "CardListViewController.h"
 
 @interface MiscViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
 	NSArray *listData;
