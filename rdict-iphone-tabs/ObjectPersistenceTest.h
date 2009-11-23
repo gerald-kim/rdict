@@ -16,5 +16,6 @@
 
 -(void) setUp;
 -(void) tearDown;
+-(void) populate;
 
 @end

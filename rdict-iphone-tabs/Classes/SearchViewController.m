@@ -28,7 +28,7 @@
 //	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];
-
+	
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 }
@@ -37,16 +37,12 @@
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
-}
+	
 
-- (void) resetSearchBar {
-	searchBar.text = @"";
-	[searchBar becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-//	[searchBar becomeFirstResponder];
 }
 
 - (void)dealloc {
@@ -59,6 +55,12 @@
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
 }
+
+- (void) resetSearchBar {
+	searchBar.text = @"";
+	[searchBar becomeFirstResponder];
+}
+
 
 - (void)showDictionaryView:(NSString*) lemma {
 	if( self.dictionaryViewController == nil ) {
@@ -77,6 +79,7 @@
 #pragma mark Search Bar Methods
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	NSLog( @"SVC.textDidChanged called" );
 	NSUInteger row = [wiktionary fillIndexesByKey:[searchText lowercaseString]];
 	
 	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
@@ -144,8 +147,6 @@
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
 	
 }
-
-
 
 
 @end

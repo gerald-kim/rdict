@@ -6,9 +6,9 @@
 //  Copyright 2009 NHN. All rights reserved.
 //
 
-#import "CardBackViewController.h"
+#import "CardViewController.h"
 
-@implementation CardBackViewController
+@implementation CardViewController
 
 @synthesize statusLabel;
 @synthesize questionLabel;

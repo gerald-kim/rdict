@@ -34,9 +34,11 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+	NSLog( @"HVC.viewDidDisappear" );
+
 	[super viewDidDisappear:animated];
-	[histories release];
-	[sectionInfo release];
+	[sectionInfo release]; sectionInfo = nil;
+	[histories release]; histories = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +49,9 @@
 }
 
 - (void)viewDidUnload {
+	NSLog( @"HVC.viewDidUnload" );
+	[super viewDidUnload];
+
 	// Release any retained subviews of the main view.
 	if(self.dictionaryViewController != nil)
 		[dictionaryViewController release];

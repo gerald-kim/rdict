@@ -21,5 +21,6 @@
 @property (nonatomic, retain) UITextView* scheduleText;
 
 - (IBAction) studyButtonClicked:(id) sender;
+- (IBAction) rescheduleButtonClicked:(id) sender;
 
 @end

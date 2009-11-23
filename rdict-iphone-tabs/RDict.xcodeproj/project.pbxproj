@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		EF1CF33610BA1EFB0077E300 /* CardSelectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */; };
 		EF234E3010B3650E00A267CF /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
 		EF234E3110B3650E00A267CF /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
 		EF234E3410B3653C00A267CF /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF234E3310B3653C00A267CF /* MiscViewController.m */; };
@@ -116,8 +117,7 @@
 		EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
 		EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
 		EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
-		EF54C5710FFF36D000BFDCB6 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
-		EF54C5720FFF36D000BFDCB6 /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC70FF7B86800889749 /* CardFrontViewController.m */; };
+		EF54C5710FFF36D000BFDCB6 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
 		EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
 		EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
 		EF54C5760FFF36D000BFDCB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -205,8 +205,7 @@
 		EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */; };
 		EF69B13A10B8D45C00A8DDBF /* CardEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69B13610B8D45C00A8DDBF /* CardEditView.xib */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
-		EF770FCC0FF7B86800889749 /* CardBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardBackViewController.m */; };
-		EF770FCD0FF7B86800889749 /* CardFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC70FF7B86800889749 /* CardFrontViewController.m */; };
+		EF770FCC0FF7B86800889749 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
 		EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
 		EF770FCF0FF7B86800889749 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
 		EF770FD10FF7B88F00889749 /* ReviewUnfinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD00FF7B88F00889749 /* ReviewUnfinishedView.xib */; };
@@ -228,6 +227,10 @@
 		EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
+		EFE5E2DF10CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
+		EFE5E2E010CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
+		EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
+		EFE5E2E210CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
 		EFEA07D00FDFF4EA00490192 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
 		EFEA07D10FDFF4EA00490192 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
 		EFEA07D20FDFF4EA00490192 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
@@ -284,11 +287,12 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RDictAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RDictAppDelegate.h; path = Classes/RDictAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RDictAppDelegate.m; path = Classes/RDictAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* RDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Vocabulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
+		EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardSelectTest.m; path = Tests/CardSelectTest.m; sourceTree = "<group>"; };
 		EF234E2F10B3650E00A267CF /* MiscView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MiscView.xib; path = Resources/MiscView.xib; sourceTree = "<group>"; };
 		EF234E3210B3653C00A267CF /* MiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscViewController.h; path = Classes/MiscViewController.h; sourceTree = "<group>"; };
 		EF234E3310B3653C00A267CF /* MiscViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscViewController.m; path = Classes/MiscViewController.m; sourceTree = "<group>"; };
@@ -326,7 +330,7 @@
 		EF2E74AD0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
 		EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardPersistenceTest.m; path = Tests/CardPersistenceTest.m; sourceTree = "<group>"; };
-		EF2E74D10FE9B2F9008B8AEC /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		EF2E74D10FE9B2F9008B8AEC /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EF2E74D20FE9B2F9008B8AEC /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardFrontView.xib; path = Resources/CardFrontView.xib; sourceTree = "<group>"; };
 		EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = dictionary_view.html; path = Resources/dictionary_view.html; sourceTree = "<group>"; };
@@ -397,10 +401,8 @@
 		EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardEditViewController.m; sourceTree = "<group>"; };
 		EF69B13610B8D45C00A8DDBF /* CardEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardEditView.xib; sourceTree = "<group>"; };
 		EF770E830FF754D900889749 /* jquery-1.3.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.js"; path = "Resources/jquery-1.3.2.js"; sourceTree = "<group>"; };
-		EF770FC40FF7B86800889749 /* CardBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardBackViewController.h; path = Classes/CardBackViewController.h; sourceTree = "<group>"; };
-		EF770FC50FF7B86800889749 /* CardBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardBackViewController.m; path = Classes/CardBackViewController.m; sourceTree = "<group>"; };
-		EF770FC60FF7B86800889749 /* CardFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardFrontViewController.h; path = Classes/CardFrontViewController.h; sourceTree = "<group>"; };
-		EF770FC70FF7B86800889749 /* CardFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardFrontViewController.m; path = Classes/CardFrontViewController.m; sourceTree = "<group>"; };
+		EF770FC40FF7B86800889749 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardViewController.h; path = Classes/CardViewController.h; sourceTree = "<group>"; };
+		EF770FC50FF7B86800889749 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardViewController.m; path = Classes/CardViewController.m; sourceTree = "<group>"; };
 		EF770FC80FF7B86800889749 /* ReviewFinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewFinishedViewController.h; path = Classes/ReviewFinishedViewController.h; sourceTree = "<group>"; };
 		EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReviewFinishedViewController.m; path = Classes/ReviewFinishedViewController.m; sourceTree = "<group>"; };
 		EF770FCA0FF7B86800889749 /* ReviewUnfinishedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewUnfinishedViewController.h; path = Classes/ReviewUnfinishedViewController.h; sourceTree = "<group>"; };
@@ -421,6 +423,8 @@
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
+		EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon57x57.png; path = Resources/icon57x57.png; sourceTree = "<group>"; };
+		EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon512x512.png; path = Resources/icon512x512.png; sourceTree = "<group>"; };
 		EFEA07C40FDFF4EA00490192 /* DictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DictionaryViewController.h; path = Classes/DictionaryViewController.h; sourceTree = "<group>"; };
 		EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DictionaryViewController.m; path = Classes/DictionaryViewController.m; sourceTree = "<group>"; };
 		EFEA07C60FDFF4EA00490192 /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewViewController.h; path = Classes/ReviewViewController.h; sourceTree = "<group>"; };
@@ -515,7 +519,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* RDict.app */,
+				1D6058910D05DD3D006BFB54 /* Vocabulator.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
 				EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */,
@@ -553,6 +557,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */,
+				EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */,
 				EF69AE2F10B7848D00A8DDBF /* help */,
 				EF2F339110610B4C00ADFFD5 /* tab-icons */,
 				EF54C5820FFF372100BFDCB6 /* enwiktionary.db */,
@@ -741,10 +747,8 @@
 				EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */,
 				EF7CB7C90FF11BAE005B7FCD /* ReviewSessionController.h */,
 				EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */,
-				EF770FC40FF7B86800889749 /* CardBackViewController.h */,
-				EF770FC50FF7B86800889749 /* CardBackViewController.m */,
-				EF770FC60FF7B86800889749 /* CardFrontViewController.h */,
-				EF770FC70FF7B86800889749 /* CardFrontViewController.m */,
+				EF770FC40FF7B86800889749 /* CardViewController.h */,
+				EF770FC50FF7B86800889749 /* CardViewController.m */,
 				EF770FCA0FF7B86800889749 /* ReviewUnfinishedViewController.h */,
 				EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */,
 				EF770FC80FF7B86800889749 /* ReviewFinishedViewController.h */,
@@ -809,8 +813,9 @@
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EF92DC320FFC31AF008591C6 /* CardReviewTest.m */,
 				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
+				EF92DC320FFC31AF008591C6 /* CardReviewTest.m */,
+				EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 				EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */,
 				EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */,
@@ -832,9 +837,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* RDict */ = {
+		1D6058900D05DD3D006BFB54 /* Vocabulator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RDict" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Vocabulator" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -846,9 +851,9 @@
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
 				EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */,
 			);
-			name = RDict;
+			name = Vocabulator;
 			productName = RDict;
-			productReference = 1D6058910D05DD3D006BFB54 /* RDict.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Vocabulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EF54C5420FFF36D000BFDCB6 /* RDict Test */ = {
@@ -922,7 +927,7 @@
 			projectRoot = "";
 			targets = (
 				EF54C5420FFF36D000BFDCB6 /* RDict Test */,
-				1D6058900D05DD3D006BFB54 /* RDict */,
+				1D6058900D05DD3D006BFB54 /* Vocabulator */,
 				EFBF4A160FE001900092357C /* UnitTests */,
 				EFEA07EA0FDFF50B00490192 /* tokyocabinet */,
 			);
@@ -986,6 +991,8 @@
 				EF69AE6710B7848D00A8DDBF /* todays_scheduled_label.png in Resources */,
 				EF69B00110B82A7E00A8DDBF /* CardListView.xib in Resources */,
 				EF69B13A10B8D45C00A8DDBF /* CardEditView.xib in Resources */,
+				EFE5E2DF10CF1B8C00D0857E /* icon57x57.png in Resources */,
+				EFE5E2E010CF1B8C00D0857E /* icon512x512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1052,8 @@
 				EF69AE8310B7848D00A8DDBF /* todays_scheduled_label.png in Resources */,
 				EF69AFFF10B82A7E00A8DDBF /* CardListView.xib in Resources */,
 				EF69B13810B8D45C00A8DDBF /* CardEditView.xib in Resources */,
+				EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */,
+				EFE5E2E210CF1B8C00D0857E /* icon512x512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1107,8 +1116,7 @@
 				EF2E74CE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
 				EF2E74D40FE9B2F9008B8AEC /* Card.m in Sources */,
 				EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */,
-				EF770FCC0FF7B86800889749 /* CardBackViewController.m in Sources */,
-				EF770FCD0FF7B86800889749 /* CardFrontViewController.m in Sources */,
+				EF770FCC0FF7B86800889749 /* CardViewController.m in Sources */,
 				EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */,
 				EF770FCF0FF7B86800889749 /* ReviewUnfinishedViewController.m in Sources */,
 				EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */,
@@ -1152,8 +1160,7 @@
 				EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */,
 				EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */,
 				EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */,
-				EF54C5710FFF36D000BFDCB6 /* CardBackViewController.m in Sources */,
-				EF54C5720FFF36D000BFDCB6 /* CardFrontViewController.m in Sources */,
+				EF54C5710FFF36D000BFDCB6 /* CardViewController.m in Sources */,
 				EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */,
 				EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */,
 				EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */,
@@ -1201,6 +1208,7 @@
 				EF5C7DD6106851E90017E0E6 /* HistoryPersistenceTest.m in Sources */,
 				EF5C7DD9106851F50017E0E6 /* History.m in Sources */,
 				EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */,
+				EF1CF33610BA1EFB0077E300 /* CardSelectTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,7 +1269,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = RDict;
+				PRODUCT_NAME = Vocabulator;
 			};
 			name = Debug;
 		};
@@ -1277,7 +1285,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
 				);
-				PRODUCT_NAME = RDict;
+				PRODUCT_NAME = Vocabulator;
 			};
 			name = Release;
 		};
@@ -1331,6 +1339,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
 				);
+				OTHER_CFLAGS = "-DRDICTTEST=1";
 				PRODUCT_NAME = "RDict Test";
 			};
 			name = Debug;
@@ -1347,6 +1356,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
 				);
+				OTHER_CFLAGS = "-DRDICTTEST=1";
 				PRODUCT_NAME = "RDict Test";
 			};
 			name = Release;
@@ -1436,7 +1446,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RDict" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Vocabulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

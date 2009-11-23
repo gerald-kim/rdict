@@ -16,11 +16,17 @@
 
 -(void) setUp {
 //	NSLog( @"setUp" );
+	[[SQLiteInstanceManager sharedManager] deleteDatabase];
+	[self populate];
 }
 
 -(void) tearDown {
 //	NSLog( @"tearDown" );
 	[[SQLiteInstanceManager sharedManager] deleteDatabase];
+}
+
+-(void) populate {
+	
 }
 
 #endif

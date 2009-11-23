@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ReviewUnfinishedViewController : UIViewController {
-
+@interface ReviewUnfinishedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	NSArray* scheduledCards;
+	NSArray* uncertainCards;
+	
+	IBOutlet UITableView* tableView;
 }
 
+@property (nonatomic, assign) NSArray* scheduledCards;
+@property (nonatomic, assign) NSArray* uncertainCards;
+
+@property (nonatomic, retain) UITableView* tableView;
 @end

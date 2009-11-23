@@ -7,8 +7,7 @@
 //
 
 #import "ReviewSessionController.h"
-#import "CardFrontViewController.h"
-#import "CardBackViewController.h"
+#import "CardViewController.h"
 #import "ReviewUnfinishedViewController.h"
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
@@ -20,61 +19,45 @@
 - (void) showReviewUnfinishedView;
 - (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
+- (void) updateAndSwitchToCardView : (CardViewController*) cardViewController;
 
 @end
 
-
 @implementation ReviewSessionController
 
-@synthesize reviewCards;
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
-	[super viewDidLoad];
-	if( cardFrontViewController == nil ) {
-		cardFrontViewController = [[CardFrontViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
-		[self.view insertSubview:cardFrontViewController.view atIndex:0];
-	}
-	if( cardBackViewController == nil ) {
-		cardBackViewController = [[CardBackViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
-		[self.view insertSubview:cardBackViewController.view atIndex:0];
-	}	
-	if( reviewUnfinishedViewController == nil ) {
-		reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
-		[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
-	}	
-	if( reviewFinishedViewController == nil ) {
-		reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
-		[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
-	}	
 	
-}
+	[super viewDidLoad];
+	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
+	[self.view insertSubview:cardFrontViewController.view atIndex:0];
+	
+	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
+	[self.view insertSubview:cardBackViewController.view atIndex:0];
+	
+	scheduledCards = [Card findByScheduled];
+	[scheduledCards retain];
+	uncertainCards = [[NSMutableArray alloc] init];
+	[self initCards:scheduledCards];
 
-- (void) initCards:(NSArray*) theCards {
-	cards = theCards;
-	cardsRemain = [cards count];
 }
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
+	[super viewWillAppear:animated];
 	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];	
-	
-	NSLog( @"-[RSC viewWillAppear] cards retainCount: %d", [reviewCards retainCount] );
-	
-	
-	[self initCards:reviewCards];
-	uncertainCards = [[NSMutableArray alloc] init];
 	
 	[self showCardFrontView];
 }	
 
 - (void)viewDidDisappear:(BOOL) animated {
-	NSLog( @"-[RSC viewDidDisappear] cards retainCount: %d", [reviewCards retainCount] );
-	[reviewCards release]; reviewCards = nil;
-	[uncertainCards release]; 
+	[super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {
+	[scheduledCards release]; scheduledCards = nil;
+	[uncertainCards release]; 
 	[cardFrontViewController release];
 	[cardBackViewController release];
 }
@@ -87,36 +70,13 @@
     [super dealloc];
 }
 
-- (void)showCardFrontView {
-//	if( cardsRemain > 0 ) {
-		currentCard = [cards objectAtIndex:[cards count] - cardsRemain];		
-//	} else if ( [uncertainCards count] > 0 ) {
-//		currentCard = [uncertainCards objectAtIndex:0];
-//	}
-	
-	cardFrontViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
-	cardFrontViewController.questionLabel.text = currentCard.question;
-	
-	[self.view bringSubviewToFront:cardFrontViewController.view];	
+- (void) initCards:(NSArray*) theCards {
+	reviewCards = theCards;
+	cardsRemain = [reviewCards count];
 }
 
-- (void)showCardBackView {	
-	cardBackViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
-	cardBackViewController.questionLabel.text = currentCard.question;
-	cardBackViewController.answerTextView.text = currentCard.answer;
-	
-	[self.view bringSubviewToFront:cardBackViewController.view];
-
-}
-
-- (void) showReviewUnfinishedView {
-	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
-}
-
-- (void) showReviewFinishedView {
-	[self.view bringSubviewToFront:reviewFinishedViewController.view];	
-}
-
+#pragma mark -
+#pragma mark Answer, Score
 
 - (IBAction) answerButtonClicked : (id) sender {	
 	NSLog( @"RSC.showAnswerButton" );
@@ -126,38 +86,87 @@
 
 
 - (IBAction) scoreButtonClicked : (id) sender {
+	//TODO refactor scoreButtonClicked function. it's too complex
 	UIButton *button = (UIButton*) sender;
 	NSUInteger score = [button.currentTitle intValue];
 	
-	cardsRemain--;		
-
-	if( cards == reviewCards ) {
+	if( reviewCards == scheduledCards ) {
 		if( score <= 3 ) {
 			[uncertainCards addObject:currentCard];
 		}
 		[currentCard study:score];
-		if ( 0 == cardsRemain &&  0 != [uncertainCards count]  ) {
-			[self showReviewUnfinishedView];
-			return;
-		}
 	}
 	
 	if ( 0 == cardsRemain ) {
-		[self showReviewFinishedView];
+		if ( reviewCards == scheduledCards && 0 != [uncertainCards count] ) {
+			[self showReviewUnfinishedView];
+		} else {
+			[self showReviewFinishedView];
+			
+		}  
 	} else {
 		[self showCardFrontView];
 	}
 }
 
+- (void)showCardFrontView {
+	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
+	cardsRemain--;
+
+	[self updateAndSwitchToCardView:cardFrontViewController];
+}
+
+- (void)showCardBackView {	
+	[self updateAndSwitchToCardView:cardBackViewController];
+}
+
+- (void) updateAndSwitchToCardView : (CardViewController*) cardViewController {
+	//TODO change text when there's no remaining cards
+	cardViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
+	cardViewController.questionLabel.text = currentCard.question;
+	cardViewController.answerTextView.text = currentCard.answer;
+
+	[self.view bringSubviewToFront:cardViewController.view];	
+}
+
+#pragma mark -
+#pragma mark ReviewFinish
+- (void) showReviewUnfinishedView {
+	reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
+	reviewUnfinishedViewController.scheduledCards = scheduledCards;
+	reviewUnfinishedViewController.uncertainCards = uncertainCards;
+
+	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
+	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
+}
+
 - (IBAction) reviewAgainButtonClicked : (id) sender {
+	//TODO shuffle uncertainCards
+	[reviewUnfinishedViewController.view removeFromSuperview];
+	[reviewUnfinishedViewController release];
+	
 	[self initCards:uncertainCards];
 	[self showCardFrontView];
 }
 
+- (void) showReviewFinishedView {
+	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
+	reviewFinishedViewController.scheduledCards = scheduledCards;
+	
+	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
+	[self.view bringSubviewToFront:reviewFinishedViewController.view];
+	[reviewFinishedViewController viewWillAppear:TRUE];
+
+}
+
+
 - (IBAction) reviewCompleteButtonClicked : (id) sender {
+	[reviewFinishedViewController viewDidDisappear:TRUE];
+	[reviewFinishedViewController.view removeFromSuperview];
+	[reviewFinishedViewController release];
+
 	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];		
-	
 }
 
 @end

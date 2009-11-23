@@ -37,17 +37,17 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) scheduledCardCriteria {
-	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day')"];	
+	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') order by random()"];	
 }
 
 + (NSString*) searchedTodayCriteria {
-	return [NSString stringWithString:@"where created < date('now', 'localtime', '+1 day')"];	
+	return [NSString stringWithString:@"where created < date('now', 'localtime', '+1 day') order by random()"];	
 }
 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {
 	SLStmt* stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:
 				   @"select date( scheduled ) date, count(*) count " 
-					"from card where scheduled > date('now', '+1 day') "
+					"from card where scheduled > date('now', 'localtime', '+1 day') "
 					"group by date(scheduled) limit %d", limit]];
 									
 	NSMutableArray *scheduleArray = [NSMutableArray array];

@@ -45,7 +45,6 @@
 + (int) countByScheduled;
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;
 
-
 - (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a;
 - (void) study:(NSUInteger) grade;
 

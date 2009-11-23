@@ -8,27 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@class CardFrontViewController;
-@class CardBackViewController;
+@class CardViewController;
 @class ReviewUnfinishedViewController;
 @class ReviewFinishedViewController;
 @class Card;
 
 @interface ReviewSessionController : UIViewController {
-	CardFrontViewController* cardFrontViewController;
-	CardBackViewController* cardBackViewController;
+	CardViewController* cardFrontViewController;
+	CardViewController* cardBackViewController;
 	ReviewUnfinishedViewController* reviewUnfinishedViewController;
 	ReviewFinishedViewController* reviewFinishedViewController;
 
 	NSUInteger cardsRemain;
 	
-	NSArray* cards;
 	NSArray* reviewCards;
+	NSArray* scheduledCards;
 	NSMutableArray* uncertainCards;
 	Card* currentCard;
 }
 
-@property (nonatomic, retain) NSArray* reviewCards;
 
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	

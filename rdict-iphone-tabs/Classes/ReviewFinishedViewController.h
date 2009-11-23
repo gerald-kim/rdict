@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ReviewFinishedViewController : UIViewController {
-
+@interface ReviewFinishedViewController : UIViewController<UINavigationControllerDelegate> {
+	NSArray* scheduledCards;
+	
+	IBOutlet UILabel* totalCardLabel;
 }
+
+@property (nonatomic, retain) NSArray* scheduledCards;
+@property (nonatomic, retain) IBOutlet UILabel* totalCardLabel;
 
 @end

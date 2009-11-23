@@ -11,6 +11,8 @@
 #import "ReviewSessionController.h"
 #import "Card.h"
 
+#import "SLStmt.h"
+
 @implementation ReviewViewController
 @synthesize reviewSessionController;
 @synthesize cardInfomationLabel;
@@ -64,12 +66,16 @@
 		reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
 		reviewSessionController.hidesBottomBarWhenPushed = YES;
 		//self.reviewSessionController.wantsFullScreenLayout = YES;
-	}
-	
-
-	reviewSessionController.reviewCards = [Card findByScheduled];
+	}	
 
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
+}
+
+- (IBAction) rescheduleButtonClicked:(id) sender {
+	SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date( 'now', 'localtime' )" ];
+
+	[stmt step];
+	[stmt close];
 }
 
 @end
