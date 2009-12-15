@@ -1,31 +1,38 @@
 <html>
 <head>
+<style>
+    /*<group=rdict>*/
+    a.r {
+        background-image:url(star_off.png);
+        background-repeat:no-repeat;
+        float:right;
+        margin-left:5px;
+        margin-right:15px;   width:23px;height:23px;
+    }
+    a.r:hover {
+        background-image:url(star_on.png);
+    }
+    a.r:visited {
+        background-image:url(star_on.png);
+    }
+    /*</group>*/
+</style>
 <script type="text/javascript" src="jquery-1.3.2.js"></script>
 <script type="text/javascript">
-
-$(document).ready( function() {
-    $("#queryInput").focus()
-    $("ol>li").prepend( '<input class="remember" type="button" value="Remember"/>' );
+    function s( obj ) {
+        window.location.href = 'rdict://lookup?lemma=' + encodeURIComponent( $(obj).attr('href') ); 
+        return false;
+    }
     
-    $("a.rdict").attr( 'href', 
-    	function () { 
-          return 'rdict://lookup?lemma=' + encodeURIComponent( $(this).attr('href') ); 
-    	}
-    ); 
-    $(".remember").click( function() {
-        remember_word(this);
-    });
-} );
-
-function remember_word(obj) {
-    definition_li = $(obj).parent().clone();
-    definition_li.children('ul').empty();
-    definition_li.children('ol').empty();
-    definition_li.children('dl').empty();
-    definition = definition_li.text();
-
-	window.location = 'rdict://save?definition=' + decodeURIComponent(definition);
-}
+    function r(obj) {
+        definition_li = $(obj).parent().clone();
+        definition_li.children('ul').empty();
+        definition_li.children('ol').empty();
+        definition_li.children('dl').empty();
+        definition = definition_li.text();
+        
+        window.location = 'rdict://save?definition=' + decodeURIComponent(definition);
+    }
 </script>
 </head>
 <body>

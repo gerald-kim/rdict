@@ -25,7 +25,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.title = lemma;
 	self.navigationController.navigationBarHidden = NO;
 	activityIndicatorView .hidden = NO;
 	[activityIndicatorView startAnimating];
@@ -58,6 +57,8 @@
 #pragma mark -
 
 - (void) showWordDefinition: (NSString *) query  {
+	self.title = query;
+
 	WordEntry* entry = [wiktionary wordEntryByLemma:query];
 	if ( entry ) {
 		[entry decorateDefinition];
