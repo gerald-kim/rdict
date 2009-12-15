@@ -1,8 +1,0 @@
-To run the unit tests or test the app in the emulator, you need to edit the absolute path to the dictionary file.  The path is used in:
-
-- TestSomething.m
-- DictionaryTest.m
-- RDictAppDelegate.m
-
-The paths should point to the dictionary.db file.  (e.g. en-brief.db).  After you edit the path in those 3 files, the Unit tests and app should run smoothly.
-(hopefully :)  )
