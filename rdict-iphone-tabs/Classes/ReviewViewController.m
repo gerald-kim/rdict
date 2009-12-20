@@ -13,10 +13,16 @@
 
 #import "SLStmt.h"
 
+static NSString *sectionTitleKey = @"sectionTitle";
+static NSString *scheduledCardsKey = @"scheduledCards";
+//static NSString *todayCardsKey = @"todayCards";
+static NSString *totalCountKey = @"totalCount";
+//static NSString *scoreKey = @"score";
+
 @implementation ReviewViewController
 @synthesize reviewSessionController;
-@synthesize cardInfomationLabel;
-@synthesize scheduleText;
+@synthesize tableView;
+@synthesize dataSourceArray;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -28,18 +34,28 @@
 	NSLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
+
+	self.dataSourceArray = [NSArray arrayWithObjects:
+							[NSDictionary dictionaryWithObjectsAndKeys:
+							 @"Review", sectionTitleKey,
+							 [NSNumber numberWithInt:[Card countByScheduled]], scheduledCardsKey,
+							 //							 [NSNumber numberWithInt:[Card countByToday]], todayCardsKey,
+							 nil],
+							
+							[NSDictionary dictionaryWithObjectsAndKeys:
+							 @"Statistics", sectionTitleKey,
+							 [NSNumber numberWithInt:[Card count]], totalCountKey,
+							 //							 [NSNumber numberWithInt:[Card countByToday]], todayCardsKey,
+							 nil],
+							nil];
+							
 	
-	
-	int cardCount = [Card countByScheduled];
 	NSArray* schedule = [Card reviewSchedulesWithLimit:7];
 	NSMutableString* text = [NSMutableString string];
 	for( NSArray* row in schedule ) {
 		[text appendFormat:@"%@ : %@\n", [row objectAtIndex:0], [row objectAtIndex:1]];
 	}
-	scheduleText.text = text;
 	
-	NSLog( @"Card counts: %d", cardCount );
-	cardInfomationLabel.text = [NSString stringWithFormat:@"There %d cards to review today.", cardCount];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -49,6 +65,8 @@
 - (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBarHidden = YES;
+	[dataSourceArray release];
+	dataSourceArray = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +94,49 @@
 
 	[stmt step];
 	[stmt close];
+}
+
+#pragma mark Table view methods
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [dataSourceArray count];;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [[self.dataSourceArray objectAtIndex: section] valueForKey:sectionTitleKey];
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Set up the cell...
+	cell.textLabel.text = [NSString stringWithString:@"Text"];
+	
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);
+	
+	
 }
 
 @end

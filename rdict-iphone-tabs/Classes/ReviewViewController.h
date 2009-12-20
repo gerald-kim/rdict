@@ -10,15 +10,16 @@
 
 @class ReviewSessionController;
 
-@interface ReviewViewController : UIViewController {
-	IBOutlet ReviewSessionController* reviewSessionController;
-	IBOutlet UILabel* cardInfomationLabel;
-	IBOutlet UITextView* scheduleText;
+@interface ReviewViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+	ReviewSessionController* reviewSessionController;
+	IBOutlet UITableView* tableView;
+
+	NSArray *dataSourceArray;
 }
 
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
-@property (nonatomic, retain) UILabel* cardInfomationLabel;
-@property (nonatomic, retain) UITextView* scheduleText;
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) NSArray *dataSourceArray;
 
 - (IBAction) studyButtonClicked:(id) sender;
 - (IBAction) rescheduleButtonClicked:(id) sender;
