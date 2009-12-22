@@ -29,6 +29,18 @@
 	NSLog(@"HVC.viewWillAppear");
 	self.histories = [History findRecents];
 	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
+
+	
+	//Add the clear button.
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"Clear"style:UIBarButtonSystemItemDone
+											   target:self action:@selector(clearButtonClicked:)] autorelease];
+	
+	if(self.histories.count <=0)
+		[self.navigationItem.rightBarButtonItem setEnabled:FALSE];
+	else
+		[self.navigationItem.rightBarButtonItem setEnabled:TRUE];
+	
 	[self.tableView reloadData];
 }
 
@@ -68,6 +80,33 @@
 	
 	dictionaryViewController.lemma = lemma;
 	[self.navigationController pushViewController:dictionaryViewController animated:YES];
+}
+
+
+- (IBAction) clearButtonClicked : (id) sender {	
+	NSLog( @"RSC.clearButton" );
+	
+	UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Confirm"];
+	[alert setMessage:@"Clear your search history?"];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert show];
+	[alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		[History clearHistory];
+
+		self.histories = [History findRecents];
+		self.sectionInfo = [History buildHistorySectionInfo:self.histories];
+	
+		[self.navigationItem.rightBarButtonItem setEnabled:FALSE];
+		
+		[self.tableView reloadData];
+	}
 }
 
 

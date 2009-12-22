@@ -8,24 +8,23 @@
 
 #import "AboutViewController.h"
 
-
 @implementation AboutViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize webView;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+-(void) viewWillAppear:(BOOL)animated
+{
+	NSLog( @"HVC.viewWillAppear" );
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSURL *baseURL = [NSURL fileURLWithPath:path];	
+	
+	NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"rdict_about" ofType:@"html"];
+	NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
+	NSLog( @"%s", infoText );
+    [webView loadHTMLString:infoText baseURL:baseURL];
+	
+	//	[webView loadHTMLString:<#(NSString *)string#> baseURL:baseURL];
 }
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -27,7 +27,8 @@
 	Card* currentCard;
 }
 
-
+- (IBAction) frontHelpButtonClicked : (id) sender;
+- (IBAction) backHelpButtonClicked : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	
 - (IBAction) reviewAgainButtonClicked : (id) sender;
