@@ -11,19 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		1FC2EED310DDF29D001CF1B4 /* blocksort.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EEC810DDF29D001CF1B4 /* blocksort.c */; };
-		1FC2EED410DDF29D001CF1B4 /* bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EEC910DDF29D001CF1B4 /* bzip2.c */; };
-		1FC2EED510DDF29D001CF1B4 /* bzip2recover.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECA10DDF29D001CF1B4 /* bzip2recover.c */; };
-		1FC2EED610DDF29D001CF1B4 /* bzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECB10DDF29D001CF1B4 /* bzlib.c */; };
-		1FC2EED710DDF29D001CF1B4 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECC10DDF29D001CF1B4 /* compress.c */; };
-		1FC2EED810DDF29D001CF1B4 /* crctable.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECD10DDF29D001CF1B4 /* crctable.c */; };
-		1FC2EED910DDF29D001CF1B4 /* dlltest.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECE10DDF29D001CF1B4 /* dlltest.c */; };
-		1FC2EEDA10DDF29D001CF1B4 /* huffman.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EECF10DDF29D001CF1B4 /* huffman.c */; };
-		1FC2EEDB10DDF29D001CF1B4 /* mk251.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EED010DDF29D001CF1B4 /* mk251.c */; };
-		1FC2EEDC10DDF29D001CF1B4 /* randtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EED110DDF29D001CF1B4 /* randtable.c */; };
-		1FC2EEDD10DDF29D001CF1B4 /* spewG.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2EED210DDF29D001CF1B4 /* spewG.c */; };
-		1FC2EEE010DDF2B5001CF1B4 /* bzlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC2EEDE10DDF2B5001CF1B4 /* bzlib.h */; };
-		1FC2EEE110DDF2B5001CF1B4 /* bzlib_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FC2EEDF10DDF2B5001CF1B4 /* bzlib_private.h */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EF038B1810D856B300AE5DA0 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
 		EF038B1910D856B300AE5DA0 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
@@ -306,19 +293,6 @@
 		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RDictAppDelegate.m; path = Classes/RDictAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Vocabulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1FC2EEC810DDF29D001CF1B4 /* blocksort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = blocksort.c; path = "bzip2-1.0.5/blocksort.c"; sourceTree = "<group>"; };
-		1FC2EEC910DDF29D001CF1B4 /* bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzip2.c; path = "bzip2-1.0.5/bzip2.c"; sourceTree = "<group>"; };
-		1FC2EECA10DDF29D001CF1B4 /* bzip2recover.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzip2recover.c; path = "bzip2-1.0.5/bzip2recover.c"; sourceTree = "<group>"; };
-		1FC2EECB10DDF29D001CF1B4 /* bzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzlib.c; path = "bzip2-1.0.5/bzlib.c"; sourceTree = "<group>"; };
-		1FC2EECC10DDF29D001CF1B4 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = compress.c; path = "bzip2-1.0.5/compress.c"; sourceTree = "<group>"; };
-		1FC2EECD10DDF29D001CF1B4 /* crctable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crctable.c; path = "bzip2-1.0.5/crctable.c"; sourceTree = "<group>"; };
-		1FC2EECE10DDF29D001CF1B4 /* dlltest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dlltest.c; path = "bzip2-1.0.5/dlltest.c"; sourceTree = "<group>"; };
-		1FC2EECF10DDF29D001CF1B4 /* huffman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = huffman.c; path = "bzip2-1.0.5/huffman.c"; sourceTree = "<group>"; };
-		1FC2EED010DDF29D001CF1B4 /* mk251.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mk251.c; path = "bzip2-1.0.5/mk251.c"; sourceTree = "<group>"; };
-		1FC2EED110DDF29D001CF1B4 /* randtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = randtable.c; path = "bzip2-1.0.5/randtable.c"; sourceTree = "<group>"; };
-		1FC2EED210DDF29D001CF1B4 /* spewG.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = spewG.c; path = "bzip2-1.0.5/spewG.c"; sourceTree = "<group>"; };
-		1FC2EEDE10DDF2B5001CF1B4 /* bzlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bzlib.h; path = "bzip2-1.0.5/bzlib.h"; sourceTree = "<group>"; };
-		1FC2EEDF10DDF2B5001CF1B4 /* bzlib_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bzlib_private.h; path = "bzip2-1.0.5/bzlib_private.h"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
@@ -369,7 +343,7 @@
 		EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DictionaryView.xib; path = Resources/DictionaryView.xib; sourceTree = "<group>"; };
 		EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.min.js"; path = "Resources/jquery-1.3.2.min.js"; sourceTree = "<group>"; };
 		EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RDict-Info.plist"; sourceTree = "<group>"; };
+		EF2E754C0FE9BBB0008B8AEC /* Vocabulator.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Vocabulator.plist; sourceTree = "<group>"; };
 		EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = Resources/ReviewView.xib; sourceTree = "<group>"; };
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
 		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -562,19 +536,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1FC2EEDE10DDF2B5001CF1B4 /* bzlib.h */,
-				1FC2EEDF10DDF2B5001CF1B4 /* bzlib_private.h */,
-				1FC2EEC810DDF29D001CF1B4 /* blocksort.c */,
-				1FC2EEC910DDF29D001CF1B4 /* bzip2.c */,
-				1FC2EECA10DDF29D001CF1B4 /* bzip2recover.c */,
-				1FC2EECB10DDF29D001CF1B4 /* bzlib.c */,
-				1FC2EECC10DDF29D001CF1B4 /* compress.c */,
-				1FC2EECD10DDF29D001CF1B4 /* crctable.c */,
-				1FC2EECE10DDF29D001CF1B4 /* dlltest.c */,
-				1FC2EECF10DDF29D001CF1B4 /* huffman.c */,
-				1FC2EED010DDF29D001CF1B4 /* mk251.c */,
-				1FC2EED110DDF29D001CF1B4 /* randtable.c */,
-				1FC2EED210DDF29D001CF1B4 /* spewG.c */,
 				EFBF4A780FE003650092357C /* Controllers */,
 				080E96DDFE201D6D7F000001 /* Models */,
 				EFEA08320FDFF5FA00490192 /* Tests */,
@@ -613,7 +574,7 @@
 				EF770E830FF754D900889749 /* jquery-1.3.2.js */,
 				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
-				EF2E754C0FE9BBB0008B8AEC /* RDict-Info.plist */,
+				EF2E754C0FE9BBB0008B8AEC /* Vocabulator.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */,
 			);
@@ -878,8 +839,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC2EEE010DDF2B5001CF1B4 /* bzlib.h in Headers */,
-				1FC2EEE110DDF2B5001CF1B4 /* bzlib_private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,17 +1233,6 @@
 				EFEA07F00FDFF51700490192 /* tcutil.c in Sources */,
 				EFEA07F10FDFF51700490192 /* tcbdb.c in Sources */,
 				EFEA07F20FDFF51700490192 /* md5.c in Sources */,
-				1FC2EED310DDF29D001CF1B4 /* blocksort.c in Sources */,
-				1FC2EED410DDF29D001CF1B4 /* bzip2.c in Sources */,
-				1FC2EED510DDF29D001CF1B4 /* bzip2recover.c in Sources */,
-				1FC2EED610DDF29D001CF1B4 /* bzlib.c in Sources */,
-				1FC2EED710DDF29D001CF1B4 /* compress.c in Sources */,
-				1FC2EED810DDF29D001CF1B4 /* crctable.c in Sources */,
-				1FC2EED910DDF29D001CF1B4 /* dlltest.c in Sources */,
-				1FC2EEDA10DDF29D001CF1B4 /* huffman.c in Sources */,
-				1FC2EEDB10DDF29D001CF1B4 /* mk251.c in Sources */,
-				1FC2EEDC10DDF29D001CF1B4 /* randtable.c in Sources */,
-				1FC2EEDD10DDF29D001CF1B4 /* spewG.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1328,7 +1276,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info.plist";
+				INFOPLIST_FILE = Vocabulator.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
@@ -1344,7 +1292,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info.plist";
+				INFOPLIST_FILE = Vocabulator.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
@@ -1359,8 +1307,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1379,7 +1327,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
