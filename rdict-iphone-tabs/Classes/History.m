@@ -25,6 +25,14 @@ DECLARE_PROPERTIES (
 	return [History findByCriteria:recentCriteria];
 }
 
++ (void) clearHistory {
+	NSArray* historyRecords = [History allObjects];
+	
+	for( History* h in historyRecords) {
+		[h deleteObject];
+	}
+}
+
 + (NSMutableDictionary*) buildHistorySectionInfo:(NSArray*) histories {
 	NSMutableDictionary* d = [[NSMutableDictionary alloc] init];
 	

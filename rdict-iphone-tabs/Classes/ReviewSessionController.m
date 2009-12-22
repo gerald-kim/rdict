@@ -40,7 +40,7 @@
 	[scheduledCards retain];
 	uncertainCards = [[NSMutableArray alloc] init];
 	[self initCards:scheduledCards];
-
+	
 }
 
 - (void)viewWillAppear:(BOOL) animated {
@@ -87,8 +87,8 @@
 
 - (IBAction) scoreButtonClicked : (id) sender {
 	//TODO refactor scoreButtonClicked function. it's too complex
-	UIButton *button = (UIButton*) sender;
-	NSUInteger score = [button.currentTitle intValue];
+	UISegmentedControl *segmentedControl = (UISegmentedControl*) sender;
+	NSUInteger score = segmentedControl.tag;
 	
 	if( reviewCards == scheduledCards ) {
 		if( score <= 3 ) {
@@ -105,14 +105,30 @@
 			
 		}  
 	} else {
+		segmentedControl.selectedSegmentIndex = -1;
 		[self showCardFrontView];
 	}
 }
 
+- (IBAction) frontHelpButtonClicked : (id) sender {	
+	NSLog( @"RSC.frontHelpButton" );
+	
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Can you remeber this word?\nThink about the defintion.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+    [alert show];
+}
+		
+- (IBAction) backHelpButtonClicked : (id) sender {	
+	NSLog( @"RSC.backHelpButton" );
+			
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	[alert show];	
+	}
+			
+
 - (void)showCardFrontView {
 	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
 	cardsRemain--;
-
+	
 	[self updateAndSwitchToCardView:cardFrontViewController];
 }
 
@@ -125,7 +141,7 @@
 	cardViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
 	cardViewController.questionLabel.text = currentCard.question;
 	cardViewController.answerTextView.text = currentCard.answer;
-
+	
 	[self.view bringSubviewToFront:cardViewController.view];	
 }
 
@@ -135,7 +151,7 @@
 	reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
-
+	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
 }
@@ -156,7 +172,7 @@
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];
 	[reviewFinishedViewController viewWillAppear:TRUE];
-
+	
 }
 
 
@@ -164,7 +180,7 @@
 	[reviewFinishedViewController viewDidDisappear:TRUE];
 	[reviewFinishedViewController.view removeFromSuperview];
 	[reviewFinishedViewController release];
-
+	
 	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];		
 }

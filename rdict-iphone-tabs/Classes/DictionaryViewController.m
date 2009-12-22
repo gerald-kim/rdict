@@ -13,6 +13,7 @@
 
 @implementation DictionaryViewController
 @synthesize webView;
+@synthesize cardAddedLabel;
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize activityIndicatorView;
@@ -90,13 +91,36 @@
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
 		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
-		
 		Card* card = [[Card alloc] initWithQuestion:self.lemma andAnswer:selectedDefinition];
 		[card save];
 		[card release];
+		
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.7];
+		cardAddedLabel.alpha = 1.0;
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(showAlert)];
+		[UIView commitAnimations];
+		
 	} else if ([@"lookup" isEqualToString:[url host]]){
 		[self handleWordLookUp: url];
 	}
+}
+
+-(void) showAlert {
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1.0];
+	cardAddedLabel.alpha = 0.9;
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(fadeAlertOut)];
+	[UIView commitAnimations];
+}
+
+-(void) fadeAlertOut {
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.7];
+	cardAddedLabel.alpha = 0;
+	[UIView commitAnimations];
 }
 
 #pragma mark -
