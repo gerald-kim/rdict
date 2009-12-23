@@ -22,4 +22,6 @@
 @property (nonatomic, retain) NSArray* histories;
 @property (nonatomic, retain) NSMutableDictionary* sectionInfo;
 
+- (IBAction) clearButtonClicked:(id) sender;
+
 @end
