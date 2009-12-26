@@ -41,7 +41,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 387}</string>
 						<reference key="NSSuperview" ref="588734260"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="871319660">
+						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
@@ -61,31 +61,20 @@
 						<bool key="IBUIHidesWhenStopped">NO</bool>
 						<int key="IBUIStyle">2</int>
 					</object>
-					<object class="IBUILabel" id="359423621">
+					<object class="IBUIImageView" id="126533634">
 						<reference key="NSNextResponder" ref="588734260"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{108, 179}, {104, 28}}</string>
+						<string key="NSFrame">{{114, 172}, {92, 42}}</string>
 						<reference key="NSSuperview" ref="588734260"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC40MDAwMDAwMSAwLjQwMDAwMDAxIDEAA</bytes>
-						</object>
 						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<float key="IBUIAlpha">0.000000e+00</float>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Card added</string>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">1.600000e+01</double>
-							<int key="NSfFlags">16</int>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">card_added_note_smallest.png</string>
 						</object>
-						<reference key="IBUITextColor" ref="871319660"/>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<float key="IBUIMinimumFontSize">1.600000e+01</float>
-						<int key="IBUITextAlignment">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 387}</string>
@@ -141,11 +130,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">cardAddedLabel</string>
+						<string key="label">cardAddedNote</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="359423621"/>
+						<reference key="destination" ref="126533634"/>
 					</object>
-					<int key="connectionID">43</int>
+					<int key="connectionID">45</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -177,7 +166,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="625707952"/>
 							<reference ref="615458541"/>
-							<reference ref="359423621"/>
+							<reference ref="126533634"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -192,8 +181,8 @@
 						<reference key="parent" ref="588734260"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="359423621"/>
+						<int key="objectID">44</int>
+						<reference key="object" ref="126533634"/>
 						<reference key="parent" ref="588734260"/>
 					</object>
 				</object>
@@ -206,7 +195,7 @@
 					<string>-2.CustomClassName</string>
 					<string>34.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
-					<string>42.IBPluginDependency</string>
+					<string>44.IBPluginDependency</string>
 					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
 				</object>
@@ -241,7 +230,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -254,13 +243,13 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>activityIndicatorView</string>
-							<string>cardAddedLabel</string>
+							<string>cardAddedNote</string>
 							<string>webView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIActivityIndicatorView</string>
-							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UIWebView</string>
 						</object>
 					</object>

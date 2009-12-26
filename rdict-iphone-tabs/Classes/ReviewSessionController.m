@@ -87,8 +87,8 @@
 
 - (IBAction) scoreButtonClicked : (id) sender {
 	//TODO refactor scoreButtonClicked function. it's too complex
-	UISegmentedControl *segmentedControl = (UISegmentedControl*) sender;
-	NSUInteger score = segmentedControl.tag;
+	UIButton *scoreButton = (UIButton*) sender;
+	NSUInteger score = scoreButton.tag;
 	
 	if( reviewCards == scheduledCards ) {
 		if( score <= 3 ) {
@@ -105,7 +105,6 @@
 			
 		}  
 	} else {
-		segmentedControl.selectedSegmentIndex = -1;
 		[self showCardFrontView];
 	}
 }

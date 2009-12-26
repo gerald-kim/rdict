@@ -13,7 +13,7 @@
 
 @implementation DictionaryViewController
 @synthesize webView;
-@synthesize cardAddedLabel;
+@synthesize cardAddedNote;
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize activityIndicatorView;
@@ -97,7 +97,7 @@
 		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.7];
-		cardAddedLabel.alpha = 1.0;
+		cardAddedNote.alpha = 1.0;
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(showAlert)];
 		[UIView commitAnimations];
@@ -110,7 +110,7 @@
 -(void) showAlert {
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1.0];
-	cardAddedLabel.alpha = 0.9;
+	cardAddedNote.alpha = 0.9;
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(fadeAlertOut)];
 	[UIView commitAnimations];
@@ -119,7 +119,7 @@
 -(void) fadeAlertOut {
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.7];
-	cardAddedLabel.alpha = 0;
+	cardAddedNote.alpha = 0;
 	[UIView commitAnimations];
 }
 
