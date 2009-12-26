@@ -136,8 +136,16 @@
 }
 
 - (void) updateAndSwitchToCardView : (CardViewController*) cardViewController {
-	//TODO change text when there's no remaining cards
-	cardViewController.statusLabel.text = [NSString stringWithFormat:@"%d cards remain.", cardsRemain];
+	if(cardsRemain > 1) {
+		cardViewController.statusLabel.text = [NSString stringWithFormat:@"%d more cards", cardsRemain];
+	}
+	else if (cardsRemain == 1) {
+		cardViewController.statusLabel.text = [NSString stringWithFormat:@"1 more card", cardsRemain];
+	}
+	else {
+		cardViewController.statusLabel.text = [NSString stringWithFormat:@"Last card!", cardsRemain];
+	}
+	
 	cardViewController.questionLabel.text = currentCard.question;
 	cardViewController.answerTextView.text = currentCard.answer;
 	

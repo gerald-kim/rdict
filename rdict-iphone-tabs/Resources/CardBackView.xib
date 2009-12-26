@@ -39,20 +39,21 @@
 					<object class="IBUIImageView" id="1072225859">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48, 107}, {240, 128}}</string>
+						<string key="NSFrame">{{-20, 23}, {365, 260}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">manage_flashcard.png</string>
+							<string key="NSResourceName">big_flashcard.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="963270609">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">295</int>
-						<string key="NSFrame">{{48, 107}, {240, 26}}</string>
+						<string key="NSFrame">{{29, 80}, {276, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -76,7 +77,7 @@
 					<object class="IBUITextView" id="113573629">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">279</int>
-						<string key="NSFrame">{{48, 132}, {240, 103}}</string>
+						<string key="NSFrame">{{29, 105}, {276, 123}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -94,12 +95,12 @@
 					<object class="IBUILabel" id="616468414">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{20, 20}, {280, 22}}</string>
+						<string key="NSFrame">{{42, 20}, {256, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">5 cards remain</string>
+						<string key="IBUIText">5 more cards</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">1.400000e+01</double>
@@ -282,6 +283,20 @@
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="487640255"/>
 					</object>
+					<object class="IBUIImageView" id="550499657">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{299, 19}, {18, 24}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">more_cards_arrow.png</string>
+						</object>
+					</object>
 				</object>
 				<string key="NSFrameSize">{340, 504}</string>
 				<reference key="NSSuperview"/>
@@ -406,7 +421,6 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="616468414"/>
 							<reference ref="183383536"/>
 							<reference ref="864483067"/>
 							<reference ref="595088890"/>
@@ -416,9 +430,11 @@
 							<reference ref="283316126"/>
 							<reference ref="476743054"/>
 							<reference ref="77892427"/>
-							<reference ref="1072225859"/>
 							<reference ref="963270609"/>
+							<reference ref="1072225859"/>
 							<reference ref="113573629"/>
+							<reference ref="550499657"/>
+							<reference ref="616468414"/>
 						</object>
 						<reference key="parent" ref="731523412"/>
 					</object>
@@ -498,6 +514,11 @@
 						<reference key="object" ref="1072225859"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="550499657"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -522,14 +543,16 @@
 					<string>58.IBPluginDependency</string>
 					<string>59.IBPluginDependency</string>
 					<string>61.IBPluginDependency</string>
+					<string>68.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CardViewController</string>
 					<string>UIResponder</string>
-					<string>{{329, 163}, {340, 504}}</string>
+					<string>{{302, 163}, {340, 504}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<boolean value="YES"/>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -565,7 +588,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">68</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
