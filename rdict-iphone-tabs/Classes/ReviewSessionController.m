@@ -28,8 +28,11 @@
 	[super viewDidLoad];
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
+	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
+	
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
-
+	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];
+	
 	scheduledCards = [Card findByScheduled];
 	[scheduledCards retain];
 	uncertainCards = [[NSMutableArray alloc] init];
@@ -132,10 +135,8 @@
 	if (! [self isOnFirstCard])
 		[self prepareAnimation];
 	
-	[self.flashcardViewPlaceholder addSubview:newCardController.view];
-	
-	if (! [self isOnFirstCard])
-		[oldCardController.view removeFromSuperview];
+	[self.flashcardViewPlaceholder bringSubviewToFront:newCardController.view];
+
 }
 
 - (NSString*) getStatusMesgAndSetStatusArrow {
