@@ -28,24 +28,29 @@
 	[super viewDidLoad];
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
-	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
-	
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
-	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];
 	
 	scheduledCards = [Card findByScheduled];
 	[scheduledCards retain];
 	uncertainCards = [[NSMutableArray alloc] init];
-	[self initCards:scheduledCards];
-	
-	[self showCardFrontView];
 }
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
-	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];	
-}	
+	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+	
+	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
+	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];
+	
+	[self initCards:scheduledCards];
+	[self showCardFrontView];
+}
+
+- (void)viewWillDisappear:(BOOL) animated {
+	[cardFrontViewController.view removeFromSuperview];
+	[cardBackViewController.view removeFromSuperview];	
+}
 
 - (void)viewDidUnload {
 	[scheduledCards release]; scheduledCards = nil;
@@ -136,7 +141,6 @@
 		[self prepareAnimation];
 	
 	[self.flashcardViewPlaceholder bringSubviewToFront:newCardController.view];
-
 }
 
 - (NSString*) getStatusMesgAndSetStatusArrow {
