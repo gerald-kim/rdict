@@ -18,16 +18,16 @@
 @synthesize wiktionary;
 @synthesize activityIndicatorView;
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
 	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
-	activityIndicatorView .hidden = NO;
+	activityIndicatorView.hidden = NO;
 	[activityIndicatorView startAnimating];
 	
 	[self showWordDefinition: lemma];
@@ -60,6 +60,9 @@
 - (void) showWordDefinition: (NSString *) query  {
 	self.title = query;
 
+	[activityIndicatorView startAnimating];
+	activityIndicatorView.hidden = NO;
+	
 	WordEntry* entry = [wiktionary wordEntryByLemma:query];
 	if ( entry ) {
 		[entry decorateDefinition];
@@ -68,12 +71,15 @@
 		NSURL *baseURL = [NSURL fileURLWithPath:path];	
 		
 		[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
-		
+				
 		[entry release];
 		//	[baseURL release];
 		//	[path release];
 	} else {
-		[webView stringByEvaluatingJavaScriptFromString:@"alert( 'Sorry. No definition for that word' );"];
+		[activityIndicatorView stopAnimating];
+		activityIndicatorView.hidden = YES;
+
+		[webView stringByEvaluatingJavaScriptFromString:@"alert( 'Sorry. No definition for that word' );"];		
 	}
 }
 
@@ -130,7 +136,6 @@
 	[activityIndicatorView stopAnimating];
 	activityIndicatorView.hidden = YES;	
 }
-
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSURL *url = [request URL];

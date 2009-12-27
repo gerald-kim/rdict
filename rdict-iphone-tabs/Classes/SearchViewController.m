@@ -99,8 +99,6 @@
 	}
 }
 
-
-
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
