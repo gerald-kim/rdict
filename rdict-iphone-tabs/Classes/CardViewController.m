@@ -14,6 +14,10 @@
 @synthesize questionLabel;
 @synthesize answerTextView;
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -27,7 +31,6 @@
 }
 
 - (void)viewDidAppear:(BOOL) animated {
-	NSLog( @"CBC.viewDidAppear" );
-}
+	NSLog( @"CBC.viewDidAppear" );}
 
 @end

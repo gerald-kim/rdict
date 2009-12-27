@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="7"/>
+			<integer value="36"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -132,6 +132,10 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{2, 0}, {53, 49}}</string>
 								<reference key="NSSuperview" ref="375799380"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwLjUwMTk2MDgxIDEAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -256,7 +260,7 @@
 							<object class="IBUILabel" id="360749241">
 								<reference key="NSNextResponder" ref="375799380"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{271, 57}, {43, 21}}</string>
+								<string key="NSFrame">{{7, 52}, {43, 21}}</string>
 								<reference key="NSSuperview" ref="375799380"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -270,7 +274,7 @@
 							<object class="IBUILabel" id="840487204">
 								<reference key="NSNextResponder" ref="375799380"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{8, 57}, {41, 21}}</string>
+								<string key="NSFrame">{{278, 52}, {41, 21}}</string>
 								<reference key="NSSuperview" ref="375799380"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>

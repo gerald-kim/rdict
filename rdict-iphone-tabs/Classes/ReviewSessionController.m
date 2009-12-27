@@ -28,9 +28,7 @@
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
-	
-	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
-	
+
 	scheduledCards = [Card findByScheduled];
 	[scheduledCards retain];
 	uncertainCards = [[NSMutableArray alloc] init];
@@ -44,12 +42,6 @@
 	[super viewWillAppear:animated];
 	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];	
 }	
-
-- (void)viewDidDisappear:(BOOL) animated {
-	[super viewDidDisappear:animated];
-	
-	[self showCardFrontView];
-}
 
 - (void)viewDidUnload {
 	[scheduledCards release]; scheduledCards = nil;
@@ -75,7 +67,7 @@
 #pragma mark Answer, Score
 
 - (IBAction) answerButtonClicked : (id) sender {	
-	NSLog( @"RSC.showAnswerButton" );
+	NSLog( @"RSC.answerButtonClicked" );
 	[self showCardBackView];
 }
 
@@ -119,30 +111,44 @@
 	
 	self.showAnswerButton.hidden = NO;
 	self.answerButtonGroup.hidden = YES;
-	
-	[self updateAndSwitchToCardView: cardFrontViewController];
+	[self updateAndSwitchFrom: cardBackViewController To: cardFrontViewController];
 }
 
 - (void)showCardBackView {	
 	self.showAnswerButton.hidden = YES;
 	self.answerButtonGroup.hidden = NO;
-	[self updateAndSwitchToCardView: cardBackViewController];
+	[self updateAndSwitchFrom: cardFrontViewController To: cardBackViewController];
 }
 
-- (void) updateAndSwitchToCardView : (CardViewController*) cardViewController {
-	if(cardsRemain > 1) {
-		self.statusLabel.text = [NSString stringWithFormat:@"%d more cards", cardsRemain];
-	}
-	else if (cardsRemain == 1) {
-		self.statusLabel.text = [NSString stringWithFormat:@"1 more card", cardsRemain];
-	}
-	else {
-		self.statusLabel.text = [NSString stringWithFormat:@"Last card!", cardsRemain];
-	}
+- (void) updateAndSwitchFrom: (CardViewController*) oldCardController To: (CardViewController*) newCardController {
+	self.statusLabel.text = [self getStatusMesg];
+
+	newCardController.questionLabel.text = currentCard.question;
+	newCardController.answerTextView.text = currentCard.answer;
 	
-	cardViewController.questionLabel.text = currentCard.question;
-	cardViewController.answerTextView.text = currentCard.answer;
+	if (! [self isOnFirstCard])
+		[self prepareAnimation];
 	
+	[self.flashcardViewPlaceholder addSubview:newCardController.view];
+	
+	if (! [self isOnFirstCard])
+		[oldCardController.view removeFromSuperview];
+}
+
+- (NSString*) getStatusMesg {
+	if(cardsRemain > 1)
+		return [NSString stringWithFormat:@"%d more cards", cardsRemain];
+	else if (cardsRemain == 1)
+		return [NSString stringWithFormat:@"1 more card", cardsRemain];
+	else
+		return [NSString stringWithFormat:@"Last card!", cardsRemain];
+}
+
+- (BOOL) isOnFirstCard {
+	return [reviewCards count] == cardsRemain;
+}
+
+- (void) prepareAnimation {
 	CATransition *transition = [CATransition animation];
 	transition.duration = 0.5;
 	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -151,8 +157,6 @@
 	transition.delegate = self;
 	
 	[self.flashcardViewPlaceholder.layer addAnimation:transition forKey:nil];
-
-	[self.flashcardViewPlaceholder addSubview:cardViewController.view];
 }
 
 #pragma mark -

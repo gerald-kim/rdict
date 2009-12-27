@@ -64,14 +64,13 @@
 	if( nil == reviewSessionController ) {
 		reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
 		reviewSessionController.hidesBottomBarWhenPushed = YES;
-		//self.reviewSessionController.wantsFullScreenLayout = YES;
 	}	
 
 	[self.navigationController pushViewController:reviewSessionController animated:YES];
 }
 
 - (IBAction) rescheduleButtonClicked:(id) sender {
-	SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date( 'now', 'localtime' )" ];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date('now', 'localtime' )" ];
 
 	[stmt step];
 	[stmt close];

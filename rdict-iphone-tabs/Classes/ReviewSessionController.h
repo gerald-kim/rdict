@@ -14,15 +14,13 @@
 @class Card;
 
 @interface ReviewSessionController : UIViewController {
-	CardViewController* cardFrontViewController;
-	CardViewController* cardBackViewController;
-	
 	IBOutlet UILabel* statusLabel;
 	IBOutlet UIView* flashcardViewPlaceholder;
 	IBOutlet UIButton* showAnswerButton;
 	IBOutlet UIView* answerButtonGroup;
 	
-	
+	CardViewController* cardFrontViewController;
+	CardViewController* cardBackViewController;
 	ReviewUnfinishedViewController* reviewUnfinishedViewController;
 	ReviewFinishedViewController* reviewFinishedViewController;
 	
@@ -50,6 +48,9 @@
 - (void) showReviewUnfinishedView;
 - (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
-- (void) updateAndSwitchToCardView: (CardViewController*) cardViewController;
+- (void) updateAndSwitchFrom : (CardViewController*) oldCardController To : (CardViewController*) newCardController;
+- (NSString*) getStatusMesg;
+- (void) prepareAnimation;
+- (BOOL) isOnFirstCard;
 
 @end
