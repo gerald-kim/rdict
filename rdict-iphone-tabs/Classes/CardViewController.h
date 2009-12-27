@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface CardViewController : UIViewController {
-	IBOutlet UILabel* statusLabel;
 	IBOutlet UILabel* questionLabel;
 	IBOutlet UITextView* answerTextView;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel* statusLabel;
 @property (nonatomic, retain) IBOutlet UILabel* questionLabel;
 @property (nonatomic, retain) IBOutlet UITextView* answerTextView;
 

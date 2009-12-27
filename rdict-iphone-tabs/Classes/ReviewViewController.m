@@ -29,7 +29,6 @@
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
 	
-	
 	int cardCount = [Card countByScheduled];
 	NSArray* schedule = [Card reviewSchedulesWithLimit:7];
 	NSMutableString* text = [NSMutableString string];

@@ -7,10 +7,10 @@
 //
 
 #import "CardViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CardViewController
 
-@synthesize statusLabel;
 @synthesize questionLabel;
 @synthesize answerTextView;
 

@@ -16,9 +16,16 @@
 @interface ReviewSessionController : UIViewController {
 	CardViewController* cardFrontViewController;
 	CardViewController* cardBackViewController;
+	
+	IBOutlet UILabel* statusLabel;
+	IBOutlet UIView* flashcardViewPlaceholder;
+	IBOutlet UIButton* showAnswerButton;
+	IBOutlet UIView* answerButtonGroup;
+	
+	
 	ReviewUnfinishedViewController* reviewUnfinishedViewController;
 	ReviewFinishedViewController* reviewFinishedViewController;
-
+	
 	NSUInteger cardsRemain;
 	
 	NSArray* reviewCards;
@@ -27,11 +34,22 @@
 	Card* currentCard;
 }
 
-- (IBAction) frontHelpButtonClicked : (id) sender;
-- (IBAction) backHelpButtonClicked : (id) sender;
+@property (nonatomic, retain) IBOutlet UILabel* statusLabel;
+@property (nonatomic, retain) IBOutlet UIView* flashcardViewPlaceholder;
+@property (nonatomic, retain) IBOutlet UIButton* showAnswerButton;
+@property (nonatomic, retain) IBOutlet UIView* answerButtonGroup;
+
+- (IBAction) showHelpMesg : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	
 - (IBAction) reviewAgainButtonClicked : (id) sender;
 - (IBAction) reviewCompleteButtonClicked : (id) sender;
+
+- (void) showCardFrontView;
+- (void) showCardBackView;
+- (void) showReviewUnfinishedView;
+- (void) showReviewFinishedView;
+- (void) initCards:(NSArray*) theCards;
+- (void) updateAndSwitchToCardView: (CardViewController*) cardViewController;
 
 @end

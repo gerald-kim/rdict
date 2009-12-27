@@ -41,6 +41,8 @@
 		1F560D9E10E6CFBF005A6311 /* button_hard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9210E6CFBF005A6311 /* button_hard2.png */; };
 		1F560D9F10E6CFBF005A6311 /* button_medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9310E6CFBF005A6311 /* button_medium1.png */; };
 		1F560DA010E6CFBF005A6311 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
+		1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
+		1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EF038B1810D856B300AE5DA0 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
 		EF038B1910D856B300AE5DA0 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
@@ -344,6 +346,7 @@
 		1F560D9210E6CFBF005A6311 /* button_hard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_hard2.png; path = Resources/button_hard2.png; sourceTree = "<group>"; };
 		1F560D9310E6CFBF005A6311 /* button_medium1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_medium1.png; path = Resources/button_medium1.png; sourceTree = "<group>"; };
 		1F560D9410E6CFBF005A6311 /* button_medium2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_medium2.png; path = Resources/button_medium2.png; sourceTree = "<group>"; };
+		1F560E8B10E6E276005A6311 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
@@ -519,6 +522,7 @@
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
 				EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */,
+				1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +536,7 @@
 				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
 				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
 				EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */,
+				1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +661,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F560E8B10E6E276005A6311 /* QuartzCore.framework */,
 				EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */,
 				EF2E73170FE86454008B8AEC /* libsqlite3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
