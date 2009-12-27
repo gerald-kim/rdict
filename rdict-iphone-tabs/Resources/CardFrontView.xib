@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="757469751">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{3, 30}, {320, 200}}</string>
+						<string key="NSFrame">{{3, 0}, {320, 200}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="572272007">
 							<int key="NSColorSpace">1</int>
@@ -57,7 +57,7 @@
 					<object class="IBUILabel" id="736675830">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">303</int>
-						<string key="NSFrame">{{18, 77}, {290, 105}}</string>
+						<string key="NSFrame">{{18, 56}, {290, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -78,7 +78,7 @@
 						<int key="IBUITextAlignment">1</int>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 250}</string>
+				<string key="NSFrameSize">{320, 200}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="572272007"/>
 			</object>
@@ -162,7 +162,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CardViewController</string>
 					<string>UIResponder</string>
-					<string>{{349, 434}, {320, 250}}</string>
+					<string>{{349, 484}, {320, 200}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

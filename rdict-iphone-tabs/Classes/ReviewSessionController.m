@@ -137,8 +137,12 @@
 	newCardController.questionLabel.text = currentCard.question;
 	newCardController.answerTextView.text = currentCard.answer;
 	
-	if (! [self isOnFirstCard])
-		[self prepareAnimation];
+	if (! [self isOnFirstCard]) {
+		if(cardFrontViewController == newCardController)
+			[self prepareSlideAnimation];
+		else
+			[self prepareFlipAnimation];
+	}
 	
 	[self.flashcardViewPlaceholder bringSubviewToFront:newCardController.view];
 }
@@ -162,7 +166,7 @@
 	return [reviewCards count] == cardsRemain;
 }
 
-- (void) prepareAnimation {
+- (void) prepareSlideAnimation {
 	CATransition *transition = [CATransition animation];
 	transition.duration = 0.5;
 	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -171,6 +175,14 @@
 	transition.delegate = self;
 	
 	[self.flashcardViewPlaceholder.layer addAnimation:transition forKey:nil];
+}
+
+- (void) prepareFlipAnimation {
+	[UIView beginAnimations:@"View Flip" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView: self.flashcardViewPlaceholder cache: YES];
+	[UIView commitAnimations];	
 }
 
 #pragma mark -

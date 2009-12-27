@@ -52,7 +52,8 @@
 - (void) initCards:(NSArray*) theCards;
 - (void) updateAndSwitchFrom : (CardViewController*) oldCardController To : (CardViewController*) newCardController;
 - (NSString*) getStatusMesgAndSetStatusArrow;
-- (void) prepareAnimation;
+- (void) prepareSlideAnimation;
+- (void) prepareFlipAnimation;
 - (BOOL) isOnFirstCard;
 
 @end
