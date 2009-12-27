@@ -180,6 +180,9 @@
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
+	[cardFrontViewController.view removeFromSuperview];
+	[cardBackViewController.view removeFromSuperview];
+	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
 }
@@ -188,6 +191,9 @@
 	//TODO shuffle uncertainCards
 	[reviewUnfinishedViewController.view removeFromSuperview];
 	[reviewUnfinishedViewController release];
+	
+	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
+	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];	
 	
 	[self initCards:uncertainCards];
 	[self showCardFrontView];
