@@ -17,6 +17,7 @@
 @implementation ReviewSessionController
 
 @synthesize statusLabel;
+@synthesize statusArrow;
 @synthesize flashcardViewPlaceholder;
 @synthesize showAnswerButton;
 @synthesize answerButtonGroup;
@@ -97,10 +98,12 @@
 }
 
 - (IBAction) showHelpMesg : (id) sender {	
-	NSLog( @"RSC.showHelpMesg" );
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Can you remeber this word?\nThink about the defintion.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-
-	//UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	UIAlertView* alert;
+	
+	if(nil != cardFrontViewController.view.superview)
+		alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Can you remeber this word?\nThink about the defintion.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	else
+		alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
 	
 	[alert show];
 }
@@ -121,7 +124,7 @@
 }
 
 - (void) updateAndSwitchFrom: (CardViewController*) oldCardController To: (CardViewController*) newCardController {
-	self.statusLabel.text = [self getStatusMesg];
+	self.statusLabel.text = [self getStatusMesgAndSetStatusArrow];
 
 	newCardController.questionLabel.text = currentCard.question;
 	newCardController.answerTextView.text = currentCard.answer;
@@ -135,13 +138,19 @@
 		[oldCardController.view removeFromSuperview];
 }
 
-- (NSString*) getStatusMesg {
-	if(cardsRemain > 1)
+- (NSString*) getStatusMesgAndSetStatusArrow {
+	if(cardsRemain > 1) {
+		self.statusArrow.hidden = NO;
 		return [NSString stringWithFormat:@"%d more cards", cardsRemain];
-	else if (cardsRemain == 1)
+	}
+	else if (cardsRemain == 1) {
+		self.statusArrow.hidden = NO;
 		return [NSString stringWithFormat:@"1 more card", cardsRemain];
-	else
+	}
+	else {
+		self.statusArrow.hidden = YES;
 		return [NSString stringWithFormat:@"Last card!", cardsRemain];
+	}
 }
 
 - (BOOL) isOnFirstCard {

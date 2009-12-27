@@ -15,6 +15,7 @@
 
 @interface ReviewSessionController : UIViewController {
 	IBOutlet UILabel* statusLabel;
+	IBOutlet UIImageView* statusArrow;
 	IBOutlet UIView* flashcardViewPlaceholder;
 	IBOutlet UIButton* showAnswerButton;
 	IBOutlet UIView* answerButtonGroup;
@@ -33,6 +34,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* statusLabel;
+@property (nonatomic, retain) IBOutlet UIImageView* statusArrow;
 @property (nonatomic, retain) IBOutlet UIView* flashcardViewPlaceholder;
 @property (nonatomic, retain) IBOutlet UIButton* showAnswerButton;
 @property (nonatomic, retain) IBOutlet UIView* answerButtonGroup;
@@ -49,7 +51,7 @@
 - (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
 - (void) updateAndSwitchFrom : (CardViewController*) oldCardController To : (CardViewController*) newCardController;
-- (NSString*) getStatusMesg;
+- (NSString*) getStatusMesgAndSetStatusArrow;
 - (void) prepareAnimation;
 - (BOOL) isOnFirstCard;
 
