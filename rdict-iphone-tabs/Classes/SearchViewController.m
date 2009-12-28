@@ -132,6 +132,7 @@
 	if( ![searchBar isFirstResponder] ) {
 		searchBar.text = index.lemma;
 	}
+
 	[self showDictionaryView:index.lemma];
 }
 

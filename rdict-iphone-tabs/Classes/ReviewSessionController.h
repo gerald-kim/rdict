@@ -25,6 +25,8 @@
 	ReviewUnfinishedViewController* reviewUnfinishedViewController;
 	ReviewFinishedViewController* reviewFinishedViewController;
 	
+	NSString* helpMessage;
+	
 	NSUInteger cardsRemain;
 	
 	NSArray* reviewCards;
@@ -33,6 +35,7 @@
 	Card* currentCard;
 }
 
+@property (nonatomic, retain) NSString* helpMessage;
 @property (nonatomic, retain) IBOutlet UILabel* statusLabel;
 @property (nonatomic, retain) IBOutlet UIImageView* statusArrow;
 @property (nonatomic, retain) IBOutlet UIView* flashcardViewPlaceholder;

@@ -16,6 +16,7 @@
 
 @implementation ReviewSessionController
 
+@synthesize helpMessage;
 @synthesize statusLabel;
 @synthesize statusArrow;
 @synthesize flashcardViewPlaceholder;
@@ -108,10 +109,7 @@
 - (IBAction) showHelpMesg : (id) sender {	
 	UIAlertView* alert;
 	
-	if(nil != cardFrontViewController.view.superview)
-		alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Can you remeber this word?\nThink about the defintion.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-	else
-		alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:self.helpMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
 	
 	[alert show];
 }
@@ -120,12 +118,15 @@
 	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
 	cardsRemain--;
 	
+	helpMessage = @"Can you remeber this word?\nThink about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button.";
+	
 	self.showAnswerButton.hidden = NO;
 	self.answerButtonGroup.hidden = YES;
 	[self updateAndSwitchFrom: cardBackViewController To: cardFrontViewController];
 }
 
 - (void)showCardBackView {	
+	helpMessage = @"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons.";
 	self.showAnswerButton.hidden = YES;
 	self.answerButtonGroup.hidden = NO;
 	[self updateAndSwitchFrom: cardFrontViewController To: cardBackViewController];

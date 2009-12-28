@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CardViewController : UIViewController {
+@interface CardViewController : UIViewController {	
 	IBOutlet UILabel* questionLabel;
 	IBOutlet UITextView* answerTextView;
 }

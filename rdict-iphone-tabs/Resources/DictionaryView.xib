@@ -53,13 +53,13 @@
 					<object class="IBUIActivityIndicatorView" id="615458541">
 						<reference key="NSNextResponder" ref="588734260"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{150, 183}, {20, 20}}</string>
+						<string key="NSFrame">{{142, 174}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="588734260"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<bool key="IBUIHidesWhenStopped">NO</bool>
-						<int key="IBUIStyle">2</int>
+						<int key="IBUIStyle">0</int>
 					</object>
 					<object class="IBUIImageView" id="126533634">
 						<reference key="NSNextResponder" ref="588734260"/>
