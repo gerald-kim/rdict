@@ -13,16 +13,27 @@
 
 #import "SLStmt.h"
 
-static NSString *sectionTitleKey = @"sectionTitle";
-static NSString *scheduledCardsKey = @"scheduledCards";
-//static NSString *todayCardsKey = @"todayCards";
-static NSString *totalCountKey = @"totalCount";
-//static NSString *scoreKey = @"score";
+@interface ReviewViewController()
+
+- (NSInteger) numberOfRowsInReviewSection;
+- (NSInteger) numberOfRowsInScheduleSection;
+- (UITableViewCell *) cellForReviewSectionRowAt:(NSInteger) row;
+- (UITableViewCell *) cellForStatisticsSectionRowAt:(NSInteger) row;
+- (UITableViewCell *) cellForScheduleSectionRowAt:(NSInteger) row;
+
+
+@end
+
 
 @implementation ReviewViewController
 @synthesize reviewSessionController;
 @synthesize tableView;
-@synthesize dataSourceArray;
+@synthesize sectionTitles;
+
+
+#pragma mark private methods
+
+#pragma mark -
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -35,20 +46,10 @@ static NSString *totalCountKey = @"totalCount";
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
 
-	self.dataSourceArray = [NSArray arrayWithObjects:
-							[NSDictionary dictionaryWithObjectsAndKeys:
-							 @"Review", sectionTitleKey,
-							 [NSNumber numberWithInt:[Card countByScheduled]], scheduledCardsKey,
-							 //							 [NSNumber numberWithInt:[Card countByToday]], todayCardsKey,
-							 nil],
+	self.sectionTitles = [NSArray arrayWithObjects:@"Review", @"Statistics", @"Schedule", nil];
 							
-							[NSDictionary dictionaryWithObjectsAndKeys:
-							 @"Statistics", sectionTitleKey,
-							 [NSNumber numberWithInt:[Card count]], totalCountKey,
-							 //							 [NSNumber numberWithInt:[Card countByToday]], todayCardsKey,
-							 nil],
-							nil];
-							
+	scheduledCount = [Card countByScheduled];
+	todayCount = [Card countByToday];
 	
 	NSArray* schedule = [Card reviewSchedulesWithLimit:7];
 	NSMutableString* text = [NSMutableString string];
@@ -56,6 +57,7 @@ static NSString *totalCountKey = @"totalCount";
 		[text appendFormat:@"%@ : %@\n", [row objectAtIndex:0], [row objectAtIndex:1]];
 	}
 	
+	[tableView reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -65,8 +67,8 @@ static NSString *totalCountKey = @"totalCount";
 - (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBarHidden = YES;
-	[dataSourceArray release];
-	dataSourceArray = nil;
+	[sectionTitles release];
+	sectionTitles = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,38 +102,107 @@ static NSString *totalCountKey = @"totalCount";
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [dataSourceArray count];;
+    return [sectionTitles count];;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[self.dataSourceArray objectAtIndex: section] valueForKey:sectionTitleKey];
+	return [sectionTitles objectAtIndex:section];
 }
 
+#pragma mark NumberOfSections 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+	if (0 == section) {
+		return [self numberOfRowsInReviewSection];
+	} else if ( 1 == section ) {
+		return 2;
+	} else if ( 2 == section ) {
+		return [self numberOfRowsInScheduleSection];
+	} else {
+		return 0;
+	}
 }
+
+- (NSInteger) numberOfRowsInReviewSection {
+	NSInteger rows = (scheduledCount > 0 || todayCount > 0) ? 1 : 1;
+	if ( TRUE )
+		rows = rows+1;
+	return rows;
+}
+
+- (NSInteger) numberOfRowsInScheduleSection {
+	return 0;
+}
+
+#pragma mark cellForRow
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
+    NSInteger section = indexPath.section;
+	NSInteger row = indexPath.row;
+	
+	
+	if( 0 == section) {
+		return [self cellForReviewSectionRowAt:row];		
+	} else if ( 1 == section ) {
+		return [self cellForStatisticsSectionRowAt:row];
+	} else {
+		return [self cellForScheduleSectionRowAt:row];
+	}
+}
+
+- (UITableViewCell *) cellForReviewSectionRowAt:(NSInteger) row {
+	static NSString *CellIdentifier = @"ReviewCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Set up the cell...
-	cell.textLabel.text = [NSString stringWithString:@"Text"];
+	if ( 1 == row ) {
+		cell.textLabel.text = @"Reschedule to today";
+		return cell;
+	}
 	
-    return cell;
+	if ( scheduledCount > 0 ) {
+		cell.textLabel.text = [NSString stringWithFormat:@"Scheduled: %d", scheduledCount];
+	} else if ( todayCount > 0 ) {
+		cell.textLabel.text = [NSString stringWithFormat:@"Today searched: %d", todayCount];
+	} else {
+		cell.textLabel.text = @"No card to study";
+	} 
+	return cell;
 }
 
+- (UITableViewCell *) cellForStatisticsSectionRowAt:(NSInteger) row {
+	static NSString *CellIdentifier = @"StatisticsCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+	cell.textLabel.text = [NSString stringWithFormat:@"Text %d", row];
+	return cell;
+}
+
+- (UITableViewCell *) cellForScheduleSectionRowAt:(NSInteger) row {
+	static NSString *CellIdentifier = @"ScheduleCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+	cell.textLabel.text = [NSString stringWithFormat:@"Text %d", row];
+	return cell;
+}
+
+
+#pragma mark cell Selected
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);

@@ -40,8 +40,16 @@ DECLARE_PROPERTIES (
 	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') order by random()"];	
 }
 
++ (int) countByToday {
+	return [Card countByCriteria:[self searchedTodayCriteria]];
+}
+
++ (NSArray*) findByToday {
+	return [Card findByCriteria:[self searchedTodayCriteria]];	
+}
+
 + (NSString*) searchedTodayCriteria {
-	return [NSString stringWithString:@"where created < date('now', 'localtime', '+1 day') order by random()"];	
+	return [NSString stringWithString:@"where created > date('now', 'localtime') and ( studied is null or studied < date('now', 'localtime') ) order by random()"];	
 }
 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {

@@ -14,14 +14,19 @@
 	ReviewSessionController* reviewSessionController;
 	IBOutlet UITableView* tableView;
 
-	NSArray *dataSourceArray;
+	NSArray *sectionTitles;
+	NSInteger scheduledCount;
+	NSInteger todayCount;
+	NSInteger totalCount;
+	NSInteger grade;
 }
 
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (nonatomic, retain) NSArray *dataSourceArray;
+@property (nonatomic, retain) NSArray *sectionTitles;
 
 - (IBAction) studyButtonClicked:(id) sender;
 - (IBAction) rescheduleButtonClicked:(id) sender;
+
 
 @end
