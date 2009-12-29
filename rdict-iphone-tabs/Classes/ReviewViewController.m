@@ -21,7 +21,6 @@
 - (UITableViewCell *) cellForStatisticsSectionRowAt:(NSInteger) row;
 - (UITableViewCell *) cellForScheduleSectionRowAt:(NSInteger) row;
 
-
 @end
 
 
@@ -29,6 +28,7 @@
 @synthesize reviewSessionController;
 @synthesize tableView;
 @synthesize sectionTitles;
+@synthesize schedules;
 
 
 #pragma mark private methods
@@ -51,11 +51,7 @@
 	scheduledCount = [Card countByScheduled];
 	todayCount = [Card countByToday];
 	
-	NSArray* schedule = [Card reviewSchedulesWithLimit:7];
-	NSMutableString* text = [NSMutableString string];
-	for( NSArray* row in schedule ) {
-		[text appendFormat:@"%@ : %@\n", [row objectAtIndex:0], [row objectAtIndex:1]];
-	}
+	self.schedules = [Card reviewSchedulesWithLimit:7];
 	
 	[tableView reloadData];
 }
@@ -69,6 +65,8 @@
 	self.navigationController.navigationBarHidden = YES;
 	[sectionTitles release];
 	sectionTitles = nil;
+	[schedules release];
+	schedules = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,7 +131,8 @@
 }
 
 - (NSInteger) numberOfRowsInScheduleSection {
-	return 0;
+	NSLog( @"RVC.numberOfRowsInScheduleSection schedule: %d", [schedules count] );
+	return [schedules count];
 }
 
 #pragma mark cellForRow
@@ -196,8 +195,10 @@
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-	cell.textLabel.text = [NSString stringWithFormat:@"Text %d", row];
+
+	NSArray* scheduleArray = [schedules objectAtIndex:row];
+	
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", [scheduleArray objectAtIndex:0], [scheduleArray objectAtIndex:1]];
 	return cell;
 }
 
@@ -206,8 +207,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);
-	
-	
 }
 
 @end

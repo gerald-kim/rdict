@@ -15,6 +15,7 @@
 	IBOutlet UITableView* tableView;
 
 	NSArray *sectionTitles;
+	NSArray *schedules;
 	NSInteger scheduledCount;
 	NSInteger todayCount;
 	NSInteger totalCount;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) NSArray *sectionTitles;
+@property (nonatomic, retain) NSArray *schedules;
 
 - (IBAction) studyButtonClicked:(id) sender;
 - (IBAction) rescheduleButtonClicked:(id) sender;
