@@ -11,18 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		1F560D0010E5EC19005A6311 /* bzlib_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F560CFF10E5EC19005A6311 /* bzlib_private.h */; };
-		1F560D0B10E5EC46005A6311 /* blocksort.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0110E5EC46005A6311 /* blocksort.c */; };
-		1F560D0C10E5EC46005A6311 /* bzip2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0210E5EC46005A6311 /* bzip2.c */; };
-		1F560D0D10E5EC46005A6311 /* bzip2recover.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0310E5EC46005A6311 /* bzip2recover.c */; };
-		1F560D0E10E5EC46005A6311 /* bzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0410E5EC46005A6311 /* bzlib.c */; };
-		1F560D0F10E5EC46005A6311 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0510E5EC46005A6311 /* compress.c */; };
-		1F560D1010E5EC46005A6311 /* crctable.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0610E5EC46005A6311 /* crctable.c */; };
-		1F560D1110E5EC46005A6311 /* decompress.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0710E5EC46005A6311 /* decompress.c */; };
-		1F560D1210E5EC46005A6311 /* dlltest.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0810E5EC46005A6311 /* dlltest.c */; };
-		1F560D1310E5EC46005A6311 /* huffman.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0910E5EC46005A6311 /* huffman.c */; };
-		1F560D1410E5EC46005A6311 /* randtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F560D0A10E5EC46005A6311 /* randtable.c */; };
-		1F560D2010E5EC6A005A6311 /* bzlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F560D1F10E5EC6A005A6311 /* bzlib.h */; };
 		1F560D7110E6C0A0005A6311 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
 		1F560D7210E6C0A0005A6311 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
 		1F560D7510E6C0F5005A6311 /* card_added_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7410E6C0F5005A6311 /* card_added_note.png */; };
@@ -325,18 +313,6 @@
 		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RDictAppDelegate.m; path = Classes/RDictAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Vocabulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1F560CFF10E5EC19005A6311 /* bzlib_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bzlib_private.h; path = "bzip2-1.0.5/bzlib_private.h"; sourceTree = "<group>"; };
-		1F560D0110E5EC46005A6311 /* blocksort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = blocksort.c; path = "bzip2-1.0.5/blocksort.c"; sourceTree = "<group>"; };
-		1F560D0210E5EC46005A6311 /* bzip2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzip2.c; path = "bzip2-1.0.5/bzip2.c"; sourceTree = "<group>"; };
-		1F560D0310E5EC46005A6311 /* bzip2recover.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzip2recover.c; path = "bzip2-1.0.5/bzip2recover.c"; sourceTree = "<group>"; };
-		1F560D0410E5EC46005A6311 /* bzlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bzlib.c; path = "bzip2-1.0.5/bzlib.c"; sourceTree = "<group>"; };
-		1F560D0510E5EC46005A6311 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = compress.c; path = "bzip2-1.0.5/compress.c"; sourceTree = "<group>"; };
-		1F560D0610E5EC46005A6311 /* crctable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crctable.c; path = "bzip2-1.0.5/crctable.c"; sourceTree = "<group>"; };
-		1F560D0710E5EC46005A6311 /* decompress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decompress.c; path = "bzip2-1.0.5/decompress.c"; sourceTree = "<group>"; };
-		1F560D0810E5EC46005A6311 /* dlltest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dlltest.c; path = "bzip2-1.0.5/dlltest.c"; sourceTree = "<group>"; };
-		1F560D0910E5EC46005A6311 /* huffman.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = huffman.c; path = "bzip2-1.0.5/huffman.c"; sourceTree = "<group>"; };
-		1F560D0A10E5EC46005A6311 /* randtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = randtable.c; path = "bzip2-1.0.5/randtable.c"; sourceTree = "<group>"; };
-		1F560D1F10E5EC6A005A6311 /* bzlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bzlib.h; path = "bzip2-1.0.5/bzlib.h"; sourceTree = "<group>"; };
 		1F560D7010E6C0A0005A6311 /* big_flashcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = big_flashcard.png; path = Resources/big_flashcard.png; sourceTree = "<group>"; };
 		1F560D7410E6C0F5005A6311 /* card_added_note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_added_note.png; path = Resources/card_added_note.png; sourceTree = "<group>"; };
 		1F560D8210E6C320005A6311 /* more_cards_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = more_cards_arrow.png; path = Resources/more_cards_arrow.png; sourceTree = "<group>"; };
@@ -592,18 +568,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1F560D1F10E5EC6A005A6311 /* bzlib.h */,
-				1F560D0110E5EC46005A6311 /* blocksort.c */,
-				1F560D0210E5EC46005A6311 /* bzip2.c */,
-				1F560D0310E5EC46005A6311 /* bzip2recover.c */,
-				1F560D0410E5EC46005A6311 /* bzlib.c */,
-				1F560D0510E5EC46005A6311 /* compress.c */,
-				1F560D0610E5EC46005A6311 /* crctable.c */,
-				1F560D0710E5EC46005A6311 /* decompress.c */,
-				1F560D0810E5EC46005A6311 /* dlltest.c */,
-				1F560D0910E5EC46005A6311 /* huffman.c */,
-				1F560D0A10E5EC46005A6311 /* randtable.c */,
-				1F560CFF10E5EC19005A6311 /* bzlib_private.h */,
 				EFBF4A780FE003650092357C /* Controllers */,
 				080E96DDFE201D6D7F000001 /* Models */,
 				EFEA08320FDFF5FA00490192 /* Tests */,
@@ -917,8 +881,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F560D0010E5EC19005A6311 /* bzlib_private.h in Headers */,
-				1F560D2010E5EC6A005A6311 /* bzlib.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,16 +1293,6 @@
 				EFEA07F00FDFF51700490192 /* tcutil.c in Sources */,
 				EFEA07F10FDFF51700490192 /* tcbdb.c in Sources */,
 				EFEA07F20FDFF51700490192 /* md5.c in Sources */,
-				1F560D0B10E5EC46005A6311 /* blocksort.c in Sources */,
-				1F560D0C10E5EC46005A6311 /* bzip2.c in Sources */,
-				1F560D0D10E5EC46005A6311 /* bzip2recover.c in Sources */,
-				1F560D0E10E5EC46005A6311 /* bzlib.c in Sources */,
-				1F560D0F10E5EC46005A6311 /* compress.c in Sources */,
-				1F560D1010E5EC46005A6311 /* crctable.c in Sources */,
-				1F560D1110E5EC46005A6311 /* decompress.c in Sources */,
-				1F560D1210E5EC46005A6311 /* dlltest.c in Sources */,
-				1F560D1310E5EC46005A6311 /* huffman.c in Sources */,
-				1F560D1410E5EC46005A6311 /* randtable.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
