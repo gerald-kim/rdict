@@ -35,6 +35,7 @@
 	[expected3 save];
 }
 
+
 -(void) testFindScheduledCards {
 	STAssertEquals( 3, [Card count], @"Card count should be 0" );
 	
@@ -58,8 +59,9 @@
 }
 
 -(void) testFindCreatedTodayCards {
-	STAssertEquals( 3, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
-	
+	Card* card = [[Card allObjects] objectAtIndex:0];
+	[card study:3];
+	STAssertEquals( 2, [Card countByCriteria:[Card searchedTodayCriteria]], nil);
 }
 
 @end
