@@ -27,8 +27,7 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
 )
 
-
-+ (int) countByScheduled {
++ (NSInteger) countByScheduled {
 	return [Card countByCriteria:[self scheduledCardCriteria]];
 }
 
@@ -40,7 +39,7 @@ DECLARE_PROPERTIES (
 	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') order by random()"];	
 }
 
-+ (int) countByToday {
++ (NSInteger) countByToday {
 	return [Card countByCriteria:[self searchedTodayCriteria]];
 }
 
@@ -50,6 +49,18 @@ DECLARE_PROPERTIES (
 
 + (NSString*) searchedTodayCriteria {
 	return [NSString stringWithString:@"where created > date('now', 'localtime') and ( studied is null or studied < date('now', 'localtime') ) order by random()"];	
+}
+
++ (NSInteger) score {	
+	SLStmt* stmt = [SLStmt stmtWithSql:@"select avg( grade ) * 20 from card"];
+	
+	NSInteger score = 0;
+	if( [stmt step] ) {
+		score = [[stmt stringValue] intValue];
+	}
+	[stmt close];
+	
+	return score;	
 }
 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {

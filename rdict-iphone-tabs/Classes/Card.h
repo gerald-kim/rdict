@@ -39,14 +39,15 @@
 @property (nonatomic, retain) NSDate* studied;
 @property (nonatomic, retain) NSDate* created;
 
-+ (int) countByScheduled;
++ (NSInteger) countByScheduled;
 + (NSArray*) findByScheduled;
 + (NSString*) searchedTodayCriteria;
 
-+ (int) countByToday;
++ (NSInteger) countByToday;
 + (NSArray*) findByToday;
 + (NSString*) scheduledCardCriteria;
 
++ (NSInteger) score; 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;
 
 - (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a;
