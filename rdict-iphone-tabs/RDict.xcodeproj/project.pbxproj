@@ -236,7 +236,7 @@
 		EF770FD30FF7B8A000889749 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
 		EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
 		EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
-		EF92DC330FFC31AF008591C6 /* CardReviewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF92DC320FFC31AF008591C6 /* CardReviewTest.m */; };
+		EF92DC330FFC31AF008591C6 /* CardStudyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF92DC320FFC31AF008591C6 /* CardStudyTest.m */; };
 		EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
@@ -454,7 +454,7 @@
 		EF8D0B390FDFFFE800B093EB /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3A0FDFFFE800B093EB /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
-		EF92DC320FFC31AF008591C6 /* CardReviewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardReviewTest.m; path = Tests/CardReviewTest.m; sourceTree = "<group>"; };
+		EF92DC320FFC31AF008591C6 /* CardStudyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardStudyTest.m; path = Tests/CardStudyTest.m; sourceTree = "<group>"; };
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -864,7 +864,7 @@
 			isa = PBXGroup;
 			children = (
 				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
-				EF92DC320FFC31AF008591C6 /* CardReviewTest.m */,
+				EF92DC320FFC31AF008591C6 /* CardStudyTest.m */,
 				EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 				EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */,
@@ -1275,7 +1275,7 @@
 				EF2E74BE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m in Sources */,
 				EF2E74D00FE9B2E1008B8AEC /* CardPersistenceTest.m in Sources */,
 				EF2E74D30FE9B2F9008B8AEC /* Card.m in Sources */,
-				EF92DC330FFC31AF008591C6 /* CardReviewTest.m in Sources */,
+				EF92DC330FFC31AF008591C6 /* CardStudyTest.m in Sources */,
 				EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */,
 				EF5C7DD6106851E90017E0E6 /* HistoryPersistenceTest.m in Sources */,
 				EF5C7DD9106851F50017E0E6 /* History.m in Sources */,

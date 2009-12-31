@@ -10,14 +10,14 @@
 #import "GTMSenTestCase.h"
 #import "Card.h"
 
-@interface CardReviewTest : SenTestCase {
+@interface CardStudyTest : SenTestCase {
 	
 }
 @end
 
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
-@implementation CardReviewTest
+@implementation CardStudyTest
 
 -(void) testCardInitialStatus {
 	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
