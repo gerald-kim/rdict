@@ -33,6 +33,8 @@
 	NSArray* scheduledCards;
 	NSMutableArray* uncertainCards;
 	Card* currentCard;
+	
+	BOOL useScheduledCards;
 }
 
 @property (nonatomic, retain) NSString* helpMessage;
@@ -41,6 +43,7 @@
 @property (nonatomic, retain) IBOutlet UIView* flashcardViewPlaceholder;
 @property (nonatomic, retain) IBOutlet UIButton* showAnswerButton;
 @property (nonatomic, retain) IBOutlet UIView* answerButtonGroup;
+@property BOOL useScheduledCards;
 
 - (IBAction) showHelpMesg : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;

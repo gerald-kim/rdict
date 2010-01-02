@@ -75,6 +75,8 @@
 #pragma mark data loading
 
 - (void) loadData {
+	NSLog( @"RVC.loadedData");
+	
 	scheduledCount = [Card countByScheduled];
 	todayCount = [Card countByToday];	
 	totalCount = [Card count];
@@ -90,7 +92,6 @@
 	sectionTitles = nil;
 	[schedules release];
 	schedules = nil;
-	
 }
 
 #pragma mark Table view methods
@@ -219,16 +220,17 @@
 	if ( 0 != indexPath.section ) {
 		return;
 	}
-	if ( 0 == indexPath.row ) {
+	if ( 0 == indexPath.row && [self isCardExerciseAvailable]) {
 		if( nil == reviewSessionController ) {
 			reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
 			reviewSessionController.hidesBottomBarWhenPushed = YES;
 			//self.reviewSessionController.wantsFullScreenLayout = YES;
 		}	
 		
+		reviewSessionController.useScheduledCards = scheduledCount > 0;
 		[self.navigationController pushViewController:reviewSessionController animated:YES];
 	} else if ( 1 == indexPath.row ) {
-		SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date( 'now', 'localtime' )" ];
+		SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date('now', 'localtime')" ];
 		
 		[stmt step];
 		[stmt close];
@@ -236,6 +238,10 @@
 		todayCount = [Card countByToday];
 		[self.tableView reloadData];
 	}
+}
+
+-(BOOL) isCardExerciseAvailable {
+	return scheduledCount > 0 || todayCount > 0;
 }
 
 -(NSString*) getCardString: (NSInteger) cardCount {

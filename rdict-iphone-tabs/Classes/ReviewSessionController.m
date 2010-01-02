@@ -29,6 +29,7 @@ static NSString* statusLabelLastCard = @"Last card!";
 @synthesize flashcardViewPlaceholder;
 @synthesize showAnswerButton;
 @synthesize answerButtonGroup;
+@synthesize useScheduledCards;
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
@@ -37,10 +38,6 @@ static NSString* statusLabelLastCard = @"Last card!";
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
-	
-	scheduledCards = [Card findByScheduled];
-	[scheduledCards retain];
-	uncertainCards = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL) animated {
@@ -51,20 +48,34 @@ static NSString* statusLabelLastCard = @"Last card!";
 	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
 	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];
 	
+	if(self.useScheduledCards) {
+		scheduledCards = [Card findByScheduled];
+		NSLog(@"num scheduled cards to study: %d ", [scheduledCards count]);
+	}
+	else {
+		scheduledCards = [Card findByToday];
+		NSLog(@"num today cards to study: %d ", [scheduledCards count]);
+	}
+	
+	[scheduledCards retain];
+	
+	uncertainCards = [[NSMutableArray alloc] init];
+	
 	[self initCards:scheduledCards];
 	[self showCardFrontView];
 }
 
 - (void)viewWillDisappear:(BOOL) animated {
 	[cardFrontViewController.view removeFromSuperview];
-	[cardBackViewController.view removeFromSuperview];	
+	[cardBackViewController.view removeFromSuperview];
 }
 
 - (void)viewDidUnload {
-	[scheduledCards release]; scheduledCards = nil;
-	[uncertainCards release]; 
 	[cardFrontViewController release];
 	[cardBackViewController release];
+	
+	[scheduledCards release]; scheduledCards = nil;
+	[uncertainCards release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,7 +133,9 @@ static NSString* statusLabelLastCard = @"Last card!";
 }
 
 - (void)showCardFrontView {
+	NSLog( @"RSC.viewWillAppear2" );
 	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
+	NSLog( @"RSC.viewWillAppear3" );
 	cardsRemain--;
 	
 	helpMessage = frontHelpMessage;

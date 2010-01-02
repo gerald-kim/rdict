@@ -29,5 +29,6 @@
 @property (nonatomic, retain) NSArray *schedules;
 
 -(NSString*) getCardString: (NSInteger) cardCount;
+-(BOOL) isCardExerciseAvailable;
 
 @end
