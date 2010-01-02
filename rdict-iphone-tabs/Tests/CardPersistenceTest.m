@@ -31,6 +31,8 @@
 	STAssertEquals( expected.scheduled, actual.scheduled, nil );
 	STAssertEquals( expected.created, actual.created, nil );
 	STAssertEquals( expected.studied, actual.studied, nil );	
+	STAssertEquals( expected.updated, actual.updated, nil );	
+	STAssertEquals( expected.deleted, actual.deleted, nil );	
 }	
 	
 -(void) testCardCRD {
@@ -55,6 +57,37 @@
 	
 	actual = (Card*) [Card findByPK:expected.pk];
 	[self assertCardEquals:expected actual:actual];
+	STAssertNil( actual.deleted, nil );
+	
+	[expected deleteObject];
+	actual = (Card*) [Card findByPK:expected.pk];
+	
+	STAssertNotNil( actual.deleted, nil );
+}
+
+-(void) testUpdatedWillChangeWhenSave {
+	Card* expected = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	[expected save];
+	STAssertNotNil( expected.updated, nil );
+	
+	NSDate* lastUpdated = expected.updated;
+	[expected save];
+	STAssertNotEquals( expected.updated, lastUpdated, nil );
+}
+
+-(void) testUpdatedWillChangeWhenStudy {
+	Card* expected = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	[expected save];
+	STAssertNotNil( expected.updated, nil );
+	
+	NSDate* lastUpdated = expected.updated;
+	[expected study:3];
+	STAssertNotEquals( expected.updated, lastUpdated, nil );
+}
+
+-(void) testDeletedCardWillBeIgnoredInAllObjectsAndFindScheduledAndFindToday {
+	//TODO
+	
 }
 
 @end

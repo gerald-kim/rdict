@@ -7,12 +7,13 @@
 //
 
 #import "Card.h"
+#import "StudyLog.h"
 #import "SLStmt.h"
 
 @implementation Card
 @synthesize question, answer;
 @synthesize repsSinceLapse, easiness, interval, grade, finalGrade;
-@synthesize scheduled, studied, created;
+@synthesize scheduled, studied, created, updated, deleted;
 
 DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"question", @"@\"NSString\""),
@@ -24,8 +25,19 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"finalGrade", @"@\"int\""),
 					DECLARE_PROPERTY( @"scheduled", @"@\"NSDate\""),
 					DECLARE_PROPERTY( @"studied", @"@\"NSDate\""),
-					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
+
+					DECLARE_PROPERTY( @"created", @"@\"NSDate\""),
+					DECLARE_PROPERTY( @"updated", @"@\"NSDate\""),
+					DECLARE_PROPERTY( @"deleted", @"@\"NSDate\"")
 )
+
++ (NSArray *) allObjects {
+	return [Card findByCriteria:@"where deleted is null"];
+}
+
++ (NSInteger) count {
+	return [Card countByCriteria:@"where deleted is null"];
+}
 
 + (NSInteger) countByScheduled {
 	return [Card countByCriteria:[self scheduledCardCriteria]];
@@ -36,7 +48,7 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) scheduledCardCriteria {
-	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') order by random()"];	
+	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') and deleted is null order by random()"];	
 }
 
 + (NSInteger) countByToday {
@@ -48,11 +60,12 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) searchedTodayCriteria {
-	return [NSString stringWithString:@"where created > date('now', 'localtime') and ( studied is null or studied < date('now', 'localtime') ) order by random()"];	
+	return [NSString stringWithString:@"where created > date('now', 'localtime') "
+		"	and ( studied is null or studied < date('now', 'localtime') ) and deleted is null order by random()"];	
 }
 
 + (NSInteger) score {	
-	SLStmt* stmt = [SLStmt stmtWithSql:@"select avg( grade ) * 20 from card"];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"select avg( grade ) * 20 from card where deleted is null"];
 	
 	NSInteger score = 0;
 	if( [stmt step] ) {
@@ -109,6 +122,7 @@ DECLARE_PROPERTIES (
 	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];	
 	self.created = [[NSDate alloc] init];
 	self.studied = nil;
+	self.deleted = nil;
 	
 	return self;
 }
@@ -122,6 +136,8 @@ DECLARE_PROPERTIES (
 	[scheduled release];
 	[studied release];
 	[created release];
+	[updated release];
+	[deleted release];
     [super dealloc];
 }
 
@@ -145,9 +161,22 @@ DECLARE_PROPERTIES (
 	}
 	
 	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
-	self.studied = [[NSDate alloc] init];	
+	self.studied = [[NSDate alloc] init];
+	
+	[[[StudyLog alloc]initWithCard:self] save];
+
 	[self save];
 }
+
+- (void) save {
+	self.updated = [[NSDate alloc] init];
+	[super save];
+}
+
+- (void) deleteObject {
+	self.deleted = [[NSDate alloc] init];
+}
+
 /*
 + (NSArray*) findScheduled {
 }

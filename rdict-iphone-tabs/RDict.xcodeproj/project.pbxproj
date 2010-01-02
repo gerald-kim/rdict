@@ -103,6 +103,10 @@
 		EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
 		EF2F34031061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
 		EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
+		EF4374BC10EEE1C60087BC0E /* StudyLogPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4374BB10EEE1C60087BC0E /* StudyLogPersistenceTest.m */; };
+		EF4374CF10EEE3970087BC0E /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4374CE10EEE3970087BC0E /* StudyLog.m */; };
+		EF4374D010EEE3970087BC0E /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4374CE10EEE3970087BC0E /* StudyLog.m */; };
+		EF4374D110EEE3970087BC0E /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4374CE10EEE3970087BC0E /* StudyLog.m */; };
 		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
@@ -387,6 +391,9 @@
 		EF2F33F31061132C00ADFFD5 /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HistoryView.xib; path = Resources/HistoryView.xib; sourceTree = "<group>"; };
 		EF2F34011061146100ADFFD5 /* HistoryViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryViewControler.h; path = Classes/HistoryViewControler.h; sourceTree = "<group>"; };
 		EF2F34021061146100ADFFD5 /* HistoryViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewControler.m; path = Classes/HistoryViewControler.m; sourceTree = "<group>"; };
+		EF4374BB10EEE1C60087BC0E /* StudyLogPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudyLogPersistenceTest.m; path = Tests/StudyLogPersistenceTest.m; sourceTree = "<group>"; };
+		EF4374CD10EEE3970087BC0E /* StudyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyLog.h; sourceTree = "<group>"; };
+		EF4374CE10EEE3970087BC0E /* StudyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyLog.m; sourceTree = "<group>"; };
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
@@ -549,6 +556,8 @@
 				EFEA07CF0FDFF4EA00490192 /* WordIndex.m */,
 				EF5C7DD7106851F50017E0E6 /* History.h */,
 				EF5C7DD8106851F50017E0E6 /* History.m */,
+				EF4374CD10EEE3970087BC0E /* StudyLog.h */,
+				EF4374CE10EEE3970087BC0E /* StudyLog.m */,
 			);
 			name = Models;
 			path = Classes;
@@ -870,6 +879,7 @@
 				EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */,
 				EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */,
 				EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */,
+				EF4374BB10EEE1C60087BC0E /* StudyLogPersistenceTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -1199,6 +1209,7 @@
 				EF69AE0A10B7780500A8DDBF /* HelpViewController.m in Sources */,
 				EF69B00010B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
+				EF4374D010EEE3970087BC0E /* StudyLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1243,6 +1254,7 @@
 				EF69AE0B10B7780500A8DDBF /* HelpViewController.m in Sources */,
 				EF69AFFE10B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
+				EF4374CF10EEE3970087BC0E /* StudyLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1293,8 @@
 				EF5C7DD9106851F50017E0E6 /* History.m in Sources */,
 				EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */,
 				EF1CF33610BA1EFB0077E300 /* CardSelectTest.m in Sources */,
+				EF4374BC10EEE1C60087BC0E /* StudyLogPersistenceTest.m in Sources */,
+				EF4374D110EEE3970087BC0E /* StudyLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

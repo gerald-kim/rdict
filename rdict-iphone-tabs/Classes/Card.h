@@ -23,7 +23,10 @@
 
 	NSDate* scheduled;
 	NSDate* studied;
+	
 	NSDate* created;
+	NSDate* updated;
+	NSDate* deleted;
 }
 
 @property (nonatomic, retain) NSString* question;
@@ -38,6 +41,8 @@
 @property (nonatomic, retain) NSDate* scheduled;
 @property (nonatomic, retain) NSDate* studied;
 @property (nonatomic, retain) NSDate* created;
+@property (nonatomic, retain) NSDate* updated;
+@property (nonatomic, retain) NSDate* deleted;
 
 + (NSInteger) countByScheduled;
 + (NSArray*) findByScheduled;
