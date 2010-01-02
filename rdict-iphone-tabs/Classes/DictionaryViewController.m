@@ -68,6 +68,7 @@
 }
 
 - (void)dealloc {
+	[lookupHistory release];
 	[webView release];
 	[wiktionary release];
 	[lemma release];
