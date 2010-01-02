@@ -46,10 +46,9 @@
 	self.title = @"Review";
 	self.navigationController.navigationBarHidden = NO;	
 
-	self.sectionTitles = [NSArray arrayWithObjects:@"Review", @"Statistics", @"Schedule", nil];
+	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercises", @"Statistics", @"Upcoming Review Sessions", nil];
 							
 	[self loadData];
-
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -166,11 +165,11 @@
 	}
 	
 	if ( scheduledCount > 0 ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Scheduled: %d", scheduledCount];
+		cell.textLabel.text = [NSString stringWithFormat:@"Today's Review: %d %@", scheduledCount, [self getCardString:scheduledCount]];
 	} else if ( todayCount > 0 ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Today searched: %d", todayCount];
+		cell.textLabel.text = [NSString stringWithFormat:@"Early Practice: %d %@", todayCount, [self getCardString:todayCount]];
 	} else {
-		cell.textLabel.text = @"No card to study";
+		cell.textLabel.text = @"None available";
 	} 
 	return cell;
 }
@@ -184,9 +183,9 @@
     }
     
 	if ( 0 == row ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Cards: %d", totalCount];
+		cell.textLabel.text = [NSString stringWithFormat:@"Total Cards: %d", totalCount];
 	} else if ( 1 == row ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Score: %d", score];
+		cell.textLabel.text = [NSString stringWithFormat:@"Your Score: %d", score];
 	}
 	return cell;
 }
@@ -201,9 +200,11 @@
 
 	if ( [schedules count] > 0 ) {
 		NSArray* scheduleArray = [schedules objectAtIndex:row];	
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", [scheduleArray objectAtIndex:0], [scheduleArray objectAtIndex:1]];		
+		cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@ %@", [scheduleArray objectAtIndex:0], 
+																		[scheduleArray objectAtIndex:1], 
+																		[self getCardString:[[scheduleArray objectAtIndex:1] intValue]]];		
 	} else {
-		cell.textLabel.text = @"No future schedules";
+		cell.textLabel.text = @"None scheduled";
 	}
 	return cell;
 }
@@ -236,5 +237,14 @@
 		[self.tableView reloadData];
 	}
 }
+
+-(NSString*) getCardString: (NSInteger) cardCount {
+	if (cardCount > 1)
+		return @"cards";
+	else
+		return @"card";
+}
+
+
 
 @end

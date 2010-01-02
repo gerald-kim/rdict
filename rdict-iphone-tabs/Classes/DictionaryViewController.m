@@ -148,7 +148,7 @@
 
 -(void) showAlert {
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.0];
+	[UIView setAnimationDuration:0.7];
 	cardAddedNote.alpha = 0.9;
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(fadeAlertOut)];
@@ -157,7 +157,7 @@
 
 -(void) fadeAlertOut {
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.7];
+	[UIView setAnimationDuration:0.4];
 	cardAddedNote.alpha = 0;
 	[UIView commitAnimations];
 }

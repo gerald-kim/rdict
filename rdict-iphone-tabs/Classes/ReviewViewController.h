@@ -28,4 +28,6 @@
 @property (nonatomic, retain) NSArray *sectionTitles;
 @property (nonatomic, retain) NSArray *schedules;
 
+-(NSString*) getCardString: (NSInteger) cardCount;
+
 @end
