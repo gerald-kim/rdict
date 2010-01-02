@@ -31,6 +31,9 @@
 		1F560DA010E6CFBF005A6311 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
 		1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
 		1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
+		1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
+		1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
+		1F7647BC10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EF038B1810D856B300AE5DA0 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
 		EF038B1910D856B300AE5DA0 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
@@ -323,6 +326,8 @@
 		1F560D9310E6CFBF005A6311 /* button_medium1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_medium1.png; path = Resources/button_medium1.png; sourceTree = "<group>"; };
 		1F560D9410E6CFBF005A6311 /* button_medium2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_medium2.png; path = Resources/button_medium2.png; sourceTree = "<group>"; };
 		1F560E8B10E6E276005A6311 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1F7647B810EF3CA4009A90AD /* LookupHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupHistory.h; sourceTree = "<group>"; };
+		1F7647B910EF3CA4009A90AD /* LookupHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupHistory.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
@@ -549,6 +554,8 @@
 				EFEA07CF0FDFF4EA00490192 /* WordIndex.m */,
 				EF5C7DD7106851F50017E0E6 /* History.h */,
 				EF5C7DD8106851F50017E0E6 /* History.m */,
+				1F7647B810EF3CA4009A90AD /* LookupHistory.h */,
+				1F7647B910EF3CA4009A90AD /* LookupHistory.m */,
 			);
 			name = Models;
 			path = Classes;
@@ -1199,6 +1206,7 @@
 				EF69AE0A10B7780500A8DDBF /* HelpViewController.m in Sources */,
 				EF69B00010B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
+				1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1243,6 +1251,7 @@
 				EF69AE0B10B7780500A8DDBF /* HelpViewController.m in Sources */,
 				EF69AFFE10B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
+				1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1290,7 @@
 				EF5C7DD9106851F50017E0E6 /* History.m in Sources */,
 				EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */,
 				EF1CF33610BA1EFB0077E300 /* CardSelectTest.m in Sources */,
+				1F7647BC10EF3CA4009A90AD /* LookupHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

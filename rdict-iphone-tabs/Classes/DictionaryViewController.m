@@ -10,27 +10,47 @@
 #import "RDictAppDelegate.h"
 #import "Wiktionary.h"
 #import "Card.h"
+#import "LookupHistory.h"
 
 @implementation DictionaryViewController
 @synthesize webView;
 @synthesize cardAddedNote;
 @synthesize lemma;
 @synthesize wiktionary;
+@synthesize lookupHistory;
 @synthesize activityIndicatorView;
+@synthesize returnToSearchButton;
+@synthesize backButton;
+@synthesize forwardButton;
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
+	self.lookupHistory = [[LookupHistory alloc] init];
+	
+	self.returnToSearchButton = self.navigationItem.leftBarButtonItem;
+	
+	self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"<" 
+												style: UIBarButtonItemStylePlain
+												target: self action: @selector(handleGoBackClick:)];
+		
+	self.forwardButton = [[UIBarButtonItem alloc] initWithTitle:@">" 
+												style: UIBarButtonItemStylePlain
+												target: self action: @selector(handleGoForwardClick:)];
+	self.forwardButton.enabled = NO;
+	self.navigationItem.rightBarButtonItem = forwardButton;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
+		
 	activityIndicatorView.hidden = NO;
 	[activityIndicatorView startAnimating];
 	
-	[self showWordDefinition: lemma];
+	[self.lookupHistory clear];
+	[self showWordDefinition: lemma RecordHistory: YES];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -47,7 +67,6 @@
     // Release anything that's not essential, such as cached data
 }
 
-
 - (void)dealloc {
 	[webView release];
 	[wiktionary release];
@@ -57,37 +76,50 @@
 
 #pragma mark -
 
-- (void) showWordDefinition: (NSString *) query  {
+- (void) showWordDefinition: (NSString *) query RecordHistory: (BOOL) recordHistory {
 	self.title = query;
 
 	[activityIndicatorView startAnimating];
 	activityIndicatorView.hidden = NO;
 	
 	WordEntry* entry = [wiktionary wordEntryByLemma:query];
-	if ( entry ) {
+	
+	if (entry) {
 		[entry decorateDefinition];
 		
 		NSString *path = [[NSBundle mainBundle] bundlePath];
 		NSURL *baseURL = [NSURL fileURLWithPath:path];	
 		
 		[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
-				
+
+		if(recordHistory)
+			[self.lookupHistory addWord:query];
+		
 		[entry release];
-		//	[baseURL release];
-		//	[path release];
 	} else {
 		[activityIndicatorView stopAnimating];
 		activityIndicatorView.hidden = YES;
-
-		[webView stringByEvaluatingJavaScriptFromString:@"alert( 'Sorry. No definition for that word' );"];		
+		
+		[webView stringByEvaluatingJavaScriptFromString:@"alert( 'Sorry. No definition for that word' );"];
 	}
+	
+	[self adjustToolBarButtons];
+}
+
+-(void) adjustToolBarButtons {
+	if(! [self.lookupHistory canGoBack])
+		self.navigationItem.leftBarButtonItem = returnToSearchButton;
+	else
+		self.navigationItem.leftBarButtonItem = backButton;
+	
+	self.forwardButton.enabled = [self.lookupHistory canGoForward];
 }
 
 - (void) handleWordLookUp: (NSURL *) url  {
 	NSArray *strings = [[url query] componentsSeparatedByString: @"="];
 	NSString *clickedWord = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
-	[self showWordDefinition:clickedWord];	
+	[self showWordDefinition:clickedWord RecordHistory: YES];
 }
 
 - (void) handleRdictRequest:(NSURL*) url {
@@ -146,6 +178,16 @@
 		return NO;
 	}
 	return YES;
+}
+
+- (void)handleGoBackClick:(id)sender {
+	[self.lookupHistory goBack];
+	[self showWordDefinition: [self.lookupHistory getWord] RecordHistory: NO];
+}
+
+- (void)handleGoForwardClick:(id)sender {
+	[self.lookupHistory goForward];
+	[self showWordDefinition: [self.lookupHistory getWord] RecordHistory: NO];
 }
 
 

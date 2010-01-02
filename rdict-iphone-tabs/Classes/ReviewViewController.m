@@ -184,7 +184,7 @@
     }
     
 	if ( 0 == row ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Total: %d", totalCount];
+		cell.textLabel.text = [NSString stringWithFormat:@"Cards: %d", totalCount];
 	} else if ( 1 == row ) {
 		cell.textLabel.text = [NSString stringWithFormat:@"Score: %d", score];
 	}

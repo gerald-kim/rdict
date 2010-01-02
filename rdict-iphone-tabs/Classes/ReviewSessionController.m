@@ -14,6 +14,13 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+static NSString* frontHelpMessage = @"Can you remeber this word?\nThink about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button.";
+static NSString* backHelpMessage = @"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons.";
+
+static NSString* statusLabelNMoreCards = @"%d more cards";
+static NSString* statusLabelOneMoreCard = @"1 more card";
+static NSString* statusLabelLastCard = @"Last card!";
+
 @implementation ReviewSessionController
 
 @synthesize helpMessage;
@@ -118,21 +125,20 @@
 	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
 	cardsRemain--;
 	
-	helpMessage = @"Can you remeber this word?\nThink about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button.";
-	
+	helpMessage = frontHelpMessage;
 	self.showAnswerButton.hidden = NO;
 	self.answerButtonGroup.hidden = YES;
-	[self updateAndSwitchFrom: cardBackViewController To: cardFrontViewController];
+	[self updateAndSwitchViewTo: cardFrontViewController];
 }
 
 - (void)showCardBackView {	
-	helpMessage = @"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons.";
+	helpMessage = backHelpMessage;
 	self.showAnswerButton.hidden = YES;
 	self.answerButtonGroup.hidden = NO;
-	[self updateAndSwitchFrom: cardFrontViewController To: cardBackViewController];
+	[self updateAndSwitchViewTo: cardBackViewController];
 }
 
-- (void) updateAndSwitchFrom: (CardViewController*) oldCardController To: (CardViewController*) newCardController {
+- (void) updateAndSwitchViewTo: (CardViewController*) newCardController {
 	self.statusLabel.text = [self getStatusMesgAndSetStatusArrow];
 
 	newCardController.questionLabel.text = currentCard.question;
@@ -151,15 +157,15 @@
 - (NSString*) getStatusMesgAndSetStatusArrow {
 	if(cardsRemain > 1) {
 		self.statusArrow.hidden = NO;
-		return [NSString stringWithFormat:@"%d more cards", cardsRemain];
+		return [NSString stringWithFormat:statusLabelNMoreCards, cardsRemain];
 	}
 	else if (cardsRemain == 1) {
 		self.statusArrow.hidden = NO;
-		return [NSString stringWithFormat:@"1 more card", cardsRemain];
+		return [NSString stringWithFormat:statusLabelOneMoreCard, cardsRemain];
 	}
 	else {
 		self.statusArrow.hidden = YES;
-		return [NSString stringWithFormat:@"Last card!", cardsRemain];
+		return [NSString stringWithFormat:statusLabelLastCard, cardsRemain];
 	}
 }
 

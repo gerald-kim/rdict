@@ -53,7 +53,7 @@
 - (void) showReviewUnfinishedView;
 - (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
-- (void) updateAndSwitchFrom : (CardViewController*) oldCardController To : (CardViewController*) newCardController;
+- (void) updateAndSwitchViewTo : (CardViewController*) newCardController;
 - (NSString*) getStatusMesgAndSetStatusArrow;
 - (void) prepareSlideAnimation;
 - (void) prepareFlipAnimation;
