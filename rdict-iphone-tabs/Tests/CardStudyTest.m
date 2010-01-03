@@ -7,6 +7,7 @@
 //
 
 #import <TargetConditionals.h>
+#import "SQLiteInstanceManager.h"
 #import "GTMSenTestCase.h"
 #import "Card.h"
 
@@ -18,6 +19,27 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 @implementation CardStudyTest
+
+-(void) setUp {
+	[[SQLiteInstanceManager sharedManager] deleteDatabase];
+}
+
+-(void) testSaveNewCard {
+	STAssertEquals( 0, [Card count], nil );
+	[Card saveCardWithQuestion:@"question" andAnswer:@"answer"];
+
+	STAssertEquals( 1, [Card count], nil );
+}
+
+-(void) testSaveExistingCardAgain {
+	STAssertEquals( 0, [Card count], nil );
+	[Card saveCardWithQuestion:@"question" andAnswer:@"answer"];
+	STAssertEquals( 1, [Card count], nil );
+
+	[Card saveCardWithQuestion:@"question" andAnswer:@"new answer"];
+	STAssertEquals( 1, [Card count], nil );
+
+}
 
 -(void) testCardInitialStatus {
 	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];

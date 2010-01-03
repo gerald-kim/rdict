@@ -65,6 +65,16 @@
 	STAssertNotNil( actual.deleted, nil );
 }
 
+-(void) testFindFirstByQuestion {
+	Card* actual = [Card findFirstByQuestion:@"question"];
+	STAssertNULL( actual, nil );
+
+	Card* expected = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	[expected save];
+	
+	actual = [Card findFirstByQuestion:@"question"];
+	[self assertCardEquals:expected actual:actual];
+}
 -(void) testUpdatedWillChangeWhenSave {
 	Card* expected = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
 	[expected save];

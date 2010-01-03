@@ -44,13 +44,16 @@
 @property (nonatomic, retain) NSDate* updated;
 @property (nonatomic, retain) NSDate* deleted;
 
++ (Card*) saveCardWithQuestion:(NSString*) question andAnswer:(NSString*) answer;
++ (Card*) findFirstByQuestion:(NSString*) question;
+
 + (NSInteger) countByScheduled;
 + (NSArray*) findByScheduled;
-+ (NSString*) searchedTodayCriteria;
++ (NSString*) scheduledCardCriteria;
 
 + (NSInteger) countByToday;
 + (NSArray*) findByToday;
-+ (NSString*) scheduledCardCriteria;
++ (NSString*) searchedTodayCriteria;
 
 + (NSInteger) score; 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;

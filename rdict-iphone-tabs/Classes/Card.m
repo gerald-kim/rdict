@@ -31,12 +31,28 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"deleted", @"@\"NSDate\"")
 )
 
++ (Card*) saveCardWithQuestion:(NSString*) question andAnswer:(NSString*) answer {
+	Card* card = [Card findFirstByQuestion:question];
+	if ( NULL == card ) {
+		Card* card = [[Card alloc] initWithQuestion:question andAnswer:answer];
+		[card save];
+	} else {
+		card.answer = [answer stringByAppendingFormat:@"----------\n%@", answer];
+		[card study:0];
+	}
+	return card;
+}
+
 + (NSArray *) allObjects {
 	return [Card findByCriteria:@"where deleted is null"];
 }
 
 + (NSInteger) count {
 	return [Card countByCriteria:@"where deleted is null"];
+}
+
++ (Card*) findFirstByQuestion:(NSString*) question {
+	return (Card*) [Card findFirstByCriteria:@"where deleted is null and question = '%@'", question];
 }
 
 + (NSInteger) countByScheduled {

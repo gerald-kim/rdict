@@ -130,8 +130,7 @@
 		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
 		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
-		Card* card = [[Card alloc] initWithQuestion:self.lemma andAnswer:selectedDefinition];
-		[card save];
+		Card* card = [Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
 		[card release];
 		
 		[UIView beginAnimations:nil context:NULL];
