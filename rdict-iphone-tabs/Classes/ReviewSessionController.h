@@ -50,6 +50,7 @@
 - (IBAction) scoreButtonClicked : (id) sender;	
 - (IBAction) reviewAgainButtonClicked : (id) sender;
 - (IBAction) reviewCompleteButtonClicked : (id) sender;
+- (IBAction) skipExtraPracticeButtonClicked : (id) sender;
 
 - (void) showCardFrontView;
 - (void) showCardBackView;

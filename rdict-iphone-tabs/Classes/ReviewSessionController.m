@@ -220,4 +220,13 @@ static NSString* statusLabelLastCard = @"Last card!";
 	[self.navigationController popViewControllerAnimated:YES];		
 }
 
+- (IBAction) skipExtraPracticeButtonClicked : (id) sender {
+	[reviewUnfinishedViewController viewDidDisappear:TRUE];
+	[reviewUnfinishedViewController.view removeFromSuperview];
+	[reviewUnfinishedViewController release];
+	
+	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+	[self.navigationController popViewControllerAnimated:YES];			
+}
+
 @end

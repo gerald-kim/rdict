@@ -99,7 +99,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="151783295"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Not Now</string>
+						<string key="IBUINormalTitle">No Thanks</string>
 						<reference key="IBUIHighlightedTitleColor" ref="766528619"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -125,12 +125,12 @@
 					<object class="IBUILabel" id="292998811">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 370}, {250, 33}}</string>
+						<string key="NSFrame">{{55, 370}, {209, 33}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Would you like to practice now?</string>
+						<string key="IBUIText">Practice these words now?</string>
 						<reference key="IBUITextColor" ref="804091420"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -204,6 +204,15 @@
 					</object>
 					<int key="connectionID">17</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">skipExtraPracticeButtonClicked:</string>
+						<reference key="source" ref="866606821"/>
+						<reference key="destination" ref="975951072"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -224,9 +233,9 @@
 							<reference ref="660109909"/>
 							<reference ref="755267805"/>
 							<reference ref="723061945"/>
-							<reference ref="292998811"/>
 							<reference ref="866606821"/>
 							<reference ref="1041523205"/>
+							<reference ref="292998811"/>
 						</object>
 						<reference key="parent" ref="864823998"/>
 					</object>
@@ -325,7 +334,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -370,9 +379,11 @@
 							<string>reviewCompleteButtonClicked:</string>
 							<string>scoreButtonClicked:</string>
 							<string>showHelpMesg:</string>
+							<string>skipExtraPracticeButtonClicked:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
