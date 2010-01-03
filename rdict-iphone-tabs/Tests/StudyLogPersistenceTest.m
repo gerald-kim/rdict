@@ -9,8 +9,6 @@
 #import "ObjectPersistenceTest.h"
 #import "Card.h"
 #import "StudyLog.h"
-#import <unistd.h>
-#import <stdlib.h>
 
 @interface StudyLogPersistenceTest : ObjectPersistenceTest {
 	

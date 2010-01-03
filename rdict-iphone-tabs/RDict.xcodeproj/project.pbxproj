@@ -34,8 +34,6 @@
 		1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		1F7647BC10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
-		1F76491310EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */; };
-		1F76491410EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */; };
 		1F76491510EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */; };
 		1F76491810EFB9D0009A90AD /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
 		1F76491910EFB9D0009A90AD /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
@@ -334,7 +332,6 @@
 		1F560E8B10E6E276005A6311 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1F7647B810EF3CA4009A90AD /* LookupHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupHistory.h; sourceTree = "<group>"; };
 		1F7647B910EF3CA4009A90AD /* LookupHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupHistory.m; sourceTree = "<group>"; };
-		1F76491110EFB9B8009A90AD /* HistoryPersistenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryPersistenceTest.h; path = Tests/HistoryPersistenceTest.h; sourceTree = "<group>"; };
 		1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudyLogPersistenceTest.m; path = Tests/StudyLogPersistenceTest.m; sourceTree = "<group>"; };
 		1F76491610EFB9D0009A90AD /* StudyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyLog.h; sourceTree = "<group>"; };
 		1F76491710EFB9D0009A90AD /* StudyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyLog.m; sourceTree = "<group>"; };
@@ -882,7 +879,6 @@
 		EFEA08320FDFF5FA00490192 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1F76491110EFB9B8009A90AD /* HistoryPersistenceTest.h */,
 				1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */,
 				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
 				EF92DC320FFC31AF008591C6 /* CardStudyTest.m */,
@@ -1221,7 +1217,6 @@
 				EF69B00010B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
 				1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */,
-				1F76491410EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */,
 				1F76491910EFB9D0009A90AD /* StudyLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1268,7 +1263,6 @@
 				EF69AFFE10B82A7E00A8DDBF /* CardListViewController.m in Sources */,
 				EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
 				1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */,
-				1F76491310EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */,
 				1F76491810EFB9D0009A90AD /* StudyLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
