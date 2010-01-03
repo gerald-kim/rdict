@@ -101,7 +101,7 @@
 		[activityIndicatorView stopAnimating];
 		activityIndicatorView.hidden = YES;
 		
-		[webView stringByEvaluatingJavaScriptFromString:@"alert( 'Sorry. No definition for that word' );"];
+		[webView stringByEvaluatingJavaScriptFromString:@"alert( \"Sorry, Vocabulator doesn't have a definition for that word.\" );"];
 	}
 	
 	[self adjustToolBarButtons];
