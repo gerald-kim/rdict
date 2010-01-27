@@ -11,6 +11,7 @@
 
 @implementation CardViewController
 
+@synthesize remainsLabel;
 @synthesize questionLabel;
 @synthesize answerTextView;
 

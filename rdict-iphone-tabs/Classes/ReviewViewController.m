@@ -44,7 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
-	self.navigationController.navigationBarHidden = NO;	
 
 	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercises", @"Statistics", @"Upcoming Review Sessions", nil];
 							
@@ -57,7 +56,6 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	self.navigationController.navigationBarHidden = YES;
 	[self releaseData];
 
 }

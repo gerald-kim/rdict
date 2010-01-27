@@ -12,23 +12,10 @@
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
 
-#import <QuartzCore/QuartzCore.h>
 
-static NSString* frontHelpMessage = @"Can you remeber this word?\nThink about the definition.\n\nWhen you remember, or if you decide you can't remember, push the 'Show Answer' button.";
-static NSString* backHelpMessage = @"How easy was it to remember the word?\n\nTell Vocabulator by pressing one of the buttons.";
-
-static NSString* statusLabelNMoreCards = @"%d more cards";
-static NSString* statusLabelOneMoreCard = @"1 more card";
-static NSString* statusLabelLastCard = @"Last card!";
 
 @implementation ReviewSessionController
 
-@synthesize helpMessage;
-@synthesize statusLabel;
-@synthesize statusArrow;
-@synthesize flashcardViewPlaceholder;
-@synthesize showAnswerButton;
-@synthesize answerButtonGroup;
 @synthesize useScheduledCards;
 
 - (void)viewDidLoad {
@@ -38,15 +25,14 @@ static NSString* statusLabelLastCard = @"Last card!";
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
+	
+	[self.view insertSubview:cardFrontViewController.view atIndex:0];
+	[self.view insertSubview:cardBackViewController.view atIndex:0];
 }
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
-	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
-	
-	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
-	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];
 	
 	if(self.useScheduledCards) {
 		scheduledCards = [Card findByScheduled];
@@ -124,10 +110,10 @@ static NSString* statusLabelLastCard = @"Last card!";
 	}
 }
 
-- (IBAction) showHelpMesg : (id) sender {	
+- (IBAction) helpButtonClicked : (id) sender {	
 	UIAlertView* alert;
 	
-	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:self.helpMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Help message" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
 	
 	[alert show];
 }
@@ -138,28 +124,24 @@ static NSString* statusLabelLastCard = @"Last card!";
 	NSLog( @"RSC.viewWillAppear3" );
 	cardsRemain--;
 	
-	helpMessage = frontHelpMessage;
-	self.showAnswerButton.hidden = NO;
-	self.answerButtonGroup.hidden = YES;
 	[self updateAndSwitchViewTo: cardFrontViewController];
 }
 
 - (void)showCardBackView {	
-	helpMessage = backHelpMessage;
-	self.showAnswerButton.hidden = YES;
-	self.answerButtonGroup.hidden = NO;
+//	helpMessage = backHelpMessage;
 	[self updateAndSwitchViewTo: cardBackViewController];
 }
 
-- (void) updateAndSwitchViewTo: (CardViewController*) newCardController {
-	self.statusLabel.text = [self getStatusMesgAndSetStatusArrow];
+- (void) updateAndSwitchViewTo: (CardViewController*) cardViewController {
+//	self.statusLabel.text = [self getStatusMesgAndSetStatusArrow];
 
-	newCardController.questionLabel.text = currentCard.question;
-	newCardController.answerTextView.text = currentCard.answer;
+	cardViewController.questionLabel.text = currentCard.question;
+	cardViewController.answerTextView.text = currentCard.answer;
 	
-	[self.flashcardViewPlaceholder bringSubviewToFront:newCardController.view];
+	[self.view bringSubviewToFront:cardViewController.view];
 }
 
+/*
 - (NSString*) getStatusMesgAndSetStatusArrow {
 	if(cardsRemain > 1) {
 		self.statusArrow.hidden = NO;
@@ -174,6 +156,7 @@ static NSString* statusLabelLastCard = @"Last card!";
 		return [NSString stringWithFormat:statusLabelLastCard, cardsRemain];
 	}
 }
+*/
 
 #pragma mark -
 #pragma mark ReviewFinish
@@ -193,10 +176,7 @@ static NSString* statusLabelLastCard = @"Last card!";
 	//TODO shuffle uncertainCards
 	[reviewUnfinishedViewController.view removeFromSuperview];
 	[reviewUnfinishedViewController release];
-	
-	[self.flashcardViewPlaceholder addSubview:cardFrontViewController.view];
-	[self.flashcardViewPlaceholder addSubview:cardBackViewController.view];	
-	
+		
 	[self initCards:uncertainCards];
 	[self showCardFrontView];
 }

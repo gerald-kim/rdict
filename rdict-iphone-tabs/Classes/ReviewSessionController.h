@@ -14,11 +14,6 @@
 @class Card;
 
 @interface ReviewSessionController : UIViewController {
-	IBOutlet UILabel* statusLabel;
-	IBOutlet UIImageView* statusArrow;
-	IBOutlet UIView* flashcardViewPlaceholder;
-	IBOutlet UIButton* showAnswerButton;
-	IBOutlet UIView* answerButtonGroup;
 	
 	CardViewController* cardFrontViewController;
 	CardViewController* cardBackViewController;
@@ -37,15 +32,9 @@
 	BOOL useScheduledCards;
 }
 
-@property (nonatomic, retain) NSString* helpMessage;
-@property (nonatomic, retain) IBOutlet UILabel* statusLabel;
-@property (nonatomic, retain) IBOutlet UIImageView* statusArrow;
-@property (nonatomic, retain) IBOutlet UIView* flashcardViewPlaceholder;
-@property (nonatomic, retain) IBOutlet UIButton* showAnswerButton;
-@property (nonatomic, retain) IBOutlet UIView* answerButtonGroup;
 @property BOOL useScheduledCards;
 
-- (IBAction) showHelpMesg : (id) sender;
+- (IBAction) helpButtonClicked : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;
 - (IBAction) scoreButtonClicked : (id) sender;	
 - (IBAction) reviewAgainButtonClicked : (id) sender;
@@ -58,6 +47,6 @@
 - (void) showReviewFinishedView;
 - (void) initCards:(NSArray*) theCards;
 - (void) updateAndSwitchViewTo : (CardViewController*) newCardController;
-- (NSString*) getStatusMesgAndSetStatusArrow;
+//- (NSString*) getStatusMesgAndSetStatusArrow;
 
 @end

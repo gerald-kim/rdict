@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface CardViewController : UIViewController {	
+	IBOutlet UILabel* remainsLabel;
 	IBOutlet UILabel* questionLabel;
 	IBOutlet UITextView* answerTextView;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel* remainsLabel;
 @property (nonatomic, retain) IBOutlet UILabel* questionLabel;
 @property (nonatomic, retain) IBOutlet UITextView* answerTextView;
 
