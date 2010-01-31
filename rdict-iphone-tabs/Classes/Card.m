@@ -94,17 +94,29 @@ DECLARE_PROPERTIES (
 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {
 	SLStmt* stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:
-				   @"select date( scheduled ) date, count(*) count " 
+				   @"select date( scheduled ), count(*) count " 
 					"from card where scheduled > date('now', 'localtime', '+1 day') "
-					"group by date(scheduled) limit %d", limit]];
+					"group by date( scheduled ) limit %d", limit]];
 									
 	NSMutableArray *scheduleArray = [NSMutableArray array];
 	
+	NSDateFormatter* inputDateFormatter = [[NSDateFormatter alloc]init];
+	[inputDateFormatter setDateFormat:@"yyyy-MM-dd"];
+	
+	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+
+	
 	while( [stmt step] ) {
-		NSArray *row = [NSArray arrayWithObjects: [stmt stringValue:0], [stmt stringValue:1], nil];
+		NSDate* date = [inputDateFormatter dateFromString:[stmt stringValue:0]];
+		NSArray *row = [NSArray arrayWithObjects: [dateFormatter stringFromDate:date], [stmt stringValue:1], nil];
 		[scheduleArray addObject:row];
 	}
 	[stmt close];
+	
+	[inputDateFormatter release];
+	[dateFormatter release];
 	
 	return scheduleArray;	
 }
