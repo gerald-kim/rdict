@@ -62,6 +62,11 @@
 	self.navigationController.navigationBarHidden = YES;
 }
 
+- (void) viewDidDisappear:(BOOL)animated {
+	NSLog(@"DVC.viewDidDisappear");
+	[webView loadHTMLString:@"" baseURL:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
