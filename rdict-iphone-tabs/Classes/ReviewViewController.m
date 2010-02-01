@@ -121,8 +121,9 @@
 
 - (NSInteger) numberOfRowsInReviewSection {
 	NSInteger rows = (scheduledCount > 0 || todayCount > 0) ? 1 : 1;
-	if ( TRUE )
-		rows = rows+1;
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	rows = rows+1;
+#endif
 	return rows;
 }
 

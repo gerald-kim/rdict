@@ -12,8 +12,6 @@
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
 
-
-
 @implementation ReviewSessionController
 
 @synthesize useScheduledCards;
