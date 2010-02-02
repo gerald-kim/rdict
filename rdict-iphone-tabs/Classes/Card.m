@@ -64,20 +64,20 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) scheduledCardCriteria {
-	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') and deleted is null order by random()"];	
+	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') and deleted is null"];	
 }
 
 + (NSInteger) countByToday {
-	return [Card countByCriteria:[self searchedTodayCriteria]];
+	return [Card countByCriteria:[self todayCardCriteria]];
 }
 
 + (NSArray*) findByToday {
-	return [Card findByCriteria:[self searchedTodayCriteria]];	
+	return [Card findByCriteria:[self todayCardCriteria]];	
 }
 
-+ (NSString*) searchedTodayCriteria {
++ (NSString*) todayCardCriteria {
 	return [NSString stringWithString:@"where created > date('now', 'localtime') "
-		"	and ( studied is null or studied < date('now', 'localtime') ) and deleted is null order by random()"];	
+		"	and ( studied is null or studied < date('now', 'localtime') ) and deleted is null"];	
 }
 
 + (NSInteger) score {	
@@ -119,6 +119,52 @@ DECLARE_PROPERTIES (
 	[dateFormatter release];
 	
 	return scheduleArray;	
+}
+
+//TODO functions for review can be extracted to new class
++ (NSString*) messageForReview {
+	NSInteger todayCount = [Card countByToday];
+	NSInteger scheduledCount = [Card countByScheduled];
+	
+	if ( scheduledCount > 0 ) {
+		return @"Scheduled";
+	} else if ( todayCount > 0 ) {
+		return @"Early Practice";
+	} else {
+		return @"None Available";		
+	}
+}
+
++ (NSString*) countMessageForReview {
+	NSInteger todayCount = [Card countByToday];
+	NSInteger scheduledCount = [Card countByScheduled];
+	NSInteger count = scheduledCount > 0 ? scheduledCount : todayCount;
+	
+	if (count > REVIEW_LIMIT) {
+		return [NSString stringWithFormat:@"%d of %d cards", REVIEW_LIMIT, count];
+	} else if ( count > 0 ) {
+		return [NSString stringWithFormat:@"%d card(s)", count];
+	} else {
+		return @"";
+	}
+}
+
++ (NSArray*) cardsForReview {
+	NSInteger todayCount = [Card countByToday];
+	NSInteger scheduledCount = [Card countByScheduled];
+	
+	if ( scheduledCount == 0 && todayCount == 0 ) {
+		return nil;
+	}
+	NSMutableString* criteria = [[NSMutableString alloc] init];
+	if ( scheduledCount > 0 ) {
+		[criteria appendString:[Card scheduledCardCriteria]];
+	} else if ( todayCount > 0 ) {
+		[criteria appendString:[Card todayCardCriteria]];
+	}
+	[criteria appendFormat:@" order by random() limit %d", REVIEW_LIMIT];
+
+	return [Card findByCriteria:criteria];
 }
 
 /*

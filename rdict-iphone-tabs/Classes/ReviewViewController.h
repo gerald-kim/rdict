@@ -16,8 +16,7 @@
 
 	NSArray *sectionTitles;
 	NSArray *schedules;
-	NSInteger scheduledCount;
-	NSInteger todayCount;
+	NSArray *cardsForReview;
 	NSInteger totalCount;
 	NSInteger grade;
 	NSInteger score;
@@ -27,8 +26,6 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) NSArray *sectionTitles;
 @property (nonatomic, retain) NSArray *schedules;
-
--(NSString*) getCardString: (NSInteger) cardCount;
--(BOOL) isCardExerciseAvailable;
+@property (nonatomic, retain) NSArray *cardsForReview;
 
 @end

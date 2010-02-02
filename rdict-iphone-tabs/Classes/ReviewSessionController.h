@@ -24,15 +24,13 @@
 	
 	NSUInteger cardsRemain;
 	
-	NSArray* reviewCards;
+	NSArray* cardsForReview;
 	NSArray* scheduledCards;
 	NSMutableArray* uncertainCards;
-	Card* currentCard;
-	
-	BOOL useScheduledCards;
+	Card* currentCard;	
 }
 
-@property BOOL useScheduledCards;
+@property (nonatomic, retain) NSArray *scheduledCards;
 
 - (IBAction) helpButtonClicked : (id) sender;
 - (IBAction) answerButtonClicked : (id) sender;

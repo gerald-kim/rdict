@@ -10,6 +10,7 @@
 #import "SQLitePersistentObject.h"
 
 #define SECONDS_IN_ONE_DAY 60*60*24
+#define REVIEW_LIMIT 5
 
 @interface Card : SQLitePersistentObject {
 	NSString* question;
@@ -53,10 +54,14 @@
 
 + (NSInteger) countByToday;
 + (NSArray*) findByToday;
-+ (NSString*) searchedTodayCriteria;
++ (NSString*) todayCardCriteria;
 
 + (NSInteger) score; 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;
+
++ (NSString*) messageForReview;
++ (NSString*) countMessageForReview;
++ (NSArray*) cardsForReview;
 
 - (id) initWithQuestion:(NSString *) q andAnswer:(NSString *) a;
 - (void) study:(NSUInteger) grade;

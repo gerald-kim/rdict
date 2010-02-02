@@ -255,6 +255,8 @@
 		EFBF4A2B0FE001DA0092357C /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
 		EFBF4A2C0FE001DA0092357C /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
 		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
+		EFCAA37A11179ABC00E5E0CE /* ScheduledOrTodayCardTest.m in Resources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
+		EFCAA38911179D6E00E5E0CE /* ScheduledOrTodayCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
 		EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
@@ -470,6 +472,7 @@
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduledOrTodayCardTest.m; path = Tests/ScheduledOrTodayCardTest.m; sourceTree = "<group>"; };
 		EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon57x57.png; path = Resources/icon57x57.png; sourceTree = "<group>"; };
 		EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon512x512.png; path = Resources/icon512x512.png; sourceTree = "<group>"; };
@@ -883,6 +886,7 @@
 				EF2E74CF0FE9B2E1008B8AEC /* CardPersistenceTest.m */,
 				EF92DC320FFC31AF008591C6 /* CardStudyTest.m */,
 				EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */,
+				EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */,
 				EFEA08330FDFF61500490192 /* WiktionaryTest.m */,
 				EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */,
 				EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */,
@@ -1153,6 +1157,7 @@
 				EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */,
 				EF2F33BB10610CE200ADFFD5 /* index.db in Resources */,
 				EF2F33BC10610CE200ADFFD5 /* word.db in Resources */,
+				EFCAA37A11179ABC00E5E0CE /* ScheduledOrTodayCardTest.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,6 +1276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFCAA38911179D6E00E5E0CE /* ScheduledOrTodayCardTest.m in Sources */,
 				EFBF4A200FE001AB0092357C /* GTMIPhoneUnitTestDelegate.m in Sources */,
 				EFBF4A210FE001AB0092357C /* GTMIPhoneUnitTestMain.m in Sources */,
 				EFBF4A220FE001AB0092357C /* GTMSenTestCase.m in Sources */,

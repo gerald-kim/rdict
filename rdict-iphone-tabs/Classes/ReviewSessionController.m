@@ -14,7 +14,7 @@
 
 @implementation ReviewSessionController
 
-@synthesize useScheduledCards;
+@synthesize scheduledCards;
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
@@ -31,27 +31,11 @@
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
-	
-	if(self.useScheduledCards) {
-		scheduledCards = [Card findByScheduled];
-		NSLog(@"num scheduled cards to study: %d ", [scheduledCards count]);
-	}
-	else {
-		scheduledCards = [Card findByToday];
-		NSLog(@"num today cards to study: %d ", [scheduledCards count]);
-	}
-	
-	[scheduledCards retain];
-	
+		
 	uncertainCards = [[NSMutableArray alloc] init];
 	
 	[self initCards:scheduledCards];
 	[self showCardFrontView];
-}
-
-- (void)viewWillDisappear:(BOOL) animated {
-	[cardFrontViewController.view removeFromSuperview];
-	[cardBackViewController.view removeFromSuperview];
 }
 
 - (void)viewDidUnload {
@@ -71,8 +55,8 @@
 }
 
 - (void) initCards:(NSArray*) theCards {
-	reviewCards = theCards;
-	cardsRemain = [reviewCards count];
+	cardsForReview = theCards;
+	cardsRemain = [cardsForReview count];
 }
 
 #pragma mark -
@@ -84,12 +68,13 @@
 }
 
 - (IBAction) scoreButtonClicked : (id) sender {
+	NSLog( @"RSC.scoreButtonClicked" );
 	//TODO refactor scoreButtonClicked function. it's too complex
 	UIButton *scoreButton = (UIButton*) sender;
 
 	NSUInteger score = scoreButton.tag;
 	
-	if( reviewCards == scheduledCards ) {
+	if( cardsForReview == scheduledCards ) {
 		if( score <= 3 ) {
 			[uncertainCards addObject:currentCard];
 		}
@@ -97,7 +82,7 @@
 	}
 
 	if ( 0 == cardsRemain) {
-		if ( reviewCards == scheduledCards && 0 != [uncertainCards count] ) {
+		if ( cardsForReview == scheduledCards && 0 != [uncertainCards count] ) {
 			[self showReviewUnfinishedView];
 		} else {
 			[self showReviewFinishedView];
@@ -118,7 +103,7 @@
 
 - (void)showCardFrontView {
 	NSLog( @"RSC.viewWillAppear2" );
-	currentCard = [reviewCards objectAtIndex:[reviewCards count] - cardsRemain];		
+	currentCard = [cardsForReview objectAtIndex:[cardsForReview count] - cardsRemain];		
 	NSLog( @"RSC.viewWillAppear3" );
 	cardsRemain--;
 	
@@ -163,9 +148,6 @@
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
-	[cardFrontViewController.view removeFromSuperview];
-	[cardBackViewController.view removeFromSuperview];
-	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
 }
@@ -190,20 +172,16 @@
 }
 
 - (IBAction) reviewCompleteButtonClicked : (id) sender {
-	[reviewFinishedViewController viewDidDisappear:TRUE];
 	[reviewFinishedViewController.view removeFromSuperview];
 	[reviewFinishedViewController release];
 	
-	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];		
 }
 
 - (IBAction) skipExtraPracticeButtonClicked : (id) sender {
-	[reviewUnfinishedViewController viewDidDisappear:TRUE];
 	[reviewUnfinishedViewController.view removeFromSuperview];
 	[reviewUnfinishedViewController release];
 	
-	[[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];			
 }
 

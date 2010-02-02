@@ -22,6 +22,7 @@
 - (UITableViewCell *) cellForScheduleSectionRowAt:(NSInteger) row;
 - (void) loadData;
 - (void) releaseData;
+- (NSString*) getCardString: (NSInteger) cardCount;
 
 @end
 
@@ -30,6 +31,7 @@
 @synthesize tableView;
 @synthesize sectionTitles;
 @synthesize schedules;
+@synthesize cardsForReview;
 
 #pragma mark private methods
 
@@ -74,12 +76,10 @@
 
 - (void) loadData {
 	NSLog( @"RVC.loadedData");
-	
-	scheduledCount = [Card countByScheduled];
-	todayCount = [Card countByToday];	
+
 	totalCount = [Card count];
 	score = [Card score];
-	
+	self.cardsForReview = [Card cardsForReview];
 	self.schedules = [Card reviewSchedulesWithLimit:7];
 	
 	[tableView reloadData];	
@@ -120,7 +120,7 @@
 }
 
 - (NSInteger) numberOfRowsInReviewSection {
-	NSInteger rows = (scheduledCount > 0 || todayCount > 0) ? 1 : 1;
+	NSInteger rows = ([cardsForReview count] > 0) ? 1 : 1;
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	rows = rows+1;
 #endif
@@ -164,13 +164,8 @@
 		return cell;
 	}
 	
-	if ( scheduledCount > 0 ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Today's Review: %d %@", scheduledCount, [self getCardString:scheduledCount]];
-	} else if ( todayCount > 0 ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Early Practice: %d %@", todayCount, [self getCardString:todayCount]];
-	} else {
-		cell.textLabel.text = @"None available";
-	} 
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", [Card messageForReview], [Card countMessageForReview]];
+	
 	return cell;
 }
 
@@ -219,29 +214,29 @@
 	if ( 0 != indexPath.section ) {
 		return;
 	}
-	if ( 0 == indexPath.row && [self isCardExerciseAvailable]) {
+	if ( 0 == indexPath.row && [cardsForReview count] > 0 ) {
 		if( nil == reviewSessionController ) {
 			reviewSessionController = [[ReviewSessionController alloc]initWithNibName:@"ReviewSessionView" bundle:nil];
 			reviewSessionController.hidesBottomBarWhenPushed = YES;
 			//self.reviewSessionController.wantsFullScreenLayout = YES;
 		}	
-		
-		reviewSessionController.useScheduledCards = scheduledCount > 0;
+
+		reviewSessionController.scheduledCards = cardsForReview;
+		//[reviewSessionController initCards:cardsForReview];
+
 		[self.navigationController pushViewController:reviewSessionController animated:YES];
 	} else if ( 1 == indexPath.row ) {
 		SLStmt* stmt = [SLStmt stmtWithSql:@"update card set scheduled = date('now', 'localtime')" ];
 		
 		[stmt step];
 		[stmt close];
-		scheduledCount = [Card countByScheduled];
-		todayCount = [Card countByToday];
+		self.cardsForReview = [Card cardsForReview];
 		[self.tableView reloadData];
 	}
 }
 
--(BOOL) isCardExerciseAvailable {
-	return scheduledCount > 0 || todayCount > 0;
-}
+
+#pragma mark help functions
 
 -(NSString*) getCardString: (NSInteger) cardCount {
 	if (cardCount > 1)
