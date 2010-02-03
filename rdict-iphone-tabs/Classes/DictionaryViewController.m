@@ -27,7 +27,6 @@
 	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
-	self.lookupHistory = [[LookupHistory alloc] init];
 	
 	self.returnToSearchButton = self.navigationItem.leftBarButtonItem;
 	
@@ -43,14 +42,15 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+	
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
-		
-	activityIndicatorView.hidden = NO;
-	[activityIndicatorView startAnimating];
 	
-	[self.lookupHistory clear];
-	[self showWordDefinition: lemma RecordHistory: YES];
+	lookupHistory = [[LookupHistory alloc] init];
+
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", lemma]];
+	NSURLRequest* request = [NSURLRequest requestWithURL:url];
+	[webView loadRequest:request];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -60,6 +60,9 @@
 - (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.navigationController.navigationBarHidden = YES;
+	
+	[lookupHistory release];
+	lookupHistory = nil;
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -80,52 +83,43 @@
     [super dealloc];
 }
 
+
 #pragma mark -
+#pragma mark UIWebViewDelegate Method
 
-- (void) showWordDefinition: (NSString *) query RecordHistory: (BOOL) recordHistory {
-	self.title = query;
-
-	[activityIndicatorView startAnimating];
-	activityIndicatorView.hidden = NO;
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+	NSLog( @"DVC.shouldStartLoadWithRequest url: %@", [[request URL] absoluteString] );
 	
-	WordEntry* entry = [wiktionary wordEntryByLemma:query];
+	NSURL *url = [request URL];
+	if( [@"rdict" isEqualToString:[url scheme]] ) {
+		[self handleRdictRequest: url];
+		return NO;
+	} 
 	
-	if (entry) {
-		[entry decorateDefinition];
-		
-		NSString *path = [[NSBundle mainBundle] bundlePath];
-		NSURL *baseURL = [NSURL fileURLWithPath:path];	
-		
-		[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
+	if ( navigationType == UIWebViewNavigationTypeLinkClicked ) {
+		activityIndicatorView.hidden = NO;	
+		[activityIndicatorView startAnimating];
 
-		if(recordHistory)
-			[self.lookupHistory addWord:query];
-		
-		[entry release];
-	} else {
-		[activityIndicatorView stopAnimating];
-		activityIndicatorView.hidden = YES;
-		
-		[webView stringByEvaluatingJavaScriptFromString:@"alert( \"Sorry, Vocabulator doesn't have a definition for that word.\" );"];
+		[self.lookupHistory addHistory:url];
 	}
-	
+	return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
 	[self adjustToolBarButtons];
+	
+	[activityIndicatorView stopAnimating];
+	activityIndicatorView.hidden = YES;	
 }
 
 -(void) adjustToolBarButtons {
-	if(! [self.lookupHistory canGoBack])
-		self.navigationItem.leftBarButtonItem = returnToSearchButton;
-	else
+	if([self.lookupHistory canGoBack]) {
 		self.navigationItem.leftBarButtonItem = backButton;
+	} else {
+		self.navigationItem.leftBarButtonItem = returnToSearchButton;
+	}
 	
 	self.forwardButton.enabled = [self.lookupHistory canGoForward];
-}
-
-- (void) handleWordLookUp: (NSURL *) url  {
-	NSArray *strings = [[url query] componentsSeparatedByString: @"="];
-	NSString *clickedWord = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	
-	[self showWordDefinition:clickedWord RecordHistory: YES];
 }
 
 - (void) handleRdictRequest:(NSURL*) url {
@@ -137,18 +131,62 @@
 		
 		Card* card = [Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
 		[card release];
-		
+
+		/*
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.7];
 		cardAddedNote.alpha = 1.0;
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(showAlert)];
 		[UIView commitAnimations];
+		*/
+	} else if ( [[url host] hasPrefix:@"lookup"] ){
+		activityIndicatorView.hidden = NO;	
+		[activityIndicatorView startAnimating];
+
+		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
+		NSString *query = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
-	} else if ([@"lookup" isEqualToString:[url host]]){
-		[self handleWordLookUp: url];
+		self.title = query;
+		
+		WordEntry* entry = [wiktionary wordEntryByLemma:query];	
+		if (entry) {
+			[entry decorateDefinition];
+			
+			NSString *path = [[NSBundle mainBundle] bundlePath];
+			NSURL *baseURL = [NSURL fileURLWithPath:path];	
+			
+			[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
+			
+			[entry release];
+
+			if( [ @"lookup" isEqualToString: [url host]] ) {
+				NSURL* urlForHistory = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", query]];
+				[lookupHistory addHistory:urlForHistory];
+			}
+		} else {
+			//		[activityIndicatorView stopAnimating];
+			//		activityIndicatorView.hidden = YES;		
+			[webView stringByEvaluatingJavaScriptFromString:@"alert( \"Sorry, Vocabulator doesn't have a definition for that word.\" );"];
+		}	
 	}
 }
+
+#pragma mark -
+
+- (void)handleGoBackClick:(id)sender {
+	NSLog( @"DVC.handleGoBackClick" );
+	
+	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goBack]];
+	[webView loadRequest:request];
+}
+
+- (void)handleGoForwardClick:(id)sender {
+	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goForward]];
+	[webView loadRequest:request];
+}
+
+#pragma mark -
 
 -(void) showAlert {
 	[UIView beginAnimations:nil context:NULL];
@@ -165,35 +203,5 @@
 	cardAddedNote.alpha = 0;
 	[UIView commitAnimations];
 }
-
-#pragma mark -
-#pragma mark UIWebViewDelegate Method
-
-- (void)webViewDidFinishLoad:(UIWebView *)aWebView {
-	[activityIndicatorView stopAnimating];
-	activityIndicatorView.hidden = YES;	
-}
-
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSURL *url = [request URL];
-	NSLog( @"request called %@://%@/%@?%@", [url scheme], [url host], [url relativePath], [url query] );	
-
-	if( [@"rdict" isEqualToString:[url scheme]] ) {
-		[self handleRdictRequest: url];
-		return NO;
-	}
-	return YES;
-}
-
-- (void)handleGoBackClick:(id)sender {
-	[self.lookupHistory goBack];
-	[self showWordDefinition: [self.lookupHistory getWord] RecordHistory: NO];
-}
-
-- (void)handleGoForwardClick:(id)sender {
-	[self.lookupHistory goForward];
-	[self showWordDefinition: [self.lookupHistory getWord] RecordHistory: NO];
-}
-
 
 @end

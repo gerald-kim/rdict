@@ -10,22 +10,16 @@
 
 
 @interface LookupHistory : NSObject {
-	int index;
-	NSMutableArray* words;	
+	NSUInteger index;
+	NSMutableArray* histories;	
 }
 
-@property int index;
-@property (nonatomic, retain) NSMutableArray* words;
+-(void) addHistory:(NSURL*) url;
 
--(void) addWord: (NSString*) word;
 -(BOOL)	canGoBack;
+-(NSURL*) goBack;
+
 -(BOOL) canGoForward;
--(void) goForward;
--(void) goBack;
--(NSString*) getWord;
--(BOOL) isEmpty;
--(void) clear;
--(int) size;
--(BOOL) containsWord: (NSString*) headword;
+-(NSURL*) goForward;
 
 @end

@@ -11,71 +11,51 @@
 
 @implementation LookupHistory
 
-@synthesize index;
-@synthesize words;
 
-- (id) init {
-	self.index = 0;
-	self.words = [[NSMutableArray alloc] init];
-	
-	return self;
-}
 
--(void) addWord: (NSString*) word {
-	while(words.count > index + 1) {
-		[words removeLastObject];
-	}
+-(id) init {
+	index = 0;
+	histories = [[NSMutableArray alloc] init];
 		
-	[self.words addObject: word];
-	index = words.count - 1;
-}
-	
--(BOOL)	canGoBack{
-	return index > 0;
-}
-
--(BOOL) canGoForward {
-	return index < words.count - 1;
-}
-	
--(void) goForward {
-	index++;
-}
-	
--(void) goBack {
-	int prevIndex = index;
-	
-	if(nil == [self.words objectAtIndex: prevIndex])
-		[self.words removeObjectAtIndex: prevIndex];
-	
-	index--;
-}
-
-	
--(NSString*) getWord {
-	return [words objectAtIndex: index];
-}
-	
--(BOOL) isEmpty {
-	return 0 == words.count;
-}
-
--(void) clear {
-	[self.words removeAllObjects];
-}
-	
--(int) size {
-	return words.count;
-}
-
--(BOOL) containsWord: (NSString*) headword {
-	return [words containsObject:headword];
+	return self;	
 }
 
 - (void) dealloc
 {
-	//[words dealloc];
+	[histories release];
 	[super dealloc];
+}
+
+-(void) addHistory: (NSURL*) url {
+	NSLog( @"ADDED TO LOOKUPHISTORY, %@", url );
+	if( index <= [histories count]) {
+		NSRange range;
+		range.location = index;
+		range.length = histories.count - index;
+		[histories removeObjectsInRange:range];
+	}
+		
+	[histories addObject: url];
+	index++;
+
+}
+	
+-(BOOL)	canGoBack{
+	return index > 1;
+}
+
+-(NSURL*) goBack {	
+	index--;
+	return [histories objectAtIndex:index-1];
+}
+
+-(BOOL) canGoForward {
+	return index < histories.count;
+}
+	
+-(NSURL*) goForward {
+	index++;
+	return [histories objectAtIndex:index-1];
 }
 
 @end

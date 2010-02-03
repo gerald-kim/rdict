@@ -35,7 +35,6 @@
 @property (nonatomic, retain) Wiktionary* wiktionary;
 @property (nonatomic, retain) LookupHistory* lookupHistory;
 
-- (void) showWordDefinition: (NSString *) query RecordHistory: (BOOL) recordHistory;
 -(void) adjustToolBarButtons;
-
+-(void) handleRdictRequest:(NSURL*) url;
 @end
