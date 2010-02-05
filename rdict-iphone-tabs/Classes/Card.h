@@ -10,7 +10,11 @@
 #import "SQLitePersistentObject.h"
 
 #define SECONDS_IN_ONE_DAY 60*60*24
-#define REVIEW_LIMIT 20
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	#define REVIEW_LIMIT 5
+#else
+	#define REVIEW_LIMIT 20
+#endif
 
 @interface Card : SQLitePersistentObject {
 	NSString* question;

@@ -21,12 +21,12 @@
 @implementation CardSelectTest
 
 -(void) populate {
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 5; i++) {
 		Card* expected = [[Card alloc] initWithQuestion:@"past" andAnswer:@"answer"];
 		expected.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) - (i * SECONDS_IN_ONE_DAY)];
 		[expected save];		
 	}
-	for (int i = 1; i < 21; i++) {
+	for (int i = 1; i < 6; i++) {
 		Card* expected = [[Card alloc] initWithQuestion:@"future" andAnswer:@"answer"];
 		expected.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) + (i * SECONDS_IN_ONE_DAY)];
 		[expected save];		
@@ -35,15 +35,15 @@
 
 
 -(void) testFindScheduledCards {
-	STAssertEquals( 40, [Card count], @"Card count shouldn't be 0" );
+	STAssertEquals( 10, [Card count], @"Card count shouldn't be 0" );
 	
 	NSArray* scheduled = (NSArray*) [Card findByScheduled];
-	STAssertEquals( (NSUInteger) 20, [scheduled count], nil );
+	STAssertEquals( (NSUInteger) 5, [scheduled count], nil );
 	STAssertNotEqualStrings( @"future", ((Card*) [scheduled objectAtIndex:(NSUInteger)0]).question, nil );
 	STAssertNotEqualStrings( @"future", ((Card*) [scheduled objectAtIndex:(NSUInteger)1]).question, nil );
 	
 	int scheduledCount = [Card countByScheduled];
-	STAssertEquals( 20, scheduledCount, nil );
+	STAssertEquals( 5, scheduledCount, nil );
 	
 	NSArray* schedule = [Card reviewSchedulesWithLimit:2];
 	STAssertEquals( (NSUInteger) 2, [schedule count], nil );
@@ -58,7 +58,7 @@
 -(void) testFindCreatedTodayCards {
 	Card* card = [[Card allObjects] objectAtIndex:0];
 	[card study:3];
-	STAssertEquals( 39, [Card countByCriteria:[Card todayCardCriteria]], nil);
+	STAssertEquals( 9, [Card countByCriteria:[Card todayCardCriteria]], nil);
 }
 
 @end

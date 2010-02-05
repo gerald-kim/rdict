@@ -9,20 +9,18 @@
 #import "ObjectPersistenceTest.h"
 #import "SQLiteInstanceManager.h"
 
-
 @implementation ObjectPersistenceTest
 
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 -(void) setUp {
-//	NSLog( @"setUp" );
+	NSLog( @"setUp" );
 	[[SQLiteInstanceManager sharedManager] deleteDatabase];
 	[self populate];
 }
 
 -(void) tearDown {
-//	NSLog( @"tearDown" );
-	[[SQLiteInstanceManager sharedManager] deleteDatabase];
+	NSLog( @"tearDown" );
 }
 
 -(void) populate {
