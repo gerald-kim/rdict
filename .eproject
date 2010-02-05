@@ -1,0 +1,2 @@
+;:relevant-files '("\\.py")
+:irrelevant-files '("rdict-iphone-tabs" "android" "sandbox" "\\.t?gz" "\\.db")
