@@ -14,6 +14,8 @@
 
 @implementation ReviewSessionController
 
+static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-Perfect\n1-Forgot\n0-Blackout";
+
 @synthesize scheduledCards;
 
 - (void)viewDidLoad {
@@ -96,7 +98,7 @@
 - (IBAction) helpButtonClicked : (id) sender {	
 	UIAlertView* alert;
 	
-	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:@"Help message" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:backHelpMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
 	
 	[alert show];
 }
