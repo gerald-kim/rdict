@@ -12,6 +12,19 @@
 #import "Card.h"
 #import "LookupHistory.h"
 
+@interface DictionaryViewController()
+
+- (void) saveCard: (NSString *) selectedDefinition;
+- (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod;
+	
+-(void) showSaveAlert;
+-(void) fadeOutSaveAlert;
+
+-(void) startActivityAnimating;
+-(void) stopActivityAnimating;
+
+@end
+
 @implementation DictionaryViewController
 @synthesize webView;
 @synthesize cardAddedNote;
@@ -22,6 +35,7 @@
 @synthesize returnToSearchButton;
 @synthesize backButton;
 @synthesize forwardButton;
+
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
@@ -41,8 +55,7 @@
 	self.navigationItem.rightBarButtonItem = forwardButton;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	
+- (void) viewWillAppear:(BOOL)animated {	
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
 	
@@ -88,7 +101,7 @@
 #pragma mark UIWebViewDelegate Method
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSLog( @"DVC.shouldStartLoadWithRequest url: %@", [[request URL] absoluteString] );
+	NSLog( @"DVC.shouldStartLoadWithRequest type:%d, url: %@", navigationType, [[request URL] absoluteString] );
 	
 	NSURL *url = [request URL];
 	if( [@"rdict" isEqualToString:[url scheme]] ) {
@@ -96,11 +109,9 @@
 		return NO;
 	} 
 	
-	if ( navigationType == UIWebViewNavigationTypeLinkClicked ) {
-		activityIndicatorView.hidden = NO;	
-		[activityIndicatorView startAnimating];
-
-		[self.lookupHistory addHistory:url];
+	if ( navigationType == UIWebViewNavigationTypeLinkClicked && [[[request URL] scheme] hasPrefix:@"http"]  ) {
+		[self startActivityAnimating];
+		[lookupHistory addHistory:url];
 	}
 	return YES;
 }
@@ -108,71 +119,70 @@
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
 	[self adjustToolBarButtons];
 	
+	//TODO change title when connected to external site
+	//self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	
 	[activityIndicatorView stopAnimating];
 	activityIndicatorView.hidden = YES;	
 }
 
--(void) adjustToolBarButtons {
-	if([self.lookupHistory canGoBack]) {
-		self.navigationItem.leftBarButtonItem = backButton;
-	} else {
-		self.navigationItem.leftBarButtonItem = returnToSearchButton;
-	}
-	
-	self.forwardButton.enabled = [self.lookupHistory canGoForward];
-}
+
+#pragma mark -
+#pragma mark RDict Request
 
 - (void) handleRdictRequest:(NSURL*) url {
-	if ([@"save" isEqualToString: [url host]]) {		
-		NSLog( @"Save called %@", [url host] );	
-		
-		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
-		NSString *selectedDefinition = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		
-		Card* card = [Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
-		[card release];
+	NSString *rdictMethod = [url host];
+	NSArray *paramaters = [[url query] componentsSeparatedByString: @"="];
+	NSString *parameter = [[paramaters objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-		/*
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.7];
-		cardAddedNote.alpha = 1.0;
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(showAlert)];
-		[UIView commitAnimations];
-		*/
-	} else if ( [[url host] hasPrefix:@"lookup"] ){
-		activityIndicatorView.hidden = NO;	
-		[activityIndicatorView startAnimating];
-
-		NSArray *strings = [[url query] componentsSeparatedByString: @"="];
-		NSString *query = [[strings objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		
-		self.title = query;
-		
-		WordEntry* entry = [wiktionary wordEntryByLemma:query];	
-		if (entry) {
-			[entry decorateDefinition];
-			
-			NSString *path = [[NSBundle mainBundle] bundlePath];
-			NSURL *baseURL = [NSURL fileURLWithPath:path];	
-			
-			[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
-			
-			[entry release];
-
-			if( [ @"lookup" isEqualToString: [url host]] ) {
-				NSURL* urlForHistory = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", query]];
-				[lookupHistory addHistory:urlForHistory];
-			}
-		} else {
-			//		[activityIndicatorView stopAnimating];
-			//		activityIndicatorView.hidden = YES;		
-			[webView stringByEvaluatingJavaScriptFromString:@"alert( \"Sorry, Vocabulator doesn't have a definition for that word.\" );"];
-		}	
+	if ([@"save" isEqualToString: rdictMethod]) {		
+		[self saveCard: parameter];
+	} else if ( [rdictMethod hasPrefix:@"lookup"] ){
+		[self lookUpDictionary: parameter lookupMethod: rdictMethod];
+	
 	}
+}
+
+- (void) saveCard: (NSString *) selectedDefinition  {
+	Card* card = [Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
+	[card release];
+	[self showSaveAlert];
+	
+}
+- (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod  {
+	[self startActivityAnimating];
+	
+	WordEntry* entry = [wiktionary wordEntryByLemma:aLemma];	
+	if (entry) {
+		self.title = aLemma;
+		
+		[entry decorateDefinition];
+		
+		NSString *path = [[NSBundle mainBundle] bundlePath];
+		NSURL *baseURL = [NSURL fileURLWithPath:path];	
+		
+		[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
+		
+		[entry release];
+		
+		if( [ @"lookup" isEqualToString: rdictMethod] ) {
+			NSURL* urlForHistory = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", aLemma]];
+			[lookupHistory addHistory:urlForHistory];
+		}
+	} else {
+		[self stopActivityAnimating];
+		
+		[webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"alert( \"Sorry, Vocabulator doesn't have a definition for \\\"%@\\\".\" );", aLemma]];
+	}
+	
 }
 
 #pragma mark -
+#pragma mark LookupHistory
+-(void) adjustToolBarButtons {
+	self.navigationItem.leftBarButtonItem = [lookupHistory canGoBack] ? backButton : returnToSearchButton;
+	self.forwardButton.enabled = [self.lookupHistory canGoForward];
+}
 
 - (void)handleGoBackClick:(id)sender {
 	NSLog( @"DVC.handleGoBackClick" );
@@ -187,21 +197,32 @@
 }
 
 #pragma mark -
+#pragma mark Animation, Alert
 
--(void) showAlert {
+-(void) showSaveAlert {
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.7];
 	cardAddedNote.alpha = 0.9;
 	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(fadeAlertOut)];
+	[UIView setAnimationDidStopSelector:@selector(fadeOutSaveAlert)];
 	[UIView commitAnimations];
 }
 
--(void) fadeAlertOut {
+-(void) fadeOutSaveAlert {
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	cardAddedNote.alpha = 0;
 	[UIView commitAnimations];
+}
+
+- (void) startActivityAnimating {
+	activityIndicatorView.hidden = NO;	
+	[activityIndicatorView startAnimating];
+}
+
+- (void) stopActivityAnimating {
+	[activityIndicatorView stopAnimating];
+	activityIndicatorView.hidden = YES;	
 }
 
 @end
