@@ -61,7 +61,7 @@
 	
 	lookupHistory = [[LookupHistory alloc] init];
 
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", lemma]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookup/?lemma=%@", lemma]];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url];
 	[webView loadRequest:request];
 }
@@ -113,6 +113,7 @@
 		[self startActivityAnimating];
 		[lookupHistory addHistory:url];
 	}
+
 	return YES;
 }
 
@@ -180,8 +181,8 @@
 #pragma mark -
 #pragma mark LookupHistory
 -(void) adjustToolBarButtons {
-	self.navigationItem.leftBarButtonItem = [lookupHistory canGoBack] ? backButton : returnToSearchButton;
-	self.forwardButton.enabled = [self.lookupHistory canGoForward];
+ 	self.navigationItem.leftBarButtonItem = [lookupHistory canGoBack] ? backButton : returnToSearchButton;
+	self.forwardButton.enabled = [lookupHistory canGoForward];
 }
 
 - (void)handleGoBackClick:(id)sender {

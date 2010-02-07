@@ -14,7 +14,6 @@
 	NSMutableString *definitionHtml;
 }
 
-
 @property (nonatomic, retain) NSString *lemma;
 @property (nonatomic, retain) NSMutableString *definitionHtml;
 
