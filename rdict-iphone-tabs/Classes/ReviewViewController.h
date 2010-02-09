@@ -13,7 +13,8 @@
 @interface ReviewViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
 	ReviewSessionController* reviewSessionController;
 	IBOutlet UITableView* tableView;
-
+	IBOutlet UIView* sparklineView;
+	
 	NSArray *sectionTitles;
 	NSArray *schedules;
 	NSArray *cardsForReview;
@@ -24,6 +25,7 @@
 
 @property (nonatomic, retain) ReviewSessionController* reviewSessionController;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) IBOutlet UIView* sparklineView;
 @property (nonatomic, retain) NSArray *sectionTitles;
 @property (nonatomic, retain) NSArray *schedules;
 @property (nonatomic, retain) NSArray *cardsForReview;

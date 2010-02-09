@@ -10,7 +10,7 @@
 #import "ReviewViewController.h"
 #import "ReviewSessionController.h"
 #import "Card.h"
-
+#import "CKSparkline.h"
 #import "SLStmt.h"
 
 @interface ReviewViewController()
@@ -29,6 +29,7 @@
 @implementation ReviewViewController
 @synthesize reviewSessionController;
 @synthesize tableView;
+@synthesize sparklineView;
 @synthesize sectionTitles;
 @synthesize schedules;
 @synthesize cardsForReview;
@@ -50,6 +51,7 @@
 	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercises", @"Statistics", @"Upcoming Review Sessions", nil];
 							
 	[self loadData];
+	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -170,19 +172,74 @@
 	return cell;
 }
 
+#define STAT_CELL_LABEL_TAG 1
+#define STAT_CELL_COUNT_TAG 2
+#define STAT_CELL_SPARKLINE 3
+
 - (UITableViewCell *) cellForStatisticsSectionRowAt:(NSInteger) row {
 	static NSString *CellIdentifier = @"StatisticsCell";
     
+	UILabel *mainLabel, *secondLabel;
+	CKSparkline *sparkline;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+
+		mainLabel = [[[UILabel alloc] initWithFrame:CGRectMake(30.0, 0.0, 220.0, 50.0)] autorelease];
+        mainLabel.tag = STAT_CELL_LABEL_TAG;
+        mainLabel.font = [UIFont boldSystemFontOfSize:18.0];
+        mainLabel.textAlignment = UITextAlignmentLeft;
+        mainLabel.textColor = [UIColor blackColor];
+        mainLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:mainLabel];
+		
+        secondLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100.0, 15.0, 120.0, 25.0)] autorelease];
+        secondLabel.tag = STAT_CELL_COUNT_TAG;
+        secondLabel.font = [UIFont systemFontOfSize:16.0];
+        secondLabel.textAlignment = UITextAlignmentRight;
+        secondLabel.textColor = [UIColor darkGrayColor];
+        secondLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:secondLabel];
+		
+		sparkline = [[[CKSparkline alloc]
+								  initWithFrame:CGRectMake(130, 5.0, 100.0, 30.0)] autorelease];
+		sparkline.tag = STAT_CELL_SPARKLINE;
+		[cell.contentView addSubview:sparkline];
+	} else {
+		mainLabel = (UILabel *)[cell.contentView viewWithTag:STAT_CELL_LABEL_TAG];
+        secondLabel = (UILabel *)[cell.contentView viewWithTag:STAT_CELL_COUNT_TAG];
+		sparkline = (CKSparkline *)[cell.contentView viewWithTag:STAT_CELL_SPARKLINE];
+	}
     
 	if ( 0 == row ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Total Cards: %d", totalCount];
+		mainLabel.text = @"Total Cards";
+		secondLabel.text = [NSString stringWithFormat:@"%d", totalCount];
+		sparkline.data = [NSArray arrayWithObjects:
+						  [NSNumber numberWithFloat:2.0],
+						  [NSNumber numberWithFloat:4.5],
+						  [NSNumber numberWithFloat:5.2],
+						  [NSNumber numberWithFloat:7.1],
+						  [NSNumber numberWithFloat:2.3],
+						  [NSNumber numberWithFloat:3.9],
+						  [NSNumber numberWithFloat:1.2],
+						  nil];
 	} else if ( 1 == row ) {
-		cell.textLabel.text = [NSString stringWithFormat:@"Your Score: %d", score];
+		mainLabel.text = @"Your Score";
+		secondLabel.text = [NSString stringWithFormat:@"%d", score];
+		sparkline.data = [NSArray arrayWithObjects:
+						  [NSNumber numberWithFloat:2.0],
+						  [NSNumber numberWithFloat:4.5],
+						  [NSNumber numberWithFloat:5.2],
+						  [NSNumber numberWithFloat:7.1],
+						  [NSNumber numberWithFloat:2.3],
+						  [NSNumber numberWithFloat:3.9],
+						  [NSNumber numberWithFloat:1.2],
+						  nil];
 	}
+	
+	
+	
 	return cell;
 }
 

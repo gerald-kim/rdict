@@ -222,6 +222,9 @@
 		EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
 		EF2F34031061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
 		EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
+		EF5071311120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
+		EF5071321120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
+		EF5071331120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
 		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
 		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
@@ -523,6 +526,8 @@
 		EF2F33F31061132C00ADFFD5 /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HistoryView.xib; path = Resources/HistoryView.xib; sourceTree = "<group>"; };
 		EF2F34011061146100ADFFD5 /* HistoryViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryViewControler.h; path = Classes/HistoryViewControler.h; sourceTree = "<group>"; };
 		EF2F34021061146100ADFFD5 /* HistoryViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewControler.m; path = Classes/HistoryViewControler.m; sourceTree = "<group>"; };
+		EF50712F1120D2210017B0FC /* CKSparkline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKSparkline.h; path = Classes/CKSparkline.h; sourceTree = "<group>"; };
+		EF5071301120D2210017B0FC /* CKSparkline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKSparkline.m; path = Classes/CKSparkline.m; sourceTree = "<group>"; };
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
@@ -744,6 +749,8 @@
 				EFEA07D70FDFF4F900490192 /* tokyocabinet */,
 				32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				EF50712F1120D2210017B0FC /* CKSparkline.h */,
+				EF5071301120D2210017B0FC /* CKSparkline.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1453,6 +1460,7 @@
 				EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
 				1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */,
 				1F76491910EFB9D0009A90AD /* StudyLog.m in Sources */,
+				EF5071311120D2210017B0FC /* CKSparkline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,6 +1507,7 @@
 				EF288FA5111AE39900BB5C83 /* CardEditViewController.m in Sources */,
 				EF288FA6111AE39900BB5C83 /* LookupHistory.m in Sources */,
 				EF288FA7111AE39900BB5C83 /* StudyLog.m in Sources */,
+				EF5071331120D2210017B0FC /* CKSparkline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1545,6 +1554,7 @@
 				EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
 				1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */,
 				1F76491810EFB9D0009A90AD /* StudyLog.m in Sources */,
+				EF5071321120D2210017B0FC /* CKSparkline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
