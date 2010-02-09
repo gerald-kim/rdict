@@ -16,10 +16,12 @@ from wiktionary_filter import *
 WORD_DB = 'word.db'
 FILE_DIR = 'word.db.files'
 
+
 def setup_test_env():
     global WORD_DB, FILE_DIR
     WORD_DB = 'tests.db'
     FILE_DIR = 'tests.db.files'
+
 
 class WordManager:
     def connect( self ):

@@ -115,14 +115,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	NSNumber *number = [sectionInfo valueForKey:@"sectionCount"];
-	NSLog( @"numberOfSections: %@", number );
+//	NSLog( @"numberOfSections: %@", number );
 	return [number intValue];	
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	NSString* title = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
 
-	NSLog( @"titleForHeaderInSection: %@", title );
+//	NSLog( @"titleForHeaderInSection: %@", title );
 	return title;
 }
 
@@ -130,7 +130,7 @@
 	NSString *sectionTitle = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
 	NSNumber *number = [sectionInfo valueForKey:sectionTitle];
 	
-	NSLog( @"numberOfRowsInSection: %@", number );
+//	NSLog( @"numberOfRowsInSection: %@", number );
 
 	return [number intValue];
 }
@@ -138,13 +138,15 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
 	//	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
-	
+
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
-	
-	History* history = [histories objectAtIndex:indexPath.row];
+
+	NSMutableArray *historyArray = [sectionInfo objectForKey:[NSString stringWithFormat:@"H%d", indexPath.section]];
+
+	History* history = [historyArray objectAtIndex:indexPath.row];
 	cell.textLabel.text = history.lemma;
 		
 	return cell;

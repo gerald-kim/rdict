@@ -43,13 +43,24 @@ DECLARE_PROPERTIES (
 	NSString* previousDateString = NULL;
 	int count = 0;
 	int sectionIndex = 0;
+	NSString* historyKey = [NSString stringWithFormat:@"H%d", sectionIndex];
+	NSMutableArray* historyArray = nil;
 	for( History* h in histories ) {
 		NSString* dateString = [dateFormatter stringFromDate:h.created];
-		if (! [dateString isEqual:previousDateString]) {
+		
+		if (![dateString isEqual:previousDateString]) {
 			count = 0;
 			[d setValue:dateString forKey:[NSString stringWithFormat:@"%d", sectionIndex]];
+			historyKey = [NSString stringWithFormat:@"H%d", sectionIndex];
+			historyArray = [[NSMutableArray alloc]init];
+			[d setValue:historyArray forKey:historyKey];
+			
 			sectionIndex++;
+			
 		}  
+		historyArray = [d objectForKey:historyKey];
+		[historyArray addObject:h];
+		NSLog( @"History %@", historyArray );
 		count++;
 		[d setValue:[NSNumber numberWithInt:count] forKey:dateString];
 		previousDateString = dateString;

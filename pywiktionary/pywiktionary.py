@@ -21,7 +21,7 @@ class DictionaryCursor:
         self.backword_index_cursor = dictionary.index_db.curnew()
         self.backword_index_cursor.first()
         self.tmp_index_cursor = dictionary.index_db.curnew()
-    
+
     def __del__( self ):
         del self.forward_index_cursor
         del self.backword_index_cursor
