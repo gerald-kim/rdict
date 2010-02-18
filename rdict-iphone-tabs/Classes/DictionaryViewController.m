@@ -64,6 +64,11 @@
 	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookup/?lemma=%@", lemma]];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url];
 	[webView loadRequest:request];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+										selector:@selector(clipboardChanged:)
+										name:UIPasteboardChangedNotification object:nil];
+	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -76,6 +81,8 @@
 	
 	[lookupHistory release];
 	lookupHistory = nil;
+	
+	//[[NSNotification defaultCenter] removeObserver:<#(id)observer#>
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -122,11 +129,53 @@
 	
 	//TODO change title when connected to external site
 	//self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//	NSString *url = [[webView.request URL] absoluteString];
+//	if( [url hasPrefix:@"http://m.engdic.daum.net/dicen/mobile_search.do"] ) {
+//		NSLog(@"Daum Dictionary, %@", [webView.request URL] );
+//		[webView stringByEvaluatingJavaScriptFromString:@"document.write('Hello!')"];
+//	}
 	
 	[activityIndicatorView stopAnimating];
 	activityIndicatorView.hidden = YES;	
 }
 
+#pragma mark -
+#pragma mark Clipboard
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+//	[self becomeFirstResponder];
+	NSLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
+	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+	NSLog(@"%@", pasteboard.string);
+
+	if (action == @selector(copy:)) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+- (void)clipboardChanged:(NSNotification *)notification
+{
+	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+	NSLog(@"DVC.Clipboardchanged : %@", pasteboard.string);
+	
+	UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Confirm"];
+	[alert setMessage:@"Save?"];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert show];
+	[alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSLog(@"DVC.clickButtonAtInde");
+	if (buttonIndex == 1) {
+		[self saveCard:[UIPasteboard generalPasteboard].string];
+	}
+}
 
 #pragma mark -
 #pragma mark RDict Request
