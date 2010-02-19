@@ -14,8 +14,8 @@
 
 @interface DictionaryViewController()
 
-- (void) saveCard: (NSString *) selectedDefinition;
-- (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod;
+-(void) saveCard: (NSString *) selectedDefinition;
+-(void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod;
 	
 -(void) showSaveAlert;
 -(void) fadeOutSaveAlert;
@@ -127,13 +127,10 @@
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
 	[self adjustToolBarButtons];
 	
-	//TODO change title when connected to external site
-	//self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-//	NSString *url = [[webView.request URL] absoluteString];
-//	if( [url hasPrefix:@"http://m.engdic.daum.net/dicen/mobile_search.do"] ) {
-//		NSLog(@"Daum Dictionary, %@", [webView.request URL] );
-//		[webView stringByEvaluatingJavaScriptFromString:@"document.write('Hello!')"];
-//	}
+	NSString *url = [[webView.request URL] absoluteString];
+	if( [url hasPrefix:@"http"] ) {
+		self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	}
 	
 	[activityIndicatorView stopAnimating];
 	activityIndicatorView.hidden = YES;	
