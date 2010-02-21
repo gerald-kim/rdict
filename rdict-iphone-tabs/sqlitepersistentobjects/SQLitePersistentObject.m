@@ -1184,7 +1184,6 @@ NSMutableArray *checkedTables;
 		q = [q stringByAppendingFormat:@" AND %@", queryString];
 		[queryString release];
 	}
-
 	return [cls findByCriteria:q];
 }
 

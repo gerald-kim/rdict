@@ -68,7 +68,7 @@
 	NSArray* list = [History findRecents];	
 	NSMutableDictionary* d = [History buildHistorySectionInfo:list];
 
-	STAssertEquals( [d count], (NSUInteger) 13, nil );
+	STAssertEquals( [d count], (NSUInteger) 19, nil );
 	STAssertEquals( [d valueForKey:@"sectionCount"], [NSNumber numberWithInt:6], nil );
 	
 	NSString* firstSectionTitle = [d objectForKey:@"0"];

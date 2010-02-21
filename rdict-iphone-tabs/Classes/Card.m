@@ -237,6 +237,8 @@ DECLARE_PROPERTIES (
 	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
 	self.studied = [[NSDate alloc] init];
 	
+	StudyLog* lastLog = [StudyLog lastStudyLogOfCard:self];
+	[lastLog unsetLastLog];
 	[[[StudyLog alloc]initWithCard:self] save];
 
 	[self save];

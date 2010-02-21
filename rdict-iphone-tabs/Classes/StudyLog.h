@@ -13,14 +13,17 @@
 @interface StudyLog : SQLitePersistentObject {
 	Card* card;
 	NSDate* studied;
-
 	NSInteger grade;	
+	BOOL lastLog;
 }
 
 @property (nonatomic, retain) Card* card;
 @property (nonatomic, retain) NSDate* studied;
 @property NSInteger grade;
+@property BOOL lastLog;
 
++ (StudyLog*) lastStudyLogOfCard:(Card *)card;
 - (id) initWithCard:(Card *)theCard;
+- (void) unsetLastLog;
 
 @end

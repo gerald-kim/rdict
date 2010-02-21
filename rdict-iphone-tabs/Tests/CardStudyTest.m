@@ -10,6 +10,7 @@
 #import "SQLiteInstanceManager.h"
 #import "GTMSenTestCase.h"
 #import "Card.h"
+#import "StudyLog.h"
 
 @interface CardStudyTest : SenTestCase {
 	
@@ -65,6 +66,20 @@
 	card.easiness = 1.31;
 	[card study:3];
 	STAssertEquals( 1.3, card.easiness, nil );
+}
+
+-(void) testStudyLogShouldSaved {
+	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	[card study:3];
+	
+	STAssertEquals( [StudyLog count], 1, nil );
+	StudyLog* firstLog = [StudyLog lastStudyLogOfCard:card];
+	STAssertTrue( firstLog.lastLog, nil );
+	
+	[card study:4];
+	StudyLog* secondLog = [StudyLog lastStudyLogOfCard:card];
+	STAssertFalse( firstLog.lastLog, nil );
+	STAssertTrue( secondLog.lastLog, nil );
 }
 
 @end
