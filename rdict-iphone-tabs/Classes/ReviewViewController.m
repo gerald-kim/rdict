@@ -12,6 +12,7 @@
 #import "Card.h"
 #import "CKSparkline.h"
 #import "SLStmt.h"
+#import "StatisticsManager.h"
 
 @interface ReviewViewController()
 
@@ -215,27 +216,11 @@
 	if ( 0 == row ) {
 		mainLabel.text = @"Total Cards";
 		secondLabel.text = [NSString stringWithFormat:@"%d", totalCount];
-		sparkline.data = [NSArray arrayWithObjects:
-						  [NSNumber numberWithFloat:2.0],
-						  [NSNumber numberWithFloat:4.5],
-						  [NSNumber numberWithFloat:5.2],
-						  [NSNumber numberWithFloat:7.1],
-						  [NSNumber numberWithFloat:2.3],
-						  [NSNumber numberWithFloat:3.9],
-						  [NSNumber numberWithFloat:1.2],
-						  nil];
+		sparkline.data = [StatisticsManager cardCountsOfRecentDay:30];
 	} else if ( 1 == row ) {
 		mainLabel.text = @"Your Score";
 		secondLabel.text = [NSString stringWithFormat:@"%d", score];
-		sparkline.data = [NSArray arrayWithObjects:
-						  [NSNumber numberWithFloat:2.0],
-						  [NSNumber numberWithFloat:4.5],
-						  [NSNumber numberWithFloat:5.2],
-						  [NSNumber numberWithFloat:7.1],
-						  [NSNumber numberWithFloat:2.3],
-						  [NSNumber numberWithFloat:3.9],
-						  [NSNumber numberWithFloat:1.2],
-						  nil];
+		sparkline.data = [StatisticsManager scoreAveragesOfRecentDay:30];
 	}
 	
 	

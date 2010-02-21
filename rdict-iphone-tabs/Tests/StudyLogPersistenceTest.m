@@ -23,6 +23,7 @@
 	STAssertEquals( expected.card, actual.card, nil );
 	STAssertEquals( expected.studied, actual.studied, nil );
 	STAssertEquals( expected.grade, actual.grade, nil );
+	STAssertEquals( expected.lastLog, actual.lastLog, nil );
 }	
 
 -(void) testCardCRD {
@@ -30,12 +31,16 @@
 	[card study:3];
 	
 	StudyLog* expected = [[StudyLog alloc] initWithCard:card];
+	STAssertTrue( expected.lastLog, nil );
 	
 	STAssertFalse( [expected existsInDB], nil );
 	[expected save];
 	STAssertTrue( [expected existsInDB], nil );
 	
 	StudyLog* actual = (StudyLog*) [StudyLog findByPK:expected.pk];
+	[self assertStudyLogEquals:expected actual:actual];
+	
+	actual = [StudyLog lastStudyLogOfCard:card];
 	[self assertStudyLogEquals:expected actual:actual];
 	
 	//	Card* actual = (Card*) [Card findByPK:expected.pk];

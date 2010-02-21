@@ -234,7 +234,7 @@ unsigned int (*_tc_getcrc)(const char *, int) = NULL;
 #if TCUSEBZIP
 
 
-#include <bzlib.h>
+#include "bzlib.h"
 
 #define BZIPBUFSIZ     8192
 
