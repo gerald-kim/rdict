@@ -25,13 +25,13 @@
 
 	for (int i = 0; i < 10; i++) {
 		SLStmt *stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:@"INSERT INTO statistics VALUES (date('now', '-%d days', 'localtime'), %d, 0)"
-						  , i, i]];
+						  , i*2, (10-i)]];
 		[stmt step];
 		[stmt close];
 	}
 	
-	NSArray* cardCounts = [StatisticsManager cardCountsOfRecentDay:10];
-	STAssertEquals( [cardCounts count], (NSUInteger) 10, nil );
+	NSArray* cardCounts = [StatisticsManager cardCountsOfRecentDay:20];
+	STAssertEquals( [cardCounts count], (NSUInteger) 20, nil );
 }
 
 @end

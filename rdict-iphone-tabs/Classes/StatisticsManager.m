@@ -42,15 +42,34 @@
 }
 
 +(NSArray*) factors:(NSString*) factor OfRecentDay:(NSUInteger) days {
-	NSMutableArray* array = [[NSMutableArray alloc] init];
+	NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
 	
-	NSString* sql = [NSString stringWithFormat:@"SELECT pk, %@ FROM statistics WHERE pk > date('now', '-%d days', 'localtime') order by pk", factor, days];
+	NSString* sql = [NSString stringWithFormat:@"SELECT pk, %@ FROM statistics WHERE pk > date('now', '-%d days', 'localtime')", factor, days];
 	SLStmt* stmt = [SLStmt stmtWithSql:sql];
 
 	while ([stmt step]) {
-		[array addObject: [NSNumber numberWithDouble:[[stmt stringValue:1] doubleValue]]];
+		[dict setObject:[NSNumber numberWithDouble:[[stmt stringValue:1] doubleValue]] forKey:[stmt stringValue:0]];
 	}
 	[stmt close];
+	
+	NSMutableArray* array = [[NSMutableArray alloc] init];
+	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	
+	NSNumber* lastValue = [NSNumber numberWithInt:0];
+	for( int i = days - 1; i >= 0; i-- ) {
+		NSDate* date = [NSDate dateWithTimeIntervalSinceNow:-i*60*60*24];
+		NSNumber* value = [dict valueForKey:[dateFormatter stringFromDate:date]];
+		if( nil == value ) {
+			[array addObject:lastValue];
+		} else {
+			[array addObject:value];
+			lastValue = value;
+		}
+	}
+	NSLog(@"dict: %@", dict);
+	NSLog(@"array: %@", array);
+	
 	return array;
 }
 
