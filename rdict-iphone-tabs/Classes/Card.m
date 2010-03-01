@@ -96,7 +96,7 @@ DECLARE_PROPERTIES (
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit {
 	SLStmt* stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:
 				   @"select date( scheduled ), count(*) count " 
-					"from card where scheduled > date('now', 'localtime', '+1 day') "
+					"from card WHERE deleted is null AND scheduled > date('now', 'localtime', '+1 day') "
 					"group by date( scheduled ) limit %d", limit]];
 									
 	NSMutableArray *scheduleArray = [NSMutableArray array];
@@ -253,6 +253,8 @@ DECLARE_PROPERTIES (
 
 - (void) deleteObject {
 	self.deleted = [[NSDate alloc] init];
+	[super save];
+	[StatisticsManager updateStatisticsOfToday];		
 }
 
 /*

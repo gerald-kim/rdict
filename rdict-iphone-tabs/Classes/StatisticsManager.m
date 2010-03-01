@@ -26,9 +26,9 @@
 +(void) updateStatisticsOfToday {
 	[StatisticsManager createTable];
 
-	SLStmt* stmt = [SLStmt stmtWithSql:@"REPLACE INTO statistics (pk, card_count) SELECT date('now', 'localtime') pk, count(*) card_count FROM card"];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"REPLACE INTO statistics (pk, card_count) SELECT date('now', 'localtime') pk, count(*) card_count FROM card WHERE deleted is null"];
 	[stmt step];
-	[stmt prepareSql:@"UPDATE statistics SET score_average = (SELECt avg(grade*20) FROM card ) WHERE pk = date('now', 'localtime')"];
+	[stmt prepareSql:@"UPDATE statistics SET score_average = (SELECt avg(grade*20) FROM card WHERE deleted is null) WHERE pk = date('now', 'localtime')"];
 	[stmt step];
 	[stmt close];	
 }
@@ -67,8 +67,8 @@
 			lastValue = value;
 		}
 	}
-	NSLog(@"dict: %@", dict);
-	NSLog(@"array: %@", array);
+//	NSLog(@"dict: %@", dict);
+//	NSLog(@"array: %@", array);
 	
 	return array;
 }
