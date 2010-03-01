@@ -107,6 +107,15 @@
 	return [sectionTitles objectAtIndex:section];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+	if ( 0 == section ) {
+		return @"You can review ~~~ ~~~ bhla bla";
+	} else {
+		return nil;
+	}
+}
+
 #pragma mark NumberOfSections 
 
 // Customize the number of rows in the table view.
@@ -168,8 +177,8 @@
 		return cell;
 	}
 	
-	cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", [Card messageForReview], [Card countMessageForReview]];
-	
+	cell.textLabel.text = [Card messageForReview];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [Card countMessageForReview]];
 	return cell;
 }
 
@@ -233,14 +242,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
 
 	if ( [schedules count] > 0 ) {
 		NSArray* scheduleArray = [schedules objectAtIndex:row];	
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@ %@", [scheduleArray objectAtIndex:0], 
-																		[scheduleArray objectAtIndex:1], 
-																		[self getCardString:[[scheduleArray objectAtIndex:1] intValue]]];		
+		cell.textLabel.text = [scheduleArray objectAtIndex:0];
+		cell.detailTextLabel.text = [scheduleArray objectAtIndex:1];
 	} else {
 		cell.textLabel.text = @"None scheduled";
 	}
