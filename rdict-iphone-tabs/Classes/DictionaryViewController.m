@@ -31,7 +31,6 @@
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize lookupHistory;
-@synthesize activityIndicatorView;
 @synthesize returnToSearchButton;
 @synthesize backButton;
 @synthesize forwardButton;
@@ -56,19 +55,20 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {	
+	NSLog( @"DVC.viewWillAppear lemma[%@]", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] );  
+
 	[super viewWillAppear:animated];
 	self.navigationController.navigationBarHidden = NO;
 	
 	lookupHistory = [[LookupHistory alloc] init];
 
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookup/?lemma=%@", lemma]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookup/?lemma=%@", [lemma stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url];
 	[webView loadRequest:request];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 										selector:@selector(clipboardChanged:)
 										name:UIPasteboardChangedNotification object:nil];
-	
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -132,18 +132,26 @@
 		self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	}
 	
-	[activityIndicatorView stopAnimating];
-	activityIndicatorView.hidden = YES;	
+	[self stopActivityAnimating];
+}
+
+- (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error{
+	[self stopActivityAnimating];
+
+    UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Connection Error"
+						  message:@"You have a connection failure. You have to get on a wi-fi or a cell network to get a internet connection."
+						  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 #pragma mark -
 #pragma mark Clipboard
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-//	[self becomeFirstResponder];
-	NSLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
-	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-	NSLog(@"%@", pasteboard.string);
+//	NSLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
+//	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
 
 	if (action == @selector(copy:)) {
 		return YES;
@@ -154,6 +162,10 @@
 
 - (void)clipboardChanged:(NSNotification *)notification
 {
+	if( saveDialogOpened ) {
+		return;
+	}
+	saveDialogOpened = YES;
 	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
 	NSLog(@"DVC.Clipboardchanged : %@", pasteboard.string);
 	
@@ -168,24 +180,25 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSLog(@"DVC.clickButtonAtInde");
+	NSLog(@"DVC.clickedButtonAtIndex");
 	if (buttonIndex == 1) {
 		[self saveCard:[UIPasteboard generalPasteboard].string];
 	}
+	saveDialogOpened = NO;
 }
 
 #pragma mark -
 #pragma mark RDict Request
-
 - (void) handleRdictRequest:(NSURL*) url {
 	NSString *rdictMethod = [url host];
 	NSArray *paramaters = [[url query] componentsSeparatedByString: @"="];
 	NSString *parameter = [[paramaters objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
+	NSLog( @"DVC.handleRdictRequest method[%@], parameter[%@]", rdictMethod, parameter );  
 	if ([@"save" isEqualToString: rdictMethod]) {		
 		[self saveCard: parameter];
 	} else if ( [rdictMethod hasPrefix:@"lookup"] ){
-		[self lookUpDictionary: parameter lookupMethod: rdictMethod];
+		[self lookUpDictionary:parameter lookupMethod: rdictMethod];
 	
 	}
 }
@@ -213,7 +226,7 @@
 		[entry release];
 		
 		if( [ @"lookup" isEqualToString: rdictMethod] ) {
-			NSURL* urlForHistory = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", aLemma]];
+			NSURL* urlForHistory = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookuphistory/?lemma=%@", [aLemma stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]];
 			[lookupHistory addHistory:urlForHistory];
 		}
 	} else {
@@ -233,7 +246,6 @@
 
 - (void)handleGoBackClick:(id)sender {
 	NSLog( @"DVC.handleGoBackClick" );
-	
 	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goBack]];
 	[webView loadRequest:request];
 }
@@ -263,13 +275,15 @@
 }
 
 - (void) startActivityAnimating {
-	activityIndicatorView.hidden = NO;	
-	[activityIndicatorView startAnimating];
+//	activityIndicatorView.hidden = NO;	
+//	[activityIndicatorView startAnimating];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void) stopActivityAnimating {
-	[activityIndicatorView stopAnimating];
-	activityIndicatorView.hidden = YES;	
+//	[activityIndicatorView stopAnimating];
+//	activityIndicatorView.hidden = YES;	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

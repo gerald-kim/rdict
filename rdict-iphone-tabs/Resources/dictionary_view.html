@@ -27,7 +27,7 @@
 <script type="text/javascript" src="jquery-1.3.2.js"></script>
 <script type="text/javascript">
     function s( obj ) {
-        window.location.href = 'rdict://lookup?lemma=' + encodeURIComponent( $(obj).attr('href') ); 
+        window.location.href = 'rdict://lookup?lemma=' + $(obj).attr('href'); 
         return false;
     }
     
@@ -38,7 +38,7 @@
         definition_li.children('dl').empty();
         definition = definition_li.text();
         
-        window.location = 'rdict://save?definition=' + decodeURIComponent(definition);
+        window.location = 'rdict://save?definition=' + definition;
 		//alert( 'This word is scheduled for review.' );
     }
 </script>

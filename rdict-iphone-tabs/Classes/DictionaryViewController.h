@@ -13,7 +13,6 @@
 
 @interface DictionaryViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView* webView;
-	IBOutlet UIActivityIndicatorView *activityIndicatorView;
 	IBOutlet UIImageView* cardAddedNote;
 	
 	UIBarButtonItem* returnToSearchButton;
@@ -23,13 +22,13 @@
 	NSString* lemma;
 	Wiktionary* wiktionary;
 	LookupHistory* lookupHistory;
+	bool saveDialogOpened;
 }
 
 @property (nonatomic, retain) IBOutlet UIWebView* webView;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* returnToSearchButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* backButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* forwardButton;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, retain) IBOutlet UIImageView* cardAddedNote;
 @property (nonatomic, retain) NSString* lemma;
 @property (nonatomic, retain) Wiktionary* wiktionary;
