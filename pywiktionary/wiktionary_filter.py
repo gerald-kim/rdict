@@ -111,7 +111,7 @@ class WiktionaryFilter:
             'span' : [
                 {'class':'editsection'},
                 {'class':'interProject'},
-            ],
+                ],
             'div' : [
                 {'id':'rank'},
                 {'class':'noprint'},
@@ -119,8 +119,15 @@ class WiktionaryFilter:
                 {'class':'floatright'},
                 {'class':'catlinks'},
                 {'class':re.compile( '.+tright' )}
-            ],
-        }
+                ],
+            'a' : [
+                {'class':'image'}
+                ],
+            'table' : [
+                {'class':'gallery'},
+                {'class':'gallery2'}
+                ]
+            }
 
         for tag in ELEMENTS.keys():
             attrs = ELEMENTS[tag]

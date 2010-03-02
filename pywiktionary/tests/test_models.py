@@ -80,7 +80,7 @@ class WordTest( unittest.TestCase ):
         word = Word( u'word' )
 
         file_dir = word.get_file_dir();
-        print file_dir
+        #print file_dir
         self.assertTrue( file_dir.endswith( 'tests.db.files/3c/bc' ) )
 
     def longtest_page_retrival( self ):
