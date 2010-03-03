@@ -40,12 +40,15 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	[self showCardFrontView];
 }
 
-- (void)viewDidUnload {
-	[cardFrontViewController release];
-	[cardBackViewController release];
-	
+- (void)viewDidDisappear:(BOOL)animated {
 	[scheduledCards release]; scheduledCards = nil;
 	[uncertainCards release];
+	
+}
+
+- (void)viewDidUnload {
+	[cardFrontViewController release];
+	[cardBackViewController release];	
 }
 
 - (void)didReceiveMemoryWarning {

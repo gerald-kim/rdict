@@ -157,14 +157,14 @@ DECLARE_PROPERTIES (
 	if ( scheduledCount == 0 && todayCount == 0 ) {
 		return nil;
 	}
-	NSMutableString* criteria = [[NSMutableString alloc] init];
+	NSMutableString* criteria = [NSMutableString string];
 	if ( scheduledCount > 0 ) {
 		[criteria appendString:[Card scheduledCardCriteria]];
 	} else if ( todayCount > 0 ) {
 		[criteria appendString:[Card todayCardCriteria]];
 	}
 	[criteria appendFormat:@" order by random() limit %d", REVIEW_LIMIT];
-
+	
 	return [Card findByCriteria:criteria];
 }
 
@@ -194,8 +194,8 @@ DECLARE_PROPERTIES (
 	self.finalGrade = 0;
 	
 	//TODO - ignore time parts of scheduled
-	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];	
-	self.created = [[NSDate alloc] init];
+	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];	
+	self.created = [NSDate date];
 	self.studied = nil;
 	self.deleted = nil;
 	
@@ -235,8 +235,8 @@ DECLARE_PROPERTIES (
 		self.interval = self.interval * self.easiness;
 	}
 	
-	self.scheduled = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
-	self.studied = [[NSDate alloc] init];
+	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
+	self.studied = [NSDate date];
 	
 	StudyLog* lastLog = [StudyLog lastStudyLogOfCard:self];
 	[lastLog unsetLastLog];
@@ -246,13 +246,13 @@ DECLARE_PROPERTIES (
 }
 
 - (void) save {
-	self.updated = [[NSDate alloc] init];
+	self.updated = [NSDate date];
 	[super save];
 	[StatisticsManager updateStatisticsOfToday];	
 }
 
 - (void) deleteObject {
-	self.deleted = [[NSDate alloc] init];
+	self.deleted = [NSDate date] ;
 	[super save];
 	[StatisticsManager updateStatisticsOfToday];		
 }

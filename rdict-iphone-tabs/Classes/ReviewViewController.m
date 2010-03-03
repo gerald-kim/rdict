@@ -203,11 +203,15 @@
 	if ( 0 == row ) {
 		cell.textLabel.text = @"Total Cards";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", totalCount];
-		sparkline.data = [StatisticsManager cardCountsOfRecentDay:30];
+		NSArray* data = [StatisticsManager cardCountsOfRecentDay:30];
+		sparkline.data = data;
+		[data release];
 	} else if ( 1 == row ) {
 		cell.textLabel.text = @"Your Score";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", score];
-		sparkline.data = [StatisticsManager scoreAveragesOfRecentDay:30];
+		NSArray* data = [StatisticsManager scoreAveragesOfRecentDay:30];
+		sparkline.data = data;
+		[data release];
 	}
 	
 	return cell;

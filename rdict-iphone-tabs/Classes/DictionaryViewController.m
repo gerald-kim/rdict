@@ -215,6 +215,7 @@
 	WordEntry* entry = [wiktionary wordEntryByLemma:aLemma];	
 	if (entry) {
 		self.title = aLemma;
+		self.lemma = aLemma;
 		
 		[entry decorateDefinition];
 		
