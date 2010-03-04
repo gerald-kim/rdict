@@ -53,7 +53,7 @@
 		[expected save];		
 	}	
 	
-	NSString* expected = [NSString stringWithFormat:@"%d card(s)", REVIEW_LIMIT];
+	NSString* expected = [NSString stringWithFormat:@"%d", REVIEW_LIMIT];
 	STAssertEqualStrings( expected, [Card countMessageForReview], nil );
 }
 
@@ -64,7 +64,7 @@
 		[expected save];		
 	}	
 	
-	NSString* expected = [NSString stringWithFormat:@"%d of %d cards", REVIEW_LIMIT, REVIEW_LIMIT+1];
+	NSString* expected = [NSString stringWithFormat:@"%d/%d", REVIEW_LIMIT, REVIEW_LIMIT+1];
 	STAssertEqualStrings( expected, [Card countMessageForReview], nil );
 }
 

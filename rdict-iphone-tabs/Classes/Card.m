@@ -142,9 +142,9 @@ DECLARE_PROPERTIES (
 	NSInteger count = scheduledCount > 0 ? scheduledCount : todayCount;
 	
 	if (count > REVIEW_LIMIT) {
-		return [NSString stringWithFormat:@"%d of %d cards", REVIEW_LIMIT, count];
+		return [NSString stringWithFormat:@"%d/%d", REVIEW_LIMIT, count];
 	} else if ( count > 0 ) {
-		return [NSString stringWithFormat:@"%d card(s)", count];
+		return [NSString stringWithFormat:@"%d", count];
 	} else {
 		return @"";
 	}
