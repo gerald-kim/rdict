@@ -40,6 +40,7 @@
 	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
+	[delegate updateReviewTab];
 	
 	self.returnToSearchButton = self.navigationItem.leftBarButtonItem;
 	

@@ -11,6 +11,7 @@
 #import "ReviewUnfinishedViewController.h"
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
+#import "RDictAppDelegate.h"
 
 @implementation ReviewSessionController
 
@@ -33,6 +34,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 		
 	uncertainCards = [[NSMutableArray alloc] init];
 	

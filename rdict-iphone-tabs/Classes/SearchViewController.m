@@ -25,6 +25,8 @@
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 //	[delegate release];
 	
 	[wiktionary fillIndexesByKey:@"a"];

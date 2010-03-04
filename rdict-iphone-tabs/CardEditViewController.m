@@ -7,6 +7,7 @@
 //
 
 #import "CardEditViewController.h"
+#import "RDictAppDelegate.h"
 
 
 @implementation CardEditViewController
@@ -25,6 +26,8 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	self.title = card.question;
 	self.cardAnswerView.text = card.answer;
 }

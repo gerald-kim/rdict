@@ -7,6 +7,7 @@
 //
 
 #import "CardListViewController.h"
+#import "RDictAppDelegate.h"
 
 
 @implementation CardListViewController
@@ -22,6 +23,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	
 	self.cards = [Card allObjects];
 	[self.tableView reloadData];

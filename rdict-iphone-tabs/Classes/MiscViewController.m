@@ -7,6 +7,7 @@
 //
 
 #import "MiscViewController.h"
+#import "RDictAppDelegate.h"
 
 
 @implementation MiscViewController
@@ -18,6 +19,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	listData = [[NSArray alloc] initWithObjects:@"About", @"Help", @"Card Management", nil];
 	
 }

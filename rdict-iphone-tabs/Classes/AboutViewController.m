@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "RDictAppDelegate.h"
 
 @implementation AboutViewController
 
@@ -15,6 +16,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	NSLog( @"HVC.viewWillAppear" );
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];	
 	

@@ -48,9 +48,9 @@
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
 	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercises", @"Statistics", @"Upcoming Review Sessions", nil];
-							
 	[self loadData];
 	
 }

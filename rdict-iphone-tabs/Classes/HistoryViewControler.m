@@ -8,6 +8,7 @@
 
 #import "HistoryViewControler.h"
 #import "History.h"
+#import "RDictAppDelegate.h"
 
 
 @implementation HistoryViewControler
@@ -26,6 +27,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	NSLog(@"HVC.viewWillAppear");
 	self.histories = [History findRecents];
 	self.sectionInfo = [History buildHistorySectionInfo:self.histories];

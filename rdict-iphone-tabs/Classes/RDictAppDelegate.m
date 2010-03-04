@@ -11,6 +11,7 @@
 #import "SearchViewController.h"
 #import "Wiktionary.h"
 #import "SQLiteInstanceManager.h"
+#import "Card.h"
 
 @implementation RDictAppDelegate
 
@@ -55,5 +56,16 @@
     [super dealloc];
 }
 
+- (void)updateReviewTab {
+	NSUInteger reviewCount = [Card countByScheduled];
+	NSString* title;
+	if ( 0 == reviewCount ) {
+		title = @"Review";
+	} else {
+		title = [NSString stringWithFormat:@"Review(%d)", reviewCount];
+	}
+	[[tabBarController.tabBar.items objectAtIndex:1] setTitle:title];		
+
+}
 @end
 
