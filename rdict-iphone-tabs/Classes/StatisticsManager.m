@@ -44,7 +44,7 @@
 +(NSArray*) factors:(NSString*) factor OfRecentDay:(NSUInteger) days {
 	NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
 	
-	NSString* sql = [[NSString alloc] initWithFormat:@"SELECT pk, %@ FROM statistics WHERE pk > date('now', '-%d days', 'localtime')", factor, days];
+	NSString* sql = [NSString stringWithFormat:@"SELECT pk, %@ FROM statistics WHERE pk > date('now', '-%d days', 'localtime')", factor, days];
 	SLStmt* stmt = [SLStmt stmtWithSql:sql];
 
 	while ([stmt step]) {

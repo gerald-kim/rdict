@@ -144,16 +144,15 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 	}
 
-	NSMutableArray *historyArray = [sectionInfo objectForKey:[NSString stringWithFormat:@"H%d", indexPath.section]];
-
+	NSArray *historyArray = [sectionInfo objectForKey:[NSString stringWithFormat:@"H%d", indexPath.section]];
 	History* history = [historyArray objectAtIndex:indexPath.row];
-	cell.textLabel.text = history.lemma;
-		
+	cell.textLabel.text = history.lemma;		
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	History* history = [histories objectAtIndex:indexPath.row];
+	NSArray *historyArray = [sectionInfo objectForKey:[NSString stringWithFormat:@"H%d", indexPath.section]];
+	History* history = [historyArray objectAtIndex:indexPath.row];
 	[self showDictionaryView:history.lemma];
 }
 

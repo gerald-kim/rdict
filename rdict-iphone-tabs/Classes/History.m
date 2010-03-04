@@ -34,7 +34,7 @@ DECLARE_PROPERTIES (
 }
 
 + (NSMutableDictionary*) buildHistorySectionInfo:(NSArray*) histories {
-	NSMutableDictionary* d = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary* d = [NSMutableDictionary dictionary];
 	
 	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -52,7 +52,7 @@ DECLARE_PROPERTIES (
 			count = 0;
 			[d setValue:dateString forKey:[NSString stringWithFormat:@"%d", sectionIndex]];
 			historyKey = [NSString stringWithFormat:@"H%d", sectionIndex];
-			historyArray = [[NSMutableArray alloc]init];
+			historyArray = [NSMutableArray array];
 			[d setValue:historyArray forKey:historyKey];
 			
 			sectionIndex++;
@@ -60,7 +60,7 @@ DECLARE_PROPERTIES (
 		}  
 		historyArray = [d objectForKey:historyKey];
 		[historyArray addObject:h];
-		NSLog( @"History %@", historyArray );
+//		NSLog( @"History %@", historyArray );
 		count++;
 		[d setValue:[NSNumber numberWithInt:count] forKey:dateString];
 		previousDateString = dateString;
@@ -70,7 +70,7 @@ DECLARE_PROPERTIES (
 	}
 	[d setValue:[NSNumber numberWithInt:sectionIndex] forKey:@"sectionCount"];
 	 
-	NSLog( @"Dictionary %@", d );
+//	NSLog( @"Dictionary %@", d );
 	[dateFormatter release];
 	return d;
 }
