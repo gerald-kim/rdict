@@ -44,13 +44,11 @@
 	
 	self.returnToSearchButton = self.navigationItem.leftBarButtonItem;
 	
-	self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"<" 
-												style: UIBarButtonItemStylePlain
-												target: self action: @selector(handleGoBackClick:)];
-		
-	self.forwardButton = [[UIBarButtonItem alloc] initWithTitle:@">" 
-												style: UIBarButtonItemStylePlain
-												target: self action: @selector(handleGoForwardClick:)];
+	UIImage* backImage = [UIImage imageNamed:@"icon_arrow_left.png"];
+	self.backButton = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoBackClick:)];
+
+	UIImage* forwardImage = [UIImage imageNamed:@"icon_arrow_right.png"];
+	self.forwardButton = [[UIBarButtonItem alloc] initWithImage:forwardImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoForwardClick:)];
 	self.forwardButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = forwardButton;
 }
