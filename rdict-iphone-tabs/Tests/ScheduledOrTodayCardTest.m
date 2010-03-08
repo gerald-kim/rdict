@@ -42,7 +42,7 @@
 		[expected save];		
 	}	
 	
-	STAssertEqualStrings( @"Scheduled", [Card messageForReview], nil );
+	STAssertEqualStrings( @"Scheduled Cards", [Card messageForReview], nil );
 	STAssertEquals( (NSUInteger) REVIEW_LIMIT, [[Card cardsForReview] count], nil );
 }
 

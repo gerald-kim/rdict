@@ -50,7 +50,7 @@
 	self.title = @"Review";
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
-	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercises", @"Statistics", @"Upcoming Review Sessions", nil];
+	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercise", @"Statistics", @"Review Schedule", nil];
 	[self loadData];
 	
 }
@@ -107,6 +107,7 @@
 	return [sectionTitles objectAtIndex:section];
 }
 
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
 	if ( 0 == section ) {
@@ -115,6 +116,7 @@
 		return nil;
 	}
 }
+*/
 
 #pragma mark NumberOfSections 
 
@@ -164,19 +166,23 @@
 }
 
 - (UITableViewCell *) cellForReviewSectionRowAt:(NSInteger) row {
-	static NSString *CellIdentifier = @"ReviewCell";
+	static NSString *ReviewCellIdentifier = @"ReviewCell";
+//	static NSString *NACellIdentifier = @"ReviewCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReviewCellIdentifier];
     if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ReviewCellIdentifier] autorelease];
+  }
     
 	if ( 1 == row ) {
 		cell.textLabel.text = @"Reschedule to today";
 		return cell;
 	}
-	
+	if ( [[Card countMessageForReview] isEqualToString:@""] ) {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
 	cell.textLabel.text = [Card messageForReview];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [Card countMessageForReview]];
 	return cell;
@@ -207,7 +213,7 @@
 		sparkline.data = data;
 		[data release];
 	} else if ( 1 == row ) {
-		cell.textLabel.text = @"Your Score";
+		cell.textLabel.text = @"Retention Score";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", score];
 		NSArray* data = [StatisticsManager scoreAveragesOfRecentDay:30];
 		sparkline.data = data;

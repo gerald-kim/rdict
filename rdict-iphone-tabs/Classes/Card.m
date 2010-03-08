@@ -128,7 +128,7 @@ DECLARE_PROPERTIES (
 	NSInteger scheduledCount = [Card countByScheduled];
 	
 	if ( scheduledCount > 0 ) {
-		return @"Scheduled";
+		return @"Scheduled Cards";
 	} else if ( todayCount > 0 ) {
 		return @"Early Practice";
 	} else {

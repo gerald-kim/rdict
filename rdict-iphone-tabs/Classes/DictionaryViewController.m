@@ -169,8 +169,8 @@
 	NSLog(@"DVC.Clipboardchanged : %@", pasteboard.string);
 	
 	UIAlertView *alert = [[UIAlertView alloc] init];
-	[alert setTitle:@"Confirm"];
-	[alert setMessage:@"Save?"];
+	[alert setTitle:@"Save Card"];
+	[alert setMessage:[NSString stringWithFormat:@"Save a card(%@) with selected definition?", self.lemma]];
 	[alert setDelegate:self];
 	[alert addButtonWithTitle:@"Cancel"];
 	[alert addButtonWithTitle:@"Yes"];
