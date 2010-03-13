@@ -97,7 +97,7 @@ class WordManager:
         return self.c.fetchall()
 
     def get_tuples_with_lemma_for_exporting( self ):
-        self.c.execute( 'select lemma from words where filtered = 1 and downloaded = 1' );
+        self.c.execute( 'select lemma from words where status = 2' );
         return self.c.fetchall()
 
     def find_existing_words( self, lemmas ):
