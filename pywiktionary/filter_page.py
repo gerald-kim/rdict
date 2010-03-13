@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     if len( sys.argv ) == 2:
         word = word_manager.get( unicode( sys.argv[1], 'utf-8' ) )
+        print word.get_page()
         if word.filter_page( word_manager ):
             word_manager.mark_filtered( word.lemma )
 

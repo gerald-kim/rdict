@@ -10,6 +10,7 @@ on the server
 -------------
 * update_xml.py
 * update_word_db.py enwiktionary-???.xml
+* [MANUAL] check words table's updated flag (delete from words where updated = 0)
 * download_page.py
 * filter_page.py
 * tc_exporter.py  

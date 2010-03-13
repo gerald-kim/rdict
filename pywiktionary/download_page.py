@@ -21,9 +21,16 @@ if __name__ == '__main__':
     while tuple:
         lemma = tuple[0]
         word = Word( lemma )
-        if word.download_page():
-            word_manager.mark_downloaded( lemma )
-        
+        try:
+            if word.download_page():
+                if word.deleted():
+                    word_manager.mark_deleted( lemma )
+                else:
+                    word_manager.mark_downloaded( lemma )
+        except:
+            print "Unexpected error on word(%s):" % ( lemma.encode( 'utf-8' ) )
+            traceback.print_exception( *sys.exc_info() )
+
         WordCount += 1
         if WordCount % 100 == 0:
             print "Downloaded: ", WordCount

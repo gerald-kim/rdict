@@ -93,10 +93,12 @@ class WordDbMaker:
         
         word_manager = WordManager()
         word_manager.connect()
+        word_manager.unmark_updated()
         
         xml.sax.parse( f, WordHandler( word_manager ) )
-        
         f.close()
+        
+        word_manager.delete_unupdated()
         word_manager.close()
         
     

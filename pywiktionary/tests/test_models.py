@@ -17,7 +17,7 @@ class word_managerConnectionTest( unittest.TestCase ):
 
         self.assertTrue( None != word_manager.conn )
 
-        word_manager.c.execute( "insert into words values ( 'ZZZZ', 0, 0,0)" )
+        word_manager.c.execute( "insert into words values ( 'ZZZZ', 0, 0, 1)" )
 
         word_manager.rollback()
         word_manager.close()
@@ -31,6 +31,18 @@ class word_managerTest( unittest.TestCase ):
     def tearDown( self ):
         self.word_manager.rollback()
 
+    def test_update_flag( self ):
+        word = Word( u'lemma', 0 )
+        self.word_manager.save( word )
+
+        actual = self.word_manager.get( u'lemma' )
+        self.assertTrue( actual.updated )
+
+        self.word_manager.unmark_updated()
+        
+        actual = self.word_manager.get( u'lemma' )
+        self.assertFalse( actual.updated )
+        
     def test_word_CRU( self ):
         expected = Word( u'lemma', 0 )
         self.word_manager.save( expected )
@@ -38,16 +50,16 @@ class word_managerTest( unittest.TestCase ):
         actual = self.word_manager.get( u'lemma' )
         self.assertEquals( expected.lemma, actual.lemma )
         self.assertEquals( expected.revision, actual.revision )
-        self.assertFalse( actual.downloaded )
-        self.assertFalse( actual.filtered )
+        self.assertEquals( UPDATED, actual.status )
+        self.assertTrue( actual.updated )
 
         self.word_manager.mark_downloaded( u'lemma' )
         actual = self.word_manager.get( u'lemma' )
-        self.assertTrue( actual.downloaded )
+        self.assertEquals( DOWNLOADED, actual.status )
 
         self.word_manager.mark_filtered( u'lemma' )
         actual = self.word_manager.get( u'lemma' )
-        self.assertTrue( actual.filtered )
+        self.assertEquals( FILTERED, actual.status )
 
         expected = Word( u'lemma', 333 )
         self.word_manager.save( expected )
@@ -55,8 +67,7 @@ class word_managerTest( unittest.TestCase ):
         actual = self.word_manager.get( u'lemma' )
         self.assertEquals( expected.lemma, actual.lemma )
         self.assertEquals( expected.revision, actual.revision )
-        self.assertFalse( actual.downloaded )
-        self.assertFalse( actual.filtered )
+        self.assertEquals( UPDATED, actual.status )
 
     def test_find_existing_words( self ):
         self.word_manager.save( Word( u'lemma1' ) )
@@ -106,6 +117,16 @@ class WordTest( unittest.TestCase ):
         #print definition.encode( 'utf-8' )
         self.assertTrue( len( definition ) > 10 * 1024 )
         word_manager.close()
+
+    def longtest_deleted( self ):
+        word_manager = WordManager()
+        word_manager.connect()
+
+        word = Word( u'tion', 123 )
+
+        self.assertTrue( word.download_page() )
+        self.assertTrue( word.deleted() )
+        
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
