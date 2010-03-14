@@ -77,10 +77,10 @@ class WordManager:
         self.c.execute( 'update words set updated = 0' )
 
     def delete_unupdated( self ):
-        self.c.execute( 'update words set status = 4 where updated = 0' )
+        self.c.execute( 'update words set status = 3 where updated = 0' )
 
     def mark_deleted( self, lemma ):
-        self.c.execute( 'update words set status = 4 where lemma = ?', ( lemma, ) )
+        self.c.execute( 'update words set status = 3 where lemma = ?', ( lemma, ) )
 
     def mark_downloaded( self, lemma ):
         self.c.execute( 'update words set status = 1 where lemma = ?', ( lemma, ) )
