@@ -7,6 +7,7 @@
 //
 
 #import "StatisticsManager.h"
+#import "Card.h"
 #import "SLStmt.h"
 
 @interface StatisticsManager() 
@@ -31,6 +32,8 @@
 	[stmt prepareSql:@"UPDATE statistics SET score_average = (SELECt avg(grade*20) FROM card WHERE deleted is null) WHERE pk = date('now', 'localtime')"];
 	[stmt step];
 	[stmt close];	
+	
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
 }
 
 +(NSArray*) cardCountsOfRecentDay:(NSUInteger) days {
