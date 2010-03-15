@@ -136,13 +136,39 @@
 
 - (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error{
 	[self stopActivityAnimating];
-
-    UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Connection Error"
-						  message:@"You have a connection failure. You have to get on a wi-fi or a cell network to get a internet connection."
-						  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+	
+	NSLog( @"Error: %@", error );
+	
+    NSString *errorMsg = nil;
+	
+    if ([[error domain] isEqualToString:NSURLErrorDomain]) {
+        switch ([error code]) {
+			case NSURLErrorCancelled:
+				//ignore Canceled
+				return;
+            case NSURLErrorCannotFindHost:
+                errorMsg = NSLocalizedString(@"Cannot find specified host.", nil);
+                break;
+            case NSURLErrorCannotConnectToHost:
+                errorMsg = NSLocalizedString(@"Cannot connect to specified host. Server may be down.", nil);
+                break;
+            case NSURLErrorNotConnectedToInternet:
+                errorMsg = NSLocalizedString(@"Cannot connect to the internet. Service may not be available.", nil);
+                break;
+            default:
+                errorMsg = [error localizedDescription];
+                break;
+        }
+    } else {
+        errorMsg = [error localizedDescription];
+    }
+	
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:
+					   NSLocalizedString(@"Error Loading Page", nil)
+												 message:errorMsg delegate:self
+									   cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [av show];
+    [av release];
 }
 
 #pragma mark -
