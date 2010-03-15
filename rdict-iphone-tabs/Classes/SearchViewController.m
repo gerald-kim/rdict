@@ -19,6 +19,12 @@
 @synthesize tableView;
 @synthesize wiktionary;
 
+- (void) search: (NSString *) searchText  {
+	NSUInteger row = [wiktionary fillIndexesByKey:[searchText lowercaseString]];	
+	[tableView reloadData];
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];		
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"Search";
@@ -29,7 +35,7 @@
 
 //	[delegate release];
 	
-	[wiktionary fillIndexesByKey:@"a"];
+	[self search:@"a"];
 	
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -39,12 +45,12 @@
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
-	
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	
 }
 
 - (void)dealloc {
@@ -80,12 +86,13 @@
 #pragma mark -
 #pragma mark Search Bar Methods
 
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	NSLog( @"SVC.textDidChanged called" );
-	NSUInteger row = [wiktionary fillIndexesByKey:[searchText lowercaseString]];
-	
-	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];	
-	[tableView reloadData];
+	if( [searchText isEqualToString:@"" ] ) {
+		searchText = @"a";
+	}
+	[self search: searchText];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
@@ -94,8 +101,10 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) aSearchBar {
+	NSLog( @"SVC.searchBarCancelButtonClicked" );
 	if ( [searchBar.text length] > 0 ) {
 		searchBar.text = @"";
+//		[self search:@"a"];
 	} else {
 		[searchBar resignFirstResponder];
 	}
