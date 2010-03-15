@@ -81,16 +81,16 @@
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"'em", nil );
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"abandoned", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"abandon", nil );
 }
 
 - (void) testJumpToMiddle {
 	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"adolescent"];
 	STAssertEquals( targetIndex, (NSUInteger) 33, @"a" );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
-	STAssertEqualStrings( wiktionaryIndex.key, @"adjective", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"adjoin", nil );
 	wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)99];
-	STAssertEqualStrings( wiktionaryIndex.key, @"aeronautics", nil );
+	STAssertEqualStrings( wiktionaryIndex.key, @"aerogramme", nil );
 }
 
 @end
