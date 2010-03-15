@@ -13,7 +13,7 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	#define REVIEW_LIMIT 5
 #else
-	#define REVIEW_LIMIT 20
+	#define REVIEW_LIMIT 1000
 #endif
 
 @interface Card : SQLitePersistentObject {
