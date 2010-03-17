@@ -23,6 +23,9 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	NSLog( @"RSC.viewDidLoad" );
 	
 	[super viewDidLoad];
+	self.title = @"Review Exercise-100/100";
+	
+//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"2 remains" style:UIBarButtonItemStyleBordered target:self action:nil];
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
@@ -110,8 +113,10 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 
 - (void)showCardFrontView {
 	NSLog( @"RSC.viewWillAppear2" );
+	
+	self.title = [NSString stringWithFormat:@"Review Excersise [%d/%d]", cardsRemain, [cardsForReview count]];
+
 	currentCard = [cardsForReview objectAtIndex:[cardsForReview count] - cardsRemain];		
-	NSLog( @"RSC.viewWillAppear3" );
 	cardsRemain--;
 	
 	[self updateAndSwitchViewTo: cardFrontViewController];
@@ -155,6 +160,8 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
+	self.title = @"Review Excersise";
+	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
 }
@@ -171,6 +178,8 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 - (void) showReviewFinishedView {
 	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
 	reviewFinishedViewController.scheduledCards = scheduledCards;
+
+	self.title = @"Review Excersise";
 	
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];

@@ -29,7 +29,7 @@
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
 
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
+	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"~/.rdict.sqlite3"];
 #endif
 }
 

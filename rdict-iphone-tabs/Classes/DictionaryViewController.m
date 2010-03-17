@@ -137,7 +137,7 @@
 - (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error{
 	[self stopActivityAnimating];
 	
-	NSLog( @"Error: %@", error );
+ 	NSLog( @"Error: %@", error );
 	
     NSString *errorMsg = nil;
 	

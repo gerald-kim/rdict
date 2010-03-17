@@ -11,9 +11,9 @@
 
 #define SECONDS_IN_ONE_DAY 60*60*24
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-	#define REVIEW_LIMIT 5
+	#define REVIEW_LIMIT 10
 #else
-	#define REVIEW_LIMIT 1000
+	#define REVIEW_LIMIT 100
 #endif
 
 @interface Card : SQLitePersistentObject {
