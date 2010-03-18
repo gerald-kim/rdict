@@ -21,7 +21,8 @@
     [super viewWillAppear:animated];
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
-	listData = [[NSArray alloc] initWithObjects:@"About", @"Help", @"Card Management", nil];
+	listData = [[NSArray alloc] initWithObjects:@"Help", @"Card Management", nil];
+//	listData = [[NSArray alloc] initWithObjects:@"About", @"Help", @"Card Management", nil];
 	
 }
 
@@ -62,7 +63,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 
@@ -89,11 +90,12 @@
 	
 	UIViewController *childViewController;
 	
+	//if( 0 == indexPath.row ) {
+	//	childViewController = [[AboutViewController alloc] initWithNibName:@"AboutView" bundle:nil];
+	
 	if( 0 == indexPath.row ) {
-		childViewController = [[AboutViewController alloc] initWithNibName:@"AboutView" bundle:nil];
-	} else if( 1 == indexPath.row ) {
 		childViewController = [[HelpViewController alloc] initWithNibName:@"HelpView" bundle:nil];
-	} else if( 2 == indexPath.row ) {
+	} else if( 1 == indexPath.row ) {
 		childViewController = [[CardListViewController alloc] initWithNibName:@"CardListView" bundle:nil];
 	} 
 	[self.navigationController pushViewController:childViewController animated:TRUE];
