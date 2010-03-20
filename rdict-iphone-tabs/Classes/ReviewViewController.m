@@ -135,7 +135,7 @@
 
 - (NSInteger) numberOfRowsInReviewSection {
 	NSInteger rows = ([cardsForReview count] > 0) ? 1 : 1;
-#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if ( !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR ) && DEBUG
 	rows = rows+1;
 #endif
 	return rows;

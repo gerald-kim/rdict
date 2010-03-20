@@ -114,7 +114,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 - (void)showCardFrontView {
 	NSLog( @"RSC.viewWillAppear2" );
 	
-	self.title = [NSString stringWithFormat:@"Review Excersise [%d/%d]", cardsRemain, [cardsForReview count]];
+	self.title = [NSString stringWithFormat:@"Question [%d/%d]", cardsRemain, [cardsForReview count]];
 
 	currentCard = [cardsForReview objectAtIndex:[cardsForReview count] - cardsRemain];		
 	cardsRemain--;
@@ -124,6 +124,9 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 
 - (void)showCardBackView {	
 //	helpMessage = backHelpMessage;
+
+	self.title = [NSString stringWithFormat:@"Answer [%d/%d]", cardsRemain, [cardsForReview count]];
+
 	[self updateAndSwitchViewTo: cardBackViewController];
 }
 
@@ -160,7 +163,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
-	self.title = @"Review Excersise";
+	self.title = @"Review exercise";
 	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
@@ -179,7 +182,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
 	reviewFinishedViewController.scheduledCards = scheduledCards;
 
-	self.title = @"Review Excersise";
+	self.title = @"Review exercise";
 	
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];
