@@ -135,7 +135,7 @@
 
 - (NSInteger) numberOfRowsInReviewSection {
 	NSInteger rows = ([cardsForReview count] > 0) ? 1 : 1;
-#if ( !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR ) && DEBUG
+#if ( !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR )
 	rows = rows+1;
 #endif
 	return rows;
@@ -237,6 +237,7 @@
 		cell.detailTextLabel.text = [scheduleArray objectAtIndex:1];
 	} else {
 		cell.textLabel.text = @"None scheduled";
+		cell.detailTextLabel.text = @"";
 	}
 	return cell;
 }
