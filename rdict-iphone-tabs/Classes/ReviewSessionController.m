@@ -163,7 +163,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
-	self.title = @"Review exercise";
+	self.title = @"Review Exercise";
 	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
@@ -182,7 +182,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
 	reviewFinishedViewController.scheduledCards = scheduledCards;
 
-	self.title = @"Review exercise";
+	self.title = @"Review Exercise";
 	
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];

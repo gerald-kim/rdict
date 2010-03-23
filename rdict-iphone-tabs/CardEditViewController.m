@@ -59,9 +59,23 @@
 }
 
 - (IBAction) deleteButtonClicked : (id) sender {
-	[card deleteObject];
-	card = nil;
-	[self.navigationController popViewControllerAnimated:TRUE];
+	UIAlertView *alert = [[UIAlertView alloc] init];
+	[alert setTitle:@"Delete Card"];
+	[alert setMessage:[NSString stringWithFormat:@"Do you want to delete this card?"]];
+	[alert setDelegate:self];
+	[alert addButtonWithTitle:@"Cancel"];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert show];
+	[alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSLog(@"DVC.clickedButtonAtIndex");
+	if (buttonIndex == 1) {
+		[card deleteObject];
+		card = nil;
+		[self.navigationController popViewControllerAnimated:TRUE];
+	}
 }
 
 - (void)dealloc {

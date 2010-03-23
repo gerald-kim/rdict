@@ -52,6 +52,7 @@
 
 	self.sectionTitles = [NSArray arrayWithObjects:@"Review Exercise", @"Statistics", @"Review Schedule", nil];
 	[self loadData];
+//	tableView.allowsSelection = NO;
 	
 }
 
