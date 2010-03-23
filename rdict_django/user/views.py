@@ -42,5 +42,8 @@ def rpx(request):
         # platform, and is up to you.
         #sign_in_user(identifier, name, email, profile_pic_url)
         print identifier, name, email
+        request.session['rpxuser'] = (identifier, name, email)
+        return HttpResponseRedirect('/')
     else:
         print 'An error occured: ' + auth_info['err']['msg']
+        return HttpResponseServerError()

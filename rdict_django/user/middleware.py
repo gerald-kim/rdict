@@ -8,15 +8,14 @@ class UserMiddleware(object):
     """
     """
     def process_request(self, request):
-        openids = request.session.get('openids', [])
-        if openids:
-            openid = openids[-1] # Last authenticated OpenID
+        rpxuser = request.session.get('rpxuser', None)
+        if rpxuser:
             try:
-                u = User.objects.get(openid=openid.openid)
+                u = User.objects.get(openid=rpxuser[0])
             except User.DoesNotExist:
                 u = User()
-                u.email = openid.sreg['email']
-                u.openid = openid.openid
+                u.email = rpxuser[2]
+                u.openid = rpxuser[0]
                 
                 u.save() 
             request.login_user = u
