@@ -37,7 +37,7 @@ DECLARE_PROPERTIES (
 	NSMutableDictionary* d = [NSMutableDictionary dictionary];
 	
 	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 
 	NSString* previousDateString = NULL;

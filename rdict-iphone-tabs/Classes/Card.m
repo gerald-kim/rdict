@@ -105,7 +105,7 @@ DECLARE_PROPERTIES (
 	[inputDateFormatter setDateFormat:@"yyyy-MM-dd"];
 	
 	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 
 	
