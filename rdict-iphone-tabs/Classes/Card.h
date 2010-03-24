@@ -60,7 +60,7 @@
 + (NSArray*) findByToday;
 + (NSString*) todayCardCriteria;
 
-+ (NSInteger) score; 
++ (NSInteger) countByMastered; 
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;
 
 + (NSString*) messageForReview;

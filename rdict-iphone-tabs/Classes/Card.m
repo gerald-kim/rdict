@@ -81,8 +81,8 @@ DECLARE_PROPERTIES (
 		"	and ( studied is null or studied < date('now', 'localtime') ) and deleted is null"];	
 }
 
-+ (NSInteger) score {	
-	SLStmt* stmt = [SLStmt stmtWithSql:@"select avg( grade ) * 20 from card where deleted is null"];
++ (NSInteger) countByMastered {	
+	SLStmt* stmt = [SLStmt stmtWithSql:@"select count(*) from ( select card, avg(grade) grade from study_log where study_index in (0, 1) group by card ) where grade >= 4;"];
 	
 	NSInteger score = 0;
 	if( [stmt step] ) {
@@ -238,8 +238,7 @@ DECLARE_PROPERTIES (
 	self.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY * self.interval];	
 	self.studied = [NSDate date];
 	
-	StudyLog* lastLog = [StudyLog lastStudyLogOfCard:self];
-	[lastLog unsetLastLog];
+	[StudyLog increaseStudyIndex:self];
 	[[[StudyLog alloc]initWithCard:self] save];
 
 	[self save];

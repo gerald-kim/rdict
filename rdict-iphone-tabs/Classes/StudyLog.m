@@ -7,24 +7,32 @@
 //
 
 #import "StudyLog.h"
-
+#import "SLStmt.h"
 
 @implementation StudyLog
 @synthesize card;
 @synthesize studied;
 @synthesize grade;
-@synthesize lastLog;
+@synthesize studyIndex;
 
 DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"card", @"@\"Card\""),
 					DECLARE_PROPERTY( @"studied", @"@\"NSDate\""),
 					DECLARE_PROPERTY( @"grade", @"@\"NSInteger\""),
-					DECLARE_PROPERTY( @"lastLog", @"@\"BOOL\"")
+					DECLARE_PROPERTY( @"studyIndex", @"@\"NSUInteger\"")
 )					
 					
 + (StudyLog*) lastStudyLogOfCard:(Card *)card {
-	NSArray* array = [card findRelated:[StudyLog class] filter:@"last_log = 1"];
+	NSArray* array = [card findRelated:[StudyLog class] filter:@"study_index = 0"];
 	return [array count] > 0 ? [array objectAtIndex:0] : nil;
+}
+
++ (void) increaseStudyIndex:(Card *)card {
+	NSArray* array = [card findRelated:[StudyLog class]];
+	for( StudyLog* studyLog in array ) {
+		studyLog.studyIndex++;
+		[studyLog save];
+	}
 }
 
 - (id) initWithCard:(Card *)theCard {
@@ -33,14 +41,9 @@ DECLARE_PROPERTIES (
 	self.card = theCard;
 	self.studied = theCard.studied;
 	self.grade = theCard.grade;
-	self.lastLog = YES;
+	self.studyIndex = 0;
 	
 	return self;
-}
-
-- (void) unsetLastLog {
-	self.lastLog = NO;
-	[self save];
 }
 
 - (void)dealloc

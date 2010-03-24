@@ -23,15 +23,16 @@
 	STAssertEquals( expected.card, actual.card, nil );
 	STAssertEquals( expected.studied, actual.studied, nil );
 	STAssertEquals( expected.grade, actual.grade, nil );
-	STAssertEquals( expected.lastLog, actual.lastLog, nil );
+	STAssertEquals( expected.studyIndex, actual.studyIndex, nil );
 }	
 
 -(void) testCardCRD {
 	Card* card = [[Card alloc] initWithQuestion:@"q" andAnswer:@"a"];
+	[card save];
 	[card study:3];
 	
 	StudyLog* expected = [[StudyLog alloc] initWithCard:card];
-	STAssertTrue( expected.lastLog, nil );
+	STAssertEquals( expected.studyIndex, (NSUInteger)0, nil );
 	
 	STAssertFalse( [expected existsInDB], nil );
 	[expected save];

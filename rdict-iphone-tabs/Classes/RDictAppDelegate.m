@@ -26,11 +26,11 @@
     [window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
 
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
+#endif
 	
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
-#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-//	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"rdict.sqlite3"];
-#endif
 	
 }
 

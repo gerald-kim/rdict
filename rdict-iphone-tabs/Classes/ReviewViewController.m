@@ -81,7 +81,7 @@
 	NSLog( @"RVC.loadedData");
 
 	totalCount = [Card count];
-	score = [Card score];
+	score = [Card countByMastered];
 	self.cardsForReview = [Card cardsForReview];
 	self.schedules = [Card reviewSchedulesWithLimit:7];
 	
@@ -213,9 +213,9 @@
 		sparkline.data = data;
 		[data release];
 	} else if ( 1 == row ) {
-		cell.textLabel.text = @"Retention Score";
+		cell.textLabel.text = @"Mastered Cards";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", score];
-		NSArray* data = [StatisticsManager scoreAveragesOfRecentDay:30];
+		NSArray* data = [StatisticsManager masteredCardsCountOfRecentDay:30];
 		sparkline.data = data;
 		[data release];
 	}

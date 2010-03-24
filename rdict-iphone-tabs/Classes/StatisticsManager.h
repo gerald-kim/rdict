@@ -16,6 +16,6 @@
 +(void) updateStatisticsOfToday;
 
 +(NSArray*) cardCountsOfRecentDay:(NSUInteger) days;
-+(NSArray*) scoreAveragesOfRecentDay:(NSUInteger) days;
++(NSArray*) masteredCardsCountOfRecentDay:(NSUInteger) days;
 
 @end
