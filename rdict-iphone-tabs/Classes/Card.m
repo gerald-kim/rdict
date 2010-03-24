@@ -38,7 +38,10 @@ DECLARE_PROPERTIES (
 		Card* card = [[Card alloc] initWithQuestion:question andAnswer:answer];
 		[card save];
 	} else {
-		card.answer = [answer stringByAppendingFormat:@"----------\n%@", answer];
+		if ( ![card.answer hasSuffix:@"\n"] ) {
+			card.answer = [card.answer stringByAppendingString:@"\n"];			
+		}
+		card.answer = [card.answer stringByAppendingFormat:@"-------------\n%@", answer];			
 		[card study:0];
 	}
 	return card;
