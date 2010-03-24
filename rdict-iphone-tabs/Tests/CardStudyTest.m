@@ -74,12 +74,15 @@
 	
 	STAssertEquals( [StudyLog count], 1, nil );
 	StudyLog* firstLog = [StudyLog lastStudyLogOfCard:card];
-	STAssertTrue( firstLog.lastLog, nil );
+	STAssertEquals( firstLog.studyIndex, (NSUInteger) 0, nil );
+//	NSInteger pk = [firstLog pk];
+//	[firstLog release];
+//	[firstLog dealloc];
 	
 	[card study:4];
 	StudyLog* secondLog = [StudyLog lastStudyLogOfCard:card];
-	STAssertFalse( firstLog.lastLog, nil );
-	STAssertTrue( secondLog.lastLog, nil );
+	STAssertEquals( firstLog.studyIndex, (NSUInteger) 1, nil );
+	STAssertEquals( secondLog.studyIndex, (NSUInteger) 0, nil );
 }
 
 @end

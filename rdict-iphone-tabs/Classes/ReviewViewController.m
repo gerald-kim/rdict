@@ -82,7 +82,7 @@
 	NSLog( @"RVC.loadedData");
 
 	totalCount = [Card count];
-	score = [Card score];
+	score = [Card countByMastered];
 	self.cardsForReview = [Card cardsForReview];
 	self.schedules = [Card reviewSchedulesWithLimit:7];
 	
@@ -200,7 +200,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
 
 		sparkline = [[[CKSparkline alloc]
-								  initWithFrame:CGRectMake(130, 5.0, 100.0, 30.0)] autorelease];
+								  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
 		sparkline.tag = STAT_CELL_SPARKLINE;
 		[cell.contentView addSubview:sparkline];
 	} else {
@@ -214,9 +214,9 @@
 		sparkline.data = data;
 		[data release];
 	} else if ( 1 == row ) {
-		cell.textLabel.text = @"Retention Score";
+		cell.textLabel.text = @"Mastered Cards";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", score];
-		NSArray* data = [StatisticsManager scoreAveragesOfRecentDay:30];
+		NSArray* data = [StatisticsManager masteredCardsCountOfRecentDay:30];
 		sparkline.data = data;
 		[data release];
 	}

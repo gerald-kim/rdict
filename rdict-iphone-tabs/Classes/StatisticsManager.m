@@ -19,7 +19,7 @@
 @implementation StatisticsManager
 
 +(void) createTable {
-	SLStmt* stmt = [SLStmt stmtWithSql:@"CREATE TABLE IF NOT EXISTS statistics (pk DATE PRIMARY KEY, card_count INTEGER, score_average REAL)"];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"CREATE TABLE IF NOT EXISTS statistics (pk DATE PRIMARY KEY, card_count INTEGER, mastered_card_count INTEGER)"];
 	[stmt step];
 	[stmt close];
 }
@@ -29,7 +29,7 @@
 
 	SLStmt* stmt = [SLStmt stmtWithSql:@"REPLACE INTO statistics (pk, card_count) SELECT date('now', 'localtime') pk, count(*) card_count FROM card WHERE deleted is null"];
 	[stmt step];
-	[stmt prepareSql:@"UPDATE statistics SET score_average = (SELECt avg(grade*20) FROM card WHERE deleted is null) WHERE pk = date('now', 'localtime')"];
+	[stmt prepareSql:@"UPDATE statistics SET mastered_card_count = (select count(*) from ( select card, avg(grade) grade from study_log where study_index in (0, 1) group by card ) where grade >= 4) WHERE pk = date('now', 'localtime')"];
 	[stmt step];
 	[stmt close];	
 	
@@ -40,8 +40,8 @@
 	return [StatisticsManager factors:@"card_count" OfRecentDay:days];
 }
 
-+(NSArray*) scoreAveragesOfRecentDay:(NSUInteger) days {
-	return [StatisticsManager factors:@"score_average" OfRecentDay:days];
++(NSArray*) masteredCardsCountOfRecentDay:(NSUInteger) days {
+	return [StatisticsManager factors:@"mastered_card_count" OfRecentDay:days];
 }
 
 +(NSArray*) factors:(NSString*) factor OfRecentDay:(NSUInteger) days {

@@ -14,16 +14,16 @@
 	Card* card;
 	NSDate* studied;
 	NSInteger grade;	
-	BOOL lastLog;
+	NSUInteger studyIndex;
 }
 
 @property (nonatomic, retain) Card* card;
 @property (nonatomic, retain) NSDate* studied;
 @property NSInteger grade;
-@property BOOL lastLog;
+@property NSUInteger studyIndex;
 
 + (StudyLog*) lastStudyLogOfCard:(Card *)card;
++ (void) increaseStudyIndex:(Card*) card;
 - (id) initWithCard:(Card *)theCard;
-- (void) unsetLastLog;
 
 @end
