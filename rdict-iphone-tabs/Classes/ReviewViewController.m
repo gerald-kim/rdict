@@ -199,7 +199,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
 
 		sparkline = [[[CKSparkline alloc]
-								  initWithFrame:CGRectMake(130, 5.0, 100.0, 30.0)] autorelease];
+								  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
 		sparkline.tag = STAT_CELL_SPARKLINE;
 		[cell.contentView addSubview:sparkline];
 	} else {
