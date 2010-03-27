@@ -13,6 +13,8 @@
 	<key>CFBundleIconFile</key>
 	<string>icon57x57.png</string>
 	<key>CFBundleIdentifier</key>
+	<string>W4AWDQUUZU.${PRODUCT_NAME:rfc1034identifier}</string>
+	<key>Backup</key>
 	<string>com.yourcompany.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>

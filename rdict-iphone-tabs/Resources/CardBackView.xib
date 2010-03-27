@@ -190,13 +190,13 @@
 					<object class="IBUILabel" id="409489322">
 						<reference key="NSNextResponder" ref="396918392"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{66, 321}, {162, 21}}</string>
+						<string key="NSFrame">{{20, 321}, {269, 21}}</string>
 						<reference key="NSSuperview" ref="396918392"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">How's your memory?</string>
+						<string key="IBUIText">How would you rate your memory?</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Geneva</string>
 							<double key="NSSize">17</double>
@@ -358,8 +358,8 @@
 							<reference ref="922054475"/>
 							<reference ref="627916619"/>
 							<reference ref="319307213"/>
-							<reference ref="409489322"/>
 							<reference ref="1011780731"/>
+							<reference ref="409489322"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

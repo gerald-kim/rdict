@@ -454,7 +454,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* RDictAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RDictAppDelegate.h; path = Classes/RDictAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* RDictAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RDictAppDelegate.m; path = Classes/RDictAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* VocabularyAmp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocabularyAmp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Vocabulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F560D7010E6C0A0005A6311 /* big_flashcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = big_flashcard.png; path = Resources/big_flashcard.png; sourceTree = "<group>"; };
 		1F560D7410E6C0F5005A6311 /* card_added_note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_added_note.png; path = Resources/card_added_note.png; sourceTree = "<group>"; };
@@ -735,7 +735,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* VocabularyAmp.app */,
+				1D6058910D05DD3D006BFB54 /* Vocabulator.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
 				EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */,
@@ -1079,9 +1079,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* VocabularyAmp */ = {
+		1D6058900D05DD3D006BFB54 /* Vocabulator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "VocabularyAmp" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Vocabulator" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1093,9 +1093,9 @@
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
 				EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */,
 			);
-			name = VocabularyAmp;
+			name = Vocabulator;
 			productName = RDict;
-			productReference = 1D6058910D05DD3D006BFB54 /* VocabularyAmp.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Vocabulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EF288F39111AE39900BB5C83 /* RDict Test without UnitTest */ = {
@@ -1187,7 +1187,7 @@
 			projectRoot = "";
 			targets = (
 				EF54C5420FFF36D000BFDCB6 /* RDict Test */,
-				1D6058900D05DD3D006BFB54 /* VocabularyAmp */,
+				1D6058900D05DD3D006BFB54 /* Vocabulator */,
 				EFBF4A160FE001900092357C /* UnitTests */,
 				EFEA07EA0FDFF50B00490192 /* tokyocabinet */,
 				EF288F39111AE39900BB5C83 /* RDict Test without UnitTest */,
@@ -1699,7 +1699,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
 				);
-				PRODUCT_NAME = VocabularyAmp;
+				PRODUCT_NAME = Vocabulator;
 			};
 			name = Debug;
 		};
@@ -1715,7 +1715,7 @@
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
 				);
-				PRODUCT_NAME = VocabularyAmp;
+				PRODUCT_NAME = Vocabulator;
 			};
 			name = Release;
 		};
@@ -1913,7 +1913,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "VocabularyAmp" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Vocabulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
