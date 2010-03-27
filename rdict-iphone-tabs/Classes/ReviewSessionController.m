@@ -13,11 +13,36 @@
 #import "Card.h"
 #import "RDictAppDelegate.h"
 
+
 @implementation ReviewSessionController
 
 static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-Perfect\n1-Forgot\n0-Blackout";
 
 @synthesize scheduledCards;
+
+#define LABEL_COUNT_DOWN 1
+
+- (void) initCountLabel {
+  UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	btn.frame = CGRectMake(0, 0, 70, 30);
+	
+	countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 30)];
+	countLabel.tag = LABEL_COUNT_DOWN;
+	countLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+	countLabel.font = [UIFont boldSystemFontOfSize:12];
+	countLabel.adjustsFontSizeToFitWidth = NO;
+	countLabel.textAlignment = UITextAlignmentRight;
+	countLabel.textColor = [UIColor whiteColor];
+	countLabel.lineBreakMode = UILineBreakModeWordWrap;
+	countLabel.numberOfLines = 2;
+	countLabel.text = @"last card";
+	countLabel.highlightedTextColor = [UIColor whiteColor];
+	[btn addSubview:countLabel];
+//	[countLabel release];
+
+	UIBarButtonItem *modalBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+	self.navigationItem.rightBarButtonItem = modalBarButtonItem;
+}
 
 - (void)viewDidLoad {
 	NSLog( @"RSC.viewDidLoad" );
@@ -25,13 +50,15 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	[super viewDidLoad];
 	self.title = @"Review Exercise-100/100";
 	
-//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"2 remains" style:UIBarButtonItemStyleBordered target:self action:nil];
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
 	
 	[self.view insertSubview:cardFrontViewController.view atIndex:0];
 	[self.view insertSubview:cardBackViewController.view atIndex:0];
+
+	[self initCountLabel];
+
 }
 
 - (void)viewWillAppear:(BOOL) animated {
@@ -114,10 +141,18 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 - (void)showCardFrontView {
 	NSLog( @"RSC.viewWillAppear2" );
 	
-	self.title = [NSString stringWithFormat:@"Question [%d/%d]", cardsRemain, [cardsForReview count]];
+	self.title = @"Question";
 
 	currentCard = [cardsForReview objectAtIndex:[cardsForReview count] - cardsRemain];		
 	cardsRemain--;
+
+	if (cardsRemain == 0) {
+		countLabel.text = @"Last card!";
+	} else if (cardsRemain == 1) {
+		countLabel.text = [NSString stringWithFormat:@"1 card\nremain"];		
+	} else {
+		countLabel.text = [NSString stringWithFormat:@"%d cards\nremain", cardsRemain];		
+	}
 	
 	[self updateAndSwitchViewTo: cardFrontViewController];
 }
@@ -125,7 +160,7 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 - (void)showCardBackView {	
 //	helpMessage = backHelpMessage;
 
-	self.title = [NSString stringWithFormat:@"Answer [%d/%d]", cardsRemain, [cardsForReview count]];
+	self.title = @"Answer";
 
 	[self updateAndSwitchViewTo: cardBackViewController];
 }
@@ -163,7 +198,8 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
-	self.title = @"Review Exercise";
+	self.title = @"Review Again?";
+	countLabel.text = @"";
 	
 	[self.view insertSubview:reviewUnfinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewUnfinishedViewController.view];
@@ -182,7 +218,8 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
 	reviewFinishedViewController.scheduledCards = scheduledCards;
 
-	self.title = @"Review Exercise";
+	self.title = @"Review Finished";
+	countLabel.text = @"";
 	
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];

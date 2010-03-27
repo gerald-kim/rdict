@@ -19,6 +19,7 @@
 	CardViewController* cardBackViewController;
 	ReviewUnfinishedViewController* reviewUnfinishedViewController;
 	ReviewFinishedViewController* reviewFinishedViewController;
+	UILabel *countLabel;
 	
 	NSString* helpMessage;
 	

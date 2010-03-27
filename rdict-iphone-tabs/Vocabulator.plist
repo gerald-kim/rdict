@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIRequiresPersistentWiFi</key>
-	<true/>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
