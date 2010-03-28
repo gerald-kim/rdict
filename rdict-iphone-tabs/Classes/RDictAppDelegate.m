@@ -23,9 +23,10 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	wiktionary = [[Wiktionary alloc] init];
 
-    [window addSubview:tabBarController.view];
+        [window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
 
+	// NSLog( @"PATH: %@", [[SQLiteInstanceManager sharedManager] databaseFilepath] );
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
 #endif
