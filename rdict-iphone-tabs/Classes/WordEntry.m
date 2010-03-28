@@ -21,9 +21,9 @@
 
 - (void) decorateDefinition {
 	NSDictionary* otherDictionaries = [NSDictionary dictionaryWithObjectsAndKeys:
-									   @"http://m.engdic.daum.net/dicen/mobile_search.do?endic_kind=all&m=all&q=", @"Daum Dictionary",
+									   @"http://m.engdic.daum.net/dicen/mobile_search.do?endic_kind=all&m=all&q=", @"Daum Dictionary(English-Korean)",
 									   @"http://www.google.com/dictionary?langpair=en%7Cen&q=", @"Google Dictionary",
-									   @"http://dictionary.reference.com/browse/", @"Dictionary.com",
+									   @"http://dictionary.cambridge.org/results.asp?searchword=", @"Cambridge Advanced Learner's Dictionary",
 									   @"http://www.urbandictionary.com/iphone/search?term=", @"Urban Dictionary",
 									   nil];
 									   
@@ -32,7 +32,7 @@
 	NSString *htmlString = [[NSString alloc] initWithData: htmlData encoding: NSUTF8StringEncoding];
 	
 	[definitionHtml insertString:htmlString atIndex: 0];
-	[definitionHtml appendString:@"<h2>Other dictionaries definition.</h2>"];
+	[definitionHtml appendString:@"<h2>Another dictionaries' definition:</h2>"];
 	[definitionHtml appendString:@"<ul>"];
 	for (id key in otherDictionaries) {
 		[definitionHtml appendString:[NSString stringWithFormat:
@@ -42,6 +42,11 @@
 	[lemma  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
 	[definitionHtml appendString:@"</ul>"];
+	
+	[definitionHtml appendString:@"<p style='color:gray;font-size:9pt'>This definition is retrived from : "];
+	[definitionHtml appendString:[NSString stringWithFormat:@"<a href='http://en.wiktionary.com/wiki/%@'>Wiktionary - %@</a><br>", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], lemma]];
+	[definitionHtml appendString:@"Text is available under the <a href='http://creativecommons.org/licenses/by-sa/3.0/'>CC-BY-SA License</a>.</p>"];
+	
 	[definitionHtml appendString:@"</body></html>"];
 	
 	[htmlString release];

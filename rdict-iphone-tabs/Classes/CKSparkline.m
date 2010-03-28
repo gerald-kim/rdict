@@ -15,7 +15,7 @@
     if (self = [super initWithFrame:frame]) {
 		self.selected = NO;
 		self.backgroundColor = [UIColor clearColor];
-        self.lineColor = [UIColor colorWithRed:0 green:0 blue:200 alpha:1.0];
+        self.lineColor = [UIColor colorWithRed:0.22745098039215686 green:0.33725490196078434 blue:0.53333333333333333 alpha:1.0];
 		self.highlightedLineColor = [UIColor whiteColor];
     }
 	
