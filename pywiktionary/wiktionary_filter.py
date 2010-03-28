@@ -169,17 +169,21 @@ class WiktionaryFilter:
                 p.extract()
 
     def soup_filter_extractPronounciation( self, content ):
-        extiwAs = content.findAll( 'a', {'class':'extiw'} )
+        # extiwAs = content.findAll( 'a', {'class':'extiw'} )
 
-        for a in extiwAs:
-            try:
-                if len( a.contents ) == 1 and a.contents[0] in [u'IPA', u'SAMPA']:
-                    li = a.parent
-                    ul = li.parent
-                    ul.contents = [li]
-                    break
-            except:
-                pass
+        # for a in extiwAs:
+        #     try:
+        #         if len( a.contents ) == 1 and a.contents[0] in [u'IPA', u'SAMPA']:
+        #             li = a.parent
+        #             ul = li.parent
+        #             ul.contents = [li]
+        #             break
+        #     except:
+        #         pass
+
+        audioLinkTables = content.findAll( 'table', {'class':'audiotable'} )
+        for span in audioLinkTables:
+            span.parent.extract()
 
         audioLinkSpans = content.findAll( 'span', {'class':'unicode audiolink'} )
         for span in audioLinkSpans:
@@ -207,6 +211,10 @@ class WiktionaryFilter:
             else:
                 a['href'] = urllib2.quote( a.renderContents() )
                 a['onclick'] = u"return s(this);"
+
+    def soup_filter_fold_etymology( self, content ):
+        pass
+        
                 
     def soup_filter_add_remember_buttons(self, content ):
         lis = content.findAll(lambda tag: tag.name == u'li' and tag.parent.name == u'ol' )
@@ -221,6 +229,7 @@ class WiktionaryFilter:
     def regex_filter_shorten_qualifier2( self, content ):
         r = re.compile( '<span class="ib-brac">\(</span><span class="ib-content">(.+)</span><span class="ib-brac">\)</span>', re.UNICODE | re.MULTILINE )
         return r.sub( r'(<i>\1</i>)', content )
+
 
 import sys
 
