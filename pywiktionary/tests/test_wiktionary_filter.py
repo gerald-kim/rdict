@@ -53,7 +53,7 @@ class SoupFilterTest( unittest.TestCase ):
         content = BeautifulSoup( '''<div id="rank" title="Word frequency based on Project Gutenberg corpus"><a href="/wiki/away">away</a>&nbsp;«&nbsp;<a href="/wiki/against">against</a>&nbsp;«&nbsp;<a href="/wiki/though">though</a>&nbsp;«&nbsp;<a href="/wiki/Wiktionary:Frequency_lists">#149:&nbsp;get</a>&nbsp;»&nbsp;<a href="/wiki/eyes">eyes</a>&nbsp;»&nbsp;<a href="/wiki/hand">hand</a>&nbsp;»&nbsp;<a href="/wiki/young">young</a></div>
 <div class="infl-table"><table border="0" width="100%"></div>
 <a class="image"><img></a>
-<table class="gallery"></table>''' )
+<table class="gallery"></table><div class="printfooter">Retrived from~~~</div><hr/>''' )
         self.filter.soup_filter_removeUnnecessaryElements( content )
         self.assertEquals( '', str( content ).strip() )
 

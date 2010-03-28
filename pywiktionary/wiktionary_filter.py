@@ -107,7 +107,8 @@ class WiktionaryFilter:
             del( link['title'] )
 
     def soup_filter_removeUnnecessaryElements( self, content ):
-        ELEMENTS = {
+        ELEMENTS = ['hr']
+        ELEMENTS_WITH_ATTRIBUTE = {
             'span' : [
                 {'class':'editsection'},
                 {'class':'interProject'},
@@ -118,7 +119,8 @@ class WiktionaryFilter:
                 {'class':'infl-table'},
                 {'class':'floatright'},
                 {'class':'catlinks'},
-                {'class':re.compile( '.+tright' )}
+                {'class':re.compile( '.+tright' )},
+                {'class':'printfooter'}
                 ],
             'a' : [
                 {'class':'image'}
@@ -129,8 +131,12 @@ class WiktionaryFilter:
                 ]
             }
 
-        for tag in ELEMENTS.keys():
-            attrs = ELEMENTS[tag]
+        for tag in ELEMENTS:
+            soups = content.findAll( tag )
+            [s.extract() for s in soups]
+
+        for tag in ELEMENTS_WITH_ATTRIBUTE.keys():
+            attrs = ELEMENTS_WITH_ATTRIBUTE[tag]
             for attr in attrs:
                 soups = content.findAll( tag, attr )
                 [ s.extract() for s in soups ]

@@ -5,7 +5,7 @@ from dict.models import *
 
 class User(models.Model):
     openid = models.CharField(max_length=150, db_index=True)
-    name = models.CharField(max_length=100)
+#    name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
 #    dictionaries = models.ManyToManyField(Dictionary, through="DictionaryUsing")
     created         = models.DateTimeField(auto_now_add=True)
