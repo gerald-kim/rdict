@@ -16,7 +16,12 @@
 
 @implementation ReviewSessionController
 
-static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-Perfect\n1-Forgot\n0-Blackout";
+static NSString* backHelpMessage = @"5 - perfect\n"
+"4 - correct but little time to think\n"
+"3 - correct response recalled with serious difficulty\n"
+"2 - incorrect response; where the correct one seemed easy to recall\n"
+"1 - incorrect response; the correct one remembered\n"
+"0 - complete blackout.";
 
 @synthesize scheduledCards;
 
@@ -131,11 +136,17 @@ static NSString* backHelpMessage = @"How easy was it to remember the word?\n\n5-
 }
 
 - (IBAction) helpButtonClicked : (id) sender {	
-	UIAlertView* alert;
+//	UIAlertView* alert;
 	
-	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:backHelpMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+//	alert = [[[UIAlertView alloc] initWithTitle:@"Help" message:backHelpMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+	//	[alert show];
+
+	UIAlertView *testAlert = [[UIAlertView alloc] initWithTitle:@"Help" message:backHelpMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[testAlert show];
 	
-	[alert show];
+	((UILabel*)[[testAlert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
+	
+	
 }
 
 - (void)showCardFrontView {
