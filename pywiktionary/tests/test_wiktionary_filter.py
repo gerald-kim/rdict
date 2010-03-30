@@ -102,9 +102,14 @@ class SoupFilterTest( unittest.TestCase ):
         self.assertEquals( u'<a href="get%20on" onclick="return s(this);">get on</a>, getting', str( content ) )
 
     def test_fold_etymology( self ):
-        content = BeautifulSoup( u'''<h3 class="head">Etymology</h3><p><span class="etyl"></span></p><p></p><h3 class="head">Other Head</h3>''' )
-        self.filter.soup_filter_fold_etymology()
-        self.assertEquals( u'''<h3 class="head"><a href="#" onClick="f('etymology_1')">Etymology</h3><div id="etymology_1" style="display:none"><p><span class="etyl"></span></p><p></p></div><h3 class="head">Other Head</h3>''', str(content) );
+        content = BeautifulSoup( u'''<h3 class="head">Etymology</h3> <p><span class="etyl"></span></p><p>fff</p><h3 class="head">Other Head</h3>''' )
+        self.filter.soup_filter_fold_etymology( content )
+        self.assertEquals( u'''<h3 class="head">Etymology <a href="#" onclick="f('etymology_1',this)">[show]</a></h3><div id="etymology_1" style="display:none"> <p><span class="etyl"></span></p><p>fff</p></div><h3 class="head">Other Head</h3>''', str(content) );
+        
+    def test_fold_multiple_etymology( self ):
+        content = BeautifulSoup( u'''<h3 class="head">Etymology 1</h3> <p>abc</p><h3 class="head">Etymology 2</h3> <p>def</p>''' )
+        self.filter.soup_filter_fold_etymology( content )
+        self.assertEquals( u'''<h3 class="head">Etymology 1 <a href="#" onclick="f('etymology_1',this)">[show]</a></h3><div id="etymology_1" style="display:none"> <p>abc</p></div><h3 class="head">Etymology 2 <a href="#" onclick="f('etymology_2',this)">[show]</a></h3><div id="etymology_2" style="display:none"> <p>def</p></div>''', str(content) );
         
                                  
     def test_add_remember_buttons( self ):

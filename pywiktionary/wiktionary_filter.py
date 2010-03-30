@@ -4,7 +4,7 @@
 # All rights reserved.
 # Created at Jul 7, 2009 by evacuee
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, Tag
 from cStringIO import StringIO
 import urllib2
 import hashlib
@@ -94,6 +94,7 @@ class WiktionaryFilter:
     def executeFilters( self, content ):
         for d in dir( self ):
             if d.startswith( 'soup_filter_' ):
+ #               print "exec : ", d
                 getattr( self, d )( content )
 
         contentStr = str( content )
@@ -115,7 +116,7 @@ class WiktionaryFilter:
                 ],
             'div' : [
                 {'id':'rank'},
-                {'class':'noprint'},
+                {'class':re.compile( 'noprint' )},
                 {'class':'infl-table'},
                 {'class':'floatright'},
                 {'class':'catlinks'},
@@ -213,8 +214,37 @@ class WiktionaryFilter:
                 a['onclick'] = u"return s(this);"
 
     def soup_filter_fold_etymology( self, content ):
-        pass
-        
+        heads = content.findAll( 'h2', {'class':'head'} ) + content.findAll( 'h3', {'class':'head'} ) + content.findAll( 'h4', {'class':'head'} )
+        etymologys = []
+        for h in heads:
+            if h.contents[0].lower().startswith('etymology'):
+#                print "found", h.content[0]
+                etymologys.append( h )
+#                print 'Etymology found: ', h
+
+        etymology_index = 1
+        for e in etymologys:
+            div = Tag( content, 'div' )
+            div['id'] = u'etymology_'+str(etymology_index)
+            div['style'] = u'display:none'
+            linkSoup = BeautifulSoup( u''' <a href="#" onclick="f('%s',this)">[show]</a>''' % div['id'] )
+            e.append( linkSoup )
+
+            paragraphs = []
+            
+            n = e.nextSibling
+            first = 1
+            while n and (n.__class__.__name__ == 'NavigableString' or  (n.__dict__.has_key('name') and n.name == 'p') ):
+                paragraphs.append( n )
+                n = n.nextSibling
+                
+            [div.append(p) for p in paragraphs]
+            
+            eIndex = e.parent.contents.index( e )
+            e.parent.insert( eIndex + 1, div )
+ 
+            etymology_index = etymology_index + 1
+                    
                 
     def soup_filter_add_remember_buttons(self, content ):
         lis = content.findAll(lambda tag: tag.name == u'li' and tag.parent.name == u'ol' )
