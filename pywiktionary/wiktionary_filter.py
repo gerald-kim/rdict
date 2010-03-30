@@ -94,7 +94,7 @@ class WiktionaryFilter:
     def executeFilters( self, content ):
         for d in dir( self ):
             if d.startswith( 'soup_filter_' ):
- #               print "exec : ", d
+#                print "exec : ", d
                 getattr( self, d )( content )
 
         contentStr = str( content )
@@ -213,11 +213,12 @@ class WiktionaryFilter:
                 a['href'] = urllib2.quote( a.renderContents() )
                 a['onclick'] = u"return s(this);"
 
-    def soup_filter_fold_etymology( self, content ):
+    def soup_filter_zz_fold_etymology( self, content ):
         heads = content.findAll( 'h2', {'class':'head'} ) + content.findAll( 'h3', {'class':'head'} ) + content.findAll( 'h4', {'class':'head'} )
         etymologys = []
         for h in heads:
-            if h.contents[0].lower().startswith('etymology'):
+#            print "Head, ", h
+            if h.next and h.next.lower().startswith('etymology'):
 #                print "found", h.content[0]
                 etymologys.append( h )
 #                print 'Etymology found: ', h
