@@ -81,7 +81,7 @@
 	[lookupHistory release];
 	lookupHistory = nil;
 	
-	//[[NSNotification defaultCenter] removeObserver:<#(id)observer#>
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIPasteboardChangedNotification object:nil];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -185,7 +185,7 @@
 	}
 }
 
-- (void)clipboardChanged:(NSNotification *)notification
+- (void) clipboardChanged:(NSNotification *)notification
 {
 	if( saveDialogOpened ) {
 		return;
@@ -206,10 +206,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	NSLog(@"DVC.clickedButtonAtIndex");
+	saveDialogOpened = NO;
 	if (buttonIndex == 1) {
 		[self saveCard:[UIPasteboard generalPasteboard].string];
 	}
-	saveDialogOpened = NO;
 }
 
 #pragma mark -

@@ -204,7 +204,12 @@
 		sparkline.tag = STAT_CELL_SPARKLINE;
 		[cell.contentView addSubview:sparkline];
 	} else {
-		sparkline = (CKSparkline *)[cell.contentView viewWithTag:STAT_CELL_SPARKLINE];
+		[[cell.contentView viewWithTag:STAT_CELL_SPARKLINE] removeFromSuperview];
+		
+		sparkline = [[[CKSparkline alloc]
+					  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
+		sparkline.tag = STAT_CELL_SPARKLINE;
+		[cell.contentView addSubview:sparkline];		
 	}
     
 	if ( 0 == row ) {

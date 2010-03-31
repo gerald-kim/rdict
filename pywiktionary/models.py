@@ -142,12 +142,13 @@ class Word:
             #print 'wget -qc -O - %s | bzip2 -c9 > %s' % ( url, self.get_page_path() )
             os.system( 'mkdir -p "%s"' % self.get_file_dir() )
             os.system( 'curl -sL "%s" | bzip2 -c9 > "%s"' % (url, self.get_page_path()) )
+            #os.system( 'curl -sL "%s" | gzip -cd | bzip2 -c9 > "%s"' % (url, self.get_page_path()) )
 
             return True
         except KeyboardInterrupt:
             raise
         except:
-            print "Unexpected error on word(%s):" % ( self.lemma.encode( 'utf-8' ) )
+            print "Unexpected error on word[%s] %s" % ( self.lemma.encode( 'utf-8' ), self.get_page_path() )
             traceback.print_exception( *sys.exc_info() )
             return False
 

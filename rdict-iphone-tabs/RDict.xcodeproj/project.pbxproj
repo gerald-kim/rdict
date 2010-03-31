@@ -524,7 +524,7 @@
 		EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DictionaryView.xib; path = Resources/DictionaryView.xib; sourceTree = "<group>"; };
 		EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.min.js"; path = "Resources/jquery-1.3.2.min.js"; sourceTree = "<group>"; };
 		EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		EF2E754C0FE9BBB0008B8AEC /* Vocabulator.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Vocabulator.plist; sourceTree = "<group>"; };
+		EF2E754C0FE9BBB0008B8AEC /* AmplioWords.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AmplioWords.plist; sourceTree = "<group>"; };
 		EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = Resources/ReviewView.xib; sourceTree = "<group>"; };
 		EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchView.xib; path = Resources/SearchView.xib; sourceTree = "<group>"; };
 		EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 				EF770E830FF754D900889749 /* jquery-1.3.2.js */,
 				EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */,
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
-				EF2E754C0FE9BBB0008B8AEC /* Vocabulator.plist */,
+				EF2E754C0FE9BBB0008B8AEC /* AmplioWords.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */,
 				EF288FB5111AE39A00BB5C83 /* RDict-Info copy 2.plist */,
@@ -1694,7 +1694,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = Vocabulator.plist;
+				INFOPLIST_FILE = AmplioWords.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
@@ -1710,7 +1710,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = Vocabulator.plist;
+				INFOPLIST_FILE = AmplioWords.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
