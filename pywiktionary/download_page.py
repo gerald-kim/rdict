@@ -28,7 +28,7 @@ if __name__ == '__main__':
                 else:
                     word_manager.mark_downloaded( lemma )
         except:
-            print "Unexpected error on word(%s):" % ( lemma.encode( 'utf-8' ) )
+            print "Unexpected error on word[%s] %s" % ( lemma.encode( 'utf-8' ), word.get_page_path() )
             traceback.print_exception( *sys.exc_info() )
 
         WordCount += 1

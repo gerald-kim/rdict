@@ -75,7 +75,8 @@ class WiktionaryFilter:
 
         g = englishHead.nextSiblingGenerator()
         n = g.next()
-        while otherLangHead != n:
+        while otherLangHead != n and n:
+            print n
             buffer.write( str( n ) )
             buffer.write( '\n' )
             n = g.next()
@@ -228,7 +229,7 @@ class WiktionaryFilter:
             div = Tag( content, 'div' )
             div['id'] = u'etymology_'+str(etymology_index)
             div['style'] = u'display:none'
-            linkSoup = BeautifulSoup( u''' <a href="#" onclick="f('%s',this)">[show]</a>''' % div['id'] )
+            linkSoup = BeautifulSoup( u''' <a href="javascript:f('%s',this)">[show]</a>''' % (div['id']) )
             e.append( linkSoup )
 
             paragraphs = []
