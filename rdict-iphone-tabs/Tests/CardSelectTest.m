@@ -38,7 +38,7 @@
 	STAssertEquals( 10, [Card count], @"Card count shouldn't be 0" );
 	
 	NSArray* scheduled = (NSArray*) [Card findByScheduled];
-	STAssertEquals( (NSUInteger) 5, [scheduled count], nil );
+	STAssertEquals( [scheduled count], (NSUInteger) 05, nil );
 	STAssertNotEqualStrings( @"future", ((Card*) [scheduled objectAtIndex:(NSUInteger)0]).question, nil );
 	STAssertNotEqualStrings( @"future", ((Card*) [scheduled objectAtIndex:(NSUInteger)1]).question, nil );
 	

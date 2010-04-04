@@ -16,12 +16,12 @@
 
 @implementation ReviewSessionController
 
-static NSString* backHelpMessage = @"5 - perfect\n"
-"4 - correct but little time to think\n"
-"3 - correct response recalled with serious difficulty\n"
-"2 - incorrect response; where the correct one seemed easy to recall\n"
-"1 - incorrect response; the correct one remembered\n"
-"0 - complete blackout.";
+static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
+"4 - correct answer after brief pause\n"
+"3 - correct answer, needed time to recall\n"
+"2 - incorrect answer, easily recognized correct one\n"
+"1 - incorrect answer; difficult to remember correct one\n"
+"0 - completely forget";
 
 @synthesize scheduledCards;
 

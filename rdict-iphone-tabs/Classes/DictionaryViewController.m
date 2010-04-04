@@ -20,7 +20,7 @@
 -(void) showSaveAlert;
 -(void) fadeOutSaveAlert;
 
--(void) startActivityAnimating;
+-(void) startActivityAnimating:(BOOL) localRequest;
 -(void) stopActivityAnimating;
 
 @end
@@ -28,6 +28,7 @@
 @implementation DictionaryViewController
 @synthesize webView;
 @synthesize cardAddedNote;
+@synthesize activityIndicatorView;
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize lookupHistory;
@@ -116,7 +117,7 @@
 	} 
 	
 	if ( navigationType == UIWebViewNavigationTypeLinkClicked && [[[request URL] scheme] hasPrefix:@"http"]  ) {
-		[self startActivityAnimating];
+		[self startActivityAnimating:FALSE];
 		[lookupHistory addHistory:url];
 	}
 
@@ -235,7 +236,7 @@
 	
 }
 - (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod  {
-	[self startActivityAnimating];
+	[self startActivityAnimating:YES];
 	
 	WordEntry* entry = [wiktionary wordEntryByLemma:aLemma];	
 	if (entry) {
@@ -300,15 +301,18 @@
 	[UIView commitAnimations];
 }
 
-- (void) startActivityAnimating {
-//	activityIndicatorView.hidden = NO;	
-//	[activityIndicatorView startAnimating];
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+- (void) startActivityAnimating:(BOOL) localRequest {
+	if ( localRequest ) {
+		activityIndicatorView.hidden = NO;	
+		[activityIndicatorView startAnimating];
+	} else {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	}
 }
 
 - (void) stopActivityAnimating {
-//	[activityIndicatorView stopAnimating];
-//	activityIndicatorView.hidden = YES;	
+	[activityIndicatorView stopAnimating];
+	activityIndicatorView.hidden = YES;	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

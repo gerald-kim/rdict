@@ -374,6 +374,7 @@
 		EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
+		EFAC4B721164276800FF1637 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFAC4B711164276800FF1637 /* Entitlements.plist */; };
 		EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EFBF4A200FE001AB0092357C /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B370FDFFFE800B093EB /* GTMIPhoneUnitTestDelegate.m */; };
 		EFBF4A210FE001AB0092357C /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = EF8D0B380FDFFFE800B093EB /* GTMIPhoneUnitTestMain.m */; };
@@ -426,13 +427,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
 			remoteInfo = tokyocabinet;
-		};
-		EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFBF4A160FE001900092357C;
-			remoteInfo = UnitTests;
 		};
 		EFBF4A1E0FE001A10092357C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -616,6 +610,8 @@
 		EFA84B841164148300715E4D /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
+		EFAC4B5C116426CA00FF1637 /* AmplioWords copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmplioWords copy.plist"; sourceTree = "<group>"; };
+		EFAC4B711164276800FF1637 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduledOrTodayCardTest.m; path = Tests/ScheduledOrTodayCardTest.m; sourceTree = "<group>"; };
 		EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
@@ -754,6 +750,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				EFAC4B711164276800FF1637 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -802,6 +799,7 @@
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
 				EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */,
 				EF288FB5111AE39A00BB5C83 /* RDict-Info copy 2.plist */,
+				EFAC4B5C116426CA00FF1637 /* AmplioWords copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1091,7 +1089,6 @@
 			);
 			dependencies = (
 				EFEA07F40FDFF51D00490192 /* PBXTargetDependency */,
-				EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */,
 			);
 			name = AmplioWords;
 			productName = RDict;
@@ -1267,6 +1264,7 @@
 				EF93907D114212FA0029F514 /* icon_arrow_left.png in Resources */,
 				EF93907E114212FA0029F514 /* icon_arrow_right.png in Resources */,
 				EFA84B861164148300715E4D /* history.png in Resources */,
+				EFAC4B721164276800FF1637 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,11 +1665,6 @@
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
 			targetProxy = EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */;
 		};
-		EF6D9EFD0FE564D30096BA53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFBF4A160FE001900092357C /* UnitTests */;
-			targetProxy = EF6D9EFC0FE564D30096BA53 /* PBXContainerItemProxy */;
-		};
 		EFBF4A1F0FE001A10092357C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
@@ -1723,7 +1716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Min Jung Kim (ECJU36J5UE)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = 4.2;
@@ -1733,7 +1726,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24527098-34FD-4875-BB38-B16971CE23FD";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -1742,7 +1735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Min Jung Kim (ECJU36J5UE)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = 4.2;
@@ -1751,7 +1744,7 @@
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24527098-34FD-4875-BB38-B16971CE23FD";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
@@ -1765,7 +1758,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info copy 2.plist";
+				INFOPLIST_FILE = AmplioWords.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
@@ -1782,7 +1775,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info copy 2.plist";
+				INFOPLIST_FILE = AmplioWords.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
@@ -1827,6 +1820,117 @@
 				PRODUCT_NAME = "RDict Test";
 			};
 			name = Release;
+		};
+		EFAC4B5D116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Min Jung Kim";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0219EBB-21FD-4059-9366-F5D26ABDD7DE";
+				SDKROOT = iphoneos3.1;
+			};
+			name = Distribution;
+		};
+		EFAC4B5E116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = "RDict-Info copy.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
+				);
+				OTHER_CFLAGS = "-DRDICTTEST=1";
+				PRODUCT_NAME = "RDict Test";
+			};
+			name = Distribution;
+		};
+		EFAC4B5F116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = AmplioWords.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
+				);
+				PRODUCT_NAME = AmplioWords;
+			};
+			name = Distribution;
+		};
+		EFAC4B60116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				SDKROOT = iphoneos3.0;
+				ZERO_LINK = NO;
+			};
+			name = Distribution;
+		};
+		EFAC4B61116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = tokyocabinet;
+				ZERO_LINK = NO;
+			};
+			name = Distribution;
+		};
+		EFAC4B62116426E300FF1637 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = AmplioWords.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
+				);
+				OTHER_CFLAGS = "-DRDICTTEST=1";
+				PRODUCT_NAME = "RDict Test";
+			};
+			name = Distribution;
 		};
 		EFBF4A1A0FE001900092357C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1918,6 +2022,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				EFAC4B5F116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1927,6 +2032,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				EFAC4B5D116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1936,6 +2042,7 @@
 			buildConfigurations = (
 				EF288FB1111AE39900BB5C83 /* Debug */,
 				EF288FB2111AE39900BB5C83 /* Release */,
+				EFAC4B62116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1945,6 +2052,7 @@
 			buildConfigurations = (
 				EF54C57C0FFF36D000BFDCB6 /* Debug */,
 				EF54C57D0FFF36D000BFDCB6 /* Release */,
+				EFAC4B5E116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1954,6 +2062,7 @@
 			buildConfigurations = (
 				EFBF4A1A0FE001900092357C /* Debug */,
 				EFBF4A1B0FE001900092357C /* Release */,
+				EFAC4B60116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1963,6 +2072,7 @@
 			buildConfigurations = (
 				EFEA07EC0FDFF50B00490192 /* Debug */,
 				EFEA07ED0FDFF50B00490192 /* Release */,
+				EFAC4B61116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
