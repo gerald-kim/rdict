@@ -156,7 +156,6 @@
 		EF288FAB111AE39900BB5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EF288FAC111AE39900BB5C83 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
 		EF288FAD111AE39900BB5C83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
-		EF288FAE111AE39900BB5C83 /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EF288FAF111AE39900BB5C83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
 		EF288FCF111B897100BB5C83 /* LookupHistoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF288FCE111B897100BB5C83 /* LookupHistoryTest.m */; };
 		EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
@@ -281,6 +280,10 @@
 		EF5C7DD9106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDA106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDB106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
+		EF5DCCAD116AA61400AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
+		EF5DCCC8116AA6EC00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
+		EF5DCCC9116AA6FA00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
+		EF5DCCCB116AA70B00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCCA116AA70B00AB70AA /* libz.dylib */; };
 		EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */; };
 		EF69ADBB10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
 		EF69ADBC10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
@@ -360,7 +363,6 @@
 		EF770FD30FF7B8A000889749 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
 		EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
 		EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
-		EF8FBB7C113A853600786EDC /* bzlib.h in Headers */ = {isa = PBXBuildFile; fileRef = EF8FBB7B113A853600786EDC /* bzlib.h */; };
 		EF92DC330FFC31AF008591C6 /* CardStudyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF92DC320FFC31AF008591C6 /* CardStudyTest.m */; };
 		EF93907B114212FA0029F514 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
 		EF93907C114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
@@ -385,9 +387,6 @@
 		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
 		EFCAA37A11179ABC00E5E0CE /* ScheduledOrTodayCardTest.m in Resources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
 		EFCAA38911179D6E00E5E0CE /* ScheduledOrTodayCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
-		EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
-		EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
-		EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7EDD5100CBEFC00623BEE /* libbz2.dylib */; };
 		EFE5E2DF10CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
 		EFE5E2E010CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
 		EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
@@ -544,6 +543,8 @@
 		EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryPersistenceTest.m; path = Tests/HistoryPersistenceTest.m; sourceTree = "<group>"; };
 		EF5C7DD7106851F50017E0E6 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		EF5C7DD8106851F50017E0E6 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		EF5DCCAC116AA61400AB70AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EF5DCCCA116AA70B00AB70AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPersistenceTest.h; sourceTree = "<group>"; };
 		EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectPersistenceTest.m; sourceTree = "<group>"; };
 		EF69ADBA10B771A900A8DDBF /* AboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
@@ -603,7 +604,6 @@
 		EF8D0B390FDFFFE800B093EB /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.h"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3A0FDFFFE800B093EB /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = "Extras/google-toolbox-for-mac-1-5-1/UnitTesting/GTMSenTestCase.m"; sourceTree = DEVELOPER_DIR; };
 		EF8D0B3B0FDFFFE800B093EB /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "Extras/google-toolbox-for-mac-1-5-1/GTMDefines.h"; sourceTree = DEVELOPER_DIR; };
-		EF8FBB7B113A853600786EDC /* bzlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bzlib.h; sourceTree = "<group>"; };
 		EF92DC320FFC31AF008591C6 /* CardStudyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardStudyTest.m; path = Tests/CardStudyTest.m; sourceTree = "<group>"; };
 		EF939079114212FA0029F514 /* icon_arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_arrow_left.png; path = Resources/icon_arrow_left.png; sourceTree = "<group>"; };
 		EF93907A114212FA0029F514 /* icon_arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_arrow_right.png; path = Resources/icon_arrow_right.png; sourceTree = "<group>"; };
@@ -653,8 +653,8 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
-				EFD7EDD7100CBF2300623BEE /* libbz2.dylib in Frameworks */,
 				1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
+				EF5DCCC9116AA6FA00AB70AA /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,8 +667,8 @@
 				EF288FAB111AE39900BB5C83 /* CoreGraphics.framework in Frameworks */,
 				EF288FAC111AE39900BB5C83 /* libtokyocabinet.a in Frameworks */,
 				EF288FAD111AE39900BB5C83 /* libsqlite3.dylib in Frameworks */,
-				EF288FAE111AE39900BB5C83 /* libbz2.dylib in Frameworks */,
 				EF288FAF111AE39900BB5C83 /* QuartzCore.framework in Frameworks */,
+				EF5DCCAD116AA61400AB70AA /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,8 +681,8 @@
 				EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */,
 				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
 				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
-				EFD7EDD6100CBEFC00623BEE /* libbz2.dylib in Frameworks */,
 				1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
+				EF5DCCC8116AA6EC00AB70AA /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,7 +692,7 @@
 			files = (
 				EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */,
 				EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */,
-				EFD7EDD8100CBF2E00623BEE /* libbz2.dylib in Frameworks */,
+				EF5DCCCB116AA70B00AB70AA /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +751,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				EFAC4B711164276800FF1637 /* Entitlements.plist */,
+				EF5DCCAC116AA61400AB70AA /* libz.dylib */,
+				EF5DCCCA116AA70B00AB70AA /* libz.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1030,7 +1032,6 @@
 		EFEA07D70FDFF4F900490192 /* tokyocabinet */ = {
 			isa = PBXGroup;
 			children = (
-				EF8FBB7B113A853600786EDC /* bzlib.h */,
 				EFEA07D80FDFF4F900490192 /* md5.c */,
 				EFEA07D90FDFF4F900490192 /* md5.h */,
 				EFEA07DA0FDFF4F900490192 /* myconf.c */,
@@ -1070,7 +1071,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8FBB7C113A853600786EDC /* bzlib.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1829,7 +1829,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Min Jung Kim";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1909,6 +1909,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_VERSION = 4.2;
 				PREBINDING = NO;
 				PRODUCT_NAME = tokyocabinet;
 				ZERO_LINK = NO;

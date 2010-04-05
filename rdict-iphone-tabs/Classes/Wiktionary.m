@@ -23,17 +23,13 @@
 	[errorMessage release];	
 }
 
+
 - (id) init {
-	indexDb = tcbdbnew();
-	wordDb = tcbdbnew();
-	
+	indexDb = tcbdbnew();	
 	if( !tcbdbopen(indexDb, [[[NSBundle mainBundle] pathForResource:@"index" ofType:@"db"] UTF8String], BDBOREADER ) ) {
 		[self logtcbdberror:indexDb];		
 	}
-	if( !tcbdbopen(wordDb, [[[NSBundle mainBundle] pathForResource:@"word" ofType:@"db"] UTF8String], BDBOREADER ) ) {
-		[self logtcbdberror:wordDb];		
-	}
-	
+
 	forwardCursor = tcbdbcurnew( indexDb );
 	backwardCursor = tcbdbcurnew( indexDb );
 	wordCursor = tcbdbcurnew( indexDb );
@@ -41,6 +37,16 @@
 	wordIndexes = [[NSMutableArray alloc] initWithCapacity:(NSUInteger) LIST_SIZE];
 	
 	return self;
+}
+
+- (void) openWordDb {
+	if ( NULL == wordDb ) {
+		wordDb = tcbdbnew();
+		if( !tcbdbopen(wordDb, [[[NSBundle mainBundle] pathForResource:@"word" ofType:@"db"] UTF8String], BDBOREADER ) ) {
+			[self logtcbdberror:wordDb];		
+		}
+		
+	}
 }
 
 - (void) dealloc {

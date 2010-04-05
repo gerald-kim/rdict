@@ -73,6 +73,8 @@
 
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	[self.wiktionary openWordDb];
+
 }	
 
 - (void) viewWillDisappear:(BOOL)animated {

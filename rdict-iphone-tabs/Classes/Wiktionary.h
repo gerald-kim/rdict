@@ -31,4 +31,6 @@
 
 //- (NSMutableArray*) listBackward:(NSString*) lemma withLimit:(NSUInteger) limit;
 
+- (void) openWordDb;
+
 @end
