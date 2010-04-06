@@ -225,6 +225,10 @@
 		EF3792BC1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
 		EF3792BD1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
 		EF3792BE1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
+		EF3ED7F1116B35BC00EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
+		EF3ED7F2116B35D000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
+		EF3ED7F4116B35E000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F3116B35E000EB59C8 /* libz.dylib */; };
+		EF3ED7F5116B35ED00EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F3116B35E000EB59C8 /* libz.dylib */; };
 		EF5071311120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
 		EF5071321120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
 		EF5071331120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
@@ -280,10 +284,6 @@
 		EF5C7DD9106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDA106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDB106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
-		EF5DCCAD116AA61400AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
-		EF5DCCC8116AA6EC00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
-		EF5DCCC9116AA6FA00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCAC116AA61400AB70AA /* libz.dylib */; };
-		EF5DCCCB116AA70B00AB70AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5DCCCA116AA70B00AB70AA /* libz.dylib */; };
 		EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */; };
 		EF69ADBB10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
 		EF69ADBC10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
@@ -534,6 +534,8 @@
 		EF3792A81135E612005A1B22 /* StatisticsManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatisticsManagerTest.m; path = Tests/StatisticsManagerTest.m; sourceTree = "<group>"; };
 		EF3792B91135ED06005A1B22 /* StatisticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsManager.h; sourceTree = "<group>"; };
 		EF3792BA1135ED06005A1B22 /* StatisticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsManager.m; sourceTree = "<group>"; };
+		EF3ED7F0116B35BC00EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EF3ED7F3116B35E000EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF50712F1120D2210017B0FC /* CKSparkline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKSparkline.h; path = Classes/CKSparkline.h; sourceTree = "<group>"; };
 		EF5071301120D2210017B0FC /* CKSparkline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKSparkline.m; path = Classes/CKSparkline.m; sourceTree = "<group>"; };
 		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -543,8 +545,6 @@
 		EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryPersistenceTest.m; path = Tests/HistoryPersistenceTest.m; sourceTree = "<group>"; };
 		EF5C7DD7106851F50017E0E6 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		EF5C7DD8106851F50017E0E6 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
-		EF5DCCAC116AA61400AB70AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EF5DCCCA116AA70B00AB70AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF5E7A121068ED8A00DB2E83 /* ObjectPersistenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPersistenceTest.h; sourceTree = "<group>"; };
 		EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectPersistenceTest.m; sourceTree = "<group>"; };
 		EF69ADBA10B771A900A8DDBF /* AboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 				EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */,
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
 				1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
-				EF5DCCC9116AA6FA00AB70AA /* libz.dylib in Frameworks */,
+				EF3ED7F2116B35D000EB59C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +668,7 @@
 				EF288FAC111AE39900BB5C83 /* libtokyocabinet.a in Frameworks */,
 				EF288FAD111AE39900BB5C83 /* libsqlite3.dylib in Frameworks */,
 				EF288FAF111AE39900BB5C83 /* QuartzCore.framework in Frameworks */,
-				EF5DCCAD116AA61400AB70AA /* libz.dylib in Frameworks */,
+				EF3ED7F1116B35BC00EB59C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +682,7 @@
 				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
 				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
 				1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
-				EF5DCCC8116AA6EC00AB70AA /* libz.dylib in Frameworks */,
+				EF3ED7F5116B35ED00EB59C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,7 +692,7 @@
 			files = (
 				EFBF4A1D0FE001980092357C /* libtokyocabinet.a in Frameworks */,
 				EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */,
-				EF5DCCCB116AA70B00AB70AA /* libz.dylib in Frameworks */,
+				EF3ED7F4116B35E000EB59C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,8 +751,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				EFAC4B711164276800FF1637 /* Entitlements.plist */,
-				EF5DCCAC116AA61400AB70AA /* libz.dylib */,
-				EF5DCCCA116AA70B00AB70AA /* libz.dylib */,
+				EF3ED7F0116B35BC00EB59C8 /* libz.dylib */,
+				EF3ED7F3116B35E000EB59C8 /* libz.dylib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

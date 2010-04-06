@@ -44,8 +44,7 @@
 		wordDb = tcbdbnew();
 		if( !tcbdbopen(wordDb, [[[NSBundle mainBundle] pathForResource:@"word" ofType:@"db"] UTF8String], BDBOREADER ) ) {
 			[self logtcbdberror:wordDb];		
-		}
-		
+		}		
 	}
 }
 

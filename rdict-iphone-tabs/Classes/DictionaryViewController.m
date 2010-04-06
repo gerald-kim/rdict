@@ -52,6 +52,8 @@
 	self.forwardButton = [[UIBarButtonItem alloc] initWithImage:forwardImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoForwardClick:)];
 	self.forwardButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = forwardButton;
+	
+	[self.wiktionary openWordDb];
 }
 
 - (void) viewWillAppear:(BOOL)animated {	
@@ -73,8 +75,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[self.wiktionary openWordDb];
-
 }	
 
 - (void) viewWillDisappear:(BOOL)animated {
