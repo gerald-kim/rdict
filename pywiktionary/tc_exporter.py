@@ -29,8 +29,8 @@ class TokyoCabinetExporter:
     def close_tc( self ):
         self.index_db.close()
         self.word_db.close()
-        os.system( 'tcbmgr optimize -tb ' + os.path.join( self.db_dir, 'index.db' ) )
-        os.system( 'tcbmgr optimize -tb ' + os.path.join( self.db_dir, 'word.db' ) )
+        os.system( 'tcbmgr optimize -td ' + os.path.join( self.db_dir, 'index.db' ) )
+        os.system( 'tcbmgr optimize -td ' + os.path.join( self.db_dir, 'word.db' ) )
 
     def export_word( self, word ):
         index_key = word.lemma.lower().encode( 'utf-8' )
