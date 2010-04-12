@@ -47,3 +47,7 @@ def rpx(request):
     else:
         print 'An error occured: ' + auth_info['err']['msg']
         return HttpResponseServerError()
+
+def signout(request):
+    del request.session['rpxuser']
+    return HttpResponseRedirect('/')

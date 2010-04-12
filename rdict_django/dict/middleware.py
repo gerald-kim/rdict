@@ -8,7 +8,7 @@ class PywiktionaryMiddleware(object):
     def process_request(self, request):
         """Opens pywiktionary dictionary"""
         request.pywiktionary = pywiktionary.Dictionary(settings.DICT_DB)
-        #request.pywiktionary.open()
+        request.pywiktionary.open()
         
     def process_exception(self, request, exception):
         """Closes pywkitionary dictionary"""
@@ -20,7 +20,7 @@ class PywiktionaryMiddleware(object):
         return response
             
     def _close_pywiktionary(self, request):
-        #request.pywiktionary.close()
-        #request.pywiktionary = None
-        pass
-                
+        if request.pywiktionary:
+            request.pywiktionary.close()
+            request.pywiktionary = None
+

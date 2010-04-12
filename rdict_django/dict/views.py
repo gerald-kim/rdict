@@ -28,6 +28,6 @@ def suggest( request ):
         word_indexes = request.pywiktionary.list_forward( cursor, q, 10 )
     except Exception, e:
         request.pywiktionary.close_cursor( cursor )
-        word_indexes = []    
+        word_indexes = []
 
     return respond( request, 'suggest.html', {'word_indexes' : word_indexes} )
