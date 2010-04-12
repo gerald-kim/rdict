@@ -358,12 +358,6 @@
 		EF719407117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
 		EF719408117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
 		EF719409117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
-		EF7194261170266500B59670 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194241170266500B59670 /* UITabBar1.png */; };
-		EF7194271170266500B59670 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194251170266500B59670 /* UITabBar2.png */; };
-		EF7194281170266500B59670 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194241170266500B59670 /* UITabBar1.png */; };
-		EF7194291170266500B59670 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194251170266500B59670 /* UITabBar2.png */; };
-		EF71942A1170266500B59670 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194241170266500B59670 /* UITabBar1.png */; };
-		EF71942B1170266500B59670 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7194251170266500B59670 /* UITabBar2.png */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
 		EF770FCC0FF7B86800889749 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
 		EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
@@ -379,6 +373,12 @@
 		EF93907E114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
 		EF93907F114212FA0029F514 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
 		EF939080114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
+		EF9AE54911729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
+		EF9AE54A11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
+		EF9AE54B11729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
+		EF9AE54C11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
+		EF9AE54D11729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
+		EF9AE54E11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
 		EFA84B851164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
 		EFA84B861164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
 		EFA84B871164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
@@ -597,8 +597,6 @@
 		EF69B13610B8D45C00A8DDBF /* CardEditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardEditView.xib; sourceTree = "<group>"; };
 		EF719405117023CC00B59670 /* CustomUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUITabBarController.h; sourceTree = "<group>"; };
 		EF719406117023CC00B59670 /* CustomUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUITabBarController.m; sourceTree = "<group>"; };
-		EF7194241170266500B59670 /* UITabBar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBar1.png; sourceTree = "<group>"; };
-		EF7194251170266500B59670 /* UITabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBar2.png; sourceTree = "<group>"; };
 		EF770E830FF754D900889749 /* jquery-1.3.2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-1.3.2.js"; path = "Resources/jquery-1.3.2.js"; sourceTree = "<group>"; };
 		EF770FC40FF7B86800889749 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardViewController.h; path = Classes/CardViewController.h; sourceTree = "<group>"; };
 		EF770FC50FF7B86800889749 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardViewController.m; path = Classes/CardViewController.m; sourceTree = "<group>"; };
@@ -620,6 +618,8 @@
 		EF92DC320FFC31AF008591C6 /* CardStudyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardStudyTest.m; path = Tests/CardStudyTest.m; sourceTree = "<group>"; };
 		EF939079114212FA0029F514 /* icon_arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_arrow_left.png; path = Resources/icon_arrow_left.png; sourceTree = "<group>"; };
 		EF93907A114212FA0029F514 /* icon_arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_arrow_right.png; path = Resources/icon_arrow_right.png; sourceTree = "<group>"; };
+		EF9AE54711729E1500981D87 /* UITabBar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UITabBar1.png; path = Resources/UITabBar1.png; sourceTree = "<group>"; };
+		EF9AE54811729E1500981D87 /* UITabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UITabBar2.png; path = Resources/UITabBar2.png; sourceTree = "<group>"; };
 		EFA84B841164148300715E4D /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
@@ -788,8 +788,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF7194241170266500B59670 /* UITabBar1.png */,
-				EF7194251170266500B59670 /* UITabBar2.png */,
+				EF9AE54711729E1500981D87 /* UITabBar1.png */,
+				EF9AE54811729E1500981D87 /* UITabBar2.png */,
 				EF939079114212FA0029F514 /* icon_arrow_left.png */,
 				EF93907A114212FA0029F514 /* icon_arrow_right.png */,
 				1F560D8F10E6CFBF005A6311 /* button_easy1.png */,
@@ -1282,8 +1282,8 @@
 				EF93907E114212FA0029F514 /* icon_arrow_right.png in Resources */,
 				EFA84B861164148300715E4D /* history.png in Resources */,
 				EFAC4B721164276800FF1637 /* Entitlements.plist in Resources */,
-				EF7194261170266500B59670 /* UITabBar1.png in Resources */,
-				EF7194271170266500B59670 /* UITabBar2.png in Resources */,
+				EF9AE54911729E1500981D87 /* UITabBar1.png in Resources */,
+				EF9AE54A11729E1500981D87 /* UITabBar2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,8 +1358,8 @@
 				EF93907F114212FA0029F514 /* icon_arrow_left.png in Resources */,
 				EF939080114212FA0029F514 /* icon_arrow_right.png in Resources */,
 				EFA84B871164148300715E4D /* history.png in Resources */,
-				EF71942A1170266500B59670 /* UITabBar1.png in Resources */,
-				EF71942B1170266500B59670 /* UITabBar2.png in Resources */,
+				EF9AE54D11729E1500981D87 /* UITabBar1.png in Resources */,
+				EF9AE54E11729E1500981D87 /* UITabBar2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1434,8 +1434,8 @@
 				EF93907B114212FA0029F514 /* icon_arrow_left.png in Resources */,
 				EF93907C114212FA0029F514 /* icon_arrow_right.png in Resources */,
 				EFA84B851164148300715E4D /* history.png in Resources */,
-				EF7194281170266500B59670 /* UITabBar1.png in Resources */,
-				EF7194291170266500B59670 /* UITabBar2.png in Resources */,
+				EF9AE54B11729E1500981D87 /* UITabBar1.png in Resources */,
+				EF9AE54C11729E1500981D87 /* UITabBar2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
