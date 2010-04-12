@@ -39,6 +39,7 @@
 	
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+	
 }
 
 
@@ -159,4 +160,14 @@
 }
 
 
+@end
+
+
+@implementation UISearchBar (CustomBG)
+- (void)drawRect:(CGRect)rect {
+	UIColor *color = [UIColor redColor];
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetFillColor(context, CGColorGetComponents( [color CGColor]));
+	CGContextFillRect(context, rect);
+}
 @end
