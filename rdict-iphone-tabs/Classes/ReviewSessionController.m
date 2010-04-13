@@ -12,6 +12,7 @@
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
 #import "RDictAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation ReviewSessionController
@@ -67,12 +68,19 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 	cardBackViewController.view.backgroundColor = backgroundColor;
 	reviewUnfinishedViewController.view.backgroundColor = backgroundColor;
 	reviewFinishedViewController.view.backgroundColor = backgroundColor;
-	
 	[backgroundColor release];
+	
+	cardBackViewController.answerTextView.layer.cornerRadius = 10.0;
+	cardBackViewController.answerTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+	cardBackViewController.answerTextView.layer.borderWidth = 1;
+	reviewUnfinishedViewController.tableView.layer.cornerRadius = 10.0;
+	reviewUnfinishedViewController.tableView.layer.borderColor = [[UIColor grayColor] CGColor];
+	reviewUnfinishedViewController.tableView.layer.borderWidth = 1;
 	
 	[self.view insertSubview:cardFrontViewController.view atIndex:0];
 	[self.view insertSubview:cardBackViewController.view atIndex:0];
 
+	
 	[self initCountLabel];
 
 }
@@ -97,6 +105,8 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 - (void)viewDidUnload {
 	[cardFrontViewController release];
 	[cardBackViewController release];	
+	[reviewUnfinishedViewController release];
+	[reviewFinishedViewController release];	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,7 +134,6 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 	NSLog( @"RSC.scoreButtonClicked" );
 	//TODO refactor scoreButtonClicked function. it's too complex
 	UIButton *scoreButton = (UIButton*) sender;
-
 	NSUInteger score = scoreButton.tag;
 	
 	if( cardsForReview == scheduledCards ) {
@@ -139,8 +148,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 			[self showReviewUnfinishedView];
 		} else {
 			[self showReviewFinishedView];
-			
-		}  
+		} 
 	} else {
 		[self showCardFrontView];
 	}
@@ -216,7 +224,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 #pragma mark -
 #pragma mark ReviewFinish
 - (void) showReviewUnfinishedView {
-	reviewUnfinishedViewController.scheduledCards = scheduledCards;
+//	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
 	self.title = @"Review Again?";
@@ -249,14 +257,12 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 
 - (IBAction) reviewCompleteButtonClicked : (id) sender {
 	[reviewFinishedViewController.view removeFromSuperview];
-	[reviewFinishedViewController release];
 	
 	[self.navigationController popViewControllerAnimated:YES];		
 }
 
 - (IBAction) skipExtraPracticeButtonClicked : (id) sender {
 	[reviewUnfinishedViewController.view removeFromSuperview];
-	[reviewUnfinishedViewController release];
 	
 	[self.navigationController popViewControllerAnimated:YES];			
 }

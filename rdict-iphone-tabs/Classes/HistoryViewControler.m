@@ -122,7 +122,24 @@
 	return [number intValue];	
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (UIView *) tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section 
+{
+	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+	
+	[headerView setBackgroundColor:[UIColor colorWithRed:0.000 green:0.251 blue:0.502 alpha:1.000]];
+	
+	UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 3, tableView.bounds.size.width - 10, 18)] autorelease];
+	label.text = [self tableView:aTableView titleForHeaderInSection:section];
+	label.font = [UIFont boldSystemFontOfSize:16.0];
+	label.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.75];
+	label.backgroundColor = [UIColor clearColor];
+	[headerView addSubview:label];
+	return headerView;
+	
+}
+
+-
+(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	NSString* title = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
 
 //	NSLog( @"titleForHeaderInSection: %@", title );

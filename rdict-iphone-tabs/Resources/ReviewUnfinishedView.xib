@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">761</string>
-		<string key="IBDocument.AppKitVersion">1038.25</string>
-		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.InterfaceBuilderVersion">762</string>
+		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">84</string>
+			<string key="NS.object.0">87</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="14"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,17 +45,22 @@
 					<object class="IBUILabel" id="723061945">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{15, 17}, {638, 63}}</string>
+						<string key="NSFrame">{{20, 17}, {638, 63}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string type="base64-UTF8" key="IBUIText">VGhlIEFtcGxpbyBFbmdsaXNoIERpY3Rpb25hcnkKcmVjb21tZW5kcyBwcmFjdGljaW5nIHRoZSBmb2xs
-b3dpbmcKZGlmZmljdWx0IHdvcmRzIG9uZSBtb3JlIHRpbWU6A</string>
+						<string type="base64-UTF8" key="IBUIText">VGhlIEFtcGxpb1dvcmRzIHJlY29tbWVuZHMgCnByYWN0aWNpbmcgdGhlIGZvbGxvd2luZwpkaWZmaWN1
+bHQgd29yZHMgb25lIG1vcmUgdGltZTo</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">16</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4zNTY4NjI3NTM2IDAuMzU2ODYyNzUzNiAwLjM1Njg2Mjc1MzYAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -66,11 +71,11 @@ b3dpbmcKZGlmZmljdWx0IHdvcmRzIG9uZSBtb3JlIHRpbWU6A</string>
 					<object class="IBUITableView" id="660109909">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{15, 88}, {280, 284}}</string>
+						<string key="NSFrame">{{20, 88}, {280, 265}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="766528619">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC45ODgyMzUzNTQ0IDAuOTg4MjM1MzU0NCAwLjk2MDc4NDM3NTcAA</bytes>
 						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -121,11 +126,18 @@ b3dpbmcKZGlmZmljdWx0IHdvcmRzIG9uZSBtb3JlIHRpbWU6A</string>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xNzI1NDkwMjQyIDAuMTYwNzg0MzE5IDAuMTMzMzMzMzQwMwA</bytes>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 416}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="766528619"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<bool key="IBUIPrompted">NO</bool>
@@ -199,9 +211,9 @@ b3dpbmcKZGlmZmljdWx0IHdvcmRzIG9uZSBtb3JlIHRpbWU6A</string>
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="660109909"/>
 							<reference ref="508129448"/>
 							<reference ref="723061945"/>
+							<reference ref="660109909"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -646,6 +658,6 @@ b3dpbmcKZGlmZmljdWx0IHdvcmRzIG9uZSBtb3JlIHRpbWU6A</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../RDict.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">84</string>
+		<string key="IBCocoaTouchPluginVersion">87</string>
 	</data>
 </archive>

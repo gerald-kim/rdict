@@ -69,11 +69,15 @@
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xNzI1NDkwMjQyIDAuMTYwNzg0MzE5IDAuMTMzMzMzMzQwMwA</bytes>
+						</object>
 					</object>
 					<object class="IBUILabel" id="873596170">
 						<reference key="NSNextResponder" ref="594635972"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{0, -12}, {320, 136}}</string>
+						<string key="NSFrameSize">{320, 95}</string>
 						<reference key="NSSuperview" ref="594635972"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -85,7 +89,7 @@
 							<double key="NSSize">48</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor" id="897823878">
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -95,15 +99,11 @@
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">1</int>
 					</object>
-					<object class="IBUILabel" id="1020030165">
+					<object class="IBUILabel" id="809291808">
 						<reference key="NSNextResponder" ref="594635972"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 110}, {320, 29}}</string>
+						<string key="NSFrame">{{53, 103}, {214, 21}}</string>
 						<reference key="NSSuperview" ref="594635972"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -112,14 +112,16 @@
 						<string key="IBUIText">What does this word mean?</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
+							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<reference key="IBUITextColor" ref="897823878"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4zNTY4NjI3NTM2IDAuMzU2ODYyNzUzNiAwLjM1Njg2Mjc1MzYAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 416}</string>
@@ -194,7 +196,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="127458395"/>
 							<reference ref="873596170"/>
-							<reference ref="1020030165"/>
+							<reference ref="809291808"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -230,8 +232,8 @@
 						<reference key="parent" ref="594635972"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">53</int>
-						<reference key="object" ref="1020030165"/>
+						<int key="objectID">55</int>
+						<reference key="object" ref="809291808"/>
 						<reference key="parent" ref="594635972"/>
 					</object>
 				</object>
@@ -249,13 +251,13 @@
 					<string>40.IBPluginDependency</string>
 					<string>41.IBPluginDependency</string>
 					<string>45.IBPluginDependency</string>
-					<string>53.IBPluginDependency</string>
+					<string>55.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CardViewController</string>
 					<string>UIResponder</string>
-					<string>{{424, 125}, {320, 480}}</string>
+					<string>{{339, 269}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -281,7 +283,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
