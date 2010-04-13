@@ -8,15 +8,28 @@
 
 #import "CardEditViewController.h"
 #import "RDictAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation CardEditViewController
 
 @synthesize card;
 @synthesize cardAnswerView;
+@synthesize deleteButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIImage *backgroundImage = [UIImage imageNamed:@"contents_bg.png"];
+	UIColor *backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+	self.view.backgroundColor = backgroundColor;
+	[backgroundColor release];
+	
+	cardAnswerView.layer.cornerRadius = 10.0;
+	cardAnswerView.layer.borderColor = [[UIColor grayColor] CGColor];
+	cardAnswerView.layer.borderWidth = 1;
+	
+	//deleteButton.backgroundColor = BGCOLOR;
 	
 	UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] 
 								   initWithBarButtonSystemItem:UIBarButtonSystemItemDone

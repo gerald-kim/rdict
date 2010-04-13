@@ -11,12 +11,14 @@
 
 @interface CardEditViewController : UIViewController {
 	Card *card;
-	
+
+	IBOutlet UIButton *deleteButton;
 	IBOutlet UITextView *cardAnswerView;
 }
 
 @property (nonatomic, retain) Card *card;
 @property (nonatomic, retain) IBOutlet UITextView *cardAnswerView;
+@property (nonatomic, retain) IBOutlet UIButton *deleteButton;
 
 - (IBAction) doneButtonClicked : (id) sender;
 - (IBAction) deleteButtonClicked : (id) sender;
