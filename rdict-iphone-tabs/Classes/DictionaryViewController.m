@@ -32,7 +32,9 @@
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize lookupHistory;
-@synthesize returnToSearchButton;
+@synthesize titleBackup;
+@synthesize leftButtonBackup;
+@synthesize rightButtonBackup;
 @synthesize backButton;
 @synthesize forwardButton;
 
@@ -41,26 +43,28 @@
 	[super viewDidLoad];
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
-	[delegate updateReviewTab];
-	
-	self.returnToSearchButton = self.navigationItem.leftBarButtonItem;
-	
-	UIImage* backImage = [UIImage imageNamed:@"icon_arrow_left.png"];
-	self.backButton = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoBackClick:)];
-
-	UIImage* forwardImage = [UIImage imageNamed:@"icon_arrow_right.png"];
-	self.forwardButton = [[UIBarButtonItem alloc] initWithImage:forwardImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoForwardClick:)];
-	self.forwardButton.enabled = NO;
-	self.navigationItem.rightBarButtonItem = forwardButton;
-	
 	[self.wiktionary openWordDb];
 }
 
 - (void) viewWillAppear:(BOOL)animated {	
 	NSLog( @"DVC.viewWillAppear lemma[%@]", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] );  
-
 	[super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
 	self.navigationController.navigationBarHidden = NO;
+	
+	self.titleBackup = self.title;
+	self.leftButtonBackup = self.navigationItem.leftBarButtonItem;
+	self.rightButtonBackup = self.navigationItem.rightBarButtonItem;	
+	
+	UIImage* backImage = [UIImage imageNamed:@"icon_arrow_left.png"];
+	self.backButton = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoBackClick:)];
+	
+	UIImage* forwardImage = [UIImage imageNamed:@"icon_arrow_right.png"];
+	self.forwardButton = [[UIBarButtonItem alloc] initWithImage:forwardImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoForwardClick:)];
+	self.forwardButton.enabled = NO;
+	self.navigationItem.rightBarButtonItem = forwardButton;
+	
 	
 	lookupHistory = [[LookupHistory alloc] init];
 
@@ -78,8 +82,13 @@
 }	
 
 - (void) viewWillDisappear:(BOOL)animated {
+	NSLog(@"DVC.viewWillDisappear");
+	
 	[super viewWillDisappear:animated];
-	self.navigationController.navigationBarHidden = YES;
+//	self.navigationController.navigationBarHidden = YES;
+	self.title = self.titleBackup;
+	self.navigationItem.leftBarButtonItem = self.leftButtonBackup;
+	self.navigationItem.rightBarButtonItem = self.rightButtonBackup;
 	
 	[lookupHistory release];
 	lookupHistory = nil;
@@ -269,7 +278,7 @@
 #pragma mark -
 #pragma mark LookupHistory
 -(void) adjustToolBarButtons {
- 	self.navigationItem.leftBarButtonItem = [lookupHistory canGoBack] ? backButton : returnToSearchButton;
+ 	self.navigationItem.leftBarButtonItem = [lookupHistory canGoBack] ? backButton : leftButtonBackup;
 	self.forwardButton.enabled = [lookupHistory canGoForward];
 }
 

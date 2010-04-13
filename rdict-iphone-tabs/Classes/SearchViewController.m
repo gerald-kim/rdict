@@ -31,27 +31,23 @@
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 	self.wiktionary = delegate.wiktionary;
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
-
-//	[delegate release];
 	
 	[self search:@"a"];
 	
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
-	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-	
+	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;	
 }
 
 
 - (void)viewWillAppear:(BOOL) animated {
 	NSLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
-
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	
 }
 
 - (void)dealloc {

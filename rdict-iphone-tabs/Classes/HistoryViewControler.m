@@ -21,28 +21,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	NSLog(@"HVC.viewDidLoad");
+//	self.navigationController.navigationBarHidden = NO;
+	
 	self.title = @"History";
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
-
-	NSLog(@"HVC.viewWillAppear");
-	self.histories = [History findRecents];
-	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
-
 	
 	//Add the clear button.
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Clear"style:UIBarButtonSystemItemDone
-											   target:self action:@selector(clearButtonClicked:)] autorelease];
-	
+											   target:self action:@selector(clearButtonClicked:)] autorelease];	
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	NSLog(@"HVC.viewWillAppear");
+	[super viewWillAppear:animated];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+
+	self.histories = [History findRecents];
+	self.sectionInfo = [History buildHistorySectionInfo:self.histories];
+
 	if(self.histories.count <=0)
-		[self.navigationItem.rightBarButtonItem setEnabled:FALSE];
+		self.navigationItem.rightBarButtonItem.enabled = FALSE;
 	else
-		[self.navigationItem.rightBarButtonItem setEnabled:TRUE];
+		self.navigationItem.rightBarButtonItem.enabled = YES;	
 	
 	[self.tableView reloadData];
 }
