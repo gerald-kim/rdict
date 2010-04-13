@@ -58,6 +58,17 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 	
 	cardFrontViewController = [[CardViewController alloc]initWithNibName:@"CardFrontView" bundle:nil];
 	cardBackViewController = [[CardViewController alloc]initWithNibName:@"CardBackView" bundle:nil];
+	reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
+	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
+	
+	UIImage *backgroundImage = [UIImage imageNamed:@"contents_bg.png"];
+	UIColor *backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+	cardFrontViewController.view.backgroundColor = backgroundColor;
+	cardBackViewController.view.backgroundColor = backgroundColor;
+	reviewUnfinishedViewController.view.backgroundColor = backgroundColor;
+	reviewFinishedViewController.view.backgroundColor = backgroundColor;
+	
+	[backgroundColor release];
 	
 	[self.view insertSubview:cardFrontViewController.view atIndex:0];
 	[self.view insertSubview:cardBackViewController.view atIndex:0];
@@ -205,7 +216,6 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 #pragma mark -
 #pragma mark ReviewFinish
 - (void) showReviewUnfinishedView {
-	reviewUnfinishedViewController = [[ReviewUnfinishedViewController alloc]initWithNibName:@"ReviewUnfinishedView" bundle:nil];
 	reviewUnfinishedViewController.scheduledCards = scheduledCards;
 	reviewUnfinishedViewController.uncertainCards = uncertainCards;
 	
@@ -226,7 +236,6 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 }
 
 - (void) showReviewFinishedView {
-	reviewFinishedViewController = [[ReviewFinishedViewController alloc]initWithNibName:@"ReviewFinishedView" bundle:nil];
 	reviewFinishedViewController.scheduledCards = scheduledCards;
 
 	self.title = @"Review Finished";

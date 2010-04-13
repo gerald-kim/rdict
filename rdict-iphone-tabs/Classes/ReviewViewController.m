@@ -41,6 +41,11 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	UIImage *backgroundImage = [UIImage imageNamed:@"contents_bg.png"];
+	UIColor *backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+	self.tableView.backgroundColor = backgroundColor;
+	[backgroundColor release];
 //	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 //	self.wiktionary = delegate.wiktionary;
 }
@@ -173,7 +178,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReviewCellIdentifier];
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ReviewCellIdentifier] autorelease];
-  }
+		cell.backgroundColor = BGCOLOR;
+	}
     
 	if ( 1 == row ) {
 		cell.textLabel.text = @"Reschedule to today";
@@ -198,19 +204,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-
-		sparkline = [[[CKSparkline alloc]
-								  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
-		sparkline.tag = STAT_CELL_SPARKLINE;
-		[cell.contentView addSubview:sparkline];
+		cell.backgroundColor = BGCOLOR;
 	} else {
 		[[cell.contentView viewWithTag:STAT_CELL_SPARKLINE] removeFromSuperview];
-		
-		sparkline = [[[CKSparkline alloc]
-					  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
-		sparkline.tag = STAT_CELL_SPARKLINE;
-		[cell.contentView addSubview:sparkline];		
 	}
+	sparkline = [[[CKSparkline alloc]
+				  initWithFrame:CGRectMake(150, 10.0, 100.0, 20.0)] autorelease];
+	sparkline.tag = STAT_CELL_SPARKLINE;
+	[cell.contentView addSubview:sparkline];
     
 	if ( 0 == row ) {
 		cell.textLabel.text = @"Total Cards";
@@ -235,6 +236,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+		cell.backgroundColor = BGCOLOR;	
     }
 
 	if ( [schedules count] > 0 ) {

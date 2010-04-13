@@ -10,7 +10,7 @@
 	NSLog( @"CUITBC.viewDidLoad" );
 	[super viewDidLoad];
 
-	UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITabBar1.png"]];
+	UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITabBar2.png"]];
 	img.frame = CGRectOffset(img.frame, 0, 1);
 	[tabBar1 insertSubview:img atIndex:0];
 	[img release];
