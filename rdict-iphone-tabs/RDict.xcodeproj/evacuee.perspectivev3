@@ -268,6 +268,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>EFBF4A780FE003650092357C</string>
+								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -275,8 +276,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>41</integer>
-									<integer>15</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -316,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>EF82BB351172DCD300B0924D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>dictionary_view.html</string>
+								<string>rdict.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,23 +323,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>EF82BB361172DCD300B0924D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>dictionary_view.html</string>
+										<string>rdict.h</string>
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>EF68F68E1175E4BC000FA456</string>
+										<string>EFA81026117685690066884F</string>
 										<key>history</key>
 										<array>
-											<string>EF68F6621175E23D000FA456</string>
-											<string>EF68F6631175E23D000FA456</string>
-											<string>EF68F6641175E23D000FA456</string>
-											<string>EF68F6651175E23D000FA456</string>
-											<string>EF68F6661175E23D000FA456</string>
-											<string>EF68F6671175E23D000FA456</string>
-											<string>EF68F6691175E23D000FA456</string>
-											<string>EF68F6881175E4A9000FA456</string>
-											<string>EF68F6891175E4A9000FA456</string>
-											<string>EF68F68A1175E4A9000FA456</string>
+											<string>EF68F6D31175EB53000FA456</string>
+											<string>EF68F6D41175EB53000FA456</string>
+											<string>EF68F6D51175EB53000FA456</string>
+											<string>EF68F6D61175EB53000FA456</string>
+											<string>EF68F6D71175EB53000FA456</string>
+											<string>EF68F6D91175EB53000FA456</string>
+											<string>EF68F6E91175EE20000FA456</string>
+											<string>EF68F6F61175EF36000FA456</string>
+											<string>EFBA8DAA1175F27A005B5D6D</string>
+											<string>EFBA8DB81175F2FB005B5D6D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -354,18 +353,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1069, 474}}</string>
+								<string>{{0, 0}, {1069, 462}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 55 1276 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>474pt</string>
+							<string>462pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>203pt</string>
+							<string>215pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -379,7 +378,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1069, 176}}</string>
+										<string>{{10, 27}, {1069, 188}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 55 1276 723 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -434,8 +435,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1069, 176}}</string>
-										<key>RubberWindowFrame</key>
-										<string>0 55 1276 723 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -463,11 +462,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>EF68F63B1175DBDA000FA456</string>
+				<string>EFA81027117685690066884F</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>EF68F63C1175DBDA000FA456</string>
+				<string>EFA81028117685690066884F</string>
 				<string>EF82BB351172DCD300B0924D</string>
-				<string>EF68F63D1175DBDA000FA456</string>
+				<string>EFA81029117685690066884F</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
