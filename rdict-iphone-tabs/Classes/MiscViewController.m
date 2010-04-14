@@ -86,7 +86,7 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);
+	DebugLog(@"MVC.didSelectRowAtIndexPath, row=%d", indexPath.row);
 	
 	UIViewController *childViewController;
 	

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "rdict.h"
 #import "tcbdb.h"
 #import "WordIndex.h"
 #import "WordEntry.h"

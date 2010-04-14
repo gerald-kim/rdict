@@ -49,10 +49,10 @@
 	STAssertEquals( (NSUInteger) 2, [schedule count], nil );
 	NSArray* row = [schedule objectAtIndex:0];
 	STAssertEqualStrings( @"1", [row objectAtIndex:1], nil );
-	//	NSLog( @"%@ : %@", [row objectAtIndex:0], [row objectAtIndex:1] );	
+	//	DebugLog( @"%@ : %@", [row objectAtIndex:0], [row objectAtIndex:1] );	
 	
-//	NSLog( @"##################### Key-valuecoding test" );	
-//	NSLog( @"avg: %@", [scheduled valueForKeyPath:@"@max.scheduled"] );
+//	DebugLog( @"##################### Key-valuecoding test" );	
+//	DebugLog( @"avg: %@", [scheduled valueForKeyPath:@"@max.scheduled"] );
 }
 
 -(void) testFindCreatedTodayCards {

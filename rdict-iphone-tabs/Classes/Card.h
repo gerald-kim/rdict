@@ -6,6 +6,7 @@
 //  Copyright 2009 NHN. All rights reserved.
 //
 
+#import "rdict.h"
 #import <Foundation/Foundation.h>
 #import "SQLitePersistentObject.h"
 

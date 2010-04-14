@@ -14,13 +14,13 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
 -(void) setUp {
-	NSLog( @"setUp" );
+	DebugLog( @"setUp" );
 	[[SQLiteInstanceManager sharedManager] deleteDatabase];
 	[self populate];
 }
 
 -(void) tearDown {
-	NSLog( @"tearDown" );
+	DebugLog( @"tearDown" );
 }
 
 -(void) populate {

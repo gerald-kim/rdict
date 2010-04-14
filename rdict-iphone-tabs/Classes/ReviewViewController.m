@@ -51,7 +51,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSLog( @"RVC.viewWillAppear" );
+	DebugLog( @"RVC.viewWillAppear" );
 	self.title = @"Review";
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
@@ -84,7 +84,7 @@
 #pragma mark data loading
 
 - (void) loadData {
-	NSLog( @"RVC.loadedData");
+	DebugLog( @"RVC.loadedData");
 
 	totalCount = [Card count];
 	score = [Card countByMastered];
@@ -141,14 +141,14 @@
 
 - (NSInteger) numberOfRowsInReviewSection {
 	NSInteger rows = ([cardsForReview count] > 0) ? 1 : 1;
-#if ( !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR )
+#if DEBUG
 	rows = rows+1;
 #endif
 	return rows;
 }
 
 - (NSInteger) numberOfRowsInScheduleSection {
-	NSLog( @"RVC.numberOfRowsInScheduleSection schedule: %d", [schedules count] );
+	DebugLog( @"RVC.numberOfRowsInScheduleSection schedule: %d", [schedules count] );
 	
 	return [schedules count] == 0 ? 1 : [schedules count];
 }
@@ -254,7 +254,7 @@
 #pragma mark cell Selected
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"MVC.didSelectRowAtIndexPath, section=%d, row=%d", indexPath.section, indexPath.row);
+	DebugLog(@"MVC.didSelectRowAtIndexPath, section=%d, row=%d", indexPath.section, indexPath.row);
 	[self.tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 
 	if ( 0 != indexPath.section ) {

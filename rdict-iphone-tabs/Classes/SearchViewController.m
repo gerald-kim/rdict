@@ -40,7 +40,7 @@
 
 
 - (void)viewWillAppear:(BOOL) animated {
-	NSLog( @"SVC.viewWillappear()" );
+	DebugLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 	self.navigationController.navigationBarHidden = YES;
@@ -85,7 +85,7 @@
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-	NSLog( @"SVC.textDidChanged called" );
+	DebugLog( @"SVC.textDidChanged called" );
 	if( [searchText isEqualToString:@"" ] ) {
 		searchText = @"a";
 	}
@@ -98,7 +98,7 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) aSearchBar {
-	NSLog( @"SVC.searchBarCancelButtonClicked" );
+	DebugLog( @"SVC.searchBarCancelButtonClicked" );
 	if ( [searchBar.text length] > 0 ) {
 		searchBar.text = @"";
 //		[self search:@"a"];
@@ -116,7 +116,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
-//	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
+//	DebugLog( @"cellForRowAtIndexPath : %d", indexPath.row );
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {

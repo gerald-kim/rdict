@@ -487,6 +487,7 @@
 		32CA4F630368D1EE00C91783 /* RDict_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDict_Prefix.pch; sourceTree = "<group>"; };
 		EF038B1610D856B300AE5DA0 /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_off.png; path = Resources/star_off.png; sourceTree = "<group>"; };
 		EF038B1710D856B300AE5DA0 /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_on.png; path = Resources/star_on.png; sourceTree = "<group>"; };
+		EF09599F11753A1700B92EC5 /* rdict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rdict.h; path = Classes/rdict.h; sourceTree = "<group>"; };
 		EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardSelectTest.m; path = Tests/CardSelectTest.m; sourceTree = "<group>"; };
 		EF234E2F10B3650E00A267CF /* MiscView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MiscView.xib; path = Resources/MiscView.xib; sourceTree = "<group>"; };
 		EF234E3210B3653C00A267CF /* MiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscViewController.h; path = Classes/MiscViewController.h; sourceTree = "<group>"; };
@@ -1048,6 +1049,7 @@
 		EFBF4A780FE003650092357C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EF09599F11753A1700B92EC5 /* rdict.h */,
 				EF719405117023CC00B59670 /* CustomUITabBarController.h */,
 				EF719406117023CC00B59670 /* CustomUITabBarController.m */,
 				EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */,
@@ -1774,7 +1776,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = "-DDEBUG";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24527098-34FD-4875-BB38-B16971CE23FD";
 				SDKROOT = iphoneos3.1;
@@ -1813,7 +1815,10 @@
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
 				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"-DRDICTTEST=1",
+				);
 				PRODUCT_NAME = "RDict Test";
 			};
 			name = Debug;

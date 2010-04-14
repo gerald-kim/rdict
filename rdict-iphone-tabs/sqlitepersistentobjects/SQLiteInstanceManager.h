@@ -17,6 +17,9 @@
 // For information on how to use these classes, take a look at the 
 // included Readme.txt file
 // ----------------------------------------------------------------------
+
+#import "rdict.h"
+
 #if (TARGET_OS_MAC && ! (TARGET_OS_EMBEDDED || TARGET_OS_ASPEN || TARGET_OS_IPHONE))	
 #import <Foundation/Foundation.h>
 #else

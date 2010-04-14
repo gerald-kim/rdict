@@ -6,6 +6,7 @@
 //  Copyright 2009 NHN. All rights reserved.
 //
 
+#import "rdict.h"
 #import "ReviewFinishedViewController.h"
 
 
@@ -15,7 +16,7 @@
 @synthesize totalCardLabel;
 
 - (void) viewWillAppear:(BOOL)animated {
-	NSLog(@"RFVC.willShowViewController");
+	DebugLog(@"RFVC.willShowViewController");
 	[super viewWillAppear:animated];
 	
 	totalCardLabel.text = [NSString stringWithFormat:@"You finished the Review Session and studied a total of %d cards.\n\nFurture review will be automacally scheduled by your memory.", [scheduledCards count]];

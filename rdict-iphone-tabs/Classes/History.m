@@ -6,6 +6,7 @@
 //  Copyright 2009 ampliostudios. All rights reserved.
 //
 
+#import "rdict.h"
 #import "History.h"
 
 
@@ -60,7 +61,7 @@ DECLARE_PROPERTIES (
 		}  
 		historyArray = [d objectForKey:historyKey];
 		[historyArray addObject:h];
-//		NSLog( @"History %@", historyArray );
+//		DebugLog( @"History %@", historyArray );
 		count++;
 		[d setValue:[NSNumber numberWithInt:count] forKey:dateString];
 		previousDateString = dateString;
@@ -70,7 +71,7 @@ DECLARE_PROPERTIES (
 	}
 	[d setValue:[NSNumber numberWithInt:sectionIndex] forKey:@"sectionCount"];
 	 
-//	NSLog( @"Dictionary %@", d );
+//	DebugLog( @"Dictionary %@", d );
 	[dateFormatter release];
 	return d;
 }

@@ -6,6 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import "rdict.h"
 #import "LookupHistory.h"
 
 
@@ -27,7 +28,7 @@
 }
 
 -(void) addHistory: (NSURL*) url {
-	NSLog( @"ADDED TO LOOKUPHISTORY, %@", url );
+	DebugLog( @"ADDED TO LOOKUPHISTORY, %@", url );
 	if( index <= [histories count]) {
 		NSRange range;
 		range.location = index;

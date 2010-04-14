@@ -52,7 +52,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"RUVC.cellForRowAtIndexPath");
+    DebugLog(@"RUVC.cellForRowAtIndexPath");
     static NSString *CellIdentifier = @"RUVCCell";
     
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];

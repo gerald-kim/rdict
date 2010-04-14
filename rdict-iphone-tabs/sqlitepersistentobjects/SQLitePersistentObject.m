@@ -75,7 +75,7 @@ static id findByMethodImp(id self, SEL _cmd, id value)
 	{
 		if ([[value class] shouldBeStoredInBlob])
 		{
-			NSLog(@"*** Can't search on BLOB fields");
+			DebugLog(@"*** Can't search on BLOB fields");
 			return nil;
 		}
 		else
@@ -196,7 +196,7 @@ NSMutableArray *checkedTables;
 		if (sqlite3_step(statement) == SQLITE_ROW)
 			countOfRecords = sqlite3_column_int(statement, 0);
 	} 
-	else NSLog(@"Error determining count of rows in table %@", [self  tableName]);
+	else DebugLog(@"Error determining count of rows in table %@", [self  tableName]);
 	
 	sqlite3_finalize(statement);
 	return countOfRecords;
@@ -696,7 +696,7 @@ NSMutableArray *checkedTables;
 	
     if (pk == 0)
     {
-        NSLog(@"Object of type '%@' seems to be uninitialised, perhaps init does not call super init.", [[self class] description] );
+        DebugLog(@"Object of type '%@' seems to be uninitialised, perhaps init does not call super init.", [[self class] description] );
         return;
     }
 	
@@ -769,12 +769,12 @@ NSMutableArray *checkedTables;
 					
 					NSString *seqIncrementQuery = [NSString stringWithFormat:@"UPDATE SQLITESEQUENCE set seq=%d WHERE name='%@'", pk, [[self class] tableName]];
 					if (sqlite3_exec (database, [seqIncrementQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-						NSLog(@"Error Message: %s", errmsg);
+						DebugLog(@"Error Message: %s", errmsg);
 				}
 				
 			}
 			else 
-				NSLog(@"Error determining next PK value in table %@", [[self class] tableName]);
+				DebugLog(@"Error determining next PK value in table %@", [[self class] tableName]);
 			
 			sqlite3_finalize(statement);
 		}
@@ -873,7 +873,7 @@ NSMutableArray *checkedTables;
 						NSString *xrefDelete = [NSString stringWithFormat:@"delete from %@_%@ where parent_pk = %d", [[self class] tableName], [propName stringAsSQLColumnName], pk];
 						char *errmsg = NULL;
 						if (sqlite3_exec (database, [xrefDelete UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-							NSLog(@"Error deleting child rows in xref table for array: %s", errmsg);
+							DebugLog(@"Error deleting child rows in xref table for array: %s", errmsg);
 						sqlite3_free(errmsg);
 						
 						
@@ -887,7 +887,7 @@ NSMutableArray *checkedTables;
 									[oneObject save];
 									NSString *xrefInsert = [NSString stringWithFormat:@"insert into %@_%@ (parent_pk, array_index, fk, fk_table_name) values (%d, %d, %d, '%@')", [[self class] tableName], [propName stringAsSQLColumnName],  pk, arrayIndex++, [oneObject pk], [[oneObject class] tableName]];
 									if (sqlite3_exec (database, [xrefInsert UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-										NSLog(@"Error inserting child rows in xref table for array: %s", errmsg);
+										DebugLog(@"Error inserting child rows in xref table for array: %s", errmsg);
 									sqlite3_free(errmsg);
 								}
 								else 
@@ -910,12 +910,12 @@ NSMutableArray *checkedTables;
 											}
 											
 											if (sqlite3_step(xStmt) != SQLITE_DONE)
-												NSLog(@"Error inserting or updating cross-reference row");
+												DebugLog(@"Error inserting or updating cross-reference row");
 											sqlite3_finalize(xStmt);
 										}
 									}
 									else 
-										NSLog(@"Could not save object at array index: %d", arrayIndex++);
+										DebugLog(@"Could not save object at array index: %d", arrayIndex++);
 								}
 							}
 						}
@@ -929,7 +929,7 @@ NSMutableArray *checkedTables;
 									[(SQLitePersistentObject *)oneObject save];
 									NSString *xrefInsert = [NSString stringWithFormat:@"insert into %@_%@ (parent_pk, dictionary_key, fk, fk_table_name) values (%d, '%@', %d, '%@')",  [[self class] tableName], [propName stringAsSQLColumnName], pk, oneKey, [(SQLitePersistentObject *)oneObject pk], [[oneObject class] tableName]];
 									if (sqlite3_exec (database, [xrefInsert UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-										NSLog(@"Error inserting child rows in xref table for array: %s", errmsg);
+										DebugLog(@"Error inserting child rows in xref table for array: %s", errmsg);
 									sqlite3_free(errmsg);
 								}
 								else
@@ -949,7 +949,7 @@ NSMutableArray *checkedTables;
 												sqlite3_bind_text(xStmt, 1, [[oneObject sqlColumnRepresentationOfSelf] UTF8String], -1, NULL);
 											
 											if (sqlite3_step(xStmt) != SQLITE_DONE)
-												NSLog(@"Error inserting or updating cross-reference row");
+												DebugLog(@"Error inserting or updating cross-reference row");
 											
 											sqlite3_finalize(xStmt);
 											
@@ -967,7 +967,7 @@ NSMutableArray *checkedTables;
 									[oneObject save];
 									NSString *xrefInsert = [NSString stringWithFormat:@"insert into %@_%@ (parent_pk, fk, fk_table_name) values (%d, %d, '%@')", [[self class] tableName], [propName stringAsSQLColumnName],  pk, [oneObject pk], [[oneObject class] tableName]];
 									if (sqlite3_exec (database, [xrefInsert UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-										NSLog(@"Error inserting child rows in xref table for array: %s", errmsg);
+										DebugLog(@"Error inserting child rows in xref table for array: %s", errmsg);
 									sqlite3_free(errmsg);
 								}
 								else
@@ -988,13 +988,13 @@ NSMutableArray *checkedTables;
 												sqlite3_bind_text(xStmt, 1, [[oneObject sqlColumnRepresentationOfSelf] UTF8String], -1, NULL);
 											
 											if (sqlite3_step(xStmt) != SQLITE_DONE)
-												NSLog(@"Error inserting or updating cross-reference row");
+												DebugLog(@"Error inserting or updating cross-reference row");
 											
 											sqlite3_finalize(xStmt);
 										}
 									}
 									else 
-										NSLog(@"Could not save object from set");
+										DebugLog(@"Could not save object from set");
 								}
 							}
 						}
@@ -1002,11 +1002,11 @@ NSMutableArray *checkedTables;
 				}
 			}
 			if (sqlite3_step(stmt) != SQLITE_DONE)
-				NSLog(@"Error inserting or updating row");
+				DebugLog(@"Error inserting or updating row");
 			sqlite3_finalize(stmt);
 		}
 		else
-			NSLog(@"Error preparing save SQL: %s", sqlite3_errmsg(database));
+			DebugLog(@"Error preparing save SQL: %s", sqlite3_errmsg(database));
 		// Can't register in memory map until we have PK, so do that now.
 		if (![[objectMap allKeys] containsObject:[self memoryMapKey]])
 			[[self class] registerObjectInMemory:self];
@@ -1025,7 +1025,7 @@ NSMutableArray *checkedTables;
 {
 	if(![self existsInDB])
 	{
-		NSLog(@"Object must exist in database before it can be reverted.");
+		DebugLog(@"Object must exist in database before it can be reverted.");
 		return;
 	}
 	
@@ -1046,7 +1046,7 @@ NSMutableArray *checkedTables;
 {
 	if(![self existsInDB])
 	{
-		NSLog(@"Object must exist in database before it can be reverted.");
+		DebugLog(@"Object must exist in database before it can be reverted.");
 		return;
 	}
 	
@@ -1064,7 +1064,7 @@ NSMutableArray *checkedTables;
 {
 	if(![self existsInDB])
 	{
-		NSLog(@"Object must exist in database before it can be reverted.");
+		DebugLog(@"Object must exist in database before it can be reverted.");
 		return;
 	}
 	
@@ -1104,7 +1104,7 @@ NSMutableArray *checkedTables;
 	sqlite3 *database = [[SQLiteInstanceManager sharedManager] database];
 	char *errmsg = NULL;
 	if (sqlite3_exec (database, [deleteQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-		NSLog(@"Error deleting row in table: %s", errmsg);
+		DebugLog(@"Error deleting row in table: %s", errmsg);
 	sqlite3_free(errmsg);
 	
 	NSDictionary *theProps = [[self class] propertiesWithEncodedTypes];
@@ -1135,7 +1135,7 @@ NSMutableArray *checkedTables;
 								NSString *xRefDeleteQuery = [NSString stringWithFormat:@"delete from %@ where pk = %d",fkTableString, fk_value];
 								
 								if (sqlite3_exec (database, [xRefDeleteQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-									NSLog(@"Error deleting foreign key rows in table: %s", errmsg);
+									DebugLog(@"Error deleting foreign key rows in table: %s", errmsg);
 								sqlite3_free(errmsg);
 							}
 							
@@ -1154,7 +1154,7 @@ NSMutableArray *checkedTables;
 				
 				NSString *xRefDeleteQuery = [NSString stringWithFormat:@"DELETE FROM %@_%@ WHERE parent_pk = %d",  [[self class] tableName], [prop stringAsSQLColumnName], pk];
 				if (sqlite3_exec (database, [xRefDeleteQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-					NSLog(@"Error deleting from foreign key table: %s", errmsg);
+					DebugLog(@"Error deleting from foreign key table: %s", errmsg);
 				sqlite3_free(errmsg);
 			}
 			else
@@ -1217,7 +1217,7 @@ NSMutableArray *checkedTables;
 			NSRange theRange = NSMakeRange(6, [methodBeingCalled length] - 7);
 			NSString *property = [[methodBeingCalled substringWithRange:theRange] stringByLowercasingFirstLetter];
 			NSDictionary *properties = [self propertiesWithEncodedTypes];
-			NSLog(@"Property: %@", property);	
+			DebugLog(@"Property: %@", property);	
 			if ([[properties allKeys] containsObject:property])
 			{
 				SEL newMethodSelector = sel_registerName([methodBeingCalled UTF8String]);
@@ -1484,7 +1484,7 @@ NSMutableArray *checkedTables;
 					NSString *xRefQuery = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@_%@ (parent_pk, array_index INTEGER, fk INTEGER, fk_table_name TEXT, object_data TEXT, object_class BLOB, PRIMARY KEY (parent_pk, array_index))", [self tableName], propName];
 					char *errmsg = NULL;
 					if (sqlite3_exec (database, [xRefQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-						NSLog(@"Error Message: %s", errmsg);
+						DebugLog(@"Error Message: %s", errmsg);
 					
 				}
 				else if (isNSDictionaryType(className))
@@ -1492,7 +1492,7 @@ NSMutableArray *checkedTables;
 					NSString *xRefQuery = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@_%@ (parent_pk integer, dictionary_key TEXT, fk INTEGER, fk_table_name TEXT, object_data BLOB, object_class TEXT, PRIMARY KEY (parent_pk, dictionary_key))", [self tableName], propName];
 					char *errmsg = NULL;
 					if (sqlite3_exec (database, [xRefQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-						NSLog(@"Error Message: %s", errmsg);
+						DebugLog(@"Error Message: %s", errmsg);
 					
 				}
 				else if (isNSSetType(className))
@@ -1500,7 +1500,7 @@ NSMutableArray *checkedTables;
 					NSString *xRefQuery = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@_%@ (parent_pk INTEGER, fk INTEGER, fk_table_name TEXT, object_data BLOB, object_class TEXT)", [self tableName], propName];
 					char *errmsg = NULL;
 					if (sqlite3_exec (database, [xRefQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-						NSLog(@"Error Message: %s", errmsg);
+						DebugLog(@"Error Message: %s", errmsg);
 				}
 				else
 				{
@@ -1527,14 +1527,14 @@ NSMutableArray *checkedTables;
 		
 		char *errmsg = NULL;
 		if (sqlite3_exec (database, [createSQL UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-			NSLog(@"Error Message: %s", errmsg);
+			DebugLog(@"Error Message: %s", errmsg);
 		
 		if (sqlite3_exec (database, "CREATE TABLE IF NOT EXISTS SQLITESEQUENCE (name TEXT PRIMARY KEY, seq INTEGER)", NULL, NULL, &errmsg) != SQLITE_OK)		
-			NSLog(@"Error Message: %s", errmsg);
+			DebugLog(@"Error Message: %s", errmsg);
 		
 		NSMutableString *addSequenceSQL = [NSMutableString stringWithFormat:@"INSERT OR IGNORE INTO SQLITESEQUENCE (name,seq) VALUES ('%@', 0)", [[self class] tableName]];
 		if (sqlite3_exec (database, [addSequenceSQL UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)		
-			NSLog(@"Error Message: %s", errmsg);
+			DebugLog(@"Error Message: %s", errmsg);
 		
 		NSArray *theIndices = [self indices];
 		if (theIndices != nil)
@@ -1559,7 +1559,7 @@ NSMutableArray *checkedTables;
 					NSString *indexQuery = [NSString stringWithFormat:@"create index if not exists %@ on %@ (%@)", indexName, [self tableName], fieldCondition];
 					errmsg = NULL;
 					if (sqlite3_exec (database, [indexQuery UTF8String], NULL, NULL, &errmsg) != SQLITE_OK)
-						NSLog(@"Error creating indices on %@: %s", [self tableName], errmsg);
+						DebugLog(@"Error creating indices on %@: %s", [self tableName], errmsg);
 				}
 			}
 		}

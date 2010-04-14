@@ -6,6 +6,7 @@
 //  Copyright 2009 NHN. All rights reserved.
 //
 
+#import "rdict.h"
 #import "CardViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -28,10 +29,10 @@
 }
 
 - (void)viewWillAppear:(BOOL) animated {
-	NSLog( @"CBC.viewWillAppear" );
+	DebugLog( @"CBC.viewWillAppear" );
 }
 
 - (void)viewDidAppear:(BOOL) animated {
-	NSLog( @"CBC.viewDidAppear" );}
+	DebugLog( @"CBC.viewDidAppear" );}
 
 @end

@@ -65,7 +65,7 @@
 
 - (void) testFillWordList {
 	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"zoo"];
-	NSLog( @"target Index %d", targetIndex );
+	DebugLog( @"target Index %d", targetIndex );
 	STAssertEquals( targetIndex, (NSUInteger) 90, nil );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"yesterday", nil );
@@ -76,7 +76,7 @@
 - (void) testJumpToCloseToFirst {
 	NSUInteger targetIndex = [wiktionary fillIndexesByKey:@"-an"];
 	
-	NSLog( @"target Index %d", targetIndex );
+	DebugLog( @"target Index %d", targetIndex );
 	STAssertEquals( targetIndex, (NSUInteger) 6, nil );
 	WordIndex *wiktionaryIndex = [wiktionary.wordIndexes objectAtIndex:(NSUInteger)0];
 	STAssertEqualStrings( wiktionaryIndex.key, @"'em", nil );

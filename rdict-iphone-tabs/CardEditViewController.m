@@ -83,7 +83,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSLog(@"DVC.clickedButtonAtIndex");
+	DebugLog(@"DVC.clickedButtonAtIndex");
 	if (buttonIndex == 1) {
 		[card deleteObject];
 		card = nil;

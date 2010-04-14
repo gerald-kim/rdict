@@ -47,7 +47,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {	
-	NSLog( @"DVC.viewWillAppear lemma[%@]", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] );  
+	DebugLog( @"DVC.viewWillAppear lemma[%@]", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] );  
 	[super viewWillAppear:animated];
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
@@ -82,7 +82,7 @@
 }	
 
 - (void) viewWillDisappear:(BOOL)animated {
-	NSLog(@"DVC.viewWillDisappear");
+	DebugLog(@"DVC.viewWillDisappear");
 	
 	[super viewWillDisappear:animated];
 //	self.navigationController.navigationBarHidden = YES;
@@ -97,7 +97,7 @@
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-	NSLog(@"DVC.viewDidDisappear");
+	DebugLog(@"DVC.viewDidDisappear");
 	[webView loadHTMLString:@"" baseURL:nil];
 }
 
@@ -119,7 +119,7 @@
 #pragma mark UIWebViewDelegate Method
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSLog( @"DVC.shouldStartLoadWithRequest type:%d, url: %@", navigationType, [[request URL] absoluteString] );
+	DebugLog( @"DVC.shouldStartLoadWithRequest type:%d, url: %@", navigationType, [[request URL] absoluteString] );
 	
 	NSURL *url = [request URL];
 	if( [@"rdict" isEqualToString:[url scheme]] ) {
@@ -149,7 +149,7 @@
 - (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error{
 	[self stopActivityAnimating];
 	
- 	NSLog( @"Error: %@", error );
+ 	DebugLog( @"Error: %@", error );
 	
     NSString *errorMsg = nil;
 	
@@ -187,7 +187,7 @@
 #pragma mark Clipboard
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-//	NSLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
+//	DebugLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
 //	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
 
 	if (action == @selector(copy:)) {
@@ -203,8 +203,8 @@
 		return;
 	}
 	saveDialogOpened = YES;
-	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-	NSLog(@"DVC.Clipboardchanged : %@", pasteboard.string);
+
+	DebugLog(@"DVC.Clipboardchanged : %@", [UIPasteboard generalPasteboard].string);
 	
 	UIAlertView *alert = [[UIAlertView alloc] init];
 	[alert setTitle:@"Save card"];
@@ -217,7 +217,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSLog(@"DVC.clickedButtonAtIndex");
+	DebugLog(@"DVC.clickedButtonAtIndex");
 	saveDialogOpened = NO;
 	if (buttonIndex == 1) {
 		[self saveCard:[UIPasteboard generalPasteboard].string];
@@ -231,7 +231,7 @@
 	NSArray *paramaters = [[url query] componentsSeparatedByString: @"="];
 	NSString *parameter = [[paramaters objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-	NSLog( @"DVC.handleRdictRequest method[%@], parameter[%@]", rdictMethod, parameter );  
+	DebugLog( @"DVC.handleRdictRequest method[%@], parameter[%@]", rdictMethod, parameter );  
 	if ([@"save" isEqualToString: rdictMethod]) {		
 		[self saveCard: parameter];
 	} else if ( [rdictMethod hasPrefix:@"lookup"] ){
@@ -283,7 +283,7 @@
 }
 
 - (void)handleGoBackClick:(id)sender {
-	NSLog( @"DVC.handleGoBackClick" );
+	DebugLog( @"DVC.handleGoBackClick" );
 	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goBack]];
 	[webView loadRequest:request];
 }

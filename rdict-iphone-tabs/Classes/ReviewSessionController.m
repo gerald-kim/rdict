@@ -51,7 +51,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 }
 
 - (void)viewDidLoad {
-	NSLog( @"RSC.viewDidLoad" );
+	DebugLog( @"RSC.viewDidLoad" );
 	
 	[super viewDidLoad];
 	self.title = @"Review Exercise-100/100";
@@ -86,7 +86,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 }
 
 - (void)viewWillAppear:(BOOL) animated {
-	NSLog( @"RSC.viewWillAppear" );
+	DebugLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 		
@@ -126,12 +126,12 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 #pragma mark Answer, Score
 
 - (IBAction) answerButtonClicked : (id) sender {	
-	NSLog( @"RSC.answerButtonClicked" );
+	DebugLog( @"RSC.answerButtonClicked" );
 	[self showCardBackView];
 }
 
 - (IBAction) scoreButtonClicked : (id) sender {
-	NSLog( @"RSC.scoreButtonClicked" );
+	DebugLog( @"RSC.scoreButtonClicked" );
 	//TODO refactor scoreButtonClicked function. it's too complex
 	UIButton *scoreButton = (UIButton*) sender;
 	NSUInteger score = scoreButton.tag;
@@ -169,7 +169,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 }
 
 - (void)showCardFrontView {
-	NSLog( @"RSC.viewWillAppear2" );
+	DebugLog( @"RSC.viewWillAppear2" );
 	
 	self.title = @"Question";
 

@@ -22,7 +22,7 @@
 	_err = err;
 	_msg = sqlite3_errmsg(_database);
 	if ( ( _err != SQLITE_OK ) && ( self.simpleErr < 100 ) )
-		NSLog( @"SLStmt: (%d) %s", _err, _msg );
+		DebugLog( @"SLStmt: (%d) %s", _err, _msg );
 }
 
 + (id)stmtWithSql:(NSString*)sql {
@@ -77,7 +77,7 @@
 	if ( _stmt ) {
 		int err = sqlite3_finalize( _stmt );
 		if ( err != SQLITE_OK )
-			NSLog( @"Error %d while finalizing query as part of close.", err );
+			DebugLog( @"Error %d while finalizing query as part of close.", err );
 		_stmt = NULL;
 	}
 	return self;

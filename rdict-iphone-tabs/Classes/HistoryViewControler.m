@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"HVC.viewDidLoad");
+	DebugLog(@"HVC.viewDidLoad");
 //	self.navigationController.navigationBarHidden = NO;
 	
 	self.title = @"History";
@@ -33,7 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	NSLog(@"HVC.viewWillAppear");
+	DebugLog(@"HVC.viewWillAppear");
 	[super viewWillAppear:animated];
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
@@ -50,7 +50,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-	NSLog( @"HVC.viewDidDisappear" );
+	DebugLog( @"HVC.viewDidDisappear" );
 
 	[super viewDidDisappear:animated];
 	[sectionInfo release]; sectionInfo = nil;
@@ -65,7 +65,7 @@
 }
 
 - (void)viewDidUnload {
-	NSLog( @"HVC.viewDidUnload" );
+	DebugLog( @"HVC.viewDidUnload" );
 	[super viewDidUnload];
 
 	// Release any retained subviews of the main view.
@@ -88,7 +88,7 @@
 
 
 - (IBAction) clearButtonClicked : (id) sender {	
-	NSLog( @"RSC.clearButton" );
+	DebugLog( @"RSC.clearButton" );
 	
 	UIAlertView *alert = [[UIAlertView alloc] init];
 	[alert setTitle:@"Confirm"];
@@ -119,7 +119,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	NSNumber *number = [sectionInfo valueForKey:@"sectionCount"];
-//	NSLog( @"numberOfSections: %@", number );
+//	DebugLog( @"numberOfSections: %@", number );
 	return [number intValue];	
 }
 
@@ -143,7 +143,7 @@
 (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	NSString* title = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
 
-//	NSLog( @"titleForHeaderInSection: %@", title );
+//	DebugLog( @"titleForHeaderInSection: %@", title );
 	return title;
 }
 
@@ -151,14 +151,14 @@
 	NSString *sectionTitle = [sectionInfo objectForKey:[NSString stringWithFormat:@"%d", section]];
 	NSNumber *number = [sectionInfo valueForKey:sectionTitle];
 	
-//	NSLog( @"numberOfRowsInSection: %@", number );
+//	DebugLog( @"numberOfRowsInSection: %@", number );
 
 	return [number intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
-	//	NSLog( @"cellForRowAtIndexPath : %d", indexPath.row );
+	//	DebugLog( @"cellForRowAtIndexPath : %d", indexPath.row );
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {

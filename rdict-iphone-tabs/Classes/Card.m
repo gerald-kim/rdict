@@ -208,7 +208,7 @@ DECLARE_PROPERTIES (
 
 - (void)dealloc
 {
-	NSLog( @"Card(0x%x).dealloc", self ); 
+	DebugLog( @"Card(0x%x).dealloc", self ); 
     [question release];
     [answer release];
 	[scheduled release];

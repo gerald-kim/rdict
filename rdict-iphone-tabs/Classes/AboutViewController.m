@@ -15,7 +15,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-	NSLog( @"HVC.viewWillAppear" );
+	DebugLog( @"HVC.viewWillAppear" );
 	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
 	NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -23,7 +23,7 @@
 	
 	NSString *infoSouceFile = [[NSBundle mainBundle] pathForResource:@"rdict_about" ofType:@"html"];
 	NSString *infoText = [NSString stringWithContentsOfFile:infoSouceFile encoding:NSUTF8StringEncoding error:nil];
-	NSLog( @"%s", infoText );
+	DebugLog( @"%s", infoText );
     [webView loadHTMLString:infoText baseURL:baseURL];
 	
 	//	[webView loadHTMLString:<#(NSString *)string#> baseURL:baseURL];

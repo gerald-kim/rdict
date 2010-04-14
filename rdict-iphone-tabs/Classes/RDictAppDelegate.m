@@ -26,7 +26,7 @@
         [window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
 
-	// NSLog( @"PATH: %@", [[SQLiteInstanceManager sharedManager] databaseFilepath] );
+	// DebugLog( @"PATH: %@", [[SQLiteInstanceManager sharedManager] databaseFilepath] );
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
 #endif

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "rdict.h"
 #import "SearchViewController.h"
 #import "ReviewViewController.h"
 

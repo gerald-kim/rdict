@@ -72,8 +72,8 @@
 	}
 	[dict release];
 	[dateFormatter release];
-//	NSLog(@"dict: %@", dict);
-//	NSLog(@"array: %@", array);
+//	DebugLog(@"dict: %@", dict);
+//	DebugLog(@"array: %@", array);
 	
 	return array;
 }

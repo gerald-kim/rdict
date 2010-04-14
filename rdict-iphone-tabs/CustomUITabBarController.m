@@ -7,7 +7,6 @@
 @synthesize tabBar1;
 
 - (void)viewDidLoad {
-	NSLog( @"CUITBC.viewDidLoad" );
 	[super viewDidLoad];
 
 	UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITabBar2.png"]];

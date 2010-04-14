@@ -19,7 +19,7 @@
 - (void) logtcbdberror: (TCBDB*) db {
 	int errorCode = tcbdbecode( db );
 	NSString *errorMessage = [NSString stringWithUTF8String:tcbdberrmsg( errorCode )];
-	NSLog( @"error: %@",  errorMessage );
+	DebugLog( @"error: %@",  errorMessage );
 	[errorMessage release];	
 }
 
@@ -83,7 +83,7 @@
 		char* key = tcbdbcurkey2( wordCursor );
 		[indexKey setString:[NSString stringWithUTF8String:key]];
 		
-		NSLog( @"jump success : %@, %@", aQuery, indexKey );
+		DebugLog( @"jump success : %@, %@", aQuery, indexKey );
 		free( key );
 		if ( ![indexKey hasPrefix:aQuery] ) {
 			if ( tcbdbcurprev( wordCursor ) ) {
@@ -91,11 +91,11 @@
 				[indexKey setString:[NSString stringWithUTF8String:key]];
 				free( key );
 			}
-			NSLog( @"noPrefix %@, %@", aQuery, indexKey ); 	
+			DebugLog( @"noPrefix %@, %@", aQuery, indexKey ); 	
 		}
 	} 
 	if ( !jumpSuccess ) {
-		NSLog( @"JumpFail %@", aQuery ); 	
+		DebugLog( @"JumpFail %@", aQuery ); 	
 		tcbdbcurlast( wordCursor );
 		char* key = tcbdbcurkey2( wordCursor );
 		[indexKey setString:[NSString stringWithUTF8String:key]];
