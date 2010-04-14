@@ -42,7 +42,8 @@ DECLARE_PROPERTIES (
 			card.answer = [card.answer stringByAppendingString:@"\n"];			
 		}
 		card.answer = [card.answer stringByAppendingFormat:@"-------------\n%@", answer];			
-		[card study:0];
+		card.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];
+		[card save];
 	}
 	return card;
 }
