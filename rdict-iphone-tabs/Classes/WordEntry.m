@@ -22,9 +22,11 @@
 - (void) decorateDefinition {
 	NSDictionary* otherDictionaries = [NSDictionary dictionaryWithObjectsAndKeys:
 									   @"http://m.engdic.daum.net/dicen/mobile_search.do?endic_kind=all&m=all&q=", @"Daum Dictionary(English-Korean)",
-									   @"http://www.google.com/dictionary?langpair=en%7Cen&q=", @"Google Dictionary",
-									   @"http://dictionary.cambridge.org/results.asp?searchword=", @"Cambridge Advanced Learner's Dictionary",
-									   @"http://www.urbandictionary.com/iphone/search?term=", @"Urban Dictionary",
+									   @"http://i.word.com/idictionary/", @"Merriam-Webster.com",
+									   @"http://mobile-dictionary.reverso.net/english-french/", @"Collins English French",
+									   @"http://mobile-dictionary.reverso.net/english-italian/", @"Collins Italian Dictionary",	
+									   @"http://mobile-dictionary.reverso.net/english-spanish/", @"Collins Spanish Dictionary",	
+									   @"http://mobile-dictionary.reverso.net/english-german/", @"Collins German Dictionary",	
 									   nil];
 									   
 	
@@ -34,7 +36,9 @@
 	[definitionHtml insertString:htmlString atIndex: 0];
 	[definitionHtml appendString:@"<h2>Another dictionaries' definition:</h2>"];
 	[definitionHtml appendString:@"<ul>"];
-	for (id key in otherDictionaries) {
+	NSArray *sortedArray = [[otherDictionaries allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+	for (id key in sortedArray) {
 		[definitionHtml appendString:[NSString stringWithFormat:
 									  @"<li><a href='%@%@'>%@</a></li>", [otherDictionaries objectForKey:key], lemma, key]];
 	}

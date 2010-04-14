@@ -77,7 +77,7 @@
 					<object class="IBUILabel" id="873596170">
 						<reference key="NSNextResponder" ref="594635972"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrameSize">{320, 95}</string>
+						<string key="NSFrame">{{20, 20}, {280, 71}}</string>
 						<reference key="NSSuperview" ref="594635972"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -85,7 +85,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Word</string>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
+							<string key="NSName">TimesNewRomanPSMT</string>
 							<double key="NSSize">48</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -95,14 +95,13 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">24</float>
-						<int key="IBUITextAlignment">1</int>
-						<int key="IBUILineBreakMode">1</int>
+						<float key="IBUIMinimumFontSize">13</float>
+						<int key="IBUILineBreakMode">2</int>
 					</object>
 					<object class="IBUILabel" id="809291808">
 						<reference key="NSNextResponder" ref="594635972"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{53, 103}, {214, 21}}</string>
+						<string key="NSFrame">{{20, 99}, {214, 21}}</string>
 						<reference key="NSSuperview" ref="594635972"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -257,7 +256,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CardViewController</string>
 					<string>UIResponder</string>
-					<string>{{339, 269}, {320, 480}}</string>
+					<string>{{57, 80}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

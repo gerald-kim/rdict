@@ -45,7 +45,7 @@
 					<object class="IBUILabel" id="370459350">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{48, 116}, {223, 147}}</string>
+						<string key="NSFrame">{{20, 103}, {302, 110}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -55,8 +55,8 @@
 RnVydHVyZSByZXZpZXcgd2lsbCBiZSBhdXRvbWFjYWxseSAKc2NoZWR1bGVkIGJ5IHlvdXIgbWVtb3J5
 Lg</string>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">TimesNewRomanPSMT</string>
-							<double key="NSSize">15</double>
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
@@ -67,7 +67,6 @@ Lg</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUINumberOfLines">5</int>
-						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
 					<object class="IBUIToolbar" id="904749239">
@@ -105,7 +104,7 @@ Lg</string>
 					<object class="IBUILabel" id="118743882">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{29, 41}, {261, 75}}</string>
+						<string key="NSFrame">{{20, 20}, {261, 75}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -115,7 +114,7 @@ Lg</string>
 						<string key="IBUIText">Good Job!</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">TimesNewRomanPSMT</string>
-							<double key="NSSize">36</double>
+							<double key="NSSize">48</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
@@ -125,7 +124,6 @@ Lg</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 416}</string>
@@ -260,7 +258,7 @@ Lg</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ReviewFinishedViewController</string>
 					<string>UIResponder</string>
-					<string>{{339, 141}, {320, 480}}</string>
+					<string>{{381, 108}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
