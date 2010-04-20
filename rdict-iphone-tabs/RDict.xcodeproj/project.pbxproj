@@ -372,6 +372,11 @@
 		EFBF4A2D0FE001DA0092357C /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
 		EFCAA37A11179ABC00E5E0CE /* ScheduledOrTodayCardTest.m in Resources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
 		EFCAA38911179D6E00E5E0CE /* ScheduledOrTodayCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */; };
+		EFD8D64E11768D980010C916 /* tcbdb.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07DD0FDFF4F900490192 /* tcbdb.h */; };
+		EFD8D64F11768D980010C916 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07D90FDFF4F900490192 /* md5.h */; };
+		EFD8D65011768D980010C916 /* tchdb.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07DF0FDFF4F900490192 /* tchdb.h */; };
+		EFD8D65111768D980010C916 /* myconf.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07DB0FDFF4F900490192 /* myconf.h */; };
+		EFD8D65211768D980010C916 /* tcutil.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07E10FDFF4F900490192 /* tcutil.h */; };
 		EFE5E2DF10CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
 		EFE5E2E010CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
 		EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
@@ -467,7 +472,6 @@
 		EF234E2F10B3650E00A267CF /* MiscView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MiscView.xib; path = Resources/MiscView.xib; sourceTree = "<group>"; };
 		EF234E3210B3653C00A267CF /* MiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscViewController.h; path = Classes/MiscViewController.h; sourceTree = "<group>"; };
 		EF234E3310B3653C00A267CF /* MiscViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscViewController.m; path = Classes/MiscViewController.m; sourceTree = "<group>"; };
-		EF288FB3111AE39900BB5C83 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF288FB5111AE39A00BB5C83 /* RDict-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy 2.plist"; sourceTree = "<group>"; };
 		EF288FCE111B897100BB5C83 /* LookupHistoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LookupHistoryTest.m; path = Tests/LookupHistoryTest.m; sourceTree = "<group>"; };
 		EF2E73170FE86454008B8AEC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -532,7 +536,6 @@
 		EF3ED7F3116B35E000EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF50712F1120D2210017B0FC /* CKSparkline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKSparkline.h; path = Classes/CKSparkline.h; sourceTree = "<group>"; };
 		EF5071301120D2210017B0FC /* CKSparkline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKSparkline.m; path = Classes/CKSparkline.m; sourceTree = "<group>"; };
-		EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
 		EF54C5850FFF372100BFDCB6 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 		EFEA07E10FDFF4F900490192 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
 		EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
+		EFED3C59117D6DC100DE3242 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFED3C5B117D6DC100DE3242 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -728,8 +733,8 @@
 				1D6058910D05DD3D006BFB54 /* AmplioWords.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
-				EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */,
-				EF288FB3111AE39900BB5C83 /* RDict Test.app */,
+				EFED3C59117D6DC100DE3242 /* RDict Test.app */,
+				EFED3C5B117D6DC100DE3242 /* RDict Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1065,6 +1070,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD8D64E11768D980010C916 /* tcbdb.h in Headers */,
+				EFD8D64F11768D980010C916 /* md5.h in Headers */,
+				EFD8D65011768D980010C916 /* tchdb.h in Headers */,
+				EFD8D65111768D980010C916 /* myconf.h in Headers */,
+				EFD8D65211768D980010C916 /* tcutil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,7 +1114,7 @@
 			);
 			name = "RDict Test without UnitTest";
 			productName = RDict;
-			productReference = EF288FB3111AE39900BB5C83 /* RDict Test.app */;
+			productReference = EFED3C5B117D6DC100DE3242 /* RDict Test.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EF54C5420FFF36D000BFDCB6 /* RDict Test */ = {
@@ -1123,7 +1133,7 @@
 			);
 			name = "RDict Test";
 			productName = RDict;
-			productReference = EF54C57E0FFF36D000BFDCB6 /* RDict Test.app */;
+			productReference = EFED3C59117D6DC100DE3242 /* RDict Test.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EFBF4A160FE001900092357C /* UnitTests */ = {
@@ -1704,7 +1714,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1814,7 +1824,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = 4.2;

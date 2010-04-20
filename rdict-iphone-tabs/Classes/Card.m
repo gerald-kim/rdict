@@ -86,7 +86,7 @@ DECLARE_PROPERTIES (
 }
 
 + (NSInteger) countByMastered {	
-	SLStmt* stmt = [SLStmt stmtWithSql:@"select count(*) from ( select card, avg(grade) grade from study_log where study_index in (0, 1) group by card ) where grade >= 4;"];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"select count(*) from ( select card, avg(grade) grade from study_log where deleted is null and study_index in (0, 1) group by card ) where grade >= 4;"];
 	
 	NSInteger score = 0;
 	if( [stmt step] ) {
@@ -255,6 +255,7 @@ DECLARE_PROPERTIES (
 }
 
 - (void) deleteObject {
+	[StudyLog deleteStudyLogs:self];
 	self.deleted = [NSDate date] ;
 	[super save];
 	[StatisticsManager updateStatisticsOfToday];		

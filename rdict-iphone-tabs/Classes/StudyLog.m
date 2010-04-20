@@ -12,12 +12,14 @@
 @implementation StudyLog
 @synthesize card;
 @synthesize studied;
+@synthesize deleted;
 @synthesize grade;
 @synthesize studyIndex;
 
 DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"card", @"@\"Card\""),
 					DECLARE_PROPERTY( @"studied", @"@\"NSDate\""),
+					DECLARE_PROPERTY( @"deleted", @"@\"NSDate\""),
 					DECLARE_PROPERTY( @"grade", @"@\"NSInteger\""),
 					DECLARE_PROPERTY( @"studyIndex", @"@\"NSUInteger\"")
 )					
@@ -35,6 +37,14 @@ DECLARE_PROPERTIES (
 	}
 }
 
++ (void) deleteStudyLogs:(Card*) card {
+	NSArray* array = [card findRelated:[StudyLog class]];
+	for( StudyLog* studyLog in array ) {
+		studyLog.deleted = [NSDate date];
+		[studyLog save];
+	}	
+}
+
 - (id) initWithCard:(Card *)theCard {
 	[super init];
 	
@@ -42,6 +52,7 @@ DECLARE_PROPERTIES (
 	self.studied = theCard.studied;
 	self.grade = theCard.grade;
 	self.studyIndex = 0;
+	self.deleted = NULL;
 	
 	return self;
 }

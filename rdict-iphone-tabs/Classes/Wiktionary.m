@@ -49,10 +49,14 @@
 }
 
 - (void) dealloc {
-	tcbdbclose( indexDb );
-	tcbdbdel( indexDb );
-	tcbdbclose( wordDb );
-	tcbdbdel( wordDb );
+	if ( NULL != indexDb ) {
+		tcbdbclose( indexDb );
+		tcbdbdel( indexDb );
+	}
+	if ( NULL != wordDb ) {
+		tcbdbclose( wordDb );
+		tcbdbdel( wordDb );		
+	}
 	
 	tcbdbcurdel( forwardCursor );
 	tcbdbcurdel( backwardCursor );

@@ -85,6 +85,18 @@
 	STAssertEquals( secondLog.studyIndex, (NSUInteger) 0, nil );
 }
 
+-(void) testStudyLogShouldDeletedWhenCardDelete {
+	Card* card = [[Card alloc] initWithQuestion:@"question" andAnswer:@"answer"];
+	[card study:3];
+	
+	STAssertEquals( [StudyLog count], 1, nil );
+	StudyLog* firstLog = [StudyLog lastStudyLogOfCard:card];
+	STAssertNULL( firstLog.deleted, nil );
+	
+	[card deleteObject];
+	firstLog = [StudyLog lastStudyLogOfCard:card];
+	STAssertNotNULL( firstLog.deleted, nil );	
+}
 @end
 
 #endif

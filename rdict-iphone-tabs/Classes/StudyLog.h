@@ -13,17 +13,21 @@
 @interface StudyLog : SQLitePersistentObject {
 	Card* card;
 	NSDate* studied;
+	NSDate* deleted;
 	NSInteger grade;	
 	NSUInteger studyIndex;
 }
 
 @property (nonatomic, retain) Card* card;
 @property (nonatomic, retain) NSDate* studied;
+@property (nonatomic, retain) NSDate* deleted;
+
 @property NSInteger grade;
 @property NSUInteger studyIndex;
 
 + (StudyLog*) lastStudyLogOfCard:(Card *)card;
 + (void) increaseStudyIndex:(Card*) card;
++ (void) deleteStudyLogs:(Card*) card;
 - (id) initWithCard:(Card *)theCard;
 
 @end

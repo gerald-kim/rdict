@@ -23,17 +23,25 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	wiktionary = [[Wiktionary alloc] init];
 
-        [window addSubview:tabBarController.view];
+	[window addSubview:tabBarController.view];
 	[window makeKeyAndVisible];
 
 	// DebugLog( @"PATH: %@", [[SQLiteInstanceManager sharedManager] databaseFilepath] );
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
-#endif
-	
+#endif	
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
 	
 }
+
+- (void)applicationSignificantTimeChange:(UIApplication *)application {
+	DebugLog(@"timechange");
+#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
+#endif
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];	
+}
+
 
 
 // Optional UITabBarControllerDelegate method

@@ -22,6 +22,7 @@
 
 - (void) setUp {
 	wiktionary = [[Wiktionary alloc] init];
+	[wiktionary openWordDb];
 }
 
 - (void) tearDown {
