@@ -84,8 +84,8 @@
 	WordEntry *entry = [[WordEntry alloc] initWithLemma:aLemma andDefinitionHtml:[NSString stringWithUTF8String:value]];
 	free( value );
 	
-	NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:start];
-	DebugLog(@"Elapsed: %g", interval);
+	start;
+	DebugLog(@"Elapsed: %g", [[NSDate date] timeIntervalSinceDate:start]);
 	return entry;
 }
 
