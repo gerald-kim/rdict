@@ -12,131 +12,26 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1F560D7110E6C0A0005A6311 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
-		1F560D7210E6C0A0005A6311 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
 		1F560D7510E6C0F5005A6311 /* card_added_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7410E6C0F5005A6311 /* card_added_note.png */; };
-		1F560D7610E6C0F5005A6311 /* card_added_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7410E6C0F5005A6311 /* card_added_note.png */; };
 		1F560D8310E6C320005A6311 /* more_cards_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8210E6C320005A6311 /* more_cards_arrow.png */; };
-		1F560D8410E6C320005A6311 /* more_cards_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8210E6C320005A6311 /* more_cards_arrow.png */; };
 		1F560D9510E6CFBF005A6311 /* button_easy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8F10E6CFBF005A6311 /* button_easy1.png */; };
 		1F560D9610E6CFBF005A6311 /* button_easy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9010E6CFBF005A6311 /* button_easy2.png */; };
 		1F560D9710E6CFBF005A6311 /* button_hard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9110E6CFBF005A6311 /* button_hard1.png */; };
 		1F560D9810E6CFBF005A6311 /* button_hard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9210E6CFBF005A6311 /* button_hard2.png */; };
 		1F560D9910E6CFBF005A6311 /* button_medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9310E6CFBF005A6311 /* button_medium1.png */; };
 		1F560D9A10E6CFBF005A6311 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
-		1F560D9B10E6CFBF005A6311 /* button_easy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8F10E6CFBF005A6311 /* button_easy1.png */; };
-		1F560D9C10E6CFBF005A6311 /* button_easy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9010E6CFBF005A6311 /* button_easy2.png */; };
-		1F560D9D10E6CFBF005A6311 /* button_hard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9110E6CFBF005A6311 /* button_hard1.png */; };
-		1F560D9E10E6CFBF005A6311 /* button_hard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9210E6CFBF005A6311 /* button_hard2.png */; };
-		1F560D9F10E6CFBF005A6311 /* button_medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9310E6CFBF005A6311 /* button_medium1.png */; };
-		1F560DA010E6CFBF005A6311 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
 		1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
-		1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
-		1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		1F7647BB10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		1F7647BC10EF3CA4009A90AD /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
 		1F76491510EFB9B8009A90AD /* StudyLogPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491210EFB9B8009A90AD /* StudyLogPersistenceTest.m */; };
-		1F76491810EFB9D0009A90AD /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
 		1F76491910EFB9D0009A90AD /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
 		1F76491A10EFB9D0009A90AD /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		EF038B1810D856B300AE5DA0 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
 		EF038B1910D856B300AE5DA0 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
-		EF038B1A10D856B300AE5DA0 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
-		EF038B1B10D856B300AE5DA0 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
 		EF1CF33610BA1EFB0077E300 /* CardSelectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CF33510BA1EFB0077E300 /* CardSelectTest.m */; };
 		EF234E3010B3650E00A267CF /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
-		EF234E3110B3650E00A267CF /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
 		EF234E3410B3653C00A267CF /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF234E3310B3653C00A267CF /* MiscViewController.m */; };
-		EF234E3510B3653C00A267CF /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF234E3310B3653C00A267CF /* MiscViewController.m */; };
-		EF288F3F111AE39900BB5C83 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
-		EF288F40111AE39900BB5C83 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
-		EF288F41111AE39900BB5C83 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
-		EF288F42111AE39900BB5C83 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
-		EF288F43111AE39900BB5C83 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
-		EF288F44111AE39900BB5C83 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
-		EF288F45111AE39900BB5C83 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
-		EF288F46111AE39900BB5C83 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
-		EF288F47111AE39900BB5C83 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
-		EF288F48111AE39900BB5C83 /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
-		EF288F49111AE39900BB5C83 /* ReviewUnfinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD00FF7B88F00889749 /* ReviewUnfinishedView.xib */; };
-		EF288F4A111AE39900BB5C83 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
-		EF288F4B111AE39900BB5C83 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
-		EF288F4C111AE39900BB5C83 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
-		EF288F4D111AE39900BB5C83 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
-		EF288F4E111AE39900BB5C83 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
-		EF288F4F111AE39900BB5C83 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
-		EF288F50111AE39900BB5C83 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
-		EF288F51111AE39900BB5C83 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
-		EF288F52111AE39900BB5C83 /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
-		EF288F53111AE39900BB5C83 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
-		EF288F54111AE39900BB5C83 /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE0C10B7782A00A8DDBF /* HelpView.xib */; };
-		EF288F5A111AE39900BB5C83 /* early_practice_message.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3510B7848D00A8DDBF /* early_practice_message.png */; };
-		EF288F62111AE39900BB5C83 /* no_review_exercises_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3D10B7848D00A8DDBF /* no_review_exercises_label.png */; };
-		EF288F64111AE39900BB5C83 /* rdict_about.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3F10B7848D00A8DDBF /* rdict_about.html */; };
-		EF288F65111AE39900BB5C83 /* rdict_help.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4010B7848D00A8DDBF /* rdict_help.html */; };
-		EF288F6D111AE39900BB5C83 /* study_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4810B7848D00A8DDBF /* study_statistics.png */; };
-		EF288F6E111AE39900BB5C83 /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4910B7848D00A8DDBF /* tabs.png */; };
-		EF288F70111AE39900BB5C83 /* todays_scheduled_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4B10B7848D00A8DDBF /* todays_scheduled_label.png */; };
-		EF288F71111AE39900BB5C83 /* CardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AFFD10B82A7E00A8DDBF /* CardListView.xib */; };
-		EF288F72111AE39900BB5C83 /* CardEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69B13610B8D45C00A8DDBF /* CardEditView.xib */; };
-		EF288F73111AE39900BB5C83 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
-		EF288F74111AE39900BB5C83 /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
-		EF288F75111AE39900BB5C83 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
-		EF288F76111AE39900BB5C83 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
-		EF288F77111AE39900BB5C83 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
-		EF288F78111AE39900BB5C83 /* card_added_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7410E6C0F5005A6311 /* card_added_note.png */; };
-		EF288F79111AE39900BB5C83 /* more_cards_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8210E6C320005A6311 /* more_cards_arrow.png */; };
-		EF288F7A111AE39900BB5C83 /* button_easy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8F10E6CFBF005A6311 /* button_easy1.png */; };
-		EF288F7B111AE39900BB5C83 /* button_easy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9010E6CFBF005A6311 /* button_easy2.png */; };
-		EF288F7C111AE39900BB5C83 /* button_hard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9110E6CFBF005A6311 /* button_hard1.png */; };
-		EF288F7D111AE39900BB5C83 /* button_hard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9210E6CFBF005A6311 /* button_hard2.png */; };
-		EF288F7E111AE39900BB5C83 /* button_medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9310E6CFBF005A6311 /* button_medium1.png */; };
-		EF288F7F111AE39900BB5C83 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
-		EF288F81111AE39900BB5C83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		EF288F82111AE39900BB5C83 /* RDictAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RDictAppDelegate.m */; };
-		EF288F83111AE39900BB5C83 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
-		EF288F84111AE39900BB5C83 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
-		EF288F85111AE39900BB5C83 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
-		EF288F86111AE39900BB5C83 /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
-		EF288F87111AE39900BB5C83 /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
-		EF288F88111AE39900BB5C83 /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
-		EF288F89111AE39900BB5C83 /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
-		EF288F8A111AE39900BB5C83 /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
-		EF288F8B111AE39900BB5C83 /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
-		EF288F8C111AE39900BB5C83 /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
-		EF288F8D111AE39900BB5C83 /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
-		EF288F8E111AE39900BB5C83 /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
-		EF288F8F111AE39900BB5C83 /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
-		EF288F90111AE39900BB5C83 /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
-		EF288F91111AE39900BB5C83 /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
-		EF288F92111AE39900BB5C83 /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
-		EF288F93111AE39900BB5C83 /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
-		EF288F94111AE39900BB5C83 /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
-		EF288F95111AE39900BB5C83 /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
-		EF288F96111AE39900BB5C83 /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
-		EF288F97111AE39900BB5C83 /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
-		EF288F98111AE39900BB5C83 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
-		EF288F99111AE39900BB5C83 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
-		EF288F9A111AE39900BB5C83 /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
-		EF288F9B111AE39900BB5C83 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
-		EF288F9C111AE39900BB5C83 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
-		EF288F9D111AE39900BB5C83 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
-		EF288F9E111AE39900BB5C83 /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
-		EF288F9F111AE39900BB5C83 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
-		EF288FA0111AE39900BB5C83 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
-		EF288FA1111AE39900BB5C83 /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF234E3310B3653C00A267CF /* MiscViewController.m */; };
-		EF288FA2111AE39900BB5C83 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69ADF110B774F300A8DDBF /* AboutViewController.m */; };
-		EF288FA3111AE39900BB5C83 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AE0910B7780500A8DDBF /* HelpViewController.m */; };
-		EF288FA4111AE39900BB5C83 /* CardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AFFC10B82A7E00A8DDBF /* CardListViewController.m */; };
-		EF288FA5111AE39900BB5C83 /* CardEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */; };
-		EF288FA6111AE39900BB5C83 /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
-		EF288FA7111AE39900BB5C83 /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
-		EF288FA9111AE39900BB5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		EF288FAA111AE39900BB5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		EF288FAB111AE39900BB5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		EF288FAC111AE39900BB5C83 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
-		EF288FAD111AE39900BB5C83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
-		EF288FAF111AE39900BB5C83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
 		EF288FCF111B897100BB5C83 /* LookupHistoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF288FCE111B897100BB5C83 /* LookupHistoryTest.m */; };
 		EF2E744A0FE866BE008B8AEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
 		EF2E74AF0FE9B2B9008B8AEC /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
@@ -184,86 +79,25 @@
 		EF2E75570FE9BBB0008B8AEC /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
 		EF2E75590FE9BBBB008B8AEC /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
 		EF2E75680FE9BFCA008B8AEC /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
-		EF2F33B910610CE200ADFFD5 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
-		EF2F33BA10610CE200ADFFD5 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
 		EF2F33BB10610CE200ADFFD5 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
 		EF2F33BC10610CE200ADFFD5 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
-		EF2F33DD10610EB200ADFFD5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
-		EF2F33DE10610EB200ADFFD5 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
-		EF2F33DF10610EB200ADFFD5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
-		EF2F33E010610EB200ADFFD5 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
 		EF2F33E110610EB200ADFFD5 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
 		EF2F33E210610EB200ADFFD5 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
 		EF2F33E310610EB200ADFFD5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
 		EF2F33E410610EB200ADFFD5 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
 		EF2F33F41061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
-		EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
 		EF2F34031061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
-		EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
 		EF3792A91135E612005A1B22 /* StatisticsManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792A81135E612005A1B22 /* StatisticsManagerTest.m */; };
-		EF3792BB1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
 		EF3792BC1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
-		EF3792BD1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
 		EF3792BE1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
-		EF3ED7F1116B35BC00EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
 		EF3ED7F2116B35D000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
 		EF3ED7F4116B35E000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F3116B35E000EB59C8 /* libz.dylib */; };
-		EF3ED7F5116B35ED00EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F3116B35E000EB59C8 /* libz.dylib */; };
 		EF5071311120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
-		EF5071321120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
-		EF5071331120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
-		EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
-		EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
-		EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
-		EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
-		EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
-		EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
-		EF54C5500FFF36D000BFDCB6 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
-		EF54C5510FFF36D000BFDCB6 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
-		EF54C5520FFF36D000BFDCB6 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
-		EF54C5530FFF36D000BFDCB6 /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
-		EF54C5540FFF36D000BFDCB6 /* ReviewUnfinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD00FF7B88F00889749 /* ReviewUnfinishedView.xib */; };
-		EF54C5550FFF36D000BFDCB6 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
-		EF54C5570FFF36D000BFDCB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		EF54C5580FFF36D000BFDCB6 /* RDictAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RDictAppDelegate.m */; };
-		EF54C5590FFF36D000BFDCB6 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
-		EF54C55A0FFF36D000BFDCB6 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
-		EF54C55B0FFF36D000BFDCB6 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
-		EF54C55C0FFF36D000BFDCB6 /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
-		EF54C55D0FFF36D000BFDCB6 /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
-		EF54C55E0FFF36D000BFDCB6 /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
-		EF54C55F0FFF36D000BFDCB6 /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
-		EF54C5600FFF36D000BFDCB6 /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
-		EF54C5610FFF36D000BFDCB6 /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
-		EF54C5620FFF36D000BFDCB6 /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
-		EF54C5630FFF36D000BFDCB6 /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
-		EF54C5640FFF36D000BFDCB6 /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
-		EF54C5650FFF36D000BFDCB6 /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
-		EF54C5660FFF36D000BFDCB6 /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
-		EF54C5670FFF36D000BFDCB6 /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
-		EF54C5680FFF36D000BFDCB6 /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
-		EF54C5690FFF36D000BFDCB6 /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
-		EF54C56A0FFF36D000BFDCB6 /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
-		EF54C56B0FFF36D000BFDCB6 /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
-		EF54C56C0FFF36D000BFDCB6 /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
-		EF54C56D0FFF36D000BFDCB6 /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
-		EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
-		EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
-		EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
-		EF54C5710FFF36D000BFDCB6 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
-		EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
-		EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
-		EF54C5760FFF36D000BFDCB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		EF54C5770FFF36D000BFDCB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
-		EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
 		EF54C5860FFF372100BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5830FFF372100BFDCB6 /* index.db */; };
 		EF54C5880FFF372100BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5850FFF372100BFDCB6 /* word.db */; };
 		EF5C7DD6106851E90017E0E6 /* HistoryPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */; };
 		EF5C7DD9106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5C7DDA106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
-		EF5C7DDB106851F50017E0E6 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
 		EF5E7A141068ED8A00DB2E83 /* ObjectPersistenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5E7A131068ED8A00DB2E83 /* ObjectPersistenceTest.m */; };
 		EF68F6A51175E9B6000FA456 /* 01_search_view.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6991175E9B6000FA456 /* 01_search_view.png */; };
 		EF68F6A61175E9B6000FA456 /* 02_search_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69A1175E9B6000FA456 /* 02_search_list.png */; };
@@ -277,38 +111,10 @@
 		EF68F6AE1175E9B6000FA456 /* review_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A21175E9B6000FA456 /* review_finish.png */; };
 		EF68F6AF1175E9B6000FA456 /* review_none.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A31175E9B6000FA456 /* review_none.png */; };
 		EF68F6B01175E9B6000FA456 /* review_scheduled.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A41175E9B6000FA456 /* review_scheduled.png */; };
-		EF68F6B11175E9B6000FA456 /* 01_search_view.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6991175E9B6000FA456 /* 01_search_view.png */; };
-		EF68F6B21175E9B6000FA456 /* 02_search_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69A1175E9B6000FA456 /* 02_search_list.png */; };
-		EF68F6B31175E9B6000FA456 /* 03_review.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69B1175E9B6000FA456 /* 03_review.png */; };
-		EF68F6B41175E9B6000FA456 /* 04_review_question.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69C1175E9B6000FA456 /* 04_review_question.png */; };
-		EF68F6B51175E9B6000FA456 /* 05_review_answer.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69D1175E9B6000FA456 /* 05_review_answer.png */; };
-		EF68F6B61175E9B6000FA456 /* card_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69E1175E9B6000FA456 /* card_edit.png */; };
-		EF68F6B71175E9B6000FA456 /* card_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69F1175E9B6000FA456 /* card_list.png */; };
-		EF68F6B81175E9B6000FA456 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A01175E9B6000FA456 /* more.png */; };
-		EF68F6B91175E9B6000FA456 /* review_again.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A11175E9B6000FA456 /* review_again.png */; };
-		EF68F6BA1175E9B6000FA456 /* review_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A21175E9B6000FA456 /* review_finish.png */; };
-		EF68F6BB1175E9B6000FA456 /* review_none.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A31175E9B6000FA456 /* review_none.png */; };
-		EF68F6BC1175E9B6000FA456 /* review_scheduled.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A41175E9B6000FA456 /* review_scheduled.png */; };
-		EF68F6BD1175E9B6000FA456 /* 01_search_view.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6991175E9B6000FA456 /* 01_search_view.png */; };
-		EF68F6BE1175E9B6000FA456 /* 02_search_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69A1175E9B6000FA456 /* 02_search_list.png */; };
-		EF68F6BF1175E9B6000FA456 /* 03_review.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69B1175E9B6000FA456 /* 03_review.png */; };
-		EF68F6C01175E9B6000FA456 /* 04_review_question.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69C1175E9B6000FA456 /* 04_review_question.png */; };
-		EF68F6C11175E9B6000FA456 /* 05_review_answer.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69D1175E9B6000FA456 /* 05_review_answer.png */; };
-		EF68F6C21175E9B6000FA456 /* card_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69E1175E9B6000FA456 /* card_edit.png */; };
-		EF68F6C31175E9B6000FA456 /* card_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69F1175E9B6000FA456 /* card_list.png */; };
-		EF68F6C41175E9B6000FA456 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A01175E9B6000FA456 /* more.png */; };
-		EF68F6C51175E9B6000FA456 /* review_again.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A11175E9B6000FA456 /* review_again.png */; };
-		EF68F6C61175E9B6000FA456 /* review_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A21175E9B6000FA456 /* review_finish.png */; };
-		EF68F6C71175E9B6000FA456 /* review_none.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A31175E9B6000FA456 /* review_none.png */; };
-		EF68F6C81175E9B6000FA456 /* review_scheduled.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A41175E9B6000FA456 /* review_scheduled.png */; };
 		EF69ADBB10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
-		EF69ADBC10B771A900A8DDBF /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
 		EF69ADF210B774F300A8DDBF /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69ADF110B774F300A8DDBF /* AboutViewController.m */; };
-		EF69ADF310B774F300A8DDBF /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69ADF110B774F300A8DDBF /* AboutViewController.m */; };
 		EF69AE0A10B7780500A8DDBF /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AE0910B7780500A8DDBF /* HelpViewController.m */; };
-		EF69AE0B10B7780500A8DDBF /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AE0910B7780500A8DDBF /* HelpViewController.m */; };
 		EF69AE0D10B7782A00A8DDBF /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE0C10B7782A00A8DDBF /* HelpView.xib */; };
-		EF69AE0E10B7782A00A8DDBF /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE0C10B7782A00A8DDBF /* HelpView.xib */; };
 		EF69AE5110B7848D00A8DDBF /* early_practice_message.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3510B7848D00A8DDBF /* early_practice_message.png */; };
 		EF69AE5910B7848D00A8DDBF /* no_review_exercises_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3D10B7848D00A8DDBF /* no_review_exercises_label.png */; };
 		EF69AE5B10B7848D00A8DDBF /* rdict_about.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3F10B7848D00A8DDBF /* rdict_about.html */; };
@@ -316,24 +122,11 @@
 		EF69AE6410B7848D00A8DDBF /* study_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4810B7848D00A8DDBF /* study_statistics.png */; };
 		EF69AE6510B7848D00A8DDBF /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4910B7848D00A8DDBF /* tabs.png */; };
 		EF69AE6710B7848D00A8DDBF /* todays_scheduled_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4B10B7848D00A8DDBF /* todays_scheduled_label.png */; };
-		EF69AE6D10B7848D00A8DDBF /* early_practice_message.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3510B7848D00A8DDBF /* early_practice_message.png */; };
-		EF69AE7510B7848D00A8DDBF /* no_review_exercises_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3D10B7848D00A8DDBF /* no_review_exercises_label.png */; };
-		EF69AE7710B7848D00A8DDBF /* rdict_about.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3F10B7848D00A8DDBF /* rdict_about.html */; };
-		EF69AE7810B7848D00A8DDBF /* rdict_help.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4010B7848D00A8DDBF /* rdict_help.html */; };
-		EF69AE8010B7848D00A8DDBF /* study_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4810B7848D00A8DDBF /* study_statistics.png */; };
-		EF69AE8110B7848D00A8DDBF /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4910B7848D00A8DDBF /* tabs.png */; };
-		EF69AE8310B7848D00A8DDBF /* todays_scheduled_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4B10B7848D00A8DDBF /* todays_scheduled_label.png */; };
-		EF69AFFE10B82A7E00A8DDBF /* CardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AFFC10B82A7E00A8DDBF /* CardListViewController.m */; };
-		EF69AFFF10B82A7E00A8DDBF /* CardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AFFD10B82A7E00A8DDBF /* CardListView.xib */; };
 		EF69B00010B82A7E00A8DDBF /* CardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AFFC10B82A7E00A8DDBF /* CardListViewController.m */; };
 		EF69B00110B82A7E00A8DDBF /* CardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AFFD10B82A7E00A8DDBF /* CardListView.xib */; };
-		EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */; };
-		EF69B13810B8D45C00A8DDBF /* CardEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69B13610B8D45C00A8DDBF /* CardEditView.xib */; };
 		EF69B13910B8D45C00A8DDBF /* CardEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */; };
 		EF69B13A10B8D45C00A8DDBF /* CardEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69B13610B8D45C00A8DDBF /* CardEditView.xib */; };
 		EF719407117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
-		EF719408117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
-		EF719409117023CC00B59670 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
 		EF770E840FF754D900889749 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
 		EF770FCC0FF7B86800889749 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
 		EF770FCE0FF7B86800889749 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
@@ -343,22 +136,11 @@
 		EF7CB7CC0FF11BAE005B7FCD /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
 		EF7CB7EA0FF11DAB005B7FCD /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
 		EF92DC330FFC31AF008591C6 /* CardStudyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EF92DC320FFC31AF008591C6 /* CardStudyTest.m */; };
-		EF93907B114212FA0029F514 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
-		EF93907C114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
 		EF93907D114212FA0029F514 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
 		EF93907E114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
-		EF93907F114212FA0029F514 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
-		EF939080114212FA0029F514 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
 		EF9AE54911729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
 		EF9AE54A11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
-		EF9AE54B11729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
-		EF9AE54C11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
-		EF9AE54D11729E1500981D87 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
-		EF9AE54E11729E1500981D87 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
-		EFA84B851164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
 		EFA84B861164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
-		EFA84B871164148300715E4D /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
-		EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22210FFF539C00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAA22220FFF539D00D5EBFB /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
 		EFAC4B721164276800FF1637 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFAC4B711164276800FF1637 /* Entitlements.plist */; };
@@ -379,17 +161,9 @@
 		EFD8D65211768D980010C916 /* tcutil.h in Headers */ = {isa = PBXBuildFile; fileRef = EFEA07E10FDFF4F900490192 /* tcutil.h */; };
 		EFE5E2DF10CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
 		EFE5E2E010CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
-		EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
-		EFE5E2E210CF1B8C00D0857E /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
-		EFE882EB1173E50B00161DA3 /* bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E81173E50B00161DA3 /* bottom_bg.png */; };
-		EFE882EC1173E50B00161DA3 /* contents_all_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E91173E50B00161DA3 /* contents_all_bg.png */; };
-		EFE882ED1173E50B00161DA3 /* contents_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882EA1173E50B00161DA3 /* contents_bg.png */; };
 		EFE882EE1173E50B00161DA3 /* bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E81173E50B00161DA3 /* bottom_bg.png */; };
 		EFE882EF1173E50B00161DA3 /* contents_all_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E91173E50B00161DA3 /* contents_all_bg.png */; };
 		EFE882F01173E50B00161DA3 /* contents_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882EA1173E50B00161DA3 /* contents_bg.png */; };
-		EFE882F11173E50B00161DA3 /* bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E81173E50B00161DA3 /* bottom_bg.png */; };
-		EFE882F21173E50B00161DA3 /* contents_all_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E91173E50B00161DA3 /* contents_all_bg.png */; };
-		EFE882F31173E50B00161DA3 /* contents_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882EA1173E50B00161DA3 /* contents_bg.png */; };
 		EFEA07D00FDFF4EA00490192 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
 		EFEA07D10FDFF4EA00490192 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
 		EFEA07D20FDFF4EA00490192 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
@@ -405,27 +179,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EF1C7511105E9D8D002207AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFBF4A160FE001900092357C;
-			remoteInfo = UnitTests;
-		};
-		EF288F3D111AE39900BB5C83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
-			remoteInfo = tokyocabinet;
-		};
-		EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
-			remoteInfo = tokyocabinet;
-		};
 		EFBF4A1E0FE001A10092357C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -472,7 +225,6 @@
 		EF234E2F10B3650E00A267CF /* MiscView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MiscView.xib; path = Resources/MiscView.xib; sourceTree = "<group>"; };
 		EF234E3210B3653C00A267CF /* MiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscViewController.h; path = Classes/MiscViewController.h; sourceTree = "<group>"; };
 		EF234E3310B3653C00A267CF /* MiscViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscViewController.m; path = Classes/MiscViewController.m; sourceTree = "<group>"; };
-		EF288FB5111AE39A00BB5C83 /* RDict-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy 2.plist"; sourceTree = "<group>"; };
 		EF288FCE111B897100BB5C83 /* LookupHistoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LookupHistoryTest.m; path = Tests/LookupHistoryTest.m; sourceTree = "<group>"; };
 		EF2E73170FE86454008B8AEC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EF2E748F0FE9B2B8008B8AEC /* NSData-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData-SQLitePersistence.h"; sourceTree = "<group>"; };
@@ -536,7 +288,6 @@
 		EF3ED7F3116B35E000EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF50712F1120D2210017B0FC /* CKSparkline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKSparkline.h; path = Classes/CKSparkline.h; sourceTree = "<group>"; };
 		EF5071301120D2210017B0FC /* CKSparkline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKSparkline.m; path = Classes/CKSparkline.m; sourceTree = "<group>"; };
-		EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RDict-Info copy.plist"; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
 		EF54C5850FFF372100BFDCB6 /* word.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word.db; sourceTree = "<group>"; };
 		EF5C7DD11068515E0017E0E6 /* HistoryPersistenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryPersistenceTest.m; path = Tests/HistoryPersistenceTest.m; sourceTree = "<group>"; };
@@ -604,7 +355,6 @@
 		EFA84B841164148300715E4D /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
 		EFAA21FA0FFF510A00D5EBFB /* SLStmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLStmt.h; sourceTree = "<group>"; };
 		EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLStmt.m; sourceTree = "<group>"; };
-		EFAC4B5C116426CA00FF1637 /* AmplioWords copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmplioWords copy.plist"; sourceTree = "<group>"; };
 		EFAC4B711164276800FF1637 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		EFBF4A170FE001900092357C /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCAA37911179ABC00E5E0CE /* ScheduledOrTodayCardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduledOrTodayCardTest.m; path = Tests/ScheduledOrTodayCardTest.m; sourceTree = "<group>"; };
@@ -638,8 +388,6 @@
 		EFEA07E10FDFF4F900490192 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
 		EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
-		EFED3C59117D6DC100DE3242 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFED3C5B117D6DC100DE3242 /* RDict Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RDict Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -654,34 +402,6 @@
 				EF2E75280FE9B856008B8AEC /* libsqlite3.dylib in Frameworks */,
 				1F560E8C10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
 				EF3ED7F2116B35D000EB59C8 /* libz.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF288FA8111AE39900BB5C83 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF288FA9111AE39900BB5C83 /* Foundation.framework in Frameworks */,
-				EF288FAA111AE39900BB5C83 /* UIKit.framework in Frameworks */,
-				EF288FAB111AE39900BB5C83 /* CoreGraphics.framework in Frameworks */,
-				EF288FAC111AE39900BB5C83 /* libtokyocabinet.a in Frameworks */,
-				EF288FAD111AE39900BB5C83 /* libsqlite3.dylib in Frameworks */,
-				EF288FAF111AE39900BB5C83 /* QuartzCore.framework in Frameworks */,
-				EF3ED7F1116B35BC00EB59C8 /* libz.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF54C5750FFF36D000BFDCB6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF54C5760FFF36D000BFDCB6 /* Foundation.framework in Frameworks */,
-				EF54C5770FFF36D000BFDCB6 /* UIKit.framework in Frameworks */,
-				EF54C5780FFF36D000BFDCB6 /* CoreGraphics.framework in Frameworks */,
-				EF54C5790FFF36D000BFDCB6 /* libtokyocabinet.a in Frameworks */,
-				EF54C57A0FFF36D000BFDCB6 /* libsqlite3.dylib in Frameworks */,
-				1F560E8D10E6E276005A6311 /* QuartzCore.framework in Frameworks */,
-				EF3ED7F5116B35ED00EB59C8 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,8 +453,6 @@
 				1D6058910D05DD3D006BFB54 /* AmplioWords.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
-				EFED3C59117D6DC100DE3242 /* RDict Test.app */,
-				EFED3C5B117D6DC100DE3242 /* RDict Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -803,9 +521,6 @@
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
 				EF2E754C0FE9BBB0008B8AEC /* AmplioWords.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
-				EF54C5800FFF36D000BFDCB6 /* RDict-Info copy.plist */,
-				EF288FB5111AE39A00BB5C83 /* RDict-Info copy 2.plist */,
-				EFAC4B5C116426CA00FF1637 /* AmplioWords copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1099,43 +814,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* AmplioWords.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EF288F39111AE39900BB5C83 /* RDict Test without UnitTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EF288FB0111AE39900BB5C83 /* Build configuration list for PBXNativeTarget "RDict Test without UnitTest" */;
-			buildPhases = (
-				EF288F3E111AE39900BB5C83 /* Resources */,
-				EF288F80111AE39900BB5C83 /* Sources */,
-				EF288FA8111AE39900BB5C83 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EF288F3C111AE39900BB5C83 /* PBXTargetDependency */,
-			);
-			name = "RDict Test without UnitTest";
-			productName = RDict;
-			productReference = EFED3C5B117D6DC100DE3242 /* RDict Test.app */;
-			productType = "com.apple.product-type.application";
-		};
-		EF54C5420FFF36D000BFDCB6 /* RDict Test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EF54C57B0FFF36D000BFDCB6 /* Build configuration list for PBXNativeTarget "RDict Test" */;
-			buildPhases = (
-				EF54C5470FFF36D000BFDCB6 /* Resources */,
-				EF54C5560FFF36D000BFDCB6 /* Sources */,
-				EF54C5750FFF36D000BFDCB6 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EF1C7512105E9D8D002207AA /* PBXTargetDependency */,
-				EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */,
-			);
-			name = "RDict Test";
-			productName = RDict;
-			productReference = EFED3C59117D6DC100DE3242 /* RDict Test.app */;
-			productType = "com.apple.product-type.application";
-		};
 		EFBF4A160FE001900092357C /* UnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFBF4A1C0FE001900092357C /* Build configuration list for PBXNativeTarget "UnitTests" */;
@@ -1187,11 +865,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF54C5420FFF36D000BFDCB6 /* RDict Test */,
 				1D6058900D05DD3D006BFB54 /* AmplioWords */,
 				EFBF4A160FE001900092357C /* UnitTests */,
 				EFEA07EA0FDFF50B00490192 /* tokyocabinet */,
-				EF288F39111AE39900BB5C83 /* RDict Test without UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1266,148 +942,6 @@
 				EF68F6AE1175E9B6000FA456 /* review_finish.png in Resources */,
 				EF68F6AF1175E9B6000FA456 /* review_none.png in Resources */,
 				EF68F6B01175E9B6000FA456 /* review_scheduled.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF288F3E111AE39900BB5C83 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF288F3F111AE39900BB5C83 /* dictionary_view.html in Resources */,
-				EF288F40111AE39900BB5C83 /* jquery-1.3.2.min.js in Resources */,
-				EF288F41111AE39900BB5C83 /* jquery-1.3.2.js in Resources */,
-				EF288F42111AE39900BB5C83 /* CardFrontView.xib in Resources */,
-				EF288F43111AE39900BB5C83 /* DictionaryView.xib in Resources */,
-				EF288F44111AE39900BB5C83 /* MainWindow.xib in Resources */,
-				EF288F45111AE39900BB5C83 /* ReviewView.xib in Resources */,
-				EF288F46111AE39900BB5C83 /* SearchView.xib in Resources */,
-				EF288F47111AE39900BB5C83 /* CardBackView.xib in Resources */,
-				EF288F48111AE39900BB5C83 /* ReviewSessionView.xib in Resources */,
-				EF288F49111AE39900BB5C83 /* ReviewUnfinishedView.xib in Resources */,
-				EF288F4A111AE39900BB5C83 /* ReviewFinishedView.xib in Resources */,
-				EF288F4B111AE39900BB5C83 /* index.db in Resources */,
-				EF288F4C111AE39900BB5C83 /* word.db in Resources */,
-				EF288F4D111AE39900BB5C83 /* gear.png in Resources */,
-				EF288F4E111AE39900BB5C83 /* magnifying-glass.png in Resources */,
-				EF288F4F111AE39900BB5C83 /* star.png in Resources */,
-				EF288F50111AE39900BB5C83 /* tag.png in Resources */,
-				EF288F51111AE39900BB5C83 /* HistoryView.xib in Resources */,
-				EF288F52111AE39900BB5C83 /* MiscView.xib in Resources */,
-				EF288F53111AE39900BB5C83 /* AboutView.xib in Resources */,
-				EF288F54111AE39900BB5C83 /* HelpView.xib in Resources */,
-				EF288F5A111AE39900BB5C83 /* early_practice_message.png in Resources */,
-				EF288F62111AE39900BB5C83 /* no_review_exercises_label.png in Resources */,
-				EF288F64111AE39900BB5C83 /* rdict_about.html in Resources */,
-				EF288F65111AE39900BB5C83 /* rdict_help.html in Resources */,
-				EF288F6D111AE39900BB5C83 /* study_statistics.png in Resources */,
-				EF288F6E111AE39900BB5C83 /* tabs.png in Resources */,
-				EF288F70111AE39900BB5C83 /* todays_scheduled_label.png in Resources */,
-				EF288F71111AE39900BB5C83 /* CardListView.xib in Resources */,
-				EF288F72111AE39900BB5C83 /* CardEditView.xib in Resources */,
-				EF288F73111AE39900BB5C83 /* icon57x57.png in Resources */,
-				EF288F74111AE39900BB5C83 /* icon512x512.png in Resources */,
-				EF288F75111AE39900BB5C83 /* star_off.png in Resources */,
-				EF288F76111AE39900BB5C83 /* star_on.png in Resources */,
-				EF288F77111AE39900BB5C83 /* big_flashcard.png in Resources */,
-				EF288F78111AE39900BB5C83 /* card_added_note.png in Resources */,
-				EF288F79111AE39900BB5C83 /* more_cards_arrow.png in Resources */,
-				EF288F7A111AE39900BB5C83 /* button_easy1.png in Resources */,
-				EF288F7B111AE39900BB5C83 /* button_easy2.png in Resources */,
-				EF288F7C111AE39900BB5C83 /* button_hard1.png in Resources */,
-				EF288F7D111AE39900BB5C83 /* button_hard2.png in Resources */,
-				EF288F7E111AE39900BB5C83 /* button_medium1.png in Resources */,
-				EF288F7F111AE39900BB5C83 /* button_medium2.png in Resources */,
-				EF93907F114212FA0029F514 /* icon_arrow_left.png in Resources */,
-				EF939080114212FA0029F514 /* icon_arrow_right.png in Resources */,
-				EFA84B871164148300715E4D /* history.png in Resources */,
-				EF9AE54D11729E1500981D87 /* UITabBar1.png in Resources */,
-				EF9AE54E11729E1500981D87 /* UITabBar2.png in Resources */,
-				EFE882EB1173E50B00161DA3 /* bottom_bg.png in Resources */,
-				EFE882EC1173E50B00161DA3 /* contents_all_bg.png in Resources */,
-				EFE882ED1173E50B00161DA3 /* contents_bg.png in Resources */,
-				EF68F6BD1175E9B6000FA456 /* 01_search_view.png in Resources */,
-				EF68F6BE1175E9B6000FA456 /* 02_search_list.png in Resources */,
-				EF68F6BF1175E9B6000FA456 /* 03_review.png in Resources */,
-				EF68F6C01175E9B6000FA456 /* 04_review_question.png in Resources */,
-				EF68F6C11175E9B6000FA456 /* 05_review_answer.png in Resources */,
-				EF68F6C21175E9B6000FA456 /* card_edit.png in Resources */,
-				EF68F6C31175E9B6000FA456 /* card_list.png in Resources */,
-				EF68F6C41175E9B6000FA456 /* more.png in Resources */,
-				EF68F6C51175E9B6000FA456 /* review_again.png in Resources */,
-				EF68F6C61175E9B6000FA456 /* review_finish.png in Resources */,
-				EF68F6C71175E9B6000FA456 /* review_none.png in Resources */,
-				EF68F6C81175E9B6000FA456 /* review_scheduled.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF54C5470FFF36D000BFDCB6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF54C5480FFF36D000BFDCB6 /* dictionary_view.html in Resources */,
-				EF54C5490FFF36D000BFDCB6 /* jquery-1.3.2.min.js in Resources */,
-				EF54C54A0FFF36D000BFDCB6 /* jquery-1.3.2.js in Resources */,
-				EF54C54D0FFF36D000BFDCB6 /* CardFrontView.xib in Resources */,
-				EF54C54E0FFF36D000BFDCB6 /* DictionaryView.xib in Resources */,
-				EF54C54F0FFF36D000BFDCB6 /* MainWindow.xib in Resources */,
-				EF54C5500FFF36D000BFDCB6 /* ReviewView.xib in Resources */,
-				EF54C5510FFF36D000BFDCB6 /* SearchView.xib in Resources */,
-				EF54C5520FFF36D000BFDCB6 /* CardBackView.xib in Resources */,
-				EF54C5530FFF36D000BFDCB6 /* ReviewSessionView.xib in Resources */,
-				EF54C5540FFF36D000BFDCB6 /* ReviewUnfinishedView.xib in Resources */,
-				EF54C5550FFF36D000BFDCB6 /* ReviewFinishedView.xib in Resources */,
-				EF2F33B910610CE200ADFFD5 /* index.db in Resources */,
-				EF2F33BA10610CE200ADFFD5 /* word.db in Resources */,
-				EF2F33DD10610EB200ADFFD5 /* gear.png in Resources */,
-				EF2F33DE10610EB200ADFFD5 /* magnifying-glass.png in Resources */,
-				EF2F33DF10610EB200ADFFD5 /* star.png in Resources */,
-				EF2F33E010610EB200ADFFD5 /* tag.png in Resources */,
-				EF2F33F51061132C00ADFFD5 /* HistoryView.xib in Resources */,
-				EF234E3110B3650E00A267CF /* MiscView.xib in Resources */,
-				EF69ADBC10B771A900A8DDBF /* AboutView.xib in Resources */,
-				EF69AE0E10B7782A00A8DDBF /* HelpView.xib in Resources */,
-				EF69AE6D10B7848D00A8DDBF /* early_practice_message.png in Resources */,
-				EF69AE7510B7848D00A8DDBF /* no_review_exercises_label.png in Resources */,
-				EF69AE7710B7848D00A8DDBF /* rdict_about.html in Resources */,
-				EF69AE7810B7848D00A8DDBF /* rdict_help.html in Resources */,
-				EF69AE8010B7848D00A8DDBF /* study_statistics.png in Resources */,
-				EF69AE8110B7848D00A8DDBF /* tabs.png in Resources */,
-				EF69AE8310B7848D00A8DDBF /* todays_scheduled_label.png in Resources */,
-				EF69AFFF10B82A7E00A8DDBF /* CardListView.xib in Resources */,
-				EF69B13810B8D45C00A8DDBF /* CardEditView.xib in Resources */,
-				EFE5E2E110CF1B8C00D0857E /* icon57x57.png in Resources */,
-				EFE5E2E210CF1B8C00D0857E /* icon512x512.png in Resources */,
-				EF038B1A10D856B300AE5DA0 /* star_off.png in Resources */,
-				EF038B1B10D856B300AE5DA0 /* star_on.png in Resources */,
-				1F560D7210E6C0A0005A6311 /* big_flashcard.png in Resources */,
-				1F560D7610E6C0F5005A6311 /* card_added_note.png in Resources */,
-				1F560D8410E6C320005A6311 /* more_cards_arrow.png in Resources */,
-				1F560D9B10E6CFBF005A6311 /* button_easy1.png in Resources */,
-				1F560D9C10E6CFBF005A6311 /* button_easy2.png in Resources */,
-				1F560D9D10E6CFBF005A6311 /* button_hard1.png in Resources */,
-				1F560D9E10E6CFBF005A6311 /* button_hard2.png in Resources */,
-				1F560D9F10E6CFBF005A6311 /* button_medium1.png in Resources */,
-				1F560DA010E6CFBF005A6311 /* button_medium2.png in Resources */,
-				EF93907B114212FA0029F514 /* icon_arrow_left.png in Resources */,
-				EF93907C114212FA0029F514 /* icon_arrow_right.png in Resources */,
-				EFA84B851164148300715E4D /* history.png in Resources */,
-				EF9AE54B11729E1500981D87 /* UITabBar1.png in Resources */,
-				EF9AE54C11729E1500981D87 /* UITabBar2.png in Resources */,
-				EFE882F11173E50B00161DA3 /* bottom_bg.png in Resources */,
-				EFE882F21173E50B00161DA3 /* contents_all_bg.png in Resources */,
-				EFE882F31173E50B00161DA3 /* contents_bg.png in Resources */,
-				EF68F6B11175E9B6000FA456 /* 01_search_view.png in Resources */,
-				EF68F6B21175E9B6000FA456 /* 02_search_list.png in Resources */,
-				EF68F6B31175E9B6000FA456 /* 03_review.png in Resources */,
-				EF68F6B41175E9B6000FA456 /* 04_review_question.png in Resources */,
-				EF68F6B51175E9B6000FA456 /* 05_review_answer.png in Resources */,
-				EF68F6B61175E9B6000FA456 /* card_edit.png in Resources */,
-				EF68F6B71175E9B6000FA456 /* card_list.png in Resources */,
-				EF68F6B81175E9B6000FA456 /* more.png in Resources */,
-				EF68F6B91175E9B6000FA456 /* review_again.png in Resources */,
-				EF68F6BA1175E9B6000FA456 /* review_finish.png in Resources */,
-				EF68F6BB1175E9B6000FA456 /* review_none.png in Resources */,
-				EF68F6BC1175E9B6000FA456 /* review_scheduled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,104 +1024,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EF288F80111AE39900BB5C83 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF288F81111AE39900BB5C83 /* main.m in Sources */,
-				EF288F82111AE39900BB5C83 /* RDictAppDelegate.m in Sources */,
-				EF288F83111AE39900BB5C83 /* DictionaryViewController.m in Sources */,
-				EF288F84111AE39900BB5C83 /* ReviewViewController.m in Sources */,
-				EF288F85111AE39900BB5C83 /* SearchViewController.m in Sources */,
-				EF288F86111AE39900BB5C83 /* Wiktionary.m in Sources */,
-				EF288F87111AE39900BB5C83 /* WordEntry.m in Sources */,
-				EF288F88111AE39900BB5C83 /* WordIndex.m in Sources */,
-				EF288F89111AE39900BB5C83 /* NSData-SQLitePersistence.m in Sources */,
-				EF288F8A111AE39900BB5C83 /* NSDate-SQLitePersistence.m in Sources */,
-				EF288F8B111AE39900BB5C83 /* NSMutableArray-MultipleSort.m in Sources */,
-				EF288F8C111AE39900BB5C83 /* NSMutableData-SQLitePersistence.m in Sources */,
-				EF288F8D111AE39900BB5C83 /* NSNumber-SQLitePersistence.m in Sources */,
-				EF288F8E111AE39900BB5C83 /* NSObject-ClassName.m in Sources */,
-				EF288F8F111AE39900BB5C83 /* NSObject-MissingKV.m in Sources */,
-				EF288F90111AE39900BB5C83 /* NSObject-SQLitePersistence.m in Sources */,
-				EF288F91111AE39900BB5C83 /* NSString-NumberStuff.m in Sources */,
-				EF288F92111AE39900BB5C83 /* NSString-SQLiteColumnName.m in Sources */,
-				EF288F93111AE39900BB5C83 /* NSString-SQLitePersistence.m in Sources */,
-				EF288F94111AE39900BB5C83 /* NSString-UppercaseFirst.m in Sources */,
-				EF288F95111AE39900BB5C83 /* SQLiteInstanceManager.m in Sources */,
-				EF288F96111AE39900BB5C83 /* SQLitePersistentObject.m in Sources */,
-				EF288F97111AE39900BB5C83 /* UIColor-SQLitePersistentObject.m in Sources */,
-				EF288F98111AE39900BB5C83 /* UIImage-SQLitePersistence.m in Sources */,
-				EF288F99111AE39900BB5C83 /* Card.m in Sources */,
-				EF288F9A111AE39900BB5C83 /* ReviewSessionController.m in Sources */,
-				EF288F9B111AE39900BB5C83 /* CardViewController.m in Sources */,
-				EF288F9C111AE39900BB5C83 /* ReviewFinishedViewController.m in Sources */,
-				EF288F9D111AE39900BB5C83 /* ReviewUnfinishedViewController.m in Sources */,
-				EF288F9E111AE39900BB5C83 /* SLStmt.m in Sources */,
-				EF288F9F111AE39900BB5C83 /* HistoryViewControler.m in Sources */,
-				EF288FA0111AE39900BB5C83 /* History.m in Sources */,
-				EF288FA1111AE39900BB5C83 /* MiscViewController.m in Sources */,
-				EF288FA2111AE39900BB5C83 /* AboutViewController.m in Sources */,
-				EF288FA3111AE39900BB5C83 /* HelpViewController.m in Sources */,
-				EF288FA4111AE39900BB5C83 /* CardListViewController.m in Sources */,
-				EF288FA5111AE39900BB5C83 /* CardEditViewController.m in Sources */,
-				EF288FA6111AE39900BB5C83 /* LookupHistory.m in Sources */,
-				EF288FA7111AE39900BB5C83 /* StudyLog.m in Sources */,
-				EF5071331120D2210017B0FC /* CKSparkline.m in Sources */,
-				EF3792BB1135ED06005A1B22 /* StatisticsManager.m in Sources */,
-				EF719409117023CC00B59670 /* CustomUITabBarController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EF54C5560FFF36D000BFDCB6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EF54C5570FFF36D000BFDCB6 /* main.m in Sources */,
-				EF54C5580FFF36D000BFDCB6 /* RDictAppDelegate.m in Sources */,
-				EF54C5590FFF36D000BFDCB6 /* DictionaryViewController.m in Sources */,
-				EF54C55A0FFF36D000BFDCB6 /* ReviewViewController.m in Sources */,
-				EF54C55B0FFF36D000BFDCB6 /* SearchViewController.m in Sources */,
-				EF54C55C0FFF36D000BFDCB6 /* Wiktionary.m in Sources */,
-				EF54C55D0FFF36D000BFDCB6 /* WordEntry.m in Sources */,
-				EF54C55E0FFF36D000BFDCB6 /* WordIndex.m in Sources */,
-				EF54C55F0FFF36D000BFDCB6 /* NSData-SQLitePersistence.m in Sources */,
-				EF54C5600FFF36D000BFDCB6 /* NSDate-SQLitePersistence.m in Sources */,
-				EF54C5610FFF36D000BFDCB6 /* NSMutableArray-MultipleSort.m in Sources */,
-				EF54C5620FFF36D000BFDCB6 /* NSMutableData-SQLitePersistence.m in Sources */,
-				EF54C5630FFF36D000BFDCB6 /* NSNumber-SQLitePersistence.m in Sources */,
-				EF54C5640FFF36D000BFDCB6 /* NSObject-ClassName.m in Sources */,
-				EF54C5650FFF36D000BFDCB6 /* NSObject-MissingKV.m in Sources */,
-				EF54C5660FFF36D000BFDCB6 /* NSObject-SQLitePersistence.m in Sources */,
-				EF54C5670FFF36D000BFDCB6 /* NSString-NumberStuff.m in Sources */,
-				EF54C5680FFF36D000BFDCB6 /* NSString-SQLiteColumnName.m in Sources */,
-				EF54C5690FFF36D000BFDCB6 /* NSString-SQLitePersistence.m in Sources */,
-				EF54C56A0FFF36D000BFDCB6 /* NSString-UppercaseFirst.m in Sources */,
-				EF54C56B0FFF36D000BFDCB6 /* SQLiteInstanceManager.m in Sources */,
-				EF54C56C0FFF36D000BFDCB6 /* SQLitePersistentObject.m in Sources */,
-				EF54C56D0FFF36D000BFDCB6 /* UIColor-SQLitePersistentObject.m in Sources */,
-				EF54C56E0FFF36D000BFDCB6 /* UIImage-SQLitePersistence.m in Sources */,
-				EF54C56F0FFF36D000BFDCB6 /* Card.m in Sources */,
-				EF54C5700FFF36D000BFDCB6 /* ReviewSessionController.m in Sources */,
-				EF54C5710FFF36D000BFDCB6 /* CardViewController.m in Sources */,
-				EF54C5730FFF36D000BFDCB6 /* ReviewFinishedViewController.m in Sources */,
-				EF54C5740FFF36D000BFDCB6 /* ReviewUnfinishedViewController.m in Sources */,
-				EFAA22200FFF539C00D5EBFB /* SLStmt.m in Sources */,
-				EF2F34041061146100ADFFD5 /* HistoryViewControler.m in Sources */,
-				EF5C7DDB106851F50017E0E6 /* History.m in Sources */,
-				EF234E3510B3653C00A267CF /* MiscViewController.m in Sources */,
-				EF69ADF310B774F300A8DDBF /* AboutViewController.m in Sources */,
-				EF69AE0B10B7780500A8DDBF /* HelpViewController.m in Sources */,
-				EF69AFFE10B82A7E00A8DDBF /* CardListViewController.m in Sources */,
-				EF69B13710B8D45C00A8DDBF /* CardEditViewController.m in Sources */,
-				1F7647BA10EF3CA4009A90AD /* LookupHistory.m in Sources */,
-				1F76491810EFB9D0009A90AD /* StudyLog.m in Sources */,
-				EF5071321120D2210017B0FC /* CKSparkline.m in Sources */,
-				EF3792BD1135ED06005A1B22 /* StatisticsManager.m in Sources */,
-				EF719408117023CC00B59670 /* CustomUITabBarController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EFBF4A140FE001900092357C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1648,21 +1084,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EF1C7512105E9D8D002207AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFBF4A160FE001900092357C /* UnitTests */;
-			targetProxy = EF1C7511105E9D8D002207AA /* PBXContainerItemProxy */;
-		};
-		EF288F3C111AE39900BB5C83 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
-			targetProxy = EF288F3D111AE39900BB5C83 /* PBXContainerItemProxy */;
-		};
-		EF54C5430FFF36D000BFDCB6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
-			targetProxy = EF54C5440FFF36D000BFDCB6 /* PBXContainerItemProxy */;
-		};
 		EFBF4A1F0FE001A10092357C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
@@ -1714,7 +1135,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1744,81 +1165,6 @@
 			};
 			name = Release;
 		};
-		EF288FB1111AE39900BB5C83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = AmplioWords.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
-				);
-				OTHER_CFLAGS = (
-					"-DDEBUG",
-					"-DRDICTTEST=1",
-				);
-				PRODUCT_NAME = "RDict Test";
-			};
-			name = Debug;
-		};
-		EF288FB2111AE39900BB5C83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = AmplioWords.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
-				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
-				PRODUCT_NAME = "RDict Test";
-			};
-			name = Release;
-		};
-		EF54C57C0FFF36D000BFDCB6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info copy.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
-				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
-				PRODUCT_NAME = "RDict Test";
-			};
-			name = Debug;
-		};
-		EF54C57D0FFF36D000BFDCB6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info copy.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
-				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
-				PRODUCT_NAME = "RDict Test";
-			};
-			name = Release;
-		};
 		EFAC4B5D116426E300FF1637 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1835,23 +1181,6 @@
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1;
-			};
-			name = Distribution;
-		};
-		EFAC4B5E116426E300FF1637 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = "RDict-Info copy.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
-				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
-				PRODUCT_NAME = "RDict Test";
 			};
 			name = Distribution;
 		};
@@ -1911,23 +1240,6 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = tokyocabinet;
 				ZERO_LINK = NO;
-			};
-			name = Distribution;
-		};
-		EFAC4B62116426E300FF1637 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RDict_Prefix.pch;
-				INFOPLIST_FILE = AmplioWords.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\\\\\\\\\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\\\\\\\\\"",
-				);
-				OTHER_CFLAGS = "-DRDICTTEST=1";
-				PRODUCT_NAME = "RDict Test";
 			};
 			name = Distribution;
 		};
@@ -2032,26 +1344,6 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				EFAC4B5D116426E300FF1637 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EF288FB0111AE39900BB5C83 /* Build configuration list for PBXNativeTarget "RDict Test without UnitTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EF288FB1111AE39900BB5C83 /* Debug */,
-				EF288FB2111AE39900BB5C83 /* Release */,
-				EFAC4B62116426E300FF1637 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EF54C57B0FFF36D000BFDCB6 /* Build configuration list for PBXNativeTarget "RDict Test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EF54C57C0FFF36D000BFDCB6 /* Debug */,
-				EF54C57D0FFF36D000BFDCB6 /* Release */,
-				EFAC4B5E116426E300FF1637 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -51,6 +51,7 @@
 	[definitionHtml appendString:[NSString stringWithFormat:@"<a href='http://en.wiktionary.com/wiki/%@'>Wiktionary - %@</a><br>", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], lemma]];
 	[definitionHtml appendString:@"Text is available under the <a href='http://creativecommons.org/licenses/by-sa/3.0/'>CC-BY-SA License</a>.</p>"];
 	
+//	[definitionHtml appendString:@"<script type=\"text/javascript\" src=\"jquery-1.3.2.min.js\"></script>"];
 	[definitionHtml appendString:@"</body></html>"];
 	
 	[htmlString release];

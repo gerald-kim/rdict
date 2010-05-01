@@ -14,7 +14,6 @@
 @interface DictionaryViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView* webView;
 	IBOutlet UIImageView* cardAddedNote;
-	IBOutlet UIActivityIndicatorView* activityIndicatorView;
 	NSString* titleBackup;
 	UIBarButtonItem* leftButtonBackup;
 	UIBarButtonItem* rightButtonBackup;
@@ -29,7 +28,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWebView* webView;
 @property (nonatomic, retain) IBOutlet UIImageView* cardAddedNote;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* activityIndicatorView;
 @property (nonatomic, retain) NSString* titleBackup;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* leftButtonBackup;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* rightButtonBackup;

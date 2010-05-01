@@ -25,8 +25,23 @@
 	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]  atScrollPosition:UITableViewScrollPositionTop animated:false];		
 }
 
+
+-(void) preloadDictionaryView:(id)anObject {
+	NSAutoreleasePool *autoreleasepool = [[NSAutoreleasePool alloc] init];
+
+	self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
+	self.dictionaryViewController.wiktionary = wiktionary;
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"rdict://lookupprepare/?lemma=a"]];
+	[self.dictionaryViewController handleRdictRequest:url];
+	
+    [autoreleasepool release];
+    [NSThread exit];
+}
+
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
 	self.title = @"Search";
 	
 	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
@@ -36,6 +51,9 @@
 	
 	searchBar.autocapitalizationType =  UITextAutocapitalizationTypeNone;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;	
+	if( self.dictionaryViewController == nil ) {
+		[NSThread detachNewThreadSelector:@selector(preloadDictionaryView:) toTarget:self withObject:nil]; 
+	}
 }
 
 
@@ -46,7 +64,7 @@
 	self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {	
 	[super viewDidAppear:animated];
 }
 
@@ -68,10 +86,6 @@
 
 
 - (void)showDictionaryView:(NSString*) lemma {
-	if( self.dictionaryViewController == nil ) {
-		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
-	}
-		
 	History* history = [[History alloc] initWithLemma: lemma];
 	[history save];
 	[history release];

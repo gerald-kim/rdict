@@ -28,7 +28,6 @@
 @implementation DictionaryViewController
 @synthesize webView;
 @synthesize cardAddedNote;
-@synthesize activityIndicatorView;
 @synthesize lemma;
 @synthesize wiktionary;
 @synthesize lookupHistory;
@@ -41,9 +40,9 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
-	self.wiktionary = delegate.wiktionary;
-	[self.wiktionary openWordDb];
+//	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
+//	self.wiktionary = delegate.wiktionary;
+	DebugLog( @"dvc load" );
 }
 
 - (void) viewWillAppear:(BOOL)animated {	
@@ -64,7 +63,6 @@
 	self.forwardButton = [[UIBarButtonItem alloc] initWithImage:forwardImage style:UIBarButtonItemStylePlain target:self action:@selector(handleGoForwardClick:)];
 	self.forwardButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = forwardButton;
-	
 	
 	lookupHistory = [[LookupHistory alloc] init];
 
@@ -99,6 +97,7 @@
 - (void) viewDidDisappear:(BOOL)animated {
 	DebugLog(@"DVC.viewDidDisappear");
 	[webView loadHTMLString:@"" baseURL:nil];
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,14 +135,17 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)aWebView {
+	[self stopActivityAnimating];
 	[self adjustToolBarButtons];
 	
 	NSString *url = [[webView.request URL] absoluteString];
+	DebugLog( @"url: %@", url );
 	if( [url hasPrefix:@"http"] ) {
 		self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	} else if( [url hasPrefix:@"file://"] ) {
+		[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('jqueryjs').src = 'jquery-1.3.2.min.js'"];
+//		[webView stringByEvaluatingJavaScriptFromString:@"document.write(\"<script type='text/javascript' src='jquery-1.3.2.min.js'></script>\")"];
 	}
-	
-	[self stopActivityAnimating];
 }
 
 - (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error{
@@ -247,10 +249,13 @@
 	
 }
 - (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod  {
-	[self startActivityAnimating:YES];
-	
+//	[self startActivityAnimating:YES];
+	DebugLog(@"lookupDictionary: %@", aLemma);
+
 	WordEntry* entry = [wiktionary wordEntryByLemma:aLemma];	
 	if (entry) {
+		DebugLog(@"found entry: %@", entry.lemma);
+
 		self.title = aLemma;
 		self.lemma = aLemma;
 		
@@ -260,6 +265,8 @@
 		NSURL *baseURL = [NSURL fileURLWithPath:path];	
 		
 		[webView loadHTMLString:entry.definitionHtml baseURL:baseURL];
+	
+//		[webView loadHTMLString:@"<html><body>done</body></html>" baseURL:baseURL];
 		
 		[entry release];
 		
@@ -268,7 +275,8 @@
 			[lookupHistory addHistory:urlForHistory];
 		}
 	} else {
-		[self stopActivityAnimating];
+		DebugLog(@"not found entry: %@", aLemma);
+//		[self stopActivityAnimating];
 		
 		[webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"alert( \"Sorry, Vocabulator doesn't have a definition for \\\"%@\\\".\" );", aLemma]];
 	}
@@ -313,17 +321,17 @@
 }
 
 - (void) startActivityAnimating:(BOOL) localRequest {
-	if ( localRequest ) {
-		activityIndicatorView.hidden = NO;	
-		[activityIndicatorView startAnimating];
-	} else {
+//	if ( localRequest ) {
+//		activityIndicatorView.hidden = NO;	
+//		[activityIndicatorView startAnimating];
+//	} else {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	}
+//	}
 }
 
 - (void) stopActivityAnimating {
-	[activityIndicatorView stopAnimating];
-	activityIndicatorView.hidden = YES;	
+//	[activityIndicatorView stopAnimating];
+//	activityIndicatorView.hidden = YES;	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

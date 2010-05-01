@@ -17,6 +17,7 @@
 	TCBDB *wordDb;	
 	BDBCUR *forwardCursor;
 	BDBCUR *backwardCursor;
+	BDBCUR *indexCursor;
 	BDBCUR *wordCursor;
 	NSMutableArray *wordIndexes;
 }
