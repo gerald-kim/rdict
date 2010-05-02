@@ -27,6 +27,7 @@
 //    SearchViewController *searchViewController;
 //    ReviewViewController *reviewViewController;	
 	
+	NSUInteger currentTabIndex;
 	Wiktionary *wiktionary;
 }
 

@@ -31,7 +31,7 @@
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
 #endif	
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
-	
+	previousTabIndex = 0;
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
@@ -46,12 +46,14 @@
 
 // Optional UITabBarControllerDelegate method
 - (void)tabBarController:(UITabBarController *) aTabBarController didSelectViewController:(UIViewController *) aViewController {
-	if( 0 == aTabBarController.selectedIndex ) {
+	DebugLog( @"previous = %d, current = %d", previousTabIndex, aTabBarController.selectedIndex );
+	if( 0 == previousTabIndex && 0 == aTabBarController.selectedIndex ) {
 		UINavigationController* navigationController = (UINavigationController*) aViewController;
 		[navigationController popViewControllerAnimated:TRUE];
 		SearchViewController* searchViewController = [navigationController.viewControllers objectAtIndex:0];
 		[searchViewController resetSearchBar];
 	}
+	previousTabIndex = aTabBarController.selectedIndex;
 }
 
 /*

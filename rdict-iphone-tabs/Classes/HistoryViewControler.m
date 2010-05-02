@@ -80,6 +80,8 @@
 - (void)showDictionaryView:(NSString*) lemma {
 	if( self.dictionaryViewController == nil ) {
 		self.dictionaryViewController = [[DictionaryViewController alloc]initWithNibName:@"DictionaryView" bundle:nil];		
+		self.dictionaryViewController.wiktionary = ((RDictAppDelegate*) [[UIApplication sharedApplication] delegate]).wiktionary;
+
 	}
 	
 	dictionaryViewController.lemma = lemma;
