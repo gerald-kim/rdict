@@ -32,6 +32,15 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"deleted", @"@\"NSDate\"")
 )
 
++(NSArray *)indices
+{
+	NSArray *index1 = [NSArray arrayWithObject:@"deleted"];
+	NSArray *index2 = [NSArray arrayWithObjects:@"deleted", @"question", nil];
+	NSArray *index3 = [NSArray arrayWithObjects:@"deleted", @"scheduled", nil];
+	NSArray *index4 = [NSArray arrayWithObjects:@"deleted", @"created", @"studied", nil];
+	return [NSArray arrayWithObjects:index1, index2, index3, index4, nil];
+}
+
 + (Card*) saveCardWithQuestion:(NSString*) question andAnswer:(NSString*) answer {
 	Card* card = [Card findFirstByQuestion:question];
 	if ( NULL == card ) {
@@ -42,7 +51,7 @@ DECLARE_PROPERTIES (
 			card.answer = [card.answer stringByAppendingString:@"\n"];			
 		}
 		card.answer = [card.answer stringByAppendingFormat:@"-------------\n%@", answer];			
-//		card.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];
+		//card.scheduled = [NSDate dateWithTimeIntervalSinceNow:(NSTimeInterval) SECONDS_IN_ONE_DAY];
 		[card save];
 	}
 	return card;

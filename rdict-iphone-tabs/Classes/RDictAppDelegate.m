@@ -31,18 +31,15 @@
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
 #endif	
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge];
+	
 	previousTabIndex = 0;
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	DebugLog(@"timechange");
-#if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
-#endif
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];	
 }
-
-
 
 // Optional UITabBarControllerDelegate method
 - (void)tabBarController:(UITabBarController *) aTabBarController didSelectViewController:(UIViewController *) aViewController {
@@ -56,12 +53,31 @@
 	previousTabIndex = aTabBarController.selectedIndex;
 }
 
-/*
-// Optional UITabBarControllerDelegate method
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 
+    NSString *str = [NSString 
+					 stringWithFormat:@"Device Token=%@",deviceToken];
+    DebugLog(str);
+	
 }
-*/
 
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err { 
+	
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    DebugLog(str);    
+	
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	
+    for (id key in userInfo) {
+        DebugLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+    }   
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+	NSDictionary *aps = [userInfo objectForKey:@"aps"];
+	NSString *badge = [aps objectForKey:@"badge"];
+	NSLog(@"\tbadge: %@", badge);
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[badge intValue]];
+}
 
 
 - (void)dealloc {

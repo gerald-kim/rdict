@@ -20,6 +20,12 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"created", @"@\"NSDate\"")
 )
 
++(NSArray *)indices
+{
+	NSArray *index1 = [NSArray arrayWithObject:@"created"];
+	return [NSArray arrayWithObjects:index1, nil];
+}
+
 + (NSArray*) findRecents
 {
 	NSString* recentCriteria = @"where created > date('now', '-30 day') order by created desc";

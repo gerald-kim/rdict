@@ -176,6 +176,120 @@
 		EFEA07F10FDFF51700490192 /* tcbdb.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07DC0FDFF4F900490192 /* tcbdb.c */; };
 		EFEA07F20FDFF51700490192 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07D80FDFF4F900490192 /* md5.c */; };
 		EFEA07F50FDFF52400490192 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
+		EFEFE65C118E4CEB00281671 /* dictionary_view.html in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75480FE9BBB0008B8AEC /* dictionary_view.html */; };
+		EFEFE65D118E4CEB00281671 /* jquery-1.3.2.min.js in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */; };
+		EFEFE65E118E4CEB00281671 /* jquery-1.3.2.js in Resources */ = {isa = PBXBuildFile; fileRef = EF770E830FF754D900889749 /* jquery-1.3.2.js */; };
+		EFEFE65F118E4CEB00281671 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75470FE9BBB0008B8AEC /* CardFrontView.xib */; };
+		EFEFE660118E4CEB00281671 /* DictionaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75490FE9BBB0008B8AEC /* DictionaryView.xib */; };
+		EFEFE661118E4CEB00281671 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754B0FE9BBB0008B8AEC /* MainWindow.xib */; };
+		EFEFE662118E4CEB00281671 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754D0FE9BBB0008B8AEC /* ReviewView.xib */; };
+		EFEFE663118E4CEB00281671 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E754E0FE9BBB0008B8AEC /* SearchView.xib */; };
+		EFEFE664118E4CEB00281671 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2E75670FE9BFCA008B8AEC /* CardBackView.xib */; };
+		EFEFE665118E4CEB00281671 /* ReviewSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF7CB7E90FF11DAB005B7FCD /* ReviewSessionView.xib */; };
+		EFEFE666118E4CEB00281671 /* ReviewUnfinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD00FF7B88F00889749 /* ReviewUnfinishedView.xib */; };
+		EFEFE667118E4CEB00281671 /* ReviewFinishedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF770FD20FF7B8A000889749 /* ReviewFinishedView.xib */; };
+		EFEFE66A118E4CEB00281671 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33D910610EB200ADFFD5 /* gear.png */; };
+		EFEFE66B118E4CEB00281671 /* magnifying-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DA10610EB200ADFFD5 /* magnifying-glass.png */; };
+		EFEFE66C118E4CEB00281671 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DB10610EB200ADFFD5 /* star.png */; };
+		EFEFE66D118E4CEB00281671 /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33DC10610EB200ADFFD5 /* tag.png */; };
+		EFEFE66E118E4CEB00281671 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33F31061132C00ADFFD5 /* HistoryView.xib */; };
+		EFEFE66F118E4CEB00281671 /* MiscView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF234E2F10B3650E00A267CF /* MiscView.xib */; };
+		EFEFE670118E4CEB00281671 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69ADBA10B771A900A8DDBF /* AboutView.xib */; };
+		EFEFE671118E4CEB00281671 /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE0C10B7782A00A8DDBF /* HelpView.xib */; };
+		EFEFE672118E4CEB00281671 /* early_practice_message.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3510B7848D00A8DDBF /* early_practice_message.png */; };
+		EFEFE673118E4CEB00281671 /* no_review_exercises_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3D10B7848D00A8DDBF /* no_review_exercises_label.png */; };
+		EFEFE674118E4CEB00281671 /* rdict_about.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE3F10B7848D00A8DDBF /* rdict_about.html */; };
+		EFEFE675118E4CEB00281671 /* rdict_help.html in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4010B7848D00A8DDBF /* rdict_help.html */; };
+		EFEFE676118E4CEB00281671 /* study_statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4810B7848D00A8DDBF /* study_statistics.png */; };
+		EFEFE677118E4CEB00281671 /* tabs.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4910B7848D00A8DDBF /* tabs.png */; };
+		EFEFE678118E4CEB00281671 /* todays_scheduled_label.png in Resources */ = {isa = PBXBuildFile; fileRef = EF69AE4B10B7848D00A8DDBF /* todays_scheduled_label.png */; };
+		EFEFE679118E4CEB00281671 /* CardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69AFFD10B82A7E00A8DDBF /* CardListView.xib */; };
+		EFEFE67A118E4CEB00281671 /* CardEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF69B13610B8D45C00A8DDBF /* CardEditView.xib */; };
+		EFEFE67B118E4CEB00281671 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DD10CF1B8C00D0857E /* icon57x57.png */; };
+		EFEFE67C118E4CEB00281671 /* icon512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE5E2DE10CF1B8C00D0857E /* icon512x512.png */; };
+		EFEFE67D118E4CEB00281671 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1610D856B300AE5DA0 /* star_off.png */; };
+		EFEFE67E118E4CEB00281671 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = EF038B1710D856B300AE5DA0 /* star_on.png */; };
+		EFEFE67F118E4CEB00281671 /* big_flashcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7010E6C0A0005A6311 /* big_flashcard.png */; };
+		EFEFE680118E4CEB00281671 /* card_added_note.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D7410E6C0F5005A6311 /* card_added_note.png */; };
+		EFEFE681118E4CEB00281671 /* more_cards_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8210E6C320005A6311 /* more_cards_arrow.png */; };
+		EFEFE682118E4CEB00281671 /* button_easy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D8F10E6CFBF005A6311 /* button_easy1.png */; };
+		EFEFE683118E4CEB00281671 /* button_easy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9010E6CFBF005A6311 /* button_easy2.png */; };
+		EFEFE684118E4CEB00281671 /* button_hard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9110E6CFBF005A6311 /* button_hard1.png */; };
+		EFEFE685118E4CEB00281671 /* button_hard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9210E6CFBF005A6311 /* button_hard2.png */; };
+		EFEFE686118E4CEB00281671 /* button_medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9310E6CFBF005A6311 /* button_medium1.png */; };
+		EFEFE687118E4CEB00281671 /* button_medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F560D9410E6CFBF005A6311 /* button_medium2.png */; };
+		EFEFE688118E4CEB00281671 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = EF939079114212FA0029F514 /* icon_arrow_left.png */; };
+		EFEFE689118E4CEB00281671 /* icon_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = EF93907A114212FA0029F514 /* icon_arrow_right.png */; };
+		EFEFE68A118E4CEB00281671 /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA84B841164148300715E4D /* history.png */; };
+		EFEFE68B118E4CEB00281671 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFAC4B711164276800FF1637 /* Entitlements.plist */; };
+		EFEFE68C118E4CEB00281671 /* UITabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54711729E1500981D87 /* UITabBar1.png */; };
+		EFEFE68D118E4CEB00281671 /* UITabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9AE54811729E1500981D87 /* UITabBar2.png */; };
+		EFEFE68E118E4CEB00281671 /* bottom_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E81173E50B00161DA3 /* bottom_bg.png */; };
+		EFEFE68F118E4CEB00281671 /* contents_all_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882E91173E50B00161DA3 /* contents_all_bg.png */; };
+		EFEFE690118E4CEB00281671 /* contents_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE882EA1173E50B00161DA3 /* contents_bg.png */; };
+		EFEFE691118E4CEB00281671 /* 01_search_view.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6991175E9B6000FA456 /* 01_search_view.png */; };
+		EFEFE692118E4CEB00281671 /* 02_search_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69A1175E9B6000FA456 /* 02_search_list.png */; };
+		EFEFE693118E4CEB00281671 /* 03_review.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69B1175E9B6000FA456 /* 03_review.png */; };
+		EFEFE694118E4CEB00281671 /* 04_review_question.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69C1175E9B6000FA456 /* 04_review_question.png */; };
+		EFEFE695118E4CEB00281671 /* 05_review_answer.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69D1175E9B6000FA456 /* 05_review_answer.png */; };
+		EFEFE696118E4CEB00281671 /* card_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69E1175E9B6000FA456 /* card_edit.png */; };
+		EFEFE697118E4CEB00281671 /* card_list.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F69F1175E9B6000FA456 /* card_list.png */; };
+		EFEFE698118E4CEB00281671 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A01175E9B6000FA456 /* more.png */; };
+		EFEFE699118E4CEB00281671 /* review_again.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A11175E9B6000FA456 /* review_again.png */; };
+		EFEFE69A118E4CEB00281671 /* review_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A21175E9B6000FA456 /* review_finish.png */; };
+		EFEFE69B118E4CEB00281671 /* review_none.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A31175E9B6000FA456 /* review_none.png */; };
+		EFEFE69C118E4CEB00281671 /* review_scheduled.png in Resources */ = {isa = PBXBuildFile; fileRef = EF68F6A41175E9B6000FA456 /* review_scheduled.png */; };
+		EFEFE69E118E4CEB00281671 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		EFEFE69F118E4CEB00281671 /* RDictAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RDictAppDelegate.m */; };
+		EFEFE6A0118E4CEB00281671 /* DictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C50FDFF4EA00490192 /* DictionaryViewController.m */; };
+		EFEFE6A1118E4CEB00281671 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C70FDFF4EA00490192 /* ReviewViewController.m */; };
+		EFEFE6A2118E4CEB00281671 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07C90FDFF4EA00490192 /* SearchViewController.m */; };
+		EFEFE6A3118E4CEB00281671 /* Wiktionary.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CB0FDFF4EA00490192 /* Wiktionary.m */; };
+		EFEFE6A4118E4CEB00281671 /* WordEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CD0FDFF4EA00490192 /* WordEntry.m */; };
+		EFEFE6A5118E4CEB00281671 /* WordIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEA07CF0FDFF4EA00490192 /* WordIndex.m */; };
+		EFEFE6A6118E4CEB00281671 /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74900FE9B2B8008B8AEC /* NSData-SQLitePersistence.m */; };
+		EFEFE6A7118E4CEB00281671 /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74920FE9B2B8008B8AEC /* NSDate-SQLitePersistence.m */; };
+		EFEFE6A8118E4CEB00281671 /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74940FE9B2B8008B8AEC /* NSMutableArray-MultipleSort.m */; };
+		EFEFE6A9118E4CEB00281671 /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74960FE9B2B8008B8AEC /* NSMutableData-SQLitePersistence.m */; };
+		EFEFE6AA118E4CEB00281671 /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74980FE9B2B8008B8AEC /* NSNumber-SQLitePersistence.m */; };
+		EFEFE6AB118E4CEB00281671 /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749A0FE9B2B8008B8AEC /* NSObject-ClassName.m */; };
+		EFEFE6AC118E4CEB00281671 /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749C0FE9B2B8008B8AEC /* NSObject-MissingKV.m */; };
+		EFEFE6AD118E4CEB00281671 /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E749E0FE9B2B8008B8AEC /* NSObject-SQLitePersistence.m */; };
+		EFEFE6AE118E4CEB00281671 /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A00FE9B2B8008B8AEC /* NSString-NumberStuff.m */; };
+		EFEFE6AF118E4CEB00281671 /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A20FE9B2B8008B8AEC /* NSString-SQLiteColumnName.m */; };
+		EFEFE6B0118E4CEB00281671 /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A40FE9B2B8008B8AEC /* NSString-SQLitePersistence.m */; };
+		EFEFE6B1118E4CEB00281671 /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A60FE9B2B8008B8AEC /* NSString-UppercaseFirst.m */; };
+		EFEFE6B2118E4CEB00281671 /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74A80FE9B2B9008B8AEC /* SQLiteInstanceManager.m */; };
+		EFEFE6B3118E4CEB00281671 /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AA0FE9B2B9008B8AEC /* SQLitePersistentObject.m */; };
+		EFEFE6B4118E4CEB00281671 /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AC0FE9B2B9008B8AEC /* UIColor-SQLitePersistentObject.m */; };
+		EFEFE6B5118E4CEB00281671 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74AE0FE9B2B9008B8AEC /* UIImage-SQLitePersistence.m */; };
+		EFEFE6B6118E4CEB00281671 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2E74D20FE9B2F9008B8AEC /* Card.m */; };
+		EFEFE6B7118E4CEB00281671 /* ReviewSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7CB7CA0FF11BAE005B7FCD /* ReviewSessionController.m */; };
+		EFEFE6B8118E4CEB00281671 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC50FF7B86800889749 /* CardViewController.m */; };
+		EFEFE6B9118E4CEB00281671 /* ReviewFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FC90FF7B86800889749 /* ReviewFinishedViewController.m */; };
+		EFEFE6BA118E4CEB00281671 /* ReviewUnfinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF770FCB0FF7B86800889749 /* ReviewUnfinishedViewController.m */; };
+		EFEFE6BB118E4CEB00281671 /* SLStmt.m in Sources */ = {isa = PBXBuildFile; fileRef = EFAA21FB0FFF510A00D5EBFB /* SLStmt.m */; };
+		EFEFE6BC118E4CEB00281671 /* HistoryViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2F34021061146100ADFFD5 /* HistoryViewControler.m */; };
+		EFEFE6BD118E4CEB00281671 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C7DD8106851F50017E0E6 /* History.m */; };
+		EFEFE6BE118E4CEB00281671 /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF234E3310B3653C00A267CF /* MiscViewController.m */; };
+		EFEFE6BF118E4CEB00281671 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69ADF110B774F300A8DDBF /* AboutViewController.m */; };
+		EFEFE6C0118E4CEB00281671 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AE0910B7780500A8DDBF /* HelpViewController.m */; };
+		EFEFE6C1118E4CEB00281671 /* CardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69AFFC10B82A7E00A8DDBF /* CardListViewController.m */; };
+		EFEFE6C2118E4CEB00281671 /* CardEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF69B13510B8D45C00A8DDBF /* CardEditViewController.m */; };
+		EFEFE6C3118E4CEB00281671 /* LookupHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7647B910EF3CA4009A90AD /* LookupHistory.m */; };
+		EFEFE6C4118E4CEB00281671 /* StudyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F76491710EFB9D0009A90AD /* StudyLog.m */; };
+		EFEFE6C5118E4CEB00281671 /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
+		EFEFE6C6118E4CEB00281671 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
+		EFEFE6C7118E4CEB00281671 /* CustomUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF719406117023CC00B59670 /* CustomUITabBarController.m */; };
+		EFEFE6C9118E4CEB00281671 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		EFEFE6CA118E4CEB00281671 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		EFEFE6CB118E4CEB00281671 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		EFEFE6CC118E4CEB00281671 /* libtokyocabinet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */; };
+		EFEFE6CD118E4CEB00281671 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2E73170FE86454008B8AEC /* libsqlite3.dylib */; };
+		EFEFE6CE118E4CEB00281671 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F560E8B10E6E276005A6311 /* QuartzCore.framework */; };
+		EFEFE6CF118E4CEB00281671 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
+		EFEFE6D7118E4D5100281671 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B710610CE200ADFFD5 /* index.db */; };
+		EFEFE6D8118E4D5100281671 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF2F33B810610CE200ADFFD5 /* word.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +301,13 @@
 			remoteInfo = tokyocabinet;
 		};
 		EFEA07F30FDFF51D00490192 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFEA07EA0FDFF50B00490192;
+			remoteInfo = tokyocabinet;
+		};
+		EFEFE65A118E4CEB00281671 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -388,6 +509,8 @@
 		EFEA07E10FDFF4F900490192 /* tcutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcutil.h; sourceTree = "<group>"; };
 		EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtokyocabinet.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEA08330FDFF61500490192 /* WiktionaryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WiktionaryTest.m; path = Tests/WiktionaryTest.m; sourceTree = "<group>"; };
+		EFEFE6D4118E4CEB00281671 /* AWTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AWTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEFE6D6118E4CEB00281671 /* AWTest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AWTest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +545,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFEFE6C8118E4CEB00281671 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEFE6C9118E4CEB00281671 /* Foundation.framework in Frameworks */,
+				EFEFE6CA118E4CEB00281671 /* UIKit.framework in Frameworks */,
+				EFEFE6CB118E4CEB00281671 /* CoreGraphics.framework in Frameworks */,
+				EFEFE6CC118E4CEB00281671 /* libtokyocabinet.a in Frameworks */,
+				EFEFE6CD118E4CEB00281671 /* libsqlite3.dylib in Frameworks */,
+				EFEFE6CE118E4CEB00281671 /* QuartzCore.framework in Frameworks */,
+				EFEFE6CF118E4CEB00281671 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -453,6 +590,7 @@
 				1D6058910D05DD3D006BFB54 /* AmplioWords.app */,
 				EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */,
 				EFBF4A170FE001900092357C /* UnitTests.app */,
+				EFEFE6D4118E4CEB00281671 /* AWTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -521,6 +659,7 @@
 				EF2E754A0FE9BBB0008B8AEC /* jquery-1.3.2.min.js */,
 				EF2E754C0FE9BBB0008B8AEC /* AmplioWords.plist */,
 				EF2E754F0FE9BBB0008B8AEC /* UnitTests-Info.plist */,
+				EFEFE6D6118E4CEB00281671 /* AWTest.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -850,6 +989,24 @@
 			productReference = EFEA07EB0FDFF50B00490192 /* libtokyocabinet.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		EFEFE658118E4CEB00281671 /* AWTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFEFE6D0118E4CEB00281671 /* Build configuration list for PBXNativeTarget "AWTest" */;
+			buildPhases = (
+				EFEFE65B118E4CEB00281671 /* Resources */,
+				EFEFE69D118E4CEB00281671 /* Sources */,
+				EFEFE6C8118E4CEB00281671 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFEFE659118E4CEB00281671 /* PBXTargetDependency */,
+			);
+			name = AWTest;
+			productName = RDict;
+			productReference = EFEFE6D4118E4CEB00281671 /* AWTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -865,6 +1022,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				EFEFE658118E4CEB00281671 /* AWTest */,
 				1D6058900D05DD3D006BFB54 /* AmplioWords */,
 				EFBF4A160FE001900092357C /* UnitTests */,
 				EFEA07EA0FDFF50B00490192 /* tokyocabinet */,
@@ -953,6 +1111,78 @@
 				EF2F33BB10610CE200ADFFD5 /* index.db in Resources */,
 				EF2F33BC10610CE200ADFFD5 /* word.db in Resources */,
 				EFCAA37A11179ABC00E5E0CE /* ScheduledOrTodayCardTest.m in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFEFE65B118E4CEB00281671 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEFE6D7118E4D5100281671 /* index.db in Resources */,
+				EFEFE6D8118E4D5100281671 /* word.db in Resources */,
+				EFEFE65C118E4CEB00281671 /* dictionary_view.html in Resources */,
+				EFEFE65D118E4CEB00281671 /* jquery-1.3.2.min.js in Resources */,
+				EFEFE65E118E4CEB00281671 /* jquery-1.3.2.js in Resources */,
+				EFEFE65F118E4CEB00281671 /* CardFrontView.xib in Resources */,
+				EFEFE660118E4CEB00281671 /* DictionaryView.xib in Resources */,
+				EFEFE661118E4CEB00281671 /* MainWindow.xib in Resources */,
+				EFEFE662118E4CEB00281671 /* ReviewView.xib in Resources */,
+				EFEFE663118E4CEB00281671 /* SearchView.xib in Resources */,
+				EFEFE664118E4CEB00281671 /* CardBackView.xib in Resources */,
+				EFEFE665118E4CEB00281671 /* ReviewSessionView.xib in Resources */,
+				EFEFE666118E4CEB00281671 /* ReviewUnfinishedView.xib in Resources */,
+				EFEFE667118E4CEB00281671 /* ReviewFinishedView.xib in Resources */,
+				EFEFE66A118E4CEB00281671 /* gear.png in Resources */,
+				EFEFE66B118E4CEB00281671 /* magnifying-glass.png in Resources */,
+				EFEFE66C118E4CEB00281671 /* star.png in Resources */,
+				EFEFE66D118E4CEB00281671 /* tag.png in Resources */,
+				EFEFE66E118E4CEB00281671 /* HistoryView.xib in Resources */,
+				EFEFE66F118E4CEB00281671 /* MiscView.xib in Resources */,
+				EFEFE670118E4CEB00281671 /* AboutView.xib in Resources */,
+				EFEFE671118E4CEB00281671 /* HelpView.xib in Resources */,
+				EFEFE672118E4CEB00281671 /* early_practice_message.png in Resources */,
+				EFEFE673118E4CEB00281671 /* no_review_exercises_label.png in Resources */,
+				EFEFE674118E4CEB00281671 /* rdict_about.html in Resources */,
+				EFEFE675118E4CEB00281671 /* rdict_help.html in Resources */,
+				EFEFE676118E4CEB00281671 /* study_statistics.png in Resources */,
+				EFEFE677118E4CEB00281671 /* tabs.png in Resources */,
+				EFEFE678118E4CEB00281671 /* todays_scheduled_label.png in Resources */,
+				EFEFE679118E4CEB00281671 /* CardListView.xib in Resources */,
+				EFEFE67A118E4CEB00281671 /* CardEditView.xib in Resources */,
+				EFEFE67B118E4CEB00281671 /* icon57x57.png in Resources */,
+				EFEFE67C118E4CEB00281671 /* icon512x512.png in Resources */,
+				EFEFE67D118E4CEB00281671 /* star_off.png in Resources */,
+				EFEFE67E118E4CEB00281671 /* star_on.png in Resources */,
+				EFEFE67F118E4CEB00281671 /* big_flashcard.png in Resources */,
+				EFEFE680118E4CEB00281671 /* card_added_note.png in Resources */,
+				EFEFE681118E4CEB00281671 /* more_cards_arrow.png in Resources */,
+				EFEFE682118E4CEB00281671 /* button_easy1.png in Resources */,
+				EFEFE683118E4CEB00281671 /* button_easy2.png in Resources */,
+				EFEFE684118E4CEB00281671 /* button_hard1.png in Resources */,
+				EFEFE685118E4CEB00281671 /* button_hard2.png in Resources */,
+				EFEFE686118E4CEB00281671 /* button_medium1.png in Resources */,
+				EFEFE687118E4CEB00281671 /* button_medium2.png in Resources */,
+				EFEFE688118E4CEB00281671 /* icon_arrow_left.png in Resources */,
+				EFEFE689118E4CEB00281671 /* icon_arrow_right.png in Resources */,
+				EFEFE68A118E4CEB00281671 /* history.png in Resources */,
+				EFEFE68B118E4CEB00281671 /* Entitlements.plist in Resources */,
+				EFEFE68C118E4CEB00281671 /* UITabBar1.png in Resources */,
+				EFEFE68D118E4CEB00281671 /* UITabBar2.png in Resources */,
+				EFEFE68E118E4CEB00281671 /* bottom_bg.png in Resources */,
+				EFEFE68F118E4CEB00281671 /* contents_all_bg.png in Resources */,
+				EFEFE690118E4CEB00281671 /* contents_bg.png in Resources */,
+				EFEFE691118E4CEB00281671 /* 01_search_view.png in Resources */,
+				EFEFE692118E4CEB00281671 /* 02_search_list.png in Resources */,
+				EFEFE693118E4CEB00281671 /* 03_review.png in Resources */,
+				EFEFE694118E4CEB00281671 /* 04_review_question.png in Resources */,
+				EFEFE695118E4CEB00281671 /* 05_review_answer.png in Resources */,
+				EFEFE696118E4CEB00281671 /* card_edit.png in Resources */,
+				EFEFE697118E4CEB00281671 /* card_list.png in Resources */,
+				EFEFE698118E4CEB00281671 /* more.png in Resources */,
+				EFEFE699118E4CEB00281671 /* review_again.png in Resources */,
+				EFEFE69A118E4CEB00281671 /* review_finish.png in Resources */,
+				EFEFE69B118E4CEB00281671 /* review_none.png in Resources */,
+				EFEFE69C118E4CEB00281671 /* review_scheduled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,6 +1311,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFEFE69D118E4CEB00281671 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEFE69E118E4CEB00281671 /* main.m in Sources */,
+				EFEFE69F118E4CEB00281671 /* RDictAppDelegate.m in Sources */,
+				EFEFE6A0118E4CEB00281671 /* DictionaryViewController.m in Sources */,
+				EFEFE6A1118E4CEB00281671 /* ReviewViewController.m in Sources */,
+				EFEFE6A2118E4CEB00281671 /* SearchViewController.m in Sources */,
+				EFEFE6A3118E4CEB00281671 /* Wiktionary.m in Sources */,
+				EFEFE6A4118E4CEB00281671 /* WordEntry.m in Sources */,
+				EFEFE6A5118E4CEB00281671 /* WordIndex.m in Sources */,
+				EFEFE6A6118E4CEB00281671 /* NSData-SQLitePersistence.m in Sources */,
+				EFEFE6A7118E4CEB00281671 /* NSDate-SQLitePersistence.m in Sources */,
+				EFEFE6A8118E4CEB00281671 /* NSMutableArray-MultipleSort.m in Sources */,
+				EFEFE6A9118E4CEB00281671 /* NSMutableData-SQLitePersistence.m in Sources */,
+				EFEFE6AA118E4CEB00281671 /* NSNumber-SQLitePersistence.m in Sources */,
+				EFEFE6AB118E4CEB00281671 /* NSObject-ClassName.m in Sources */,
+				EFEFE6AC118E4CEB00281671 /* NSObject-MissingKV.m in Sources */,
+				EFEFE6AD118E4CEB00281671 /* NSObject-SQLitePersistence.m in Sources */,
+				EFEFE6AE118E4CEB00281671 /* NSString-NumberStuff.m in Sources */,
+				EFEFE6AF118E4CEB00281671 /* NSString-SQLiteColumnName.m in Sources */,
+				EFEFE6B0118E4CEB00281671 /* NSString-SQLitePersistence.m in Sources */,
+				EFEFE6B1118E4CEB00281671 /* NSString-UppercaseFirst.m in Sources */,
+				EFEFE6B2118E4CEB00281671 /* SQLiteInstanceManager.m in Sources */,
+				EFEFE6B3118E4CEB00281671 /* SQLitePersistentObject.m in Sources */,
+				EFEFE6B4118E4CEB00281671 /* UIColor-SQLitePersistentObject.m in Sources */,
+				EFEFE6B5118E4CEB00281671 /* UIImage-SQLitePersistence.m in Sources */,
+				EFEFE6B6118E4CEB00281671 /* Card.m in Sources */,
+				EFEFE6B7118E4CEB00281671 /* ReviewSessionController.m in Sources */,
+				EFEFE6B8118E4CEB00281671 /* CardViewController.m in Sources */,
+				EFEFE6B9118E4CEB00281671 /* ReviewFinishedViewController.m in Sources */,
+				EFEFE6BA118E4CEB00281671 /* ReviewUnfinishedViewController.m in Sources */,
+				EFEFE6BB118E4CEB00281671 /* SLStmt.m in Sources */,
+				EFEFE6BC118E4CEB00281671 /* HistoryViewControler.m in Sources */,
+				EFEFE6BD118E4CEB00281671 /* History.m in Sources */,
+				EFEFE6BE118E4CEB00281671 /* MiscViewController.m in Sources */,
+				EFEFE6BF118E4CEB00281671 /* AboutViewController.m in Sources */,
+				EFEFE6C0118E4CEB00281671 /* HelpViewController.m in Sources */,
+				EFEFE6C1118E4CEB00281671 /* CardListViewController.m in Sources */,
+				EFEFE6C2118E4CEB00281671 /* CardEditViewController.m in Sources */,
+				EFEFE6C3118E4CEB00281671 /* LookupHistory.m in Sources */,
+				EFEFE6C4118E4CEB00281671 /* StudyLog.m in Sources */,
+				EFEFE6C5118E4CEB00281671 /* CKSparkline.m in Sources */,
+				EFEFE6C6118E4CEB00281671 /* StatisticsManager.m in Sources */,
+				EFEFE6C7118E4CEB00281671 /* CustomUITabBarController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1093,6 +1372,11 @@
 			isa = PBXTargetDependency;
 			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
 			targetProxy = EFEA07F30FDFF51D00490192 /* PBXContainerItemProxy */;
+		};
+		EFEFE659118E4CEB00281671 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFEA07EA0FDFF50B00490192 /* tokyocabinet */;
+			targetProxy = EFEFE65A118E4CEB00281671 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1325,6 +1609,59 @@
 			};
 			name = Release;
 		};
+		EFEFE6D1118E4CEB00281671 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = AWTest.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
+				);
+				PRODUCT_NAME = AWTest;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+			};
+			name = Debug;
+		};
+		EFEFE6D2118E4CEB00281671 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = AWTest.plist;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = AWTest;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+			};
+			name = Release;
+		};
+		EFEFE6D3118E4CEB00281671 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RDict_Prefix.pch;
+				INFOPLIST_FILE = AWTest.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\\\\\"$(SRCROOT)/build/Debug-iphonesimulator\\\\\\\"",
+				);
+				PRODUCT_NAME = AWTest;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1364,6 +1701,16 @@
 				EFEA07EC0FDFF50B00490192 /* Debug */,
 				EFEA07ED0FDFF50B00490192 /* Release */,
 				EFAC4B61116426E300FF1637 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFEFE6D0118E4CEB00281671 /* Build configuration list for PBXNativeTarget "AWTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFEFE6D1118E4CEB00281671 /* Debug */,
+				EFEFE6D2118E4CEB00281671 /* Release */,
+				EFEFE6D3118E4CEB00281671 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

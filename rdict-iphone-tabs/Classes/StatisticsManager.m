@@ -8,6 +8,7 @@
 
 #import "StatisticsManager.h"
 #import "Card.h"
+#import "StudyLog.h"
 #import "SLStmt.h"
 
 @interface StatisticsManager() 
@@ -26,7 +27,8 @@
 
 +(void) updateStatisticsOfToday {
 	[StatisticsManager createTable];
-
+	[StudyLog count];
+	
 	SLStmt* stmt = [SLStmt stmtWithSql:@"REPLACE INTO statistics (pk, card_count) SELECT date('now', 'localtime') pk, count(*) card_count FROM card WHERE deleted is null"];
 	[stmt step];
 	[stmt prepareSql:@"UPDATE statistics SET mastered_card_count = (select count(*) from ( select card, avg(grade) grade from study_log where deleted is null and study_index in (0, 1) group by card ) where grade >= 4) WHERE pk = date('now', 'localtime')"];

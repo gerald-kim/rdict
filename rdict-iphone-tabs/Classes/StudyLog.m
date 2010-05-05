@@ -24,6 +24,13 @@ DECLARE_PROPERTIES (
 					DECLARE_PROPERTY( @"studyIndex", @"@\"NSUInteger\"")
 )					
 					
++(NSArray *)indices
+{
+	NSArray *index1 = [NSArray arrayWithObjects:@"card", @"studyIndex", nil];
+	NSArray *index2 = [NSArray arrayWithObjects:@"deleted", @"studyIndex", nil];
+	return [NSArray arrayWithObjects:index1, index2, nil];
+}
+
 + (StudyLog*) lastStudyLogOfCard:(Card *)card {
 	NSArray* array = [card findRelated:[StudyLog class] filter:@"study_index = 0"];
 	return [array count] > 0 ? [array objectAtIndex:0] : nil;
