@@ -88,7 +88,7 @@ static NSString* backHelpMessage = @"5 - correct answer; very easy\n"
 - (void)viewWillAppear:(BOOL) animated {
 	DebugLog( @"RSC.viewWillAppear" );
 	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 		
 	uncertainCards = [[NSMutableArray alloc] init];
 	

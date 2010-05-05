@@ -23,7 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 
 	
 	self.cards = [Card allObjects];

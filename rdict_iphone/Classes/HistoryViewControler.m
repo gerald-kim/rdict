@@ -35,7 +35,7 @@
 {
 	DebugLog(@"HVC.viewWillAppear");
 	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 
 	self.histories = [History findRecents];
 	self.sectionInfo = [History buildHistorySectionInfo:self.histories];

@@ -37,7 +37,7 @@
 
 //@property (nonatomic, retain) IBOutlet SearchViewController *searchViewController;
 //@property (nonatomic, retain) IBOutlet ReviewViewController *reviewViewController;
-- (void)updateReviewTab;
+- (void)updateReviewTabAndBadge;
 
 
 @end

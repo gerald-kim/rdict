@@ -30,15 +30,15 @@
 #if !TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 	[[SQLiteInstanceManager sharedManager] setDatabaseFilepath:@"/tmp/rdict.sqlite3"];
 #endif	
-	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge];
+	//[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge];
+	[self updateReviewTabAndBadge];
 	
 	previousTabIndex = 0;
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	DebugLog(@"timechange");
-	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];	
+	[self updateReviewTabAndBadge];
 }
 
 // Optional UITabBarControllerDelegate method
@@ -53,6 +53,8 @@
 	previousTabIndex = aTabBarController.selectedIndex;
 }
 
+/*
+ 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { 
     NSString *str = [NSString 
 					 stringWithFormat:@"Device Token=%@",deviceToken];
@@ -78,7 +80,7 @@
 	NSLog(@"\tbadge: %@", badge);
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[badge intValue]];
 }
-
+*/
 
 - (void)dealloc {
 	[wiktionary release];
@@ -87,7 +89,7 @@
     [super dealloc];
 }
 
-- (void)updateReviewTab {
+- (void)updateReviewTabAndBadge {
 	NSUInteger reviewCount = [Card countByScheduled];
 	NSString* title;
 	if ( 0 == reviewCount ) {
@@ -96,7 +98,7 @@
 		title = [NSString stringWithFormat:@"Review(%d)", reviewCount];
 	}
 	[[tabBarController.tabBar.items objectAtIndex:1] setTitle:title];		
-
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:reviewCount];	
 }
 @end
 /*

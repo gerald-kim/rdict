@@ -22,7 +22,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	DebugLog( @"HVC.viewWillAppear" );
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];	

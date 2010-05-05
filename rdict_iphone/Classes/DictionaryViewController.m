@@ -48,7 +48,6 @@
 - (void) viewWillAppear:(BOOL)animated {	
 	DebugLog( @"DVC.viewWillAppear lemma[%@]", [lemma stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] );  
 	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
 
 	self.navigationController.navigationBarHidden = NO;
 	
@@ -87,6 +86,8 @@
 	self.title = self.titleBackup;
 	self.navigationItem.leftBarButtonItem = self.leftButtonBackup;
 	self.navigationItem.rightBarButtonItem = self.rightButtonBackup;
+	[self.backButton release];
+	[self.forwardButton release];
 	
 	[lookupHistory release];
 	lookupHistory = nil;
@@ -144,7 +145,6 @@
 		self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	} else if( [url hasPrefix:@"file://"] ) {
 		[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('jqueryjs').src = 'jquery-1.3.2.min.js'"];
-//		[webView stringByEvaluatingJavaScriptFromString:@"document.write(\"<script type='text/javascript' src='jquery-1.3.2.min.js'></script>\")"];
 	}
 }
 
@@ -189,14 +189,10 @@
 #pragma mark Clipboard
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-//	DebugLog(@"DVC.canPerformAction isFirstRespondor:%@", [self isFirstResponder]);
-//	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-
 	if (action == @selector(copy:)) {
 		return YES;
-	} else {
-		return NO;
 	}
+	return NO;
 }
 
 - (void) clipboardChanged:(NSNotification *)notification
@@ -243,8 +239,7 @@
 }
 
 - (void) saveCard: (NSString *) selectedDefinition  {
-	Card* card = [Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
-	[card release];
+	[Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
 	[self showSaveAlert];
 	
 }
@@ -292,11 +287,13 @@
 
 - (void)handleGoBackClick:(id)sender {
 	DebugLog( @"DVC.handleGoBackClick" );
+	[webView stopLoading];
 	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goBack]];
 	[webView loadRequest:request];
 }
 
 - (void)handleGoForwardClick:(id)sender {
+	[webView stopLoading];
 	NSURLRequest* request = [NSURLRequest requestWithURL:[lookupHistory goForward]];
 	[webView loadRequest:request];
 }
@@ -321,17 +318,10 @@
 }
 
 - (void) startActivityAnimating:(BOOL) localRequest {
-//	if ( localRequest ) {
-//		activityIndicatorView.hidden = NO;	
-//		[activityIndicatorView startAnimating];
-//	} else {
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-//	}
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void) stopActivityAnimating {
-//	[activityIndicatorView stopAnimating];
-//	activityIndicatorView.hidden = YES;	
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

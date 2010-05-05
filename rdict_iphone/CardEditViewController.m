@@ -39,7 +39,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 
 	self.title = card.question;
 	self.cardAnswerView.text = card.answer;

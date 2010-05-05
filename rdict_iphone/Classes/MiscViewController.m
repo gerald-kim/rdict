@@ -19,7 +19,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 
 	listData = [[NSArray alloc] initWithObjects:@"Help", @"Card Management", nil];
 //	listData = [[NSArray alloc] initWithObjects:@"About", @"Help", @"Card Management", nil];

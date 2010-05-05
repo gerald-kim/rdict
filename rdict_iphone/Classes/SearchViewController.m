@@ -60,7 +60,7 @@
 - (void)viewWillAppear:(BOOL) animated {
 	DebugLog( @"SVC.viewWillappear()" );
 	[super viewWillAppear:animated];
-	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTab];
+	[(RDictAppDelegate*) [[UIApplication sharedApplication] delegate] updateReviewTabAndBadge];
 	self.navigationController.navigationBarHidden = YES;
 }
 
