@@ -149,6 +149,19 @@ DECLARE_PROPERTIES (
 	}
 }
 
++ (NSString*) footerForReview {
+	NSInteger todayCount = [Card countByToday];
+	NSInteger scheduledCount = [Card countByScheduled];
+	
+	if ( scheduledCount > 0 ) {
+		return @"You have scheduled flash cards for review.";
+	} else if ( todayCount > 0 ) {
+		return @"No scheduled flash card. But, you can review flash card created today.";
+	} else {
+		return @"There is no scheduled flash card for review. ";		
+	}
+}
+
 + (NSString*) countMessageForReview {
 	NSInteger todayCount = [Card countByToday];
 	NSInteger scheduledCount = [Card countByScheduled];

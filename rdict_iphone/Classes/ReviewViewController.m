@@ -113,16 +113,17 @@
 	return [sectionTitles objectAtIndex:section];
 }
 
-/*
+
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
 	if ( 0 == section ) {
-		return @"You can review ~~~ ~~~ bhla bla";
+		return [Card footerForReview];
+//	} else if ( 1 == section ) {
+//		return @"Mastered card means you know that well. (Scored above 4 in recent two reviews)";
 	} else {
 		return nil;
 	}
 }
-*/
 
 #pragma mark NumberOfSections 
 
@@ -250,7 +251,6 @@
 	return cell;
 }
 
-
 #pragma mark cell Selected
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -281,7 +281,6 @@
 	}
 }
 
-
 #pragma mark help functions
 
 -(NSString*) getCardString: (NSInteger) cardCount {
@@ -290,7 +289,5 @@
 	else
 		return @"card";
 }
-
-
 
 @end

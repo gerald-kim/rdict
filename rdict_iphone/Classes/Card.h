@@ -65,6 +65,7 @@
 + (NSArray*) reviewSchedulesWithLimit:(NSUInteger) limit;
 
 + (NSString*) messageForReview;
++ (NSString*) footerForReview;
 + (NSString*) countMessageForReview;
 + (NSArray*) cardsForReview;
 
