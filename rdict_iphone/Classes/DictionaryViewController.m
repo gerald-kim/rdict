@@ -302,12 +302,24 @@
 #pragma mark Animation, Alert
 
 -(void) showSaveAlert {
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.7];
-	cardAddedNote.alpha = 0.9;
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(fadeOutSaveAlert)];
-	[UIView commitAnimations];
+	DebugLog( @"Card counts : %d", [Card count] );
+	if( [Card count] == 1 ) {
+		UIAlertView *testAlert = [[UIAlertView alloc] initWithTitle:@"Card added" 
+					message:@"Flash card is saved with selected definition."
+							"This card is scheduled to review tomorrow."
+							"And future review schedule will be decided by your memory strength." 
+					delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[testAlert show];
+		
+		((UILabel*)[[testAlert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
+	} else {
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.7];
+		cardAddedNote.alpha = 0.9;
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(fadeOutSaveAlert)];
+		[UIView commitAnimations];
+	}
 }
 
 -(void) fadeOutSaveAlert {
