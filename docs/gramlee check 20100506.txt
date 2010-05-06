@@ -1,0 +1,8 @@
+Flash card is saved with selected definition. 
+This card is scheduled to review tomorrow. And future review schedule is decided by your memory strength. It means the card appears on review when you nearly forget. 
+
+You don't have scheduled flash card for review. But, you can review flash card created today.
+
+You have scheduled flash cards for review. 
+
+Mastered card means you know that well, you've scored them above 4 in recent two reviews.
