@@ -154,11 +154,13 @@ DECLARE_PROPERTIES (
 	NSInteger scheduledCount = [Card countByScheduled];
 	
 	if ( scheduledCount > 0 ) {
-		return @"You have scheduled flash cards for review.";
+//		return @"You have scheduled flashcards for review.";
+		return nil;
 	} else if ( todayCount > 0 ) {
-		return @"No scheduled flash card. But, you can review flash card created today.";
+		return @"You have not scheduled the flash card for review, but you can review the flash card created today";
 	} else {
-		return @"There is no scheduled flash card for review. ";		
+//		return @"There is no scheduled flash card for review. ";		
+		return nil;
 	}
 }
 

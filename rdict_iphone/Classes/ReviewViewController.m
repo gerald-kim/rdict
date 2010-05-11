@@ -14,6 +14,9 @@
 #import "SLStmt.h"
 #import "StatisticsManager.h"
 
+
+#pragma mark private methods
+
 @interface ReviewViewController()
 
 - (NSInteger) numberOfRowsInReviewSection;
@@ -27,6 +30,10 @@
 
 @end
 
+#define STAT_CELL_SPARKLINE 3
+
+#pragma mark -
+
 @implementation ReviewViewController
 @synthesize reviewSessionController;
 @synthesize tableView;
@@ -35,7 +42,6 @@
 @synthesize schedules;
 @synthesize cardsForReview;
 
-#pragma mark private methods
 
 #pragma mark -
 
@@ -45,6 +51,7 @@
 	UIImage *backgroundImage = [UIImage imageNamed:@"contents_bg.png"];
 	UIColor *backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
 	self.tableView.backgroundColor = backgroundColor;
+
 	[backgroundColor release];
 //	RDictAppDelegate *delegate = (RDictAppDelegate*) [[UIApplication sharedApplication] delegate];
 //	self.wiktionary = delegate.wiktionary;
@@ -196,7 +203,6 @@
 	return cell;
 }
 
-#define STAT_CELL_SPARKLINE 3
 
 - (UITableViewCell *) cellForStatisticsSectionRowAt:(NSInteger) row {
 	static NSString *CellIdentifier = @"StatisticsCell";

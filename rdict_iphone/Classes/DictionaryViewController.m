@@ -25,6 +25,9 @@
 
 @end
 
+#define ALERT_CLIPBOARD 0
+#define ALERT_HELP 1
+
 @implementation DictionaryViewController
 @synthesize webView;
 @synthesize cardAddedNote;
@@ -212,14 +215,7 @@
 	[alert addButtonWithTitle:@"Save"];
 	[alert show];
 	[alert release];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	DebugLog(@"DVC.clickedButtonAtIndex");
-	saveDialogOpened = NO;
-	if (buttonIndex == 1) {
-		[self saveCard:[UIPasteboard generalPasteboard].string];
-	}
+	alert.tag = ALERT_CLIPBOARD;
 }
 
 #pragma mark -
@@ -239,9 +235,8 @@
 }
 
 - (void) saveCard: (NSString *) selectedDefinition  {
-	[Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
 	[self showSaveAlert];
-	
+	[Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
 }
 - (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod  {
 //	[self startActivityAnimating:YES];
@@ -303,14 +298,16 @@
 
 -(void) showSaveAlert {
 	DebugLog( @"Card counts : %d", [Card count] );
-	if( [Card count] == 1 ) {
+	if( [Card count] < 100) {
 		UIAlertView *testAlert = [[UIAlertView alloc] initWithTitle:@"Card added" 
-					message:@"Flash card is saved with selected definition."
-							"This card is scheduled to review tomorrow."
-							"And future review schedule will be decided by your memory strength." 
-					delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+					message:@"Flash card is saved with selected definition. "
+							"This card is scheduled for review tomorrow."
+							"The future review schedule will be decided by your memory strength."
+							"That means the card appears for review when you nearly forget." 
+					delegate:self cancelButtonTitle:@"Don't show message again" otherButtonTitles:nil];
 		[testAlert show];
-		
+		testAlert.tag = ALERT_HELP;
+	
 		((UILabel*)[[testAlert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
 	} else {
 		[UIView beginAnimations:nil context:NULL];
@@ -321,6 +318,21 @@
 		[UIView commitAnimations];
 	}
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	DebugLog(@"DVC.clickedButtonAtIndex");
+	if( alertView.tag == ALERT_HELP ) {
+		if (buttonIndex == 0) {
+//			DebugLog(@"DVC.don't show again");
+		}
+	} else if ( alertView.tag = ALERT_CLIPBOARD ) {
+		saveDialogOpened = NO;
+		if (buttonIndex == 1) {
+			[self saveCard:[UIPasteboard generalPasteboard].string];
+		}
+	}
+}
+
 
 -(void) fadeOutSaveAlert {
 	[UIView beginAnimations:nil context:NULL];
