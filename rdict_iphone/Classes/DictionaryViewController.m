@@ -235,9 +235,10 @@
 }
 
 - (void) saveCard: (NSString *) selectedDefinition  {
-	[self showSaveAlert];
 	[Card saveCardWithQuestion:self.lemma andAnswer:selectedDefinition];
+	[self showSaveAlert];
 }
+
 - (void) lookUpDictionary: (NSString *) aLemma lookupMethod: (NSString *) rdictMethod  {
 //	[self startActivityAnimating:YES];
 	DebugLog(@"lookupDictionary: %@", aLemma);
