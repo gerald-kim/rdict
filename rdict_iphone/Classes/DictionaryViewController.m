@@ -299,13 +299,14 @@
 
 -(void) showSaveAlert {
 	DebugLog( @"Card counts : %d", [Card count] );
-	if( [Card count] < 100) {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+	if( ![userDefaults boolForKey:@"REMOVE_SAVE_ALERT"] ) {
 		UIAlertView *testAlert = [[UIAlertView alloc] initWithTitle:@"Card added" 
 					message:@"Flash card is saved with selected definition. "
 							"This card is scheduled for review tomorrow."
 							"The future review schedule will be decided by your memory strength."
 							"That means the card appears for review when you nearly forget." 
-					delegate:self cancelButtonTitle:@"Don't show message again" otherButtonTitles:nil];
+					delegate:self cancelButtonTitle:@"Remove alert" otherButtonTitles:@"OK", nil];
 		[testAlert show];
 		testAlert.tag = ALERT_HELP;
 	
@@ -325,6 +326,9 @@
 	if( alertView.tag == ALERT_HELP ) {
 		if (buttonIndex == 0) {
 //			DebugLog(@"DVC.don't show again");
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+			//delayBeforeDialing = [userDefaults floatForKey:@"delayBeforeDialing"];  
+			[userDefaults setBool:TRUE forKey:@"REMOVE_SAVE_ALERT"];  
 		}
 	} else if ( alertView.tag = ALERT_CLIPBOARD ) {
 		saveDialogOpened = NO;

@@ -108,7 +108,7 @@
 					<object class="IBUITextView" id="627916619">
 						<reference key="NSNextResponder" ref="396918392"/>
 						<int key="NSvFlags">311</int>
-						<string key="NSFrame">{{12, 127}, {297, 171}}</string>
+						<string key="NSFrame">{{12, 127}, {297, 185}}</string>
 						<reference key="NSSuperview" ref="396918392"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -149,7 +149,7 @@
 							<double key="NSSize">48</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor" id="991807042">
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -182,32 +182,10 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUILabel" id="465537504">
-						<reference key="NSNextResponder" ref="396918392"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 351}, {294, 21}}</string>
-						<reference key="NSSuperview" ref="396918392"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Forgot &lt;--------------------------------------&gt; Perfect</string>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Monaco</string>
-							<double key="NSSize">13</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<reference key="IBUITextColor" ref="991807042"/>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<float key="IBUIMinimumFontSize">10</float>
-					</object>
 					<object class="IBUIButton" id="994417315">
 						<reference key="NSNextResponder" ref="396918392"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{22, 306}, {277, 37}}</string>
+						<string key="NSFrame">{{21, 325}, {277, 37}}</string>
 						<reference key="NSSuperview" ref="396918392"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -365,7 +343,6 @@
 							<reference ref="627916619"/>
 							<reference ref="606900146"/>
 							<reference ref="340577593"/>
-							<reference ref="465537504"/>
 							<reference ref="994417315"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -430,11 +407,6 @@
 						<reference key="parent" ref="396918392"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">119</int>
-						<reference key="object" ref="465537504"/>
-						<reference key="parent" ref="396918392"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">126</int>
 						<reference key="object" ref="994417315"/>
 						<reference key="parent" ref="396918392"/>
@@ -449,7 +421,6 @@
 					<string>-2.CustomClassName</string>
 					<string>116.IBPluginDependency</string>
 					<string>117.IBPluginDependency</string>
-					<string>119.IBPluginDependency</string>
 					<string>126.IBPluginDependency</string>
 					<string>71.IBEditorWindowLastContentRect</string>
 					<string>71.IBPluginDependency</string>
@@ -469,8 +440,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{358, 134}, {320, 480}}</string>
+					<string>{{479, 146}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
