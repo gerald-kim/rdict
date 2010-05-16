@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
-		<string key="IBDocument.InterfaceBuilderVersion">762</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">460.00</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">761</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">87</string>
+			<string key="NS.object.0">84</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="18"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,14 +45,13 @@
 					<object class="IBUILabel" id="723061945">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 17}, {245, 60}}</string>
+						<string key="NSFrame">{{20, 11}, {276, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string type="base64-UTF8" key="IBUIText">VGhlIEFtcGxpb1dvcmRzIHJlY29tbWVuZHMgCnByYWN0aWNpbmcgdGhlIGZvbGxvd2luZwpkaWZmaWN1
-bHQgd29yZHMgb25lIG1vcmUgdGltZTo</string>
+						<string key="IBUIText">AmplioWords recommends practicing the following difficult words one more time:</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
@@ -212,8 +211,8 @@ bHQgd29yZHMgb25lIG1vcmUgdGltZTo</string>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="508129448"/>
-							<reference ref="723061945"/>
 							<reference ref="660109909"/>
+							<reference ref="723061945"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -302,7 +301,7 @@ bHQgd29yZHMgb25lIG1vcmUgdGltZTo</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ReviewUnfinishedViewController</string>
 					<string>UIResponder</string>
-					<string>{{215, 96}, {320, 480}}</string>
+					<string>{{360, 235}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -658,6 +657,6 @@ bHQgd29yZHMgb25lIG1vcmUgdGltZTo</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../RDict.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">87</string>
+		<string key="IBCocoaTouchPluginVersion">84</string>
 	</data>
 </archive>

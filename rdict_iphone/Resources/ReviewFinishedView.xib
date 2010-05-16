@@ -2,17 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
-		<string key="IBDocument.InterfaceBuilderVersion">762</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">460.00</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">761</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">87</string>
+			<string key="NS.object.0">84</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="11"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,15 +45,15 @@
 					<object class="IBUILabel" id="370459350">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{20, 103}, {302, 110}}</string>
+						<string key="NSFrame">{{17, 40}, {285, 268}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string type="base64-UTF8" key="IBUIText">WW91IGZpbmlzaGVkIHRoZSByZXZpZXcgCmFuZCBzdHVkaWVkIGEgdG90YWwgb2YgIzMzIGNhcmRzLgoK
-RnVydHVyZSByZXZpZXcgd2lsbCBiZSBhdXRvbWFjYWxseSAKc2NoZWR1bGVkIGJ5IHlvdXIgbWVtb3J5
-Lg</string>
+						<string type="base64-UTF8" key="IBUIText">WW91IGZpbmlzaGVkIHRoZSByZXZpZXcgc2Vzc2lvbiBhbmQgc3R1ZGllZCBhIHRvdGFsIG9mICMzMyBj
+YXJkKHMpLgoKRnV0dXJlIHNlc3Npb25zIHdpbGwgYmUgYXV0b21hdGljYWxseSBzY2hlZHVsZWQgYWNj
+b3JkaW5nIHRvIHlvdXIgbWVtb3J5IHN0cmVuZ3RoLg</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
@@ -66,7 +66,7 @@ Lg</string>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">5</int>
+						<int key="IBUINumberOfLines">7</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
 					<object class="IBUIToolbar" id="904749239">
@@ -104,7 +104,7 @@ Lg</string>
 					<object class="IBUILabel" id="118743882">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {261, 75}}</string>
+						<string key="NSFrame">{{17, 20}, {261, 75}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -185,8 +185,8 @@ Lg</string>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="904749239"/>
-							<reference ref="118743882"/>
 							<reference ref="370459350"/>
+							<reference ref="118743882"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -258,7 +258,7 @@ Lg</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ReviewFinishedViewController</string>
 					<string>UIResponder</string>
-					<string>{{381, 108}, {320, 480}}</string>
+					<string>{{411, 171}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -596,6 +596,6 @@ Lg</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../RDict.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">87</string>
+		<string key="IBCocoaTouchPluginVersion">84</string>
 	</data>
 </archive>

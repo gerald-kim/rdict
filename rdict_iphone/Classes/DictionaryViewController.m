@@ -302,11 +302,12 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	if( ![userDefaults boolForKey:@"REMOVE_SAVE_ALERT"] ) {
 		UIAlertView *testAlert = [[UIAlertView alloc] initWithTitle:@"Card added" 
-					message:@"Flash card is saved with selected definition. "
-							"This card is scheduled for review tomorrow."
-							"The future review schedule will be decided by your memory strength."
-							"That means the card appears for review when you nearly forget." 
-					delegate:self cancelButtonTitle:@"Remove alert" otherButtonTitles:@"OK", nil];
+					message:@"AmplioWords created a card with the definition you selected. "
+							"You'll first see the card in tomorrow's review. "
+							"Future appearances depend on your memory's strength: "
+							"the system predicts when you will forget the card and schedules it just before." 
+							" Show this message next time?"
+					delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 		[testAlert show];
 		testAlert.tag = ALERT_HELP;
 	
