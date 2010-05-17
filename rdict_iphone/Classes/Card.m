@@ -157,9 +157,9 @@ DECLARE_PROPERTIES (
 //		return @"You have scheduled flashcards for review.";
 		return nil;
 	} else if ( todayCount > 0 ) {
-		return @"No cards are scheduled for review, but you can practice cards you created today.";
+		return @"No cards are scheduled for review,\nbut you can practice cards you created today.";
 	} else {
-//		return @"There are no scheduled flashcards for review. ";		
+		return @"There are no scheduled flashcards\nfor review. ";		
 		return nil;
 	}
 }

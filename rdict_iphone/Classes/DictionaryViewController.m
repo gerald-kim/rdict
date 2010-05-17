@@ -305,8 +305,8 @@
 					message:@"AmplioWords created a card with the definition you selected. "
 							"You'll first see the card in tomorrow's review. "
 							"Future appearances depend on your memory's strength: "
-							"the system predicts when you will forget the card and schedules it just before." 
-							" Show this message next time?"
+							"the system predicts when you will forget the card and schedules it just before.\n\n" 
+							"Show this message next time?"
 					delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 		[testAlert show];
 		testAlert.tag = ALERT_HELP;
@@ -323,7 +323,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	DebugLog(@"DVC.clickedButtonAtIndex");
+	DebugLog(@"DVC.clickedButtonAtIndex: %d, %d", alertView.tag, buttonIndex);
 	if( alertView.tag == ALERT_HELP ) {
 		if (buttonIndex == 0) {
 //			DebugLog(@"DVC.don't show again");
@@ -331,9 +331,10 @@
 			//delayBeforeDialing = [userDefaults floatForKey:@"delayBeforeDialing"];  
 			[userDefaults setBool:TRUE forKey:@"REMOVE_SAVE_ALERT"];  
 		}
-	} else if ( alertView.tag = ALERT_CLIPBOARD ) {
+	} else if ( alertView.tag == ALERT_CLIPBOARD ) {
 		saveDialogOpened = NO;
 		if (buttonIndex == 1) {
+			DebugLog(@"Save definition");			
 			[self saveCard:[UIPasteboard generalPasteboard].string];
 		}
 	}
