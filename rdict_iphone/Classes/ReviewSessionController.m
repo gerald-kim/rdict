@@ -206,22 +206,6 @@ static NSString* backHelpMessage =
 	[self.view bringSubviewToFront:cardViewController.view];
 }
 
-/*
-- (NSString*) getStatusMesgAndSetStatusArrow {
-	if(cardsRemain > 1) {
-		self.statusArrow.hidden = NO;
-		return [NSString stringWithFormat:statusLabelNMoreCards, cardsRemain];
-	}
-	else if (cardsRemain == 1) {
-		self.statusArrow.hidden = NO;
-		return [NSString stringWithFormat:statusLabelOneMoreCard, cardsRemain];
-	}
-	else {
-		self.statusArrow.hidden = YES;
-		return [NSString stringWithFormat:statusLabelLastCard, cardsRemain];
-	}
-}
-*/
 
 #pragma mark -
 #pragma mark ReviewFinish
@@ -237,10 +221,10 @@ static NSString* backHelpMessage =
 }
 
 - (IBAction) reviewAgainButtonClicked : (id) sender {
-	//TODO shuffle uncertainCards
 	[reviewUnfinishedViewController.view removeFromSuperview];
 	[reviewUnfinishedViewController release];
-		
+	
+	[uncertainCards shuffle];
 	[self initCards:uncertainCards];
 	[self showCardFrontView];
 }

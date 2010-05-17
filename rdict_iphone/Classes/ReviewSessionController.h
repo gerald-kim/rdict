@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSMutableArray_Shuffling.h"
 
 @class CardViewController;
 @class ReviewUnfinishedViewController;

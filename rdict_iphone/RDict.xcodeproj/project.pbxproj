@@ -92,6 +92,9 @@
 		EF3792BE1135ED06005A1B22 /* StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EF3792BA1135ED06005A1B22 /* StatisticsManager.m */; };
 		EF3ED7F2116B35D000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F0116B35BC00EB59C8 /* libz.dylib */; };
 		EF3ED7F4116B35E000EB59C8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF3ED7F3116B35E000EB59C8 /* libz.dylib */; };
+		EF473F2311A1710E008549F1 /* NSMutableArray_Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = EF473F2211A1710E008549F1 /* NSMutableArray_Shuffling.m */; };
+		EF473F2711A17152008549F1 /* NSMutableArray_Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = EF473F2211A1710E008549F1 /* NSMutableArray_Shuffling.m */; };
+		EF473F2811A17153008549F1 /* NSMutableArray_Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = EF473F2211A1710E008549F1 /* NSMutableArray_Shuffling.m */; };
 		EF5071311120D2210017B0FC /* CKSparkline.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5071301120D2210017B0FC /* CKSparkline.m */; };
 		EF54C5860FFF372100BFDCB6 /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5830FFF372100BFDCB6 /* index.db */; };
 		EF54C5880FFF372100BFDCB6 /* word.db in Resources */ = {isa = PBXBuildFile; fileRef = EF54C5850FFF372100BFDCB6 /* word.db */; };
@@ -407,6 +410,8 @@
 		EF3792BA1135ED06005A1B22 /* StatisticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsManager.m; sourceTree = "<group>"; };
 		EF3ED7F0116B35BC00EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EF3ED7F3116B35E000EB59C8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EF473F2111A1710E008549F1 /* NSMutableArray_Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArray_Shuffling.h; path = Classes/NSMutableArray_Shuffling.h; sourceTree = "<group>"; };
+		EF473F2211A1710E008549F1 /* NSMutableArray_Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMutableArray_Shuffling.m; path = Classes/NSMutableArray_Shuffling.m; sourceTree = "<group>"; };
 		EF50712F1120D2210017B0FC /* CKSparkline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKSparkline.h; path = Classes/CKSparkline.h; sourceTree = "<group>"; };
 		EF5071301120D2210017B0FC /* CKSparkline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKSparkline.m; path = Classes/CKSparkline.m; sourceTree = "<group>"; };
 		EF54C5830FFF372100BFDCB6 /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
@@ -623,6 +628,8 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				EF50712F1120D2210017B0FC /* CKSparkline.h */,
 				EF5071301120D2210017B0FC /* CKSparkline.m */,
+				EF473F2111A1710E008549F1 /* NSMutableArray_Shuffling.h */,
+				EF473F2211A1710E008549F1 /* NSMutableArray_Shuffling.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1251,6 +1258,7 @@
 				EF5071311120D2210017B0FC /* CKSparkline.m in Sources */,
 				EF3792BC1135ED06005A1B22 /* StatisticsManager.m in Sources */,
 				EF719407117023CC00B59670 /* CustomUITabBarController.m in Sources */,
+				EF473F2311A1710E008549F1 /* NSMutableArray_Shuffling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1296,6 +1304,7 @@
 				EF288FCF111B897100BB5C83 /* LookupHistoryTest.m in Sources */,
 				EF3792A91135E612005A1B22 /* StatisticsManagerTest.m in Sources */,
 				EF3792BE1135ED06005A1B22 /* StatisticsManager.m in Sources */,
+				EF473F2811A17153008549F1 /* NSMutableArray_Shuffling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,6 +1366,7 @@
 				EFEFE6C5118E4CEB00281671 /* CKSparkline.m in Sources */,
 				EFEFE6C6118E4CEB00281671 /* StatisticsManager.m in Sources */,
 				EFEFE6C7118E4CEB00281671 /* CustomUITabBarController.m in Sources */,
+				EF473F2711A17152008549F1 /* NSMutableArray_Shuffling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
