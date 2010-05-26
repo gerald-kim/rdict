@@ -6,22 +6,24 @@ import json
 
 def rpx(request):
     token = request.POST['token']
-
+    print 'Token: ', token
     api_params = {
         'token': token,
         'apiKey': '7151c99b457a7989b2261ff55081e970511c1169',
         'format': 'json',
         }
     
+    
     # make the api call
     http_response = urllib2.urlopen('https://rpxnow.com/api/v2/auth_info',
                                     urllib.urlencode(api_params))
-
+    print urllib.urlencode(api_params)
     # read the json response
     auth_info_json = http_response.read()
 
     # Step 3) process the json response
     auth_info = json.loads(auth_info_json)
+    print 'Auth Info', auth_info
 
     # Step 4) use the response to sign the user in
     if auth_info['stat'] == 'ok':
@@ -36,17 +38,22 @@ def rpx(request):
         # depends on the provider and their implementation.
         name = profile.get('displayName')
         email = profile.get('email')
-        profile_pic_url = profile.get('photo')
+        # profile_pic_url = profile.get('photo')
         
         # actually sign the user in.  this implementation depends highly on your
         # platform, and is up to you.
         #sign_in_user(identifier, name, email, profile_pic_url)
         print identifier, name, email
         request.session['rpxuser'] = (identifier, name, email)
+        
+        if request.session.has_key('nextUrl'):
+            nextUrl = request.session['nextUrl']
+            del request.session['nextUrl']
+            return HttpResponseRedirect(nextUrl)
         return HttpResponseRedirect('/')
     else:
         print 'An error occured: ' + auth_info['err']['msg']
-        return HttpResponseServerError()
+        return HttpResponseForbidden()
 
 def signout(request):
     del request.session['rpxuser']

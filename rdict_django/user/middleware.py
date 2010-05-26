@@ -14,8 +14,9 @@ class UserMiddleware(object):
                 u = User.objects.get(openid=rpxuser[0])
             except User.DoesNotExist:
                 u = User()
-                u.email = rpxuser[2]
                 u.openid = rpxuser[0]
+                u.name = rpxuser[1]
+                u.email = rpxuser[2]
                 
                 u.save() 
             request.login_user = u

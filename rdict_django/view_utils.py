@@ -59,8 +59,10 @@ def login_required(func):
 
     def login_wrapper(request, *args, **kwds):
         if request.login_user is None:
+            request.session['nextUrl'] = request.get_full_path().encode('utf-8')
+
             return HttpResponseRedirect(
-                    '/openid/?next=%s' % request.get_full_path().encode('utf-8'))
+                    'https://rdict.rpxnow.com/openid/v2/signin?token_url=http://localhost:8000/user/rpx' )
         return func(request, *args, **kwds)
 
     return login_wrapper
