@@ -21,7 +21,7 @@
 @implementation StatisticsManagerTest
 
 -(void) testGetCardCountStatistics {
-	[StatisticsManager createTable];
+	[StatisticsManager createTableAndCopyPreviousData];
 
 	for (int i = 0; i < 10; i++) {
 		SLStmt *stmt = [SLStmt stmtWithSql:[NSString stringWithFormat:@"INSERT INTO statistics VALUES (date('now', '-%d days', 'localtime'), %d, 0)"

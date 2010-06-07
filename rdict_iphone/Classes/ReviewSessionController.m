@@ -12,6 +12,7 @@
 #import "ReviewFinishedViewController.h"
 #import "Card.h"
 #import "RDictAppDelegate.h"
+#import "StatisticsManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -98,10 +99,15 @@ static NSString* backHelpMessage =
 	[self showCardFrontView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	[StatisticsManager updateMasteredCardCountsOfToday];
+	[super viewWillDisappear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[scheduledCards release]; scheduledCards = nil;
 	[uncertainCards release];
-	
+	[super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {
@@ -237,8 +243,7 @@ static NSString* backHelpMessage =
 	
 	[self.view insertSubview:reviewFinishedViewController.view atIndex:0];
 	[self.view bringSubviewToFront:reviewFinishedViewController.view];
-	[reviewFinishedViewController viewWillAppear:TRUE];
-	
+	[reviewFinishedViewController viewWillAppear:TRUE];	
 }
 
 - (IBAction) reviewCompleteButtonClicked : (id) sender {
