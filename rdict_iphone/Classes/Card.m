@@ -269,20 +269,21 @@ DECLARE_PROPERTIES (
 	[StudyLog increaseStudyIndex:self];
 	[[[StudyLog alloc]initWithCard:self] save];
 
-	[self save];
+	self.updated = [NSDate date];
+	[super save];
 }
 
 - (void) save {
 	self.updated = [NSDate date];
 	[super save];
-	[StatisticsManager updateStatisticsOfToday];	
+	[StatisticsManager updateCardCountsOfToday];			
 }
 
 - (void) deleteObject {
 	[StudyLog deleteStudyLogs:self];
 	self.deleted = [NSDate date] ;
 	[super save];
-	[StatisticsManager updateStatisticsOfToday];		
+	[StatisticsManager updateCardCountsOfToday];		
 }
 
 /*

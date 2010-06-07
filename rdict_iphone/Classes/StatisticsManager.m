@@ -19,23 +19,37 @@
 
 @implementation StatisticsManager
 
-+(void) createTable {
++(void) createTableAndCopyPreviousData {
 	SLStmt* stmt = [SLStmt stmtWithSql:@"CREATE TABLE IF NOT EXISTS statistics (pk DATE PRIMARY KEY, card_count INTEGER, mastered_card_count INTEGER)"];
+	[stmt step];
+	[stmt prepareSql:@"select card_count,  mastered_card_count from statistics order by pk desc limit 1"];
+	
+	int totalCount = 0;
+	int masteredCount = 0;
+	if( [stmt step] ) {
+		totalCount = [[stmt stringValue:0] intValue];
+		masteredCount = [[stmt stringValue:1] intValue];
+	}
+	[stmt prepareSql:[NSString stringWithFormat:@"INSERT INTO statistics values (date('now', 'localtime'), %d, %d)", totalCount, masteredCount]];
 	[stmt step];
 	[stmt close];
 }
 
-+(void) updateStatisticsOfToday {
-	[StatisticsManager createTable];
-	[StudyLog count];
++(void) updateCardCountsOfToday {
+	[StatisticsManager createTableAndCopyPreviousData];
 	
-	SLStmt* stmt = [SLStmt stmtWithSql:@"REPLACE INTO statistics (pk, card_count) SELECT date('now', 'localtime') pk, count(*) card_count FROM card WHERE deleted is null"];
-	[stmt step];
-	[stmt prepareSql:@"UPDATE statistics SET mastered_card_count = (select count(*) from ( select card, avg(grade) grade from study_log where deleted is null and study_index in (0, 1) group by card ) where grade >= 4) WHERE pk = date('now', 'localtime')"];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"UPDATE statistics SET card_count = (SELECT count(*) card_count FROM card WHERE deleted is null) WHERE pk = date('now', 'localtime')"];
 	[stmt step];
 	[stmt close];	
+}
+
++(void) updateMasteredCardCountsOfToday {
+	[StatisticsManager createTableAndCopyPreviousData];
+	[StudyLog count];
 	
-	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:[Card countByScheduled]];
+	SLStmt* stmt = [SLStmt stmtWithSql:@"UPDATE statistics SET mastered_card_count = (select count(*) from ( select card, avg(grade) grade from study_log where deleted is null and study_index in (0, 1) group by card ) where grade >= 4) WHERE pk = date('now', 'localtime')"];
+	[stmt step];
+	[stmt close];	
 }
 
 +(NSArray*) cardCountsOfRecentDay:(NSUInteger) days {

@@ -12,6 +12,7 @@
 #import "Wiktionary.h"
 #import "SQLiteInstanceManager.h"
 #import "Card.h"
+#import "StatisticsManager.h"
 
 @implementation RDictAppDelegate
 
@@ -36,10 +37,18 @@
 	previousTabIndex = 0;
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[StatisticsManager updateCardCountsOfToday];
+	[StatisticsManager updateMasteredCardCountsOfToday];
+}
+
+
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	DebugLog(@"timechange");
 	[self updateReviewTabAndBadge];
 }
+
+
 
 // Optional UITabBarControllerDelegate method
 - (void)tabBarController:(UITabBarController *) aTabBarController didSelectViewController:(UIViewController *) aViewController {

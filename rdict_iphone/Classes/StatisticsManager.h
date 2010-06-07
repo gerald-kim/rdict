@@ -12,8 +12,9 @@
 
 }
 
-+(void) createTable;
-+(void) updateStatisticsOfToday;
++(void) createTableAndCopyPreviousData;
++(void) updateCardCountsOfToday;
++(void) updateMasteredCardCountsOfToday;
 
 +(NSArray*) cardCountsOfRecentDay:(NSUInteger) days;
 +(NSArray*) masteredCardsCountOfRecentDay:(NSUInteger) days;
