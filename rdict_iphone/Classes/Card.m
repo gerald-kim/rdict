@@ -78,7 +78,7 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) scheduledCardCriteria {
-	return [NSString stringWithString:@"where scheduled < date('now', 'localtime', '+1 day') and deleted is null"];	
+	return [NSString stringWithString:@"where deleted is null and scheduled < date('now', 'localtime', '+1 day')"];	
 }
 
 + (NSInteger) countByToday {
@@ -90,8 +90,8 @@ DECLARE_PROPERTIES (
 }
 
 + (NSString*) todayCardCriteria {
-	return [NSString stringWithString:@"where created > date('now', 'localtime') "
-		"	and ( studied is null or studied < date('now', 'localtime') ) and deleted is null"];	
+	return [NSString stringWithString:@"where deleted is null and created > date('now', 'localtime') "
+		"	and ( studied is null or studied < date('now', 'localtime') )"];	
 }
 
 + (NSInteger) countByMastered {	
@@ -136,12 +136,12 @@ DECLARE_PROPERTIES (
 }
 
 //TODO functions for review can be extracted to new class
-+ (NSString*) messageForReview {
++ (NSString*) messageForReview  {
 	NSInteger todayCount = [Card countByToday];
 	NSInteger scheduledCount = [Card countByScheduled];
 	
 	if ( scheduledCount > 0 ) {
-		return @"Scheduled Cards";
+		return @"Scheduled Exercise";
 	} else if ( todayCount > 0 ) {
 		return @"Early Practice";
 	} else {
@@ -152,16 +152,24 @@ DECLARE_PROPERTIES (
 + (NSString*) footerForReview {
 	NSInteger todayCount = [Card countByToday];
 	NSInteger scheduledCount = [Card countByScheduled];
-	
-	if ( scheduledCount > 0 ) {
+
+
+	NSMutableString* message = [NSMutableString string];
+	if ( scheduledCount > 0  ) {
 //		return @"You have scheduled flashcards for review.";
-		return nil;
 	} else if ( todayCount > 0 ) {
-		return @"No cards are scheduled for review,\nbut you can practice cards you created today.";
+		[message appendFormat:@"No cards are scheduled for review,\nbut you can practice cards you created today. "];
 	} else {
-		return @"There are no scheduled flashcards\nfor review. ";		
-		return nil;
+		[message appendFormat:@"There are no scheduled flashcards\nfor review. "];
 	}
+	
+	NSInteger count = scheduledCount > 0 ? scheduledCount : todayCount;
+	if ( count > REVIEW_LIMIT ) {
+		[message appendFormat:@"Each review exercise is limited by %d cards. %d card(s) remains.", REVIEW_LIMIT, (count-REVIEW_LIMIT)];	
+	}
+	
+	return message;
+	
 }
 
 + (NSString*) countMessageForReview {
@@ -170,7 +178,7 @@ DECLARE_PROPERTIES (
 	NSInteger count = scheduledCount > 0 ? scheduledCount : todayCount;
 	
 	if (count > REVIEW_LIMIT) {
-		return [NSString stringWithFormat:@"%d/%d", REVIEW_LIMIT, count];
+		return [NSString stringWithFormat:@"%d", REVIEW_LIMIT, count];
 	} else if ( count > 0 ) {
 		return [NSString stringWithFormat:@"%d", count];
 	} else {
