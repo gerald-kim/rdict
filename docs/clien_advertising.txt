@@ -1,0 +1,92 @@
+안녕하세요. 몇 년 동안 눈팅만 하다가 소개할 아이폰 어플이 있어 처음으로
+글을 남겨봅니다.
+
+아이팟/아이폰을 사전으로 쓰려는 노력을 많이 했는데, 딱 입맛에 맞는
+사전이 없어 직접 만들어봤습니다.
+
+* 영어를 영어로 익히기엔 영영사전이 좋은데, 영영사전으론 무슨 뜻인지
+* 모를 경우가 있다. 이때 한영사전을 바로 찾아볼 수 있으면 좋겠다.
+* 원서를 들고 공부하다 보면 같은 단어가 반복되는데, 모르는 단어는
+* 며칠만 지나면 까먹고 또 찾아보게 된다.  한 단어를 찾고, 또 다른
+* 단어를 찾아볼 때 검색창에 입력한 텍스트를 리셋하기 편하면 좋겠다.
+
+영영, 한영사전 어플 따로 깔고, 단어 암기용 flashcard어플을 깔아서 쓰면
+되기야 하겠지만 어플 여러 개 왔다 갔다 하는 것도 불편해서 이걸 모두
+합친 사전을 만들었습니다. 사전에 flashcard 어플을 합치고, flashcard는
+옛날 팜에서 많이 썼던 SuperMemo의 알고리즘을 적용해서 사용자가 잊어버릴
+때쯤 다시 복습을 할 수 있도록 했습니다.
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/02_search_list.png" alt="검색화면">
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/01_search_view.png" alt="단어정의">
+
+Wiktionary의 사전 데이타를 이용해서 예제 데이타가 풍부하고, 원문에 대한
+링크도 포함되어 있습니다.
+
+단어의 정의 각각의 오른쪽에 보면 조그만 별표가 있는데, 이 별표를
+클릭하면 "단어/선택한 단어의 뜻"을 가지고 Flashcard를
+만들어줍니다. 이렇게 만든 Flashcard는 Review 탭에서 복습할 수
+있습니다.
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/06_search_daum.png" alt="다음사전">
+
+영어만 가지고 단어의 뜻을 명확히 알기 어려운 경우에는 아래처럼 다음
+영한사전의 정의를 볼 수 있도록 링크를 만들어 놨습니다. 외부 데이타의
+경우에는 단락을 선택해서 클립보드에 카피하면 선택한 단락으로
+Flashcard를 만듭니다. 별 아이콘 넣기가 너무 어려웠습니다.
+
+그리고 특별한 건 아니지만, 사전 화면에서 'Search' 탭을 클릭하면 단어
+입력창을 리셋하고, 키보드를 띄워서 새 단어를 검색하기 쉽게 했습니다.
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/03_review.png" "[리뷰메인]">
+ 사전에서 만든 Flashcard는 리뷰탭에서 복습할 수
+있습니다. 기본적으로 오늘 만든 카드는 내일 복습하고, 그 이후는 기억하는
+정도에 따라 자동으로 복습날짜가 정해집니다. 암기라는게 무조건
+반복한다고 좋은 게 아니라 잊어버리기 직전에 복습할 때 효과가 가장
+좋다고 합니다.
+
+복습할 단어가 있으면 Scheduled card 메뉴를 클릭해서 복습을 시작합니다.
+
+아래에는 저장한 카드가 몇 개 있는지, 그중에 몇 개를 잘 기억하고 있는지
+보여주고 다음번 복습 스케줄은 어떻게 되는지도 알려줍니다.
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/04_review_question.png" alt="[리뷰Q]">
+
+<img src="http://www.ampliostudios.com/media/images/rdict-screenshots/05_review_answer.png" alt="[리뷰A]">
+
+복습화면은 이렇게 되어 있는데 단어를 보고 뜻을 생각합니다. 자신이
+생각한 뜻이 얼마나 정확한지 스스로 점수를 매기면(0점은 완전히 잊어버린
+것, 5점은 완벽하게 기억하는 것) 그 점수에 맞춰 다음번 복습날짜가
+결정되는 것입니다.
+
+출퇴근 시간 지하철에서 잠깐씩만 복습해도 찾아봤던 단어 또 찾아보는 일이
+많이 줄어드는 것 같습니다. :)
+
+어플에 대한 소개는 이쯤하고, 미국계정이 있는 분들은 무료로 사용해보실
+수 있게 프로모션 코드 20개 적어놓겠습니다. 필요하신 분들은 써보시고
+평가 부탁합니다.
+
+감사합니다.
+
+-------------
+NK693EYYPX4F
+YY3WJ7MEEW44
+WFPWPNPFPPJK
+PN46JL9RXF79
+NL69JXYNRRAR
+X4M3PHY6F4FR
+YELNMAXJW79F
+NAXLKRAYRKXW
+FM7JLNH9LNRT
+XNEHA39PJ7KT
+W4MJEKJXXXLK
+9PAPEPP4YE7H
+9MA6AT93J94H
+P477RKPWH34N
+HLWLLW7LTJL6
+PM97EH39L3HT
+PM37P6AW4RNF
+K6AYLPK7LXJW
+RJNPJFY4KNNF
+FWAPAK97A3L4
+-------------
